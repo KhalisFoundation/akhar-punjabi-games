@@ -1,0 +1,12 @@
+{
+  "name": "wordGameReactNative",
+  "displayName": "wordGameReactNative",
+  "expo": {
+    "name": "wordGameReactNative",
+    "slug": "wordGameReactNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
