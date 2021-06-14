@@ -1,23 +1,26 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+// In App.js in a new project
 
-import Fathe from "./components/clickForFathe";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./components/home";
+import NextScreen from "./components/next";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Fathe />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Home"
+          component={HomeScreen}
+        />
+        <Stack.Screen name="Next" component={NextScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    //justifyContent: "center",
-  },
-});
+export default App;
