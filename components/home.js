@@ -1,5 +1,12 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Button,
+} from "react-native";
 
 function HomeScreen({ navigation }) {
   return (
@@ -7,17 +14,20 @@ function HomeScreen({ navigation }) {
       <Text style={styles.text}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
       <Text></Text>
       <Image style={styles.khanda} source={require("../images/khanda.png")} />
-      <Image
-        style={styles.logo}
-        source={require("../images/khalislogo150white.png")}
-      />
+      <Button title="HI" />
+
+      <Button type="button" class="btn btn-warning" title="primary" />
+
       <TouchableOpacity
         style={styles.touchableOpacity}
         onPress={() => {
           navigation.navigate("Next");
         }}
       >
-        <Text>PLAY</Text>
+        <Image
+          //style={styles.logo}
+          source={require("../images/khalislogo150white.png")}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -42,11 +52,11 @@ const styles = StyleSheet.create({
     top: 320,
   },
   touchableOpacity: {
-    top: 220,
-    backgroundColor: "white",
-    borderRadius: 10,
-    height: 30,
-    width: 50,
+    //top: 220,
+    //backgroundColor: "white",
+    //borderRadius: 10,
+    //height: 30,
+    //width: 50,
     justifyContent: "center",
   },
 });
