@@ -15,7 +15,11 @@ function App() {
           name="Home"
           component={HomeScreen}
         />
-        <Stack.Screen name="Next" component={NextScreen} />
+        <Stack.Screen
+          name="Next"
+          options={{ headerShown: false }}
+          component={NextScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
