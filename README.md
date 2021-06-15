@@ -1,3 +1,3 @@
 # gurkmukhi-word-link
 
-Word Link game written in react-native. 
+Word link game written in react-native. 
