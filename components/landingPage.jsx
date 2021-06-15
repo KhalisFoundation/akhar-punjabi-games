@@ -7,40 +7,60 @@ import {
   Image,
   Button,
   ImageBackground,
+  StatusBar,
 } from "react-native";
 
 function HomeScreen({ navigation }) {
   return (
-    <ImageBackground style={styles.container} 
-    source={require("../assets/background.png")}>
-      <Text style={styles.text}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
-      <Image style={styles.logo} 
-      source={require("../assets/logo.png")} />
-
+    <ImageBackground
+      source={require("../images/background.png")}
+      style={styles.container}
+    >
+      <Text style={styles.mangal}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
+      <Image style={styles.logo} source={require("../images/logo.png")} />
       <TouchableOpacity
-        style={styles.touchableOpacity}
+        style={styles.playTouchableOpacity}
         onPress={() => {
           navigation.navigate("Next");
         }}
       >
-        <Image
-          style={styles.play}
-          source={require("../assets/Play.png")}
-        />
+        <Image style={styles.play} source={require("../images/Play.png")} />
       </TouchableOpacity>
-      <TouchableOpacity>
-         <Image
+
+      <TouchableOpacity
+        style={styles.settingsTouchableOpacity}
+        onPress={() => {
+          console.log("Settings");
+        }}
+      >
+        <Image
           style={styles.settings}
-          source={require("../assets/settings.png")}
+          source={require("../images/settings.png")}
         />
       </TouchableOpacity>
-     
-     <TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.levelsTouchableOpacity}
+        onPress={() => {
+          console.log("Levels");
+        }}
+      >
+        <Image style={styles.levels} source={require("../images/levels.png")} />
+      </TouchableOpacity>
+      <View style={styles.by}>
+        <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.khalisTouchableOpacity}
+        onPress={() => {
+          console.log("Khalis Foundation");
+        }}
+      >
         <Image
-          style={styles.levels}
-          source={require("../assets/levels.png")}
-        />  
-     </TouchableOpacity>
+          style={styles.khalis}
+          source={require("../images/khalislogo150.png")}
+        />
+      </TouchableOpacity>
     </ImageBackground>
   );
 }
@@ -49,55 +69,70 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 35,
+    paddingTop: "5%",
   },
-  text: {
+  mangal: {
     fontSize: 20,
   },
   logo: {
-    width: 500,
-    height: 500,
-    top: 50,
+    width: "100%",
+    height: "70%",
+    //top: 50,
+  },
+  playTouchableOpacity: {
+    width: "50%",
+    height: "10%",
+    //right: "40%",
+    backgroundColor: "black",
+    borderRadius: 10,
+    bottom: "23.5%",
   },
   play: {
-    height: 100,
-    width: 200,
-    bottom: 250,
-    right: 75,
-    backgroundColor:`black`,
+    width: "100%",
+    height: "100%",
   },
-
+  settingsTouchableOpacity: {
+    height: "10%",
+    width: "20%",
+    right: "25%",
+    bottom: "12%",
+  },
   settings: {
-      height: 150,
-      width: 100,
-      marginTop: 80,
-      right: 80,
+    height: "100%",
+    width: "100%",
+    borderRadius: 5,
+    alignItems: "center",
   },
-
+  levelsTouchableOpacity: {
+    height: "10%",
+    width: "20%",
+    left: "25%",
+    bottom: "22%",
+  },
   levels: {
-    height: 150,
-    width: 100,
-    left: 80,
-    bottom: 150,
+    height: "100%",
+    width: "100%",
+    borderRadius: 5,
+    alignItems: "center",
   },
-
-  touchableOpacity: {
-    top: 220,
-    borderRadius: 10,
-    height: 30,
-    width: 50,
+  by: {
+    bottom: "18%",
   },
-  background: {
-      flex: 1,
-      height: 500,
-      width: 500
+  byText: {
+    fontSize: 20,
   },
-
-  button: {
-   backgroundColor: "black",
-   width: "100%",
-   height: 70
-  }
+  khalisTouchableOpacity: {
+    height: "8%",
+    width: "40%",
+    //left: "25%",
+    bottom: "17%",
+  },
+  khalis: {
+    height: "100%",
+    width: "100%",
+    borderRadius: 5,
+    alignItems: "center",
+  },
 });
 
 export default HomeScreen;
