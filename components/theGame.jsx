@@ -3,47 +3,46 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation }) {
+  // const words = [
+  //   { word: "ਅਜ", meaning: "Today" },
+  //   { word: "ਜਲ", meaning: "Water" },
+  //   { word: "ਧਰਮ", meaning: "Religion" },
+  //   { word: "ਮਾਮਾ", meaning: "Mum's Brother" },
+  //   { word: "ਚਲਾਕ", meaning: "Clever" },
+  //   { word: "ਕਪੜਾ", meaning: "Cloth" },
+  //   { word: "ਪਰਵਾਰ", meaning: "Family" },
+  // ];
 
-  const words = [
-    {word: 'ਅਜ', meaning: "Today" },
-    {word: 'ਜਲ', meaning: "Water"},
-    {word: 'ਧਰਮ',meaning: "Religion"},
-    {word: 'ਮਾਮਾ',meaning: "Mum's Brother"},
-    {word: 'ਚਲਾਕ',meaning: "Clever"},
-    {word: 'ਕਪੜਾ',meaning: "Cloth"},
-    {word: 'ਪਰਵਾਰ',meaning: "Family"}
-];
+  // const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
 
-const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
+  // let splitCharacter = [];
 
-var splitCharacter = [];
+  // //First word
+  // let splitterFirstWord = getRandomWord();
+  // console.log(splitterFirstWord.word);
 
-//First word
-var splitterFirstWord = getRandomWord();
-console.log(splitterFirstWord.word);
+  // for (let i = 0; i < splitterFirstWord.word.length; i++) {
+  //   if (!splitCharacter.includes(splitterFirstWord.word.charAt(i))) {
+  //     splitCharacter.push(splitterFirstWord.word.charAt(i));
+  //   }
+  // }
 
-for(var i = 0; i < splitterFirstWord.word.length; i++){
-  if(!splitCharacter.includes(splitterFirstWord.word.charAt(i))){
-     splitCharacter.push(splitterFirstWord.word.charAt(i));
-  }
-}
+  // //Second Word
+  // let splitterSecondWord = getRandomWord();
+  // while (splitterFirstWord === splitterSecondWord) {
+  //   splitterSecondWord = getRandomWord();
+  // }
+  // console.log(splitterSecondWord.word);
 
-//Second Word
-var splitterSecondWord = getRandomWord();
-while(splitterFirstWord === splitterSecondWord){
-  splitterSecondWord = getRandomWord();
-}
-console.log(splitterSecondWord.word);
+  // for (let i = 0; i < splitterSecondWord.word.length; i++) {
+  //   if (!splitCharacter.includes(splitterSecondWord.word.charAt(i))) {
+  //     splitCharacter.push(splitterSecondWord.word.charAt(i));
+  //   }
+  // }
 
-for(var i = 0; i < splitterSecondWord.word.length; i++){
-  if(!splitCharacter.includes(splitterSecondWord.word.charAt(i))){
-     splitCharacter.push(splitterSecondWord.word.charAt(i));
-  }
-}
-
-for(var i = 0; i < splitCharacter.length; i++){
-  console.log(splitCharacter[i]);
-}
+  // for (let i = 0; i < splitCharacter.length; i++) {
+  //   console.log(splitCharacter[i]);
+  // }
 
   return (
     <View style={styles.container}>
@@ -68,22 +67,22 @@ for(var i = 0; i < splitCharacter.length; i++){
           <Text style={styles.answers}>Hi</Text>
         </View>
       </View>
-      <View style={styles.wordAttempt}>
-        <Text >
-           {splitterFirstWord.word}: {splitterFirstWord.meaning}
+      {/* <View style={styles.wordAttempt}>
+        <Text>
+          {splitterFirstWord.word}: {splitterFirstWord.meaning}
         </Text>
         <Text>
           {splitterSecondWord.word}: {splitterSecondWord.meaning}
         </Text>
       </View>
-      <TheCircle characters={16}></TheCircle>
-
 
       <View style={styles.lettersCircle}>
-        <Text style={{color: "green", height: "90%", width: "100%"}}>
+        <Text style={{ color: "green", height: "90%", width: "100%" }}>
           {splitCharacter[0]}
         </Text>
-      </View>
+      </View> */}
+      <TheCircle characters={15}></TheCircle>
+      {/*there can only be from 4-18 characters as input*/}
     </View>
   );
 }
