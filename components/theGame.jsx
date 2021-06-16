@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     height: "90%",
   },
   title: {
+    marginTop: "5%",
     fontSize: 60,
     bottom: "10%",
   },
