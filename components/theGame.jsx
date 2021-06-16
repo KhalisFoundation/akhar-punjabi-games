@@ -1,7 +1,8 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import TheCircle from "./circleForGame";
 
-function HomeScreen({ navigation }) {
+function GameScreen({ navigation }) {
 
   const words = [
     {word: 'ਅਜ', meaning: "Today" },
@@ -44,9 +45,6 @@ for(var i = 0; i < splitCharacter.length; i++){
   console.log(splitCharacter[i]);
 }
 
-
-
-
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -63,7 +61,12 @@ for(var i = 0; i < splitCharacter.length; i++){
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
-        <View style={styles.wordBoxTexts}></View>
+        <View style={styles.wordBoxText1}>
+          <Text style={styles.answers}>Hi</Text>
+        </View>
+        <View style={styles.wordBoxText2}>
+          <Text style={styles.answers}>Hi</Text>
+        </View>
       </View>
       <View style={styles.wordAttempt}>
         <Text >
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 60,
-    bottom: 65,
+    bottom: "10%",
   },
   wordBoxAnswers: {
     bottom: 65,
@@ -110,12 +113,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#9C734F",
     borderRadius: 20,
   },
-  wordBoxText: {
-    // bottom: 65,
-    // width: 350,
-    // height: 250,
-    // backgroundColor: "#9C734F",
-    // borderRadius: 20,
+  wordBoxText1: {
+    width: 250,
+    height: 50,
+    left: 50,
+    top: 30,
+    backgroundColor: "white",
+    borderRadius: 20,
+  },
+  wordBoxText2: {
+    width: 250,
+    height: 50,
+    left: 50,
+    top: 60,
+    backgroundColor: "white",
+    borderRadius: 20,
+  },
+  answers: {
+    fontSize: 35,
+    left: 10,
   },
   wordAttempt: {
     bottom: 58,
@@ -124,13 +140,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#CFF6FF",
     borderRadius: 20,
   },
-  lettersCircle: {
-    bottom: 50,
-    width: 350,
-    height: 350,
-    borderRadius: 200,
-    backgroundColor: "#E8C4A5",
-  },
 });
 
-export default HomeScreen;
+export default GameScreen;

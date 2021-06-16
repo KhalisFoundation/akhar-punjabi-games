@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   mangal: {
     fontSize: 20,
-    paddingTop: "3%"
+    paddingTop: "3%",
   },
   logo: {
     width: "100%",
