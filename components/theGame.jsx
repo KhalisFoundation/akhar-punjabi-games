@@ -3,6 +3,48 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation }) {
+
+  const words = [
+    {word: 'ਅਜ', meaning: "Today" },
+    {word: 'ਜਲ', meaning: "Water"},
+    {word: 'ਧਰਮ',meaning: "Religion"},
+    {word: 'ਮਾਮਾ',meaning: "Mum's Brother"},
+    {word: 'ਚਲਾਕ',meaning: "Clever"},
+    {word: 'ਕਪੜਾ',meaning: "Cloth"},
+    {word: 'ਪਰਵਾਰ',meaning: "Family"}
+];
+
+const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
+
+var splitCharacter = [];
+
+//First word
+var splitterFirstWord = getRandomWord();
+console.log(splitterFirstWord.word);
+
+for(var i = 0; i < splitterFirstWord.word.length; i++){
+  if(!splitCharacter.includes(splitterFirstWord.word.charAt(i))){
+     splitCharacter.push(splitterFirstWord.word.charAt(i));
+  }
+}
+
+//Second Word
+var splitterSecondWord = getRandomWord();
+while(splitterFirstWord === splitterSecondWord){
+  splitterSecondWord = getRandomWord();
+}
+console.log(splitterSecondWord.word);
+
+for(var i = 0; i < splitterSecondWord.word.length; i++){
+  if(!splitCharacter.includes(splitterSecondWord.word.charAt(i))){
+     splitCharacter.push(splitterSecondWord.word.charAt(i));
+  }
+}
+
+for(var i = 0; i < splitCharacter.length; i++){
+  console.log(splitCharacter[i]);
+}
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -26,8 +68,22 @@ function GameScreen({ navigation }) {
           <Text style={styles.answers}>Hi</Text>
         </View>
       </View>
-      <View style={styles.wordAttempt}></View>
+      <View style={styles.wordAttempt}>
+        <Text >
+           {splitterFirstWord.word}: {splitterFirstWord.meaning}
+        </Text>
+        <Text>
+          {splitterSecondWord.word}: {splitterSecondWord.meaning}
+        </Text>
+      </View>
       <TheCircle characters={16}></TheCircle>
+
+
+      <View style={styles.lettersCircle}>
+        <Text style={{color: "green", height: "90%", width: "100%"}}>
+          {splitCharacter[0]}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -83,7 +139,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     backgroundColor: "#CFF6FF",
-    borderRadius: 20,
+    //borderRadius: 20,
   },
 });
 
