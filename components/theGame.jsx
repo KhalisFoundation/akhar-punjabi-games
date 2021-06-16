@@ -3,49 +3,41 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation }) {
-  // const words = [
-  //   { word: "ਅਜ", meaning: "Today" },
-  //   { word: "ਜਲ", meaning: "Water" },
-  //   { word: "ਧਰਮ", meaning: "Religion" },
-  //   { word: "ਮਾਮਾ", meaning: "Mum's Brother" },
-  //   { word: "ਚਲਾਕ", meaning: "Clever" },
-  //   { word: "ਕਪੜਾ", meaning: "Cloth" },
-  //   { word: "ਪਰਵਾਰ", meaning: "Family" },
-  // ];
+  const words = [
+    { text: "ਅਜ", meaning: "Today" },
+    { text: "ਜਲ", meaning: "Water" },
+    { text: "ਧਰਮ", meaning: "Religion" },
+    { text: "ਮਾਮਾ", meaning: "Mum's Brother" },
+    { text: "ਚਲਾਕ", meaning: "Clever" },
+    { text: "ਕਪੜਾ", meaning: "Cloth" },
+    { text: "ਪਰਵਾਰ", meaning: "Family" },
+  ];
+  const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
+  let characters = [];
+  //First word
+  let firstWord = getRandomWord();
+  //Second Word
+  let secondWord = getRandomWord();
+  while (firstWord === secondWord) {
+    secondWord = getRandomWord();
+  }
 
-  // const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
-
-  // let splitCharacter = [];
-
-  // //First word
-  // let splitterFirstWord = getRandomWord();
-  // console.log(splitterFirstWord.word);
-
-  // for (let i = 0; i < splitterFirstWord.word.length; i++) {
-  //   if (!splitCharacter.includes(splitterFirstWord.word.charAt(i))) {
-  //     splitCharacter.push(splitterFirstWord.word.charAt(i));
-  //   }
-  // }
-
-  // //Second Word
-  // let splitterSecondWord = getRandomWord();
-  // while (splitterFirstWord === splitterSecondWord) {
-  //   splitterSecondWord = getRandomWord();
-  // }
-  // console.log(splitterSecondWord.word);
-
-  // for (let i = 0; i < splitterSecondWord.word.length; i++) {
-  //   if (!splitCharacter.includes(splitterSecondWord.word.charAt(i))) {
-  //     splitCharacter.push(splitterSecondWord.word.charAt(i));
-  //   }
-  // }
-
-  // for (let i = 0; i < splitCharacter.length; i++) {
-  //   console.log(splitCharacter[i]);
-  // }
+  for (let i = 0; i < firstWord.text.length; i++) {
+    let theChar = firstWord.text.charAt(i);
+    if (!characters.includes(theChar)) {
+      characters.push(theChar);
+    }
+  }
+  for (let i = 0; i < secondWord.text.length; i++) {
+    let theChar = secondWord.text.charAt(i);
+    if (!characters.includes(theChar)) {
+      characters.push(theChar);
+    }
+  }
 
   return (
     <View style={styles.container}>
+      {/*BackButton*/}
       <TouchableOpacity
         style={styles.backButton}
         title="Home"
@@ -67,21 +59,15 @@ function GameScreen({ navigation }) {
           <Text style={styles.answers}>Hi</Text>
         </View>
       </View>
-      {/* <View style={styles.wordAttempt}>
+      <View style={styles.wordAttempt}>
         <Text>
-          {splitterFirstWord.word}: {splitterFirstWord.meaning}
+          {firstWord.text}: {firstWord.meaning}
         </Text>
         <Text>
-          {splitterSecondWord.word}: {splitterSecondWord.meaning}
+          {secondWord.text}: {secondWord.meaning}
         </Text>
       </View>
-
-      <View style={styles.lettersCircle}>
-        <Text style={{ color: "green", height: "90%", width: "100%" }}>
-          {splitCharacter[0]}
-        </Text>
-      </View> */}
-      <TheCircle characters={15}></TheCircle>
+      <TheCircle characters={characters}></TheCircle>
       {/*there can only be from 4-18 characters as input*/}
     </View>
   );

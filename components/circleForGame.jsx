@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 function TheCircle(props) {
-  return charDisplay(props.characters); //there can only be from 4-18 characters as input
+  return charDisplay(props.characters.length, props.characters); //there can only be from 4-18 characters as input
 }
 
 const commonChar = {
@@ -37,7 +37,7 @@ const commonStyles = StyleSheet.create({
   },
 });
 
-function charDisplay(num) {
+function charDisplay(num, letters) {
   if (num % 2 !== 0) {
     num += 1;
   }
@@ -59,6 +59,7 @@ function charDisplay(num) {
     twelveCharStyles: twelveCharStyles,
     fourteenCharStyles: fourteenCharStyles,
     sixteenCharStyles: sixteenCharStyles,
+    eighteenCharStyles: eighteenCharStyles,
   };
   let totalCharInWord = numToWord[num];
   let styleSheet = totalCharInWord + "CharStyles"; //a string name of styleSheet
@@ -89,6 +90,10 @@ function charDisplay(num) {
   for (let i = 0; i < num; i++) {
     lst.push(i);
   }
+  const randLetter = () => {
+    const allLetters = "ੳਅੲਸਹਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਵੜ";
+    return allLetters[Math.floor(Math.random() * allLetters.length)];
+  };
   return (
     <View style={styleSheet.lettersCircle}>
       {lst.map((i) => {
@@ -96,7 +101,7 @@ function charDisplay(num) {
         return (
           <View key={i} style={getStylesAttributes[charNum]}>
             <Text key={i} style={styleSheet.characterText}>
-              {i + 1}
+              {letters[i] ? letters[i] : randLetter()}
             </Text>
           </View>
         );
@@ -415,6 +420,90 @@ const sixteenCharStyles = StyleSheet.create({
     ...commonChar,
     left: "90%",
     top: "-105%",
+  },
+});
+
+const eighteenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "27%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "78%",
+    top: "-42%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-52%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
+  },
+  character10: {
+    ...commonChar,
+    left: "25%",
+    top: "-5%",
+  },
+  character11: {
+    ...commonChar,
+    left: "5%",
+    top: "-70%",
+  },
+  character12: {
+    ...commonChar,
+    left: "86%",
+    top: "-80%",
+  },
+  character13: {
+    ...commonChar,
+    left: "6%",
+    top: "-63%",
+  },
+  character14: {
+    ...commonChar,
+    left: "86%",
+    top: "-73%",
+  },
+  character15: {
+    ...commonChar,
+    left: "0%",
+    top: "-95%",
+  },
+  character16: {
+    ...commonChar,
+    left: "90%",
+    top: "-105%",
+  },
+  character17: {
+    ...commonChar,
+    left: "0%",
+    top: "-75%",
+  },
+  character18: {
+    ...commonChar,
+    left: "90%",
+    top: "-85%",
   },
 });
 
