@@ -76,6 +76,7 @@ for(var i = 0; i < splitCharacter.length; i++){
           {splitterSecondWord.word}: {splitterSecondWord.meaning}
         </Text>
       </View>
+      <TheCircle characters={16}></TheCircle>
 
 
       <View style={styles.lettersCircle}>
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     backgroundColor: "#CFF6FF",
-    borderRadius: 20,
+    //borderRadius: 20,
   },
 });
 
