@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint **/*.js **/*.jsx",
+    "lint": "eslint **/*.jsx",
     "prepare": "husky install"
   },
   "dependencies": {
