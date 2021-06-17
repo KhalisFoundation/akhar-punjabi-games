@@ -1,35 +1,38 @@
-import * as React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import TheCircle from "./circleForGame";
+/* eslint-disable react-native/no-color-literals */
+import * as React from 'react';
+import {
+  View, Text, TouchableOpacity, StyleSheet, Image
+} from 'react-native';
+import TheCircle from './circleForGame';
 
 function GameScreen({ navigation }) {
   const words = [
-    { text: "ਅਜ", meaning: "Today" },
-    { text: "ਜਲ", meaning: "Water" },
-    { text: "ਧਰਮ", meaning: "Religion" },
-    { text: "ਮਾਮਾ", meaning: "Mum's Brother" },
-    { text: "ਚਲਾਕ", meaning: "Clever" },
-    { text: "ਕਪੜਾ", meaning: "Cloth" },
-    { text: "ਪਰਵਾਰ", meaning: "Family" },
+    { text: 'ਅਜ', meaning: 'Today' },
+    { text: 'ਜਲ', meaning: 'Water' },
+    { text: 'ਧਰਮ', meaning: 'Religion' },
+    { text: 'ਮਾਮਾ', meaning: "Mum's Brother" },
+    { text: 'ਚਲਾਕ', meaning: 'Clever' },
+    { text: 'ਕਪੜਾ', meaning: 'Cloth' },
+    { text: 'ਪਰਵਾਰ', meaning: 'Family' },
   ];
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
-  let characters = [];
-  //First word
-  let firstWord = getRandomWord();
-  //Second Word
+  const characters = [];
+  // First word
+  const firstWord = getRandomWord();
+  // Second Word
   let secondWord = getRandomWord();
   while (firstWord === secondWord) {
     secondWord = getRandomWord();
   }
 
-  for (let i = 0; i < firstWord.text.length; i++) {
-    let theChar = firstWord.text.charAt(i);
+  for (let i = 0; i < firstWord.text.length; i += 1) {
+    const theChar = firstWord.text.charAt(i);
     if (!characters.includes(theChar)) {
       characters.push(theChar);
     }
   }
-  for (let i = 0; i < secondWord.text.length; i++) {
-    let theChar = secondWord.text.charAt(i);
+  for (let i = 0; i < secondWord.text.length; i += 1) {
+    const theChar = secondWord.text.charAt(i);
     if (!characters.includes(theChar)) {
       characters.push(theChar);
     }
@@ -37,16 +40,16 @@ function GameScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/*BackButton*/}
+      {/* BackButton */}
       <TouchableOpacity
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate('Home');
         }}
       >
         <Image
-          source={require("../images/left_arrow.png")}
+          source={require('../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -61,42 +64,48 @@ function GameScreen({ navigation }) {
       </View>
       <View style={styles.wordAttempt}>
         <Text>
-          {firstWord.text}: {firstWord.meaning}
+          {firstWord.text}
+          :
+          {firstWord.meaning}
         </Text>
         <Text>
-          {secondWord.text}: {secondWord.meaning}
+          {secondWord.text}
+          :
+          {secondWord.meaning}
         </Text>
       </View>
-      <TheCircle characters={characters}></TheCircle>
-      {/*there can only be from 4-18 characters as input*/}
+      <TheCircle characters={characters} />
+      {/* there can only be from 4-18 characters as input */}
     </View>
   );
 }
+
+// TODO - Move all colors to separate file and import as variables.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#5F909C",
-    paddingTop: "9%",
+    alignItems: 'center',
+    backgroundColor: '#5F909C',
+    paddingTop: '9%',
   },
   backButton: {
-    width: "10%",
-    height: "7%",
-    right: "40%",
+    width: '10%',
+    height: '7%',
+    right: '40%',
   },
   backArrow: {
-    width: "90%",
-    height: "90%",
+    width: '90%',
+    height: '90%',
   },
   title: {
     fontSize: 60,
-    bottom: "10%",
+    bottom: '10%',
   },
   wordBoxAnswers: {
     bottom: 65,
     width: 350,
     height: 250,
-    backgroundColor: "#9C734F",
+    backgroundColor: '#9C734F',
     borderRadius: 20,
   },
   wordBoxText1: {
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
     height: 50,
     left: 50,
     top: 30,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 20,
   },
   wordBoxText2: {
@@ -112,7 +121,7 @@ const styles = StyleSheet.create({
     height: 50,
     left: 50,
     top: 60,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 20,
   },
   answers: {
@@ -123,8 +132,8 @@ const styles = StyleSheet.create({
     bottom: 58,
     width: 200,
     height: 50,
-    backgroundColor: "#CFF6FF",
-    //borderRadius: 20,
+    backgroundColor: '#CFF6FF',
+    // borderRadius: 20,
   },
 });
 
