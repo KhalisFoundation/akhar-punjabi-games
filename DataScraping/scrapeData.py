@@ -43,7 +43,6 @@ class ByMatra():
                 wordWithDef=(tds[i-1].text,tds[i].text)
                 allWords.append(wordWithDef)
         return allWords
-    
 
 class ThousandMostCommonWords():
     def scrapeLink(self):
@@ -63,8 +62,7 @@ class ThousandMostCommonWords():
         writer=csv.writer(f)
         allWords=[i for i in allWords if len(i[0].split())==1]
         writer.writerows(allWords)
-        f.close()
-    
+        f.close()  
 
 class GurbaniWords():
     def scrapeLink(self):
@@ -128,16 +126,5 @@ class GurbaniWordsSikhiWiki():
         return allWordsInTable
 
 
-
-#lst=[ByMatra(),ThousandMostCommonWords()]
-#[i.scrapeLink() for i in lst]
-
-lst=[GurbaniWords(),GurbaniWordsSikhiWiki()]
+lst=[GurbaniWords(),ByMatra(),GurbaniWordsSikhiWiki(),ThousandMostCommonWords()]
 [i.scrapeLink() for i in lst]
-
-
-# f=open("./DataScraping/data.csv","a",newline="")
-# tup=[("bpb",19),("hello",123),(21,32,43)]
-# writer=csv.writer(f)
-# writer.writerows(tup)
-# f.close()

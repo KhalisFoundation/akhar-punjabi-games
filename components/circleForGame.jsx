@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 function TheCircle(props) {
   // there can only be from 4-18 characters as input
@@ -56,16 +56,16 @@ function charDisplay(num, letters) {
     18: "eighteen",
   };
   const getStyles = {
-    fourCharStyles,
-    sixCharStyles,
-    eightCharStyles,
-    tenCharStyles,
-    twelveCharStyles,
-    fourteenCharStyles,
-    sixteenCharStyles,
-    eighteenCharStyles,
+    fourCharStyles: fourCharStyles,
+    sixCharStyles: sixCharStyles,
+    eightCharStyles: eightCharStyles,
+    tenCharStyles: tenCharStyles,
+    twelveCharStyles: twelveCharStyles,
+    fourteenCharStyles: fourteenCharStyles,
+    sixteenCharStyles: sixteenCharStyles,
+    eighteenCharStyles: eighteenCharStyles,
   };
-  const totalCharInWord = numToWord[num];
+  const totalCharInWord = numToWord[charatersCount];
   let styleSheet = `${totalCharInWord}CharStyles`; // a string name of styleSheet
   styleSheet = getStyles[styleSheet]; // the actual styleSheet object
 
@@ -102,6 +102,7 @@ function charDisplay(num, letters) {
     <View style={styleSheet.lettersCircle}>
       {lst.map((i) => {
         let charNum = "character" + (i + 1).toString();
+        let theLetter = letters[i] ? letters[i] : randLetter();
         return (
           <Pressable
             onPress={(pressed) => {
@@ -112,7 +113,7 @@ function charDisplay(num, letters) {
           >
             {({ pressed }) => (
               <Text key={i} style={styleSheet.characterText}>
-                {pressed ? "1" : letters[i]}
+                {pressed ? "1" : theLetter}
               </Text>
             )}
           </Pressable>
