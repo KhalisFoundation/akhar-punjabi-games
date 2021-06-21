@@ -1,10 +1,20 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 
 function TheCircle(props) {
   // there can only be from 4-18 characters as input
-  return charDisplay(props.characters.length, props.characters);
+  return charDisplay(
+    props.characters.length,
+    props.characters,
+    props.setAttempt
+  );
 }
 
 const commonChar = {
@@ -40,7 +50,7 @@ const commonStyles = StyleSheet.create({
   },
 });
 
-function charDisplay(num, letters) {
+function charDisplay(num, letters, setAttempt) {
   let charatersCount = num;
   if (charatersCount % 2 !== 0) {
     charatersCount += 1;
@@ -104,19 +114,20 @@ function charDisplay(num, letters) {
         let charNum = "character" + (i + 1).toString();
         let theLetter = letters[i] ? letters[i] : randLetter();
         return (
-          <Pressable
-            onPress={(pressed) => {
-              console.log("Letter");
+          <TouchableOpacity
+            onPress={() => {
+              console.log(letters[i]);
+              setAttempt((prev) => {
+                return prev + theLetter;
+              });
             }}
             key={i}
             style={getStylesAttributes[charNum]}
           >
-            {({ pressed }) => (
-              <Text key={i} style={styleSheet.characterText}>
-                {pressed ? "1" : theLetter}
-              </Text>
-            )}
-          </Pressable>
+            <Text key={i} style={styleSheet.characterText}>
+              {theLetter}
+            </Text>
+          </TouchableOpacity>
         );
       })}
     </View>
