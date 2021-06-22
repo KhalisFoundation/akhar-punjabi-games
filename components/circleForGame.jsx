@@ -17,62 +17,45 @@ function TheCircle(props) {
   );
 }
 
-const commonChar = {
-  width: "10%",
-  height: "10%",
-  backgroundColor: "white",
-  borderRadius: 10,
-};
-
-// TODO - Move all colors to separate file and import as variables.
-const commonStyles = StyleSheet.create({
-  lettersCircle: {
-    bottom: "6%",
-    width: "85%",
-    height: "45%",
-    borderRadius: 200,
-    backgroundColor: "#E8C4A5",
-  },
-  characterText: {
-    bottom: "15%",
-    fontSize: 25,
-    textAlign: "center",
-  },
-  character1: {
-    ...commonChar,
-    left: "45%",
-    top: "0%",
-  },
-  character2: {
-    ...commonChar,
-    left: "45%",
-    top: "80%",
-  },
-});
-
 function charDisplay(num, letters, setAttempt) {
   let charatersCount = num;
   if (charatersCount % 2 !== 0) {
     charatersCount += 1;
   }
   const numToWord = {
+    3: "three",
     4: "four",
+    5: "five",
     6: "six",
+    7: "seven",
     8: "eight",
+    9: "nine",
     10: "ten",
+    11: "eleven",
     12: "twelve",
+    13: "thirteen",
     14: "fourteen",
+    15: "fiveteen",
     16: "sixteen",
+    17: "seventeen",
     18: "eighteen",
   };
   const getStyles = {
+    threeCharStyles: threeCharStyles,
     fourCharStyles: fourCharStyles,
+    fiveCharStyles: fiveCharStyles,
     sixCharStyles: sixCharStyles,
+    sevenCharStyles: sevenCharStyles,
     eightCharStyles: eightCharStyles,
+    nineCharStyles: nineCharStyles,
     tenCharStyles: tenCharStyles,
+    elevenCharStyles: elevenCharStyles,
     twelveCharStyles: twelveCharStyles,
+    thirteenCharStyles: thirteenCharStyles,
     fourteenCharStyles: fourteenCharStyles,
+    fiveteenCharStyles: fiveteenCharStyles,
     sixteenCharStyles: sixteenCharStyles,
+    seventeenCharStyles: seventeenCharStyles,
     eighteenCharStyles: eighteenCharStyles,
   };
   const totalCharInWord = numToWord[charatersCount];
@@ -116,7 +99,6 @@ function charDisplay(num, letters, setAttempt) {
         return (
           <TouchableOpacity
             onPress={() => {
-              console.log(letters[i]);
               setAttempt((prev) => {
                 return prev + theLetter;
               });
@@ -134,6 +116,47 @@ function charDisplay(num, letters, setAttempt) {
   );
 }
 
+const commonChar = {
+  width: "10%",
+  height: "10%",
+  backgroundColor: "white",
+  borderRadius: 10,
+};
+
+// TODO - Move all colors to separate file and import as variables.
+const commonStyles = StyleSheet.create({
+  lettersCircle: {
+    bottom: "6%",
+    width: "85%",
+    height: "45%",
+    borderRadius: 200,
+    backgroundColor: "#E8C4A5",
+  },
+  characterText: {
+    bottom: "15%",
+    fontSize: 25,
+    textAlign: "center",
+  },
+  character1: {
+    ...commonChar,
+    left: "45%",
+    top: "0%",
+  },
+  character2: {
+    ...commonChar,
+    left: "45%",
+    top: "80%",
+  },
+});
+
+const threeCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "85%",
+    top: "25%",
+  },
+});
 const fourCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
@@ -145,6 +168,30 @@ const fourCharStyles = StyleSheet.create({
     ...commonChar,
     left: "5%",
     top: "15%",
+  },
+});
+
+const fiveCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "80%",
+    top: "0%",
+  },
+  character4: {
+    ...commonChar,
+    left: "15%",
+    top: "35%",
+  },
+  character5: {
+    ...commonChar,
+    left: "15%",
+    top: "-20%",
+  },
+  characterText: {
+    bottom: "15%",
+    fontSize: 35,
+    textAlign: "center",
   },
 });
 
@@ -174,6 +221,35 @@ const sixCharStyles = StyleSheet.create({
     bottom: "15%",
     fontSize: 35,
     textAlign: "center",
+  },
+});
+
+const sevenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "80%",
+    top: "0%",
+  },
+  character4: {
+    ...commonChar,
+    left: "15%",
+    top: "35%",
+  },
+  character5: {
+    ...commonChar,
+    left: "15%",
+    top: "-20%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "15%",
+  },
+  character7: {
+    ...commonChar,
+    left: "80%",
+    top: "-16%",
   },
 });
 
@@ -208,6 +284,45 @@ const eightCharStyles = StyleSheet.create({
     ...commonChar,
     left: "5%",
     top: "-25%",
+  },
+});
+
+const nineCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "25%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "80%",
+    top: "-40%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-50%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
   },
 });
 
@@ -252,6 +367,55 @@ const tenCharStyles = StyleSheet.create({
     ...commonChar,
     left: "25%",
     top: "-5%",
+  },
+});
+
+const elevenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "25%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "80%",
+    top: "-40%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-50%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
+  },
+  character10: {
+    ...commonChar,
+    left: "25%",
+    top: "-5%",
+  },
+  character11: {
+    ...commonChar,
+    left: "0%",
+    top: "-55%",
   },
 });
 
@@ -305,6 +469,65 @@ const twelveCharStyles = StyleSheet.create({
   character12: {
     ...commonChar,
     left: "90%",
+    top: "-65%",
+  },
+});
+
+const thirteenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "25%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "80%",
+    top: "-40%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-50%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
+  },
+  character10: {
+    ...commonChar,
+    left: "25%",
+    top: "-5%",
+  },
+  character11: {
+    ...commonChar,
+    left: "0%",
+    top: "-65%",
+  },
+  character12: {
+    ...commonChar,
+    left: "90%",
+    top: "-75%",
+  },
+  character13: {
+    ...commonChar,
+    left: "0%",
     top: "-65%",
   },
 });
@@ -370,6 +593,75 @@ const fourteenCharStyles = StyleSheet.create({
     ...commonChar,
     left: "90%",
     top: "-75%",
+  },
+});
+
+const fiveteenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "27%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "78%",
+    top: "-42%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-52%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
+  },
+  character10: {
+    ...commonChar,
+    left: "25%",
+    top: "-5%",
+  },
+  character11: {
+    ...commonChar,
+    left: "5%",
+    top: "-70%",
+  },
+  character12: {
+    ...commonChar,
+    left: "86%",
+    top: "-80%",
+  },
+  character13: {
+    ...commonChar,
+    left: "6%",
+    top: "-63%",
+  },
+  character14: {
+    ...commonChar,
+    left: "86%",
+    top: "-73%",
+  },
+  character15: {
+    ...commonChar,
+    left: "0%",
+    top: "-95%",
   },
 });
 
@@ -444,6 +736,85 @@ const sixteenCharStyles = StyleSheet.create({
     ...commonChar,
     left: "90%",
     top: "-105%",
+  },
+});
+
+const seventeenCharStyles = StyleSheet.create({
+  ...commonStyles,
+  character3: {
+    ...commonChar,
+    left: "65%",
+    top: "-15%",
+  },
+  character4: {
+    ...commonChar,
+    left: "10%",
+    top: "40%",
+  },
+  character5: {
+    ...commonChar,
+    left: "27%",
+    top: "-35%",
+  },
+  character6: {
+    ...commonChar,
+    left: "80%",
+    top: "20%",
+  },
+  character7: {
+    ...commonChar,
+    left: "78%",
+    top: "-42%",
+  },
+  character8: {
+    ...commonChar,
+    left: "10%",
+    top: "-52%",
+  },
+  character9: {
+    ...commonChar,
+    left: "65%",
+    top: "5%",
+  },
+  character10: {
+    ...commonChar,
+    left: "25%",
+    top: "-5%",
+  },
+  character11: {
+    ...commonChar,
+    left: "5%",
+    top: "-70%",
+  },
+  character12: {
+    ...commonChar,
+    left: "86%",
+    top: "-80%",
+  },
+  character13: {
+    ...commonChar,
+    left: "6%",
+    top: "-63%",
+  },
+  character14: {
+    ...commonChar,
+    left: "86%",
+    top: "-73%",
+  },
+  character15: {
+    ...commonChar,
+    left: "0%",
+    top: "-95%",
+  },
+  character16: {
+    ...commonChar,
+    left: "90%",
+    top: "-105%",
+  },
+  character17: {
+    ...commonChar,
+    left: "0%",
+    top: "-75%",
   },
 });
 

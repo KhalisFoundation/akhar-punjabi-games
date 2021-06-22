@@ -24,11 +24,7 @@ class ByMatra():
             for table in range(len(allTables)):
                 words=self.getDataFromTables(allTables[table])
                 allWords+=words
-        f=open("./DataScraping/data.csv","a",newline="",encoding= "utf-8")
-        writer=csv.writer(f)
-        allWords=[i for i in allWords if len(i[0].split())==1]
-        writer.writerows(allWords)
-        f.close()
+        return allWords
 
     def getDataFromTables(self,table):
         rows=table.findAll("tr")
@@ -57,12 +53,8 @@ class ThousandMostCommonWords():
             punjabiWord=tds[1].text
             englishWord=tds[2].text
             word=(punjabiWord,englishWord)
-            allWords.append(word)
-        f=open("./DataScraping/data.csv","a",newline="",encoding= "utf-8")
-        writer=csv.writer(f)
-        allWords=[i for i in allWords if len(i[0].split())==1]
-        writer.writerows(allWords)
-        f.close()  
+            allWords.append(word)  
+        return allWords
 
 class GurbaniWords():
     def scrapeLink(self):
@@ -81,11 +73,7 @@ class GurbaniWords():
             if ""!=punjabiWord and " " not in punjabiWord:
                 word=(punjabiWord,englishWord)
                 allWords.append(word)
-        f=open("./DataScraping/data.csv","a",newline="",encoding= "utf-8")
-        writer=csv.writer(f)
-        allWords=[i for i in allWords if len(i[0].split())==1]
-        writer.writerows(allWords)
-        f.close()
+        return allWords
 
 class GurbaniWordsSikhiWiki():
     def scrapeLink(self):
@@ -101,11 +89,7 @@ class GurbaniWordsSikhiWiki():
         for i in tables:
             words=self.tableScraper(i)
             allWords+=words
-        f=open("./DataScraping/data.csv","a",newline="",encoding= "utf-8")
-        writer=csv.writer(f)
-        allWords=[i for i in allWords if len(i[0].split())==1]
-        writer.writerows(allWords)
-        f.close()
+        return allWords
     def tableScraper(self,table):
         trs=table.findAll("tr")
         ths=trs[0].findAll("th")
@@ -121,10 +105,26 @@ class GurbaniWordsSikhiWiki():
             englishWord=tds[engInd].text.strip()
             if ""!=punjabiWord and " " not in punjabiWord and "\u0a5d" not in punjabiWord:
                 word=(punjabiWord,englishWord)
-                print(word)
+
                 allWordsInTable.append(word)
         return allWordsInTable
 
 
 lst=[GurbaniWords(),ByMatra(),GurbaniWordsSikhiWiki(),ThousandMostCommonWords()]
-[i.scrapeLink() for i in lst]
+allWords=[]
+for i in lst:
+    words=i.scrapeLink()
+    allWords+=words
+allWords=[i for i in allWords if len(i[0].split())==1]
+
+objs=[]
+for word in allWords:
+    ascii=[ord(letter)for letter in word[0]]
+    objs.append({"text":word[0],"meaning":word[1],"ascii":ascii})
+#print(objs)
+
+f=open("./DataScraping/newObj.txt","w",encoding= "utf-8")
+#writer=csv.writer(f)
+for i in objs:
+    f.write(str(i)+"\n")
+f.close()

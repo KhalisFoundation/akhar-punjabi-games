@@ -1,0 +1,1713 @@
+{'text': 'ਨਾਮ', 'meaning': 'Name, God Consciousness, Divine Presence', 'ascii': [2600, 2622, 2606]}
+{'text': 'ਰਹਾੳੁ', 'meaning': 'Pause, (marks chorus, or main theme line)', 'ascii': [2608, 2617, 2622, 2675, 2625]}
+{'text': 'ਮਹਲਾ', 'meaning': 'Identifies which Guru is author, neighborhood', 'ascii': [2606, 2617, 2610, 2622]}
+{'text': 'ਰਾਮ', 'meaning': 'God, All pervading Divine Spirit', 'ascii': [2608, 2622, 2606]}
+{'text': 'ਗੁਰਮੁਖ', 'meaning': 'In tune with the Guru', 'ascii': [2583, 2625, 2608, 2606, 2625, 2582]}
+{'text': 'ਪ੍ਰਭ', 'meaning': 'Beloved, Master', 'ascii': [2602, 2637, 2608, 2605]}
+{'text': 'ਸਦਾ', 'meaning': 'Always', 'ascii': [2616, 2598, 2622]}
+{'text': 'ਸਤਿਗੁਰ', 'meaning': 'True or Perfect Guru, God', 'ascii': [2616, 2596, 2623, 2583, 2625, 2608]}
+{'text': 'ਜੀੳੁ', 'meaning': 'soul or life; respectful and affectionate apelation (Jee in MP)', 'ascii': [2588, 2624, 2675, 2625]}
+{'text': 'ਬਿਨੁ', 'meaning': 'without', 'ascii': [2604, 2623, 2600, 2625]}
+{'text': 'ਜਨ', 'meaning': '(devoted) servant, slave', 'ascii': [2588, 2600]}
+{'text': 'ਸਭ', 'meaning': 'all', 'ascii': [2616, 2605]}
+{'text': 'ਮਹਿ', 'meaning': 'in (preposition), within', 'ascii': [2606, 2617, 2623]}
+{'text': 'ਸਚੁ', 'meaning': 'true, eternal', 'ascii': [2616, 2586, 2625]}
+{'text': 'ਕੋ', 'meaning': 'to (pp - noo in MP), any or which (koee in MP)', 'ascii': [2581, 2635]}
+{'text': 'ਸਬਦਿ', 'meaning': 'Word, Naam', 'ascii': [2616, 2604, 2598, 2623]}
+{'text': 'ਸੁਖ', 'meaning': 'happiness, peace', 'ascii': [2616, 2625, 2582]}
+{'text': 'ਮਾਿੲਅਾ', 'meaning': 'worldly entanglements, illusionary & transient', 'ascii': [2606, 2622, 2623, 2674, 2565, 2622]}
+{'text': 'ਸੰਗ', 'meaning': 'with, close', 'ascii': [2616, 2672, 2583]}
+{'text': 'ਹੳੁ', 'meaning': 'I or me (pronoun)', 'ascii': [2617, 2675, 2625]}
+{'text': 'ਪਰਸਾਦ', 'meaning': 'grace, kindness, mercy', 'ascii': [2602, 2608, 2616, 2622, 2598]}
+{'text': 'ਸੋੲੀ', 'meaning': 'that one', 'ascii': [2616, 2635, 2674, 2624]}
+{'text': 'ਕਿਰਪਾ', 'meaning': 'kindness, mercy', 'ascii': [2581, 2623, 2608, 2602, 2622]}
+{'text': 'ਸੰਤ', 'meaning': 'saintly person in tune with God, often used for Guru', 'ascii': [2616, 2672, 2596]}
+{'text': 'ਅੰਤਰ', 'meaning': 'within, in (MP - vich)', 'ascii': [2565, 2672, 2596, 2608]}
+{'text': 'ਭਗਤ', 'meaning': 'devotee of God, saintly person', 'ascii': [2605, 2583, 2596]}
+{'text': 'ਸਿੳੁ', 'meaning': '(pp) to, with (MP - noo)', 'ascii': [2616, 2623, 2675, 2625]}
+{'text': 'ਕਿਅਾ', 'meaning': 'what (MP - kee)', 'ascii': [2581, 2623, 2565, 2622]}
+{'text': 'ਸਗਲ', 'meaning': 'all', 'ascii': [2616, 2583, 2610]}
+{'text': 'ਹਉਮੈ', 'meaning': 'ego, pride, sense of I (separate from God & creation or from others)', 'ascii': [2617, 2569, 2606, 2632]}
+{'text': 'ਪਾੲੀਅੈ', 'meaning': 'obtain', 'ascii': [2602, 2622, 2674, 2624, 2565, 2632]}
+{'text': 'ਹੇ', 'meaning': 'O (form of address)', 'ascii': [2617, 2631]}
+{'text': 'ਘਰ', 'meaning': 'home', 'ascii': [2584, 2608]}
+{'text': 'ਸ਼ਬਦ', 'meaning': 'Word, Gurbani, Naam', 'ascii': [2614, 2604, 2598]}
+{'text': 'ਮਿਲ', 'meaning': 'meet', 'ascii': [2606, 2623, 2610]}
+{'text': 'ਹਮ', 'meaning': 'We, I', 'ascii': [2617, 2606]}
+{'text': 'ਕਹੁ', 'meaning': 'says, say \xa0(kehna - to say)', 'ascii': [2581, 2617, 2625]}
+{'text': 'ਦੁਖ', 'meaning': 'sorrow, suffering', 'ascii': [2598, 2625, 2582]}
+{'text': 'ਆਵੈ', 'meaning': 'comes (aanaa, aavnaa - to come)', 'ascii': [2566, 2613, 2632]}
+{'text': 'ਭਾੲੀ', 'meaning': 'brother, friend (used as address)', 'ascii': [2605, 2622, 2674, 2624]}
+{'text': 'ਸੁਆਮੀ', 'meaning': 'Master, Lord, Husband; (syn - thakur) (MP- maalik)', 'ascii': [2616, 2625, 2566, 2606, 2624]}
+{'text': 'ਆਸਾ', 'meaning': 'hope, desire', 'ascii': [2566, 2616, 2622]}
+{'text': 'ਸਰਬ', 'meaning': 'all', 'ascii': [2616, 2608, 2604]}
+{'text': 'ਤਨ', 'meaning': 'body', 'ascii': [2596, 2600]}
+{'text': 'nit', 'meaning': 'daily - (MP - roz) (syn andin)', 'ascii': [110, 105, 116]}
+{'text': 'ਭਾਵੈ', 'meaning': 'to ge pleasing, appeal to', 'ascii': [2605, 2622, 2613, 2632]}
+{'text': 'ਪਾੲੀਅੈ', 'meaning': 'obtain', 'ascii': [2602, 2622, 2674, 2624, 2565, 2632]}
+{'text': 'ਭੲੇ', 'meaning': 'become', 'ascii': [2605, 2674, 2631]}
+{'text': 'ਪੂਰਨ', 'meaning': 'complete, perfect', 'ascii': [2602, 2626, 2608, 2600]}
+{'text': 'ਰਸ', 'meaning': 'delicious taste, enjoyment, spiritual rapture', 'ascii': [2608, 2616]}
+{'text': 'ਲਿਵ', 'meaning': 'deep continuous love and absorption', 'ascii': [2610, 2623, 2613]}
+{'text': 'ਫਿਰ', 'meaning': 'again', 'ascii': [2603, 2623, 2608]}
+{'text': 'ਸੇਵਾ', 'meaning': 'service', 'ascii': [2616, 2631, 2613, 2622]}
+{'text': 'ਜਨਮ', 'meaning': 'birth', 'ascii': [2588, 2600, 2606]}
+{'text': 'ਜੀਅ', 'meaning': 'living being, tongue, soul', 'ascii': [2588, 2624, 2565]}
+{'text': 'ਬਾਣੀ', 'meaning': 'speech, Word', 'ascii': [2604, 2622, 2595, 2624]}
+{'text': 'ਸਹਜਿ', 'meaning': 'state of peace and balance, tranquility, spontaneous, naturally - with the flow, in tune with the Infinite', 'ascii': [2616, 2617, 2588, 2623]}
+{'text': 'ਨਾਉ', 'meaning': 'Naam, name', 'ascii': [2600, 2622, 2569]}
+{'text': 'ਏਕ', 'meaning': 'one (MP - ik)', 'ascii': [2575, 2581]}
+{'text': 'ਕਰਹਿ', 'meaning': 'karnaa - to do', 'ascii': [2581, 2608, 2617, 2623]}
+{'text': 'ਆਇਆ', 'meaning': 'aanaa - to come', 'ascii': [2566, 2567, 2566]}
+{'text': 'ਕਰਮ', 'meaning': 'grace, action', 'ascii': [2581, 2608, 2606]}
+{'text': 'ਰੰਗ', 'meaning': 'dye, love', 'ascii': [2608, 2672, 2583]}
+{'text': 'ਅਨਦਿਨੁ', 'meaning': 'daily', 'ascii': [2565, 2600, 2598, 2623, 2600, 2625]}
+{'text': 'ਚਰਨ', 'meaning': 'feet - symbolizes devotion, humility', 'ascii': [2586, 2608, 2600]}
+{'text': 'ਅਮਰਿਤ', 'meaning': 'nectar, immortality', 'ascii': [2565, 2606, 2608, 2623, 2596]}
+{'text': 'ਦੁਖ', 'meaning': 'suffering, unhappiness', 'ascii': [2598, 2625, 2582]}
+{'text': 'ਸਾਧ', 'meaning': 'saintly person,', 'ascii': [2616, 2622, 2599]}
+{'text': 'ਕੀਆ', 'meaning': 'action, (MP - keeta)', 'ascii': [2581, 2624, 2566]}
+{'text': 'ਕਰਤਾ', 'meaning': 'creator', 'ascii': [2581, 2608, 2596, 2622]}
+{'text': 'ਪੑੀਤ', 'meaning': 'love', 'ascii': [2602, 2641, 2624, 2596]}
+{'text': 'ਅਵਰੁ', 'meaning': 'other', 'ascii': [2565, 2613, 2608, 2625]}
+{'text': 'ਭਾਇ', 'meaning': 'pleases; will; love (doojaa bhaai - duality)', 'ascii': [2605, 2622, 2567]}
+{'text': 'ਵਸੈ', 'meaning': 'live, abide', 'ascii': [2613, 2616, 2632]}
+{'text': 'ਵਿਚ', 'meaning': 'in, within', 'ascii': [2613, 2623, 2586]}
+{'text': 'ਮਤ', 'meaning': 'wisdom, not', 'ascii': [2606, 2596]}
+{'text': 'ਪਿਅਾਰੇ', 'meaning': 'beloved', 'ascii': [2602, 2623, 2565, 2622, 2608, 2631]}
+{'text': 'ਪੁਰਖ', 'meaning': 'person, being, God', 'ascii': [2602, 2625, 2608, 2582]}
+{'text': 'ਜਮ', 'meaning': 'death, messenger of death', 'ascii': [2588, 2606]}
+{'text': 'ਵਡਿਆਈ', 'meaning': 'greatness, glory', 'ascii': [2613, 2593, 2623, 2566, 2568]}
+{'text': 'ਕੋਁਟ', 'meaning': 'millions (lit. 10 million)', 'ascii': [2581, 2635, 2561, 2591]}
+{'text': 'ਮਹਾ', 'meaning': 'great', 'ascii': [2606, 2617, 2622]}
+{'text': 'ਜੋਤ', 'meaning': 'light', 'ascii': [2588, 2635, 2596]}
+{'text': 'ਹਿਰਦੈ', 'meaning': '(in the) heart, mind (MP - dil) abbrev: ridai', 'ascii': [2617, 2623, 2608, 2598, 2632]}
+{'text': 'ਨਿਰਮਲ', 'meaning': 'pure (mal=impurity)', 'ascii': [2600, 2623, 2608, 2606, 2610]}
+{'text': 'ਭੈ', 'meaning': 'fear ; syn - bhau', 'ascii': [2605, 2632]}
+{'text': 'ਨਦਰ', 'meaning': 'grace', 'ascii': [2600, 2598, 2608]}
+{'text': 'ਦੂਜਾ', 'meaning': 'second, other, duality', 'ascii': [2598, 2626, 2588, 2622]}
+{'text': 'ਪਤ', 'meaning': 'honor', 'ascii': [2602, 2596]}
+{'text': 'ਗੁਰਮਤ', 'meaning': "the Guru's teaching, wisdom", 'ascii': [2583, 2625, 2608, 2606, 2596]}
+{'text': 'ਮੁਖ', 'meaning': 'mouth, face, word', 'ascii': [2606, 2625, 2582]}
+{'text': 'ਬਲ', 'meaning': 'strenght, power; sacrifice (balihaaree)', 'ascii': [2604, 2610]}
+{'text': 'ਭਉ', 'meaning': 'fear (bhaao - love)', 'ascii': [2605, 2569]}
+{'text': 'ਭਗਤ', 'meaning': 'devotee of God, saintly person', 'ascii': [2605, 2583, 2596]}
+{'text': 'ਦਾਤਾ', 'meaning': 'giver,', 'ascii': [2598, 2622, 2596, 2622]}
+{'text': 'ਗਤ', 'meaning': 'state, emancipation', 'ascii': [2583, 2596]}
+{'text': 'ਦਾਸ', 'meaning': '(devoted) servant, slave', 'ascii': [2598, 2622, 2616]}
+{'text': 'ਦਇਆਲ', 'meaning': 'kind, generous', 'ascii': [2598, 2567, 2566, 2610]}
+{'text': 'ਮਨਮੁਖ', 'meaning': 'self-willed, (opp. of Gurmukh)', 'ascii': [2606, 2600, 2606, 2625, 2582]}
+{'text': 'ਸਤ', 'meaning': 'truth', 'ascii': [2616, 2596]}
+{'text': 'ਬਿਧ', 'meaning': 'Method, way', 'ascii': [2604, 2623, 2599]}
+{'text': 'ਸਮਾਇ', 'meaning': 'absorbed in', 'ascii': [2616, 2606, 2622, 2567]}
+{'text': 'ਜਗ', 'meaning': 'world', 'ascii': [2588, 2583]}
+{'text': 'ਦਰ', 'meaning': 'door, portal', 'ascii': [2598, 2608]}
+{'text': 'ਅਗਮ', 'meaning': 'incomprehensible (attribute of God); unapproachable', 'ascii': [2565, 2583, 2606]}
+{'text': 'ਹੁਕਮ', 'meaning': 'command, will', 'ascii': [2617, 2625, 2581, 2606]}
+{'text': 'ਕਮਲ', 'meaning': 'lotus', 'ascii': [2581, 2606, 2610]}
+{'text': 'ਠਾਕੁਰ', 'meaning': 'Master', 'ascii': [2592, 2622, 2581, 2625, 2608]}
+{'text': 'ਜਬ', 'meaning': 'when', 'ascii': [2588, 2604]}
+{'text': 'ਚਿਤ', 'meaning': 'mind, heart', 'ascii': [2586, 2623, 2596]}
+{'text': 'ਇਹ', 'meaning': 'this', 'ascii': [2567, 2617]}
+{'text': 'ਦਾਨ', 'meaning': 'charity, gift', 'ascii': [2598, 2622, 2600]}
+{'text': 'ਬਿਖ', 'meaning': 'poison, sin', 'ascii': [2604, 2623, 2582]}
+{'text': 'ਧਨ', 'meaning': 'wealth; blessed; wife or woman', 'ascii': [2599, 2600]}
+{'text': 'ਮੇਲ', 'meaning': 'union; melnaa - to unite', 'ascii': [2606, 2631, 2610]}
+{'text': 'ਦਰਗਿਹ', 'meaning': 'court', 'ascii': [2598, 2608, 2583, 2623, 2617]}
+{'text': 'ਗਿਆਨ', 'meaning': 'knowledge, realization', 'ascii': [2583, 2623, 2566, 2600]}
+{'text': 'ਮਰੈ', 'meaning': 'dies (marnaa - to die)', 'ascii': [2606, 2608, 2632]}
+{'text': 'ਰਤੇ', 'meaning': 'steeped, absorbed', 'ascii': [2608, 2596, 2631]}
+{'text': 'ਦਿਨ', 'meaning': 'day', 'ascii': [2598, 2623, 2600]}
+{'text': 'ਅਤ', 'meaning': 'very', 'ascii': [2565, 2596]}
+{'text': 'ਸਿਮਰ', 'meaning': 'remember with love, hold in your heart, meditate', 'ascii': [2616, 2623, 2606, 2608]}
+{'text': 'ਅਦਰ', 'meaning': 'in, within', 'ascii': [2565, 2598, 2608]}
+{'text': 'ਮੋਹ', 'meaning': 'attachment, excessive unhealthy love; mohnaa - to attract or fascinate', 'ascii': [2606, 2635, 2617]}
+{'text': 'ਨਿਧ', 'meaning': 'treasure', 'ascii': [2600, 2623, 2599]}
+{'text': 'ਸਾਧਸਗਤ', 'meaning': 'holy company', 'ascii': [2616, 2622, 2599, 2616, 2583, 2596]}
+{'text': 'ਲਿਖਿਆ', 'meaning': 'written, destined (likhna- to write)', 'ascii': [2610, 2623, 2582, 2623, 2566]}
+{'text': 'ਮਰ', 'meaning': 'marnaa - to die; janam maran = birth & death', 'ascii': [2606, 2608]}
+{'text': 'ਦੀਨ', 'meaning': 'poor, humble; religion, spiritual world', 'ascii': [2598, 2624, 2600]}
+{'text': 'ਜਸ', 'meaning': 'glory', 'ascii': [2588, 2616]}
+{'text': 'ਧਿਆਇਆ', 'meaning': 'meditate on, remember, repeat name', 'ascii': [2599, 2623, 2566, 2567, 2566]}
+{'text': 'ਘਟ', 'meaning': 'vessel, heart, being', 'ascii': [2584, 2591]}
+{'text': 'ਜਉ', 'meaning': 'if', 'ascii': [2588, 2569]}
+{'text': 'ਪੰਚ', 'meaning': 'five, select', 'ascii': [2602, 2672, 2586]}
+{'text': 'ਗੋਬਿਦ', 'meaning': 'God (var - Govind, Govinda)', 'ascii': [2583, 2635, 2604, 2623, 2598]}
+{'text': 'ਪਾਪ', 'meaning': 'sin', 'ascii': [2602, 2622, 2602]}
+{'text': 'ਪਾਰ', 'meaning': 'beyond, other shore', 'ascii': [2602, 2622, 2608]}
+{'text': 'ਸਾਹਿਬ', 'meaning': 'Master, lord, term of respect', 'ascii': [2616, 2622, 2617, 2623, 2604]}
+{'text': 'ਦਇਆ', 'meaning': 'mercy', 'ascii': [2598, 2567, 2566]}
+{'text': 'ਕਹਾ', 'meaning': 'where', 'ascii': [2581, 2617, 2622]}
+{'text': 'ਮਾਰ', 'meaning': 'kill', 'ascii': [2606, 2622, 2608]}
+{'text': 'ਰਸਨਾ', 'meaning': 'tongue, speech', 'ascii': [2608, 2616, 2600, 2622]}
+{'text': 'ਧੁਰ', 'meaning': 'destined, primal', 'ascii': [2599, 2625, 2608]}
+{'text': 'ਭੀ', 'meaning': 'also (MP: vee)', 'ascii': [2605, 2624]}
+{'text': 'ਭਉ', 'meaning': 'love', 'ascii': [2605, 2569]}
+{'text': 'ਤਬ', 'meaning': 'then', 'ascii': [2596, 2604]}
+{'text': 'ਪਾਰਬੵਹਮ', 'meaning': 'God, Transcendental Reality', 'ascii': [2602, 2622, 2608, 2604, 2677, 2617, 2606]}
+{'text': 'ਪਿਰ', 'meaning': 'Divine Spouse', 'ascii': [2602, 2623, 2608]}
+{'text': 'ਨਿਧਾਨ', 'meaning': 'treasure', 'ascii': [2600, 2623, 2599, 2622, 2600]}
+{'text': 'ਛੋਡ', 'meaning': 'abandon, leave', 'ascii': [2587, 2635, 2593]}
+{'text': 'ਸਗਤ', 'meaning': 'association, company', 'ascii': [2616, 2583, 2596]}
+{'text': 'ਵਡਭਾਗੀ', 'meaning': 'fortunate', 'ascii': [2613, 2593, 2605, 2622, 2583, 2624]}
+{'text': 'ਤਤ', 'meaning': 'sublime essence', 'ascii': [2596, 2596]}
+{'text': 'ਪਰਮ', 'meaning': 'supreme', 'ascii': [2602, 2608, 2606]}
+{'text': 'ਕੀਮਤ', 'meaning': 'price, value', 'ascii': [2581, 2624, 2606, 2596]}
+{'text': 'ਬਾਹਰ', 'meaning': 'outside, besides', 'ascii': [2604, 2622, 2617, 2608]}
+{'text': 'ਤਿਸਨਾ', 'meaning': 'thirst, desire', 'ascii': [2596, 2623, 2616, 2600, 2622]}
+{'text': 'ਕਾਮ', 'meaning': 'lust, physical pleasures', 'ascii': [2581, 2622, 2606]}
+{'text': 'ਦਰਸਨ', 'meaning': 'vision, experience of being in Presence', 'ascii': [2598, 2608, 2616, 2600]}
+{'text': 'ਜਲ', 'meaning': 'water (mp - paanee)', 'ascii': [2588, 2610]}
+{'text': 'ਪਾਵਿਹ', 'meaning': 'paavna - to obtain', 'ascii': [2602, 2622, 2613, 2623, 2617]}
+{'text': 'ਮਸਤਕ', 'meaning': 'Forehead (MP mathaa)', 'ascii': [2606, 2616, 2596, 2581]}
+{'text': 'ਭਰਮ', 'meaning': 'doubt, confusion', 'ascii': [2605, 2608, 2606]}
+{'text': 'ਕਾਇਆ', 'meaning': 'body, self', 'ascii': [2581, 2622, 2567, 2566]}
+{'text': 'ਪਰੀਤਮ', 'meaning': 'beloved', 'ascii': [2602, 2608, 2624, 2596, 2606]}
+{'text': 'ਮੈਲ', 'meaning': 'impurity', 'ascii': [2606, 2632, 2610]}
+{'text': 'ਵਸਿਆ', 'meaning': 'dwells', 'ascii': [2613, 2616, 2623, 2566]}
+{'text': 'ਪਰੇਮ', 'meaning': 'love', 'ascii': [2602, 2608, 2631, 2606]}
+{'text': 'ਅਗਨ', 'meaning': 'fire', 'ascii': [2565, 2583, 2600]}
+{'text': 'ਧਰਮ', 'meaning': 'righteous actions, duty, religion', 'ascii': [2599, 2608, 2606]}
+{'text': 'ਬੵਰਮ', 'meaning': 'Absolute Lord', 'ascii': [2604, 2677, 2608, 2606]}
+{'text': 'ਦੀਆ', 'meaning': 'gave', 'ascii': [2598, 2624, 2566]}
+{'text': 'ਬਹੁਤ', 'meaning': 'much, lots, very', 'ascii': [2604, 2617, 2625, 2596]}
+{'text': 'ਫਲ', 'meaning': 'fruit', 'ascii': [2603, 2610]}
+{'text': 'ਊਪਰ', 'meaning': 'on, above', 'ascii': [2570, 2602, 2608]}
+{'text': 'ਨਿਰਭਉ', 'meaning': 'free from fear', 'ascii': [2600, 2623, 2608, 2605, 2569]}
+{'text': 'ਗਿਆਨੀ', 'meaning': 'wise, knowledgable', 'ascii': [2583, 2623, 2566, 2600, 2624]}
+{'text': 'ਅਰ', 'meaning': 'and', 'ascii': [2565, 2608]}
+{'text': 'ਜਤ', 'meaning': 'being, creature', 'ascii': [2588, 2596]}
+{'text': 'ਕਾਰ', 'meaning': 'task, affair', 'ascii': [2581, 2622, 2608]}
+{'text': 'ਨਰ', 'meaning': 'Man, mortal', 'ascii': [2600, 2608]}
+{'text': 'ਸੋਭਾ', 'meaning': 'glory', 'ascii': [2616, 2635, 2605, 2622]}
+{'text': 'ਮਾਨ', 'meaning': 'pride, honor', 'ascii': [2606, 2622, 2600]}
+{'text': 'ਬੇਦ', 'meaning': 'Vedas (hindu scripture)', 'ascii': [2604, 2631, 2598]}
+{'text': 'ਖਿਨ', 'meaning': 'moment, instant', 'ascii': [2582, 2623, 2600]}
+{'text': 'ਪਰਾਨ', 'meaning': 'life, breath', 'ascii': [2602, 2608, 2622, 2600]}
+{'text': 'ਜਲ', 'meaning': 'water', 'ascii': [2588, 2610]}
+{'text': 'ਪਿਤਾ', 'meaning': 'father', 'ascii': [2602, 2623, 2596, 2622]}
+{'text': 'ਜਗਤ', 'meaning': 'world', 'ascii': [2588, 2583, 2596]}
+{'text': 'ਬਧਨ', 'meaning': 'bonds, fetters', 'ascii': [2604, 2599, 2600]}
+{'text': 'ਜੋਗੀ', 'meaning': 'yogi, one seeking union with God', 'ascii': [2588, 2635, 2583, 2624]}
+{'text': 'ਮੀਤ', 'meaning': 'dear friend', 'ascii': [2606, 2624, 2596]}
+{'text': 'ਰਵ', 'meaning': 'permeating', 'ascii': [2608, 2613]}
+{'text': 'ਅਤ', 'meaning': 'end, limit', 'ascii': [2565, 2596]}
+{'text': 'ਕਾਲ', 'meaning': 'death, time', 'ascii': [2581, 2622, 2610]}
+{'text': 'ਕਵਨ', 'meaning': 'which', 'ascii': [2581, 2613, 2600]}
+{'text': 'ਰਤਨ', 'meaning': 'gem', 'ascii': [2608, 2596, 2600]}
+{'text': 'ਕੂੜ', 'meaning': 'false', 'ascii': [2581, 2626, 2652]}
+{'text': 'ਜਗ', 'meaning': 'world', 'ascii': [2588, 2583]}
+{'text': 'ਸਸਾਰ', 'meaning': 'world', 'ascii': [2616, 2616, 2622, 2608]}
+{'text': 'ਅੰਤਰਜਾਮੀ', 'meaning': 'Knower of deepest thoughts (God), Inner Guide', 'ascii': [2565, 2672, 2596, 2608, 2588, 2622, 2606, 2624]}
+{'text': 'ਦੁਰਮਤ', 'meaning': 'evil mindedness', 'ascii': [2598, 2625, 2608, 2606, 2596]}
+{'text': 'ਮਿਲਾਏ', 'meaning': 'help to meet, unite', 'ascii': [2606, 2623, 2610, 2622, 2575]}
+{'text': 'ਸਾਗਰ', 'meaning': 'ocean', 'ascii': [2616, 2622, 2583, 2608]}
+{'text': 'ਪਰਾਪਤ', 'meaning': 'possess, obtain', 'ascii': [2602, 2608, 2622, 2602, 2596]}
+{'text': 'ਜਾਤ', 'meaning': 'caste, social status, species', 'ascii': [2588, 2622, 2596]}
+{'text': 'ਕਰੋਧ', 'meaning': 'anger, wrath', 'ascii': [2581, 2608, 2635, 2599]}
+{'text': 'ਆਠ', 'meaning': 'eight', 'ascii': [2566, 2592]}
+{'text': 'ਗੋਪਾਲ', 'meaning': 'God, cherisher of the world', 'ascii': [2583, 2635, 2602, 2622, 2610]}
+{'text': 'ਓਟ', 'meaning': 'support', 'ascii': [2579, 2591]}
+{'text': 'ਪੂਜਾ', 'meaning': 'worship', 'ascii': [2602, 2626, 2588, 2622]}
+{'text': 'ਅਰਦਾਸ', 'meaning': 'prayer', 'ascii': [2565, 2608, 2598, 2622, 2616]}
+{'text': 'ਧੂੜ', 'meaning': 'dust', 'ascii': [2599, 2626, 2652]}
+{'text': 'ਪਛਾਣੈ', 'meaning': '(pachhananaa) to recognize', 'ascii': [2602, 2587, 2622, 2595, 2632]}
+{'text': 'ਤਿਆਗ', 'meaning': 'abandon, give up, renounce', 'ascii': [2596, 2623, 2566, 2583]}
+{'text': 'ਪਿੰਡੁ', 'meaning': 'body', 'ascii': [2602, 2623, 2672, 2593, 2625]}
+{'text': 'ਮੀਠਾ', 'meaning': 'sweet (MP - mitha)', 'ascii': [2606, 2624, 2592, 2622]}
+{'text': 'ਭਲਾ', 'meaning': 'good', 'ascii': [2605, 2610, 2622]}
+{'text': 'ਮੂਰਖ', 'meaning': 'fool', 'ascii': [2606, 2626, 2608, 2582]}
+{'text': 'ਨਿਰੰਜਨ', 'meaning': 'God, The One unsullied by Maya or pollution', 'ascii': [2600, 2623, 2608, 2672, 2588, 2600]}
+{'text': 'ਪੇਖ', 'meaning': 'pekhna - to see (syn. dekhna)', 'ascii': [2602, 2631, 2582]}
+{'text': 'ਕੁਲ', 'meaning': 'clan, ancestory', 'ascii': [2581, 2625, 2610]}
+{'text': 'ਮਾਤਾ', 'meaning': 'mother', 'ascii': [2606, 2622, 2596, 2622]}
+{'text': 'ਸਰਿਸਟ', 'meaning': 'creation, universe', 'ascii': [2616, 2608, 2623, 2616, 2591]}
+{'text': 'ਸੁਤ', 'meaning': 'son, child', 'ascii': [2616, 2625, 2596]}
+{'text': 'ਨਿਕਟ', 'meaning': 'near, close', 'ascii': [2600, 2623, 2581, 2591]}
+{'text': 'ਹਮਾਰਾ', 'meaning': 'Our, my', 'ascii': [2617, 2606, 2622, 2608, 2622]}
+{'text': 'ਊਚਾ', 'meaning': 'high', 'ascii': [2570, 2586, 2622]}
+{'text': 'ਭਾਗ', 'meaning': 'bhaagna - to run away; bhaag - fortune, destiny', 'ascii': [2605, 2622, 2583]}
+{'text': 'ਤਰੈ', 'meaning': 'tarnaa -swim, be saved; taraana - to save, help to swim', 'ascii': [2596, 2608, 2632]}
+{'text': 'ਚਿੰਤਾ', 'meaning': 'worry (MP - fikar) (achintaa - free from worry)', 'ascii': [2586, 2623, 2672, 2596, 2622]}
+{'text': 'ਨਾਰੀ', 'meaning': 'woman, wife', 'ascii': [2600, 2622, 2608, 2624]}
+{'text': 'ਕਲਾ', 'meaning': 'art, technique', 'ascii': [2581, 2610, 2622]}
+{'text': 'ਲੋਭ', 'meaning': 'greed', 'ascii': [2610, 2635, 2605]}
+{'text': 'ਸਮਰਥ', 'meaning': 'potent, capable', 'ascii': [2616, 2606, 2608, 2597]}
+{'text': 'ਖਸਮ', 'meaning': 'master, God', 'ascii': [2582, 2616, 2606]}
+{'text': 'ਮਿਤ', 'meaning': 'measure (n)', 'ascii': [2606, 2623, 2596]}
+{'text': 'ਸੇਜ', 'meaning': 'bed; divine bed representing union between God and the soul bride', 'ascii': [2616, 2631, 2588]}
+{'text': 'ਪਗ', 'meaning': 'foot', 'ascii': [2602, 2583]}
+{'text': 'ਬਾਾਤ', 'meaning': 'story, issue, conversation (syn. Gal)', 'ascii': [2604, 2622, 2622, 2596]}
+{'text': 'ਭੰਡਾਰੁ', 'meaning': 'warehouse, treasure', 'ascii': [2605, 2672, 2593, 2622, 2608, 2625]}
+{'text': 'ਕਾਰਜ', 'meaning': 'affair, task', 'ascii': [2581, 2622, 2608, 2588]}
+{'text': 'ਭਰਪੂਰ', 'meaning': 'completely full', 'ascii': [2605, 2608, 2602, 2626, 2608]}
+{'text': 'ਉਪਦੇਸ', 'meaning': 'teachings, preaching', 'ascii': [2569, 2602, 2598, 2631, 2616]}
+{'text': 'ਗਰਭ', 'meaning': 'womb', 'ascii': [2583, 2608, 2605]}
+{'text': 'ਸਰੀਰ', 'meaning': 'body, self', 'ascii': [2616, 2608, 2624, 2608]}
+{'text': 'ਬਿਅੰਤੁ', 'meaning': 'infinite; without an end', 'ascii': [2604, 2623, 2565, 2672, 2596, 2625]}
+{'text': 'ਬਿਧਾਤਾ', 'meaning': 'architect of destiny, God', 'ascii': [2604, 2623, 2599, 2622, 2596, 2622]}
+{'text': 'ਮਨੋਰਥ', 'meaning': 'hope, desire', 'ascii': [2606, 2600, 2635, 2608, 2597]}
+{'text': 'ਅਵਗੁਨ', 'meaning': 'sin, weakness', 'ascii': [2565, 2613, 2583, 2625, 2600]}
+{'text': 'ਸਿ', 'meaning': 'praise, glory', 'ascii': [2616, 2623]}
+{'text': 'ਭੰਜਨੁ', 'meaning': 'destroyer', 'ascii': [2605, 2672, 2588, 2600, 2625]}
+{'text': 'ਬੇਨਤੀ', 'meaning': 'prayer, request', 'ascii': [2604, 2631, 2600, 2596, 2624]}
+{'text': 'ਜੋਰ', 'meaning': 'power, to join (jorna)', 'ascii': [2588, 2635, 2608]}
+{'text': 'ਨਿਰੰਕਾਰੁ', 'meaning': 'The Formless One, God', 'ascii': [2600, 2623, 2608, 2672, 2581, 2622, 2608, 2625]}
+{'text': 'ਪਰਗਾਸ', 'meaning': 'Light, enlightenment', 'ascii': [2602, 2608, 2583, 2622, 2616]}
+{'text': 'ਵਿਕਾਰ', 'meaning': 'sins, evil', 'ascii': [2613, 2623, 2581, 2622, 2608]}
+{'text': 'ਉਧਾਰੇ', 'meaning': 'udharnaa - to be liberated', 'ascii': [2569, 2599, 2622, 2608, 2631]}
+{'text': 'ਵਸਿਆ', 'meaning': 'vasnaa - to live, abide, be enshrined', 'ascii': [2613, 2616, 2623, 2566]}
+{'text': 'ਪਦਾਰਥ', 'meaning': 'substance, essence, treasure', 'ascii': [2602, 2598, 2622, 2608, 2597]}
+{'text': 'ਭਾਰ', 'meaning': 'full, overflowing', 'ascii': [2605, 2622, 2608]}
+{'text': 'ਉਪਾਵ', 'meaning': 'effort, way or solution', 'ascii': [2569, 2602, 2622, 2613]}
+{'text': 'ਵਾਜੈ', 'meaning': 'rings, play as of music', 'ascii': [2613, 2622, 2588, 2632]}
+{'text': 'ਠਉਰ', 'meaning': 'Sanctuary, place of rest, support', 'ascii': [2592, 2569, 2608]}
+{'text': 'ਸੰਗੀ', 'meaning': 'companion', 'ascii': [2616, 2672, 2583, 2624]}
+{'text': 'ਆਗਿਆ', 'meaning': 'command, direction', 'ascii': [2566, 2583, 2623, 2566]}
+{'text': 'ਊਜਲ', 'meaning': 'bright, pure', 'ascii': [2570, 2588, 2610]}
+{'text': 'ਸਮਾਲੈ', 'meaning': 'cherish, take care of, remember', 'ascii': [2616, 2606, 2622, 2610, 2632]}
+{'text': 'ਜਪ', 'meaning': 'repeat Name, medidate', 'ascii': [2588, 2602]}
+{'text': 'ਸਾਸ', 'meaning': 'breath', 'ascii': [2616, 2622, 2616]}
+{'text': 'ਮੋਹਿਆ', 'meaning': 'mohanaa- to fascinate, attract', 'ascii': [2606, 2635, 2617, 2623, 2566]}
+{'text': 'ਵਿਸਾਰ', 'meaning': 'forget; MP - bhulnaa', 'ascii': [2613, 2623, 2616, 2622, 2608]}
+{'text': 'ਨਿਰਗੁਣ', 'meaning': 'without any merit; absolute and unmanifested (God)', 'ascii': [2600, 2623, 2608, 2583, 2625, 2595]}
+{'text': 'ਪਰਾਈ', 'meaning': 'stranger, not one of us, belonging to someone else', 'ascii': [2602, 2608, 2622, 2568]}
+{'text': 'ਸਿਆਨਪ', 'meaning': 'cleverness, wisdom', 'ascii': [2616, 2623, 2566, 2600, 2602]}
+{'text': 'ਕੁਰਬਾਨ', 'meaning': 'sacrifice', 'ascii': [2581, 2625, 2608, 2604, 2622, 2600]}
+{'text': 'ਚਾਨਨ', 'meaning': 'light', 'ascii': [2586, 2622, 2600, 2600]}
+{'text': 'ਧਾਵਤ', 'meaning': 'running (dhaavnaa - to run)', 'ascii': [2599, 2622, 2613, 2596]}
+{'text': 'ਪ੍ਰਤਿਪਾਲ', 'meaning': 'cherish, take care of (pratipalak - cherisher)', 'ascii': [2602, 2637, 2608, 2596, 2623, 2602, 2622, 2610]}
+{'text': 'ਸਵਾਰ', 'meaning': 'to set right, decorate,', 'ascii': [2616, 2613, 2622, 2608]}
+{'text': 'ਅਧਾਰ', 'meaning': 'support', 'ascii': [2565, 2599, 2622, 2608]}
+{'text': 'ਬੂਝੈ', 'meaning': '(v) understands', 'ascii': [2604, 2626, 2589, 2632]}
+{'text': 'ਬਿਗਸੈ', 'meaning': 'blooms forth, joyous, radiant', 'ascii': [2604, 2623, 2583, 2616, 2632]}
+{'text': 'ਜਾਨੌ', 'meaning': 'jananaa - to know', 'ascii': [2588, 2622, 2600, 2636]}
+{'text': 'ਰਾਖਾ', 'meaning': 'Protector (rakhshaa - protection), caretaker', 'ascii': [2608, 2622, 2582, 2622]}
+{'text': 'ਸਰਨ', 'meaning': 'shelter, protection (var. sharan, sarnaaee)', 'ascii': [2616, 2608, 2600]}
+{'text': 'ਰਹੋ', 'meaning': 'stay, remain', 'ascii': [2608, 2617, 2635]}
+{'text': 'ਚਤੁਰ', 'meaning': 'clever, intelligent', 'ascii': [2586, 2596, 2625, 2608]}
+{'text': 'ਘਨੇਰੇ', 'meaning': 'lots, great', 'ascii': [2584, 2600, 2631, 2608, 2631]}
+{'text': 'ਸਾਜੇ', 'meaning': 'fashions, creates', 'ascii': [2616, 2622, 2588, 2631]}
+{'text': 'ਦਰਦ', 'meaning': 'Pain, suffering', 'ascii': [2598, 2608, 2598]}
+{'text': 'ਊਠਤ', 'meaning': 'while rising, standing; MP - uthnaa', 'ascii': [2570, 2592, 2596]}
+{'text': 'ਬ੍ਰਹਮੰਡ', 'meaning': 'universe', 'ascii': [2604, 2637, 2608, 2617, 2606, 2672, 2593]}
+{'text': 'ਅਪਰਾਧੀ', 'meaning': 'sinner, guilty', 'ascii': [2565, 2602, 2608, 2622, 2599, 2624]}
+{'text': 'ਗਲ', 'meaning': 'thing, talk', 'ascii': [2583, 2610]}
+{'text': 'ਸੋਵਤ', 'meaning': 'sleeping; sovana - to sleep', 'ascii': [2616, 2635, 2613, 2596]}
+{'text': 'ਕੀਰਤਨ', 'meaning': 'singing praises, spiritual music', 'ascii': [2581, 2624, 2608, 2596, 2600]}
+{'text': 'ਗਰੀਬ', 'meaning': 'poor, humble', 'ascii': [2583, 2608, 2624, 2604]}
+{'text': 'ਆਟਲ', 'meaning': 'eternal', 'ascii': [2566, 2591, 2610]}
+{'text': 'ਸਿਆਨਾ', 'meaning': 'wise', 'ascii': [2616, 2623, 2566, 2600, 2622]}
+{'text': 'ਸੁਮਤ', 'meaning': 'sublime wisdom', 'ascii': [2616, 2625, 2606, 2596]}
+{'text': 'ਮਾਗੈ', 'meaning': 'asks', 'ascii': [2606, 2622, 2583, 2632]}
+{'text': 'ਵਰਨ', 'meaning': 'n. color or caste; v. to desribe', 'ascii': [2613, 2608, 2600]}
+{'text': 'ਭਰਵਾਸਾ', 'meaning': 'trust, confidence. Var - bharosaa', 'ascii': [2605, 2608, 2613, 2622, 2616, 2622]}
+{'text': 'ਦੇਸ', 'meaning': 'abode, country, land', 'ascii': [2598, 2631, 2616]}
+{'text': 'ਨਮਸਕਾਰ', 'meaning': 'salutation, bow in humility', 'ascii': [2600, 2606, 2616, 2581, 2622, 2608]}
+{'text': 'ਨੀਕਾ', 'meaning': 'good, sublime', 'ascii': [2600, 2624, 2581, 2622]}
+{'text': 'ਅਹਕਾਰ', 'meaning': 'pride, ego', 'ascii': [2565, 2617, 2581, 2622, 2608]}
+{'text': 'ਮੇਹਰਵਾਨ', 'meaning': 'generous, compassionate', 'ascii': [2606, 2631, 2617, 2608, 2613, 2622, 2600]}
+{'text': 'ਸਾਥੀ', 'meaning': 'companion', 'ascii': [2616, 2622, 2597, 2624]}
+{'text': 'ਵੈਰ', 'meaning': 'enmity (var. bair); vairee or bairee - enemy', 'ascii': [2613, 2632, 2608]}
+{'text': 'ਆਗਿਆਕਾਰੀ', 'meaning': 'obedient', 'ascii': [2566, 2583, 2623, 2566, 2581, 2622, 2608, 2624]}
+{'text': 'ਲਾਗ', 'meaning': '(laagna) -to be attached', 'ascii': [2610, 2622, 2583]}
+{'text': 'ਪਰਵਾਰ', 'meaning': 'family', 'ascii': [2602, 2608, 2613, 2622, 2608]}
+{'text': 'ਸਵਾਰੇ', 'meaning': 'improve', 'ascii': [2616, 2613, 2622, 2608, 2631]}
+{'text': 'ਦਲਾਲ', 'meaning': 'kind, generous', 'ascii': [2598, 2610, 2622, 2610]}
+{'text': 'ਸਲਾਹ', 'meaning': 'to praise', 'ascii': [2616, 2610, 2622, 2617]}
+{'text': 'ਜਾਗਨਾ', 'meaning': 'to be awake, spiritually aware', 'ascii': [2588, 2622, 2583, 2600, 2622]}
+{'text': 'ਸਮਰਥ', 'meaning': 'potent, capable', 'ascii': [2616, 2606, 2608, 2597]}
+{'text': 'ਅਜ', 'meaning': 'Today', 'ascii': [2565, 2588]}
+{'text': 'ਕਟ', 'meaning': 'Cut', 'ascii': [2581, 2591]}
+{'text': 'ਛਤ', 'meaning': 'Roof', 'ascii': [2587, 2596]}
+{'text': 'ਥਲ', 'meaning': 'Dry land', 'ascii': [2597, 2610]}
+{'text': 'ਅਗ', 'meaning': 'Fire', 'ascii': [2565, 2583]}
+{'text': 'ਕਦ', 'meaning': 'Height', 'ascii': [2581, 2598]}
+{'text': 'ਛਕ', 'meaning': 'Eat', 'ascii': [2587, 2581]}
+{'text': 'ਦਸ', 'meaning': 'Ten, Tell', 'ascii': [2598, 2616]}
+{'text': 'ਅਖ', 'meaning': 'Eye', 'ascii': [2565, 2582]}
+{'text': 'ਖਪ', 'meaning': 'Noise', 'ascii': [2582, 2602]}
+{'text': 'ਛਲ', 'meaning': 'Cheating', 'ascii': [2587, 2610]}
+{'text': 'ਧਰ', 'meaning': 'Put', 'ascii': [2599, 2608]}
+{'text': 'ਸਚ', 'meaning': 'Truth', 'ascii': [2616, 2586]}
+{'text': 'ਖਟ', 'meaning': 'Earn', 'ascii': [2582, 2591]}
+{'text': 'ਜਲ', 'meaning': 'Water', 'ascii': [2588, 2610]}
+{'text': 'ਧਕ', 'meaning': 'Push', 'ascii': [2599, 2581]}
+{'text': 'ਸਭ', 'meaning': 'All', 'ascii': [2616, 2605]}
+{'text': 'ਖਲ', 'meaning': 'Skin', 'ascii': [2582, 2610]}
+{'text': 'ਜਗ', 'meaning': 'Jug', 'ascii': [2588, 2583]}
+{'text': 'ਨਕ', 'meaning': 'Nose', 'ascii': [2600, 2581]}
+{'text': 'ਹਥ', 'meaning': 'Hand', 'ascii': [2617, 2597]}
+{'text': 'ਗਲ', 'meaning': 'Neck', 'ascii': [2583, 2610]}
+{'text': 'ਜਟ', 'meaning': 'Farmer', 'ascii': [2588, 2591]}
+{'text': 'ਨਟ', 'meaning': 'Nut', 'ascii': [2600, 2591]}
+{'text': 'ਹਸ', 'meaning': 'Laugh', 'ascii': [2617, 2616]}
+{'text': 'ਗਠ', 'meaning': 'Knot', 'ascii': [2583, 2592]}
+{'text': 'ਝਗ', 'meaning': 'Bubbles', 'ascii': [2589, 2583]}
+{'text': 'ਪਕ', 'meaning': 'Ripe', 'ascii': [2602, 2581]}
+{'text': 'ਹਕ', 'meaning': 'Right', 'ascii': [2617, 2581]}
+{'text': 'ਘਰ', 'meaning': 'House', 'ascii': [2584, 2608]}
+{'text': 'ਟਬ', 'meaning': 'Tub', 'ascii': [2591, 2604]}
+{'text': 'ਪਗ', 'meaning': 'Dastar', 'ascii': [2602, 2583]}
+{'text': 'ਹਲ', 'meaning': 'Plough', 'ascii': [2617, 2610]}
+{'text': 'ਘਲ', 'meaning': 'Send', 'ascii': [2584, 2610]}
+{'text': 'ਟਪ', 'meaning': 'Jump', 'ascii': [2591, 2602]}
+{'text': 'ਪਰ', 'meaning': 'But', 'ascii': [2602, 2608]}
+{'text': 'ਹੜ', 'meaning': 'Flood', 'ascii': [2617, 2652]}
+{'text': 'ਘਟ', 'meaning': 'Less', 'ascii': [2584, 2591]}
+{'text': 'ਠਗ', 'meaning': 'Thug', 'ascii': [2592, 2583]}
+{'text': 'ਫਲ', 'meaning': 'Fruit', 'ascii': [2603, 2610]}
+{'text': 'ਕਲ', 'meaning': 'Yesterday', 'ascii': [2581, 2610]}
+{'text': 'ਚਲ', 'meaning': 'Move', 'ascii': [2586, 2610]}
+{'text': 'ਤਕ', 'meaning': 'See', 'ascii': [2596, 2581]}
+{'text': 'ਫੜ', 'meaning': 'Hold', 'ascii': [2603, 2652]}
+{'text': 'ਕਪ', 'meaning': 'Cup', 'ascii': [2581, 2602]}
+{'text': 'ਚਬ', 'meaning': 'Chew', 'ascii': [2586, 2604]}
+{'text': 'ਤਨ', 'meaning': 'Body', 'ascii': [2596, 2600]}
+{'text': 'ਬਸ', 'meaning': 'Bus', 'ascii': [2604, 2616]}
+{'text': 'ਕਜ', 'meaning': 'Cover', 'ascii': [2581, 2588]}
+{'text': 'ਚਖ', 'meaning': 'Taste', 'ascii': [2586, 2582]}
+{'text': 'ਥਕ', 'meaning': 'Tired', 'ascii': [2597, 2581]}
+{'text': 'ਬਲ', 'meaning': 'Power', 'ascii': [2604, 2610]}
+{'text': 'ਅਖਰ', 'meaning': 'Word', 'ascii': [2565, 2582, 2608]}
+{'text': 'ਕਣਕ', 'meaning': 'Wheat', 'ascii': [2581, 2595, 2581]}
+{'text': 'ਝਗੜ', 'meaning': 'Quarrel', 'ascii': [2589, 2583, 2652]}
+{'text': 'ਨਰਕ', 'meaning': 'Hell', 'ascii': [2600, 2608, 2581]}
+{'text': 'ਅਰਥ', 'meaning': 'Meaning', 'ascii': [2565, 2608, 2597]}
+{'text': 'ਖਦਰ', 'meaning': 'Cloth', 'ascii': [2582, 2598, 2608]}
+{'text': 'ਝੜਪ', 'meaning': 'Argument', 'ascii': [2589, 2652, 2602]}
+{'text': 'ਨਰਮ', 'meaning': 'Soft', 'ascii': [2600, 2608, 2606]}
+{'text': 'ਸਫਰ', 'meaning': 'Journey', 'ascii': [2616, 2603, 2608]}
+{'text': 'ਖਰਚ', 'meaning': 'Spend', 'ascii': [2582, 2608, 2586]}
+{'text': 'ਝਖੜ', 'meaning': 'Storm', 'ascii': [2589, 2582, 2652]}
+{'text': 'ਬਲਦ', 'meaning': 'Bull', 'ascii': [2604, 2610, 2598]}
+{'text': 'ਸੜਕ', 'meaning': 'Road', 'ascii': [2616, 2652, 2581]}
+{'text': 'ਗਰਮ', 'meaning': 'Hot', 'ascii': [2583, 2608, 2606]}
+{'text': 'ਟਕਰ', 'meaning': 'Collision', 'ascii': [2591, 2581, 2608]}
+{'text': 'ਬਰਫ਼', 'meaning': 'Ice', 'ascii': [2604, 2608, 2654]}
+{'text': 'ਸਬਕ', 'meaning': 'Lesson', 'ascii': [2616, 2604, 2581]}
+{'text': 'ਚਮਕ', 'meaning': 'Shine', 'ascii': [2586, 2606, 2581]}
+{'text': 'ਢਕਣ', 'meaning': 'Lid', 'ascii': [2594, 2581, 2595]}
+{'text': 'ਮਟਰ', 'meaning': 'Peas', 'ascii': [2606, 2591, 2608]}
+{'text': 'ਕਮਰ', 'meaning': 'Back', 'ascii': [2581, 2606, 2608]}
+{'text': 'ਚਪਲ', 'meaning': 'Sandle', 'ascii': [2586, 2602, 2610]}
+{'text': 'ਦਰਦ', 'meaning': 'Pain', 'ascii': [2598, 2608, 2598]}
+{'text': 'ਸ਼ਬਦ', 'meaning': 'Word', 'ascii': [2614, 2604, 2598]}
+{'text': 'ਕਮਲ', 'meaning': 'Lotus', 'ascii': [2581, 2606, 2610]}
+{'text': 'ਚਤਰ', 'meaning': 'Clever', 'ascii': [2586, 2596, 2608]}
+{'text': 'ਧਰਮ', 'meaning': 'Religion', 'ascii': [2599, 2608, 2606]}
+{'text': 'ਸ਼ਰਤ', 'meaning': 'Conditional', 'ascii': [2614, 2608, 2596]}
+{'text': 'ਕਲਮ', 'meaning': 'Pen', 'ascii': [2581, 2610, 2606]}
+{'text': 'ਜਨਮ', 'meaning': 'Birth', 'ascii': [2588, 2600, 2606]}
+{'text': 'ਨਕਲ', 'meaning': 'Copy', 'ascii': [2600, 2581, 2610]}
+{'text': 'ਖ਼ਬਰ', 'meaning': 'News', 'ascii': [2649, 2604, 2608]}
+{'text': 'ਅਦਰਕ', 'meaning': 'Ginger', 'ascii': [2565, 2598, 2608, 2581]}
+{'text': 'ਗਰਦਨ', 'meaning': 'Neck', 'ascii': [2583, 2608, 2598, 2600]}
+{'text': 'ਦਸਖਤ', 'meaning': 'Signature', 'ascii': [2598, 2616, 2582, 2596]}
+{'text': 'ਬਰਤਨ', 'meaning': 'Utensils', 'ascii': [2604, 2608, 2596, 2600]}
+{'text': 'ਹਰਕਤ', 'meaning': 'Movement', 'ascii': [2617, 2608, 2581, 2596]}
+{'text': 'ਗਲਗਲ', 'meaning': 'Grapefruit', 'ascii': [2583, 2610, 2583, 2610]}
+{'text': 'ਦਰਜਨ', 'meaning': 'Dozen', 'ascii': [2598, 2608, 2588, 2600]}
+{'text': 'ਮਤਲਬ', 'meaning': 'Meaning', 'ascii': [2606, 2596, 2610, 2604]}
+{'text': 'ਹਰਮਨ', 'meaning': 'Famous', 'ascii': [2617, 2608, 2606, 2600]}
+{'text': 'ਗੜਬੜ', 'meaning': 'Mess up', 'ascii': [2583, 2652, 2604, 2652]}
+{'text': 'ਦਫ਼ਤਰ', 'meaning': 'Office', 'ascii': [2598, 2654, 2596, 2608]}
+{'text': 'ਮਖ਼ਮਲ', 'meaning': 'Velvet', 'ascii': [2606, 2649, 2606, 2610]}
+{'text': 'ਕਸਰਤ', 'meaning': 'Exercise', 'ascii': [2581, 2616, 2608, 2596]}
+{'text': 'ਝਟਪਟ', 'meaning': 'Instant', 'ascii': [2589, 2591, 2602, 2591]}
+{'text': 'ਨਫ਼ਰਤ', 'meaning': 'Hate', 'ascii': [2600, 2654, 2608, 2596]}
+{'text': 'ਸ਼ਰਬਤ', 'meaning': 'Syrup', 'ascii': [2614, 2608, 2604, 2596]}
+{'text': 'ਖਸਖਸ', 'meaning': 'Poppy Seed', 'ascii': [2582, 2616, 2582, 2616]}
+{'text': 'ਥਰਮਸ', 'meaning': 'Thermos', 'ascii': [2597, 2608, 2606, 2616]}
+{'text': 'ਪਰਬਤ', 'meaning': 'Mountain', 'ascii': [2602, 2608, 2604, 2596]}
+{'text': 'ਸ਼ਲਗਮ', 'meaning': 'Turnip', 'ascii': [2614, 2610, 2583, 2606]}
+{'text': 'ਆਸਾ', 'meaning': 'Hope', 'ascii': [2566, 2616, 2622]}
+{'text': 'ਕਾਲਾ', 'meaning': 'Black', 'ascii': [2581, 2622, 2610, 2622]}
+{'text': 'ਤਾਜ਼ਾ', 'meaning': 'Fresh', 'ascii': [2596, 2622, 2651, 2622]}
+{'text': 'ਮਾਤਾ', 'meaning': 'Mother', 'ascii': [2606, 2622, 2596, 2622]}
+{'text': 'ਆਟਾ', 'meaning': 'Flour', 'ascii': [2566, 2591, 2622]}
+{'text': 'ਕਾਕਾ', 'meaning': 'Child', 'ascii': [2581, 2622, 2581, 2622]}
+{'text': 'ਤਾਲਾ', 'meaning': 'Lock', 'ascii': [2596, 2622, 2610, 2622]}
+{'text': 'ਭਾਰਾ', 'meaning': 'Heavy', 'ascii': [2605, 2622, 2608, 2622]}
+{'text': 'ਆਰਾ', 'meaning': 'Saw', 'ascii': [2566, 2608, 2622]}
+{'text': 'ਚਾਚਾ', 'meaning': 'Uncle', 'ascii': [2586, 2622, 2586, 2622]}
+{'text': 'ਦਾਦਾ', 'meaning': "Dad's Father", 'ascii': [2598, 2622, 2598, 2622]}
+{'text': 'ਮਾਮਾ', 'meaning': "Mum's Brother", 'ascii': [2606, 2622, 2606, 2622]}
+{'text': 'ਸਾਰਾ', 'meaning': 'Everything', 'ascii': [2616, 2622, 2608, 2622]}
+{'text': 'ਜਾਲਾ', 'meaning': 'Web', 'ascii': [2588, 2622, 2610, 2622]}
+{'text': 'ਧਾਗਾ', 'meaning': 'Thread', 'ascii': [2599, 2622, 2583, 2622]}
+{'text': 'ਰਾਜਾ', 'meaning': 'King', 'ascii': [2608, 2622, 2588, 2622]}
+{'text': 'ਹਾਸਾ', 'meaning': 'Laugh', 'ascii': [2617, 2622, 2616, 2622]}
+{'text': 'ਤਾਰਾ', 'meaning': 'Star', 'ascii': [2596, 2622, 2608, 2622]}
+{'text': 'ਨਾਨਾ', 'meaning': "Mum's Father", 'ascii': [2600, 2622, 2600, 2622]}
+{'text': 'ਵਾਜਾ', 'meaning': 'Harmonium', 'ascii': [2613, 2622, 2588, 2622]}
+{'text': 'ਸਾਫ਼', 'meaning': 'Clean', 'ascii': [2616, 2622, 2654]}
+{'text': 'ਛਾਲ', 'meaning': 'Jump', 'ascii': [2587, 2622, 2610]}
+{'text': 'ਤਾਪ', 'meaning': 'Temperature', 'ascii': [2596, 2622, 2602]}
+{'text': 'ਯਾਦ', 'meaning': 'Remember', 'ascii': [2607, 2622, 2598]}
+{'text': 'ਹਾਰ', 'meaning': 'Necklace', 'ascii': [2617, 2622, 2608]}
+{'text': 'ਜਾਲ', 'meaning': 'Net', 'ascii': [2588, 2622, 2610]}
+{'text': 'ਥਾਲ', 'meaning': 'Plate', 'ascii': [2597, 2622, 2610]}
+{'text': 'ਯਾਰ', 'meaning': 'Friend', 'ascii': [2607, 2622, 2608]}
+{'text': 'ਘਾਹ', 'meaning': 'Grass', 'ascii': [2584, 2622, 2617]}
+{'text': 'ਢਾਲ', 'meaning': 'Shield', 'ascii': [2594, 2622, 2610]}
+{'text': 'ਨਾਲ', 'meaning': 'Beside', 'ascii': [2600, 2622, 2610]}
+{'text': 'ਰਾਜ਼', 'meaning': 'Secret', 'ascii': [2608, 2622, 2651]}
+{'text': 'ਚਾਰ', 'meaning': 'Four', 'ascii': [2586, 2622, 2608]}
+{'text': 'ਤਾਰ', 'meaning': 'Wire', 'ascii': [2596, 2622, 2608]}
+{'text': 'ਬਾਲ', 'meaning': 'Child', 'ascii': [2604, 2622, 2610]}
+{'text': 'ਲਾਲ', 'meaning': 'Red', 'ascii': [2610, 2622, 2610]}
+{'text': 'ਚਾਹ', 'meaning': 'Tea', 'ascii': [2586, 2622, 2617]}
+{'text': 'ਤਾਲ', 'meaning': 'Rhythm', 'ascii': [2596, 2622, 2610]}
+{'text': 'ਬਾਗ', 'meaning': 'Garden', 'ascii': [2604, 2622, 2583]}
+{'text': 'ਵਾਲ', 'meaning': 'Hair', 'ascii': [2613, 2622, 2610]}
+{'text': 'ਸਦਾ', 'meaning': 'Always', 'ascii': [2616, 2598, 2622]}
+{'text': 'ਕਟਾ', 'meaning': 'Cut', 'ascii': [2581, 2591, 2622]}
+{'text': 'ਚਲਾ', 'meaning': 'Drive', 'ascii': [2586, 2610, 2622]}
+{'text': 'ਫੜਾ', 'meaning': 'Give', 'ascii': [2603, 2652, 2622]}
+{'text': 'ਸਜ਼ਾ', 'meaning': 'Punishment', 'ascii': [2616, 2651, 2622]}
+{'text': 'ਕੜਾ', 'meaning': 'Iron Bracelet', 'ascii': [2581, 2652, 2622]}
+{'text': 'ਜਲਾ', 'meaning': 'Burn', 'ascii': [2588, 2610, 2622]}
+{'text': 'ਬਣਾ', 'meaning': 'Make', 'ascii': [2604, 2595, 2622]}
+{'text': 'ਹਵਾ', 'meaning': 'Air', 'ascii': [2617, 2613, 2622]}
+{'text': 'ਖਰਾ', 'meaning': 'Pure', 'ascii': [2582, 2608, 2622]}
+{'text': 'ਥੜਾ', 'meaning': 'Step', 'ascii': [2597, 2652, 2622]}
+{'text': 'ਭਰਾ', 'meaning': 'Brother', 'ascii': [2605, 2608, 2622]}
+{'text': 'ਹਰਾ', 'meaning': 'Green', 'ascii': [2617, 2608, 2622]}
+{'text': 'ਗਲਾ', 'meaning': 'Throat', 'ascii': [2583, 2610, 2622]}
+{'text': 'ਪਤਾ', 'meaning': 'Address', 'ascii': [2602, 2596, 2622]}
+{'text': 'ਰਲਾ', 'meaning': 'Mix', 'ascii': [2608, 2610, 2622]}
+{'text': 'ਹਲਾ', 'meaning': 'Move', 'ascii': [2617, 2610, 2622]}
+{'text': 'ਘੜਾ', 'meaning': 'Pot', 'ascii': [2584, 2652, 2622]}
+{'text': 'ਪਲਾ', 'meaning': 'Give Drink', 'ascii': [2602, 2610, 2622]}
+{'text': 'ਵਜਾ', 'meaning': 'Play', 'ascii': [2613, 2588, 2622]}
+{'text': 'ਆਦਰ', 'meaning': 'Respect', 'ascii': [2566, 2598, 2608]}
+{'text': 'ਚਾਦਰ', 'meaning': 'Sheet', 'ascii': [2586, 2622, 2598, 2608]}
+{'text': 'ਦਾਵਤ', 'meaning': 'Banquet', 'ascii': [2598, 2622, 2613, 2596]}
+{'text': 'ਬਾਲਕ', 'meaning': 'Child', 'ascii': [2604, 2622, 2610, 2581]}
+{'text': 'ਸਾਬਣ', 'meaning': 'Soap', 'ascii': [2616, 2622, 2604, 2595]}
+{'text': 'ਚਾਵਲ', 'meaning': 'Rice', 'ascii': [2586, 2622, 2613, 2610]}
+{'text': 'ਪਾਲਕ', 'meaning': 'Spinach', 'ascii': [2602, 2622, 2610, 2581]}
+{'text': 'ਬਾਹਰ', 'meaning': 'Outside', 'ascii': [2604, 2622, 2617, 2608]}
+{'text': 'ਕਾਗ਼ਜ', 'meaning': 'Paper', 'ascii': [2581, 2622, 2650, 2588]}
+{'text': 'ਚਾਨਣ', 'meaning': 'Light', 'ascii': [2586, 2622, 2600, 2595]}
+{'text': 'ਪਾਰਕ', 'meaning': 'Park', 'ascii': [2602, 2622, 2608, 2581]}
+{'text': 'ਮਾਲਕ', 'meaning': 'Boss', 'ascii': [2606, 2622, 2610, 2581]}
+{'text': 'ਗਾਜਰ', 'meaning': 'Carrot', 'ascii': [2583, 2622, 2588, 2608]}
+{'text': 'ਚਾਬਕ', 'meaning': 'Whip', 'ascii': [2586, 2622, 2604, 2581]}
+{'text': 'ਫਾਟਕ', 'meaning': 'Gate', 'ascii': [2603, 2622, 2591, 2581]}
+{'text': 'ਮਾਰਚ', 'meaning': 'March', 'ascii': [2606, 2622, 2608, 2586]}
+{'text': 'ਅਨਾਰ', 'meaning': 'Pomegranate', 'ascii': [2565, 2600, 2622, 2608]}
+{'text': 'ਸਲਾਹ', 'meaning': 'Advice', 'ascii': [2616, 2610, 2622, 2617]}
+{'text': 'ਗਲਾਸ', 'meaning': 'Glass', 'ascii': [2583, 2610, 2622, 2616]}
+{'text': 'ਪਲਾਟ', 'meaning': 'Plot', 'ascii': [2602, 2610, 2622, 2591]}
+{'text': 'ਅਰਾਮ ', 'meaning': 'Rest', 'ascii': [2565, 2608, 2622, 2606, 32]}
+{'text': 'ਕਪਾਹ', 'meaning': 'Cotton', 'ascii': [2581, 2602, 2622, 2617]}
+{'text': 'ਚਲਾਕ', 'meaning': 'Clever', 'ascii': [2586, 2610, 2622, 2581]}
+{'text': 'ਮਕਾਨ', 'meaning': 'House', 'ascii': [2606, 2581, 2622, 2600]}
+{'text': 'ਸਵਾਲ ', 'meaning': 'Question', 'ascii': [2616, 2613, 2622, 2610, 32]}
+{'text': 'ਕਨਾਤ', 'meaning': 'Tent', 'ascii': [2581, 2600, 2622, 2596]}
+{'text': 'ਪਰਾਤ', 'meaning': 'Big Bowl', 'ascii': [2602, 2608, 2622, 2596]}
+{'text': 'ਖ਼ਰਾਬ', 'meaning': 'Bad', 'ascii': [2649, 2608, 2622, 2604]}
+{'text': 'ਹਜਾਰ', 'meaning': 'Thousand', 'ascii': [2617, 2588, 2622, 2608]}
+{'text': 'ਕਲਾਸ', 'meaning': 'Class', 'ascii': [2581, 2610, 2622, 2616]}
+{'text': 'ਦਵਾਤ', 'meaning': 'Ink Pot', 'ascii': [2598, 2613, 2622, 2596]}
+{'text': 'ਖ਼ਰਾਸ਼', 'meaning': 'Itchiness', 'ascii': [2649, 2608, 2622, 2614]}
+{'text': 'ਸਸਤਾ', 'meaning': 'Cheap', 'ascii': [2616, 2616, 2596, 2622]}
+{'text': 'ਗਤਕਾ', 'meaning': 'Gatka', 'ascii': [2583, 2596, 2581, 2622]}
+{'text': 'ਤਬਲਾ', 'meaning': 'Tabla', 'ascii': [2596, 2604, 2610, 2622]}
+{'text': 'ਬਸਤਾ', 'meaning': 'Bag', 'ascii': [2604, 2616, 2596, 2622]}
+{'text': 'ਹਲਕਾ', 'meaning': 'Light', 'ascii': [2617, 2610, 2581, 2622]}
+{'text': 'ਗਮਲਾ', 'meaning': 'Pot', 'ascii': [2583, 2606, 2610, 2622]}
+{'text': 'ਨਲਕਾ', 'meaning': 'Water Pump', 'ascii': [2600, 2610, 2581, 2622]}
+{'text': 'ਭਰਨਾ', 'meaning': 'Fill', 'ascii': [2605, 2608, 2600, 2622]}
+{'text': 'ਕਮਰਾ', 'meaning': 'Room', 'ascii': [2581, 2606, 2608, 2622]}
+{'text': 'ਚਮਚਾ', 'meaning': 'Spoon', 'ascii': [2586, 2606, 2586, 2622]}
+{'text': 'ਪਰਦਾ', 'meaning': 'Curtain', 'ascii': [2602, 2608, 2598, 2622]}
+{'text': 'ਮਲਨਾ', 'meaning': 'Rub', 'ascii': [2606, 2610, 2600, 2622]}
+{'text': 'ਕਪੜਾ', 'meaning': 'Cloth', 'ascii': [2581, 2602, 2652, 2622]}
+{'text': 'ਝਗੜਾ', 'meaning': 'Fight', 'ascii': [2589, 2583, 2652, 2622]}
+{'text': 'ਪਤਲਾ', 'meaning': 'Thin', 'ascii': [2602, 2596, 2610, 2622]}
+{'text': 'ਰਸਤਾ', 'meaning': 'Way', 'ascii': [2608, 2616, 2596, 2622]}
+{'text': 'ਅਰਦਾਸ', 'meaning': 'Ardas', 'ascii': [2565, 2608, 2598, 2622, 2616]}
+{'text': 'ਸਮਾਚਾਰ', 'meaning': 'News', 'ascii': [2616, 2606, 2622, 2586, 2622, 2608]}
+{'text': 'ਤਲਵਾਰ', 'meaning': 'Sword', 'ascii': [2596, 2610, 2613, 2622, 2608]}
+{'text': 'ਪਕਵਾਨ', 'meaning': 'Foods', 'ascii': [2602, 2581, 2613, 2622, 2600]}
+{'text': 'ਅਖ਼ਬਾਰ', 'meaning': 'Newspaper', 'ascii': [2565, 2649, 2604, 2622, 2608]}
+{'text': 'ਹਵਾਲਾਤ', 'meaning': 'Prison', 'ascii': [2617, 2613, 2622, 2610, 2622, 2596]}
+{'text': 'ਥਕਾਵਟ', 'meaning': 'Tired', 'ascii': [2597, 2581, 2622, 2613, 2591]}
+{'text': 'ਪਾਠਸ਼ਾਲਾ', 'meaning': 'School', 'ascii': [2602, 2622, 2592, 2614, 2622, 2610, 2622]}
+{'text': 'ਅਨਾਨਾਸ', 'meaning': 'Pineapple', 'ascii': [2565, 2600, 2622, 2600, 2622, 2616]}
+{'text': 'ਟਮਾਟਰ', 'meaning': 'Tomato', 'ascii': [2591, 2606, 2622, 2591, 2608]}
+{'text': 'ਦਸਤਾਰ', 'meaning': 'Dastar', 'ascii': [2598, 2616, 2596, 2622, 2608]}
+{'text': 'ਮਾਸਟਰ', 'meaning': 'Teacher', 'ascii': [2606, 2622, 2616, 2591, 2608]}
+{'text': 'ਸਰਕਾਰ', 'meaning': 'Government', 'ascii': [2616, 2608, 2581, 2622, 2608]}
+{'text': 'ਡਾਕਟਰ', 'meaning': 'Doctor', 'ascii': [2593, 2622, 2581, 2591, 2608]}
+{'text': 'ਦਰਬਾਰ', 'meaning': 'Darbar', 'ascii': [2598, 2608, 2604, 2622, 2608]}
+{'text': 'ਰਫਤਾਰ', 'meaning': 'Speed', 'ascii': [2608, 2603, 2596, 2622, 2608]}
+{'text': 'ਸਰਦਾਰ', 'meaning': 'Sardar', 'ascii': [2616, 2608, 2598, 2622, 2608]}
+{'text': 'ਤਰਖਾਣ', 'meaning': 'Carpenter', 'ascii': [2596, 2608, 2582, 2622, 2595]}
+{'text': 'ਪਰਵਾਰ', 'meaning': 'Family', 'ascii': [2602, 2608, 2613, 2622, 2608]}
+{'text': 'ਵਫ਼ਾਦਾਰ', 'meaning': 'Loyal', 'ascii': [2613, 2654, 2622, 2598, 2622, 2608]}
+{'text': 'ਇਕ', 'meaning': 'One', 'ascii': [2567, 2581]}
+{'text': 'ਹਿਰਨ', 'meaning': 'Deer', 'ascii': [2617, 2623, 2608, 2600]}
+{'text': 'ਗਿਣ', 'meaning': 'Count', 'ascii': [2583, 2623, 2595]}
+{'text': 'ਦਿਲ', 'meaning': 'Heart', 'ascii': [2598, 2623, 2610]}
+{'text': 'ਇਟ', 'meaning': 'Brick', 'ascii': [2567, 2591]}
+{'text': 'ਹਿਲਾ', 'meaning': 'Shake', 'ascii': [2617, 2623, 2610, 2622]}
+{'text': 'ਚਿਰ', 'meaning': 'Long time', 'ascii': [2586, 2623, 2608]}
+{'text': 'ਪਿਤਾ', 'meaning': 'Father', 'ascii': [2602, 2623, 2596, 2622]}
+{'text': 'ਸਿਰ', 'meaning': 'Head', 'ascii': [2616, 2623, 2608]}
+{'text': 'ਕਿਤਾਬ', 'meaning': 'Book', 'ascii': [2581, 2623, 2596, 2622, 2604]}
+{'text': 'ਦਿਨ', 'meaning': 'Day', 'ascii': [2598, 2623, 2600]}
+{'text': 'ਮਿਰਚ', 'meaning': 'Chilli', 'ascii': [2606, 2623, 2608, 2586]}
+{'text': 'ਸੀਟੀ', 'meaning': 'Whistle', 'ascii': [2616, 2624, 2591, 2624]}
+{'text': 'ਗੀਲਾ', 'meaning': 'Wet', 'ascii': [2583, 2624, 2610, 2622]}
+{'text': 'ਨੀਲਾ', 'meaning': 'Blue', 'ascii': [2600, 2624, 2610, 2622]}
+{'text': 'ਮਈ', 'meaning': 'May', 'ascii': [2606, 2568]}
+{'text': 'ਕੀੜੀ', 'meaning': 'Ant', 'ascii': [2581, 2624, 2652, 2624]}
+{'text': 'ਤੀਰ', 'meaning': 'Arrow', 'ascii': [2596, 2624, 2608]}
+{'text': 'ਪੀਣਾ', 'meaning': 'Drink', 'ascii': [2602, 2624, 2595, 2622]}
+{'text': 'ਮਾਸੀ', 'meaning': "Mum's Sister", 'ascii': [2606, 2622, 2616, 2624]}
+{'text': 'ਖੀਰਾ', 'meaning': 'Cucumber', 'ascii': [2582, 2624, 2608, 2622]}
+{'text': 'ਦਹੀ', 'meaning': 'Yogurt', 'ascii': [2598, 2617, 2624]}
+{'text': 'ਪੀਲਾ', 'meaning': 'Yellow', 'ascii': [2602, 2624, 2610, 2622]}
+{'text': 'ਵੀਰ', 'meaning': 'Brother', 'ascii': [2613, 2624, 2608]}
+{'text': 'ਸਿਰਾ', 'meaning': 'An End', 'ascii': [2616, 2623, 2608, 2622]}
+{'text': 'ਸੀਰਾ', 'meaning': 'Syrup', 'ascii': [2616, 2624, 2608, 2622]}
+{'text': 'ਪਿਤਾ', 'meaning': 'Father', 'ascii': [2602, 2623, 2596, 2622]}
+{'text': 'ਪੀਤਾ', 'meaning': 'Drink', 'ascii': [2602, 2624, 2596, 2622]}
+{'text': 'ਹਿਲਾ', 'meaning': 'Shake', 'ascii': [2617, 2623, 2610, 2622]}
+{'text': 'ਹੀਲਾ', 'meaning': 'Way Out', 'ascii': [2617, 2624, 2610, 2622]}
+{'text': 'ਪਿਲਾ', 'meaning': 'Give Water', 'ascii': [2602, 2623, 2610, 2622]}
+{'text': 'ਪੀਲਾ', 'meaning': 'Yellow', 'ascii': [2602, 2624, 2610, 2622]}
+{'text': 'ਚਿਰ', 'meaning': 'So Long', 'ascii': [2586, 2623, 2608]}
+{'text': 'ਚੀਰ', 'meaning': 'Sawn', 'ascii': [2586, 2624, 2608]}
+{'text': 'ਭਿੜ', 'meaning': 'Quarell', 'ascii': [2605, 2623, 2652]}
+{'text': 'ਭੀੜ', 'meaning': 'Crowd', 'ascii': [2605, 2624, 2652]}
+{'text': 'ਤਿਲ', 'meaning': 'Seed', 'ascii': [2596, 2623, 2610]}
+{'text': 'ਤੀਲ', 'meaning': 'Match Stick', 'ascii': [2596, 2624, 2610]}
+{'text': 'ਮਿਲ', 'meaning': 'Mill', 'ascii': [2606, 2623, 2610]}
+{'text': 'ਮੀਲ', 'meaning': 'Mile', 'ascii': [2606, 2624, 2610]}
+{'text': 'ਉਠ', 'meaning': 'Stand', 'ascii': [2569, 2592]}
+{'text': 'ਕੁਰਸੀ', 'meaning': 'Chair', 'ascii': [2581, 2625, 2608, 2616, 2624]}
+{'text': 'ਜੁੱਤੀ', 'meaning': 'Shoe', 'ascii': [2588, 2625, 2673, 2596, 2624]}
+{'text': 'ਪੁਛ', 'meaning': 'Ask', 'ascii': [2602, 2625, 2587]}
+{'text': 'ਸੁਣ', 'meaning': 'Listen', 'ascii': [2616, 2625, 2595]}
+{'text': 'ਗੁੱਸਾ', 'meaning': 'Angry', 'ascii': [2583, 2625, 2673, 2616, 2622]}
+{'text': 'ਟੁਟੀ', 'meaning': 'Broken', 'ascii': [2591, 2625, 2591, 2624]}
+{'text': 'ਪੁਲ', 'meaning': 'Bridge', 'ascii': [2602, 2625, 2610]}
+{'text': 'ਹੁਣ', 'meaning': 'Now', 'ascii': [2617, 2625, 2595]}
+{'text': 'ਗੁਲਾਬ', 'meaning': 'Rose', 'ascii': [2583, 2625, 2610, 2622, 2604]}
+{'text': 'ਤੁਹਾਡਾ', 'meaning': 'Yours', 'ascii': [2596, 2625, 2617, 2622, 2593, 2622]}
+{'text': 'ਰੁਮਾਲ', 'meaning': 'Handkerchief', 'ascii': [2608, 2625, 2606, 2622, 2610]}
+{'text': 'ਊਠ', 'meaning': 'Camel', 'ascii': [2570, 2592]}
+{'text': 'ਸੂਰਜ', 'meaning': 'Sun', 'ascii': [2616, 2626, 2608, 2588]}
+{'text': 'ਚਾਕੂ', 'meaning': 'Knife', 'ascii': [2586, 2622, 2581, 2626]}
+{'text': 'ਭੂਆ', 'meaning': 'Aunt', 'ascii': [2605, 2626, 2566]}
+{'text': 'ਸੂਈ', 'meaning': 'Needle', 'ascii': [2616, 2626, 2568]}
+{'text': 'ਗਊ', 'meaning': 'Cow', 'ascii': [2583, 2570]}
+{'text': 'ਟੂਟੀ', 'meaning': 'Tap', 'ascii': [2591, 2626, 2591, 2624]}
+{'text': 'ਭੂਰਾ', 'meaning': 'Brown', 'ascii': [2605, 2626, 2608, 2622]}
+{'text': 'ਸੂਰ', 'meaning': 'Pig', 'ascii': [2616, 2626, 2608]}
+{'text': 'ਗੁਰੂ', 'meaning': 'Guru', 'ascii': [2583, 2625, 2608, 2626]}
+{'text': 'ਪੂਛ', 'meaning': 'Tail', 'ascii': [2602, 2626, 2587]}
+{'text': 'ਮੂਲੀ', 'meaning': 'Radish', 'ascii': [2606, 2626, 2610, 2624]}
+{'text': 'ਉਠ', 'meaning': 'Stand', 'ascii': [2569, 2592]}
+{'text': 'ਊਠ', 'meaning': 'Camel', 'ascii': [2570, 2592]}
+{'text': 'ਪੁਛ', 'meaning': 'Ask', 'ascii': [2602, 2625, 2587]}
+{'text': 'ਪੂਛ', 'meaning': 'Tail', 'ascii': [2602, 2626, 2587]}
+{'text': 'ਸੁਟ', 'meaning': 'Throw', 'ascii': [2616, 2625, 2591]}
+{'text': 'ਸੂਟ', 'meaning': 'Suit', 'ascii': [2616, 2626, 2591]}
+{'text': 'ਪੁ੍ੜੀ', 'meaning': 'Small Pack', 'ascii': [2602, 2625, 2637, 2652, 2624]}
+{'text': 'ਪੂੜੀ', 'meaning': 'Fried Roti', 'ascii': [2602, 2626, 2652, 2624]}
+{'text': 'ਸੁਰ', 'meaning': 'Tune', 'ascii': [2616, 2625, 2608]}
+{'text': 'ਸੂਰ', 'meaning': 'Pig', 'ascii': [2616, 2626, 2608]}
+{'text': 'ਭੁਰ', 'meaning': 'Crumble', 'ascii': [2605, 2625, 2608]}
+{'text': 'ਭੂਰ', 'meaning': 'Drizzle', 'ascii': [2605, 2626, 2608]}
+{'text': 'ਟੁਟੀ', 'meaning': 'Broken', 'ascii': [2591, 2625, 2591, 2624]}
+{'text': 'ਟੂਟੀ', 'meaning': 'Tap', 'ascii': [2591, 2626, 2591, 2624]}
+{'text': 'ਭੁਰੀ', 'meaning': 'Crumble', 'ascii': [2605, 2625, 2608, 2624]}
+{'text': 'ਭੂਰੀ', 'meaning': 'Brown', 'ascii': [2605, 2626, 2608, 2624]}
+{'text': 'ਸੇਬ', 'meaning': 'Apple', 'ascii': [2616, 2631, 2604]}
+{'text': 'ਸਵੇਰਾ', 'meaning': 'Morning', 'ascii': [2616, 2613, 2631, 2608, 2622]}
+{'text': 'ਜੇਬ', 'meaning': 'Pocket', 'ascii': [2588, 2631, 2604]}
+{'text': 'ਨੇੜੇ', 'meaning': 'Near', 'ascii': [2600, 2631, 2652, 2631]}
+{'text': 'ਸਾਡੇ', 'meaning': 'Ours', 'ascii': [2616, 2622, 2593, 2631]}
+{'text': 'ਕੇਲਾ', 'meaning': 'Banana', 'ascii': [2581, 2631, 2610, 2622]}
+{'text': 'ਤੇਲ', 'meaning': 'Oil', 'ascii': [2596, 2631, 2610]}
+{'text': 'ਮੇਲਾ', 'meaning': 'Fair', 'ascii': [2606, 2631, 2610, 2622]}
+{'text': 'ਸੇਵਾ', 'meaning': 'Charity', 'ascii': [2616, 2631, 2613, 2622]}
+{'text': 'ਛੇਤੀ', 'meaning': 'Quick', 'ascii': [2587, 2631, 2596, 2624]}
+{'text': 'ਦੇਰ', 'meaning': 'Late', 'ascii': [2598, 2631, 2608]}
+{'text': 'ਰੇਲ', 'meaning': 'Train', 'ascii': [2608, 2631, 2610]}
+{'text': 'ਐਤਵਾਰ', 'meaning': 'Sunday', 'ascii': [2576, 2596, 2613, 2622, 2608]}
+{'text': 'ਸਵੈਟਰ', 'meaning': 'Pullover', 'ascii': [2616, 2613, 2632, 2591, 2608]}
+{'text': 'ਪੈਸੇ', 'meaning': 'Money', 'ascii': [2602, 2632, 2616, 2631]}
+{'text': 'ਬੈਲ', 'meaning': 'Ox', 'ascii': [2604, 2632, 2610]}
+{'text': 'ਐਨਕ', 'meaning': 'Glasses', 'ascii': [2576, 2600, 2581]}
+{'text': 'ਕੈਮਰਾ', 'meaning': 'Camera', 'ascii': [2581, 2632, 2606, 2608, 2622]}
+{'text': 'ਪੈਦਲ', 'meaning': 'On Foot', 'ascii': [2602, 2632, 2598, 2610]}
+{'text': 'ਭੈਣ', 'meaning': 'Sister', 'ascii': [2605, 2632, 2595]}
+{'text': 'ਸੈਰ', 'meaning': 'Walk', 'ascii': [2616, 2632, 2608]}
+{'text': 'ਥੈਲਾ', 'meaning': 'Bag', 'ascii': [2597, 2632, 2610, 2622]}
+{'text': 'ਪੈਰ', 'meaning': 'Feet', 'ascii': [2602, 2632, 2608]}
+{'text': 'ਮੈਲਾ', 'meaning': 'Dirty', 'ascii': [2606, 2632, 2610, 2622]}
+{'text': 'ਬੇਲ', 'meaning': 'Bail', 'ascii': [2604, 2631, 2610]}
+{'text': 'ਬੈਲ', 'meaning': 'Ox', 'ascii': [2604, 2632, 2610]}
+{'text': 'ਮੇਲ', 'meaning': 'Meet', 'ascii': [2606, 2631, 2610]}
+{'text': 'ਮੈਲ', 'meaning': 'Dirt', 'ascii': [2606, 2632, 2610]}
+{'text': 'ਮੇਚ', 'meaning': 'Fitting', 'ascii': [2606, 2631, 2586]}
+{'text': 'ਮੈਚ', 'meaning': 'Match', 'ascii': [2606, 2632, 2586]}
+{'text': 'ਵੇਰ', 'meaning': 'Once', 'ascii': [2613, 2631, 2608]}
+{'text': 'ਵੈਰ', 'meaning': 'Enemity', 'ascii': [2613, 2632, 2608]}
+{'text': 'ਸੋਫਾ', 'meaning': 'Sofa', 'ascii': [2616, 2635, 2603, 2622]}
+{'text': 'ਗੋਲ', 'meaning': 'Round', 'ascii': [2583, 2635, 2610]}
+{'text': 'ਜੋੜੇ', 'meaning': 'Shoes', 'ascii': [2588, 2635, 2652, 2631]}
+{'text': 'ਤੋਤਾ', 'meaning': 'Parrot', 'ascii': [2596, 2635, 2596, 2622]}
+{'text': 'ਕੋਲ', 'meaning': 'Near', 'ascii': [2581, 2635, 2610]}
+{'text': 'ਘੋਲ', 'meaning': 'Wrestling', 'ascii': [2584, 2635, 2610]}
+{'text': 'ਠੋਡੀ', 'meaning': 'Chin', 'ascii': [2592, 2635, 2593, 2624]}
+{'text': 'ਦੋ', 'meaning': 'Two', 'ascii': [2598, 2635]}
+{'text': 'ਖੋਤਾ', 'meaning': 'Donkey', 'ascii': [2582, 2635, 2596, 2622]}
+{'text': 'ਚੋਰ', 'meaning': 'Thief', 'ascii': [2586, 2635, 2608]}
+{'text': 'ਢੋਲ', 'meaning': 'Drum', 'ascii': [2594, 2635, 2610]}
+{'text': 'ਧੋਣਾ', 'meaning': 'Wash', 'ascii': [2599, 2635, 2595, 2622]}
+{'text': 'ਔਖਾ', 'meaning': 'Hard', 'ascii': [2580, 2582, 2622]}
+{'text': 'ਸੌਖਾ', 'meaning': 'Easy', 'ascii': [2616, 2636, 2582, 2622]}
+{'text': 'ਕੌਲੀ', 'meaning': 'Dish', 'ascii': [2581, 2636, 2610, 2624]}
+{'text': 'ਨੌਕਰ', 'meaning': 'Servant', 'ascii': [2600, 2636, 2581, 2608]}
+{'text': 'ਔਰਤ', 'meaning': 'Woman', 'ascii': [2580, 2608, 2596]}
+{'text': 'ਹੌਲੀ', 'meaning': 'Slow', 'ascii': [2617, 2636, 2610, 2624]}
+{'text': 'ਕੌੜੀ', 'meaning': 'Bitter', 'ascii': [2581, 2636, 2652, 2624]}
+{'text': 'ਪੌੜੀ', 'meaning': 'Ladder', 'ascii': [2602, 2636, 2652, 2624]}
+{'text': 'ਸੌ', 'meaning': 'Hundred', 'ascii': [2616, 2636]}
+{'text': 'ਕੌਰ', 'meaning': 'Kaur', 'ascii': [2581, 2636, 2608]}
+{'text': 'ਦੌੜ', 'meaning': 'Race', 'ascii': [2598, 2636, 2652]}
+{'text': 'ਫੌਜੀ', 'meaning': 'Soldier', 'ascii': [2603, 2636, 2588, 2624]}
+{'text': 'ਸੋ', 'meaning': 'So', 'ascii': [2616, 2635]}
+{'text': 'ਸੌ', 'meaning': 'Hundred', 'ascii': [2616, 2636]}
+{'text': 'ਚੋਰੀ', 'meaning': 'Theft', 'ascii': [2586, 2635, 2608, 2624]}
+{'text': 'ਚੌਰੀ', 'meaning': 'Chourrie', 'ascii': [2586, 2636, 2608, 2624]}
+{'text': 'ਕੋਲ', 'meaning': 'Near', 'ascii': [2581, 2635, 2610]}
+{'text': 'ਕੌਲ', 'meaning': 'Promise', 'ascii': [2581, 2636, 2610]}
+{'text': 'ਧੋਣ', 'meaning': 'Wash', 'ascii': [2599, 2635, 2595]}
+{'text': 'ਧੌਣ', 'meaning': 'Neck', 'ascii': [2599, 2636, 2595]}
+{'text': 'ਘੋਲ', 'meaning': 'Wrestling', 'ascii': [2584, 2635, 2610]}
+{'text': 'ਘੌਲ', 'meaning': 'Mix', 'ascii': [2584, 2636, 2610]}
+{'text': 'ਭੋਰ', 'meaning': 'Crumble', 'ascii': [2605, 2635, 2608]}
+{'text': 'ਭੌਰ', 'meaning': 'Bumble Bee', 'ascii': [2605, 2636, 2608]}
+{'text': 'ਆਗਿਆ', 'meaning': 'permission, command, direction', 'ascii': [2566, 2583, 2623, 2566]}
+{'text': 'ਆਗਿਆਕਾਰੀ', 'meaning': 'obedient', 'ascii': [2566, 2583, 2623, 2566, 2581, 2622, 2608, 2624]}
+{'text': 'ਆਇਆ', 'meaning': 'to come (aanaa)', 'ascii': [2566, 2567, 2566]}
+{'text': 'ਆਲਸ', 'meaning': 'lazy, idle, slow, indolent, slothful, lethargic', 'ascii': [2566, 2610, 2616]}
+{'text': 'ਆਸਾ', 'meaning': 'hope, desire', 'ascii': [2566, 2616, 2622]}
+{'text': 'ਅਸਥਾਨਿ', 'meaning': 'place of; settlement of', 'ascii': [2565, 2616, 2597, 2622, 2600, 2623]}
+{'text': 'ਆਠ', 'meaning': 'eight', 'ascii': [2566, 2592]}
+{'text': 'ਆਵੈ', 'meaning': 'comes (aanaa, aavnaa - to come)', 'ascii': [2566, 2613, 2632]}
+{'text': 'ਅਚਰਜ', 'meaning': 'Amazing, astonishing, wonderful, marvellous, strange', 'ascii': [2565, 2586, 2608, 2588]}
+{'text': 'ਅਘਾਇ', 'meaning': 'Quenched, fulfilled, satisfied, contented', 'ascii': [2565, 2584, 2622, 2567]}
+{'text': 'ਅਧਾਰ', 'meaning': 'support', 'ascii': [2565, 2599, 2622, 2608]}
+{'text': 'ਅਗਮ', 'meaning': 'incomprehensible (attribute of God); unapproachable', 'ascii': [2565, 2583, 2606]}
+{'text': 'ਅਗਨਿ', 'meaning': 'fire', 'ascii': [2565, 2583, 2600, 2623]}
+{'text': 'ਅਗਿਆਨੀ', 'meaning': 'one without knowledge, illiterate, rustic, ignorant, foolish, thoughtless', 'ascii': [2565, 2583, 2623, 2566, 2600, 2624]}
+{'text': 'ਅਹੰਕਾਰ', 'meaning': 'pride, ego', 'ascii': [2565, 2617, 2672, 2581, 2622, 2608]}
+{'text': 'ਅਲੇਪ', 'meaning': 'clean, pure, untouched, untainted, opposite of ਲੇਪ s\xa0 "layp"', 'ascii': [2565, 2610, 2631, 2602]}
+{'text': 'ਅਨਾਦਿ', 'meaning': 'without the root/soul/vibration;', 'ascii': [2565, 2600, 2622, 2598, 2623]}
+{'text': 'ਅਨਦ', 'meaning': 'Joy, happy, delight, bliss', 'ascii': [2565, 2600, 2598]}
+{'text': 'ਅੰਚਲਿ', 'meaning': 'support of a scarf or hem of skirt/dress/shirt or edge of garment', 'ascii': [2565, 2672, 2586, 2610, 2623]}
+{'text': 'ਅੰਧ', 'meaning': 'blind, dark', 'ascii': [2565, 2672, 2599]}
+{'text': 'ਅੰਦਰ', 'meaning': 'in, within', 'ascii': [2565, 2672, 2598, 2608]}
+{'text': 'ਅਨਿਕ', 'meaning': 'many (var. anek)', 'ascii': [2565, 2600, 2623, 2581]}
+{'text': 'ਅੰਤਿ', 'meaning': 'end, limit', 'ascii': [2565, 2672, 2596, 2623]}
+{'text': 'ਅੰਤਰ', 'meaning': 'within, in (MP - vich)', 'ascii': [2565, 2672, 2596, 2608]}
+{'text': 'ਅੰਤਰਜਾਮੀ', 'meaning': 'Knower of deepest thoughts (God), Inner Guide, Inner knower, searcher of hearts (Antar-inner Jaami-knower)', 'ascii': [2565, 2672, 2596, 2608, 2588, 2622, 2606, 2624]}
+{'text': 'ਅਪੜਿ', 'meaning': 'Reach, equal, compare, approach', 'ascii': [2565, 2602, 2652, 2623]}
+{'text': 'ਅਪਰਾਧ', 'meaning': 'Sin, blemish, fault, crime, offence, transgression.', 'ascii': [2565, 2602, 2608, 2622, 2599]}
+{'text': 'ਅਪਰਾਧੀ', 'meaning': 'sinner, guilty', 'ascii': [2565, 2602, 2608, 2622, 2599, 2624]}
+{'text': 'ਅਰਦਾਸਿ', 'meaning': 'prayer, supplication', 'ascii': [2565, 2608, 2598, 2622, 2616, 2623]}
+{'text': 'ਅਤਿ', 'meaning': 'very', 'ascii': [2565, 2596, 2623]}
+{'text': 'ਅਟਲ', 'meaning': 'eternal', 'ascii': [2565, 2591, 2610]}
+{'text': 'ਅਵਗਨ', 'meaning': 'sin, weakness', 'ascii': [2565, 2613, 2583, 2600]}
+{'text': 'ਬਾਹਰਿ', 'meaning': 'outside, besides', 'ascii': [2604, 2622, 2617, 2608, 2623]}
+{'text': 'ਬਾਂਛਹਿ', 'meaning': 'to ask; to desire;', 'ascii': [2604, 2622, 2562, 2587, 2617, 2623]}
+{'text': 'ਬਾਣਿ', 'meaning': '1. Gurbani, Hymn, Sound, 2. arrow 3. morning', 'ascii': [2604, 2622, 2595, 2623]}
+{'text': 'ਬਾਣੀ', 'meaning': 'speech, Word, Holy word, Science of sacred vibration', 'ascii': [2604, 2622, 2595, 2624]}
+{'text': 'ਬਾਰਿਕ', 'meaning': 'child', 'ascii': [2604, 2622, 2608, 2623, 2581]}
+{'text': 'ਬਾਤ', 'meaning': 'story, issue, conversation (syn. Gal)', 'ascii': [2604, 2622, 2596]}
+{'text': 'ਬਲ', 'meaning': 'strength, power; sacrifice (balihaaree)', 'ascii': [2604, 2610]}
+{'text': 'ਬੰਧਨ', 'meaning': 'bonds, fetters', 'ascii': [2604, 2672, 2599, 2600]}
+{'text': 'ਬੇਅੰਤ', 'meaning': 'infinite; without an end (be-without ant-limit)', 'ascii': [2604, 2631, 2565, 2672, 2596]}
+{'text': 'ਬੀਚਾਰਾ', 'meaning': 'reflect, consider, contemplate, realise, idea, opinion', 'ascii': [2604, 2624, 2586, 2622, 2608, 2622]}
+{'text': 'ਬੀਧੇ', 'meaning': 'entwined, united, pierced', 'ascii': [2604, 2624, 2599, 2631]}
+{'text': 'ਬੇਨਤੀ', 'meaning': 'prayer, request', 'ascii': [2604, 2631, 2600, 2596, 2624]}
+{'text': 'ਭਾਈ', 'meaning': 'brother, friend (used as address)', 'ascii': [2605, 2622, 2568]}
+{'text': 'ਭਾਗ', 'meaning': 'bhaagna - to run away; bhaag - fortune, destiny', 'ascii': [2605, 2622, 2583]}
+{'text': 'ਭਾਗਠ', 'meaning': 'fortunate, happy, fortunate ones, flourish', 'ascii': [2605, 2622, 2583, 2592]}
+{'text': 'ਭਾਇ', 'meaning': 'pleases; will; love (doojaa bhaai - duality)', 'ascii': [2605, 2622, 2567]}
+{'text': 'ਭਾਣਾ', 'meaning': 'Will\t, Divine Law', 'ascii': [2605, 2622, 2595, 2622]}
+{'text': 'ਭਾਉ', 'meaning': 'love', 'ascii': [2605, 2622, 2569]}
+{'text': 'ਭਾਵੈ', 'meaning': 'to be pleasing, appeal to', 'ascii': [2605, 2622, 2613, 2632]}
+{'text': 'ਭਈ', 'meaning': 'become', 'ascii': [2605, 2568]}
+{'text': 'ਭਗਤਿ', 'meaning': 'devotee of God, saintly person', 'ascii': [2605, 2583, 2596, 2623]}
+{'text': 'ਭਗਤੀ', 'meaning': 'devotion, worship, praying; meditation, dedication', 'ascii': [2605, 2583, 2596, 2624]}
+{'text': 'ਭਲੀ', 'meaning': 'good, noble, positive, pious, virtuous; good turn, goodness; welfare, well being;', 'ascii': [2605, 2610, 2624]}
+{'text': 'ਭਰਵਾਸਾ', 'meaning': 'Trust, confidence, support', 'ascii': [2605, 2608, 2613, 2622, 2616, 2622]}
+{'text': 'ਭੀ', 'meaning': 'also, too, even, is', 'ascii': [2605, 2624]}
+{'text': 'ਬਿਨਾ', 'meaning': 'without, except, but for', 'ascii': [2604, 2623, 2600, 2622]}
+{'text': 'ਬਿਨਸ', 'meaning': 'kill, destroy, perish, merge away, end, eliminate', 'ascii': [2604, 2623, 2600, 2616]}
+{'text': 'ਬਿਨਸਿਆ', 'meaning': 'dispelled, removed, destroyed, eliminated', 'ascii': [2604, 2623, 2600, 2616, 2623, 2566]}
+{'text': 'ਬਿਰਹ', 'meaning': 'separation; isolation; alienation', 'ascii': [2604, 2623, 2608, 2617]}
+{'text': 'ਭੈ', 'meaning': 'fear (syn - bhau)', 'ascii': [2605, 2632]}
+{'text': 'ਭਲਾ', 'meaning': 'good, good will, positive state of being', 'ascii': [2605, 2610, 2622]}
+{'text': 'ਭੰਡਾਰ', 'meaning': 'warehouse, treasure', 'ascii': [2605, 2672, 2593, 2622, 2608]}
+{'text': 'ਭੰਜਨ', 'meaning': 'destroyer', 'ascii': [2605, 2672, 2588, 2600]}
+{'text': 'ਭਰਿ', 'meaning': 'full, overflowing', 'ascii': [2605, 2608, 2623]}
+{'text': 'ਭਰਪੂਰ', 'meaning': 'completely full', 'ascii': [2605, 2608, 2602, 2626, 2608]}
+{'text': 'ਭਰਵਾਸਾ', 'meaning': 'trust, confidence. (Var - bharosaa)', 'ascii': [2605, 2608, 2613, 2622, 2616, 2622]}
+{'text': 'ਭਉ', 'meaning': 'fear (bhaao - love)', 'ascii': [2605, 2569]}
+{'text': 'ਭੀ', 'meaning': 'also (MP: vee)', 'ascii': [2605, 2624]}
+{'text': 'ਬਿਧਿ', 'meaning': 'Method, way', 'ascii': [2604, 2623, 2599, 2623]}
+{'text': 'ਬਿਧਾਤਾ', 'meaning': 'architect of destiny, God', 'ascii': [2604, 2623, 2599, 2622, 2596, 2622]}
+{'text': 'ਬਿਗਸੈ', 'meaning': 'blooms forth, joyous, radiant', 'ascii': [2604, 2623, 2583, 2616, 2632]}
+{'text': 'ਬੂਝੈ', 'meaning': 'understands', 'ascii': [2604, 2626, 2589, 2632]}
+{'text': 'ਚਰਨ', 'meaning': 'feet - symbolizes devotion, humility', 'ascii': [2586, 2608, 2600]}
+{'text': 'ਛੋਡਿ', 'meaning': 'abandon, leave', 'ascii': [2587, 2635, 2593, 2623]}
+{'text': 'ਚਿੰਤ', 'meaning': 'anxiety, apprehension (opposite is ਅਚਿੰਤ s\xa0 aachint)', 'ascii': [2586, 2623, 2672, 2596]}
+{'text': 'ਚਿੰਤਾ', 'meaning': 'worry (MP - fikar) (achintaa - free from worry)', 'ascii': [2586, 2623, 2672, 2596, 2622]}
+{'text': 'ਦਾ', 'meaning': 'of, belonging to', 'ascii': [2598, 2622]}
+{'text': 'ਦਾਸ', 'meaning': 'servant, slave; devoted', 'ascii': [2598, 2622, 2616]}
+{'text': 'ਦਾਤਾ', 'meaning': 'giver', 'ascii': [2598, 2622, 2596, 2622]}
+{'text': 'ਦਇਆ', 'meaning': 'mercy', 'ascii': [2598, 2567, 2566]}
+{'text': 'ਦਇਆਲ', 'meaning': 'kind, generous', 'ascii': [2598, 2567, 2566, 2610]}
+{'text': 'ਦਰ', 'meaning': 'door, portal', 'ascii': [2598, 2608]}
+{'text': 'ਦਰਗਹ', 'meaning': 'court', 'ascii': [2598, 2608, 2583, 2617]}
+{'text': 'ਦਰਸਨ', 'meaning': 'blessing, vision, experience of being in Presence', 'ascii': [2598, 2608, 2616, 2600]}
+{'text': 'ਦੇਖਣਹਾਰੇ', 'meaning': '"is/are watching" from 2 roots - daykhan ਦੇਖਣ s\xa0 and haaray ਹਾਰੇ s\xa0. The word "dayk" means "look/watch"; "daykhan" means "is/are looking/watching". "Haaray" means "doer" or "endower of" or "worthy of"  the suffix.', 'ascii': [2598, 2631, 2582, 2595, 2617, 2622, 2608, 2631]}
+{'text': 'ਦੀਆ', 'meaning': 'gave', 'ascii': [2598, 2624, 2566]}
+{'text': 'ਦੀਜੈ', 'meaning': 'give, provide, grant, offer, bless, bestow', 'ascii': [2598, 2624, 2588, 2632]}
+{'text': 'ਦੀਨ', 'meaning': 'poor, humble; religion, spiritual world', 'ascii': [2598, 2624, 2600]}
+{'text': 'ਦੀਸਹਿ', 'meaning': 'appear, seem', 'ascii': [2598, 2624, 2616, 2617, 2623]}
+{'text': 'ਡਿਠਾ', 'meaning': 'seen, visible', 'ascii': [2593, 2623, 2592, 2622]}
+{'text': 'ਦੇਸ', 'meaning': 'abode, country, land', 'ascii': [2598, 2631, 2616]}
+{'text': 'ਧਾਗੈ', 'meaning': 'relating to string or thread', 'ascii': [2599, 2622, 2583, 2632]}
+{'text': 'ਧਾਇਆ', 'meaning': 'adopt, pursue, chase, evade,', 'ascii': [2599, 2622, 2567, 2566]}
+{'text': 'ਧਾਰਿ', 'meaning': 'keep, enshrine, arrange, secure, shower, to do, understand', 'ascii': [2599, 2622, 2608, 2623]}
+{'text': 'ਧਾਰਨਾ', 'meaning': '(1) determine, resolve. (2) assume, adopt, hold, bear (3) Conception', 'ascii': [2599, 2622, 2608, 2600, 2622]}
+{'text': 'ਧਾਵਤ', 'meaning': 'running (dhaavnaa - to run)', 'ascii': [2599, 2622, 2613, 2596]}
+{'text': 'ਧਨ', 'meaning': 'wealth; blessed', 'ascii': [2599, 2600]}
+{'text': 'ਡਰਿ', 'meaning': 'fear', 'ascii': [2593, 2608, 2623]}
+{'text': 'ਧਰਮ', 'meaning': 'righteous actions, duty, religion, path of righteousness', 'ascii': [2599, 2608, 2606]}
+{'text': 'ਧੀਠਾ', 'meaning': 'Stubborn, rebellious, daring', 'ascii': [2599, 2624, 2592, 2622]}
+{'text': 'ਧਿਆਇਆ', 'meaning': 'meditate on, remember, repeat name (MP-dhian) focus', 'ascii': [2599, 2623, 2566, 2567, 2566]}
+{'text': 'ਢੋਆ', 'meaning': 'support, strength', 'ascii': [2594, 2635, 2566]}
+{'text': 'ਧੂਰਿ', 'meaning': 'dust', 'ascii': [2599, 2626, 2608, 2623]}
+{'text': 'ਦਿਲਾਸਾ', 'meaning': 'Comfort, consolation, solace, encouragement', 'ascii': [2598, 2623, 2610, 2622, 2616, 2622]}
+{'text': 'ਦੂਜਾ', 'meaning': 'second, other, duality', 'ascii': [2598, 2626, 2588, 2622]}
+{'text': 'ਇਹ', 'meaning': 'this', 'ascii': [2567, 2617]}
+{'text': 'ਫਾਸਾ', 'meaning': 'noose, snare, death warrant, see ਫਾਹਾ s\xa0 "faahaa"', 'ascii': [2603, 2622, 2616, 2622]}
+{'text': 'ਫੰਧਾ', 'meaning': 'chain, in chains, snare, trap, net, entanglement, noose', 'ascii': [2603, 2672, 2599, 2622]}
+{'text': 'ਗਾਈਝ', 'meaning': 'to sing; should sing;', 'ascii': [2583, 2622, 2568, 2589]}
+{'text': 'ਗਤਿ', 'meaning': 'state, emancipation', 'ascii': [2583, 2596, 2623]}
+{'text': 'ਗਲ', 'meaning': 'thing, talk', 'ascii': [2583, 2610]}
+{'text': 'ਗਲੀ', 'meaning': 'by talking, relating to neck', 'ascii': [2583, 2610, 2624]}
+{'text': 'ਗਰਭ', 'meaning': 'womb', 'ascii': [2583, 2608, 2605]}
+{'text': 'ਗਰੀਬ', 'meaning': 'poor, humble', 'ascii': [2583, 2608, 2624, 2604]}
+{'text': 'ਗੀਧੇ', 'meaning': 'saturated, dye deeply, eagerly desire,', 'ascii': [2583, 2624, 2599, 2631]}
+{'text': 'ਘਨੇਰੇ', 'meaning': 'lots, great', 'ascii': [2584, 2600, 2631, 2608, 2631]}
+{'text': 'ਘੜੀ', 'meaning': 'Moment, measure of time, watch, clock, small, pitcher or earthen pot', 'ascii': [2584, 2652, 2624]}
+{'text': 'ਗਿਆਨੀ', 'meaning': 'wise, knowledgeable', 'ascii': [2583, 2623, 2566, 2600, 2624]}
+{'text': 'ਗਿਆਨ', 'meaning': 'knowledge, realization', 'ascii': [2583, 2623, 2566, 2600]}
+{'text': 'ਗਿਰਸਤ', 'meaning': '1. householder. 2. engrossed', 'ascii': [2583, 2623, 2608, 2616, 2596]}
+{'text': 'ਗੋਬਿਦ', 'meaning': 'One who sustains the world-God (var - Govind, Govinda)', 'ascii': [2583, 2635, 2604, 2623, 2598]}
+{'text': 'ਗੋਪਾਲ', 'meaning': 'Cherisher of the world-God, One who rotates the Earth', 'ascii': [2583, 2635, 2602, 2622, 2610]}
+{'text': 'ਹਮਾਰਾ', 'meaning': 'Our, my', 'ascii': [2617, 2606, 2622, 2608, 2622]}
+{'text': 'ਹਰ', 'meaning': 'The Infinite (God); all, every, everyone, each, any; denominator', 'ascii': [2617, 2608]}
+{'text': 'ਹਰਿ', 'meaning': 'The Infinite (God); diamond', 'ascii': [2617, 2608, 2623]}
+{'text': 'ਹਰੀ', 'meaning': 'The Infinite (God); green', 'ascii': [2617, 2608, 2624]}
+{'text': 'ਹਉ', 'meaning': 'I', 'ascii': [2617, 2569]}
+{'text': 'ਹਉਮੈ', 'meaning': '(hou-me, mai-I) ego, pride, sense of I (separate from God & creation)', 'ascii': [2617, 2569, 2606, 2632]}
+{'text': 'ਹੈ', 'meaning': 'O (form of address)', 'ascii': [2617, 2632]}
+{'text': 'ਹੀ', 'meaning': 'even, indeed, very, used to emphasis', 'ascii': [2617, 2624]}
+{'text': 'ਹਿਤੈ', 'meaning': 'impelled, urged on, set in motion, placed', 'ascii': [2617, 2623, 2596, 2632]}
+{'text': 'ਹਿਰਦੈ', 'meaning': '(in the) heart, mind (MP - dil) abbrev: ridai', 'ascii': [2617, 2623, 2608, 2598, 2632]}
+{'text': 'ਹਮ', 'meaning': 'We, I', 'ascii': [2617, 2606]}
+{'text': 'ਇਕੰਤੀ', 'meaning': 'alone, one who loves solitude, the retired one, one who lives in seclusion from the root ਇਕ s\xa0 "Ik" numeral "one", 1', 'ascii': [2567, 2581, 2672, 2596, 2624]}
+{'text': 'ਇਕਤ', 'meaning': 'the one, the only one, together as one, collect into one', 'ascii': [2567, 2581, 2596]}
+{'text': 'ਜਾਝ', 'meaning': 'goes, departs, does, happen, done, expressed', 'ascii': [2588, 2622, 2589]}
+{'text': 'ਜਾਗਨਾ', 'meaning': 'to be awake, spiritually aware', 'ascii': [2588, 2622, 2583, 2600, 2622]}
+{'text': 'ਜਾਨਉ', 'meaning': 'to know (jananaa )', 'ascii': [2588, 2622, 2600, 2569]}
+{'text': 'ਜਾਤਿ', 'meaning': 'caste, social status, species', 'ascii': [2588, 2622, 2596, 2623]}
+{'text': 'ਜਬ', 'meaning': 'when', 'ascii': [2588, 2604]}
+{'text': 'ਜਲ', 'meaning': 'water (mp - paanee)', 'ascii': [2588, 2610]}
+{'text': 'ਜਮ', 'meaning': 'death, god of death', 'ascii': [2588, 2606]}
+{'text': 'ਜੰਮਸੀ', 'meaning': 'will be born, will take birth', 'ascii': [2588, 2672, 2606, 2616, 2624]}
+{'text': 'ਜਨਮ', 'meaning': 'birth', 'ascii': [2588, 2600, 2606]}
+{'text': 'ਜੰਜੀਰ', 'meaning': 'chain', 'ascii': [2588, 2672, 2588, 2624, 2608]}
+{'text': 'ਜੰਤ', 'meaning': 'being, creature', 'ascii': [2588, 2672, 2596]}
+{'text': 'ਜਪ', 'meaning': 'repeat Name, medidate, chant', 'ascii': [2588, 2602]}
+{'text': 'ਜੜ', 'meaning': '1. root  2. without consciousness, senseless, inanimate', 'ascii': [2588, 2652]}
+{'text': 'ਜਉ', 'meaning': 'if', 'ascii': [2588, 2569]}
+{'text': 'ਜੇਤੇ', 'meaning': 'as, just as', 'ascii': [2588, 2631, 2596, 2631]}
+{'text': 'ਜੀਉ', 'meaning': 'soul or life; respectful and affectionate appelation (Jee in MP)', 'ascii': [2588, 2624, 2569]}
+{'text': 'ਜੀਵਤ', 'meaning': 'live, living', 'ascii': [2588, 2624, 2613, 2596]}
+{'text': 'ਜੋਗੀ', 'meaning': 'yogi, one seeking union with God', 'ascii': [2588, 2635, 2583, 2624]}
+{'text': 'ਜੋਨਿ', 'meaning': 'incarnation, life (in birth/life cycle); species (var- joon)', 'ascii': [2588, 2635, 2600, 2623]}
+{'text': 'ਜੋਤਿ', 'meaning': 'light, spiritual light', 'ascii': [2588, 2635, 2596, 2623]}
+{'text': 'ਕਾਢੇ', 'meaning': '1. removes, saves, liberates  2. is known', 'ascii': [2581, 2622, 2594, 2631]}
+{'text': 'ਕਾਇਆ', 'meaning': 'body, self', 'ascii': [2581, 2622, 2567, 2566]}
+{'text': 'ਕਾਲ', 'meaning': 'death, time', 'ascii': [2581, 2622, 2610]}
+{'text': 'ਕਾਮ', 'meaning': 'lust, physical pleasures; work, endeaver', 'ascii': [2581, 2622, 2606]}
+{'text': 'ਕਾਰ', 'meaning': 'task, affair', 'ascii': [2581, 2622, 2608]}
+{'text': 'ਕਾਰਜ', 'meaning': 'affair, task', 'ascii': [2581, 2622, 2608, 2588]}
+{'text': 'ਕਾਟ', 'meaning': 'Cut, bite; section, wound; deduction; act of cutting; clash; dissection, cutting', 'ascii': [2581, 2622, 2591]}
+{'text': 'ਕਾਟੇ', 'meaning': 'cuts, destroys, distances', 'ascii': [2581, 2622, 2591, 2631]}
+{'text': 'ਕਛੂ', 'meaning': '1. Something, anything, nothing  2. Tortoise, turtle.', 'ascii': [2581, 2587, 2626]}
+{'text': 'ਕਦੇ', 'meaning': 'Whenever, ever, long ago, at any time', 'ascii': [2581, 2598, 2631]}
+{'text': 'ਕਦੇ', 'meaning': 'never, will never, shall never', 'ascii': [2581, 2598, 2631]}
+{'text': 'ਕਹਣਾ', 'meaning': 'describe, say, tell,', 'ascii': [2581, 2617, 2595, 2622]}
+{'text': 'ਕਲਾ', 'meaning': 'art, technique', 'ascii': [2581, 2610, 2622]}
+{'text': 'ਕਲੇਸ', 'meaning': 'agitation, grief, pain, agony, sorrow', 'ascii': [2581, 2610, 2631, 2616]}
+{'text': 'ਕਲਿ', 'meaning': 'yesterday, tomorrow', 'ascii': [2581, 2610, 2623]}
+{'text': 'ਕਲਿਆਣ', 'meaning': '1. salvation, emancipation, success, good fortune 2. welfare, happiness, joy, comfort  3. son of Rĝga Dīpaka 4. a trend of music', 'ascii': [2581, 2610, 2623, 2566, 2595]}
+{'text': 'ਕਲਮਲ', 'meaning': 'sinful, nastiness, wickedness, distress, corrupt', 'ascii': [2581, 2610, 2606, 2610]}
+{'text': 'ਕਮਾਈ', 'meaning': 'Earning, work, actions, deeds, performance, accomplishment', 'ascii': [2581, 2606, 2622, 2568]}
+{'text': 'ਕਮਲ', 'meaning': 'lotus', 'ascii': [2581, 2606, 2610]}
+{'text': 'ਕਰਮ', 'meaning': 'action, past life actions (karma); law of cause and effect; grace', 'ascii': [2581, 2608, 2606]}
+{'text': 'ਕਰੇ', 'meaning': 'to do; does', 'ascii': [2581, 2608, 2631]}
+{'text': 'ਕਰਹਿ', 'meaning': 'to do (MP- karnaa)', 'ascii': [2581, 2608, 2617, 2623]}
+{'text': 'ਕਰਨਾ', 'meaning': 'To do, to act, to perform', 'ascii': [2581, 2608, 2600, 2622]}
+{'text': 'ਕਰਤਾ', 'meaning': 'creator', 'ascii': [2581, 2608, 2596, 2622]}
+{'text': 'ਕਥਨੀ', 'meaning': 'speech, chanting, saying', 'ascii': [2581, 2597, 2600, 2624]}
+{'text': 'ਕ', 'meaning': "'Kakah' the sixth letter of Gurmukhi alphabet.", 'ascii': [2581]}
+{'text': 'ਕੀਆ', 'meaning': 'action (MP - keeta)', 'ascii': [2581, 2624, 2566]}
+{'text': 'ਕੀਮਤਿ', 'meaning': 'price, value', 'ascii': [2581, 2624, 2606, 2596, 2623]}
+{'text': 'ਕੀਰਤਨ', 'meaning': 'singing praises, spiritual music, group chanting', 'ascii': [2581, 2624, 2608, 2596, 2600]}
+{'text': 'ਖਾਨਦਾਨ', 'meaning': 'Family (dynasty)', 'ascii': [2582, 2622, 2600, 2598, 2622, 2600]}
+{'text': 'ਖਸਮ', 'meaning': 'master, God', 'ascii': [2582, 2616, 2606]}
+{'text': 'ਖੋਈ', 'meaning': 'lost, forgotten, misplaced; wasted, exhausted, ruined; rid, removed', 'ascii': [2582, 2635, 2568]}
+{'text': 'ਕਿਆ', 'meaning': 'what (MP - kee)', 'ascii': [2581, 2623, 2566]}
+{'text': 'ਕੋਇ', 'meaning': 'Someone, anyone', 'ascii': [2581, 2635, 2567]}
+{'text': 'ਕੂਪ', 'meaning': 'well, pit', 'ascii': [2581, 2626, 2602]}
+{'text': 'ਕੋਟਿ', 'meaning': 'millions (lit. 10 million)', 'ascii': [2581, 2635, 2591, 2623]}
+{'text': 'ਲਾਗ', 'meaning': 'to be attached (laagna)', 'ascii': [2610, 2622, 2583]}
+{'text': 'ਲੈਹਿ', 'meaning': 'take, receive, accept', 'ascii': [2610, 2632, 2617, 2623]}
+{'text': 'ਲਹਨਿ', 'meaning': '1. achieve, receive, take on 2. come off, go away to a distance', 'ascii': [2610, 2617, 2600, 2623]}
+{'text': 'ਲੇਪ', 'meaning': '1. plaster, coat, paste, spread, layer, anoint 2. ointment, balm 3. stigma, blemish, polluted, stained, opposite of ਅਲੇਪ s\xa0 "alayp"', 'ascii': [2610, 2631, 2602]}
+{'text': 'ਲਿਖਿਆ', 'meaning': 'written, destined (likhna- to write)', 'ascii': [2610, 2623, 2582, 2623, 2566]}
+{'text': 'ਲਿਵ', 'meaning': 'deep continuous love and absorption', 'ascii': [2610, 2623, 2613]}
+{'text': 'ਲੋਭ', 'meaning': 'greed', 'ascii': [2610, 2635, 2605]}
+{'text': 'ਮਇਆ', 'meaning': 'Grace, blessing; merciful, kind; ingrained', 'ascii': [2606, 2567, 2566]}
+{'text': 'ਮਾਣਸ', 'meaning': 'Man, human being, person', 'ascii': [2606, 2622, 2595, 2616]}
+{'text': 'ਮਾਰ', 'meaning': 'kill', 'ascii': [2606, 2622, 2608]}
+{'text': 'ਮਾਰੈ', 'meaning': 'kills, destroys, captures, hits; for the sake of, because of', 'ascii': [2606, 2622, 2608, 2632]}
+{'text': 'ਮਾਤਾ', 'meaning': 'mother', 'ascii': [2606, 2622, 2596, 2622]}
+{'text': 'ਮਾਇਆ', 'meaning': 'material illusion, worldly entaglements, illusionary & transient', 'ascii': [2606, 2622, 2567, 2566]}
+{'text': 'ਮੈਲ', 'meaning': 'impurity', 'ascii': [2606, 2632, 2610]}
+{'text': 'ਮਹਾ', 'meaning': 'great', 'ascii': [2606, 2617, 2622]}
+{'text': 'ਮਹਲਾ', 'meaning': 'Identifies which Guru is author, neighborhood', 'ascii': [2606, 2617, 2610, 2622]}
+{'text': 'ਮਹਿਮਾ', 'meaning': 'glory, greatness, enormity, majestic, importance, grandeur, fame, praise, tribute', 'ascii': [2606, 2617, 2623, 2606, 2622]}
+{'text': 'ਮੰਗਲ', 'meaning': 'joy, happiness, delight, rejoice, auspiciousness, well-being, bliss, prosperity; Tuesday; the planet Mars;', 'ascii': [2606, 2672, 2583, 2610]}
+{'text': 'ਮੰਗਣ', 'meaning': 'ask, beg', 'ascii': [2606, 2672, 2583, 2595]}
+{'text': 'ਮਨੋਰਥ', 'meaning': 'hope, desire', 'ascii': [2606, 2600, 2635, 2608, 2597]}
+{'text': 'ਮਰਿ', 'meaning': 'die (marnaa - to die); janam maran = birth & death', 'ascii': [2606, 2608, 2623]}
+{'text': 'ਮਾਰੈ', 'meaning': 'dies (marnaa - to die)', 'ascii': [2606, 2622, 2608, 2632]}
+{'text': 'ਮਾਰਗ', 'meaning': 'way, path, road', 'ascii': [2606, 2622, 2608, 2583]}
+{'text': 'ਮਸਤਕ', 'meaning': "Forehead (MP mathaa)[one's destiny is written on their forehead based on past karmas, before being incarnated]", 'ascii': [2606, 2616, 2596, 2581]}
+{'text': 'ਮੇਰਾ', 'meaning': 'mine, my', 'ascii': [2606, 2631, 2608, 2622]}
+{'text': 'ਮੀਤ', 'meaning': 'dear friend', 'ascii': [2606, 2624, 2596]}
+{'text': 'ਮੀਠਾ', 'meaning': 'sweet (MP - mitha)', 'ascii': [2606, 2624, 2592, 2622]}
+{'text': 'ਮਹਿ', 'meaning': 'in (postposition), within, inside', 'ascii': [2606, 2617, 2623]}
+{'text': 'ਮਿਹਰਵਾਨ', 'meaning': 'generous, compassionate', 'ascii': [2606, 2623, 2617, 2608, 2613, 2622, 2600]}
+{'text': 'ਮੇਲ', 'meaning': 'union; (melnaa - to unite)', 'ascii': [2606, 2631, 2610]}
+{'text': 'ਮਿਲਾਇ', 'meaning': 'help to meet, unite', 'ascii': [2606, 2623, 2610, 2622, 2567]}
+{'text': 'ਮਿਤਿ', 'meaning': 'measure (n)', 'ascii': [2606, 2623, 2596, 2623]}
+{'text': 'ਮੋਹ', 'meaning': 'attachment, excessive unhealthy love; (mohnaa - to attract or fascinate)', 'ascii': [2606, 2635, 2617]}
+{'text': 'ਮੋਹਿਆ', 'meaning': 'to fascinate, attract (mohanaa)', 'ascii': [2606, 2635, 2617, 2623, 2566]}
+{'text': 'ਮੂਲ', 'meaning': 'root, base, orginal, source; original investment, capital; principal; basic, original, fundamental, primary', 'ascii': [2606, 2626, 2610]}
+{'text': 'ਮੂਰਖ', 'meaning': 'fool, specifically someone who errs again and again but never learns', 'ascii': [2606, 2626, 2608, 2582]}
+{'text': 'ਨਾਲ', 'meaning': '1. with, near, accompany 2. tube, pipe', 'ascii': [2600, 2622, 2610]}
+{'text': 'ਨਾਲਿ', 'meaning': 'with, near, accompany', 'ascii': [2600, 2622, 2610, 2623]}
+{'text': 'ਨਾਲੇ', 'meaning': '1. with, along with 2. riulets, drains', 'ascii': [2600, 2622, 2610, 2631]}
+{'text': 'ਨੇਮ', 'meaning': '1. code, principle, rules, rehat 2. wall, fence, enclose', 'ascii': [2600, 2631, 2606]}
+{'text': 'ਨਾਰੀ', 'meaning': 'woman, wife', 'ascii': [2600, 2622, 2608, 2624]}
+{'text': 'ਨਾਉ', 'meaning': '*see Naam', 'ascii': [2600, 2622, 2569]}
+{'text': 'ਨਦਰਿ', 'meaning': 'grace', 'ascii': [2600, 2598, 2608, 2623]}
+{'text': 'ਨਮਸਕਾਰ', 'meaning': 'salutation, bow in humility, greeting, adoration', 'ascii': [2600, 2606, 2616, 2581, 2622, 2608]}
+{'text': 'ਨਰ', 'meaning': 'Man, mortal', 'ascii': [2600, 2608]}
+{'text': 'ਨੀਕਾ', 'meaning': '1. good, beautiful, noble 2. pure, clean, pristine 3. food. 4. small', 'ascii': [2600, 2624, 2581, 2622]}
+{'text': 'ਨਿਧਿ', 'meaning': 'treasure', 'ascii': [2600, 2623, 2599, 2623]}
+{'text': 'ਨਿਹ', 'meaning': 'without, free from, not', 'ascii': [2600, 2623, 2617]}
+{'text': 'ਨਿਹਫਲ', 'meaning': 'fruitless, useless (fal (ਫਲ) is fruit; nih see above)', 'ascii': [2600, 2623, 2617, 2603, 2610]}
+{'text': 'ਨਿਕਟਿ', 'meaning': 'near, close', 'ascii': [2600, 2623, 2581, 2591, 2623]}
+{'text': 'ਨਿਰ', 'meaning': 'As a prefix acts like un- in English making the meaning opposite', 'ascii': [2600, 2623, 2608]}
+{'text': 'ਨਿਰਭਉ', 'meaning': 'free from fear (nir-without bhau-fear)', 'ascii': [2600, 2623, 2608, 2605, 2569]}
+{'text': 'ਨਿਰਮਲ', 'meaning': 'pure (nir- without, mal=impurity)', 'ascii': [2600, 2623, 2608, 2606, 2610]}
+{'text': 'ਨਿਤ', 'meaning': 'daily - (MP - roz) (syn andin), always', 'ascii': [2600, 2623, 2596]}
+{'text': 'ਊਚਾ', 'meaning': 'high', 'ascii': [2570, 2586, 2622]}
+{'text': 'ਉਧਾਰੇ', 'meaning': 'to be liberated (udharnaa)', 'ascii': [2569, 2599, 2622, 2608, 2631]}
+{'text': 'ਊਜਲ', 'meaning': 'bright, pure', 'ascii': [2570, 2588, 2610]}
+{'text': 'ਊਂਧ', 'meaning': 'upside down, overturned, inverted, turned around', 'ascii': [2570, 2562, 2599]}
+{'text': 'ਉਪਾਵ', 'meaning': 'effort, way or solution', 'ascii': [2569, 2602, 2622, 2613]}
+{'text': 'ਊਪਰਿ', 'meaning': 'on, above', 'ascii': [2570, 2602, 2608, 2623]}
+{'text': 'ਉਪਦੇਸ', 'meaning': 'teachings, preaching', 'ascii': [2569, 2602, 2598, 2631, 2616]}
+{'text': 'ਓਟ', 'meaning': 'support', 'ascii': [2579, 2591]}
+{'text': 'ਊਠਤ', 'meaning': 'while rising, standing; MP - uthnaa', 'ascii': [2570, 2592, 2596]}
+{'text': 'ਪਾਈਝ', 'meaning': 'obtain', 'ascii': [2602, 2622, 2568, 2589]}
+{'text': 'ਪਾਪ', 'meaning': '(paa:- to put, aap:- ones-self) an action against ones-self, misdeed, mistake, negative action that creates separation with the being from universality', 'ascii': [2602, 2622, 2602]}
+{'text': 'ਪਾਰ', 'meaning': 'beyond, other shore', 'ascii': [2602, 2622, 2608]}
+{'text': 'ਪਾਵਹਿ', 'meaning': 'obtain (paavna - to obtain)', 'ascii': [2602, 2622, 2613, 2617, 2623]}
+{'text': 'ਪਛਾਣੈ', 'meaning': 'to recognize (pachhananaa)', 'ascii': [2602, 2587, 2622, 2595, 2632]}
+{'text': 'ਪਛਾਣਹਿ', 'meaning': 'realise, recognise, understand, acknowledge', 'ascii': [2602, 2587, 2622, 2595, 2617, 2623]}
+{'text': 'ਪਦਾਰਥ', 'meaning': 'wealth (material), treasure, blessing, thing, commodity, goods, provisions, riches, material object', 'ascii': [2602, 2598, 2622, 2608, 2597]}
+{'text': 'ਪਦਾਰਥ', 'meaning': 'substance, essence, treasure', 'ascii': [2602, 2598, 2622, 2608, 2597]}
+{'text': 'ਪਗ', 'meaning': 'foot', 'ascii': [2602, 2583]}
+{'text': 'ਪੰਚ', 'meaning': 'five; select', 'ascii': [2602, 2672, 2586]}
+{'text': 'ਪਰਾਈ', 'meaning': 'stranger, not one of us, belonging to someone else', 'ascii': [2602, 2608, 2622, 2568]}
+{'text': 'ਪਰਾਤਾ', 'meaning': 'attained, seized, clung; fall, lie, sink; gaze,', 'ascii': [2602, 2608, 2622, 2596, 2622]}
+{'text': 'ਪਰਮ', 'meaning': 'supreme', 'ascii': [2602, 2608, 2606]}
+{'text': 'ਪਰੋਈ', 'meaning': 'to string, to thread, to weave', 'ascii': [2602, 2608, 2635, 2568]}
+{'text': 'ਪਰਤਾਪ', 'meaning': 'victory, glory, splendour', 'ascii': [2602, 2608, 2596, 2622, 2602]}
+{'text': 'ਪਰਵਾਰ', 'meaning': 'family', 'ascii': [2602, 2608, 2613, 2622, 2608]}
+{'text': 'ਪਤਿ', 'meaning': 'honor', 'ascii': [2602, 2596, 2623]}
+{'text': 'ਪਤਿਵੰਤਾ', 'meaning': 'honorable, respectable, from ਪਤਿ,"Patt" and ਵੰਤਾ "vantaa"', 'ascii': [2602, 2596, 2623, 2613, 2672, 2596, 2622]}
+{'text': 'ਪਤਿ', 'meaning': '1. lord, master, husband. 2. Honour, respect, reputation', 'ascii': [2602, 2596, 2623]}
+{'text': 'ਪੀਠਾ', 'meaning': 'crushed, ground, pulses soaked in water and crushed on stone or in mortar', 'ascii': [2602, 2624, 2592, 2622]}
+{'text': 'ਪੇਖਿ', 'meaning': 'see (pekhna - to see; MP dekhna)', 'ascii': [2602, 2631, 2582, 2623]}
+{'text': 'ਫਿਰਿ', 'meaning': 'again, then', 'ascii': [2603, 2623, 2608, 2623]}
+{'text': 'ਪਿਆਰੇ', 'meaning': 'beloved, loved one (piar-love)', 'ascii': [2602, 2623, 2566, 2608, 2631]}
+{'text': 'ਪਿੰਡ', 'meaning': 'body', 'ascii': [2602, 2623, 2672, 2593]}
+{'text': 'ਪਿਤਾ', 'meaning': 'father', 'ascii': [2602, 2623, 2596, 2622]}
+{'text': 'ਪੂਜਾ', 'meaning': 'worship, prayer (Hindu traditional ceremony including offerings)', 'ascii': [2602, 2626, 2588, 2622]}
+{'text': 'ਪੂਰਨ', 'meaning': 'complete, perfect', 'ascii': [2602, 2626, 2608, 2600]}
+{'text': 'ਪਰਕਾਸ਼', 'meaning': 'light, radiance, illumination; clarity of vision, enlightenment, mental or spiritual awakening; opening ceremony of Guru Granth Sahib', 'ascii': [2602, 2608, 2581, 2622, 2616, 2620]}
+{'text': 'ਰਾਗ', 'meaning': '1. music, musical mode. 2. Love', 'ascii': [2608, 2622, 2583]}
+{'text': 'ਰਾਖਾ', 'meaning': 'Protector (rakhshaa - protection), caretaker', 'ascii': [2608, 2622, 2582, 2622]}
+{'text': 'ਰਾਖਸਿ', 'meaning': '1. keeps (feminine) 2. Demon', 'ascii': [2608, 2622, 2582, 2616, 2623]}
+{'text': 'ਰਾਮ', 'meaning': '(1) One who resides everywhere, God, all prevading Spirit; (2) Raam Chandar - Hindu deity.', 'ascii': [2608, 2622, 2606]}
+{'text': 'ਰਹਾਉ', 'meaning': 'Pause, command to pause in reflection of the previous line (marks chorus, or main theme line)', 'ascii': [2608, 2617, 2622, 2569]}
+{'text': 'ਰਹਿਆ', 'meaning': 'is, remains, stays, pervading, contained', 'ascii': [2608, 2617, 2623, 2566]}
+{'text': 'ਰਹਤ', 'meaning': '1. living, way of life 2. discipline 3. without 4. separate', 'ascii': [2608, 2617, 2596]}
+{'text': 'ਰਹੇ', 'meaning': 'remain, stay, keep', 'ascii': [2608, 2617, 2631]}
+{'text': 'ਰੰਗ', 'meaning': 'color, dye; love, to be dyed in the color of love for God', 'ascii': [2608, 2672, 2583]}
+{'text': 'ਰਸਾ', 'meaning': 'see "ras", Juices', 'ascii': [2608, 2616, 2622]}
+{'text': 'ਰਸਾਲੀ', 'meaning': 'juicy, full of juice, house of nectar ,from ਰਸ s\xa0 "raas" juice', 'ascii': [2608, 2616, 2622, 2610, 2624]}
+{'text': 'ਰਸਨਾ', 'meaning': 'tongue, speech', 'ascii': [2608, 2616, 2600, 2622]}
+{'text': 'ਰਤਾ', 'meaning': '1. Dyed, absorbed, saturated  2. virtuous 3. tiny, minute', 'ascii': [2608, 2596, 2622]}
+{'text': 'ਰਤੇ', 'meaning': 'steeped, absorbed', 'ascii': [2608, 2596, 2631]}
+{'text': 'ਰਵਿ', 'meaning': 'permeating', 'ascii': [2608, 2613, 2623]}
+{'text': 'ਰਿਦੈ', 'meaning': 'in/within your heart, deep within your consciousness', 'ascii': [2608, 2623, 2598, 2632]}
+{'text': 'ਸਾ', 'meaning': '1. that, she, he, God', 'ascii': [2616, 2622]}
+{'text': 'ਸਾਢੇ', 'meaning': 'and a half', 'ascii': [2616, 2622, 2594, 2631]}
+{'text': 'ਸਾਗਰ', 'meaning': 'ocean', 'ascii': [2616, 2622, 2583, 2608]}
+{'text': 'ਸਾਹਿਬ', 'meaning': 'Master, lord, term of respect', 'ascii': [2616, 2622, 2617, 2623, 2604]}
+{'text': 'ਸਾਜੇ', 'meaning': 'fashions, creates', 'ascii': [2616, 2622, 2588, 2631]}
+{'text': 'ਸਾਰੰਗਪਾਣੀ', 'meaning': 'abode of the Lord; "the holy lake"; from 2 roots - ਸਾਰੰਗ s\xa0 see "sarang" and ਪਾਣੀ s\xa0 "paanee" - water; lake', 'ascii': [2616, 2622, 2608, 2672, 2583, 2602, 2622, 2595, 2624]}
+{'text': 'ਸਾਸ', 'meaning': 'breath', 'ascii': [2616, 2622, 2616]}
+{'text': 'ਸਾਸਾ', 'meaning': 'breath', 'ascii': [2616, 2622, 2616, 2622]}
+{'text': 'ਸਾਸਤ', 'meaning': 'Religious text, scriptures, Shaastras, Hindu holy texts', 'ascii': [2616, 2622, 2616, 2596]}
+{'text': 'ਸਾਥੇ', 'meaning': 'together, accompany, along', 'ascii': [2616, 2622, 2597, 2631]}
+{'text': 'ਸਾਥੀ', 'meaning': 'companion', 'ascii': [2616, 2622, 2597, 2624]}
+{'text': 'ਸਾਧ', 'meaning': 'saintly person,', 'ascii': [2616, 2622, 2599]}
+{'text': 'ਸਬਦ', 'meaning': '(sha-ego, bad-breaker) sacred verse, celestial sound vibration, science of uplifting consiousness through sacred primal sounds, similar to Naam; a single word; an entire hymn which can be put to music', 'ascii': [2616, 2604, 2598]}
+{'text': 'ਸਭ', 'meaning': 'all, Everything', 'ascii': [2616, 2605]}
+{'text': 'ਸਦਾ', 'meaning': 'Always', 'ascii': [2616, 2598, 2622]}
+{'text': 'ਸਾਧੇ', 'meaning': 'arrange, control, achieve by some method', 'ascii': [2616, 2622, 2599, 2631]}
+{'text': 'ਸਗਲ', 'meaning': 'all', 'ascii': [2616, 2583, 2610]}
+{'text': 'ਸਹਣਾ', 'meaning': 'endure, suffer, support', 'ascii': [2616, 2617, 2595, 2622]}
+{'text': 'ਸਲਾਹ', 'meaning': 'to praise', 'ascii': [2616, 2610, 2622, 2617]}
+{'text': 'ਸਮਾਈ', 'meaning': 'absorbed in', 'ascii': [2616, 2606, 2622, 2568]}
+{'text': 'ਸਮਾਲੇ', 'meaning': 'cherish, take care of, remember', 'ascii': [2616, 2606, 2622, 2610, 2631]}
+{'text': 'ਸਮਰਥ', 'meaning': 'potent, capable, all powerful', 'ascii': [2616, 2606, 2608, 2597]}
+{'text': 'ਸੰਗਤਿ', 'meaning': 'association, company, congregation', 'ascii': [2616, 2672, 2583, 2596, 2623]}
+{'text': 'ਸੰਗੀ', 'meaning': 'companion', 'ascii': [2616, 2672, 2583, 2624]}
+{'text': 'ਸੰਗ', 'meaning': 'with, close', 'ascii': [2616, 2672, 2583]}
+{'text': 'ਸੰਤ', 'meaning': 'Saint, saintly person in tune with God, often used for Guru', 'ascii': [2616, 2672, 2596]}
+{'text': 'ਸਰਬ', 'meaning': 'all', 'ascii': [2616, 2608, 2604]}
+{'text': 'ਸਰਨ', 'meaning': 'shelter, protection, sanctuary; sanctify (var. sharan, sarnaaee)', 'ascii': [2616, 2608, 2600]}
+{'text': 'ਸਾਰੰਗ', 'meaning': '1. a musical melody, raag, pure with clarity; 2. peacock, crane, Indian cuckoo. 3. spotted deer 4. sword 5. elephant', 'ascii': [2616, 2622, 2608, 2672, 2583]}
+{'text': 'ਸਰੀਰ', 'meaning': 'body, self', 'ascii': [2616, 2608, 2624, 2608]}
+{'text': 'ਸਰੀਰਾ', 'meaning': 'body, wisdom', 'ascii': [2616, 2608, 2624, 2608, 2622]}
+{'text': 'ਸਉਦਾਗਰੀ', 'meaning': 'trade, business', 'ascii': [2616, 2569, 2598, 2622, 2583, 2608, 2624]}
+{'text': 'ਸਵਾਰਿ', 'meaning': 'to set right, decorate,', 'ascii': [2616, 2613, 2622, 2608, 2623]}
+{'text': 'ਸੇਤੀ', 'meaning': 'with, by, infuse, together', 'ascii': [2616, 2631, 2596, 2624]}
+{'text': 'ਸਹਿਜ', 'meaning': 'state of peace and balance, tranquility, spontaneous, naturally - with the flow, in tune with the Infinite', 'ascii': [2616, 2617, 2623, 2588]}
+{'text': 'ਸੇਜ', 'meaning': 'bed; divine bed representing union between God and the soul bride', 'ascii': [2616, 2631, 2588]}
+{'text': 'ਸੇਵਾ', 'meaning': 'selfless-service, devotional service, volunteer effort', 'ascii': [2616, 2631, 2613, 2622]}
+{'text': 'ਸਿਆਣਪ', 'meaning': 'cleverness, wisdom, intellect', 'ascii': [2616, 2623, 2566, 2595, 2602]}
+{'text': 'ਸਿਆਣਾ', 'meaning': 'wise, clever, intellectual, knowledgeable, mature, cunning, crafty', 'ascii': [2616, 2623, 2566, 2595, 2622]}
+{'text': 'ਸਿਫਤਿ', 'meaning': 'praise, glory', 'ascii': [2616, 2623, 2603, 2596, 2623]}
+{'text': 'ਸਿਲਕ', 'meaning': 'rope (round neck), noose, thread', 'ascii': [2616, 2623, 2610, 2581]}
+{'text': 'ਸਿਮਰਿ', 'meaning': 'remember with love, hold in your heart, meditate *see simran', 'ascii': [2616, 2623, 2606, 2608, 2623]}
+{'text': 'ਸਿੰਘ', 'meaning': 'Lion', 'ascii': [2616, 2623, 2672, 2584]}
+{'text': 'ਸਿਸਟਿ', 'meaning': 'creation, Creator, universe, world', 'ascii': [2616, 2623, 2616, 2591, 2623]}
+{'text': 'ਸਿਉ', 'meaning': '(pp) to, with (MP - noo)', 'ascii': [2616, 2623, 2569]}
+{'text': 'ਸੋਭਾ', 'meaning': 'glory', 'ascii': [2616, 2635, 2605, 2622]}
+{'text': 'ਸੋਈ', 'meaning': 'that one', 'ascii': [2616, 2635, 2568]}
+{'text': 'ਸੋਵਤ', 'meaning': 'sleeping (sovana - to sleep)', 'ascii': [2616, 2635, 2613, 2596]}
+{'text': 'ਤੇਜ', 'meaning': '1. power, splendour, glory, victory  2. fire, passion, anger  3. speedy, swift, fast, sharp', 'ascii': [2596, 2631, 2588]}
+{'text': 'ਤਬ', 'meaning': 'then', 'ascii': [2596, 2604]}
+{'text': 'ਤਾਪ', 'meaning': '1. heat, warmth, fever  2. affliction. 3. austerity', 'ascii': [2596, 2622, 2602]}
+{'text': 'ਤਰਾਈ', 'meaning': '1. floated, saved, floated across safely 2. Foot hill, low land, a marsh, meadow', 'ascii': [2596, 2608, 2622, 2568]}
+{'text': 'ਤਾਰੈ', 'meaning': 'swim, be saved (tarnaa); taraana - to save, help to swim', 'ascii': [2596, 2622, 2608, 2632]}
+{'text': 'ਤਰੀਜੈ', 'meaning': 'float it, get it across safely', 'ascii': [2596, 2608, 2624, 2588, 2632]}
+{'text': 'ਤੇ', 'meaning': '1. that  2. from, by, upon, by means of, on account of, 3. and', 'ascii': [2596, 2631]}
+{'text': 'ਤੇਰਾ', 'meaning': 'your, yours', 'ascii': [2596, 2631, 2608, 2622]}
+{'text': 'ਤੇਤੇ', 'meaning': "that is, that's, they are", 'ascii': [2596, 2631, 2596, 2631]}
+{'text': 'ਤਿਸ', 'meaning': '1. from, which  2. He, she, it, that  3. Thirst, longing.', 'ascii': [2596, 2623, 2616]}
+{'text': 'ਥਾਪਿ', 'meaning': 'establish, install, fix, engage', 'ascii': [2597, 2622, 2602, 2623]}
+{'text': 'ਠਾਢੇ', 'meaning': '1. stand, stands 2. cold, cool 3. quiet, tranquil', 'ascii': [2592, 2622, 2594, 2631]}
+{'text': 'ਥਾਪਿਆ', 'meaning': 'impose, affect, effect', 'ascii': [2597, 2622, 2602, 2623, 2566]}
+{'text': 'ਠਉਰ', 'meaning': 'Sanctuary, place of rest, support', 'ascii': [2592, 2569, 2608]}
+{'text': 'ਥੋਕ', 'meaning': '1. heap of anything like corn, material objects, anything. 2. wholesale', 'ascii': [2597, 2635, 2581]}
+{'text': 'ਤਿਆਗ', 'meaning': 'abandon, give up, renounce, to give up maya; society, family, career etc.', 'ascii': [2596, 2623, 2566, 2583]}
+{'text': 'ਤਿਲਕ', 'meaning': 'Coranation, coloured, mark on the forehead.', 'ascii': [2596, 2623, 2610, 2581]}
+{'text': 'ਤੂਟੈ', 'meaning': 'breaks, wiped out, broken', 'ascii': [2596, 2626, 2591, 2632]}
+{'text': 'ਉਦਾਸਾ', 'meaning': 'without desire, detached, apart, dis-interested, neutral', 'ascii': [2569, 2598, 2622, 2616, 2622]}
+{'text': 'ਉਪਾੜੀ', 'meaning': 'root out,', 'ascii': [2569, 2602, 2622, 2652, 2624]}
+{'text': 'ਉਪਜੈ', 'meaning': 'spring up, arise', 'ascii': [2569, 2602, 2588, 2632]}
+{'text': 'ਉਠਿ', 'meaning': 'awake, arise, rise up, get up', 'ascii': [2569, 2592, 2623]}
+{'text': 'ਉਥਾਪਨਹਾਰਾ', 'meaning': 'one who destroys, disestablishes, from ਉਥਾਪਨ s\xa0 "uthaapan" and the suffix ਹਾਰਾ s\xa0 "haaraa" one with the quality preceding; ਉਥਾਪਨ s\xa0 is itself from the the roots ਉ s\xa0 makes the opposite of the word following and ਥਾਪਨ s\xa0 which means establish', 'ascii': [2569, 2597, 2622, 2602, 2600, 2617, 2622, 2608, 2622]}
+{'text': 'ਉਤਰਿ', 'meaning': '1. descend, depart, come down, remove, drive out 2. North, opposite of which is ਦਖਣ s\xa0 "dakhan" South', 'ascii': [2569, 2596, 2608, 2623]}
+{'text': 'ਉਤਰਹਿ', 'meaning': 'depart, remove, cross over,', 'ascii': [2569, 2596, 2608, 2617, 2623]}
+{'text': 'ਵਾਜੇ', 'meaning': 'rings, resound, play as of music', 'ascii': [2613, 2622, 2588, 2631]}
+{'text': 'ਵਡਿਆਈ', 'meaning': 'greatness, glory, distinction', 'ascii': [2613, 2593, 2623, 2566, 2568]}
+{'text': 'ਵਡਭਾਗੀ', 'meaning': 'fortunate', 'ascii': [2613, 2593, 2605, 2622, 2583, 2624]}
+{'text': 'ਵੈਰ', 'meaning': 'enmity (var. bair); vairee or bairee - enemy', 'ascii': [2613, 2632, 2608]}
+{'text': 'ਵਣਿ', 'meaning': 'in (within) forest/jungle/woods/trees', 'ascii': [2613, 2595, 2623]}
+{'text': 'ਵਰਣ', 'meaning': 'n. color or caste; v. to desribe', 'ascii': [2613, 2608, 2595]}
+{'text': 'ਵਰਖੈ', 'meaning': 'rains, pours', 'ascii': [2613, 2608, 2582, 2632]}
+{'text': 'ਵਸਾਇਆ', 'meaning': 'to live, abide, be enshrined (vasnaa)', 'ascii': [2613, 2616, 2622, 2567, 2566]}
+{'text': 'ਵਸੈ', 'meaning': 'live, abide', 'ascii': [2613, 2616, 2632]}
+{'text': 'ਵਸਿਆ', 'meaning': 'dwells', 'ascii': [2613, 2616, 2623, 2566]}
+{'text': 'ਵਿਡਾਣੀ', 'meaning': 'Unfamiliar, Wonderful marvellous, astonishing, other or another', 'ascii': [2613, 2623, 2593, 2622, 2595, 2624]}
+{'text': 'ਵਿਜੋਗਾ', 'meaning': 'separation, disunion, loss, bereavement', 'ascii': [2613, 2623, 2588, 2635, 2583, 2622]}
+{'text': 'ਵਿਕਾਰ', 'meaning': 'sins, evil', 'ascii': [2613, 2623, 2581, 2622, 2608]}
+{'text': 'ਵਿਸਾਰ', 'meaning': 'forget; MP - bhulnaa', 'ascii': [2613, 2623, 2616, 2622, 2608]}
+{'text': 'ਮੈਨੂੰ', 'meaning': 'I', 'ascii': [2606, 2632, 2600, 2626, 2672]}
+{'text': 'ਸੀ,', 'meaning': 'was', 'ascii': [2616, 2624, 44]}
+{'text': 'ਲਈ', 'meaning': 'for', 'ascii': [2610, 2568]}
+{'text': '‘ਤੇ', 'meaning': 'on', 'ascii': [8216, 2596, 2631]}
+{'text': 'ਹਨ', 'meaning': 'are', 'ascii': [2617, 2600]}
+{'text': 'ਉਹ', 'meaning': 'they', 'ascii': [2569, 2617]}
+{'text': 'ਹੋ', 'meaning': 'be', 'ascii': [2617, 2635]}
+{'text': '‘ਤੇ', 'meaning': 'at', 'ascii': [8216, 2596, 2631]}
+{'text': 'ਇੱਕ', 'meaning': 'one', 'ascii': [2567, 2673, 2581]}
+{'text': 'ਹੈ', 'meaning': 'have', 'ascii': [2617, 2632]}
+{'text': 'ਤੱਕ', 'meaning': 'from', 'ascii': [2596, 2673, 2581]}
+{'text': 'ਕੇ', 'meaning': 'by', 'ascii': [2581, 2631]}
+{'text': 'ਗਰਮ', 'meaning': 'hot', 'ascii': [2583, 2608, 2606]}
+{'text': 'ਪਰ', 'meaning': 'but', 'ascii': [2602, 2608]}
+{'text': 'ਹੈ', 'meaning': 'is', 'ascii': [2617, 2632]}
+{'text': 'ਤੁਹਾਨੂੰ', 'meaning': 'you', 'ascii': [2596, 2625, 2617, 2622, 2600, 2626, 2672]}
+{'text': 'ਜ', 'meaning': 'or', 'ascii': [2588]}
+{'text': 'ਸੀ,', 'meaning': 'had', 'ascii': [2616, 2624, 44]}
+{'text': 'The', 'meaning': 'the', 'ascii': [84, 104, 101]}
+{'text': 'ਦੇ', 'meaning': 'of', 'ascii': [2598, 2631]}
+{'text': 'ਨੂੰ', 'meaning': 'to', 'ascii': [2600, 2626, 2672]}
+{'text': 'ਇੱਕ', 'meaning': 'a', 'ascii': [2567, 2673, 2581]}
+{'text': 'ਵਿੱਚ', 'meaning': 'in', 'ascii': [2613, 2623, 2673, 2586]}
+{'text': 'ਸਾਨੂੰ', 'meaning': 'we', 'ascii': [2616, 2622, 2600, 2626, 2672]}
+{'text': 'ਬਾਹਰ', 'meaning': 'out', 'ascii': [2604, 2622, 2617, 2608]}
+{'text': 'ਸਨ', 'meaning': 'were', 'ascii': [2616, 2600]}
+{'text': 'ਕਰਦੇ', 'meaning': 'do', 'ascii': [2581, 2608, 2598, 2631]}
+{'text': 'ਆਪਣੇ', 'meaning': 'their', 'ascii': [2566, 2602, 2595, 2631]}
+{'text': 'ਵਾਰ', 'meaning': 'time', 'ascii': [2613, 2622, 2608]}
+{'text': 'ਜੇ', 'meaning': 'if', 'ascii': [2588, 2631]}
+{'text': 'ਕਰੇਗਾ', 'meaning': 'will', 'ascii': [2581, 2608, 2631, 2583, 2622]}
+{'text': 'ਕਿੰਨੇ', 'meaning': 'how', 'ascii': [2581, 2623, 2672, 2600, 2631]}
+{'text': 'ਇੱਕ', 'meaning': 'an', 'ascii': [2567, 2673, 2581]}
+{'text': 'ਤਿੰਨ', 'meaning': 'three', 'ascii': [2596, 2623, 2672, 2600]}
+{'text': 'ਚਾਹੁੰਦੇ', 'meaning': 'want', 'ascii': [2586, 2622, 2617, 2625, 2672, 2598, 2631]}
+{'text': 'ਹਵਾ', 'meaning': 'air', 'ascii': [2617, 2613, 2622]}
+{'text': 'ਖੇਡਣ', 'meaning': 'play', 'ascii': [2582, 2631, 2593, 2595]}
+{'text': 'ਪਾ', 'meaning': 'put', 'ascii': [2602, 2622]}
+{'text': 'ਵੱਡੇ', 'meaning': 'large', 'ascii': [2613, 2673, 2593, 2631]}
+{'text': 'ਜੋੜ', 'meaning': 'spell', 'ascii': [2588, 2635, 2652]}
+{'text': 'ਸ਼ਾਮਿਲ', 'meaning': 'add', 'ascii': [2616, 2620, 2622, 2606, 2623, 2610]}
+{'text': 'ਵੀ', 'meaning': 'even', 'ascii': [2613, 2624]}
+{'text': 'ਇਥੇ', 'meaning': 'here', 'ascii': [2567, 2597, 2631]}
+{'text': 'ਵੱਡੇ', 'meaning': 'big', 'ascii': [2613, 2673, 2593, 2631]}
+{'text': 'ਉੱਚ', 'meaning': 'high', 'ascii': [2569, 2673, 2586]}
+{'text': 'ਅਜਿਹੇ', 'meaning': 'such', 'ascii': [2565, 2588, 2623, 2617, 2631]}
+{'text': 'ਕੰਮ', 'meaning': 'act', 'ascii': [2581, 2672, 2606]}
+{'text': 'ਇਸੇ', 'meaning': 'why', 'ascii': [2567, 2616, 2631]}
+{'text': 'ਪੁੱਛੋ', 'meaning': 'ask', 'ascii': [2602, 2625, 2673, 2587, 2635]}
+{'text': 'ਲੋਕ', 'meaning': 'men', 'ascii': [2610, 2635, 2581]}
+{'text': 'ਤਬਦੀਲੀ', 'meaning': 'change', 'ascii': [2596, 2604, 2598, 2624, 2610, 2624]}
+{'text': 'ਹਲਕਾ', 'meaning': 'light', 'ascii': [2617, 2610, 2581, 2622]}
+{'text': 'ਦਿਆਲੂ', 'meaning': 'kind', 'ascii': [2598, 2623, 2566, 2610, 2626]}
+{'text': 'ਬੰਦ', 'meaning': 'off', 'ascii': [2604, 2672, 2598]}
+{'text': 'ਤਸਵੀਰ', 'meaning': 'picture', 'ascii': [2596, 2616, 2613, 2624, 2608]}
+{'text': 'ਜਾਨਵਰ', 'meaning': 'animal', 'ascii': [2588, 2622, 2600, 2613, 2608]}
+{'text': 'ਬਿੰਦੂ', 'meaning': 'point', 'ascii': [2604, 2623, 2672, 2598, 2626]}
+{'text': 'ਮਾਤਾ', 'meaning': 'mother', 'ascii': [2606, 2622, 2596, 2622]}
+{'text': 'ਸਵੈ', 'meaning': 'self', 'ascii': [2616, 2613, 2632]}
+{'text': 'ਨਵ', 'meaning': 'new', 'ascii': [2600, 2613]}
+{'text': 'ਲੈ', 'meaning': 'take', 'ascii': [2610, 2632]}
+{'text': 'ਪ੍ਰਾਪਤ', 'meaning': 'get', 'ascii': [2602, 2637, 2608, 2622, 2602, 2596]}
+{'text': 'ਸਥਾਨ', 'meaning': 'place', 'ascii': [2616, 2597, 2622, 2600]}
+{'text': 'ਰਹਿੰਦੇ', 'meaning': 'live', 'ascii': [2608, 2617, 2623, 2672, 2598, 2631]}
+{'text': 'ਵਾਪਸ', 'meaning': 'back', 'ascii': [2613, 2622, 2602, 2616]}
+{'text': 'ਥੋੜਾ', 'meaning': 'little', 'ascii': [2597, 2635, 2652, 2622]}
+{'text': 'ਸਿਰਫ', 'meaning': 'only', 'ascii': [2616, 2623, 2608, 2603]}
+{'text': 'ਦੌਰ', 'meaning': 'round', 'ascii': [2598, 2636, 2608]}
+{'text': 'ਪ੍ਰਦਰਸ਼ਨ', 'meaning': 'show', 'ascii': [2602, 2637, 2608, 2598, 2608, 2616, 2620, 2600]}
+{'text': 'ਚੰਗਾ', 'meaning': 'good', 'ascii': [2586, 2672, 2583, 2622]}
+{'text': 'ਮੈਨੂੰ', 'meaning': 'me', 'ascii': [2606, 2632, 2600, 2626, 2672]}
+{'text': 'ਦੇਣ', 'meaning': 'give', 'ascii': [2598, 2631, 2595]}
+{'text': 'ਸਾਡੇ', 'meaning': 'our', 'ascii': [2616, 2622, 2593, 2631]}
+{'text': 'ਹੇਠ', 'meaning': 'under', 'ascii': [2617, 2631, 2592]}
+{'text': 'ਨਾਮ', 'meaning': 'name', 'ascii': [2600, 2622, 2606]}
+{'text': 'ਦੁਆਰਾ', 'meaning': 'through', 'ascii': [2598, 2625, 2566, 2608, 2622]}
+{'text': 'ਮਹਾਨ', 'meaning': 'great', 'ascii': [2606, 2617, 2622, 2600]}
+{'text': 'ਸੋਚਦੇ', 'meaning': 'think', 'ascii': [2616, 2635, 2586, 2598, 2631]}
+{'text': 'ਖੋਜੋ', 'meaning': 'low', 'ascii': [2582, 2635, 2588, 2635]}
+{'text': 'ਲਾਈਨ', 'meaning': 'line', 'ascii': [2610, 2622, 2568, 2600]}
+{'text': 'ਵਾਰੀ', 'meaning': 'turn', 'ascii': [2613, 2622, 2608, 2624]}
+{'text': 'ਕਾਰਨ', 'meaning': 'cause', 'ascii': [2581, 2622, 2608, 2600]}
+{'text': 'ਅੱਗੇ', 'meaning': 'before', 'ascii': [2565, 2673, 2583, 2631]}
+{'text': 'ਮੂਵ', 'meaning': 'move', 'ascii': [2606, 2626, 2613]}
+{'text': 'ਪੁਰਾਣੀ', 'meaning': 'old', 'ascii': [2602, 2625, 2608, 2622, 2595, 2624]}
+{'text': 'ਸਾਰੇ', 'meaning': 'all', 'ascii': [2616, 2622, 2608, 2631]}
+{'text': 'ਉੱਥੇ', 'meaning': 'there', 'ascii': [2569, 2673, 2597, 2631]}
+{'text': 'ਜਦ', 'meaning': 'when', 'ascii': [2588, 2598]}
+{'text': 'ਅਪ', 'meaning': 'up', 'ascii': [2565, 2602]}
+{'text': 'ਵਰਤਣ', 'meaning': 'use', 'ascii': [2613, 2608, 2596, 2595]}
+{'text': 'ਤੁਹਾਡੇ', 'meaning': 'your', 'ascii': [2596, 2625, 2617, 2622, 2593, 2631]}
+{'text': 'ਬਾਰੇ', 'meaning': 'about', 'ascii': [2604, 2622, 2608, 2631]}
+{'text': 'ਫਿਰ', 'meaning': 'then', 'ascii': [2603, 2623, 2608]}
+{'text': 'ਨੂੰ', 'meaning': 'them', 'ascii': [2600, 2626, 2672]}
+{'text': 'ਸੀ', 'meaning': 'would', 'ascii': [2616, 2624]}
+{'text': 'ਵਰਗੇ', 'meaning': 'like', 'ascii': [2613, 2608, 2583, 2631]}
+{'text': 'ਇਹ', 'meaning': 'these', 'ascii': [2567, 2617]}
+{'text': 'ਲੰਬੇ', 'meaning': 'long', 'ascii': [2610, 2672, 2604, 2631]}
+{'text': 'ਕਰ', 'meaning': 'make', 'ascii': [2581, 2608]}
+{'text': 'ਵੇਖੋ,', 'meaning': 'see', 'ascii': [2613, 2631, 2582, 2635, 44]}
+{'text': 'ਹੈ', 'meaning': 'has', 'ascii': [2617, 2632]}
+{'text': 'ਦੇਖ', 'meaning': 'look', 'ascii': [2598, 2631, 2582]}
+{'text': 'ਹੋਰ', 'meaning': 'more', 'ascii': [2617, 2635, 2608]}
+{'text': 'ਜਾਣ', 'meaning': 'go', 'ascii': [2588, 2622, 2595]}
+{'text': 'ਆ', 'meaning': 'come', 'ascii': [2566]}
+{'text': 'ਆਵਾਜ਼', 'meaning': 'sound', 'ascii': [2566, 2613, 2622, 2588, 2620]}
+{'text': 'ਸਭ', 'meaning': 'most', 'ascii': [2616, 2605]}
+{'text': 'ਲੋਕ', 'meaning': 'people', 'ascii': [2610, 2635, 2581]}
+{'text': 'ਮੇਰੇ', 'meaning': 'my', 'ascii': [2606, 2631, 2608, 2631]}
+{'text': 'ਵੱਧ', 'meaning': 'over', 'ascii': [2613, 2673, 2599]}
+{'text': 'ਵੱਧ', 'meaning': 'than', 'ascii': [2613, 2673, 2599]}
+{'text': 'ਪਹਿਲੀ', 'meaning': 'first', 'ascii': [2602, 2617, 2623, 2610, 2624]}
+{'text': 'ਜੋ', 'meaning': 'who', 'ascii': [2588, 2635]}
+{'text': 'ਡਾਊਨ', 'meaning': 'down', 'ascii': [2593, 2622, 2570, 2600]}
+{'text': 'ਪਾਸੇ', 'meaning': 'side', 'ascii': [2602, 2622, 2616, 2631]}
+{'text': 'ਖੜ੍ਹੇ', 'meaning': 'stand', 'ascii': [2582, 2652, 2637, 2617, 2631]}
+{'text': 'ਸਫ਼ਾ', 'meaning': 'page', 'ascii': [2616, 2603, 2620, 2622]}
+{'text': 'ਪਾਇਆ', 'meaning': 'found', 'ascii': [2602, 2622, 2567, 2566]}
+{'text': 'ਵਾਧਾ', 'meaning': 'grow', 'ascii': [2613, 2622, 2599, 2622]}
+{'text': 'ਸਿੱਖਣ', 'meaning': 'learn', 'ascii': [2616, 2623, 2673, 2582, 2595]}
+{'text': 'ਬੂਟਾ', 'meaning': 'plant', 'ascii': [2604, 2626, 2591, 2622]}
+{'text': 'ਭੋਜਨ', 'meaning': 'food', 'ascii': [2605, 2635, 2588, 2600]}
+{'text': 'ਰੱਖਣ', 'meaning': 'keep', 'ascii': [2608, 2673, 2582, 2595]}
+{'text': 'ਅੱਖ', 'meaning': 'eye', 'ascii': [2565, 2673, 2582]}
+{'text': 'ਪਿਛਲੇ', 'meaning': 'last', 'ascii': [2602, 2623, 2587, 2610, 2631]}
+{'text': 'ਦਿਉ', 'meaning': 'let', 'ascii': [2598, 2623, 2569]}
+{'text': 'ਸੋਚਿਆ', 'meaning': 'thought', 'ascii': [2616, 2635, 2586, 2623, 2566]}
+{'text': 'ਪਾਰ', 'meaning': 'cross', 'ascii': [2602, 2622, 2608]}
+{'text': 'ਹਾਰਡ', 'meaning': 'hard', 'ascii': [2617, 2622, 2608, 2593]}
+{'text': 'ਸ਼ਾਇਦ', 'meaning': 'might', 'ascii': [2616, 2620, 2622, 2567, 2598]}
+{'text': 'ਕਹਾਣੀ', 'meaning': 'story', 'ascii': [2581, 2617, 2622, 2595, 2624]}
+{'text': 'ਆਰਾ', 'meaning': 'saw', 'ascii': [2566, 2608, 2622]}
+{'text': 'ਦੂਰ', 'meaning': 'far', 'ascii': [2598, 2626, 2608]}
+{'text': 'ਖਿੱਚਣ', 'meaning': 'draw', 'ascii': [2582, 2623, 2673, 2586, 2595]}
+{'text': 'ਦੇਰ', 'meaning': 'late', 'ascii': [2598, 2631, 2608]}
+{'text': 'ਰਨ', 'meaning': 'run', 'ascii': [2608, 2600]}
+{'text': 'ਜਦਕਿ', 'meaning': 'while', 'ascii': [2588, 2598, 2581, 2623]}
+{'text': 'ਪ੍ਰੈੱਸ', 'meaning': 'press', 'ascii': [2602, 2637, 2608, 2632, 2673, 2616]}
+{'text': 'ਕੁਝ', 'meaning': 'few', 'ascii': [2581, 2625, 2589]}
+{'text': 'ਉੱਤਰ', 'meaning': 'north', 'ascii': [2569, 2673, 2596, 2608]}
+{'text': 'ਲੈ', 'meaning': 'carry', 'ascii': [2610, 2632]}
+{'text': 'ਕਮਰੇ', 'meaning': 'room', 'ascii': [2581, 2606, 2608, 2631]}
+{'text': 'ਦੋਸਤ', 'meaning': 'friend', 'ascii': [2598, 2635, 2616, 2596]}
+{'text': 'ਮੱਛੀ', 'meaning': 'fish', 'ascii': [2606, 2673, 2587, 2624]}
+{'text': 'ਪਹਾੜ', 'meaning': 'mountain', 'ascii': [2602, 2617, 2622, 2652]}
+{'text': 'ਰੂਕੋ', 'meaning': 'stop', 'ascii': [2608, 2626, 2581, 2635]}
+{'text': 'ਅਧਾਰ', 'meaning': 'base', 'ascii': [2565, 2599, 2622, 2608]}
+{'text': 'ਸੁਣਦੇ', 'meaning': 'hear', 'ascii': [2616, 2625, 2595, 2598, 2631]}
+{'text': 'ਘੋੜਾ', 'meaning': 'horse', 'ascii': [2584, 2635, 2652, 2622]}
+{'text': 'ਕੱਟ', 'meaning': 'cut', 'ascii': [2581, 2673, 2591]}
+{'text': 'ਜਾਗ', 'meaning': 'watch', 'ascii': [2588, 2622, 2583]}
+{'text': 'ਮੁੱਖ', 'meaning': 'main', 'ascii': [2606, 2625, 2673, 2582]}
+{'text': 'ਖੁੱਲ੍ਹਾ', 'meaning': 'open', 'ascii': [2582, 2625, 2673, 2610, 2637, 2617, 2622]}
+{'text': 'ਚਿੱਟੇ,', 'meaning': 'white', 'ascii': [2586, 2623, 2673, 2591, 2631, 44]}
+{'text': 'ਬੱਚੇ', 'meaning': 'children', 'ascii': [2604, 2673, 2586, 2631]}
+{'text': 'ਸ਼ੁਰੂ', 'meaning': 'begin', 'ascii': [2616, 2620, 2625, 2608, 2626]}
+{'text': 'ਮਿਲੀ', 'meaning': 'got', 'ascii': [2606, 2623, 2610, 2624]}
+{'text': 'ਤੁਰ', 'meaning': 'walk', 'ascii': [2596, 2625, 2608]}
+{'text': 'ਉਦਾਹਰਨ', 'meaning': 'example', 'ascii': [2569, 2598, 2622, 2617, 2608, 2600]}
+{'text': 'ਸੌਖਾ', 'meaning': 'ease', 'ascii': [2616, 2636, 2582, 2622]}
+{'text': 'ਪੇਪਰ', 'meaning': 'paper', 'ascii': [2602, 2631, 2602, 2608]}
+{'text': 'ਜਿਹੜੇ', 'meaning': 'those', 'ascii': [2588, 2623, 2617, 2652, 2631]}
+{'text': 'ਦੋਨੋ', 'meaning': 'both', 'ascii': [2598, 2635, 2600, 2635]}
+{'text': 'ਨਿਸ਼ਾਨ', 'meaning': 'mark', 'ascii': [2600, 2623, 2616, 2620, 2622, 2600]}
+{'text': 'ਅਕਸਰ', 'meaning': 'often', 'ascii': [2565, 2581, 2616, 2608]}
+{'text': 'ਮੀਲ', 'meaning': 'mile', 'ascii': [2606, 2624, 2610]}
+{'text': 'ਨਦੀ', 'meaning': 'river', 'ascii': [2600, 2598, 2624]}
+{'text': 'ਪੈਰ', 'meaning': 'feet', 'ascii': [2602, 2632, 2608]}
+{'text': 'ਕਾਫ਼ੀ', 'meaning': 'enough', 'ascii': [2581, 2622, 2603, 2620, 2624]}
+{'text': 'ਸਮਤਲ', 'meaning': 'plain', 'ascii': [2616, 2606, 2596, 2610]}
+{'text': 'ਆਮ', 'meaning': 'usual', 'ascii': [2566, 2606]}
+{'text': 'ਨੌਜਵਾਨ', 'meaning': 'young', 'ascii': [2600, 2636, 2588, 2613, 2622, 2600]}
+{'text': 'ਤਿਆਰ', 'meaning': 'ready', 'ascii': [2596, 2623, 2566, 2608]}
+{'text': 'ਉਪਰੋਕਤ', 'meaning': 'above', 'ascii': [2569, 2602, 2608, 2635, 2581, 2596]}
+{'text': 'ਕਦੇ', 'meaning': 'ever', 'ascii': [2581, 2598, 2631]}
+{'text': 'ਲਾਲ', 'meaning': 'red', 'ascii': [2610, 2622, 2610]}
+{'text': 'ਪਰ', 'meaning': 'though', 'ascii': [2602, 2608]}
+{'text': 'ਪੰਛੀ', 'meaning': 'bird', 'ascii': [2602, 2672, 2587, 2624]}
+{'text': 'ਕੁੱਤੇ', 'meaning': 'dog', 'ascii': [2581, 2625, 2673, 2596, 2631]}
+{'text': 'ਸਿੱਧੀ', 'meaning': 'direct', 'ascii': [2616, 2623, 2673, 2599, 2624]}
+{'text': 'ਪੈਦਾ', 'meaning': 'pose', 'ascii': [2602, 2632, 2598, 2622]}
+{'text': 'ਗੀਤ', 'meaning': 'song', 'ascii': [2583, 2624, 2596]}
+{'text': 'ਮਾਪ', 'meaning': 'measure', 'ascii': [2606, 2622, 2602]}
+{'text': 'ਉਤਪਾਦ', 'meaning': 'product', 'ascii': [2569, 2596, 2602, 2622, 2598]}
+{'text': 'ਕਾਲਾ', 'meaning': 'black', 'ascii': [2581, 2622, 2610, 2622]}
+{'text': 'ਛੋਟਾ', 'meaning': 'short', 'ascii': [2587, 2635, 2591, 2622]}
+{'text': 'ਅੰਕ', 'meaning': 'numeral', 'ascii': [2565, 2672, 2581]}
+{'text': 'ਹਵਾ', 'meaning': 'wind', 'ascii': [2617, 2613, 2622]}
+{'text': 'ਜਹਾਜ਼', 'meaning': 'ship', 'ascii': [2588, 2617, 2622, 2588, 2620]}
+{'text': 'ਅੱਧੇ', 'meaning': 'half', 'ascii': [2565, 2673, 2599, 2631]}
+{'text': 'ਚੱਟਾਨ', 'meaning': 'rock', 'ascii': [2586, 2673, 2591, 2622, 2600]}
+{'text': 'ਕ੍ਰਮ', 'meaning': 'order', 'ascii': [2581, 2637, 2608, 2606]}
+{'text': 'ਦੱਖਣ', 'meaning': 'south', 'ascii': [2598, 2673, 2582, 2595]}
+{'text': 'ਟੁਕੜੇ', 'meaning': 'piece', 'ascii': [2591, 2625, 2581, 2652, 2631]}
+{'text': 'ਪਾਸ', 'meaning': 'pass', 'ascii': [2602, 2622, 2616]}
+{'text': 'ਸਾਰੀ', 'meaning': 'whole', 'ascii': [2616, 2622, 2608, 2624]}
+{'text': 'ਇੰਚ', 'meaning': 'inch', 'ascii': [2567, 2672, 2586]}
+{'text': 'ਗੁਣਾ', 'meaning': 'multiply', 'ascii': [2583, 2625, 2595, 2622]}
+{'text': 'ਰਹਿਣ', 'meaning': 'stay', 'ascii': [2608, 2617, 2623, 2595]}
+{'text': 'ਚੱਕਰ', 'meaning': 'wheel', 'ascii': [2586, 2673, 2581, 2608]}
+{'text': 'ਪੂਰੇ', 'meaning': 'full', 'ascii': [2602, 2626, 2608, 2631]}
+{'text': 'ਫੋਰਸ', 'meaning': 'force', 'ascii': [2603, 2635, 2608, 2616]}
+{'text': 'ਨੀਲਾ', 'meaning': 'blue', 'ascii': [2600, 2624, 2610, 2622]}
+{'text': 'ਇਕਾਈ', 'meaning': 'object', 'ascii': [2567, 2581, 2622, 2568]}
+{'text': 'ਸਤਹ', 'meaning': 'surface', 'ascii': [2616, 2596, 2617]}
+{'text': 'ਡੂੰਘੇ', 'meaning': 'deep', 'ascii': [2593, 2626, 2672, 2584, 2631]}
+{'text': 'ਚੰਦ', 'meaning': 'moon', 'ascii': [2586, 2672, 2598]}
+{'text': 'ਪੈਰ', 'meaning': 'foot', 'ascii': [2602, 2632, 2608]}
+{'text': 'ਵਿਅਸਤ', 'meaning': 'busy', 'ascii': [2613, 2623, 2565, 2616, 2596]}
+{'text': 'ਕਿਸ਼ਤੀ', 'meaning': 'boat', 'ascii': [2581, 2623, 2616, 2620, 2596, 2624]}
+{'text': 'ਆਮ', 'meaning': 'common', 'ascii': [2566, 2606]}
+{'text': 'ਜਹਾਜ਼', 'meaning': 'plane', 'ascii': [2588, 2617, 2622, 2588, 2620]}
+{'text': 'ਬੈਠ', 'meaning': 'stead', 'ascii': [2604, 2632, 2592]}
+{'text': 'ਖੁਸ਼ਕ', 'meaning': 'dry', 'ascii': [2582, 2625, 2616, 2620, 2581]}
+{'text': 'ਹੈਰਾਨ', 'meaning': 'wonder', 'ascii': [2617, 2632, 2608, 2622, 2600]}
+{'text': 'ਹੱਸ', 'meaning': 'laugh', 'ascii': [2617, 2673, 2616]}
+{'text': 'ਹਜ਼ਾਰ', 'meaning': 'thousand', 'ascii': [2617, 2588, 2620, 2622, 2608]}
+{'text': 'ਸਾਲ', 'meaning': 'ago', 'ascii': [2616, 2622, 2610]}
+{'text': 'ਭੱਜ', 'meaning': 'ran', 'ascii': [2605, 2673, 2588]}
+{'text': 'ਸ਼ਕਲ', 'meaning': 'shape', 'ascii': [2616, 2620, 2581, 2610]}
+{'text': 'ਜ਼ਿੱਲਤ', 'meaning': 'equate', 'ascii': [2588, 2620, 2623, 2673, 2610, 2596]}
+{'text': 'ਗਰਮ', 'meaning': 'hot', 'ascii': [2583, 2608, 2606]}
+{'text': 'ਮਿਸ', 'meaning': 'miss', 'ascii': [2606, 2623, 2616]}
+{'text': 'ਟਾਇਰ', 'meaning': 'tire', 'ascii': [2591, 2622, 2567, 2608]}
+{'text': 'ਲਿਆਉਣ', 'meaning': 'bring', 'ascii': [2610, 2623, 2566, 2569, 2595]}
+{'text': 'ਜੀ', 'meaning': 'yes', 'ascii': [2588, 2624]}
+{'text': 'ਦੂਰ', 'meaning': 'distant', 'ascii': [2598, 2626, 2608]}
+{'text': 'ਪੂਰਬ', 'meaning': 'east', 'ascii': [2602, 2626, 2608, 2604]}
+{'text': 'ਚਿੱਤਰਕਾਰੀ', 'meaning': 'paint', 'ascii': [2586, 2623, 2673, 2596, 2608, 2581, 2622, 2608, 2624]}
+{'text': 'ਕਸਬੇ', 'meaning': 'town', 'ascii': [2581, 2616, 2604, 2631]}
+{'text': 'ਜੁਰਮਾਨਾ', 'meaning': 'fine', 'ascii': [2588, 2625, 2608, 2606, 2622, 2600, 2622]}
+{'text': 'ਉੱਡਦੀ', 'meaning': 'fly', 'ascii': [2569, 2673, 2593, 2598, 2624]}
+{'text': 'ਡਿੱਗ', 'meaning': 'fall', 'ascii': [2593, 2623, 2673, 2583]}
+{'text': 'ਪੁਕਾਰ', 'meaning': 'cry', 'ascii': [2602, 2625, 2581, 2622, 2608]}
+{'text': 'ਹਨੇਰੇ', 'meaning': 'dark', 'ascii': [2617, 2600, 2631, 2608, 2631]}
+{'text': 'ਨੋਟ', 'meaning': 'note', 'ascii': [2600, 2635, 2591]}
+{'text': 'ਸਿਤਾਰਾ', 'meaning': 'star', 'ascii': [2616, 2623, 2596, 2622, 2608, 2622]}
+{'text': 'ਨਾਮ', 'meaning': 'noun', 'ascii': [2600, 2622, 2606]}
+{'text': 'ਖੇਤਰ', 'meaning': 'field', 'ascii': [2582, 2631, 2596, 2608]}
+{'text': 'ਯੋਗ', 'meaning': 'able', 'ascii': [2607, 2635, 2583]}
+{'text': 'ਸੇਰ', 'meaning': 'pound', 'ascii': [2616, 2631, 2608]}
+{'text': 'ਸਮਾਪਤ', 'meaning': 'done', 'ascii': [2616, 2606, 2622, 2602, 2596]}
+{'text': 'ਸੁੰਦਰਤਾ', 'meaning': 'beauty', 'ascii': [2616, 2625, 2672, 2598, 2608, 2596, 2622]}
+{'text': 'ਸਾਹਮਣੇ', 'meaning': 'front', 'ascii': [2616, 2622, 2617, 2606, 2595, 2631]}
+{'text': 'ਫਾਈਨਲ', 'meaning': 'final', 'ascii': [2603, 2622, 2568, 2600, 2610]}
+{'text': 'ਹਰੇ', 'meaning': 'green', 'ascii': [2617, 2608, 2631]}
+{'text': 'ਓਹੁ', 'meaning': 'oh', 'ascii': [2579, 2617, 2625]}
+{'text': 'ਤੇਜ਼', 'meaning': 'quick', 'ascii': [2596, 2631, 2588, 2620]}
+{'text': 'ਸਮੁੰਦਰ', 'meaning': 'ocean', 'ascii': [2616, 2606, 2625, 2672, 2598, 2608]}
+{'text': 'ਨਿੱਘਾ', 'meaning': 'warm', 'ascii': [2600, 2623, 2673, 2584, 2622]}
+{'text': 'ਮੁਫ਼ਤ', 'meaning': 'free', 'ascii': [2606, 2625, 2603, 2620, 2596]}
+{'text': 'ਮਿੰਟ', 'meaning': 'minute', 'ascii': [2606, 2623, 2672, 2591]}
+{'text': 'ਮਜ਼ਬੂਤ', 'meaning': 'strong', 'ascii': [2606, 2588, 2620, 2604, 2626, 2596]}
+{'text': 'ਵਿਸ਼ੇਸ਼', 'meaning': 'special', 'ascii': [2613, 2623, 2616, 2620, 2631, 2616, 2620]}
+{'text': 'ਮਨ', 'meaning': 'mind', 'ascii': [2606, 2600]}
+{'text': 'ਪਿੱਛੇ', 'meaning': 'behind', 'ascii': [2602, 2623, 2673, 2587, 2631]}
+{'text': 'ਪੂਛ', 'meaning': 'tail', 'ascii': [2602, 2626, 2587]}
+{'text': 'ਉਤਪਾਦਨ', 'meaning': 'produce', 'ascii': [2569, 2596, 2602, 2622, 2598, 2600]}
+{'text': 'ਸਪੇਸ', 'meaning': 'space', 'ascii': [2616, 2602, 2631, 2616]}
+{'text': 'ਸੁਣਿਆ', 'meaning': 'heard', 'ascii': [2616, 2625, 2595, 2623, 2566]}
+{'text': 'ਵਧੀਆ', 'meaning': 'best', 'ascii': [2613, 2599, 2624, 2566]}
+{'text': 'ਘੰਟੇ', 'meaning': 'hour', 'ascii': [2584, 2672, 2591, 2631]}
+{'text': 'ਬਿਹਤਰ', 'meaning': 'better', 'ascii': [2604, 2623, 2617, 2596, 2608]}
+{'text': 'ਸੌ', 'meaning': 'hundred', 'ascii': [2616, 2636]}
+{'text': 'ਪੰਜ', 'meaning': 'five', 'ascii': [2602, 2672, 2588]}
+{'text': 'ਪੱਛਮ', 'meaning': 'west', 'ascii': [2602, 2673, 2587, 2606]}
+{'text': 'ਜ਼ਮੀਨ', 'meaning': 'ground', 'ascii': [2588, 2620, 2606, 2624, 2600]}
+{'text': 'ਵਿਆਜ', 'meaning': 'interest', 'ascii': [2613, 2623, 2566, 2588]}
+{'text': 'ਫਾਸਟ', 'meaning': 'fast', 'ascii': [2603, 2622, 2616, 2591]}
+{'text': 'ਕ੍ਰਿਆ', 'meaning': 'verb', 'ascii': [2581, 2637, 2608, 2623, 2566]}
+{'text': 'ਛੇ', 'meaning': 'six', 'ascii': [2587, 2631]}
+{'text': 'ਯਾਤਰਾ', 'meaning': 'travel', 'ascii': [2607, 2622, 2596, 2608, 2622]}
+{'text': 'ਘੱਟ', 'meaning': 'less', 'ascii': [2584, 2673, 2591]}
+{'text': 'ਦਸ', 'meaning': 'ten', 'ascii': [2598, 2616]}
+{'text': 'ਸਧਾਰਨ', 'meaning': 'simple', 'ascii': [2616, 2599, 2622, 2608, 2600]}
+{'text': 'ਸ੍ਵਰ', 'meaning': 'vowel', 'ascii': [2616, 2637, 2613, 2608]}
+{'text': 'ਵੱਲ', 'meaning': 'toward', 'ascii': [2613, 2673, 2610]}
+{'text': 'ਰੱਖਣਗੇ', 'meaning': 'lay', 'ascii': [2608, 2673, 2582, 2595, 2583, 2631]}
+{'text': 'ਪੈਟਰਨ', 'meaning': 'pattern', 'ascii': [2602, 2632, 2591, 2608, 2600]}
+{'text': 'ਹੌਲੀ', 'meaning': 'slow', 'ascii': [2617, 2636, 2610, 2624]}
+{'text': 'ਕਦਰ', 'meaning': 'center', 'ascii': [2581, 2598, 2608]}
+{'text': 'ਵਿਖਾਈ', 'meaning': 'appear', 'ascii': [2613, 2623, 2582, 2622, 2568]}
+{'text': 'ਨਕਸ਼ਾ,', 'meaning': 'map', 'ascii': [2600, 2581, 2616, 2620, 2622, 44]}
+{'text': 'ਰਾਜ', 'meaning': 'govern', 'ascii': [2608, 2622, 2588]}
+{'text': 'ਖਿੱਚੋ', 'meaning': 'pull', 'ascii': [2582, 2623, 2673, 2586, 2635]}
+{'text': 'ਠੰਡੇ', 'meaning': 'cold', 'ascii': [2592, 2672, 2593, 2631]}
+{'text': 'ਊਰਜਾ', 'meaning': 'energy', 'ascii': [2570, 2608, 2588, 2622]}
+{'text': 'ਸ਼ਿਕਾਰ', 'meaning': 'hunt', 'ascii': [2616, 2620, 2623, 2581, 2622, 2608]}
+{'text': 'ਸੰਭਵ', 'meaning': 'probable', 'ascii': [2616, 2672, 2605, 2613]}
+{'text': 'ਮੰਜੇ', 'meaning': 'bed', 'ascii': [2606, 2672, 2588, 2631]}
+{'text': 'ਅੰਡੇ', 'meaning': 'egg', 'ascii': [2565, 2672, 2593, 2631]}
+{'text': 'ਸਫ਼ਰ', 'meaning': 'ride', 'ascii': [2616, 2603, 2620, 2608]}
+{'text': 'ਸੈੱਲ', 'meaning': 'cell', 'ascii': [2616, 2632, 2673, 2610]}
+{'text': 'ਸ਼ਾਇਦ', 'meaning': 'perhaps', 'ascii': [2616, 2620, 2622, 2567, 2598]}
+{'text': 'ਚੁੱਕਣ', 'meaning': 'pick', 'ascii': [2586, 2625, 2673, 2581, 2595]}
+{'text': 'ਅਚਾਨਕ', 'meaning': 'sudden', 'ascii': [2565, 2586, 2622, 2600, 2581]}
+{'text': 'ਗਿਣੋ', 'meaning': 'count', 'ascii': [2583, 2623, 2595, 2635]}
+{'text': 'ਵਰਗ', 'meaning': 'square', 'ascii': [2613, 2608, 2583]}
+{'text': 'ਲੰਬਾਈ', 'meaning': 'length', 'ascii': [2610, 2672, 2604, 2622, 2568]}
+{'text': 'ਕਲਾ', 'meaning': 'art', 'ascii': [2581, 2610, 2622]}
+{'text': 'ਵਿਸ਼ੇ', 'meaning': 'subject', 'ascii': [2613, 2623, 2616, 2620, 2631]}
+{'text': 'ਵਸਣ', 'meaning': 'settle', 'ascii': [2613, 2616, 2595]}
+{'text': 'ਆਈਸ', 'meaning': 'ice', 'ascii': [2566, 2568, 2616]}
+{'text': 'ਚੱਕਰ', 'meaning': 'circle', 'ascii': [2586, 2673, 2581, 2608]}
+{'text': 'ਜੋੜਾ', 'meaning': 'pair', 'ascii': [2588, 2635, 2652, 2622]}
+{'text': 'ਪਾੜਾ', 'meaning': 'divide', 'ascii': [2602, 2622, 2652, 2622]}
+{'text': 'ਿਸਹਾਰੀ', 'meaning': 'syllable', 'ascii': [2623, 2616, 2617, 2622, 2608, 2624]}
+{'text': 'ਸ਼ਾਨਦਾਰ', 'meaning': 'grand', 'ascii': [2616, 2620, 2622, 2600, 2598, 2622, 2608]}
+{'text': 'ਬਾਲ', 'meaning': 'ball', 'ascii': [2604, 2622, 2610]}
+{'text': 'ਲਹਿਰ', 'meaning': 'wave', 'ascii': [2610, 2617, 2623, 2608]}
+{'text': 'ਡ੍ਰੌਪ', 'meaning': 'drop', 'ascii': [2593, 2637, 2608, 2636, 2602]}
+{'text': 'am', 'meaning': 'am', 'ascii': [97, 109]}
+{'text': 'ਮੌਜੂਦ', 'meaning': 'present', 'ascii': [2606, 2636, 2588, 2626, 2598]}
+{'text': 'ਭਾਰੀ', 'meaning': 'heavy', 'ascii': [2605, 2622, 2608, 2624]}
+{'text': 'ਨਾਚ', 'meaning': 'dance', 'ascii': [2600, 2622, 2586]}
+{'text': 'ਸਥਿਤੀ', 'meaning': 'position', 'ascii': [2616, 2597, 2623, 2596, 2624]}
+{'text': 'ਆਰਮ', 'meaning': 'arm', 'ascii': [2566, 2608, 2606]}
+{'text': 'ਚੌੜਾ', 'meaning': 'wide', 'ascii': [2586, 2636, 2652, 2622]}
+{'text': 'ਜਹਾਜ਼', 'meaning': 'sail', 'ascii': [2588, 2617, 2622, 2588, 2620]}
+{'text': 'ਸਮੱਗਰੀ', 'meaning': 'material', 'ascii': [2616, 2606, 2673, 2583, 2608, 2624]}
+{'text': 'ਬਾਗ,', 'meaning': 'fraction', 'ascii': [2604, 2622, 2583, 44]}
+{'text': 'ਜੰਗਲ', 'meaning': 'forest', 'ascii': [2588, 2672, 2583, 2610]}
+{'text': 'ਬੈਠ', 'meaning': 'sit', 'ascii': [2604, 2632, 2592]}
+{'text': 'ਸਟੋਰ', 'meaning': 'store', 'ascii': [2616, 2591, 2635, 2608]}
+{'text': 'ਸਾਬਤ', 'meaning': 'prove', 'ascii': [2616, 2622, 2604, 2596]}
+{'text': 'ਇਕੋ', 'meaning': 'lone', 'ascii': [2567, 2581, 2635]}
+{'text': 'ਲੱਤ', 'meaning': 'leg', 'ascii': [2610, 2673, 2596]}
+{'text': 'ਕਸਰਤ', 'meaning': 'exercise', 'ascii': [2581, 2616, 2608, 2596]}
+{'text': 'ਕੰਧ', 'meaning': 'wall', 'ascii': [2581, 2672, 2599]}
+{'text': 'ਕੈਚ', 'meaning': 'catch', 'ascii': [2581, 2632, 2586]}
+{'text': 'ਮਾਊਟ', 'meaning': 'mount', 'ascii': [2606, 2622, 2570, 2591]}
+{'text': 'ਅਸਮਾਨ', 'meaning': 'sky', 'ascii': [2565, 2616, 2606, 2622, 2600]}
+{'text': 'ਬੋਰਡ', 'meaning': 'board', 'ascii': [2604, 2635, 2608, 2593]}
+{'text': 'ਸਰਦੀ', 'meaning': 'winter', 'ascii': [2616, 2608, 2598, 2624]}
+{'text': 'ਲਿਖਿਆ', 'meaning': 'written', 'ascii': [2610, 2623, 2582, 2623, 2566]}
+{'text': 'ਜੰਗਲੀ', 'meaning': 'wild', 'ascii': [2588, 2672, 2583, 2610, 2624]}
+{'text': 'ਸਾਧਨ', 'meaning': 'instrument', 'ascii': [2616, 2622, 2599, 2600]}
+{'text': 'ਰੱਖਿਆ', 'meaning': 'kept', 'ascii': [2608, 2673, 2582, 2623, 2566]}
+{'text': 'ਗਲਾਸ', 'meaning': 'glass', 'ascii': [2583, 2610, 2622, 2616]}
+{'text': 'ਘਾਹ', 'meaning': 'grass', 'ascii': [2584, 2622, 2617]}
+{'text': 'ਗਊ', 'meaning': 'cow', 'ascii': [2583, 2570]}
+{'text': 'ਕਿਨਾਰੇ', 'meaning': 'edge', 'ascii': [2581, 2623, 2600, 2622, 2608, 2631]}
+{'text': 'ਪਿਛਲੇ', 'meaning': 'past', 'ascii': [2602, 2623, 2587, 2610, 2631]}
+{'text': 'ਸਾਫਟ', 'meaning': 'soft', 'ascii': [2616, 2622, 2603, 2591]}
+{'text': 'ਮਜ਼ੇਦਾਰ', 'meaning': 'fun', 'ascii': [2606, 2588, 2620, 2631, 2598, 2622, 2608]}
+{'text': 'ਚਮਕਦਾਰ', 'meaning': 'bright', 'ascii': [2586, 2606, 2581, 2598, 2622, 2608]}
+{'text': 'ਗੈਸ', 'meaning': 'gas', 'ascii': [2583, 2632, 2616]}
+{'text': 'ਲੱਖ', 'meaning': 'million', 'ascii': [2610, 2673, 2582]}
+{'text': 'ਰੱਖਣਾ', 'meaning': 'bear', 'ascii': [2608, 2673, 2582, 2595, 2622]}
+{'text': 'ਖੁਸ਼', 'meaning': 'happy', 'ascii': [2582, 2625, 2616, 2620]}
+{'text': 'ਫੁੱਲ', 'meaning': 'flower', 'ascii': [2603, 2625, 2673, 2610]}
+{'text': 'ਸਜਾਵੇਗਾ', 'meaning': 'clothe', 'ascii': [2616, 2588, 2622, 2613, 2631, 2583, 2622]}
+{'text': 'ਅਜੀਬ', 'meaning': 'strange', 'ascii': [2565, 2588, 2624, 2604]}
+{'text': 'ਚੁੱਕਾ', 'meaning': 'gone', 'ascii': [2586, 2625, 2673, 2581, 2622]}
+{'text': 'ਵਪਾਰ', 'meaning': 'trade', 'ascii': [2613, 2602, 2622, 2608]}
+{'text': 'ਭਜਨ', 'meaning': 'melody', 'ascii': [2605, 2588, 2600]}
+{'text': 'ਪ੍ਰਾਪਤ', 'meaning': 'receive', 'ascii': [2602, 2637, 2608, 2622, 2602, 2596]}
+{'text': 'ਕਤਾਰ', 'meaning': 'row', 'ascii': [2581, 2596, 2622, 2608]}
+{'text': 'ਸਹੀ', 'meaning': 'exact', 'ascii': [2616, 2617, 2624]}
+{'text': 'ਪ੍ਰਤੀਕ', 'meaning': 'symbol', 'ascii': [2602, 2637, 2608, 2596, 2624, 2581]}
+{'text': 'ਮਰ', 'meaning': 'die', 'ascii': [2606, 2608]}
+{'text': 'ਘੱਟ', 'meaning': 'least', 'ascii': [2584, 2673, 2591]}
+{'text': 'ਦੇਵੇਤੇ', 'meaning': 'shout', 'ascii': [2598, 2631, 2613, 2631, 2596, 2631]}
+{'text': 'ਬੀਜ', 'meaning': 'seed', 'ascii': [2604, 2624, 2588]}
+{'text': 'ਟੋਨ', 'meaning': 'tone', 'ascii': [2591, 2635, 2600]}
+{'text': 'ਸੁਝਾਅ', 'meaning': 'suggest', 'ascii': [2616, 2625, 2589, 2622, 2565]}
+{'text': 'ਬ੍ਰੇਕ', 'meaning': 'break', 'ascii': [2604, 2637, 2608, 2631, 2581]}
+{'text': 'ਔਰਤ', 'meaning': 'lady', 'ascii': [2580, 2608, 2596]}
+{'text': 'ਯਾਰਡ', 'meaning': 'yard', 'ascii': [2607, 2622, 2608, 2593]}
+{'text': 'ਵਧ', 'meaning': 'rise', 'ascii': [2613, 2599]}
+{'text': 'ਬੁਰਾ', 'meaning': 'bad', 'ascii': [2604, 2625, 2608, 2622]}
+{'text': 'ਉੱਡਿਆ', 'meaning': 'blow', 'ascii': [2569, 2673, 2593, 2623, 2566]}
+{'text': 'ਫੀਸਦੀ', 'meaning': 'cent', 'ascii': [2603, 2624, 2616, 2598, 2624]}
+{'text': 'ਮਿਕਸ', 'meaning': 'mix', 'ascii': [2606, 2623, 2581, 2616]}
+{'text': 'ਤਾਰ', 'meaning': 'wire', 'ascii': [2596, 2622, 2608]}
+{'text': 'ਲਾਗਤ', 'meaning': 'cost', 'ascii': [2610, 2622, 2583, 2596]}
+{'text': 'ਭੂਰਾ', 'meaning': 'brown', 'ascii': [2605, 2626, 2608, 2622]}
+{'text': 'ਪਹਿਨਣ', 'meaning': 'wear', 'ascii': [2602, 2617, 2623, 2600, 2595]}
+{'text': 'ਬਾਗ', 'meaning': 'garden', 'ascii': [2604, 2622, 2583]}
+{'text': 'ਬਰਾਬਰ', 'meaning': 'equal', 'ascii': [2604, 2608, 2622, 2604, 2608]}
+{'text': 'ਡਿੱਗ', 'meaning': 'fell', 'ascii': [2593, 2623, 2673, 2583]}
+{'text': 'ਫਿੱਟ', 'meaning': 'fit', 'ascii': [2603, 2623, 2673, 2591]}
+{'text': 'ਵਹਿਣਾ', 'meaning': 'flow', 'ascii': [2613, 2617, 2623, 2595, 2622]}
+{'text': 'ਮੇਲਾ', 'meaning': 'fair', 'ascii': [2606, 2631, 2610, 2622]}
+{'text': 'ਬਕ', 'meaning': 'bank', 'ascii': [2604, 2581]}
+{'text': 'ਦਸ਼ਮਲਵ', 'meaning': 'decimal', 'ascii': [2598, 2616, 2620, 2606, 2610, 2613]}
+{'text': 'ਕੰਨ', 'meaning': 'ear', 'ascii': [2581, 2672, 2600]}
+{'text': 'ਕਾਫ਼ੀ', 'meaning': 'quite', 'ascii': [2581, 2622, 2603, 2620, 2624]}
+{'text': 'ਤੋੜ', 'meaning': 'broke', 'ascii': [2596, 2635, 2652]}
+{'text': 'ਮੱਧ', 'meaning': 'middle', 'ascii': [2606, 2673, 2599]}
+{'text': 'ਝੀਲ', 'meaning': 'lake', 'ascii': [2589, 2624, 2610]}
+{'text': 'ਪਲ', 'meaning': 'moment', 'ascii': [2602, 2610]}
+{'text': 'ਪੈਮਾਨੇ', 'meaning': 'scale', 'ascii': [2602, 2632, 2606, 2622, 2600, 2631]}
+{'text': 'ਉੱਚੀ', 'meaning': 'loud', 'ascii': [2569, 2673, 2586, 2624]}
+{'text': 'ਬਸੰਤ', 'meaning': 'spring', 'ascii': [2604, 2616, 2672, 2596]}
+{'text': 'ਸਿੱਧਾ', 'meaning': 'straight', 'ascii': [2616, 2623, 2673, 2599, 2622]}
+{'text': 'ਕੋਸ਼', 'meaning': 'dictionary', 'ascii': [2581, 2635, 2616, 2620]}
+{'text': 'ਦੁੱਧ', 'meaning': 'milk', 'ascii': [2598, 2625, 2673, 2599]}
+{'text': 'ਅੰਗ', 'meaning': 'organ', 'ascii': [2565, 2672, 2583]}
+{'text': 'ਅਨੁਭਾਗ', 'meaning': 'section', 'ascii': [2565, 2600, 2625, 2605, 2622, 2583]}
+{'text': 'ਪਹਿਰਾਵਾ', 'meaning': 'dress', 'ascii': [2602, 2617, 2623, 2608, 2622, 2613, 2622]}
+{'text': 'ਹੈਰਾਨੀ', 'meaning': 'surprise', 'ascii': [2617, 2632, 2608, 2622, 2600, 2624]}
+{'text': 'ਚੁੱਪ', 'meaning': 'quiet', 'ascii': [2586, 2625, 2673, 2602]}
+{'text': 'ਛੋਟੇ', 'meaning': 'tiny', 'ascii': [2587, 2635, 2591, 2631]}
+{'text': 'ਚੜ੍ਹਨਾ', 'meaning': 'climb', 'ascii': [2586, 2652, 2637, 2617, 2600, 2622]}
+{'text': 'ਠੰਡਾ', 'meaning': 'cool', 'ascii': [2592, 2672, 2593, 2622]}
+{'text': 'ਡਿਜ਼ਾਇਨ', 'meaning': 'design', 'ascii': [2593, 2623, 2588, 2620, 2622, 2567, 2600]}
+{'text': 'ਗਰੀਬ', 'meaning': 'poor', 'ascii': [2583, 2608, 2624, 2604]}
+{'text': 'ਤਜਰਬੇ', 'meaning': 'experiment', 'ascii': [2596, 2588, 2608, 2604, 2631]}
+{'text': 'ਤਲ', 'meaning': 'bottom', 'ascii': [2596, 2610]}
+{'text': 'ਲੋਹੇ', 'meaning': 'iron', 'ascii': [2610, 2635, 2617, 2631]}
+{'text': 'ਇੱਕਲੇ', 'meaning': 'single', 'ascii': [2567, 2673, 2581, 2610, 2631]}
+{'text': 'ਸਟਿੱਕ', 'meaning': 'stick', 'ascii': [2616, 2591, 2623, 2673, 2581]}
+{'text': 'ਫਲੈਟ', 'meaning': 'flat', 'ascii': [2603, 2610, 2632, 2591]}
+{'text': 'ਵੀਹ', 'meaning': 'twenty', 'ascii': [2613, 2624, 2617]}
+{'text': 'ਮੁਸਕਾਨ', 'meaning': 'smile', 'ascii': [2606, 2625, 2616, 2581, 2622, 2600]}
+{'text': 'ਕ੍ਰੀਜ਼', 'meaning': 'crease', 'ascii': [2581, 2637, 2608, 2624, 2588, 2620]}
+{'text': 'ਮੋਰੀ', 'meaning': 'hole', 'ascii': [2606, 2635, 2608, 2624]}
+{'text': 'ਛਾਲ', 'meaning': 'jump', 'ascii': [2587, 2622, 2610]}
+{'text': 'ਅੱਠ', 'meaning': 'eight', 'ascii': [2565, 2673, 2592]}
+{'text': 'ਰੂਟ', 'meaning': 'root', 'ascii': [2608, 2626, 2591]}
+{'text': 'ਖਰੀਦਣ', 'meaning': 'buy', 'ascii': [2582, 2608, 2624, 2598, 2595]}
+{'text': 'ਚੁੱਕਣ', 'meaning': 'raise', 'ascii': [2586, 2625, 2673, 2581, 2595]}
+{'text': 'ਮੈਟਲ', 'meaning': 'metal', 'ascii': [2606, 2632, 2591, 2610]}
+{'text': 'ਕੀ', 'meaning': 'whether', 'ascii': [2581, 2624]}
+{'text': 'ਧੱਕਾ', 'meaning': 'push', 'ascii': [2599, 2673, 2581, 2622]}
+{'text': 'ਸੱਤ', 'meaning': 'seven', 'ascii': [2616, 2673, 2596]}
+{'text': 'ਪੈਰਾ', 'meaning': 'paragraph', 'ascii': [2602, 2632, 2608, 2622]}
+{'text': 'ਤੀਜਾ,', 'meaning': 'third', 'ascii': [2596, 2624, 2588, 2622, 44]}
+{'text': 'ਦੇਣਗੇ', 'meaning': 'shall', 'ascii': [2598, 2631, 2595, 2583, 2631]}
+{'text': 'ਚਾਰ', 'meaning': 'held', 'ascii': [2586, 2622, 2608]}
+{'text': 'ਵਾਲ', 'meaning': 'hair', 'ascii': [2613, 2622, 2610]}
+{'text': 'ਕੁੱਕ', 'meaning': 'cook', 'ascii': [2581, 2625, 2673, 2581]}
+{'text': 'ਮੰਜ਼ਿਲ', 'meaning': 'floor', 'ascii': [2606, 2672, 2588, 2620, 2623, 2610]}
+{'text': 'ਕੋਈ', 'meaning': 'either', 'ascii': [2581, 2635, 2568]}
+{'text': 'ਨਤੀਜਾ', 'meaning': 'result', 'ascii': [2600, 2596, 2624, 2588, 2622]}
+{'text': 'ਪਹਾੜੀ', 'meaning': 'hill', 'ascii': [2602, 2617, 2622, 2652, 2624]}
+{'text': 'ਸੁਰੱਖਿਅਤ', 'meaning': 'safe', 'ascii': [2616, 2625, 2608, 2673, 2582, 2623, 2565, 2596]}
+{'text': 'ਬਿੱਲੀ', 'meaning': 'cat', 'ascii': [2604, 2623, 2673, 2610, 2624]}
+{'text': 'ਸਦੀ', 'meaning': 'century', 'ascii': [2616, 2598, 2624]}
+{'text': 'ਬਿੱਟ', 'meaning': 'bit', 'ascii': [2604, 2623, 2673, 2591]}
+{'text': 'ਤਟ', 'meaning': 'coast', 'ascii': [2596, 2591]}
+{'text': 'ਕਾਪੀ', 'meaning': 'copy', 'ascii': [2581, 2622, 2602, 2624]}
+{'text': 'ਵਾਕੰਸ਼', 'meaning': 'phrase', 'ascii': [2613, 2622, 2581, 2672, 2616, 2620]}
+{'text': 'ਚੁੱਪ', 'meaning': 'silent', 'ascii': [2586, 2625, 2673, 2602]}
+{'text': 'ਲੰਬਾ', 'meaning': 'tall', 'ascii': [2610, 2672, 2604, 2622]}
+{'text': 'ਰੇਤ', 'meaning': 'sand', 'ascii': [2608, 2631, 2596]}
+{'text': 'ਮਿੱਟੀ', 'meaning': 'soil', 'ascii': [2606, 2623, 2673, 2591, 2624]}
+{'text': 'ਰੋਲ', 'meaning': 'roll', 'ascii': [2608, 2635, 2610]}
+{'text': 'ਫਿੰਗਰ', 'meaning': 'finger', 'ascii': [2603, 2623, 2672, 2583, 2608]}
+{'text': 'ਲੜਾਈ', 'meaning': 'fight', 'ascii': [2610, 2652, 2622, 2568]}
+{'text': 'ਝੂਠ', 'meaning': 'lie', 'ascii': [2589, 2626, 2592]}
+{'text': 'ਹਰਾਇਆ', 'meaning': 'beat', 'ascii': [2617, 2608, 2622, 2567, 2566]}
+{'text': 'ਉਤਸਾਹਿਤ', 'meaning': 'excite', 'ascii': [2569, 2596, 2616, 2622, 2617, 2623, 2596]}
+{'text': 'ਕੁਦਰਤੀ', 'meaning': 'natural', 'ascii': [2581, 2625, 2598, 2608, 2596, 2624]}
+{'text': 'ਝਲਕ', 'meaning': 'view', 'ascii': [2589, 2610, 2581]}
+{'text': 'ਭਾਵਨਾ', 'meaning': 'sense', 'ascii': [2605, 2622, 2613, 2600, 2622]}
+{'text': 'ਕੁਰਸੀ', 'meaning': 'chair', 'ascii': [2581, 2625, 2608, 2616, 2624]}
+{'text': 'ਖ਼ਤਰਾ', 'meaning': 'danger', 'ascii': [2582, 2620, 2596, 2608, 2622]}
+{'text': 'ਅਮੀਰ', 'meaning': 'rich', 'ascii': [2565, 2606, 2624, 2608]}
+{'text': 'ਮੋਟੀ', 'meaning': 'thick', 'ascii': [2606, 2635, 2591, 2624]}
+{'text': 'ਸਿਪਾਹੀ', 'meaning': 'soldier', 'ascii': [2616, 2623, 2602, 2622, 2617, 2624]}
+{'text': 'ਅਭਿਆਸ', 'meaning': 'practice', 'ascii': [2565, 2605, 2623, 2566, 2616]}
+{'text': 'ਵੱਖਰੇ', 'meaning': 'separate', 'ascii': [2613, 2673, 2582, 2608, 2631]}
+{'text': 'ਕ੍ਰਿਪਾ', 'meaning': 'please', 'ascii': [2581, 2637, 2608, 2623, 2602, 2622]}
+{'text': 'ਦੁਪਹਿਰ', 'meaning': 'noon', 'ascii': [2598, 2625, 2602, 2617, 2623, 2608]}
+{'text': 'ਆਧੁਨਿਕ', 'meaning': 'modern', 'ascii': [2566, 2599, 2625, 2600, 2623, 2581]}
+{'text': 'ਤੱਤ', 'meaning': 'element', 'ascii': [2596, 2673, 2596]}
+{'text': 'ਹਿੱਟ', 'meaning': 'hit', 'ascii': [2617, 2623, 2673, 2591]}
+{'text': 'ਕੋਨੇ', 'meaning': 'corner', 'ascii': [2581, 2635, 2600, 2631]}
+{'text': 'ਲੱਭਣ', 'meaning': 'locate', 'ascii': [2610, 2673, 2605, 2595]}
+{'text': 'ਰਿੰਗ', 'meaning': 'ring', 'ascii': [2608, 2623, 2672, 2583]}
+{'text': 'ਕੀੜੇ', 'meaning': 'insect', 'ascii': [2581, 2624, 2652, 2631]}
+{'text': 'ਫੜਿਆ', 'meaning': 'caught', 'ascii': [2603, 2652, 2623, 2566]}
+{'text': 'ਰੇਡੀਓ', 'meaning': 'radio', 'ascii': [2608, 2631, 2593, 2624, 2579]}
+{'text': 'ਗੱਲ', 'meaning': 'spoke', 'ascii': [2583, 2673, 2610]}
+{'text': 'ਐਟਮ', 'meaning': 'atom', 'ascii': [2576, 2591, 2606]}
+{'text': 'ਮਨੁੱਖੀ', 'meaning': 'human', 'ascii': [2606, 2600, 2625, 2673, 2582, 2624]}
+{'text': 'ਹੱਡੀ', 'meaning': 'bone', 'ascii': [2617, 2673, 2593, 2624]}
+{'text': 'ਰੇਲ', 'meaning': 'rail', 'ascii': [2608, 2631, 2610]}
+{'text': 'ਮੁਹੱਈਆ', 'meaning': 'provide', 'ascii': [2606, 2625, 2617, 2673, 2568, 2566]}
+{'text': 'ਸਹਿਮਤ', 'meaning': 'agree', 'ascii': [2616, 2617, 2623, 2606, 2596]}
+{'text': 'ਕੋਮਲ', 'meaning': 'gentle', 'ascii': [2581, 2635, 2606, 2610]}
+{'text': 'ਕਪਤਾਨ', 'meaning': 'captain', 'ascii': [2581, 2602, 2596, 2622, 2600]}
+{'text': 'guess', 'meaning': 'guess', 'ascii': [103, 117, 101, 115, 115]}
+{'text': 'ਤਿੱਖੀ', 'meaning': 'sharp', 'ascii': [2596, 2623, 2673, 2582, 2624]}
+{'text': 'ਵਿੰਗ', 'meaning': 'wing', 'ascii': [2613, 2623, 2672, 2583]}
+{'text': 'ਨੇੜਲਾ', 'meaning': 'neighbor', 'ascii': [2600, 2631, 2652, 2610, 2622]}
+{'text': 'ਧੋਣ', 'meaning': 'wash', 'ascii': [2599, 2635, 2595]}
+{'text': 'ਬੱਲੇਬਾਜ਼ੀ', 'meaning': 'bat', 'ascii': [2604, 2673, 2610, 2631, 2604, 2622, 2588, 2620, 2624]}
+{'text': 'ਭੀੜ', 'meaning': 'crowd', 'ascii': [2605, 2624, 2652]}
+{'text': 'ਮਕਈ', 'meaning': 'corn', 'ascii': [2606, 2581, 2568]}
+{'text': 'ਕਵਿਤਾ', 'meaning': 'poem', 'ascii': [2581, 2613, 2623, 2596, 2622]}
+{'text': 'ਸਤਰ', 'meaning': 'string', 'ascii': [2616, 2596, 2608]}
+{'text': 'ਘੰਟੀ', 'meaning': 'bell', 'ascii': [2584, 2672, 2591, 2624]}
+{'text': 'ਨਿਰਭਰ', 'meaning': 'depend', 'ascii': [2600, 2623, 2608, 2605, 2608]}
+{'text': 'ਮੀਟ', 'meaning': 'meat', 'ascii': [2606, 2624, 2591]}
+{'text': 'ਟਿਊਬ', 'meaning': 'tube', 'ascii': [2591, 2623, 2570, 2604]}
+{'text': 'ਮਸ਼ਹੂਰ', 'meaning': 'famous', 'ascii': [2606, 2616, 2620, 2617, 2626, 2608]}
+{'text': 'ਸਟਰੀਮ', 'meaning': 'stream', 'ascii': [2616, 2591, 2608, 2624, 2606]}
+{'text': 'ਨਜ਼ਰ', 'meaning': 'sight', 'ascii': [2600, 2588, 2620, 2608]}
+{'text': 'ਪਤਲੇ', 'meaning': 'thin', 'ascii': [2602, 2596, 2610, 2631]}
+{'text': 'ਤਿਕੋਣ', 'meaning': 'triangle', 'ascii': [2596, 2623, 2581, 2635, 2595]}
+{'text': 'ਗ੍ਰਹਿ', 'meaning': 'planet', 'ascii': [2583, 2637, 2608, 2617, 2623]}
+{'text': 'ਬਸਤੀ', 'meaning': 'colony', 'ascii': [2604, 2616, 2596, 2624]}
+{'text': 'ਟਾਈ', 'meaning': 'tie', 'ascii': [2591, 2622, 2568]}
+{'text': 'ਦਿਓ,', 'meaning': 'enter', 'ascii': [2598, 2623, 2579, 44]}
+{'text': 'ਮੁੱਖ', 'meaning': 'major', 'ascii': [2606, 2625, 2673, 2582]}
+{'text': 'ਤਾਜ਼ਾ', 'meaning': 'fresh', 'ascii': [2596, 2622, 2588, 2620, 2622]}
+{'text': 'ਭੇਜਣ', 'meaning': 'send', 'ascii': [2605, 2631, 2588, 2595]}
+{'text': 'ਪੀਲੇ', 'meaning': 'yellow', 'ascii': [2602, 2624, 2610, 2631]}
+{'text': 'ਬੰਦੂਕ', 'meaning': 'gun', 'ascii': [2604, 2672, 2598, 2626, 2581]}
+{'text': 'ਪ੍ਰਿੰਟ', 'meaning': 'print', 'ascii': [2602, 2637, 2608, 2623, 2672, 2591]}
+{'text': 'ਮਰੇ', 'meaning': 'dead', 'ascii': [2606, 2608, 2631]}
+{'text': 'ਸਪਾਟ', 'meaning': 'spot', 'ascii': [2616, 2602, 2622, 2591]}
+{'text': 'ਮਾਰੂਥਲ', 'meaning': 'desert', 'ascii': [2606, 2622, 2608, 2626, 2597, 2610]}
+{'text': 'ਮੁਕੱਦਮੇ', 'meaning': 'suit', 'ascii': [2606, 2625, 2581, 2673, 2598, 2606, 2631]}
+{'text': 'ਮੌਜੂਦਾ', 'meaning': 'current', 'ascii': [2606, 2636, 2588, 2626, 2598, 2622]}
+{'text': 'ਲਿਫਟ', 'meaning': 'lift', 'ascii': [2610, 2623, 2603, 2591]}
+{'text': 'ਉੱਠਿਆ', 'meaning': 'rose', 'ascii': [2569, 2673, 2592, 2623, 2566]}
+{'text': 'ਪਹੁੰਚਦੇ', 'meaning': 'arrive', 'ascii': [2602, 2617, 2625, 2672, 2586, 2598, 2631]}
+{'text': 'ਮਾਸਟਰ', 'meaning': 'master', 'ascii': [2606, 2622, 2616, 2591, 2608]}
+{'text': 'ਟਰੈਕ', 'meaning': 'track', 'ascii': [2591, 2608, 2632, 2581]}
+{'text': 'ਮਾਤਾ', 'meaning': 'parent', 'ascii': [2606, 2622, 2596, 2622]}
+{'text': 'ਕੰਢੇ', 'meaning': 'shore', 'ascii': [2581, 2672, 2594, 2631]}
+{'text': 'ਵੰਡ', 'meaning': 'division', 'ascii': [2613, 2672, 2593]}
+{'text': 'ਸ਼ੀਟ', 'meaning': 'sheet', 'ascii': [2616, 2620, 2624, 2591]}
+{'text': 'ਪਦਾਰਥ', 'meaning': 'substance', 'ascii': [2602, 2598, 2622, 2608, 2597]}
+{'text': 'ਪੋਸਟ', 'meaning': 'post', 'ascii': [2602, 2635, 2616, 2591]}
+{'text': 'ਖਰਚ', 'meaning': 'spend', 'ascii': [2582, 2608, 2586]}
+{'text': 'ਕੋਰਿਜ਼', 'meaning': 'chord', 'ascii': [2581, 2635, 2608, 2623, 2588, 2620]}
+{'text': 'ਚਰਬੀ', 'meaning': 'fat', 'ascii': [2586, 2608, 2604, 2624]}
+{'text': 'ਖੁਸ਼', 'meaning': 'glad', 'ascii': [2582, 2625, 2616, 2620]}
+{'text': 'ਅਸਲੀ', 'meaning': 'original', 'ascii': [2565, 2616, 2610, 2624]}
+{'text': 'ਸ਼ੇਅਰ', 'meaning': 'share', 'ascii': [2616, 2620, 2631, 2565, 2608]}
+{'text': 'ਸਟੇਸ਼ਨ', 'meaning': 'station', 'ascii': [2616, 2591, 2631, 2616, 2620, 2600]}
+{'text': 'ਡੈਡੀ', 'meaning': 'dad', 'ascii': [2593, 2632, 2593, 2624]}
+{'text': 'ਚਾਰਜ', 'meaning': 'charge', 'ascii': [2586, 2622, 2608, 2588]}
+{'text': 'ਸਹੀ', 'meaning': 'proper', 'ascii': [2616, 2617, 2624]}
+{'text': 'ਸਿਗਮਿੰਟ', 'meaning': 'segment', 'ascii': [2616, 2623, 2583, 2606, 2623, 2672, 2591]}
+{'text': 'ਬਤਖ਼', 'meaning': 'duck', 'ascii': [2604, 2596, 2582, 2620]}
+{'text': 'ਤੁਰੰਤ', 'meaning': 'instant', 'ascii': [2596, 2625, 2608, 2672, 2596]}
+{'text': 'ਤਿਆਰ', 'meaning': 'populate', 'ascii': [2596, 2623, 2566, 2608]}
+{'text': 'ਮਟਰੀ', 'meaning': 'chick', 'ascii': [2606, 2591, 2608, 2624]}
+{'text': 'ਪਿਆਰੇ', 'meaning': 'dear', 'ascii': [2602, 2623, 2566, 2608, 2631]}
+{'text': 'ਦੁਸ਼ਮਣ', 'meaning': 'enemy', 'ascii': [2598, 2625, 2616, 2620, 2606, 2595]}
+{'text': 'ਜਵਾਬ', 'meaning': 'reply', 'ascii': [2588, 2613, 2622, 2604]}
+{'text': 'ਆ', 'meaning': 'occur', 'ascii': [2566]}
+{'text': 'ਭਾਫ਼', 'meaning': 'steam', 'ascii': [2605, 2622, 2603, 2620]}
+{'text': 'ਮੋਸ਼ਨ', 'meaning': 'motion', 'ascii': [2606, 2635, 2616, 2620, 2600]}
+{'text': 'ਤਰਲ', 'meaning': 'liquid', 'ascii': [2596, 2608, 2610]}
+{'text': 'ਸਮਰੱਥਾ', 'meaning': 'quotient', 'ascii': [2616, 2606, 2608, 2673, 2597, 2622]}
+{'text': 'ਦੰਦ', 'meaning': 'teeth', 'ascii': [2598, 2672, 2598]}
+{'text': 'ਸ਼ੈੱਲ', 'meaning': 'shell', 'ascii': [2616, 2620, 2632, 2673, 2610]}
+{'text': 'ਗਰਦਨ', 'meaning': 'neck', 'ascii': [2583, 2608, 2598, 2600]}
+{'text': 'ਆਕਸੀਜਨ', 'meaning': 'oxygen', 'ascii': [2566, 2581, 2616, 2624, 2588, 2600]}
+{'text': 'ਖੰਡ', 'meaning': 'sugar', 'ascii': [2582, 2672, 2593]}
+{'text': 'ਪਰੈਟੀ', 'meaning': 'pretty', 'ascii': [2602, 2608, 2632, 2591, 2624]}
+{'text': 'ਹੁਨਰ', 'meaning': 'skill', 'ascii': [2617, 2625, 2600, 2608]}
+{'text': 'ਮਹਿਲਾ', 'meaning': 'women', 'ascii': [2606, 2617, 2623, 2610, 2622]}
+{'text': 'ਸੀਜ਼ਨ', 'meaning': 'season', 'ascii': [2616, 2624, 2588, 2620, 2600]}
+{'text': 'ਚੁੰਬਕ', 'meaning': 'magnet', 'ascii': [2586, 2625, 2672, 2604, 2581]}
+{'text': 'ਸਿਲਵਰ', 'meaning': 'silver', 'ascii': [2616, 2623, 2610, 2613, 2608]}
+{'text': 'ਧੰਨਵਾਦ', 'meaning': 'thank', 'ascii': [2599, 2672, 2600, 2613, 2622, 2598]}
+{'text': 'ਸ਼ਾਖਾ', 'meaning': 'branch', 'ascii': [2616, 2620, 2622, 2582, 2622]}
+{'text': 'ਮੈਚ', 'meaning': 'match', 'ascii': [2606, 2632, 2586]}
+{'text': 'ਪਿਛੇਤਰ', 'meaning': 'suffix', 'ascii': [2602, 2623, 2587, 2631, 2596, 2608]}
+{'text': 'ਅੰਜੀਰ', 'meaning': 'fig', 'ascii': [2565, 2672, 2588, 2624, 2608]}
+{'text': 'ਡਰ', 'meaning': 'afraid', 'ascii': [2593, 2608]}
+{'text': 'ਵੱਡੇ', 'meaning': 'huge', 'ascii': [2613, 2673, 2593, 2631]}
+{'text': 'ਸਟੀਲ', 'meaning': 'steel', 'ascii': [2616, 2591, 2624, 2610]}
+{'text': 'ਅੱਗੇ', 'meaning': 'forward', 'ascii': [2565, 2673, 2583, 2631]}
+{'text': 'ਇਸੇ', 'meaning': 'similar', 'ascii': [2567, 2616, 2631]}
+{'text': 'ਸਕੋਰ', 'meaning': 'score', 'ascii': [2616, 2581, 2635, 2608]}
+{'text': 'ਸੇਬ', 'meaning': 'apple', 'ascii': [2616, 2631, 2604]}
+{'text': 'ਖਰੀਦੀ', 'meaning': 'bought', 'ascii': [2582, 2608, 2624, 2598, 2624]}
+{'text': 'ਪਿੱਚ', 'meaning': 'pitch', 'ascii': [2602, 2623, 2673, 2586]}
+{'text': 'ਕੋਟ', 'meaning': 'coat', 'ascii': [2581, 2635, 2591]}
+{'text': 'ਜਨਤਕ', 'meaning': 'mass', 'ascii': [2588, 2600, 2596, 2581]}
+{'text': 'ਕਾਰਡ', 'meaning': 'card', 'ascii': [2581, 2622, 2608, 2593]}
+{'text': 'ਪਹਿਰੇਦਾਰ', 'meaning': 'band', 'ascii': [2602, 2617, 2623, 2608, 2631, 2598, 2622, 2608]}
+{'text': 'ਰੱਸੀ', 'meaning': 'rope', 'ascii': [2608, 2673, 2616, 2624]}
+{'text': 'ਸਿਲੱਪ', 'meaning': 'slip', 'ascii': [2616, 2623, 2610, 2673, 2602]}
+{'text': 'ਜਿੱਤ', 'meaning': 'win', 'ascii': [2588, 2623, 2673, 2596]}
+{'text': 'ਸੁਪਨੇ', 'meaning': 'dream', 'ascii': [2616, 2625, 2602, 2600, 2631]}
+{'text': 'ਹਾਲਤ', 'meaning': 'condition', 'ascii': [2617, 2622, 2610, 2596]}
+{'text': 'ਕੁੱਲ', 'meaning': 'total', 'ascii': [2581, 2625, 2673, 2610]}
+{'text': 'ਬੁਨਿਆਦੀ', 'meaning': 'basic', 'ascii': [2604, 2625, 2600, 2623, 2566, 2598, 2624]}
+{'text': 'ਗੰਧ', 'meaning': 'smell', 'ascii': [2583, 2672, 2599]}
+{'text': 'ਘਾਟੀ', 'meaning': 'valley', 'ascii': [2584, 2622, 2591, 2624]}
+{'text': 'ਡਬਲ', 'meaning': 'double', 'ascii': [2593, 2604, 2610]}
+{'text': 'ਸੀਟ', 'meaning': 'seat', 'ascii': [2616, 2624, 2591]}
+{'text': 'ਬਲਾਕ', 'meaning': 'block', 'ascii': [2604, 2610, 2622, 2581]}
+{'text': 'ਚਾਰਟ', 'meaning': 'chart', 'ascii': [2586, 2622, 2608, 2591]}
+{'text': 'ਟੋਪੀ', 'meaning': 'hat', 'ascii': [2591, 2635, 2602, 2624]}
+{'text': 'ਵੇਚਣ', 'meaning': 'sell', 'ascii': [2613, 2631, 2586, 2595]}
+{'text': 'ਘਟਾਓ', 'meaning': 'subtract', 'ascii': [2584, 2591, 2622, 2579]}
+{'text': 'ਘਟਨਾ', 'meaning': 'event', 'ascii': [2584, 2591, 2600, 2622]}
+{'text': 'ਖਾਸ', 'meaning': 'particular', 'ascii': [2582, 2622, 2616]}
+{'text': 'ਸੌਦਾ', 'meaning': 'deal', 'ascii': [2616, 2636, 2598, 2622]}
+{'text': 'ਤੈਰਾਕੀ', 'meaning': 'swim', 'ascii': [2596, 2632, 2608, 2622, 2581, 2624]}
+{'text': 'ਜੁੱਤੀ', 'meaning': 'shoe', 'ascii': [2588, 2625, 2673, 2596, 2624]}
+{'text': 'ਮੋਢੇ', 'meaning': 'shoulder', 'ascii': [2606, 2635, 2594, 2631]}
+{'text': 'ਫੈਲਣ', 'meaning': 'spread', 'ascii': [2603, 2632, 2610, 2595]}
+{'text': 'ਡੇਰੇ', 'meaning': 'camp', 'ascii': [2593, 2631, 2608, 2631]}
+{'text': 'ਕਾਢ', 'meaning': 'invent', 'ascii': [2581, 2622, 2594]}
+{'text': 'ਕਪਾਹ', 'meaning': 'cotton', 'ascii': [2581, 2602, 2622, 2617]}
+{'text': 'ਜਨਮ', 'meaning': 'born', 'ascii': [2588, 2600, 2606]}
+{'text': 'ਕਵਾਟਰ', 'meaning': 'quart', 'ascii': [2581, 2613, 2622, 2591, 2608]}
+{'text': 'ਨੌ', 'meaning': 'nine', 'ascii': [2600, 2636]}
+{'text': 'ਟਰੱਕ', 'meaning': 'truck', 'ascii': [2591, 2608, 2673, 2581]}
+{'text': 'ਰੌਲਾ', 'meaning': 'noise', 'ascii': [2608, 2636, 2610, 2622]}
+{'text': 'ਮੌਕਾ', 'meaning': 'chance', 'ascii': [2606, 2636, 2581, 2622]}
+{'text': 'ਇਕੱਠਾ', 'meaning': 'gather', 'ascii': [2567, 2581, 2673, 2592, 2622]}
+{'text': 'ਦੁਕਾਨ', 'meaning': 'shop', 'ascii': [2598, 2625, 2581, 2622, 2600]}
+{'text': 'ਸੁੱਟ', 'meaning': 'throw', 'ascii': [2616, 2625, 2673, 2591]}
+{'text': 'ਚਾਨਣ', 'meaning': 'shine', 'ascii': [2586, 2622, 2600, 2595]}
+{'text': 'ਕਾਲਮ', 'meaning': 'column', 'ascii': [2581, 2622, 2610, 2606]}
+{'text': 'ਅਣੂ', 'meaning': 'molecule', 'ascii': [2565, 2595, 2626]}
+{'text': 'ਸਲੇਟੀ', 'meaning': 'gray', 'ascii': [2616, 2610, 2631, 2591, 2624]}
+{'text': 'ਦੁਹਰਾਉ', 'meaning': 'repeat', 'ascii': [2598, 2625, 2617, 2608, 2622, 2569]}
+{'text': 'ਵਿਆਪਕ', 'meaning': 'broad', 'ascii': [2613, 2623, 2566, 2602, 2581]}
+{'text': 'ਲੂਣ', 'meaning': 'salt', 'ascii': [2610, 2626, 2595]}
+{'text': 'ਨੱਕ', 'meaning': 'nose', 'ascii': [2600, 2673, 2581]}
+{'text': 'ਬਹੁਵਚਨ', 'meaning': 'plural', 'ascii': [2604, 2617, 2625, 2613, 2586, 2600]}
+{'text': 'ਦਾਅਵਾ', 'meaning': 'claim', 'ascii': [2598, 2622, 2565, 2613, 2622]}
+{'text': 'ਮਹਾਦੀਪ', 'meaning': 'continent', 'ascii': [2606, 2617, 2622, 2598, 2624, 2602]}

@@ -10,41 +10,25 @@ import {
 } from "react-native";
 import TheCircle from "./circleForGame";
 
-function GameScreen({ navigation }) {
-  const words = [
-    { text: "ਅਜ", meaning: "Today" },
-    { text: "ਜਲ", meaning: "Water" },
-    { text: "ਧਰਮ", meaning: "Religion" },
-    { text: "ਮਾਮਾ", meaning: "Mum's Brother" },
-    { text: "ਚਲਾਕ", meaning: "Clever" },
-    { text: "ਕਪੜਾ", meaning: "Cloth" },
-    { text: "ਪਰਵਾਰ", meaning: "Family" },
-  ];
-  const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
-  // First word
-  const firstWord = getRandomWord();
-  // Second Word
-  let secondWord = getRandomWord();
-  while (firstWord === secondWord) {
-    secondWord = getRandomWord();
-  }
-
-  const characters = [];
-  for (let i = 0; i < firstWord.text.length; i += 1) {
-    const theChar = firstWord.text.charAt(i);
-    if (!characters.includes(theChar)) {
-      characters.push(theChar);
-    }
-  }
-  for (let i = 0; i < secondWord.text.length; i += 1) {
-    const theChar = secondWord.text.charAt(i);
-    if (!characters.includes(theChar)) {
-      characters.push(theChar);
-    }
-  }
-
+function GameScreen({ navigation, route }) {
   const [attempt, setAttempt] = React.useState("");
+  const [topWord, setTopWord] = React.useState("");
+  const [bottomWord, setBottomWord] = React.useState("");
+  const { charArray, firstWord, secondWord } = route.params;
 
+  console.log(attempt.length, "ਗਿਆਨੀ".length);
+  if (topWord === "") {
+    if (attempt === firstWord.text) {
+      setTopWord(attempt);
+      setAttempt("");
+    }
+  }
+  if (bottomWord === "") {
+    if (attempt === secondWord.text) {
+      setBottomWord(attempt);
+      setAttempt("");
+    }
+  }
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -63,13 +47,13 @@ function GameScreen({ navigation }) {
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
         <View style={styles.wordBoxText1}>
-          <Text style={styles.answers}>Hi</Text>
+          <Text style={styles.answers}>{topWord}</Text>
           <View style={styles.definition}>
             <Text style={styles.definitionText}>{firstWord.meaning}</Text>
           </View>
         </View>
         <View style={styles.wordBoxText2}>
-          <Text style={styles.answers}>Hi</Text>
+          <Text style={styles.answers}>{bottomWord}</Text>
           <View style={styles.definition}>
             <Text style={styles.definitionText}>{secondWord.meaning}</Text>
           </View>
@@ -89,7 +73,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <TheCircle characters={characters} setAttempt={setAttempt} />
+      <TheCircle characters={charArray} setAttempt={setAttempt} />
       {/* there can only be from 4-18 characters as input */}
     </View>
   );
