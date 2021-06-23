@@ -1,13 +1,14 @@
-import { words } from "./allWords";
-import { testWord, uni } from "./test";
-import * as Anvaad from "anvaad-js";
+import * as Anvaad from 'anvaad-js';
+import { words } from './allWords';
+import { testWord, uni } from './test';
+
 export default function getWords() {
   // console.log(uni);
-  //console.log(testWord);
+  // console.log(testWord);
 
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
-  let firstWord = getRandomWord();
+  const firstWord = getRandomWord();
   // Second Word
   let secondWord = getRandomWord();
   while (firstWord === secondWord) {
