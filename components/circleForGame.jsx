@@ -78,19 +78,11 @@ function charDisplay(charArray, setAttempt) {
     character18: styleSheet.character18,
   };
 
-  // const lst = [];
-  // for (let i = 0; i < charatersCount; i += 1) {
-  //   lst.push(i);
-  // }
-  const randLetter = () => {
-    const allLetters = 'ੳਅੲਸਹਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਵੜ';
-    return allLetters[Math.floor(Math.random() * allLetters.length)];
-  };
+
   return (
     <View style={styleSheet.lettersCircle}>
       {charArray.map((char) => {
         const charNum = `character${(charArray.indexOf(char) + 1).toString()}`;
-        // let theLetter = String.fromCharCode(char);
         const theLetter = Anvaad.unicode(char);
         return (
           <TouchableOpacity
