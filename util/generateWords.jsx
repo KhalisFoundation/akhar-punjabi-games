@@ -7,7 +7,7 @@ export default function getWords() {
 
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
-  const firstWord = getRandomWord();
+  let firstWord = getRandomWord();
   // Second Word
   let secondWord = getRandomWord();
   while (firstWord === secondWord) {
@@ -29,7 +29,7 @@ export default function getWords() {
       characters.push(theChar);
     }
   }
-  console.log(characters);
+  // console.log(characters);
   // console.log(firstWord, secondWord);
 
   return [characters, firstWord, secondWord];

@@ -18,7 +18,7 @@ function GameScreen({ navigation, route }) {
   const [bottomWord, setBottomWord] = React.useState("");
   const { charArray, firstWord, secondWord } = route.params;
 
-  console.log(attempt, Anvaad.unicode(secondWord.text, true));
+  console.log(attempt, Anvaad.unicode(firstWord.text, true));
   if (topWord === "") {
     if (attempt === Anvaad.unicode(firstWord.text, true)) {
       setTopWord(Anvaad.unicode(attempt));

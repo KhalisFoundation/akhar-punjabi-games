@@ -88,21 +88,28 @@ function charDisplay(charArray, setAttempt) {
   };
   return (
     <View style={styleSheet.lettersCircle}>
-      {charArray.map((i) => {
-        let charNum = "character" + (charArray.indexOf(i) + 1).toString();
-        // let theLetter = String.fromCharCode(i);
-        let theLetter = Anvaad.unicode(i);
+      {charArray.map((char) => {
+        let charNum = "character" + (charArray.indexOf(char) + 1).toString();
+        // let theLetter = String.fromCharCode(char);
+        let theLetter = Anvaad.unicode(char);
         return (
           <TouchableOpacity
             onPress={() => {
               setAttempt((prev) => {
-                return prev + i;
+                let final;
+                if (char === "i") {
+                  let prevString = prev.substring(0, prev.length - 1);
+                  final = prevString + char + prev[prev.length - 1];
+                } else {
+                  final = prev + char;
+                }
+                return final;
               });
             }}
-            key={i}
+            key={char}
             style={getStylesAttributes[charNum]}
           >
-            <Text key={i} style={styleSheet.characterText}>
+            <Text key={char} style={styleSheet.characterText}>
               {theLetter}
             </Text>
           </TouchableOpacity>
