@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from "react";
+import * as Anvaad from "anvaad-js";
 import {
   View,
   Text,
@@ -11,45 +12,25 @@ import {
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation, route }) {
-  const [asciiAttempt, setAsciiAttempt] = React.useState([]);
   const [attempt, setAttempt] = React.useState("");
 
   const [topWord, setTopWord] = React.useState("");
   const [bottomWord, setBottomWord] = React.useState("");
-  const { asciiArray, firstWord, secondWord } = route.params;
+  const { charArray, firstWord, secondWord } = route.params;
 
-  console.log(asciiAttempt);
-  console.log(attempt);
-
-  // setAttempt(
-  //   asciiAttempt
-  //     .map((num) => {
-  //       return String.fromCharCode(num);
-  //     })
-  //     .join("")
-  // );
-  console.log(
-    asciiAttempt
-      .map((num) => {
-        return String.fromCharCode(num);
-      })
-      .join("")
-  );
-
-  // if (topWord === "") {
-  //   if (attempt === firstWord.text) {
-  //     setTopWord(attempt);
-  //     setAttempt("");
-  //     setAsciiAttempt([]);
-  //   }
-  // }
-  // if (bottomWord === "") {
-  //   if (attempt === secondWord.text) {
-  //     setBottomWord(attempt);
-  //     setAttempt("");
-  //     setAsciiAttempt([]);
-  //   }
-  // }
+  console.log(attempt, Anvaad.unicode(secondWord.text, true));
+  if (topWord === "") {
+    if (attempt === Anvaad.unicode(firstWord.text, true)) {
+      setTopWord(Anvaad.unicode(attempt));
+      setAttempt("");
+    }
+  }
+  if (bottomWord === "") {
+    if (attempt === Anvaad.unicode(secondWord.text, true)) {
+      setBottomWord(Anvaad.unicode(attempt));
+      setAttempt("");
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -83,26 +64,19 @@ function GameScreen({ navigation, route }) {
       </View>
       <View style={styles.wordAttemptView}>
         <Text style={styles.wordAttempt} placeHolder="Word">
-          {asciiAttempt
-            .map((num) => {
-              return String.fromCharCode(num);
-            })
-            .join("")}
+          {Anvaad.unicode(attempt)}
         </Text>
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            setAsciiAttempt([]);
+            setAttempt("");
           }}
         >
           <Text style={styles.clearBoxText}>CLEAR</Text>
         </TouchableOpacity>
       </View>
 
-      <TheCircle
-        asciiCharacters={asciiArray}
-        setAsciiAttempt={setAsciiAttempt}
-      />
+      <TheCircle charArray={charArray} setAttempt={setAttempt} />
       {/* there can only be from 4-18 characters as input */}
     </View>
   );

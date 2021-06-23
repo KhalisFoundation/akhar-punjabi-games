@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
+import * as Anvaad from "anvaad-js";
 import * as React from "react";
 import {
   View,
@@ -10,11 +11,11 @@ import {
 
 function TheCircle(props) {
   // there can only be from 4-18 characters as input
-  return charDisplay(props.asciiCharacters, props.setAsciiAttempt);
+  return charDisplay(props.charArray, props.setAttempt);
 }
 
-function charDisplay(asciiChars, setAsciiAttempt) {
-  const charatersCount = asciiChars.length;
+function charDisplay(charArray, setAttempt) {
+  const charatersCount = charArray.length;
 
   const numToWord = {
     3: "three",
@@ -87,16 +88,15 @@ function charDisplay(asciiChars, setAsciiAttempt) {
   };
   return (
     <View style={styleSheet.lettersCircle}>
-      {asciiChars.map((i) => {
-        let charNum = "character" + (asciiChars.indexOf(i) + 1).toString();
-        let theLetter = String.fromCharCode(i);
+      {charArray.map((i) => {
+        let charNum = "character" + (charArray.indexOf(i) + 1).toString();
+        // let theLetter = String.fromCharCode(i);
+        let theLetter = Anvaad.unicode(i);
         return (
           <TouchableOpacity
             onPress={() => {
-              setAsciiAttempt((prev) => {
-                const lst = prev;
-                lst.push(i);
-                return lst;
+              setAttempt((prev) => {
+                return prev + i;
               });
             }}
             key={i}
