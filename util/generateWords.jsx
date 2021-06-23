@@ -1,6 +1,5 @@
-import * as Anvaad from 'anvaad-js';
-import { words } from './allWords';
-import { testWord, uni } from './test';
+import * as Anvaad from "anvaad-js";
+import { words } from "./allWords";
 
 export default function getWords() {
   // console.log(uni);
