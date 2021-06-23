@@ -98,6 +98,7 @@ function charDisplay(charArray, setAttempt) {
               setAttempt((prev) => {
                 let final;
                 if (char === "i") {
+                  //reason for doing this is so you can type ਰਹਿਣ correctly. If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer because ਰਹਿਣ changes to ਰਹਣਿ
                   let prevString = prev.substring(0, prev.length - 1);
                   final = prevString + char + prev[prev.length - 1];
                 } else {
