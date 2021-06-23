@@ -22,7 +22,7 @@ function App() {
           options={{ headerShown: false }}
           component={GameScreen}
           initialParams={{
-            charArray: characters,
+            asciiArray: characters,
             firstWord: firstWord,
             secondWord: secondWord,
           }}

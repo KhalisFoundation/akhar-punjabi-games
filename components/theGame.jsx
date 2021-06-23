@@ -11,24 +11,46 @@ import {
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation, route }) {
+  const [asciiAttempt, setAsciiAttempt] = React.useState([]);
   const [attempt, setAttempt] = React.useState("");
+
   const [topWord, setTopWord] = React.useState("");
   const [bottomWord, setBottomWord] = React.useState("");
-  const { charArray, firstWord, secondWord } = route.params;
+  const { asciiArray, firstWord, secondWord } = route.params;
 
-  console.log(attempt.length, "ਗਿਆਨੀ".length);
-  if (topWord === "") {
-    if (attempt === firstWord.text) {
-      setTopWord(attempt);
-      setAttempt("");
-    }
-  }
-  if (bottomWord === "") {
-    if (attempt === secondWord.text) {
-      setBottomWord(attempt);
-      setAttempt("");
-    }
-  }
+  console.log(asciiAttempt);
+  console.log(attempt);
+
+  // setAttempt(
+  //   asciiAttempt
+  //     .map((num) => {
+  //       return String.fromCharCode(num);
+  //     })
+  //     .join("")
+  // );
+  console.log(
+    asciiAttempt
+      .map((num) => {
+        return String.fromCharCode(num);
+      })
+      .join("")
+  );
+
+  // if (topWord === "") {
+  //   if (attempt === firstWord.text) {
+  //     setTopWord(attempt);
+  //     setAttempt("");
+  //     setAsciiAttempt([]);
+  //   }
+  // }
+  // if (bottomWord === "") {
+  //   if (attempt === secondWord.text) {
+  //     setBottomWord(attempt);
+  //     setAttempt("");
+  //     setAsciiAttempt([]);
+  //   }
+  // }
+
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -61,19 +83,26 @@ function GameScreen({ navigation, route }) {
       </View>
       <View style={styles.wordAttemptView}>
         <Text style={styles.wordAttempt} placeHolder="Word">
-          {attempt}
+          {asciiAttempt
+            .map((num) => {
+              return String.fromCharCode(num);
+            })
+            .join("")}
         </Text>
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            setAttempt("");
+            setAsciiAttempt([]);
           }}
         >
           <Text style={styles.clearBoxText}>CLEAR</Text>
         </TouchableOpacity>
       </View>
 
-      <TheCircle characters={charArray} setAttempt={setAttempt} />
+      <TheCircle
+        asciiCharacters={asciiArray}
+        setAsciiAttempt={setAsciiAttempt}
+      />
       {/* there can only be from 4-18 characters as input */}
     </View>
   );

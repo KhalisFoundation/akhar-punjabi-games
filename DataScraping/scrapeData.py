@@ -121,10 +121,10 @@ objs=[]
 for word in allWords:
     ascii=[ord(letter)for letter in word[0]]
     objs.append({"text":word[0],"meaning":word[1],"ascii":ascii})
-#print(objs)
 
 f=open("./DataScraping/newObj.txt","w",encoding= "utf-8")
-#writer=csv.writer(f)
+f.write("export const words=[\n")
 for i in objs:
-    f.write(str(i)+"\n")
+    f.write(str(i)+",\n")
+f.write("]")
 f.close()

@@ -10,18 +10,12 @@ import {
 
 function TheCircle(props) {
   // there can only be from 4-18 characters as input
-  return charDisplay(
-    props.characters.length,
-    props.characters,
-    props.setAttempt
-  );
+  return charDisplay(props.asciiCharacters, props.setAsciiAttempt);
 }
 
-function charDisplay(num, letters, setAttempt) {
-  let charatersCount = num;
-  if (charatersCount % 2 !== 0) {
-    charatersCount += 1;
-  }
+function charDisplay(asciiChars, setAsciiAttempt) {
+  const charatersCount = asciiChars.length;
+
   const numToWord = {
     3: "three",
     4: "four",
@@ -83,24 +77,26 @@ function charDisplay(num, letters, setAttempt) {
     character18: styleSheet.character18,
   };
 
-  const lst = [];
-  for (let i = 0; i < charatersCount; i += 1) {
-    lst.push(i);
-  }
+  // const lst = [];
+  // for (let i = 0; i < charatersCount; i += 1) {
+  //   lst.push(i);
+  // }
   const randLetter = () => {
     const allLetters = "ੳਅੲਸਹਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਵੜ";
     return allLetters[Math.floor(Math.random() * allLetters.length)];
   };
   return (
     <View style={styleSheet.lettersCircle}>
-      {lst.map((i) => {
-        let charNum = "character" + (i + 1).toString();
-        let theLetter = letters[i] ? letters[i] : randLetter();
+      {asciiChars.map((i) => {
+        let charNum = "character" + (asciiChars.indexOf(i) + 1).toString();
+        let theLetter = String.fromCharCode(i);
         return (
           <TouchableOpacity
             onPress={() => {
-              setAttempt((prev) => {
-                return prev + theLetter;
+              setAsciiAttempt((prev) => {
+                const lst = prev;
+                lst.push(i);
+                return lst;
               });
             }}
             key={i}
