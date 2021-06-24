@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './components/landingPage';
-import GameScreen from './components/theGame';
-// import { getWords } from './utils/database';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./components/landingPage";
+import GameScreen from "./components/theGame";
 
-const [characters, firstWord, secondWord] = getWords();
 const Stack = createStackNavigator();
 
 function App() {
