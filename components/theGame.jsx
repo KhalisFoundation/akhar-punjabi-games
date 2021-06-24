@@ -1,38 +1,22 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
+import * as Anvaad from 'anvaad-js';
 import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
+import { initialState, reducer, actions } from './state';
 import TheCircle from './circleForGame';
 import allWords from '../util/allWords';
 
 function GameScreen({ navigation }) {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const words = allWords;
-
-  const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
-  const characters = [];
-  // First word
-  const firstWord = getRandomWord();
-  // Second Word
-  let secondWord = getRandomWord();
-  while (firstWord === secondWord) {
-    secondWord = getRandomWord();
+  if (state.attempt === Anvaad.unicode(state.firstWord.text, true)) {
+    dispatch(actions.setTopWord(state.attempt));
   }
-
-  for (let i = 0; i < firstWord.text.length; i += 1) {
-    const theChar = firstWord.text.charAt(i);
-    if (!characters.includes(theChar)) {
-      characters.push(theChar);
-    }
+  if (state.attempt === Anvaad.unicode(state.secondWord.text, true)) {
+    dispatch(actions.setBottomWord(state.attempt));
   }
-  for (let i = 0; i < secondWord.text.length; i += 1) {
-    const theChar = secondWord.text.charAt(i);
-    if (!characters.includes(theChar)) {
-      characters.push(theChar);
-    }
-  }
-
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -50,26 +34,72 @@ function GameScreen({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
-        <View style={styles.wordBoxText1}>
-          <Text style={styles.answers}>Hi</Text>
+        <Text style={styles.hint}>{`Len: ${state.firstWord.text.length}`}</Text>
+        <View style={styles.wordBoxText}>
+          <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
+          <View style={styles.definition}>
+            <Text style={styles.definitionText}>{state.firstWord.meaning}</Text>
+          </View>
         </View>
-        <View style={styles.wordBoxText2}>
-          <Text style={styles.answers}>Hi</Text>
+        <TouchableOpacity
+          style={styles.giveUp}
+          onPress={() => {
+            dispatch(actions.setTopWord(state.firstWord.text));
+          }}
+        >
+          <Text style={styles.giveUpTxt}>GIVE UP</Text>
+        </TouchableOpacity>
+        <Text style={styles.hint}>
+          {`Len: ${state.secondWord.text.length}`}
+        </Text>
+        <View style={styles.wordBoxText}>
+          <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>
+          <View style={styles.definition}>
+            <Text style={styles.definitionText}>
+              {state.secondWord.meaning}
+            </Text>
+          </View>
         </View>
+        <TouchableOpacity
+          style={styles.giveUp}
+          onPress={() => {
+            dispatch(actions.setBottomWord(state.secondWord.text));
+          }}
+        >
+          <Text style={styles.giveUpTxt}>GIVE UP</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.newWord}
+          title="New Words"
+          onPress={() => {
+            dispatch(actions.setNewWords);
+          }}
+        >
+          <Text>New Word</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.wordAttempt}>
-        <Text>
-          {firstWord.text}
-          :
-          {firstWord.meaning}
+
+      <View style={styles.wordAttemptView}>
+        <Text style={styles.wordAttempt} placeHolder="Word">
+          {Anvaad.unicode(state.attempt)}
         </Text>
-        <Text>
-          {secondWord.text}
-          :
-          {secondWord.meaning}
-        </Text>
+        <TouchableOpacity
+          style={styles.clearBox}
+          onPress={() => {
+            // setAttempt("");
+            dispatch(actions.setAttempt(''));
+          }}
+        >
+          <Text style={styles.clearBoxText}>CLEAR</Text>
+        </TouchableOpacity>
       </View>
-      <TheCircle characters={characters} />
+
+      <TheCircle
+        charArray={state.charArray}
+        setAttempt={actions.setAttempt}
+        dispatch={dispatch}
+        state={state}
+      />
       {/* there can only be from 4-18 characters as input */}
     </View>
   );
@@ -103,7 +133,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#9C734F',
     borderRadius: 20,
   },
-  wordBoxText1: {
+  hint: {
+    width: 50,
+    top: 60,
+  },
+  wordBoxText: {
     width: 250,
     height: 50,
     left: 50,
@@ -111,24 +145,47 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
   },
-  wordBoxText2: {
-    width: 250,
-    height: 50,
-    left: 50,
-    top: 60,
-    backgroundColor: 'white',
-    borderRadius: 20,
-  },
   answers: {
     fontSize: 35,
     left: 10,
+  },
+  wordAttemptView: {
+    flexDirection: 'row',
   },
   wordAttempt: {
     bottom: 58,
     width: 200,
     height: 50,
     backgroundColor: '#CFF6FF',
-    // borderRadius: 20,
+    borderRadius: 20,
+    paddingLeft: 20,
+    fontSize: 30,
+  },
+  clearBox: {
+    width: 50,
+    height: 30,
+    backgroundColor: 'red',
+    top: -50,
+    left: 5,
+    borderRadius: 20,
+  },
+  giveUp: {
+    backgroundColor: 'red',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    left: 300,
+    top: -20,
+  },
+  giveUpTxt: {
+    textAlign: 'center',
+  },
+  newWord: {
+    left: 265,
+    borderRadius: 20,
+    width: 90,
+    backgroundColor: 'yellow',
+    alignItems: 'center',
   },
 });
 

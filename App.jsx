@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/landingPage';
 import GameScreen from './components/theGame';
-//import { getWords } from './utils/database';
 
 const Stack = createStackNavigator();
 

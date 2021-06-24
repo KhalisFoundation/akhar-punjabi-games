@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   khalisTouchableOpacity: {
     height: '8%',
-    width: '40%',
+    width: '45%',
     // left: "25%",
     bottom: '17%',
   },
