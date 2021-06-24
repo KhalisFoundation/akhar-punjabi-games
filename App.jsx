@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './components/landingPage';
-import GameScreen from './components/theGame';
-import getWords from './util/generateWords';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./components/landingPage";
+import GameScreen from "./components/theGame";
 
 const [characters, firstWord, secondWord] = getWords();
 const Stack = createStackNavigator();
@@ -21,11 +20,6 @@ function App() {
           name="Next"
           options={{ headerShown: false }}
           component={GameScreen}
-          initialParams={{
-            charArray: characters,
-            firstWord,
-            secondWord,
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
