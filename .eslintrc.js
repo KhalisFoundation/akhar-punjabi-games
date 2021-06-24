@@ -26,6 +26,7 @@ module.exports = {
     'react-native/no-raw-text': 2,
     'react-native/no-single-element-style-arrays': 2,
     'global-require': 'off',
+    "import/prefer-default-export": "off",
   },
   globals: {
     fetch: false
