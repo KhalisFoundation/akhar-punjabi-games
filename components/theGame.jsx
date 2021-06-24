@@ -2,17 +2,10 @@
 import * as React from "react";
 import * as Anvaad from "anvaad-js";
 import { initialState, reducer, actions } from "./state";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  Button,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import TheCircle from "./circleForGame";
 
-function GameScreen({ navigation, route }) {
+function GameScreen({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   if (state.attempt === Anvaad.unicode(state.firstWord.text, true)) {

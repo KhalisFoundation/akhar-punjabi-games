@@ -2,13 +2,7 @@
 import * as Anvaad from "anvaad-js";
 import * as React from "react";
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 function TheCircle(props) {
   // there can only be from 4-18 characters as input
