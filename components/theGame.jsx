@@ -6,7 +6,6 @@ import {
 import TheCircle from './circleForGame';
 import allWords from '../util/allWords';
 
-
 function GameScreen({ navigation }) {
 
   const words = allWords;
