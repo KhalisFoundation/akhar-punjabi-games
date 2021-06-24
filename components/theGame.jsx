@@ -1,8 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from "react";
 import * as Anvaad from "anvaad-js";
-import getWords from "../util/generateWords";
-import { initialState, reducer, actions, wordsThings } from "./state";
+import { initialState, reducer, actions } from "./state";
 import {
   View,
   Text,
@@ -14,24 +13,12 @@ import {
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation, route }) {
-  //let { charArray, firstWord, secondWord } = route.params;
-  // const [attempt, setAttempt] = React.useState("");
-  // const [topWord, setTopWord] = React.useState("");
-  // const [bottomWord, setBottomWord] = React.useState("");
-  //console.log(attempt, Anvaad.unicode(firstWord.text, true));
-
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  console.log(state.attempt);
-  if (state.attempt === Anvaad.unicode(wordsThings.firstWord.text, true)) {
-    //setTopWord(Anvaad.unicode(attempt));
-    //setAttempt("");
+  if (state.attempt === Anvaad.unicode(state.firstWord.text, true)) {
     dispatch(actions.setTopWord(state.attempt));
   }
-
-  if (state.attempt === Anvaad.unicode(wordsThings.secondWord.text, true)) {
-    // setBottomWord(Anvaad.unicode(attempt));
-    // setAttempt("");
+  if (state.attempt === Anvaad.unicode(state.secondWord.text, true)) {
     dispatch(actions.setBottomWord(state.attempt));
   }
   return (
@@ -51,11 +38,30 @@ function GameScreen({ navigation, route }) {
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
+        <Text style={styles.hint}>{"Len: " + state.firstWord.text.length}</Text>
         <View style={styles.wordBoxText}>
-          <Text style={styles.answers}>{state.topWord}</Text>
+          <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
+          <View style={styles.definition}>
+            <Text style={styles.definitionText}>{state.firstWord.meaning}</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          style={styles.giveUp}
+          onPress={() => {
+            console.log("give up");
+            dispatch(actions.setTopWord(state.firstWord.text));
+          }}
+        >
+          <Text style={styles.giveUpTxt}>GIVE UP</Text>
+        </TouchableOpacity>
+        <Text style={styles.hint}>
+          {"Len: " + state.secondWord.text.length}
+        </Text>
+        <View style={styles.wordBoxText}>
+          <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>
           <View style={styles.definition}>
             <Text style={styles.definitionText}>
-              {wordsThings.firstWord.meaning}
+              {state.secondWord.meaning}
             </Text>
           </View>
         </View>
@@ -63,40 +69,25 @@ function GameScreen({ navigation, route }) {
           style={styles.giveUp}
           onPress={() => {
             console.log("give up");
-            //setTopWord(Anvaad.unicode(firstWord.text));
+            dispatch(actions.setBottomWord(state.secondWord.text));
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
         </TouchableOpacity>
-        <View style={styles.wordBoxText}>
-          <Text style={styles.answers}>{state.bottomWord}</Text>
-          <View style={styles.definition}>
-            <Text style={styles.definitionText}>
-              {wordsThings.secondWord.meaning}
-            </Text>
-          </View>
-        </View>
         <TouchableOpacity
-          style={styles.giveUp}
-          onPress={() => {
-            console.log("give up");
-            //setBottomWord(Anvaad.unicode(secondWord.text));
-          }}
-        >
-          <Text style={styles.giveUpTxt}>GIVE UP</Text>
-        </TouchableOpacity>
-        <Button
+          style={styles.newWord}
           title="New Words"
           onPress={() => {
-            //[charArray, firstWord, secondWord] = getWords();
+            dispatch(actions.setNewWords);
           }}
-        />
+        >
+          <Text>New Word</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.wordAttemptView}>
         <Text style={styles.wordAttempt} placeHolder="Word">
-          {/* {Anvaad.unicode(state.attempt)} */}
-          {state.attempt}
+          {Anvaad.unicode(state.attempt)}
         </Text>
         <TouchableOpacity
           style={styles.clearBox}
@@ -110,7 +101,7 @@ function GameScreen({ navigation, route }) {
       </View>
 
       <TheCircle
-        charArray={wordsThings.charArray}
+        charArray={state.charArray}
         setAttempt={actions.setAttempt}
         dispatch={dispatch}
         state={state}
@@ -147,6 +138,10 @@ const styles = StyleSheet.create({
     height: 250,
     backgroundColor: "#9C734F",
     borderRadius: 20,
+  },
+  hint: {
+    width: 50,
+    top: 60,
   },
   wordBoxText: {
     width: 250,
@@ -190,6 +185,13 @@ const styles = StyleSheet.create({
   },
   giveUpTxt: {
     textAlign: "center",
+  },
+  newWord: {
+    left: 265,
+    borderRadius: 20,
+    width: 90,
+    backgroundColor: "yellow",
+    alignItems: "center",
   },
 });
 

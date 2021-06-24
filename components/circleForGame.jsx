@@ -21,7 +21,6 @@ function TheCircle(props) {
 }
 
 function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
-  console.log(prevAttempt);
   const charatersCount = charArray.length;
 
   const numToWord = {
@@ -90,23 +89,21 @@ function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
         let charNum = "character" + (charArray.indexOf(char) + 1).toString();
         // let theLetter = String.fromCharCode(char);
         let theLetter = Anvaad.unicode(char);
-
-        const newAttempt = () => {
-          let final;
-          if (char === "i") {
-            //reason for doing this is so you can type ਰਹਿਣ correctly. If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer because ਰਹਿਣ changes to ਰਹਣਿ
-            let prevString = prevAttempt.substring(0, prevAttempt.length - 1);
-            final = prevString + char + prevAttempt[prevAttempt.length - 1];
-          } else {
-            final = prevAttempt + char;
-          }
-          console.log(final);
-          return final;
-        };
         return (
           <TouchableOpacity
             onPress={() => {
-              dispatch(setAttempt(newAttempt));
+              let final;
+              if (char === "i" && prevAttempt !== "") {
+                //reason for doing this is so you can type ਰਹਿਣ correctly. If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer because ਰਹਿਣ changes to ਰਹਣਿ
+                let prevString = prevAttempt.substring(
+                  0,
+                  prevAttempt.length - 1
+                );
+                final = prevString + char + prevAttempt[prevAttempt.length - 1];
+              } else {
+                final = prevAttempt + char;
+              }
+              dispatch(setAttempt(final));
             }}
             key={char}
             style={getStylesAttributes[charNum]}
