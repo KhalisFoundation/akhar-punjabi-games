@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from "react";
 import * as Anvaad from "anvaad-js";
-import { initialState, reducer, actions } from "./state";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { initialState, reducer, actions } from "./state";
 import TheCircle from "./circleForGame";
 
 function GameScreen({ navigation }) {
@@ -31,7 +31,7 @@ function GameScreen({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
-        <Text style={styles.hint}>{"Len: " + state.firstWord.text.length}</Text>
+        <Text style={styles.hint}>{`Len: ${state.firstWord.text.length}`}</Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
           <View style={styles.definition}>
@@ -41,14 +41,13 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            console.log("give up");
             dispatch(actions.setTopWord(state.firstWord.text));
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
         </TouchableOpacity>
         <Text style={styles.hint}>
-          {"Len: " + state.secondWord.text.length}
+          {`Len: ${state.secondWord.text.length}`}
         </Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>
@@ -61,7 +60,6 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            console.log("give up");
             dispatch(actions.setBottomWord(state.secondWord.text));
           }}
         >
@@ -85,7 +83,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            //setAttempt("");
+            // setAttempt("");
             dispatch(actions.setAttempt(""));
           }}
         >
