@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { initialState, reducer, actions } from './state';
 import TheCircle from './circleForGame';
-import allWords from '../util/allWords';
 
 function GameScreen({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, initialState);

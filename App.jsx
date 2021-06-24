@@ -7,6 +7,7 @@ import GameScreen from './components/theGame';
 const Stack = createStackNavigator();
 
 function App() {
+  console.log('hereeeee');
   // example of how you would call it.
   // React.useEffect(() => {
   //   const words = async () => {
