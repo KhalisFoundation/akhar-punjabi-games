@@ -3,22 +3,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/landingPage';
 import GameScreen from './components/theGame';
-import { getWords } from './utils/database';
+//import { getWords } from './utils/database';
 
 const Stack = createStackNavigator();
 
 function App() {
   // example of how you would call it.
-  var words1 = [];
-  React.useEffect(() => {
-    const words = async () => {
-      words1 = await getWords();
-      console.log(words1._array.length);
-     //console.log(await getWords());
-    };
-   words();
-   //console.log(promises);
-  }, []);
+  // React.useEffect(() => {
+  //   const words = async () => {
+  //    console.log(await getWords());
+  //   };
+  //  words();
+  // }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator>

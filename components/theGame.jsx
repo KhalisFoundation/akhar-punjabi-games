@@ -4,17 +4,13 @@ import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
 import TheCircle from './circleForGame';
+import allWords from '../util/allWords';
+
 
 function GameScreen({ navigation }) {
-  const words = [
-    { text: 'ਅਜ', meaning: 'Today' },
-    { text: 'ਜਲ', meaning: 'Water' },
-    { text: 'ਧਰਮ', meaning: 'Religion' },
-    { text: 'ਮਾਮਾ', meaning: "Mum's Brother" },
-    { text: 'ਚਲਾਕ', meaning: 'Clever' },
-    { text: 'ਕਪੜਾ', meaning: 'Cloth' },
-    { text: 'ਪਰਵਾਰ', meaning: 'Family' },
-  ];
+
+  const words = allWords;
+
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   const characters = [];
   // First word
