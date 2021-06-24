@@ -1,7 +1,8 @@
 import * as Anvaad from 'anvaad-js';
-import { words } from './allWords';
+import allWords from './allWords';
 
 export default function getWords() {
+  const words = allWords;
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
   const firstWord = getRandomWord();
