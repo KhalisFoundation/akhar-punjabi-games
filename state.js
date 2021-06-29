@@ -46,7 +46,7 @@ export const actions = {
   },
 };
 
-export function reducer(state, action) {
+export function reducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
