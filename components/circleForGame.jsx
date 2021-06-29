@@ -1,10 +1,12 @@
 /* eslint-disable react-native/no-color-literals */
-import * as Anvaad from "anvaad-js";
-import * as React from "react";
+import * as Anvaad from 'anvaad-js';
+import * as React from 'react';
 
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { setAttempt } from "../redux/actions";
+import {
+  View, Text, StyleSheet, TouchableOpacity
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAttempt } from '../redux/actions';
 
 function TheCircle() {
   // there can only be from 4-18 characters as input
@@ -21,22 +23,22 @@ function charDisplay() {
   const charatersCount = charArray.length;
 
   const numToWord = {
-    3: "three",
-    4: "four",
-    5: "five",
-    6: "six",
-    7: "seven",
-    8: "eight",
-    9: "nine",
-    10: "ten",
-    11: "eleven",
-    12: "twelve",
-    13: "thirteen",
-    14: "fourteen",
-    15: "fiveteen",
-    16: "sixteen",
-    17: "seventeen",
-    18: "eighteen",
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    10: 'ten',
+    11: 'eleven',
+    12: 'twelve',
+    13: 'thirteen',
+    14: 'fourteen',
+    15: 'fiveteen',
+    16: 'sixteen',
+    17: 'seventeen',
+    18: 'eighteen',
   };
   const getStyles = {
     threeCharStyles,
@@ -90,7 +92,7 @@ function charDisplay() {
           <TouchableOpacity
             onPress={() => {
               let final;
-              if (char === "i" && prevAttempt !== "") {
+              if (char === 'i' && prevAttempt !== '') {
                 /* reason for doing this is so you can type ਰਹਿਣ correctly.
                 If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer
                 because ਰਹਿਣ changes to ਰਹਣਿ */
@@ -118,35 +120,35 @@ function charDisplay() {
 }
 
 const commonChar = {
-  width: "10%",
-  height: "10%",
-  backgroundColor: "white",
+  width: '10%',
+  height: '10%',
+  backgroundColor: 'white',
   borderRadius: 10,
 };
 
 // TODO - Move all colors to separate file and import as variables.
 const commonStyles = StyleSheet.create({
   lettersCircle: {
-    bottom: "6%",
-    width: "85%",
-    height: "45%",
+    bottom: '6%',
+    width: '85%',
+    height: '45%',
     borderRadius: 200,
-    backgroundColor: "#E8C4A5",
+    backgroundColor: '#E8C4A5',
   },
   characterText: {
-    bottom: "15%",
+    bottom: '15%',
     fontSize: 25,
-    textAlign: "center",
+    textAlign: 'center',
   },
   character1: {
     ...commonChar,
-    left: "45%",
-    top: "0%",
+    left: '45%',
+    top: '0%',
   },
   character2: {
     ...commonChar,
-    left: "45%",
-    top: "80%",
+    left: '45%',
+    top: '80%',
   },
 });
 
@@ -154,21 +156,21 @@ const threeCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "85%",
-    top: "25%",
+    left: '85%',
+    top: '25%',
   },
 });
 const fourCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "85%",
-    top: "25%",
+    left: '85%',
+    top: '25%',
   },
   character4: {
     ...commonChar,
-    left: "5%",
-    top: "15%",
+    left: '5%',
+    top: '15%',
   },
 });
 
@@ -176,23 +178,23 @@ const fiveCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "80%",
-    top: "0%",
+    left: '80%',
+    top: '0%',
   },
   character4: {
     ...commonChar,
-    left: "15%",
-    top: "35%",
+    left: '15%',
+    top: '35%',
   },
   character5: {
     ...commonChar,
-    left: "15%",
-    top: "-20%",
+    left: '15%',
+    top: '-20%',
   },
   characterText: {
-    bottom: "15%",
+    bottom: '15%',
     fontSize: 35,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
@@ -200,28 +202,28 @@ const sixCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "80%",
-    top: "0%",
+    left: '80%',
+    top: '0%',
   },
   character4: {
     ...commonChar,
-    left: "15%",
-    top: "35%",
+    left: '15%',
+    top: '35%',
   },
   character5: {
     ...commonChar,
-    left: "15%",
-    top: "-20%",
+    left: '15%',
+    top: '-20%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "15%",
+    left: '80%',
+    top: '15%',
   },
   characterText: {
-    bottom: "15%",
+    bottom: '15%',
     fontSize: 35,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
@@ -229,28 +231,28 @@ const sevenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "80%",
-    top: "0%",
+    left: '80%',
+    top: '0%',
   },
   character4: {
     ...commonChar,
-    left: "15%",
-    top: "35%",
+    left: '15%',
+    top: '35%',
   },
   character5: {
     ...commonChar,
-    left: "15%",
-    top: "-20%",
+    left: '15%',
+    top: '-20%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "15%",
+    left: '80%',
+    top: '15%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-16%",
+    left: '80%',
+    top: '-16%',
   },
 });
 
@@ -258,33 +260,33 @@ const eightCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "80%",
-    top: "0%",
+    left: '80%',
+    top: '0%',
   },
   character4: {
     ...commonChar,
-    left: "15%",
-    top: "35%",
+    left: '15%',
+    top: '35%',
   },
   character5: {
     ...commonChar,
-    left: "15%",
-    top: "-20%",
+    left: '15%',
+    top: '-20%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "15%",
+    left: '80%',
+    top: '15%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-16%",
+    left: '80%',
+    top: '-16%',
   },
   character8: {
     ...commonChar,
-    left: "5%",
-    top: "-25%",
+    left: '5%',
+    top: '-25%',
   },
 });
 
@@ -292,38 +294,38 @@ const nineCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
 });
 
@@ -331,43 +333,43 @@ const tenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
 });
 
@@ -375,48 +377,48 @@ const elevenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "0%",
-    top: "-55%",
+    left: '0%',
+    top: '-55%',
   },
 });
 
@@ -424,53 +426,53 @@ const twelveCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "0%",
-    top: "-55%",
+    left: '0%',
+    top: '-55%',
   },
   character12: {
     ...commonChar,
-    left: "90%",
-    top: "-65%",
+    left: '90%',
+    top: '-65%',
   },
 });
 
@@ -478,58 +480,58 @@ const thirteenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "0%",
-    top: "-65%",
+    left: '0%',
+    top: '-65%',
   },
   character12: {
     ...commonChar,
-    left: "90%",
-    top: "-75%",
+    left: '90%',
+    top: '-75%',
   },
   character13: {
     ...commonChar,
-    left: "0%",
-    top: "-65%",
+    left: '0%',
+    top: '-65%',
   },
 });
 
@@ -537,63 +539,63 @@ const fourteenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "25%",
-    top: "-35%",
+    left: '25%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "80%",
-    top: "-40%",
+    left: '80%',
+    top: '-40%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-50%",
+    left: '10%',
+    top: '-50%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "0%",
-    top: "-65%",
+    left: '0%',
+    top: '-65%',
   },
   character12: {
     ...commonChar,
-    left: "90%",
-    top: "-75%",
+    left: '90%',
+    top: '-75%',
   },
   character13: {
     ...commonChar,
-    left: "0%",
-    top: "-65%",
+    left: '0%',
+    top: '-65%',
   },
   character14: {
     ...commonChar,
-    left: "90%",
-    top: "-75%",
+    left: '90%',
+    top: '-75%',
   },
 });
 
@@ -601,68 +603,68 @@ const fiveteenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "27%",
-    top: "-35%",
+    left: '27%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "78%",
-    top: "-42%",
+    left: '78%',
+    top: '-42%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-52%",
+    left: '10%',
+    top: '-52%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "5%",
-    top: "-70%",
+    left: '5%',
+    top: '-70%',
   },
   character12: {
     ...commonChar,
-    left: "86%",
-    top: "-80%",
+    left: '86%',
+    top: '-80%',
   },
   character13: {
     ...commonChar,
-    left: "6%",
-    top: "-63%",
+    left: '6%',
+    top: '-63%',
   },
   character14: {
     ...commonChar,
-    left: "86%",
-    top: "-73%",
+    left: '86%',
+    top: '-73%',
   },
   character15: {
     ...commonChar,
-    left: "0%",
-    top: "-95%",
+    left: '0%',
+    top: '-95%',
   },
 });
 
@@ -670,73 +672,73 @@ const sixteenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "27%",
-    top: "-35%",
+    left: '27%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "78%",
-    top: "-42%",
+    left: '78%',
+    top: '-42%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-52%",
+    left: '10%',
+    top: '-52%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "5%",
-    top: "-70%",
+    left: '5%',
+    top: '-70%',
   },
   character12: {
     ...commonChar,
-    left: "86%",
-    top: "-80%",
+    left: '86%',
+    top: '-80%',
   },
   character13: {
     ...commonChar,
-    left: "6%",
-    top: "-63%",
+    left: '6%',
+    top: '-63%',
   },
   character14: {
     ...commonChar,
-    left: "86%",
-    top: "-73%",
+    left: '86%',
+    top: '-73%',
   },
   character15: {
     ...commonChar,
-    left: "0%",
-    top: "-95%",
+    left: '0%',
+    top: '-95%',
   },
   character16: {
     ...commonChar,
-    left: "90%",
-    top: "-105%",
+    left: '90%',
+    top: '-105%',
   },
 });
 
@@ -744,78 +746,78 @@ const seventeenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "27%",
-    top: "-35%",
+    left: '27%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "78%",
-    top: "-42%",
+    left: '78%',
+    top: '-42%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-52%",
+    left: '10%',
+    top: '-52%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "5%",
-    top: "-70%",
+    left: '5%',
+    top: '-70%',
   },
   character12: {
     ...commonChar,
-    left: "86%",
-    top: "-80%",
+    left: '86%',
+    top: '-80%',
   },
   character13: {
     ...commonChar,
-    left: "6%",
-    top: "-63%",
+    left: '6%',
+    top: '-63%',
   },
   character14: {
     ...commonChar,
-    left: "86%",
-    top: "-73%",
+    left: '86%',
+    top: '-73%',
   },
   character15: {
     ...commonChar,
-    left: "0%",
-    top: "-95%",
+    left: '0%',
+    top: '-95%',
   },
   character16: {
     ...commonChar,
-    left: "90%",
-    top: "-105%",
+    left: '90%',
+    top: '-105%',
   },
   character17: {
     ...commonChar,
-    left: "0%",
-    top: "-75%",
+    left: '0%',
+    top: '-75%',
   },
 });
 
@@ -823,83 +825,83 @@ const eighteenCharStyles = StyleSheet.create({
   ...commonStyles,
   character3: {
     ...commonChar,
-    left: "65%",
-    top: "-15%",
+    left: '65%',
+    top: '-15%',
   },
   character4: {
     ...commonChar,
-    left: "10%",
-    top: "40%",
+    left: '10%',
+    top: '40%',
   },
   character5: {
     ...commonChar,
-    left: "27%",
-    top: "-35%",
+    left: '27%',
+    top: '-35%',
   },
   character6: {
     ...commonChar,
-    left: "80%",
-    top: "20%",
+    left: '80%',
+    top: '20%',
   },
   character7: {
     ...commonChar,
-    left: "78%",
-    top: "-42%",
+    left: '78%',
+    top: '-42%',
   },
   character8: {
     ...commonChar,
-    left: "10%",
-    top: "-52%",
+    left: '10%',
+    top: '-52%',
   },
   character9: {
     ...commonChar,
-    left: "65%",
-    top: "5%",
+    left: '65%',
+    top: '5%',
   },
   character10: {
     ...commonChar,
-    left: "25%",
-    top: "-5%",
+    left: '25%',
+    top: '-5%',
   },
   character11: {
     ...commonChar,
-    left: "5%",
-    top: "-70%",
+    left: '5%',
+    top: '-70%',
   },
   character12: {
     ...commonChar,
-    left: "86%",
-    top: "-80%",
+    left: '86%',
+    top: '-80%',
   },
   character13: {
     ...commonChar,
-    left: "6%",
-    top: "-63%",
+    left: '6%',
+    top: '-63%',
   },
   character14: {
     ...commonChar,
-    left: "86%",
-    top: "-73%",
+    left: '86%',
+    top: '-73%',
   },
   character15: {
     ...commonChar,
-    left: "0%",
-    top: "-95%",
+    left: '0%',
+    top: '-95%',
   },
   character16: {
     ...commonChar,
-    left: "90%",
-    top: "-105%",
+    left: '90%',
+    top: '-105%',
   },
   character17: {
     ...commonChar,
-    left: "0%",
-    top: "-75%",
+    left: '0%',
+    top: '-75%',
   },
   character18: {
     ...commonChar,
-    left: "90%",
-    top: "-85%",
+    left: '90%',
+    top: '-85%',
   },
 });
 
