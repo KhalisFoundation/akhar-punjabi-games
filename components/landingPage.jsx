@@ -9,7 +9,10 @@ import {
   ImageBackground,
 } from 'react-native';
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation, route }) {
+  const theWords = route.params.correctWords
+    ? route.params.correctWords
+    : 'NO WORDS YET';
   return (
     <ImageBackground
       source={require('../images/background.png')}
@@ -20,7 +23,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
-          navigation.navigate('Next');
+          navigation.navigate('play');
         }}
       >
         <Image style={styles.play} source={require('../images/Play.png')} />
@@ -41,7 +44,8 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.levelsTouchableOpacity}
         onPress={() => {
-          console.log('Levels');
+          console.log('correctWords');
+          navigation.navigate('correctWords', { wordLst: theWords });
         }}
       >
         <Image style={styles.levels} source={require('../images/levels.png')} />

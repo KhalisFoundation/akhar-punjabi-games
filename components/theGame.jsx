@@ -4,17 +4,32 @@ import * as Anvaad from 'anvaad-js';
 import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
-import { initialState, reducer, actions } from './state';
+import { initialState, reducer, actions } from '../state';
 import TheCircle from './circleForGame';
 
 function GameScreen({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  if (state.attempt === Anvaad.unicode(state.firstWord.text, true)) {
+  // console.log(state.correctWords);
+  if (
+    state.attempt === Anvaad.unicode(state.firstWord.text, true)
+    && state.topWord === ''
+  ) {
     dispatch(actions.setTopWord(state.attempt));
+    if (!state.correctWords.includes(state.firstWord)) {
+      dispatch(actions.setCorrectWords(state.firstWord));
+    }
+    // console.log(state.correctWords);
   }
-  if (state.attempt === Anvaad.unicode(state.secondWord.text, true)) {
+  if (
+    state.attempt === Anvaad.unicode(state.secondWord.text, true)
+    && state.bottomWord === ''
+  ) {
     dispatch(actions.setBottomWord(state.attempt));
+    if (!state.correctWords.includes(state.secondWord)) {
+      dispatch(actions.setCorrectWords(state.secondWord));
+    }
+    // console.log(state.correctWords);
   }
   return (
     <View style={styles.container}>
@@ -23,7 +38,7 @@ function GameScreen({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate('Home', { correctWords: state.correctWords });
         }}
       >
         <Image
