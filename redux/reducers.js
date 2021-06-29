@@ -1,4 +1,11 @@
-import getWords from "./util/generateWords";
+// import {
+//   SET_TOP_WORD,
+//   SET_BOTTOM_WORD,
+//   SET_ATTEMPT,
+//   SET_NEW_WORDS,
+//   SET_CORRECT_WORDS,
+// } from "./actions";
+import getWords from "../util/generateWords";
 
 const setWords = () => {
   const [charArray, firstWord, secondWord] = getWords();
@@ -6,7 +13,7 @@ const setWords = () => {
 };
 const generateWords = setWords();
 
-export const initialState = {
+const initialState = {
   topWord: "",
   bottomWord: "",
   attempt: "",
@@ -16,37 +23,7 @@ export const initialState = {
   correctWords: [],
 };
 
-export const actions = {
-  setTopWord: (word) => {
-    return {
-      type: "SET_TOP_WORD",
-      theWord: word,
-    };
-  },
-  setBottomWord: (word) => {
-    return {
-      type: "SET_BOTTOM_WORD",
-      theWord: word,
-    };
-  },
-  setAttempt: (word) => {
-    return {
-      type: "SET_ATTEMPT",
-      theWord: word,
-    };
-  },
-  setNewWords: {
-    type: "SET_NEW_WORDS",
-  },
-  setCorrectWords: (word) => {
-    return {
-      type: "SET_CORRECT_WORDS",
-      theWord: word,
-    };
-  },
-};
-
-export function theReducer(state = initialState, action) {
+function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
@@ -87,4 +64,7 @@ export function theReducer(state = initialState, action) {
       correctWords: wordsLst,
     };
   }
+  return { ...state }; //default
 }
+
+export default theGameReducer;

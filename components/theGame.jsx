@@ -4,32 +4,35 @@ import * as Anvaad from 'anvaad-js';
 import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import TheCircle from './circleForGame';
-import { initialState, reducer, actions } from '../state';
+
+import {
+  setTopWord,
+  setBottomWord,
+  setAttempt,
+  setNewWords,
+  setCorrectWords,
+} from '../redux/actions';
 
 function GameScreen({ navigation }) {
-  // const {
-  //   topWord,
-  //   bottomWord,
-  //   attempt,
-  //   charArray,
-  //   firstWord,
-  //   secondWord,
-  //   correctWords,
-  // } = useSelector((state) => state.reducer);
+  const state = useSelector((theState) => {
+    return theState.theGameReducer;
+  });
+  // console.log(state);
 
-  // const dispatch = useDispatch();
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const dispatch = useDispatch();
+
+  // const [state, dispatch] = React.useReducer(reducer, initialState);
 
   // console.log(state.correctWords);
   if (
     state.attempt === Anvaad.unicode(state.firstWord.text, true)
     && state.topWord === ''
   ) {
-    dispatch(actions.setTopWord(state.attempt));
+    dispatch(setTopWord(state.attempt));
     if (!state.correctWords.includes(state.firstWord)) {
-      dispatch(actions.setCorrectWords(state.firstWord));
+      dispatch(setCorrectWords(state.firstWord));
     }
     // console.log(state.correctWords);
   }
@@ -37,9 +40,9 @@ function GameScreen({ navigation }) {
     state.attempt === Anvaad.unicode(state.secondWord.text, true)
     && state.bottomWord === ''
   ) {
-    dispatch(actions.setBottomWord(state.attempt));
+    dispatch(setBottomWord(state.attempt));
     if (!state.correctWords.includes(state.secondWord)) {
-      dispatch(actions.setCorrectWords(state.secondWord));
+      dispatch(setCorrectWords(state.secondWord));
     }
     // console.log(state.correctWords);
   }
@@ -70,7 +73,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(actions.setTopWord(state.firstWord.text));
+            dispatch(setTopWord(state.firstWord.text));
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -89,7 +92,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(actions.setBottomWord(state.secondWord.text));
+            dispatch(setBottomWord(state.secondWord.text));
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -98,7 +101,7 @@ function GameScreen({ navigation }) {
           style={styles.newWord}
           title="New Words"
           onPress={() => {
-            dispatch(actions.setNewWords);
+            dispatch(setNewWords());
           }}
         >
           <Text>New Word</Text>
@@ -113,7 +116,7 @@ function GameScreen({ navigation }) {
           style={styles.clearBox}
           onPress={() => {
             // setAttempt("");
-            dispatch(actions.setAttempt(''));
+            dispatch(setAttempt(''));
           }}
         >
           <Text style={styles.clearBoxText}>CLEAR</Text>
@@ -122,7 +125,7 @@ function GameScreen({ navigation }) {
 
       <TheCircle
         charArray={state.charArray}
-        setAttempt={actions.setAttempt}
+        // setAttempt={actions.setAttempt}
         dispatch={dispatch}
         state={state}
       />

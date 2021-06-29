@@ -6,13 +6,14 @@ import HomeScreen from './components/landingPage';
 import GameScreen from './components/theGame';
 import RightWords from './components/wordsCompleted';
 
-import Store from './store';
+import { Store } from './redux/store';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <Provider store={Store}>
+      {console.log('hi')}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
