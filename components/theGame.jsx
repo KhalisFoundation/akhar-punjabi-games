@@ -4,18 +4,19 @@ import * as Anvaad from 'anvaad-js';
 import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
-import { initialState, reducer, actions } from './state';
+import { useSelector, useDispatch } from 'react-redux';
 import TheCircle from './circleForGame';
 
-function GameScreen({ navigation }) {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+import {
+  setTopWord,
+  setBottomWord,
+  setAttempt,
+  setNewWords,
+} from '../redux/actions';
 
-  if (state.attempt === Anvaad.unicode(state.firstWord.text, true)) {
-    dispatch(actions.setTopWord(state.attempt));
-  }
-  if (state.attempt === Anvaad.unicode(state.secondWord.text, true)) {
-    dispatch(actions.setBottomWord(state.attempt));
-  }
+function GameScreen({ navigation }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -23,7 +24,7 @@ function GameScreen({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate('Home', { correctWords: state.correctWords });
         }}
       >
         <Image
@@ -33,7 +34,11 @@ function GameScreen({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
-        <Text style={styles.hint}>{`Len: ${state.firstWord.text.length}`}</Text>
+        <Text
+          style={styles.hint}
+        >
+          {`Len: ${state.firstWord.engText.length}`}
+        </Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
           <View style={styles.definition}>
@@ -43,13 +48,13 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(actions.setTopWord(state.firstWord.text));
+            dispatch(setTopWord());
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
         </TouchableOpacity>
         <Text style={styles.hint}>
-          {`Len: ${state.secondWord.text.length}`}
+          {`Len: ${state.secondWord.engText.length}`}
         </Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>
@@ -62,7 +67,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(actions.setBottomWord(state.secondWord.text));
+            dispatch(setBottomWord());
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -71,7 +76,7 @@ function GameScreen({ navigation }) {
           style={styles.newWord}
           title="New Words"
           onPress={() => {
-            dispatch(actions.setNewWords);
+            dispatch(setNewWords());
           }}
         >
           <Text>New Word</Text>
@@ -85,8 +90,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            // setAttempt("");
-            dispatch(actions.setAttempt(''));
+            dispatch(setAttempt(''));
           }}
         >
           <Text style={styles.clearBoxText}>CLEAR</Text>
@@ -95,7 +99,7 @@ function GameScreen({ navigation }) {
 
       <TheCircle
         charArray={state.charArray}
-        setAttempt={actions.setAttempt}
+        // setAttempt={actions.setAttempt}
         dispatch={dispatch}
         state={state}
       />

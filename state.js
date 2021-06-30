@@ -1,4 +1,4 @@
-import getWords from "../util/generateWords";
+import getWords from "./util/generateWords";
 
 const setWords = () => {
   const [charArray, firstWord, secondWord] = getWords();
@@ -13,6 +13,7 @@ export const initialState = {
   charArray: generateWords[0],
   firstWord: generateWords[1],
   secondWord: generateWords[2],
+  correctWords: [],
 };
 
 export const actions = {
@@ -37,9 +38,15 @@ export const actions = {
   setNewWords: {
     type: "SET_NEW_WORDS",
   },
+  setCorrectWords: (word) => {
+    return {
+      type: "SET_CORRECT_WORDS",
+      theWord: word,
+    };
+  },
 };
 
-export function reducer(state, action) {
+export function theReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
@@ -63,10 +70,21 @@ export function reducer(state, action) {
   if (action.type === "SET_NEW_WORDS") {
     const generateWords = setWords();
     return {
-      ...initialState, //this makes all the boxes blank like there were initaly
+      ...state,
+      topWord: "",
+      bottomWord: "",
+      attempt: "",
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
+    };
+  }
+  if (action.type === "SET_CORRECT_WORDS") {
+    const wordsLst = state.correctWords;
+    wordsLst.push(action.theWord);
+    return {
+      ...state,
+      correctWords: wordsLst,
     };
   }
 }

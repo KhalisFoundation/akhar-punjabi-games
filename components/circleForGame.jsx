@@ -5,18 +5,26 @@ import * as React from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setAttempt,
+  setBottomWord,
+  setTopWord,
+  setCorrectWords,
+} from '../redux/actions';
 
-function TheCircle(props) {
-  // there can only be from 4-18 characters as input
-  return charDisplay(
-    props.charArray,
-    props.setAttempt,
-    props.dispatch,
-    props.state.attempt
-  );
+function TheCircle() {
+  // there can only be from 3-18 characters as input
+  return charDisplay();
 }
 
-function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
+function charDisplay() {
+  const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
+
+  const { charArray } = state;
+  const prevAttempt = state.attempt;
+
   const charatersCount = charArray.length;
 
   const numToWord = {
@@ -79,6 +87,21 @@ function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
     character17: styleSheet.character17,
     character18: styleSheet.character18,
   };
+
+  const ifCorrectWord = (word) => {
+    if (word === state.firstWord.engText && state.topWord === '') {
+      dispatch(setTopWord());
+      if (!state.correctWords.includes(state.firstWord)) {
+        dispatch(setCorrectWords(state.firstWord));
+      }
+    }
+    if (word === state.secondWord.engText && state.bottomWord === '') {
+      dispatch(setBottomWord());
+      if (!state.correctWords.includes(state.secondWord)) {
+        dispatch(setCorrectWords(state.secondWord));
+      }
+    }
+  };
   return (
     <View style={styleSheet.lettersCircle}>
       {charArray.map((char) => {
@@ -89,7 +112,10 @@ function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
           <TouchableOpacity
             onPress={() => {
               let final;
-              if (char === 'i' && prevAttempt !== '') {
+
+              if (prevAttempt === undefined) {
+                final = char;
+              } else if (char === 'i' && prevAttempt !== '') {
                 /* reason for doing this is so you can type ਰਹਿਣ correctly.
                 If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer
                 because ਰਹਿਣ changes to ਰਹਣਿ */
@@ -102,6 +128,7 @@ function charDisplay(charArray, setAttempt, dispatch, prevAttempt) {
                 final = prevAttempt + char;
               }
               dispatch(setAttempt(final));
+              ifCorrectWord(final);
             }}
             key={char}
             style={getStylesAttributes[charNum]}

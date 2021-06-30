@@ -9,7 +9,8 @@ import {
   ImageBackground,
 } from 'react-native';
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation, route }) {
+  const theWords = route.params.correctWords;
   return (
     <ImageBackground
       source={require('../images/background.png')}
@@ -20,7 +21,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
-          navigation.navigate('Next');
+          navigation.navigate('play');
         }}
       >
         <Image style={styles.play} source={require('../images/Play.png')} />
@@ -41,7 +42,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.levelsTouchableOpacity}
         onPress={() => {
-          console.log('Levels');
+          navigation.navigate('correctWords', { wordLst: theWords }); // how to pass params to other screen. We probaly won't need but there just for refrence
         }}
       >
         <Image style={styles.levels} source={require('../images/levels.png')} />
