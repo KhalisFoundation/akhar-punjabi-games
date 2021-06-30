@@ -8,25 +8,59 @@ import {
   Image,
   FlatList,
 } from "react-native";
+import { useSelector } from "react-redux";
 import Level from "./levelDisplays";
 
 function RightWords({ navigation }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+  // const theWords=state.correctWords
+  console.log(state.correctWords);
   const theWords = [
-    { text: "ਨਾਉ", meaning: "Naam, name", level: 10 },
-    { text: "ਏਕ", meaning: "one (MP - ik)", level: 11 },
-    { text: "ਕਰਹਿ", meaning: "karnaa - to do", level: 3 },
-    { text: "ਆਇਆ", meaning: "aanaa - to come", level: 4 },
-    { text: "ਕਰਮ", meaning: "grace, action", level: 7 },
-    { text: "ਰੰਗ", meaning: "dye, love", level: 5 },
-    { text: "ਅਨਦਿਨੁ", meaning: "daily", level: 7 },
-    { text: "ਚਰਨ", meaning: "feet - symbolizes devotion, humility", level: 1 },
-    { text: "ਅਮਰਿਤ", meaning: "nectar, immortality", level: 10 },
-    { text: "ਦੁਖ", meaning: "suffering, unhappiness", level: 16 },
-    { text: "ਸਾਧ", meaning: "saintly person,", level: 22 },
-    { text: "ਕੀਆ", meaning: "action, (MP - keeta)", level: 18 },
-    { text: "ਕਰਤਾ", meaning: "creator", level: 20 },
-    { text: "ਪੑੀਤ", meaning: "love", level: 14 },
-    { text: "ਅਵਰੁ", meaning: "other", level: 21 },
+    /* this is just here for testing purposous. To mess around with the levels display.
+    state.correctWords has all the correct words completed 
+    */
+    {
+      engText: "topI",
+      punjabiText: "ਟੋਪੀ",
+      meaning: "hat",
+      type: "Punjabi",
+      level: 16,
+    },
+    {
+      engText: "vycx",
+      punjabiText: "ਵੇਚਣ",
+      meaning: "sell",
+      type: "Punjabi",
+      level: 11,
+    },
+    {
+      engText: "GtwE",
+      punjabiText: "ਘਟਾਓ",
+      meaning: "subtract",
+      type: "Punjabi",
+      level: 2,
+    },
+    {
+      engText: "Gtnw",
+      punjabiText: "ਘਟਨਾ",
+      meaning: "event",
+      type: "Punjabi",
+      level: 2,
+    },
+    {
+      engText: "Kws",
+      punjabiText: "ਖਾਸ",
+      meaning: "particular",
+      type: "Punjabi",
+      level: 2,
+    },
+    {
+      engText: "sOdw",
+      punjabiText: "ਸੌਦਾ",
+      meaning: "deal",
+      type: "Punjabi",
+      level: 18,
+    },
   ];
 
   const levelsWithWords = {};

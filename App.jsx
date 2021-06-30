@@ -13,7 +13,6 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <Provider store={Store}>
-      {console.log('hi')}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

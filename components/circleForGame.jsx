@@ -14,7 +14,7 @@ import {
 } from '../redux/actions';
 
 function TheCircle() {
-  // there can only be from 4-18 characters as input
+  // there can only be from 3-18 characters as input
   return charDisplay();
 }
 
@@ -89,13 +89,13 @@ function charDisplay() {
   };
 
   const ifCorrectWord = (word) => {
-    if (word === state.firstWord.text && state.topWord === '') {
+    if (word === state.firstWord.engText && state.topWord === '') {
       dispatch(setTopWord());
       if (!state.correctWords.includes(state.firstWord)) {
         dispatch(setCorrectWords(state.firstWord));
       }
     }
-    if (word === state.secondWord.text && state.bottomWord === '') {
+    if (word === state.secondWord.engText && state.bottomWord === '') {
       dispatch(setBottomWord());
       if (!state.correctWords.includes(state.secondWord)) {
         dispatch(setCorrectWords(state.secondWord));

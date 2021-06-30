@@ -14,7 +14,7 @@ function Level({ title, words }) {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <FlatList
-        keyExtractor={(word) => word.text}
+        keyExtractor={(word) => word.engText}
         data={words}
         // scrollEnabled={true}
         renderItem={({ item }) => {
@@ -25,7 +25,9 @@ function Level({ title, words }) {
               }}
             >
               <View style={styles.word}>
-                <Text style={styles.wordText}>{Anvaad.unicode(item.text)}</Text>
+                <Text style={styles.wordText}>
+                  {Anvaad.unicode(item.engText)}
+                </Text>
               </View>
             </TouchableOpacity>
           );

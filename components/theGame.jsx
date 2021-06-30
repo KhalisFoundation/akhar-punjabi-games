@@ -15,30 +15,8 @@ import {
 } from '../redux/actions';
 
 function GameScreen({ navigation }) {
-  const state = useSelector((theState) => {
-    return theState.theGameReducer;
-  });
+  const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-
-  // if (
-  //   state.attempt === Anvaad.unicode(state.firstWord.text, true) &&
-  //   state.topWord === ""
-  // ) {
-  //   dispatch(setTopWord());
-  //   if (!state.correctWords.includes(state.firstWord)) {
-  //     dispatch(setCorrectWords(state.firstWord));
-  //   }
-  // }
-  // if (
-  //   state.attempt === Anvaad.unicode(state.secondWord.text, true) &&
-  //   state.bottomWord === ""
-  // ) {
-  //   dispatch(setBottomWord());
-  //   if (!state.correctWords.includes(state.secondWord)) {
-  //     dispatch(setCorrectWords(state.secondWord));
-  //   }
-  //   // console.log(state.correctWords);
-  // }
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -56,7 +34,11 @@ function GameScreen({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       <View style={styles.wordBoxAnswers}>
-        <Text style={styles.hint}>{`Len: ${state.firstWord.text.length}`}</Text>
+        <Text
+          style={styles.hint}
+        >
+          {`Len: ${state.firstWord.engText.length}`}
+        </Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
           <View style={styles.definition}>
@@ -72,7 +54,7 @@ function GameScreen({ navigation }) {
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
         </TouchableOpacity>
         <Text style={styles.hint}>
-          {`Len: ${state.secondWord.text.length}`}
+          {`Len: ${state.secondWord.engText.length}`}
         </Text>
         <View style={styles.wordBoxText}>
           <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>

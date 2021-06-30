@@ -10,9 +10,7 @@ import {
 } from 'react-native';
 
 function HomeScreen({ navigation, route }) {
-  const theWords = route.params.correctWords
-    ? route.params.correctWords
-    : 'NO WORDS YET';
+  const theWords = route.params.correctWords;
   return (
     <ImageBackground
       source={require('../images/background.png')}
@@ -44,8 +42,7 @@ function HomeScreen({ navigation, route }) {
       <TouchableOpacity
         style={styles.levelsTouchableOpacity}
         onPress={() => {
-          console.log('correctWords');
-          navigation.navigate('correctWords', { wordLst: theWords });
+          navigation.navigate('correctWords', { wordLst: theWords }); // how to pass params to other screen. We probaly won't need but there just for refrence
         }}
       >
         <Image style={styles.levels} source={require('../images/levels.png')} />
