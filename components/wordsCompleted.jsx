@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
+import * as React from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from "react-native";
-import { useSelector } from "react-redux";
-import Level from "./levelDisplays";
+} from 'react-native';
+import { useSelector } from 'react-redux';
+import Level from './levelDisplays';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -17,48 +17,48 @@ function RightWords({ navigation }) {
   console.log(state.correctWords);
   const theWords = [
     /* this is just here for testing purposous. To mess around with the levels display.
-    state.correctWords has all the correct words completed 
+    state.correctWords has all the correct words completed
     */
     {
-      engText: "topI",
-      punjabiText: "ਟੋਪੀ",
-      meaning: "hat",
-      type: "Punjabi",
+      engText: 'topI',
+      punjabiText: 'ਟੋਪੀ',
+      meaning: 'hat',
+      type: 'Punjabi',
       level: 16,
     },
     {
-      engText: "vycx",
-      punjabiText: "ਵੇਚਣ",
-      meaning: "sell",
-      type: "Punjabi",
+      engText: 'vycx',
+      punjabiText: 'ਵੇਚਣ',
+      meaning: 'sell',
+      type: 'Punjabi',
       level: 11,
     },
     {
-      engText: "GtwE",
-      punjabiText: "ਘਟਾਓ",
-      meaning: "subtract",
-      type: "Punjabi",
+      engText: 'GtwE',
+      punjabiText: 'ਘਟਾਓ',
+      meaning: 'subtract',
+      type: 'Punjabi',
       level: 2,
     },
     {
-      engText: "Gtnw",
-      punjabiText: "ਘਟਨਾ",
-      meaning: "event",
-      type: "Punjabi",
+      engText: 'Gtnw',
+      punjabiText: 'ਘਟਨਾ',
+      meaning: 'event',
+      type: 'Punjabi',
       level: 2,
     },
     {
-      engText: "Kws",
-      punjabiText: "ਖਾਸ",
-      meaning: "particular",
-      type: "Punjabi",
+      engText: 'Kws',
+      punjabiText: 'ਖਾਸ',
+      meaning: 'particular',
+      type: 'Punjabi',
       level: 2,
     },
     {
-      engText: "sOdw",
-      punjabiText: "ਸੌਦਾ",
-      meaning: "deal",
-      type: "Punjabi",
+      engText: 'sOdw',
+      punjabiText: 'ਸੌਦਾ',
+      meaning: 'deal',
+      type: 'Punjabi',
       level: 18,
     },
   ];
@@ -70,7 +70,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return "nothing";
+    return 'nothing';
   });
   // const levels = [
   //   { key: "1", text: "LEVEL 1", words: level1Words },
@@ -93,11 +93,11 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate('Home');
         }}
       >
         <Image
-          source={require("../images/left_arrow.png")}
+          source={require('../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -122,32 +122,32 @@ function RightWords({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#5F909C",
-    paddingTop: "9%",
-    justifyContent: "center",
+    alignItems: 'center',
+    backgroundColor: '#5F909C',
+    paddingTop: '9%',
+    justifyContent: 'center',
   },
   backButton: {
-    width: "10%",
-    height: "7%",
-    right: "40%",
+    width: '10%',
+    height: '7%',
+    right: '40%',
   },
   backArrow: {
-    width: "90%",
-    height: "90%",
+    width: '90%',
+    height: '90%',
   },
   // title: {
   //   fontSize: 60,
   //   bottom: "10%",
   // },
   listContainer: {
-    width: "95%",
+    width: '95%',
     // backgroundColor: "yellow",
   },
   list: {
-    width: "90%",
+    width: '90%',
     // backgroundColor: "blue",
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 

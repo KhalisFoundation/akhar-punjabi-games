@@ -1,4 +1,4 @@
-import { words } from "./allWords";
+import { words } from './allWords';
 
 export default function getWords() {
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
