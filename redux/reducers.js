@@ -27,14 +27,14 @@ function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
-      topWord: action.theWord,
+      topWord: state.firstWord.text,
       attempt: "",
     };
   }
   if (action.type === "SET_BOTTOM_WORD") {
     return {
       ...state,
-      bottomWord: action.theWord,
+      bottomWord: state.secondWord.text,
       attempt: "",
     };
   }

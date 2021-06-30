@@ -4,16 +4,14 @@ export const SET_ATTEMPT = "SET_ATTEMPT";
 export const SET_NEW_WORDS = "SET_NEW_WORDS";
 export const SET_CORRECT_WORDS = "SET_CORRECT_WORDS";
 
-export const setTopWord = (word) => (dispatch) => {
+export const setTopWord = () => (dispatch) => {
   dispatch({
     type: "SET_TOP_WORD",
-    theWord: word,
   });
 };
-export const setBottomWord = (word) => (dispatch) => {
+export const setBottomWord = () => (dispatch) => {
   dispatch({
     type: "SET_BOTTOM_WORD",
-    theWord: word,
   });
 };
 export const setAttempt = (word) => (dispatch) => {

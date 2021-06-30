@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   Text,
@@ -7,27 +7,26 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from 'react-native';
-import Level from './levelDisplays';
+} from "react-native";
+import Level from "./levelDisplays";
 
 function RightWords({ navigation }) {
-  // const theWords = route.params.wordLst;
   const theWords = [
-    { text: 'ਨਾਉ', meaning: 'Naam, name', level: 10 },
-    { text: 'ਏਕ', meaning: 'one (MP - ik)', level: 11 },
-    { text: 'ਕਰਹਿ', meaning: 'karnaa - to do', level: 3 },
-    { text: 'ਆਇਆ', meaning: 'aanaa - to come', level: 4 },
-    { text: 'ਕਰਮ', meaning: 'grace, action', level: 7 },
-    { text: 'ਰੰਗ', meaning: 'dye, love', level: 5 },
-    { text: 'ਅਨਦਿਨੁ', meaning: 'daily', level: 7 },
-    { text: 'ਚਰਨ', meaning: 'feet - symbolizes devotion, humility', level: 1 },
-    { text: 'ਅਮਰਿਤ', meaning: 'nectar, immortality', level: 10 },
-    { text: 'ਦੁਖ', meaning: 'suffering, unhappiness', level: 16 },
-    { text: 'ਸਾਧ', meaning: 'saintly person,', level: 22 },
-    { text: 'ਕੀਆ', meaning: 'action, (MP - keeta)', level: 18 },
-    { text: 'ਕਰਤਾ', meaning: 'creator', level: 20 },
-    { text: 'ਪੑੀਤ', meaning: 'love', level: 14 },
-    { text: 'ਅਵਰੁ', meaning: 'other', level: 21 },
+    { text: "ਨਾਉ", meaning: "Naam, name", level: 10 },
+    { text: "ਏਕ", meaning: "one (MP - ik)", level: 11 },
+    { text: "ਕਰਹਿ", meaning: "karnaa - to do", level: 3 },
+    { text: "ਆਇਆ", meaning: "aanaa - to come", level: 4 },
+    { text: "ਕਰਮ", meaning: "grace, action", level: 7 },
+    { text: "ਰੰਗ", meaning: "dye, love", level: 5 },
+    { text: "ਅਨਦਿਨੁ", meaning: "daily", level: 7 },
+    { text: "ਚਰਨ", meaning: "feet - symbolizes devotion, humility", level: 1 },
+    { text: "ਅਮਰਿਤ", meaning: "nectar, immortality", level: 10 },
+    { text: "ਦੁਖ", meaning: "suffering, unhappiness", level: 16 },
+    { text: "ਸਾਧ", meaning: "saintly person,", level: 22 },
+    { text: "ਕੀਆ", meaning: "action, (MP - keeta)", level: 18 },
+    { text: "ਕਰਤਾ", meaning: "creator", level: 20 },
+    { text: "ਪੑੀਤ", meaning: "love", level: 14 },
+    { text: "ਅਵਰੁ", meaning: "other", level: 21 },
   ];
 
   const levelsWithWords = {};
@@ -37,7 +36,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return 'nothing';
+    return "nothing";
   });
   // const levels = [
   //   { key: "1", text: "LEVEL 1", words: level1Words },
@@ -60,15 +59,16 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate("Home");
         }}
       >
         <Image
-          source={require('../images/left_arrow.png')}
+          source={require("../images/left_arrow.png")}
           style={styles.backArrow}
         />
       </TouchableOpacity>
       <FlatList
+        style={styles.listContainer}
         data={levels}
         // scrollEnabled={false}
         renderItem={({ item }) => {
@@ -88,27 +88,32 @@ function RightWords({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#5F909C',
-    paddingTop: '9%',
+    alignItems: "center",
+    backgroundColor: "#5F909C",
+    paddingTop: "9%",
+    justifyContent: "center",
   },
   backButton: {
-    width: '10%',
-    height: '7%',
-    right: '40%',
+    width: "10%",
+    height: "7%",
+    right: "40%",
   },
   backArrow: {
-    width: '90%',
-    height: '90%',
+    width: "90%",
+    height: "90%",
   },
   // title: {
   //   fontSize: 60,
   //   bottom: "10%",
   // },
+  listContainer: {
+    width: "95%",
+    // backgroundColor: "yellow",
+  },
   list: {
-    // width: "100%",
-    width: 300,
-    backgroundColor: 'blue',
+    width: "90%",
+    // backgroundColor: "blue",
+    alignItems: "center",
   },
 });
 

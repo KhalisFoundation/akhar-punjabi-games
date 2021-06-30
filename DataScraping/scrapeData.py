@@ -139,8 +139,8 @@ lines=f.readlines()
 allWords=[]
 for i in lines: 
     line=i[:-4]
-    word,meaning,theType=line.split(" , ")
-    allWords.append((word,meaning,theType))
+    engText,punjabiText,meaning,theType=line.split(" , ")
+    allWords.append((engText,punjabiText,meaning,theType))
 
 def getLevel(word):
     if 'w' not in word and 'W' not in word and'i' not in word and 'I' not in word and'u' not in word and'U' not in word and 'y'not in word and'Y'not in word and  'o'not in word and'O' not in word and 'M' not in word:
@@ -191,35 +191,6 @@ def getLevel(word):
     else:
         return 22,"KannaBindi n above"
 
-words=[
-    'prswd',
-    'soeI', 
-    'ikrpw',
-    'sMq',
-    'AMqr',
-    'Bgq',
-    'isau',
-    'ikAw',
-    'sgl',
-    'haumY',
-    'pweIAYtain',
-    'hy',
-    'Gr',
-    'Sbd',
-    'iml',
-    'hm',
-    'duK',
-    'AwvY',
-    'BweI',
-    'suAwmIster',
-    'Awsw',
-    'srb',
-    'qn',
-]
-# for i in words:
-#     print(i,end=": ")
-#     print(getLevel(i))
-
 
 
 obj=open("./DataScraping/obj.js","w",encoding="utf-8")
@@ -228,21 +199,23 @@ data=[]
 obj.write("export const words=[")
 for line in allWords:
     obj.write("{")
-    word=line[0]
-    meaning=line[1]
+    engText=line[0]
+    punjabiText=line[1]
+    meaning=line[2]
+    theType=line[3]
+    theLevel=getLevel(engText)[0]
     if "\'" in meaning:
         meaning=meaning.replace("\'","\"")
-    theType=line[2]
-    theLine=f"text : \'{word}\',meaning:\'{meaning}\',type:{theType},level:{getLevel(word)[0]}"
+    theLine=f"engText : \'{engText}\',punjabiText: \'{punjabiText}\',meaning:\'{meaning}\',type:{theType},level:{theLevel}"
     obj.write(theLine)
     obj.write("},\n")
-    forCsv=(word,meaning,theType,getLevel(line[0])[0])
+    forCsv=(engText,punjabiText,meaning,theType,theLevel)
     data.append(forCsv)
 
 obj.write("]")
 obj.close()
 
-f=open("./DataScraping/bestData.csv","w",newline="",encoding= "utf-8")
+f=open("./DataScraping/data.csv","w",newline="",encoding= "utf-8")
 writer=csv.writer(f)
 writer.writerows(data)
 f.close()

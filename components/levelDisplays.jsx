@@ -38,11 +38,12 @@ function Level({ title, words }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '50%',
-    alignItems: 'center',
+    width: '90%',
+    height: '100%',
+    // // height: "50%",
+    // alignItems: "center",
+    // paddingTop: "9%",
     backgroundColor: 'white',
-    paddingTop: '9%',
     borderRadius: 20,
   },
   backButton: {

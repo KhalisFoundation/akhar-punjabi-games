@@ -7,8 +7,8 @@ for (let i = 0; i < words.length; i++) {
   const wordLst = words[i].split(" , ").slice(0, -1);
   const [theWord, meaning, type] = wordLst;
   const eng = Anvaad.unicode(theWord, true);
-  wordLst[0] = eng;
-  // console.log(wordLst);
+  wordLst.unshift(eng);
+  console.log(wordLst);
   for (let i = 0; i < wordLst.length; i += 1) {
     fs.writeFileSync("./DataScraping/unicodeWords.txt", wordLst[i] + " , ", {
       flag: "a+",

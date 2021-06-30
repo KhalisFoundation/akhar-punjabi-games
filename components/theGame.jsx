@@ -12,40 +12,33 @@ import {
   setBottomWord,
   setAttempt,
   setNewWords,
-  setCorrectWords,
 } from '../redux/actions';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => {
     return theState.theGameReducer;
   });
-  // console.log(state);
-
   const dispatch = useDispatch();
 
-  // const [state, dispatch] = React.useReducer(reducer, initialState);
-
-  // console.log(state.correctWords);
-  if (
-    state.attempt === Anvaad.unicode(state.firstWord.text, true)
-    && state.topWord === ''
-  ) {
-    dispatch(setTopWord(state.attempt));
-    if (!state.correctWords.includes(state.firstWord)) {
-      dispatch(setCorrectWords(state.firstWord));
-    }
-    // console.log(state.correctWords);
-  }
-  if (
-    state.attempt === Anvaad.unicode(state.secondWord.text, true)
-    && state.bottomWord === ''
-  ) {
-    dispatch(setBottomWord(state.attempt));
-    if (!state.correctWords.includes(state.secondWord)) {
-      dispatch(setCorrectWords(state.secondWord));
-    }
-    // console.log(state.correctWords);
-  }
+  // if (
+  //   state.attempt === Anvaad.unicode(state.firstWord.text, true) &&
+  //   state.topWord === ""
+  // ) {
+  //   dispatch(setTopWord());
+  //   if (!state.correctWords.includes(state.firstWord)) {
+  //     dispatch(setCorrectWords(state.firstWord));
+  //   }
+  // }
+  // if (
+  //   state.attempt === Anvaad.unicode(state.secondWord.text, true) &&
+  //   state.bottomWord === ""
+  // ) {
+  //   dispatch(setBottomWord());
+  //   if (!state.correctWords.includes(state.secondWord)) {
+  //     dispatch(setCorrectWords(state.secondWord));
+  //   }
+  //   // console.log(state.correctWords);
+  // }
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -73,7 +66,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(setTopWord(state.firstWord.text));
+            dispatch(setTopWord());
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -92,7 +85,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.giveUp}
           onPress={() => {
-            dispatch(setBottomWord(state.secondWord.text));
+            dispatch(setBottomWord());
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -115,7 +108,6 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            // setAttempt("");
             dispatch(setAttempt(''));
           }}
         >
