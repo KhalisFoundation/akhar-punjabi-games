@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
+import * as React from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from "react-native";
-import { useSelector } from "react-redux";
-import Level from "./levelDisplays";
+} from 'react-native';
+import { useSelector } from 'react-redux';
+import Level from './levelDisplays';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -72,7 +72,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return "nothing";
+    return 'nothing';
   });
   // const levels = [
   //   { key: "1", text: "LEVEL 1", words: level1Words },
@@ -95,11 +95,11 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate('Home');
         }}
       >
         <Image
-          source={require("../images/left_arrow.png")}
+          source={require('../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -157,51 +157,51 @@ function RightWords({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: "center",
-    backgroundColor: "#5F909C",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
+    alignItems: 'center',
+    backgroundColor: '#5F909C',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
   },
   backButton: {
-    width: "10%",
-    height: "10%",
-    right: "40%",
-    top: "4%",
+    width: '10%',
+    height: '10%',
+    right: '40%',
+    top: '4%',
   },
   backArrow: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
   title: {
     fontSize: 32,
-    bottom: "55%",
+    bottom: '55%',
   },
   listContainer: {
-    backgroundColor: "yellow",
-    height: "50%",
-    width: "95%",
+    backgroundColor: 'yellow',
+    height: '50%',
+    width: '95%',
     borderRadius: 20,
   },
   answerBox: {
-    backgroundColor: "#D5F3FE",
-    width: "95%",
-    height: "20%",
+    backgroundColor: '#D5F3FE',
+    width: '95%',
+    height: '20%',
     borderRadius: 20,
   },
   answerRow: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   answerText: {
     fontSize: 20,
-    left: "1%",
-    color: "red",
+    left: '1%',
+    color: 'red',
   },
   answerForAnswerText: {
     fontSize: 20,
-    left: "1%",
+    left: '1%',
     // top: "10%",
-    color: "blue",
+    color: 'blue',
   },
 });
 
