@@ -17,6 +17,10 @@ import {
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+
+  // console.log(state);
+  // console.log(state.levelProgress[0]);
+
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -33,10 +37,19 @@ function GameScreen({ navigation }) {
         />
       </TouchableOpacity>
       <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
+      <View style={styles.levelDisplay}>
+        <Text>
+          Current Level:
+          {state.levelProgress[0].level}
+        </Text>
+        <Text>
+          Words Needed for next level:
+          {' '}
+          {state.levelProgress[0].wordsNeeded}
+        </Text>
+      </View>
       <View style={styles.wordBoxAnswers}>
-        <Text
-          style={styles.hint}
-        >
+        <Text style={styles.hint}>
           {`Len: ${state.firstWord.engText.length}`}
         </Text>
         <View style={styles.wordBoxText}>
@@ -49,6 +62,9 @@ function GameScreen({ navigation }) {
           style={styles.giveUp}
           onPress={() => {
             dispatch(setTopWord());
+            if (state.bottomWord !== '') {
+              dispatch(setNewWords());
+            }
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -68,6 +84,9 @@ function GameScreen({ navigation }) {
           style={styles.giveUp}
           onPress={() => {
             dispatch(setBottomWord());
+            if (state.topWord !== '') {
+              dispatch(setNewWords());
+            }
           }}
         >
           <Text style={styles.giveUpTxt}>GIVE UP</Text>
@@ -128,6 +147,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 60,
     bottom: '10%',
+  },
+  levelDisplay: {
+    backgroundColor: '#f8f8f8',
+    bottom: '10%',
+    left: '20%',
   },
   wordBoxAnswers: {
     bottom: 65,

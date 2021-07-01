@@ -11,6 +11,8 @@ import {
   setBottomWord,
   setTopWord,
   setCorrectWords,
+  setLevelProgress,
+  setNewWords,
 } from '../redux/actions';
 
 function TheCircle() {
@@ -93,15 +95,26 @@ function charDisplay() {
       dispatch(setTopWord());
       if (!state.correctWords.includes(state.firstWord)) {
         dispatch(setCorrectWords(state.firstWord));
+        dispatch(setLevelProgress(state.firstWord));
+      }
+      // if bottomWord is filled that means both are now answered so will get new words
+      if (state.bottomWord !== '') {
+        dispatch(setNewWords());
       }
     }
     if (word === state.secondWord.engText && state.bottomWord === '') {
       dispatch(setBottomWord());
       if (!state.correctWords.includes(state.secondWord)) {
         dispatch(setCorrectWords(state.secondWord));
+        dispatch(setLevelProgress(state.secondWord));
+      }
+      // if topWord is filled that means both are now answered so will get new words
+      if (state.topWord !== '') {
+        dispatch(setNewWords());
       }
     }
   };
+
   return (
     <View style={styleSheet.lettersCircle}>
       {charArray.map((char) => {

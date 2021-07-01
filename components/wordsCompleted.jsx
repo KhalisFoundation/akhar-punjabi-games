@@ -13,55 +13,57 @@ import Level from './levelDisplays';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
-  // const theWords=state.correctWords
-  console.log(state.correctWords);
-  const theWords = [
-    /* this is just here for testing purposous. To mess around with the levels display.
-    state.correctWords has all the correct words completed
-    */
-    {
-      engText: 'topI',
-      punjabiText: 'ਟੋਪੀ',
-      meaning: 'hat',
-      type: 'Punjabi',
-      level: 16,
-    },
-    {
-      engText: 'vycx',
-      punjabiText: 'ਵੇਚਣ',
-      meaning: 'sell',
-      type: 'Punjabi',
-      level: 11,
-    },
-    {
-      engText: 'GtwE',
-      punjabiText: 'ਘਟਾਓ',
-      meaning: 'subtract',
-      type: 'Punjabi',
-      level: 2,
-    },
-    {
-      engText: 'Gtnw',
-      punjabiText: 'ਘਟਨਾ',
-      meaning: 'event',
-      type: 'Punjabi',
-      level: 2,
-    },
-    {
-      engText: 'Kws',
-      punjabiText: 'ਖਾਸ',
-      meaning: 'particular',
-      type: 'Punjabi',
-      level: 2,
-    },
-    {
-      engText: 'sOdw',
-      punjabiText: 'ਸੌਦਾ',
-      meaning: 'deal',
-      type: 'Punjabi',
-      level: 18,
-    },
-  ];
+  const theWords = state.correctWords;
+
+  const [showAnswer, setAnswer] = React.useState({});
+  // console.log(state.correctWords);
+  // const theWords = [
+  //   /* this is just here for testing purposous. To mess around with the levels display.
+  //   state.correctWords has all the correct words completed
+  //   */
+  //   {
+  //     engText: "topI",
+  //     punjabiText: "ਟੋਪੀ",
+  //     meaning: "hat",
+  //     type: "Punjabi",
+  //     level: 2,
+  //   },
+  //   {
+  //     engText: "vycx",
+  //     punjabiText: "ਵੇਚਣ",
+  //     meaning: "sell",
+  //     type: "Punjabi",
+  //     level: 2,
+  //   },
+  //   {
+  //     engText: "GtwE",
+  //     punjabiText: "ਘਟਾਓ",
+  //     meaning: "subtract",
+  //     type: "Punjabi",
+  //     level: 2,
+  //   },
+  //   {
+  //     engText: "Gtnw",
+  //     punjabiText: "ਘਟਨਾ",
+  //     meaning: "event",
+  //     type: "Punjabi",
+  //     level: 2,
+  //   },
+  //   {
+  //     engText: "Kws",
+  //     punjabiText: "ਖਾਸ",
+  //     meaning: "particular",
+  //     type: "Punjabi",
+  //     level: 2,
+  //   },
+  //   {
+  //     engText: "sOdw",
+  //     punjabiText: "ਸੌਦਾ",
+  //     meaning: "deal",
+  //     type: "Punjabi",
+  //     level: 18,
+  //   },
+  // ];
 
   const levelsWithWords = {};
   theWords.map((word) => {
@@ -101,53 +103,105 @@ function RightWords({ navigation }) {
           style={styles.backArrow}
         />
       </TouchableOpacity>
+      <View>
+        <Text style={styles.title}>Words Completed</Text>
+      </View>
       <FlatList
         style={styles.listContainer}
         data={levels}
-        // scrollEnabled={false}
         renderItem={({ item }) => {
           return (
-            <View style={styles.list}>
-              <Level title={item.text} words={item.words} />
-              <Text>NEXT LEVEL</Text>
-            </View>
+            <Level
+              title={item.text}
+              theWords={item.words}
+              setAnswer={setAnswer}
+            />
           );
         }}
       />
-      <Text>HII</Text>
+      <Text>ANSWERS</Text>
+      <View style={styles.answerBox}>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Gurmukhi Text</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>
+            {showAnswer.punjabiText}
+          </Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>English Text</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.engText}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Meaning</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.meaning}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Level</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.level}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Type</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.type}</Text>
+        </View>
+      </View>
+      <Text>ਵਾਹਿਗੁਰੂਜੀਕਾਖਾਲਸਾਵਾਹਿਗੁਰੂਜੀਕੀਫਤੇ||</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
     backgroundColor: '#5F909C',
-    paddingTop: '9%',
     justifyContent: 'center',
+    width: '100%',
+    height: '100%',
   },
   backButton: {
     width: '10%',
-    height: '7%',
+    height: '10%',
     right: '40%',
+    top: '4%',
   },
   backArrow: {
-    width: '90%',
-    height: '90%',
+    width: '100%',
+    height: '100%',
   },
-  // title: {
-  //   fontSize: 60,
-  //   bottom: "10%",
-  // },
+  title: {
+    fontSize: 32,
+    bottom: '55%',
+  },
   listContainer: {
+    backgroundColor: 'yellow',
+    height: '50%',
     width: '95%',
-    // backgroundColor: "yellow",
+    borderRadius: 20,
   },
-  list: {
-    width: '90%',
-    // backgroundColor: "blue",
-    alignItems: 'center',
+  answerBox: {
+    backgroundColor: '#D5F3FE',
+    width: '95%',
+    height: '20%',
+    borderRadius: 20,
+  },
+  answerRow: {
+    flexDirection: 'row',
+  },
+  answerText: {
+    fontSize: 20,
+    left: '1%',
+    color: 'red',
+  },
+  answerForAnswerText: {
+    fontSize: 20,
+    left: '1%',
+    // top: "10%",
+    color: 'blue',
   },
 });
 

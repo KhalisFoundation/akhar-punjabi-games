@@ -9,22 +9,44 @@ import {
   FlatList,
 } from 'react-native';
 
-function Level({ title, words }) {
+function Level({ title, theWords, setAnswer }) {
+  let a = 0;
+  let words = theWords;
+  if (words === undefined) {
+    words = [
+      {
+        engText: 'koeI sæbd nhIN',
+        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
+        meaning: 'There are no words',
+        type: 'Punjabi',
+        level: 'N/A',
+      },
+    ];
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <FlatList
+        style={styles.flatList}
         keyExtractor={(word) => word.engText}
         data={words}
-        // scrollEnabled={true}
+        scrollEnabled
         renderItem={({ item }) => {
+          a += 1;
+          let wordStyle;
+          if (a % 2 === 0) {
+            wordStyle = styles.wordEven;
+          } else {
+            wordStyle = styles.wordOdd;
+          }
           return (
             <TouchableOpacity
               onPress={() => {
                 console.log(item.meaning);
+                setAnswer(item);
               }}
             >
-              <View style={styles.word}>
+              <View style={wordStyle}>
                 <Text style={styles.wordText}>
                   {Anvaad.unicode(item.engText)}
                 </Text>
@@ -40,36 +62,31 @@ function Level({ title, words }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '90%',
-    height: '100%',
-    // // height: "50%",
-    // alignItems: "center",
-    // paddingTop: "9%",
     backgroundColor: 'white',
-    borderRadius: 20,
-  },
-  backButton: {
-    width: '10%',
-    height: '7%',
-    right: '40%',
-  },
-  backArrow: {
-    width: '90%',
-    height: '90%',
+    // borderRadius: 20,
   },
   title: {
-    // fontSize: 60,
-    bottom: '10%',
+    textAlign: 'center',
+    fontSize: 30,
+    backgroundColor: '#66D3FA',
+    // borderRadius: 20,
   },
-  word: {
-    backgroundColor: 'red',
-    // top: -200,
-    // height: "10%",
-    // width: "150%",
+  flatList: {
+    // width: 200,
+    // height: 200,
+    // borderRadius: 20,
   },
-  //   wordText: {
-  //     fontSize: 20,
-  //   },
+  wordEven: {
+    backgroundColor: '#3C99DC',
+    // borderRadius: 20,
+  },
+  wordOdd: {
+    backgroundColor: '#D5F3FE',
+  },
+  wordText: {
+    fontSize: 60,
+    textAlign: 'center',
+  },
 });
 
 export default Level;
