@@ -22,28 +22,28 @@ const initialState = {
   secondWord: generateWords[2],
   correctWords: [],
   levelProgress: [
-    { level: 1, attemptsNeeded: 1 },
-    { level: 2, attemptsNeeded: 1 },
-    { level: 3, attemptsNeeded: 10 },
-    { level: 4, attemptsNeeded: 10 },
-    { level: 5, attemptsNeeded: 10 },
-    { level: 6, attemptsNeeded: 10 },
-    { level: 7, attemptsNeeded: 10 },
-    { level: 8, attemptsNeeded: 10 },
-    { level: 9, attemptsNeeded: 10 },
-    { level: 10, attemptsNeeded: 10 },
-    { level: 11, attemptsNeeded: 10 },
-    { level: 12, attemptsNeeded: 10 },
-    { level: 13, attemptsNeeded: 10 },
-    { level: 14, attemptsNeeded: 10 },
-    { level: 15, attemptsNeeded: 10 },
-    { level: 16, attemptsNeeded: 10 },
-    { level: 17, attemptsNeeded: 10 },
-    { level: 18, attemptsNeeded: 10 },
-    { level: 19, attemptsNeeded: 10 },
-    { level: 20, attemptsNeeded: 10 },
-    { level: 21, attemptsNeeded: 10 },
-    { level: 22, attemptsNeeded: 10 },
+    { level: 1, wordsNeeded: 2 },
+    { level: 2, wordsNeeded: 4 },
+    { level: 3, wordsNeeded: 10 },
+    { level: 4, wordsNeeded: 10 },
+    { level: 5, wordsNeeded: 10 },
+    { level: 6, wordsNeeded: 10 },
+    { level: 7, wordsNeeded: 10 },
+    { level: 8, wordsNeeded: 10 },
+    { level: 9, wordsNeeded: 10 },
+    { level: 10, wordsNeeded: 10 },
+    { level: 11, wordsNeeded: 10 },
+    { level: 12, wordsNeeded: 10 },
+    { level: 13, wordsNeeded: 10 },
+    { level: 14, wordsNeeded: 10 },
+    { level: 15, wordsNeeded: 10 },
+    { level: 16, wordsNeeded: 10 },
+    { level: 17, wordsNeeded: 10 },
+    { level: 18, wordsNeeded: 10 },
+    { level: 19, wordsNeeded: 10 },
+    { level: 20, wordsNeeded: 10 },
+    { level: 21, wordsNeeded: 10 },
+    { level: 22, wordsNeeded: 10 },
   ],
 };
 
@@ -70,13 +70,16 @@ function theGameReducer(state = initialState, action) {
   }
   if (action.type === "SET_LEVEL_PROGRESS") {
     let theLevelProgress = [...state.levelProgress];
-    const newAttemptsNeeded = theLevelProgress[0].attemptsNeeded - 1;
+    let newWordssNeeded = theLevelProgress[0].wordsNeeded;
+
+    if (action.theWord.level === theLevelProgress[0].level) {
+      newWordssNeeded -= 1;
+    }
     theLevelProgress[0] = {
       ...theLevelProgress[0],
-      attemptsNeeded: newAttemptsNeeded,
+      wordsNeeded: newWordssNeeded,
     };
-    // let theCurrentLevel = state.currentLevel;
-    if (newAttemptsNeeded === 0) {
+    if (newWordssNeeded === 0) {
       theLevelProgress = theLevelProgress.slice(1);
     }
     return {

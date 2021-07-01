@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   Text,
@@ -7,13 +7,15 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from 'react-native';
-import { useSelector } from 'react-redux';
-import Level from './levelDisplays';
+} from "react-native";
+import { useSelector } from "react-redux";
+import Level from "./levelDisplays";
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const theWords = state.correctWords;
+
+  const [showAnswer, setAnswer] = React.useState({});
   // console.log(state.correctWords);
   // const theWords = [
   //   /* this is just here for testing purposous. To mess around with the levels display.
@@ -70,7 +72,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return 'nothing';
+    return "nothing";
   });
   // const levels = [
   //   { key: "1", text: "LEVEL 1", words: level1Words },
@@ -93,11 +95,11 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate("Home");
         }}
       >
         <Image
-          source={require('../images/left_arrow.png')}
+          source={require("../images/left_arrow.png")}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -107,17 +109,47 @@ function RightWords({ navigation }) {
       <FlatList
         style={styles.listContainer}
         data={levels}
-        // scrollEnabled={false}
         renderItem={({ item }) => {
           return (
-            <View style={styles.list}>
-              <Level title={item.text} theWords={item.words} />
-              {/* <Text>NEXT LEVEL</Text> */}
-            </View>
+            <Level
+              title={item.text}
+              theWords={item.words}
+              setAnswer={setAnswer}
+            />
           );
         }}
       />
-      <Text>DONE</Text>
+      <Text>ANSWERS</Text>
+      <View style={styles.answerBox}>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Gurmukhi Text</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>
+            {showAnswer.punjabiText}
+          </Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>English Text</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.engText}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Meaning</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.meaning}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Level</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.level}</Text>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Type</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.type}</Text>
+        </View>
+      </View>
+      <Text>ਵਾਹਿਗੁਰੂਜੀਕਾਖਾਲਸਾਵਾਹਿਗੁਰੂਜੀਕੀਫਤੇ||</Text>
     </View>
   );
 }
@@ -125,35 +157,52 @@ function RightWords({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    // paddingTop: "5%",
-    alignItems: 'center',
-    backgroundColor: '#5F909C',
-    justifyContent: 'center',
+    alignItems: "center",
+    backgroundColor: "#5F909C",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
   },
   backButton: {
-    width: '10%',
-    height: '7%',
-    right: '40%',
-    top: '3%',
+    width: "10%",
+    height: "10%",
+    right: "40%",
+    top: "4%",
   },
   backArrow: {
-    width: '90%',
-    height: '90%',
+    width: "100%",
+    height: "100%",
   },
   title: {
     fontSize: 32,
-    bottom: '10%',
+    bottom: "55%",
   },
   listContainer: {
-    width: '100%',
-    backgroundColor: 'yellow',
-    height: '85%',
+    backgroundColor: "yellow",
+    height: "50%",
+    width: "95%",
+    borderRadius: 20,
   },
-  // list: {
-  //   width: "90%",
-  //   // backgroundColor: "blue",
-  //   alignItems: "center",
-  // },
+  answerBox: {
+    backgroundColor: "#D5F3FE",
+    width: "95%",
+    height: "20%",
+    borderRadius: 20,
+  },
+  answerRow: {
+    flexDirection: "row",
+  },
+  answerText: {
+    fontSize: 20,
+    left: "1%",
+    color: "red",
+  },
+  answerForAnswerText: {
+    fontSize: 20,
+    left: "1%",
+    // top: "10%",
+    color: "blue",
+  },
 });
 
 export default RightWords;

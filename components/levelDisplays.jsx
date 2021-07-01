@@ -1,24 +1,25 @@
 /* eslint-disable react-native/no-color-literals */
-import * as Anvaad from 'anvaad-js';
-import * as React from 'react';
+import * as Anvaad from "anvaad-js";
+import * as React from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
-} from 'react-native';
+} from "react-native";
 
-function Level({ title, theWords }) {
+function Level({ title, theWords, setAnswer }) {
   let a = 0;
   let words = theWords;
   if (words === undefined) {
     words = [
       {
-        engText: 'koeI sæbd nhIN',
-        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
-        meaning: 'There are no words',
-        type: 'Punjabi',
+        engText: "koeI sæbd nhIN",
+        punjabiText: "ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ",
+        meaning: "There are no words",
+        type: "Punjabi",
+        level: "N/A",
       },
     ];
   }
@@ -42,6 +43,7 @@ function Level({ title, theWords }) {
             <TouchableOpacity
               onPress={() => {
                 console.log(item.meaning);
+                setAnswer(item);
               }}
             >
               <View style={wordStyle}>
@@ -60,29 +62,30 @@ function Level({ title, theWords }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     // borderRadius: 20,
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 30,
-    backgroundColor: '#66D3FA',
+    backgroundColor: "#66D3FA",
+    // borderRadius: 20,
   },
   flatList: {
     // width: 200,
     // height: 200,
+    // borderRadius: 20,
   },
   wordEven: {
-    backgroundColor: '#3C99DC',
+    backgroundColor: "#3C99DC",
     // borderRadius: 20,
   },
   wordOdd: {
-    backgroundColor: '#D5F3FE',
-    // borderRadius: 20,
+    backgroundColor: "#D5F3FE",
   },
   wordText: {
     fontSize: 60,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
 
