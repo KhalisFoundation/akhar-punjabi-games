@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
+import * as React from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from "react-native";
-import Level from "./levelDisplays";
-import { useSelector } from "react-redux";
+} from 'react-native';
+import { useSelector } from 'react-redux';
+import Level from './levelDisplays';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -70,7 +70,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return "nothing";
+    return 'nothing';
   });
   // const levels = [
   //   { key: "1", text: "LEVEL 1", words: level1Words },
@@ -93,11 +93,11 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate('Home');
         }}
       >
         <Image
-          source={require("../images/left_arrow.png")}
+          source={require('../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -126,28 +126,28 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // paddingTop: "5%",
-    alignItems: "center",
-    backgroundColor: "#5F909C",
-    justifyContent: "center",
+    alignItems: 'center',
+    backgroundColor: '#5F909C',
+    justifyContent: 'center',
   },
   backButton: {
-    width: "10%",
-    height: "7%",
-    right: "40%",
-    top: "3%",
+    width: '10%',
+    height: '7%',
+    right: '40%',
+    top: '3%',
   },
   backArrow: {
-    width: "90%",
-    height: "90%",
+    width: '90%',
+    height: '90%',
   },
   title: {
     fontSize: 32,
-    bottom: "10%",
+    bottom: '10%',
   },
   listContainer: {
-    width: "100%",
-    backgroundColor: "yellow",
-    height: "85%",
+    width: '100%',
+    backgroundColor: 'yellow',
+    height: '85%',
   },
   // list: {
   //   width: "90%",
