@@ -1,6 +1,7 @@
-import { words } from './allWords';
+import { allWords } from "./allWords";
 
-export default function getWords() {
+export default function getWords(level) {
+  const words = allWords.filter((word) => word.level === level);
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
   const firstWord = getRandomWord();

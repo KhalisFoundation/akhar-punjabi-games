@@ -31,3 +31,8 @@ export const setCorrectWords = (word) => (dispatch) => {
     theWord: word,
   });
 };
+export const setLevelProgress = () => (dispatch) => {
+  dispatch({
+    type: "SET_LEVEL_PROGRESS",
+  });
+};
