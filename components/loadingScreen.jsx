@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import * as React from 'react';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 function Loading() {
   return (
@@ -13,7 +13,7 @@ function Loading() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     // borderRadius: 20,
   },
 });
