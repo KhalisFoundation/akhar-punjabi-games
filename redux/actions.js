@@ -51,3 +51,39 @@ export const setLevelProgress = (word) => (dispatch) => {
     theWord: word,
   });
 };
+
+//for state that are lists, we cant use the same functions in asyncStorage
+//because they only take in a word as a param
+
+export const setAllTheWords = (words) => (dispatch) => {
+  dispatch({
+    type: "SET_ALL_THE_WORDS",
+    words: words,
+  });
+};
+export const setTheNewWords = (chars, first, second) => (dispatch) => {
+  dispatch({
+    type: "SET_THE_NEW_WORDS",
+    chars,
+    first,
+    second,
+  });
+};
+export const setTheCorrectWords = (words) => (dispatch) => {
+  dispatch({
+    type: "SET_THE_CORRECT_WORDS",
+    words,
+  });
+};
+export const setTheGivenUpWords = (words) => (dispatch) => {
+  dispatch({
+    type: "SET_THE_GIVENUP_WORDS",
+    words,
+  });
+};
+export const setTheLevelProgress = (levels) => (dispatch) => {
+  dispatch({
+    type: "SET_THE_GIVENUP_WORDS",
+    levelProgress: levels,
+  });
+};

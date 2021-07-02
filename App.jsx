@@ -19,7 +19,6 @@ function App() {
             options={{ headerShown: false }}
             name="Home"
             component={HomeScreen}
-            initialParams={{ correctWords: [] }}
           />
           <Stack.Screen
             name="play"

@@ -19,6 +19,7 @@ import {
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       {/* BackButton */}
