@@ -12,58 +12,33 @@ import { useSelector } from 'react-redux';
 import Level from './levelDisplays';
 
 function RightWords({ navigation }) {
-  const state = useSelector((theState) => theState.theGameReducer);
-  const theWords = state.correctWords;
+  const longestMeaning = {
+    engText: '',
+    punjabiText: '',
+    meaning: '',
+    type: '',
+    level: '',
+    status: '',
+  };
+  const [showAnswer, setAnswer] = React.useState(longestMeaning);
 
-  const [showAnswer, setAnswer] = React.useState({});
-  // console.log(state.correctWords);
-  // const theWords = [
-  //   /* this is just here for testing purposous. To mess around with the levels display.
-  //   state.correctWords has all the correct words completed
-  //   */
-  //   {
-  //     engText: "topI",
-  //     punjabiText: "ਟੋਪੀ",
-  //     meaning: "hat",
-  //     type: "Punjabi",
-  //     level: 2,
-  //   },
-  //   {
-  //     engText: "vycx",
-  //     punjabiText: "ਵੇਚਣ",
-  //     meaning: "sell",
-  //     type: "Punjabi",
-  //     level: 2,
-  //   },
-  //   {
-  //     engText: "GtwE",
-  //     punjabiText: "ਘਟਾਓ",
-  //     meaning: "subtract",
-  //     type: "Punjabi",
-  //     level: 2,
-  //   },
-  //   {
-  //     engText: "Gtnw",
-  //     punjabiText: "ਘਟਨਾ",
-  //     meaning: "event",
-  //     type: "Punjabi",
-  //     level: 2,
-  //   },
-  //   {
-  //     engText: "Kws",
-  //     punjabiText: "ਖਾਸ",
-  //     meaning: "particular",
-  //     type: "Punjabi",
-  //     level: 2,
-  //   },
-  //   {
-  //     engText: "sOdw",
-  //     punjabiText: "ਸੌਦਾ",
-  //     meaning: "deal",
-  //     type: "Punjabi",
-  //     level: 18,
-  //   },
-  // ];
+  const state = useSelector((theState) => theState.theGameReducer);
+  const theCorrectWords = state.correctWords;
+  const theGivenUpWords = state.givenUpWords;
+
+  const theWords = theCorrectWords.map((word) => {
+    return {
+      ...word,
+      status: 'Answered correctly',
+    };
+  });
+  theGivenUpWords.map((word) => {
+    theWords.push({
+      ...word,
+      status: 'Given Up',
+    });
+    return 'nothing';
+  });
 
   const levelsWithWords = {};
   theWords.map((word) => {
@@ -74,13 +49,6 @@ function RightWords({ navigation }) {
     }
     return 'nothing';
   });
-  // const levels = [
-  //   { key: "1", text: "LEVEL 1", words: level1Words },
-  //   { key: "2", text: "LEVEL 2", words: level2Words },
-  //   { key: "3", text: "LEVEL 3", words: level3Words },
-  //   { key: "4", text: "LEVEL 4", words: level4Words },
-  //   { key: "5", text: "LEVEL 5", words: level5Words },
-  // ];
   const levels = [];
   for (let i = 0; i < 22; i += 1) {
     levels.push({
@@ -88,6 +56,26 @@ function RightWords({ navigation }) {
       text: `Level ${String(i + 1)}`,
       words: levelsWithWords[i + 1],
     });
+  }
+
+  function meaningLength(meaning) {
+    if (meaning.length < 60) {
+      return <Text style={styles.answerForAnswerText}>{meaning}</Text>;
+    }
+    let theMeaning = [];
+    for (let i = 0; i < meaning.length; i += 1) {
+      if (i % 50 === 0 && i !== 0) {
+        theMeaning.push('-');
+        theMeaning.push('\n');
+      }
+      theMeaning.push(meaning[i]);
+    }
+    theMeaning = theMeaning.join('');
+    return (
+      <Text style={{ ...styles.answerForAnswerText, fontSize: 12 }}>
+        {theMeaning}
+      </Text>
+    );
   }
   return (
     <View style={styles.container}>
@@ -106,20 +94,22 @@ function RightWords({ navigation }) {
       <View>
         <Text style={styles.title}>Words Completed</Text>
       </View>
-      <FlatList
-        style={styles.listContainer}
-        data={levels}
-        renderItem={({ item }) => {
-          return (
-            <Level
-              title={item.text}
-              theWords={item.words}
-              setAnswer={setAnswer}
-            />
-          );
-        }}
-      />
-      <Text>ANSWERS</Text>
+      <View style={styles.listContainer}>
+        <FlatList
+          // style={styles.listContainer}
+          data={levels}
+          renderItem={({ item }) => {
+            return (
+              <Level
+                title={item.text}
+                theWords={item.words}
+                setAnswer={setAnswer}
+              />
+            );
+          }}
+        />
+      </View>
+
       <View style={styles.answerBox}>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Gurmukhi Text</Text>
@@ -136,7 +126,7 @@ function RightWords({ navigation }) {
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Meaning</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>{showAnswer.meaning}</Text>
+          {meaningLength(showAnswer.meaning)}
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Level</Text>
@@ -148,8 +138,12 @@ function RightWords({ navigation }) {
           <Text style={styles.answerText}> : </Text>
           <Text style={styles.answerForAnswerText}>{showAnswer.type}</Text>
         </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.answerText}>Status</Text>
+          <Text style={styles.answerText}> : </Text>
+          <Text style={styles.answerForAnswerText}>{showAnswer.status}</Text>
+        </View>
       </View>
-      <Text>ਵਾਹਿਗੁਰੂਜੀਕਾਖਾਲਸਾਵਾਹਿਗੁਰੂਜੀਕੀਫਤੇ||</Text>
     </View>
   );
 }
@@ -167,27 +161,28 @@ const styles = StyleSheet.create({
     width: '10%',
     height: '10%',
     right: '40%',
-    top: '4%',
+    top: '3%',
   },
   backArrow: {
-    width: '100%',
-    height: '100%',
+    width: '70%',
+    height: '70%',
   },
   title: {
     fontSize: 32,
-    bottom: '55%',
+    bottom: '130%',
   },
   listContainer: {
     backgroundColor: 'yellow',
-    height: '50%',
     width: '95%',
-    borderRadius: 20,
+    height: '60%',
+    bottom: '5%',
   },
   answerBox: {
     backgroundColor: '#D5F3FE',
     width: '95%',
-    height: '20%',
+    height: '30%',
     borderRadius: 20,
+    bottom: '4%',
   },
   answerRow: {
     flexDirection: 'row',

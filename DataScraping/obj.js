@@ -1,4 +1,7 @@
-export const words = [
+const Gurbani = "Gurbani";
+const Punjabi = "Pun";
+
+const words = [
   {
     engText: "nwm",
     punjabiText: "ਨਾਮ",
@@ -11818,3 +11821,18 @@ export const words = [
     level: 6,
   },
 ];
+
+let max = words[0];
+
+const meaningLens = {};
+for (let i = 0; i < words.length; i += 1) {
+  if (max.meaning.length < words[i].meaning.length) {
+    max = words[i];
+  }
+  if (meaningLens[words[i].meaning.length] === undefined) {
+    meaningLens[words[i].meaning.length] = 1;
+  } else {
+    meaningLens[words[i].meaning.length] += 1;
+  }
+}
+console.log(meaningLens);

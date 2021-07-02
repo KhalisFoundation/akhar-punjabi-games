@@ -13,6 +13,7 @@ import {
   setCorrectWords,
   setLevelProgress,
   setNewWords,
+  setAllWords,
 } from '../redux/actions';
 
 function TheCircle() {
@@ -24,6 +25,8 @@ function charDisplay() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
 
+  // console.log(state.firstWord);
+  // console.log(state.secondWord);
   const { charArray } = state;
   const prevAttempt = state.attempt;
 
@@ -48,6 +51,7 @@ function charDisplay() {
     18: 'eighteen',
   };
   const getStyles = {
+    twoCharStyles: commonStyles,
     threeCharStyles,
     fourCharStyles,
     fiveCharStyles,
@@ -92,25 +96,27 @@ function charDisplay() {
 
   const ifCorrectWord = (word) => {
     if (word === state.firstWord.engText && state.topWord === '') {
-      dispatch(setTopWord());
       if (!state.correctWords.includes(state.firstWord)) {
+        dispatch(setTopWord());
         dispatch(setCorrectWords(state.firstWord));
         dispatch(setLevelProgress(state.firstWord));
+        dispatch(setAllWords(state.firstWord));
       }
       // if bottomWord is filled that means both are now answered so will get new words
       if (state.bottomWord !== '') {
-        dispatch(setNewWords());
+        setTimeout(() => dispatch(setNewWords()), 500);
       }
     }
     if (word === state.secondWord.engText && state.bottomWord === '') {
-      dispatch(setBottomWord());
       if (!state.correctWords.includes(state.secondWord)) {
+        dispatch(setBottomWord());
         dispatch(setCorrectWords(state.secondWord));
         dispatch(setLevelProgress(state.secondWord));
+        dispatch(setAllWords(state.secondWord));
       }
       // if topWord is filled that means both are now answered so will get new words
       if (state.topWord !== '') {
-        dispatch(setNewWords());
+        setTimeout(() => dispatch(setNewWords()), 500);
       }
     }
   };

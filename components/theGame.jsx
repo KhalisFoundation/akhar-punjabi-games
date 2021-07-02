@@ -12,15 +12,13 @@ import {
   setBottomWord,
   setAttempt,
   setNewWords,
+  setGivenUpWords,
+  setAllWords,
 } from '../redux/actions';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-
-  // console.log(state);
-  // console.log(state.levelProgress[0]);
-
   return (
     <View style={styles.container}>
       {/* BackButton */}
@@ -62,8 +60,10 @@ function GameScreen({ navigation }) {
           style={styles.giveUp}
           onPress={() => {
             dispatch(setTopWord());
+            dispatch(setGivenUpWords(state.firstWord));
+            dispatch(setAllWords(state.firstWord));
             if (state.bottomWord !== '') {
-              dispatch(setNewWords());
+              setTimeout(() => dispatch(setNewWords()), 1000);
             }
           }}
         >
@@ -84,8 +84,11 @@ function GameScreen({ navigation }) {
           style={styles.giveUp}
           onPress={() => {
             dispatch(setBottomWord());
+            dispatch(setGivenUpWords(state.secondWord));
+            dispatch(setAllWords(state.secondWord));
+
             if (state.topWord !== '') {
-              dispatch(setNewWords());
+              setTimeout(() => dispatch(setNewWords()), 1000);
             }
           }}
         >

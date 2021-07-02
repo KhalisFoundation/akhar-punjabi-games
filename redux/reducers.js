@@ -1,19 +1,14 @@
-// import {
-//   SET_TOP_WORD,
-//   SET_BOTTOM_WORD,
-//   SET_ATTEMPT,
-//   SET_NEW_WORDS,
-//   SET_CORRECT_WORDS,
-// } from "./actions";
+import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 
-const setWords = (level = 1) => {
-  const [charArray, firstWord, secondWord] = getWords(level);
+const setWords = (level, allWords) => {
+  const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
-const generateWords = setWords();
+const generateWords = setWords(1, allWords);
 
 const initialState = {
+  allWords: allWords,
   topWord: "",
   bottomWord: "",
   attempt: "",
@@ -21,23 +16,24 @@ const initialState = {
   firstWord: generateWords[1],
   secondWord: generateWords[2],
   correctWords: [],
+  givenUpWords: [],
   levelProgress: [
-    { level: 1, wordsNeeded: 2 },
-    { level: 2, wordsNeeded: 4 },
-    { level: 3, wordsNeeded: 10 },
-    { level: 4, wordsNeeded: 10 },
-    { level: 5, wordsNeeded: 10 },
-    { level: 6, wordsNeeded: 10 },
-    { level: 7, wordsNeeded: 10 },
-    { level: 8, wordsNeeded: 10 },
-    { level: 9, wordsNeeded: 10 },
-    { level: 10, wordsNeeded: 10 },
-    { level: 11, wordsNeeded: 10 },
-    { level: 12, wordsNeeded: 10 },
-    { level: 13, wordsNeeded: 10 },
-    { level: 14, wordsNeeded: 10 },
-    { level: 15, wordsNeeded: 10 },
-    { level: 16, wordsNeeded: 10 },
+    // { level: 1, wordsNeeded: 2 },
+    // { level: 2, wordsNeeded: 4 },
+    // { level: 3, wordsNeeded: 10 },
+    // { level: 4, wordsNeeded: 10 },
+    // { level: 5, wordsNeeded: 10 },
+    // { level: 6, wordsNeeded: 10 },
+    // { level: 7, wordsNeeded: 10 },
+    // { level: 8, wordsNeeded: 10 },
+    // { level: 9, wordsNeeded: 10 },
+    // { level: 10, wordsNeeded: 10 },
+    // { level: 11, wordsNeeded: 10 },
+    // { level: 12, wordsNeeded: 10 },
+    // { level: 13, wordsNeeded: 10 },
+    // { level: 14, wordsNeeded: 10 },
+    // { level: 15, wordsNeeded: 10 },
+    // { level: 16, wordsNeeded: 10 },
     { level: 17, wordsNeeded: 10 },
     { level: 18, wordsNeeded: 10 },
     { level: 19, wordsNeeded: 10 },
@@ -48,6 +44,15 @@ const initialState = {
 };
 
 function theGameReducer(state = initialState, action) {
+  if (action.type === "SET_ALL_WORDS") {
+    const updatedWords = state.allWords.filter(
+      (word) => word !== action.theWord
+    );
+    return {
+      ...state,
+      allWords: updatedWords,
+    };
+  }
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
@@ -68,6 +73,37 @@ function theGameReducer(state = initialState, action) {
       attempt: action.theWord,
     };
   }
+  if (action.type === "SET_NEW_WORDS") {
+    const generateWords = setWords(
+      state.levelProgress[0].level,
+      state.allWords
+    );
+    return {
+      ...state,
+      topWord: "",
+      bottomWord: "",
+      attempt: "",
+      charArray: generateWords[0],
+      firstWord: generateWords[1],
+      secondWord: generateWords[2],
+    };
+  }
+  if (action.type === "SET_CORRECT_WORDS") {
+    const wordsLst = state.correctWords;
+    wordsLst.push(action.theWord);
+    return {
+      ...state,
+      correctWords: wordsLst,
+    };
+  }
+  if (action.type === "SET_GIVENUP_WORDS") {
+    const wordsLst = state.givenUpWords;
+    wordsLst.push(action.theWord);
+    return {
+      ...state,
+      givenUpWords: wordsLst,
+    };
+  }
   if (action.type === "SET_LEVEL_PROGRESS") {
     let theLevelProgress = [...state.levelProgress];
     let newWordssNeeded = theLevelProgress[0].wordsNeeded;
@@ -85,27 +121,6 @@ function theGameReducer(state = initialState, action) {
     return {
       ...state,
       levelProgress: theLevelProgress,
-    };
-  }
-
-  if (action.type === "SET_NEW_WORDS") {
-    const generateWords = setWords(state.levelProgress[0].level);
-    return {
-      ...state,
-      topWord: "",
-      bottomWord: "",
-      attempt: "",
-      charArray: generateWords[0],
-      firstWord: generateWords[1],
-      secondWord: generateWords[2],
-    };
-  }
-  if (action.type === "SET_CORRECT_WORDS") {
-    const wordsLst = state.correctWords;
-    wordsLst.push(action.theWord);
-    return {
-      ...state,
-      correctWords: wordsLst,
     };
   }
   return { ...state }; //default

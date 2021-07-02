@@ -20,6 +20,7 @@ function Level({ title, theWords, setAnswer }) {
         meaning: 'There are no words',
         type: 'Punjabi',
         level: 'N/A',
+        status: 'N/A',
       },
     ];
   }
