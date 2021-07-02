@@ -1,11 +1,22 @@
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const setData = async (title, state) => {
+  try {
+    await AsyncStorage.setItem(title, JSON.stringify(state));
+    // console.log(state.firstWord);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
-const generateWords = setWords(1, allWords);
+const generateWords = setWords(1, allWords, {});
 
 const initialState = {
   allWords: allWords,
@@ -43,16 +54,9 @@ const initialState = {
   ],
 };
 
+// setData("state", initialState); //to reset all state
+
 function theGameReducer(state = initialState, action) {
-  if (action.type === "SET_ALL_WORDS") {
-    const updatedWords = state.allWords.filter(
-      (word) => word !== action.theWord
-    );
-    return {
-      ...state,
-      allWords: updatedWords,
-    };
-  }
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
@@ -76,9 +80,11 @@ function theGameReducer(state = initialState, action) {
   if (action.type === "SET_NEW_WORDS") {
     const generateWords = setWords(
       state.levelProgress[0].level,
-      state.allWords
+      state.allWords,
+      state
     );
-    return {
+    const updatedState = {
+      //doing this because it is used twice, once to return and second to setData
       ...state,
       topWord: "",
       bottomWord: "",
@@ -87,21 +93,34 @@ function theGameReducer(state = initialState, action) {
       firstWord: generateWords[1],
       secondWord: generateWords[2],
     };
+
+    setData("state", updatedState);
+    return updatedState;
   }
   if (action.type === "SET_CORRECT_WORDS") {
     const wordsLst = state.correctWords;
     wordsLst.push(action.theWord);
+
+    const updatedWords = state.allWords.filter(
+      (word) => word !== action.theWord
+    );
     return {
       ...state,
       correctWords: wordsLst,
+      allWords: updatedWords,
     };
   }
   if (action.type === "SET_GIVENUP_WORDS") {
     const wordsLst = state.givenUpWords;
     wordsLst.push(action.theWord);
+
+    const updatedWords = state.allWords.filter(
+      (word) => word !== action.theWord
+    );
     return {
       ...state,
       givenUpWords: wordsLst,
+      allWords: updatedWords,
     };
   }
   if (action.type === "SET_LEVEL_PROGRESS") {
@@ -118,11 +137,18 @@ function theGameReducer(state = initialState, action) {
     if (newWordssNeeded === 0) {
       theLevelProgress = theLevelProgress.slice(1);
     }
+
     return {
       ...state,
       levelProgress: theLevelProgress,
     };
   }
+  if (action.type === "SET_STATE") {
+    return {
+      ...action.state,
+    };
+  }
+
   return { ...state }; //default
 }
 

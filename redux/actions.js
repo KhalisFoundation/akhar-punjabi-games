@@ -6,12 +6,6 @@ export const SET_CORRECT_WORDS = "SET_CORRECT_WORDS";
 export const SET_GIVENUP_WORDS = "SET_GIVENUP_WORDS";
 export const SET_LEVEL_PROGRESS = "SET_LEVEL_PROGRESS";
 
-export const setAllWords = (word) => (dispatch) => {
-  dispatch({
-    type: "SET_ALL_WORDS",
-    theWord: word,
-  });
-};
 export const setTopWord = () => (dispatch) => {
   dispatch({
     type: "SET_TOP_WORD",
@@ -49,5 +43,11 @@ export const setLevelProgress = (word) => (dispatch) => {
   dispatch({
     type: "SET_LEVEL_PROGRESS",
     theWord: word,
+  });
+};
+export const setState = (state) => (dispatch) => {
+  dispatch({
+    type: "SET_STATE",
+    state,
   });
 };

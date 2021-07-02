@@ -29,7 +29,7 @@ function Level({ title, theWords, setAnswer }) {
       <Text style={styles.title}>{title}</Text>
       <FlatList
         style={styles.flatList}
-        keyExtractor={(word) => word.engText}
+        keyExtractor={(word) => word.meaning}
         data={words}
         scrollEnabled
         renderItem={({ item }) => {

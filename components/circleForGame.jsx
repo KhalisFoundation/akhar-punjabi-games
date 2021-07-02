@@ -13,7 +13,6 @@ import {
   setCorrectWords,
   setLevelProgress,
   setNewWords,
-  setAllWords,
 } from '../redux/actions';
 
 function TheCircle() {
@@ -25,14 +24,15 @@ function charDisplay() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
 
-  // console.log(state.firstWord);
-  // console.log(state.secondWord);
+  console.log(state.correctWords.length + state.givenUpWords.length);
+
   const { charArray } = state;
   const prevAttempt = state.attempt;
 
   const charatersCount = charArray.length;
 
   const numToWord = {
+    2: 'two',
     3: 'three',
     4: 'four',
     5: 'five',
@@ -100,7 +100,6 @@ function charDisplay() {
         dispatch(setTopWord());
         dispatch(setCorrectWords(state.firstWord));
         dispatch(setLevelProgress(state.firstWord));
-        dispatch(setAllWords(state.firstWord));
       }
       // if bottomWord is filled that means both are now answered so will get new words
       if (state.bottomWord !== '') {
@@ -112,7 +111,6 @@ function charDisplay() {
         dispatch(setBottomWord());
         dispatch(setCorrectWords(state.secondWord));
         dispatch(setLevelProgress(state.secondWord));
-        dispatch(setAllWords(state.secondWord));
       }
       // if topWord is filled that means both are now answered so will get new words
       if (state.topWord !== '') {
@@ -120,6 +118,34 @@ function charDisplay() {
       }
     }
   };
+
+  // const setData = async (word) => {
+  //   try {
+  //     // await AsyncStorage.setItem("attempt", word);
+  //     await AsyncStorage.multiSet([
+  //       ["attempt", word],
+  //       ["topWord", "TOOPP"],
+  //     ]);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  // React.useEffect(() => {
+  //   async function getData() {
+  //     try {
+  //       const attempt = await AsyncStorage.getItem("attempt");
+  //       const topWord = await AsyncStorage.getItem("topWords");
+  //       if (attempt !== null) {
+  //         dispatch(setTopWord());
+  //         dispatch(setAttempt(attempt));
+  //       }
+  //     } catch (error) {
+  //       // Error retrieving data
+  //     }
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <View style={styleSheet.lettersCircle}>
@@ -148,6 +174,8 @@ function charDisplay() {
               }
               dispatch(setAttempt(final));
               ifCorrectWord(final);
+              // Async storage stuff
+              // setData(final);
             }}
             key={char}
             style={getStylesAttributes[charNum]}

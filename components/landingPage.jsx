@@ -8,9 +8,28 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-function HomeScreen({ navigation, route }) {
-  const theWords = route.params.correctWords;
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setState } from '../redux/actions';
+
+function HomeScreen({ navigation }) {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    async function getData() {
+      try {
+        const theStringState = await AsyncStorage.getItem('state');
+        if (theStringState !== null) {
+          const theState = JSON.parse(theStringState);
+          dispatch(setState(theState));
+        }
+      } catch (error) {
+        // Error retrieving data
+        console.log(error);
+      }
+    }
+    getData();
+  }, []);
   return (
     <ImageBackground
       source={require('../images/background.png')}
@@ -42,7 +61,7 @@ function HomeScreen({ navigation, route }) {
       <TouchableOpacity
         style={styles.levelsTouchableOpacity}
         onPress={() => {
-          navigation.navigate('correctWords', { wordLst: theWords }); // how to pass params to other screen. We probaly won't need but there just for refrence
+          navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
         }}
       >
         <Image style={styles.levels} source={require('../images/levels.png')} />
