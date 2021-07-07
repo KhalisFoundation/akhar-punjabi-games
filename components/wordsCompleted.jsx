@@ -20,6 +20,7 @@ function RightWords({ navigation }) {
     level: '',
     status: '',
   };
+
   const [showAnswer, setAnswer] = React.useState(longestMeaning);
 
   const state = useSelector((theState) => theState.theGameReducer);
@@ -150,12 +151,13 @@ function RightWords({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     alignItems: 'center',
     backgroundColor: '#5F909C',
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    paddingTop: '10%',
   },
   backButton: {
     width: '10%',

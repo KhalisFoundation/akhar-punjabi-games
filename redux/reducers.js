@@ -16,9 +16,9 @@ const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
-const generateWords = setWords(1, allWords, {});
+const generateWords = setWords(1, allWords);
 
-const initialState = {
+export const initialState = {
   allWords: allWords,
   topWord: "",
   bottomWord: "",
@@ -78,11 +78,34 @@ function theGameReducer(state = initialState, action) {
     };
   }
   if (action.type === "SET_NEW_WORDS") {
-    const generateWords = setWords(
-      state.levelProgress[0].level,
-      state.allWords,
-      state
+    const wordsForCurrentLevel = state.allWords.filter(
+      (word) => word.level === state.levelProgress[0].level
     );
+    let generateWords;
+    let newGiveUpWords;
+    let newAllWords;
+
+    if (wordsForCurrentLevel.length > 3) {
+      generateWords = setWords(state.levelProgress[0].level, state.allWords);
+      newGiveUpWords = [...state.givenUpWords];
+      newAllWords = [...state.allWords];
+    } else {
+      //this code block will run when there are no more avaliable words for the particular level in all words.
+      // we will take the given up words for this level and put them back in allWords.
+      newAllWords = [...state.allWords];
+      state.givenUpWords.map((word) => {
+        if (word.level === state.levelProgress[0].level) {
+          newAllWords.push(word);
+        }
+      });
+      newGiveUpWords = state.givenUpWords.filter(
+        (word) => !newAllWords.includes(word)
+      );
+      generateWords = setWords(state.levelProgress[0].level, newAllWords);
+    }
+    // console.log(wordsForCurrentLevel.length);
+    // console.log(newGiveUpWords.length);
+    // console.log(newAllWords.length);
     const updatedState = {
       //doing this because it is used twice, once to return and second to setData
       ...state,
@@ -92,18 +115,21 @@ function theGameReducer(state = initialState, action) {
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
+      givenUpWords: newGiveUpWords,
+      allWords: newAllWords,
     };
 
     setData("state", updatedState);
     return updatedState;
   }
   if (action.type === "SET_CORRECT_WORDS") {
-    const wordsLst = state.correctWords;
+    const wordsLst = [...state.correctWords];
     wordsLst.push(action.theWord);
 
     const updatedWords = state.allWords.filter(
-      (word) => word !== action.theWord
+      (word) => word.punjabiText !== action.theWord.punjabiText
     );
+
     return {
       ...state,
       correctWords: wordsLst,
@@ -111,12 +137,13 @@ function theGameReducer(state = initialState, action) {
     };
   }
   if (action.type === "SET_GIVENUP_WORDS") {
-    const wordsLst = state.givenUpWords;
+    const wordsLst = [...state.givenUpWords];
     wordsLst.push(action.theWord);
 
     const updatedWords = state.allWords.filter(
-      (word) => word !== action.theWord
+      (word) => word.punjabiText !== action.theWord.punjabiText
     );
+
     return {
       ...state,
       givenUpWords: wordsLst,

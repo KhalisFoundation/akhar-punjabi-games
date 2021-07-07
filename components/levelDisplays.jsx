@@ -43,7 +43,7 @@ function Level({ title, theWords, setAnswer }) {
           return (
             <TouchableOpacity
               onPress={() => {
-                console.log(item.meaning);
+                // console.log(item.meaning);
                 setAnswer(item);
               }}
             >

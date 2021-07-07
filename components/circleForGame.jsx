@@ -24,7 +24,7 @@ function charDisplay() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
 
-  console.log(state.correctWords.length + state.givenUpWords.length);
+  // console.log(state.correctWords.length + state.givenUpWords.length);
 
   const { charArray } = state;
   const prevAttempt = state.attempt;

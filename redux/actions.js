@@ -1,10 +1,4 @@
-export const SET_TOP_WORD = "SET_TOP_WORD";
-export const SET_BOTTOM_WORD = "SET_BOTTOM_WORD";
-export const SET_ATTEMPT = "SET_ATTEMPT";
-export const SET_NEW_WORDS = "SET_NEW_WORDS";
-export const SET_CORRECT_WORDS = "SET_CORRECT_WORDS";
-export const SET_GIVENUP_WORDS = "SET_GIVENUP_WORDS";
-export const SET_LEVEL_PROGRESS = "SET_LEVEL_PROGRESS";
+import initialState from "./reducers";
 
 export const setTopWord = () => (dispatch) => {
   dispatch({
