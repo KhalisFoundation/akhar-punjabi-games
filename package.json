@@ -7,7 +7,17 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --fix **/*.jsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ]
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",
@@ -46,7 +56,9 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.11.0",
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "jest-expo": "^42.0.0",
+    "redux-mock-store": "^1.5.4"
   },
   "private": true
 }
