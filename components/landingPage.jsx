@@ -29,7 +29,8 @@ function HomeScreen({ navigation }) {
       }
     }
     getData();
-  }, []);
+  }, [dispatch]);
+
   return (
     <ImageBackground
       source={require('../images/background.png')}

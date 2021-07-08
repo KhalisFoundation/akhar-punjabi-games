@@ -59,4 +59,4 @@ export const getWords = async () => {
     }
   });
   return result;
-}
+};
