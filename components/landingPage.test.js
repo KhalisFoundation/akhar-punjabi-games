@@ -7,6 +7,7 @@ import HomeScreen from "./landingPage";
 
 const mockStore = configureStore([]);
 
+jest.useFakeTimers();
 describe("HomeScreen", () => {
   let store;
 
