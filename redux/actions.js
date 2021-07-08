@@ -1,5 +1,3 @@
-import initialState from "./reducers";
-
 export const setTopWord = () => (dispatch) => {
   dispatch({
     type: "SET_TOP_WORD",
@@ -43,5 +41,11 @@ export const setState = (state) => (dispatch) => {
   dispatch({
     type: "SET_STATE",
     state,
+  });
+};
+export const setTypeOfWords = (theType) => (dispatch) => {
+  dispatch({
+    type: "SET_TYPE_OF_WORDS",
+    theTypeOfWords: theType,
   });
 };
