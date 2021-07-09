@@ -1,11 +1,13 @@
 export default function getWords(level, allWords) {
   const words = allWords.filter((word) => word.level === level);
+  // console.log(words);
+  // console.log(words.length);
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
   const firstWord = getRandomWord();
   // Second Word
   let secondWord = getRandomWord();
-  while (firstWord === secondWord) {
+  while (firstWord.punjabiText === secondWord.punjabiText) {
     secondWord = getRandomWord();
   }
 

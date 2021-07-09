@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import HomeScreen from './components/landingPage';
 import GameScreen from './components/theGame';
 import RightWords from './components/wordsCompleted';
+import Settings from './components/settings';
 
 import { Store } from './redux/store';
 
@@ -29,6 +30,12 @@ function App() {
             name="correctWords"
             options={{ headerShown: false }}
             component={RightWords}
+            initialParams={{ wordLst: [] }}
+          />
+          <Stack.Screen
+            name="settings"
+            options={{ headerShown: false }}
+            component={Settings}
             initialParams={{ wordLst: [] }}
           />
         </Stack.Navigator>

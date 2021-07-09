@@ -11,18 +11,34 @@ import {
 import { useDispatch } from 'react-redux';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadingModal from './loadingScreen';
 import { setState } from '../redux/actions';
+
+import { initialState } from '../redux/reducers';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
+  const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
+  const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
+
   React.useEffect(() => {
     async function getData() {
+      setLoadingScreenText(
+        'Getting previously stored Data from Async Storage!!!'
+      );
       try {
         const theStringState = await AsyncStorage.getItem('state');
+        let theState;
         if (theStringState !== null) {
-          const theState = JSON.parse(theStringState);
-          dispatch(setState(theState));
+          theState = JSON.parse(theStringState);
+          console.log('got state that was previously saved');
+          // console.log(theState);
+        } else {
+          console.log('there is nothing is state');
+          theState = initialState;
         }
+        dispatch(setState(theState));
+        setLoadingScreen(false);
       } catch (error) {
         // Error retrieving data
         console.log(error);
@@ -36,6 +52,8 @@ function HomeScreen({ navigation }) {
       source={require('../images/background.png')}
       style={styles.container}
     >
+      <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
+
       <Text style={styles.mangal}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
       <Image style={styles.logo} source={require('../images/logo.png')} />
       <TouchableOpacity
@@ -51,6 +69,7 @@ function HomeScreen({ navigation }) {
         style={styles.settingsTouchableOpacity}
         onPress={() => {
           console.log('Settings');
+          navigation.navigate('settings');
         }}
       >
         <Image

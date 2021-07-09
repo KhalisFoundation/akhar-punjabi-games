@@ -1,11 +1,3 @@
-export const SET_TOP_WORD = "SET_TOP_WORD";
-export const SET_BOTTOM_WORD = "SET_BOTTOM_WORD";
-export const SET_ATTEMPT = "SET_ATTEMPT";
-export const SET_NEW_WORDS = "SET_NEW_WORDS";
-export const SET_CORRECT_WORDS = "SET_CORRECT_WORDS";
-export const SET_GIVENUP_WORDS = "SET_GIVENUP_WORDS";
-export const SET_LEVEL_PROGRESS = "SET_LEVEL_PROGRESS";
-
 export const setTopWord = () => (dispatch) => {
   dispatch({
     type: "SET_TOP_WORD",
@@ -49,5 +41,11 @@ export const setState = (state) => (dispatch) => {
   dispatch({
     type: "SET_STATE",
     state,
+  });
+};
+export const setTypeOfWords = (theType) => (dispatch) => {
+  dispatch({
+    type: "SET_TYPE_OF_WORDS",
+    theTypeOfWords: theType,
   });
 };
