@@ -16,6 +16,7 @@ const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
+
 const generateWords = setWords(1, allWords);
 
 export const initialState = {
@@ -52,6 +53,7 @@ export const initialState = {
     { level: 21, wordsNeeded: 10 },
     { level: 22, wordsNeeded: 10 },
   ],
+  typesOfWordsSettingsIndex: 0,
 };
 
 // setData("state", initialState); //to reset all state
@@ -179,10 +181,13 @@ function theGameReducer(state = initialState, action) {
     let newAllWords;
     if (action.theTypeOfWords === "Gurbani") {
       newAllWords = state.allWords.filter((word) => word.type === "Gurbani");
+      console.log("Gurbani");
     } else if (action.theTypeOfWords === "Punjabi") {
       newAllWords = state.allWords.filter((word) => word.type === "Punjabi");
+      console.log("Punjabi");
     } else {
       newAllWords = [...state.allWords]; //if Both
+      console.log("Both");
     }
     return {
       ...state,

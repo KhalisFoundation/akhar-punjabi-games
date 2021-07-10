@@ -4,12 +4,17 @@ import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
 import { ListItem, BottomSheet, Icon } from 'react-native-elements';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from "react-redux";
 
 function SettingsBar({
-  theSetting, imageSource, theList, theAction
+  theSetting,
+  imageSource,
+  theList,
+  theAction,
+  dispatch,
 }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
   const allImages = {
     khalislogo150: require('../images/khalislogo150.png'),
     khanda: require('../images/khanda.png'),
@@ -33,8 +38,8 @@ function SettingsBar({
   });
   const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(list[0].title);
-
   dispatch(theAction(currentSetting));
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
