@@ -88,7 +88,7 @@ function RightWords({ navigation }) {
         }}
       >
         <Image
-          source={require('../images/left_arrow.png')}
+          source={require('../../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>

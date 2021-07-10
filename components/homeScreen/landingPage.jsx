@@ -12,9 +12,9 @@ import { useDispatch } from 'react-redux';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingModal from './loadingScreen';
-import { setState } from '../redux/actions';
+import { setTheState } from '../../redux/actions';
 
-import { initialState } from '../redux/reducers';
+import { initialState } from '../../redux/reducers';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function HomeScreen({ navigation }) {
           console.log('there is nothing is state');
           theState = initialState;
         }
-        dispatch(setState(theState));
+        dispatch(setTheState(theState));
         setLoadingScreen(false);
       } catch (error) {
         // Error retrieving data
@@ -49,32 +49,32 @@ function HomeScreen({ navigation }) {
 
   return (
     <ImageBackground
-      source={require('../images/background.png')}
+      source={require('../../images/background.png')}
       style={styles.container}
     >
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
 
       <Text style={styles.mangal}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
-      <Image style={styles.logo} source={require('../images/logo.png')} />
+      <Image style={styles.logo} source={require('../../images/logo.png')} />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
           navigation.navigate('play');
         }}
       >
-        <Image style={styles.play} source={require('../images/Play.png')} />
+        <Image style={styles.play} source={require('../../images/Play.png')} />
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.settingsTouchableOpacity}
         onPress={() => {
-          console.log('Settings');
+          // console.log("Settings");
           navigation.navigate('settings');
         }}
       >
         <Image
           style={styles.settings}
-          source={require('../images/settings.png')}
+          source={require('../../images/settings.png')}
         />
       </TouchableOpacity>
 
@@ -84,7 +84,10 @@ function HomeScreen({ navigation }) {
           navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
         }}
       >
-        <Image style={styles.levels} source={require('../images/levels.png')} />
+        <Image
+          style={styles.levels}
+          source={require('../../images/levels.png')}
+        />
       </TouchableOpacity>
       <View style={styles.by}>
         <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
@@ -97,7 +100,7 @@ function HomeScreen({ navigation }) {
       >
         <Image
           style={styles.khalis}
-          source={require('../images/khalislogo150.png')}
+          source={require('../../images/khalislogo150.png')}
         />
       </TouchableOpacity>
     </ImageBackground>

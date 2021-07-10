@@ -13,7 +13,7 @@ import {
   setCorrectWords,
   setLevelProgress,
   setNewWords,
-} from '../redux/actions';
+} from '../../redux/actions';
 
 function TheCircle() {
   // there can only be from 3-18 characters as input

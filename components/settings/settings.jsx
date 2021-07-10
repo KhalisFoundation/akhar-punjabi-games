@@ -8,16 +8,13 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import SettingsBar from "./settingBar";
-import { setTypeOfWords } from "../redux/actions";
-
-// import { useSelector } from "react-redux";
+import { setTypeOfWords, setTypeOfWordInd } from "../../redux/actions";
 
 function Settings({ navigation }) {
-  const dispatch = useDispatch();
-  // const state = useSelector((theState) => theState.theGameReducer);
+  const state = useSelector((theState) => theState.theGameReducer);
 
   return (
     <View style={styles.container}>
@@ -29,7 +26,7 @@ function Settings({ navigation }) {
         }}
       >
         <Image
-          source={require("../images/left_arrow.png")}
+          source={require("../../images/left_arrow.png")}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -42,9 +39,9 @@ function Settings({ navigation }) {
           theSetting="Type of Words"
           theList={["Both", "Gurbani", "Punjabi"]} // the 0 index in theList is the default setting
           imageSource="khalislogo150"
-          theAction={setTypeOfWords}
-          dispatch={dispatch}
-          // theCurrentOptionIndex={state.typesOfWordsSettingsIndex}
+          theAction={setTypeOfWords} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={state.typesOfWordsSettingsIndex}
+          setIndex={setTypeOfWordInd}
         />
         {/* <SettingsBar
           theSetting="Dark Mode"

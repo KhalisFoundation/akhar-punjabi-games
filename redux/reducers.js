@@ -172,7 +172,7 @@ function theGameReducer(state = initialState, action) {
       levelProgress: theLevelProgress,
     };
   }
-  if (action.type === "SET_STATE") {
+  if (action.type === "SET_THE_STATE") {
     return {
       ...action.state,
     };
@@ -192,6 +192,12 @@ function theGameReducer(state = initialState, action) {
     return {
       ...state,
       allWords: newAllWords,
+    };
+  }
+  if (action.type === "SET_TYPE_OF_WORD_INDEX") {
+    return {
+      ...state,
+      typesOfWordsSettingsIndex: action.index,
     };
   }
 

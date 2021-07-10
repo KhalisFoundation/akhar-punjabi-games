@@ -4,28 +4,33 @@ import {
   View, Text, TouchableOpacity, StyleSheet, Image
 } from 'react-native';
 import { ListItem, BottomSheet, Icon } from 'react-native-elements';
-// import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 function SettingsBar({
   theSetting,
   imageSource,
   theList,
   theAction,
-  dispatch,
+  theCurrentOptionIndex,
+  setIndex,
 }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const allImages = {
-    khalislogo150: require('../images/khalislogo150.png'),
-    khanda: require('../images/khanda.png'),
-    ikOngkar: require('../images/ikOngkar.png'),
+    khalislogo150: require('../../images/khalislogo150.png'),
+    khanda: require('../../images/khanda.png'),
+    ikOngkar: require('../../images/ikOngkar.png'),
   };
-  const list = theList.map((theTitle) => {
+  const list = theList.map((theTitle, index) => {
     return {
       title: theTitle,
       onPress: () => {
         setCurrentSetting(theTitle);
         setIsVisible(false);
+        dispatch(theAction(theTitle));
+        // this will make it so that next time you open settings page,
+        // the same setting you picked last time shows up
+        dispatch(setIndex(index));
       },
     };
   });
@@ -37,9 +42,11 @@ function SettingsBar({
     onPress: () => setIsVisible(false),
   });
   const [isVisible, setIsVisible] = React.useState(false);
-  const [currentSetting, setCurrentSetting] = React.useState(list[0].title);
-  dispatch(theAction(currentSetting));
-
+  const [currentSetting, setCurrentSetting] = React.useState(
+    list[theCurrentOptionIndex].title
+  );
+  // dispatch(theAction(currentSetting));
+  // why does this cause it it craxh
   return (
     <View style={styles.container}>
       <TouchableOpacity

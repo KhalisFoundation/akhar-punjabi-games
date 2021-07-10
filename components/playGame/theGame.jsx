@@ -13,7 +13,7 @@ import {
   setAttempt,
   setNewWords,
   setGivenUpWords,
-} from '../redux/actions';
+} from '../../redux/actions';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -30,7 +30,7 @@ function GameScreen({ navigation }) {
         }}
       >
         <Image
-          source={require('../images/left_arrow.png')}
+          source={require('../../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
