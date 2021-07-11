@@ -56,3 +56,15 @@ export const setTypeOfWordInd = (ind) => (dispatch) => {
     index: ind,
   });
 };
+export const setDarkMode = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_DARK_MODE",
+    onOrOff: set,
+  });
+};
+// export const setDarkModeIndex = (set) => (dispatch) => {
+//   dispatch({
+//     type: "SET_DARK_MODE",
+//     index: set,
+//   });
+// };

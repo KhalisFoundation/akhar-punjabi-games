@@ -12,11 +12,12 @@ const setData = async (title, state) => {
   }
 };
 
+//gets new words
 const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
-
+//puts words for level 1
 const generateWords = setWords(1, allWords);
 
 export const initialState = {
@@ -53,7 +54,9 @@ export const initialState = {
     { level: 21, wordsNeeded: 10 },
     { level: 22, wordsNeeded: 10 },
   ],
+  //settings stuff
   typesOfWordsSettingsIndex: 0,
+  darkMode: "Off",
 };
 
 // setData("state", initialState); //to reset all state
@@ -198,6 +201,13 @@ function theGameReducer(state = initialState, action) {
     return {
       ...state,
       typesOfWordsSettingsIndex: action.index,
+    };
+  }
+  if (action.type === "SET_DARK_MODE") {
+    console.log(action.onOrOff);
+    return {
+      ...state,
+      darkMode: action.onOrOff,
     };
   }
 
