@@ -1,10 +1,12 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { ListItem, BottomSheet, Icon } from "react-native-elements";
-import { useDispatch } from "react-redux";
+import * as React from 'react';
+import {
+  View, Text, TouchableOpacity, StyleSheet, Image
+} from 'react-native';
+import { ListItem, BottomSheet, Icon } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
 
-import colors from "../../util/colors";
+import colors from '../../util/colors';
 
 function SettingsBar({
   theSetting,
@@ -17,9 +19,9 @@ function SettingsBar({
   const dispatch = useDispatch();
 
   const allImages = {
-    khalislogo150: require("../../images/khalislogo150.png"),
-    khanda: require("../../images/khanda.png"),
-    ikOngkar: require("../../images/ikOngkar.png"),
+    khalislogo150: require('../../images/khalislogo150.png'),
+    khanda: require('../../images/khanda.png'),
+    ikOngkar: require('../../images/ikOngkar.png'),
   };
   const list = theList.map((theTitle, index) => {
     return {
@@ -38,9 +40,9 @@ function SettingsBar({
   });
 
   list.push({
-    title: "Cancel",
-    containerStyle: { backgroundColor: "red" },
-    titleStyle: { color: "white" },
+    title: 'Cancel',
+    containerStyle: { backgroundColor: 'red' },
+    titleStyle: { color: 'white' },
     onPress: () => setIsVisible(false),
   });
   const [isVisible, setIsVisible] = React.useState(false);
@@ -71,9 +73,9 @@ function SettingsBar({
 
       <BottomSheet
         modalProps={{
-          animationType: "slide",
+          animationType: 'slide',
           visible: isVisible,
-          backgroundColor: "blue",
+          backgroundColor: 'blue',
           transparent: true,
           onRequestClose: () => {
             setIsVisible((prev) => !prev);
@@ -105,22 +107,22 @@ const styles = StyleSheet.create({
     height: 50,
   },
   settingBar: {
-    flexDirection: "row",
-    width: "100%",
-    height: "99%",
+    flexDirection: 'row',
+    width: '100%',
+    height: '99%',
     backgroundColor: colors.settingBar.settingBar,
   },
   image: {
     // flex: 1,
-    width: "30%",
-    height: "100%",
+    width: '30%',
+    height: '100%',
   },
   text1: {
     flex: 1,
   },
   rightSide: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   text2: {
     // flex: 1,
