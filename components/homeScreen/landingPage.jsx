@@ -8,19 +8,24 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingModal from './loadingScreen';
-import { setState } from '../redux/actions';
+import { setTheState } from '../../redux/actions';
 
-import { initialState } from '../redux/reducers';
+import { initialState } from '../../redux/reducers';
+
+import theColors from '../../util/colors';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
+  const state = useSelector((theState) => theState.theGameReducer);
+
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
 
+  let theState;
   React.useEffect(() => {
     async function getData() {
       setLoadingScreenText(
@@ -28,7 +33,6 @@ function HomeScreen({ navigation }) {
       );
       try {
         const theStringState = await AsyncStorage.getItem('state');
-        let theState;
         if (theStringState !== null) {
           theState = JSON.parse(theStringState);
           console.log('got state that was previously saved');
@@ -37,7 +41,7 @@ function HomeScreen({ navigation }) {
           console.log('there is nothing is state');
           theState = initialState;
         }
-        dispatch(setState(theState));
+        dispatch(setTheState(theState));
         setLoadingScreen(false);
       } catch (error) {
         // Error retrieving data
@@ -46,35 +50,108 @@ function HomeScreen({ navigation }) {
     }
     getData();
   }, [dispatch]);
+  // for styles
+
+  const colors = theColors[state.darkMode];
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      paddingTop: '5%',
+    },
+    mangal: {
+      fontSize: 20,
+      paddingTop: '3%',
+    },
+    logo: {
+      width: '100%',
+      height: '70%',
+      // top: 50,
+    },
+    playTouchableOpacity: {
+      width: '50%',
+      height: '10%',
+      // right: "40%",
+      backgroundColor: colors.landingPage.playTouchableOpacity,
+      borderRadius: 10,
+      bottom: '23.5%',
+    },
+    play: {
+      width: '100%',
+      height: '100%',
+    },
+    settingsTouchableOpacity: {
+      height: '10%',
+      width: '20%',
+      right: '25%',
+      bottom: '12%',
+    },
+    settings: {
+      height: '100%',
+      width: '100%',
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    levelsTouchableOpacity: {
+      height: '10%',
+      width: '20%',
+      left: '25%',
+      bottom: '22%',
+    },
+    levels: {
+      height: '100%',
+      width: '100%',
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    by: {
+      bottom: '18%',
+    },
+    byText: {
+      fontSize: 20,
+    },
+    khalisTouchableOpacity: {
+      height: '8%',
+      width: '45%',
+      // left: "25%",
+      bottom: '17%',
+    },
+    khalis: {
+      height: '100%',
+      width: '100%',
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+  });
 
   return (
     <ImageBackground
-      source={require('../images/background.png')}
+      source={require('../../images/background.png')}
       style={styles.container}
     >
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
 
       <Text style={styles.mangal}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
-      <Image style={styles.logo} source={require('../images/logo.png')} />
+      <Image style={styles.logo} source={require('../../images/logo.png')} />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
           navigation.navigate('play');
         }}
       >
-        <Image style={styles.play} source={require('../images/Play.png')} />
+        <Image style={styles.play} source={require('../../images/Play.png')} />
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.settingsTouchableOpacity}
         onPress={() => {
-          console.log('Settings');
+          // console.log("Settings");
           navigation.navigate('settings');
         }}
       >
         <Image
           style={styles.settings}
-          source={require('../images/settings.png')}
+          source={require('../../images/settings.png')}
         />
       </TouchableOpacity>
 
@@ -84,7 +161,10 @@ function HomeScreen({ navigation }) {
           navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
         }}
       >
-        <Image style={styles.levels} source={require('../images/levels.png')} />
+        <Image
+          style={styles.levels}
+          source={require('../../images/levels.png')}
+        />
       </TouchableOpacity>
       <View style={styles.by}>
         <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
@@ -97,83 +177,11 @@ function HomeScreen({ navigation }) {
       >
         <Image
           style={styles.khalis}
-          source={require('../images/khalislogo150.png')}
+          source={require('../../images/khalislogo150.png')}
         />
       </TouchableOpacity>
     </ImageBackground>
   );
 }
-
-// TODO - Move all colors to separate file and import as variables.
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: '5%',
-  },
-  mangal: {
-    fontSize: 20,
-    paddingTop: '3%',
-  },
-  logo: {
-    width: '100%',
-    height: '70%',
-    // top: 50,
-  },
-  playTouchableOpacity: {
-    width: '50%',
-    height: '10%',
-    // right: "40%",
-    backgroundColor: 'black',
-    borderRadius: 10,
-    bottom: '23.5%',
-  },
-  play: {
-    width: '100%',
-    height: '100%',
-  },
-  settingsTouchableOpacity: {
-    height: '10%',
-    width: '20%',
-    right: '25%',
-    bottom: '12%',
-  },
-  settings: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  levelsTouchableOpacity: {
-    height: '10%',
-    width: '20%',
-    left: '25%',
-    bottom: '22%',
-  },
-  levels: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  by: {
-    bottom: '18%',
-  },
-  byText: {
-    fontSize: 20,
-  },
-  khalisTouchableOpacity: {
-    height: '8%',
-    width: '45%',
-    // left: "25%",
-    bottom: '17%',
-  },
-  khalis: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-});
 
 export default HomeScreen;

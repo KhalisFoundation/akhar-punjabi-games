@@ -9,7 +9,42 @@ import {
   FlatList,
 } from 'react-native';
 
+import { useSelector } from 'react-redux';
+import theColors from '../../util/colors';
+
 function Level({ title, theWords, setAnswer }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+
+  const colors = theColors[state.darkMode];
+
+  const styles = StyleSheet.create({
+    container: {
+      // flex: 1,
+    },
+    title: {
+      textAlign: 'center',
+      fontSize: 30,
+      backgroundColor: colors.levelDisplay.title,
+      // borderRadius: 20,
+    },
+    flatList: {
+      // width: 200,
+      // height: 200,
+      // borderRadius: 20,
+    },
+    wordEven: {
+      backgroundColor: colors.levelDisplay.wordEven,
+      // borderRadius: 20,
+    },
+    wordOdd: {
+      backgroundColor: colors.levelDisplay.wordOdd,
+    },
+    wordText: {
+      fontSize: 60,
+      textAlign: 'center',
+    },
+  });
+
   let a = 0;
   let words = theWords;
   if (words === undefined) {
@@ -59,35 +94,5 @@ function Level({ title, theWords, setAnswer }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    // borderRadius: 20,
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 30,
-    backgroundColor: '#66D3FA',
-    // borderRadius: 20,
-  },
-  flatList: {
-    // width: 200,
-    // height: 200,
-    // borderRadius: 20,
-  },
-  wordEven: {
-    backgroundColor: '#3C99DC',
-    // borderRadius: 20,
-  },
-  wordOdd: {
-    backgroundColor: '#D5F3FE',
-  },
-  wordText: {
-    fontSize: 60,
-    textAlign: 'center',
-  },
-});
 
 export default Level;

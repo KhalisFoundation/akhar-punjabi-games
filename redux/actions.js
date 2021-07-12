@@ -37,15 +37,34 @@ export const setLevelProgress = (word) => (dispatch) => {
     theWord: word,
   });
 };
-export const setState = (state) => (dispatch) => {
+export const setTheState = (state) => (dispatch) => {
   dispatch({
-    type: "SET_STATE",
+    type: "SET_THE_STATE",
     state,
   });
 };
+//settings page
 export const setTypeOfWords = (theType) => (dispatch) => {
   dispatch({
     type: "SET_TYPE_OF_WORDS",
     theTypeOfWords: theType,
   });
 };
+export const setTypeOfWordInd = (ind) => (dispatch) => {
+  dispatch({
+    type: "SET_TYPE_OF_WORD_INDEX",
+    index: ind,
+  });
+};
+export const setDarkMode = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_DARK_MODE",
+    onOrOff: set,
+  });
+};
+// export const setDarkModeIndex = (set) => (dispatch) => {
+//   dispatch({
+//     type: "SET_DARK_MODE",
+//     index: set,
+//   });
+// };

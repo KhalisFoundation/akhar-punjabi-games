@@ -11,7 +11,67 @@ import {
 import { useSelector } from 'react-redux';
 import Level from './levelDisplays';
 
+import theColors from '../../util/colors';
+
 function RightWords({ navigation }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+  const theCorrectWords = state.correctWords;
+  const theGivenUpWords = state.givenUpWords;
+
+  const colors = theColors[state.darkMode];
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: colors.wordsCompleted.container,
+      justifyContent: 'center',
+      width: '100%',
+      height: '100%',
+      paddingTop: '10%',
+    },
+    backButton: {
+      width: '10%',
+      height: '10%',
+      right: '40%',
+      top: '3%',
+    },
+    backArrow: {
+      width: '70%',
+      height: '70%',
+    },
+    title: {
+      fontSize: 32,
+      bottom: '130%',
+    },
+    listContainer: {
+      backgroundColor: colors.wordsCompleted.listContainer,
+      width: '95%',
+      height: '60%',
+      bottom: '5%',
+    },
+    answerBox: {
+      backgroundColor: colors.wordsCompleted.answerBox,
+      width: '95%',
+      height: '30%',
+      borderRadius: 20,
+      bottom: '4%',
+    },
+    answerRow: {
+      flexDirection: 'row',
+    },
+    answerText: {
+      fontSize: 20,
+      left: '1%',
+      color: colors.wordsCompleted.answerText,
+    },
+    answerForAnswerText: {
+      fontSize: 20,
+      left: '1%',
+      // top: "10%",
+      color: colors.wordsCompleted.answerForAnswerText,
+    },
+  });
+
   const longestMeaning = {
     engText: '',
     punjabiText: '',
@@ -22,10 +82,6 @@ function RightWords({ navigation }) {
   };
 
   const [showAnswer, setAnswer] = React.useState(longestMeaning);
-
-  const state = useSelector((theState) => theState.theGameReducer);
-  const theCorrectWords = state.correctWords;
-  const theGivenUpWords = state.givenUpWords;
 
   const theWords = theCorrectWords.map((word) => {
     return {
@@ -88,7 +144,7 @@ function RightWords({ navigation }) {
         }}
       >
         <Image
-          source={require('../images/left_arrow.png')}
+          source={require('../../images/left_arrow.png')}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -148,58 +204,5 @@ function RightWords({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#5F909C',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    paddingTop: '10%',
-  },
-  backButton: {
-    width: '10%',
-    height: '10%',
-    right: '40%',
-    top: '3%',
-  },
-  backArrow: {
-    width: '70%',
-    height: '70%',
-  },
-  title: {
-    fontSize: 32,
-    bottom: '130%',
-  },
-  listContainer: {
-    backgroundColor: 'yellow',
-    width: '95%',
-    height: '60%',
-    bottom: '5%',
-  },
-  answerBox: {
-    backgroundColor: '#D5F3FE',
-    width: '95%',
-    height: '30%',
-    borderRadius: 20,
-    bottom: '4%',
-  },
-  answerRow: {
-    flexDirection: 'row',
-  },
-  answerText: {
-    fontSize: 20,
-    left: '1%',
-    color: 'red',
-  },
-  answerForAnswerText: {
-    fontSize: 20,
-    left: '1%',
-    // top: "10%",
-    color: 'blue',
-  },
-});
 
 export default RightWords;
