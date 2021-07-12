@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   Text,
@@ -7,40 +7,94 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from 'react-native';
-import { useSelector } from 'react-redux';
-import Level from './levelDisplays';
+} from "react-native";
+import { useSelector } from "react-redux";
+import Level from "./levelDisplays";
 
-import colors from '../../util/colors';
+import theColors from "../../util/colors";
 
 function RightWords({ navigation }) {
-  const longestMeaning = {
-    engText: '',
-    punjabiText: '',
-    meaning: '',
-    type: '',
-    level: '',
-    status: '',
-  };
-
-  const [showAnswer, setAnswer] = React.useState(longestMeaning);
-
   const state = useSelector((theState) => theState.theGameReducer);
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
 
+  const colors = theColors[state.darkMode];
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      backgroundColor: colors.wordsCompleted.container,
+      justifyContent: "center",
+      width: "100%",
+      height: "100%",
+      paddingTop: "10%",
+    },
+    backButton: {
+      width: "10%",
+      height: "10%",
+      right: "40%",
+      top: "3%",
+    },
+    backArrow: {
+      width: "70%",
+      height: "70%",
+    },
+    title: {
+      fontSize: 32,
+      bottom: "130%",
+    },
+    listContainer: {
+      backgroundColor: colors.wordsCompleted.listContainer,
+      width: "95%",
+      height: "60%",
+      bottom: "5%",
+    },
+    answerBox: {
+      backgroundColor: colors.wordsCompleted.answerBox,
+      width: "95%",
+      height: "30%",
+      borderRadius: 20,
+      bottom: "4%",
+    },
+    answerRow: {
+      flexDirection: "row",
+    },
+    answerText: {
+      fontSize: 20,
+      left: "1%",
+      color: colors.wordsCompleted.answerText,
+    },
+    answerForAnswerText: {
+      fontSize: 20,
+      left: "1%",
+      // top: "10%",
+      color: colors.wordsCompleted.answerForAnswerText,
+    },
+  });
+
+  const longestMeaning = {
+    engText: "",
+    punjabiText: "",
+    meaning: "",
+    type: "",
+    level: "",
+    status: "",
+  };
+
+  const [showAnswer, setAnswer] = React.useState(longestMeaning);
+
   const theWords = theCorrectWords.map((word) => {
     return {
       ...word,
-      status: 'Answered correctly',
+      status: "Answered correctly",
     };
   });
   theGivenUpWords.map((word) => {
     theWords.push({
       ...word,
-      status: 'Given Up',
+      status: "Given Up",
     });
-    return 'nothing';
+    return "nothing";
   });
 
   const levelsWithWords = {};
@@ -50,7 +104,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return 'nothing';
+    return "nothing";
   });
   const levels = [];
   for (let i = 0; i < 22; i += 1) {
@@ -68,12 +122,12 @@ function RightWords({ navigation }) {
     let theMeaning = [];
     for (let i = 0; i < meaning.length; i += 1) {
       if (i % 50 === 0 && i !== 0) {
-        theMeaning.push('-');
-        theMeaning.push('\n');
+        theMeaning.push("-");
+        theMeaning.push("\n");
       }
       theMeaning.push(meaning[i]);
     }
-    theMeaning = theMeaning.join('');
+    theMeaning = theMeaning.join("");
     return (
       <Text style={{ ...styles.answerForAnswerText, fontSize: 12 }}>
         {theMeaning}
@@ -86,11 +140,11 @@ function RightWords({ navigation }) {
         style={styles.backButton}
         title="Home"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate("Home");
         }}
       >
         <Image
-          source={require('../../images/left_arrow.png')}
+          source={require("../../images/left_arrow.png")}
           style={styles.backArrow}
         />
       </TouchableOpacity>
@@ -150,58 +204,5 @@ function RightWords({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: colors.wordsCompleted.container,
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    paddingTop: '10%',
-  },
-  backButton: {
-    width: '10%',
-    height: '10%',
-    right: '40%',
-    top: '3%',
-  },
-  backArrow: {
-    width: '70%',
-    height: '70%',
-  },
-  title: {
-    fontSize: 32,
-    bottom: '130%',
-  },
-  listContainer: {
-    backgroundColor: colors.wordsCompleted.listContainer,
-    width: '95%',
-    height: '60%',
-    bottom: '5%',
-  },
-  answerBox: {
-    backgroundColor: colors.wordsCompleted.answerBox,
-    width: '95%',
-    height: '30%',
-    borderRadius: 20,
-    bottom: '4%',
-  },
-  answerRow: {
-    flexDirection: 'row',
-  },
-  answerText: {
-    fontSize: 20,
-    left: '1%',
-    color: colors.wordsCompleted.answerText,
-  },
-  answerForAnswerText: {
-    fontSize: 20,
-    left: '1%',
-    // top: "10%",
-    color: colors.wordsCompleted.answerForAnswerText,
-  },
-});
 
 export default RightWords;

@@ -48,7 +48,7 @@ const DarkColors = {
     container: "#6e7f80",
   },
   circleForGame: {
-    commanChar: "white",
+    commanChar: "#CDCDCD",
     lettersCircle: "#E8C4A5",
   },
   theGame: {
@@ -82,9 +82,9 @@ const DarkColors = {
   },
 };
 
-const colors = {
+const theColors = {
   Off: { ...LightColors },
   On: { ...DarkColors },
 };
 
-export default colors["Off"];
+export default theColors;

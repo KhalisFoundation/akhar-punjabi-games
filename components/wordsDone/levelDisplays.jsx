@@ -1,28 +1,61 @@
 /* eslint-disable react-native/no-color-literals */
-import * as Anvaad from 'anvaad-js';
-import * as React from 'react';
+import * as Anvaad from "anvaad-js";
+import * as React from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
-} from 'react-native';
+} from "react-native";
 
-import colors from '../../util/colors';
+import { useSelector } from "react-redux";
+import theColors from "../../util/colors";
 
 function Level({ title, theWords, setAnswer }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+
+  const colors = theColors[state.darkMode];
+
+  const styles = StyleSheet.create({
+    container: {
+      // flex: 1,
+    },
+    title: {
+      textAlign: "center",
+      fontSize: 30,
+      backgroundColor: colors.levelDisplay.title,
+      // borderRadius: 20,
+    },
+    flatList: {
+      // width: 200,
+      // height: 200,
+      // borderRadius: 20,
+    },
+    wordEven: {
+      backgroundColor: colors.levelDisplay.wordEven,
+      // borderRadius: 20,
+    },
+    wordOdd: {
+      backgroundColor: colors.levelDisplay.wordOdd,
+    },
+    wordText: {
+      fontSize: 60,
+      textAlign: "center",
+    },
+  });
+
   let a = 0;
   let words = theWords;
   if (words === undefined) {
     words = [
       {
-        engText: 'koeI sæbd nhIN',
-        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
-        meaning: 'There are no words',
-        type: 'Punjabi',
-        level: 'N/A',
-        status: 'N/A',
+        engText: "koeI sæbd nhIN",
+        punjabiText: "ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ",
+        meaning: "There are no words",
+        type: "Punjabi",
+        level: "N/A",
+        status: "N/A",
       },
     ];
   }
@@ -61,33 +94,5 @@ function Level({ title, theWords, setAnswer }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 30,
-    backgroundColor: colors.levelDisplay.title,
-    // borderRadius: 20,
-  },
-  flatList: {
-    // width: 200,
-    // height: 200,
-    // borderRadius: 20,
-  },
-  wordEven: {
-    backgroundColor: colors.levelDisplay.wordEven,
-    // borderRadius: 20,
-  },
-  wordOdd: {
-    backgroundColor: colors.levelDisplay.wordOdd,
-  },
-  wordText: {
-    fontSize: 60,
-    textAlign: 'center',
-  },
-});
 
 export default Level;
