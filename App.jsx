@@ -1,13 +1,13 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { Provider } from "react-redux";
-import HomeScreen from "./components/homeScreen/landingPage";
-import GameScreen from "./components/playGame/theGame";
-import RightWords from "./components/wordsDone/wordsCompleted";
-import Settings from "./components/settings/settings";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import HomeScreen from './components/homeScreen/landingPage';
+import GameScreen from './components/playGame/theGame';
+import RightWords from './components/wordsDone/wordsCompleted';
+import Settings from './components/settings/settings';
 
-import { Store } from "./redux/store";
+import { Store } from './redux/store';
 
 const Stack = createStackNavigator();
 
