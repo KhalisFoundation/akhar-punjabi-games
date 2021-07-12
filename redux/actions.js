@@ -50,21 +50,9 @@ export const setTypeOfWords = (theType) => (dispatch) => {
     theTypeOfWords: theType,
   });
 };
-export const setTypeOfWordInd = (ind) => (dispatch) => {
-  dispatch({
-    type: "SET_TYPE_OF_WORD_INDEX",
-    index: ind,
-  });
-};
 export const setDarkMode = (set) => (dispatch) => {
   dispatch({
     type: "SET_DARK_MODE",
     onOrOff: set,
   });
 };
-// export const setDarkModeIndex = (set) => (dispatch) => {
-//   dispatch({
-//     type: "SET_DARK_MODE",
-//     index: set,
-//   });
-// };
