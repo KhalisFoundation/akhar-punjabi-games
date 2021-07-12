@@ -1,16 +1,16 @@
 /* eslint-disable react-native/no-color-literals */
-import * as Anvaad from "anvaad-js";
-import * as React from "react";
+import * as Anvaad from 'anvaad-js';
+import * as React from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
-} from "react-native";
+} from 'react-native';
 
-import { useSelector } from "react-redux";
-import theColors from "../../util/colors";
+import { useSelector } from 'react-redux';
+import theColors from '../../util/colors';
 
 function Level({ title, theWords, setAnswer }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -22,7 +22,7 @@ function Level({ title, theWords, setAnswer }) {
       // flex: 1,
     },
     title: {
-      textAlign: "center",
+      textAlign: 'center',
       fontSize: 30,
       backgroundColor: colors.levelDisplay.title,
       // borderRadius: 20,
@@ -41,7 +41,7 @@ function Level({ title, theWords, setAnswer }) {
     },
     wordText: {
       fontSize: 60,
-      textAlign: "center",
+      textAlign: 'center',
     },
   });
 
@@ -50,12 +50,12 @@ function Level({ title, theWords, setAnswer }) {
   if (words === undefined) {
     words = [
       {
-        engText: "koeI sæbd nhIN",
-        punjabiText: "ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ",
-        meaning: "There are no words",
-        type: "Punjabi",
-        level: "N/A",
-        status: "N/A",
+        engText: 'koeI sæbd nhIN',
+        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
+        meaning: 'There are no words',
+        type: 'Punjabi',
+        level: 'N/A',
+        status: 'N/A',
       },
     ];
   }
