@@ -11,6 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 
 import SettingsBar from './settingBar';
+import SwitchBar from './settingBarSwitch';
 import { setTypeOfWords, setDarkMode } from '../../redux/actions';
 
 import theColors from '../../util/colors';
@@ -75,6 +76,13 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={['Both', 'Gurbani', 'Punjabi'].indexOf(
             state.typesOfWords
           )}
+        />
+        <SwitchBar
+          theSetting="Dark Mode"
+          theList={['Off', 'On']}
+          imageSource="khanda"
+          theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
         />
         <SettingsBar
           theSetting="Dark Mode"
