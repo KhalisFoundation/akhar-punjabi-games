@@ -4,11 +4,37 @@ import {
   View, StyleSheet, ActivityIndicator, Modal, Text
 } from 'react-native';
 
+import { useSelector } from 'react-redux';
+
+import theColors from '../../util/colors';
+
 function LoadingModal({ visible, theText }) {
+  const state = useSelector((theState) => theState.theGameReducer);
+
+  let colors;
+  if (state === undefined) {
+    colors = theColors.Off;
+  } else {
+    colors = theColors[state.darkMode];
+  }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      width: '100%',
+      height: '10%',
+      alignContent: 'center',
+      justifyContent: 'center',
+      backgroundColor: colors.loadingScreen.container,
+    },
+    msg: {
+      fontSize: 25,
+      textAlign: 'center',
+    },
+  });
   return (
     <Modal
       visible={visible}
-      // visible={true}
       animationType="fade"
       presentationStyle="overFullScreen"
     >
@@ -25,20 +51,5 @@ function LoadingModal({ visible, theText }) {
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    height: '10%',
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#6e7f80',
-  },
-  msg: {
-    fontSize: 25,
-    textAlign: 'center',
-  },
-});
 
 export default LoadingModal;

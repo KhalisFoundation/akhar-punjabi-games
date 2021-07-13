@@ -12,10 +12,12 @@ const setData = async (title, state) => {
   }
 };
 
+//gets new words
 const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
+//puts words for level 1
 const generateWords = setWords(1, allWords);
 
 export const initialState = {
@@ -52,6 +54,9 @@ export const initialState = {
     { level: 21, wordsNeeded: 10 },
     { level: 22, wordsNeeded: 10 },
   ],
+  //settings stuff
+  typesOfWords: "Both",
+  darkMode: "Off",
 };
 
 // setData("state", initialState); //to reset all state
@@ -170,24 +175,43 @@ function theGameReducer(state = initialState, action) {
       levelProgress: theLevelProgress,
     };
   }
-  if (action.type === "SET_STATE") {
+  if (action.type === "SET_THE_STATE") {
     return {
       ...action.state,
     };
   }
   if (action.type === "SET_TYPE_OF_WORDS") {
     let newAllWords;
+    let newTypeOfWords;
     if (action.theTypeOfWords === "Gurbani") {
       newAllWords = state.allWords.filter((word) => word.type === "Gurbani");
+      console.log("Gurbani");
+      newTypeOfWords = "Gurbani";
     } else if (action.theTypeOfWords === "Punjabi") {
       newAllWords = state.allWords.filter((word) => word.type === "Punjabi");
+      console.log("Punjabi");
+      newTypeOfWords = "Punjabi";
     } else {
       newAllWords = [...state.allWords]; //if Both
+      console.log("Both");
+      newTypeOfWords = "Both";
     }
-    return {
+    const newState = {
       ...state,
       allWords: newAllWords,
+      typesOfWords: newTypeOfWords,
     };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_DARK_MODE") {
+    console.log(action.onOrOff);
+    const newState = {
+      ...state,
+      darkMode: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
   }
 
   return { ...state }; //default
