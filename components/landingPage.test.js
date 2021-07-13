@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
 
 import configureStore from "redux-mock-store";
-import HomeScreen from "./landingPage";
+import HomeScreen from "./homeScreen/landingPage";
 
 const mockStore = configureStore([]);
 
@@ -17,7 +17,7 @@ describe("HomeScreen", () => {
     });
   });
 
-  it("has 9 children", () => {
+  it("has 10 children", () => {
     const tree = renderer
       .create(
         <Provider store={store}>
