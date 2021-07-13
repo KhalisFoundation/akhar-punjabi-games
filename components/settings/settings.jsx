@@ -11,11 +11,8 @@ import {
 import { useSelector } from 'react-redux';
 
 import SettingsBar from './settingBar';
-import {
-  setTypeOfWords,
-  setTypeOfWordInd,
-  setDarkMode,
-} from '../../redux/actions';
+import SwitchBar from './settingBarSwitch';
+import { setTypeOfWords, setDarkMode } from '../../redux/actions';
 
 import theColors from '../../util/colors';
 
@@ -76,8 +73,16 @@ function Settings({ navigation }) {
           theList={['Both', 'Gurbani', 'Punjabi']} // the 0 index in theList is the default setting
           imageSource="khalislogo150"
           theAction={setTypeOfWords} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={state.typesOfWordsSettingsIndex}
-          setIndex={setTypeOfWordInd}
+          theCurrentOptionIndex={['Both', 'Gurbani', 'Punjabi'].indexOf(
+            state.typesOfWords
+          )}
+        />
+        <SwitchBar
+          theSetting="Dark Mode"
+          theList={['Off', 'On']}
+          imageSource="khanda"
+          theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
         />
         <SettingsBar
           theSetting="Dark Mode"
@@ -85,7 +90,6 @@ function Settings({ navigation }) {
           imageSource="khanda"
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
           theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
-          setIndex={null}
         />
       </ScrollView>
     </View>

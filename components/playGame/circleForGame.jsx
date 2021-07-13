@@ -972,8 +972,6 @@ function charDisplay(
               }
               dispatch(setAttempt(final));
               ifCorrectWord(final);
-              // Async storage stuff
-              // setData(final);
             }}
             key={char}
             style={getStylesAttributes[charNum]}

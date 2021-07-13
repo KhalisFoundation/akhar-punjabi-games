@@ -51,8 +51,12 @@ function HomeScreen({ navigation }) {
     getData();
   }, [dispatch]);
   // for styles
-
-  const colors = theColors[state.darkMode];
+  let colors;
+  if (state === undefined) {
+    colors = theColors.Off;
+  } else {
+    colors = theColors[state.darkMode];
+  }
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -66,12 +70,10 @@ function HomeScreen({ navigation }) {
     logo: {
       width: '100%',
       height: '70%',
-      // top: 50,
     },
     playTouchableOpacity: {
       width: '50%',
       height: '10%',
-      // right: "40%",
       backgroundColor: colors.landingPage.playTouchableOpacity,
       borderRadius: 10,
       bottom: '23.5%',
@@ -113,7 +115,6 @@ function HomeScreen({ navigation }) {
     khalisTouchableOpacity: {
       height: '8%',
       width: '45%',
-      // left: "25%",
       bottom: '17%',
     },
     khalis: {
@@ -145,7 +146,6 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.settingsTouchableOpacity}
         onPress={() => {
-          // console.log("Settings");
           navigation.navigate('settings');
         }}
       >

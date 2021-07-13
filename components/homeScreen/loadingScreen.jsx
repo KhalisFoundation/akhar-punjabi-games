@@ -11,7 +11,13 @@ import theColors from '../../util/colors';
 function LoadingModal({ visible, theText }) {
   const state = useSelector((theState) => theState.theGameReducer);
 
-  const colors = theColors[state.darkMode];
+  let colors;
+  if (state === undefined) {
+    colors = theColors.Off;
+  } else {
+    colors = theColors[state.darkMode];
+  }
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -29,7 +35,6 @@ function LoadingModal({ visible, theText }) {
   return (
     <Modal
       visible={visible}
-      // visible={true}
       animationType="fade"
       presentationStyle="overFullScreen"
     >

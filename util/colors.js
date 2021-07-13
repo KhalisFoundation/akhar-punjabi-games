@@ -62,7 +62,7 @@ const DarkColors = {
     newWord: "yellow",
   },
   settingBar: {
-    settingBar: "#f8f8f8",
+    settingBar: "#f8f8",
   },
   settings: {
     container: "#5F909C",

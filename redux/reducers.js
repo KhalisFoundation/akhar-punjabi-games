@@ -55,7 +55,7 @@ export const initialState = {
     { level: 22, wordsNeeded: 10 },
   ],
   //settings stuff
-  typesOfWordsSettingsIndex: 0,
+  typesOfWords: "Both",
   darkMode: "Off",
 };
 
@@ -182,20 +182,36 @@ function theGameReducer(state = initialState, action) {
   }
   if (action.type === "SET_TYPE_OF_WORDS") {
     let newAllWords;
+    let newTypeOfWords;
     if (action.theTypeOfWords === "Gurbani") {
       newAllWords = state.allWords.filter((word) => word.type === "Gurbani");
       console.log("Gurbani");
+      newTypeOfWords = "Gurbani";
     } else if (action.theTypeOfWords === "Punjabi") {
       newAllWords = state.allWords.filter((word) => word.type === "Punjabi");
       console.log("Punjabi");
+      newTypeOfWords = "Punjabi";
     } else {
       newAllWords = [...state.allWords]; //if Both
       console.log("Both");
+      newTypeOfWords = "Both";
     }
-    return {
+    const newState = {
       ...state,
       allWords: newAllWords,
+      typesOfWords: newTypeOfWords,
     };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_DARK_MODE") {
+    console.log(action.onOrOff);
+    const newState = {
+      ...state,
+      darkMode: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
   }
   if (action.type === "SET_TYPE_OF_WORD_INDEX") {
     return {
