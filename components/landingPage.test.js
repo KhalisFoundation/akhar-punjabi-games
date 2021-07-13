@@ -17,7 +17,7 @@ describe("HomeScreen", () => {
     });
   });
 
-  it("has 10 children", () => {
+  it("has 9 children", () => {
     const tree = renderer
       .create(
         <Provider store={store}>
