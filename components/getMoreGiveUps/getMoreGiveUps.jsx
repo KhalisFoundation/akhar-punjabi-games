@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
+import * as React from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,13 @@ import {
   StyleSheet,
   Image,
   TextInput,
-} from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
-import * as anvaad from "anvaad-js";
-import { setGiveUpLives } from "../../redux/actions";
+import * as anvaad from 'anvaad-js';
+import { setGiveUpLives } from '../../redux/actions';
 
-import theColors from "../../util/colors";
+import theColors from '../../util/colors';
 
 function MoreGiveUps({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -23,15 +23,15 @@ function MoreGiveUps({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: "center",
+      alignItems: 'center',
       // justifyContent: "center",
       backgroundColor: colors.getMoreGiveUps.container,
-      width: "100%",
-      height: "100%",
-      paddingTop: "10%",
+      width: '100%',
+      height: '100%',
+      paddingTop: '10%',
     },
     header: {
-      flexDirection: "row",
+      flexDirection: 'row',
     },
     backButton: {
       flex: 1,
@@ -46,19 +46,19 @@ function MoreGiveUps({ navigation }) {
       right: 20,
     },
     giveUpLivesText: {
-      backgroundColor: "white",
+      backgroundColor: 'white',
       fontSize: 20,
       borderRadius: 100,
     },
     instructionsText: {
-      backgroundColor: "yellow",
+      backgroundColor: 'yellow',
       fontSize: 25,
-      textAlign: "center",
+      textAlign: 'center',
     },
     DHAN: {
       padding: 20,
       fontSize: 30,
-      backgroundColor: "blue",
+      backgroundColor: 'blue',
     },
     inputBox: {
       padding: 20,
@@ -66,35 +66,35 @@ function MoreGiveUps({ navigation }) {
     textInputGurmukhi: {
       fontSize: 25,
       // backgroundColor: colors.getMoreGiveUps.textInputGurmukhi,
-      backgroundColor: "yellow",
+      backgroundColor: 'yellow',
     },
     textInput: {
       fontSize: 15,
       backgroundColor: colors.getMoreGiveUps.textInput,
     },
     submitButton: {
-      backgroundColor: "yellow",
+      backgroundColor: 'yellow',
     },
   });
 
   const wordsToType = [
-    "vwhigurU",
-    "DMn gurU nwnk dyv swihb jI",
-    "DMn gurU AMgd swihb jI",
-    "DMn gurU Amr dws swihb jI",
-    "DMn gurU rwm dws swihb jI",
-    "DMn gurU ArjMn dyv swihb jI",
-    "DMn gurU hrgoibMd swihb jI",
-    "DMn gurU hrrwie swihb jI",
-    "DMn gurU hrikRSn swihb jI",
-    "DMn gurU qygbhwdr swihb jI",
-    "DMn gurU goibMd isMG swihb jI",
-    "DMn gurU DMn gurU ipAwry",
+    'vwhigurU',
+    'DMn gurU nwnk dyv swihb jI',
+    'DMn gurU AMgd swihb jI',
+    'DMn gurU Amr dws swihb jI',
+    'DMn gurU rwm dws swihb jI',
+    'DMn gurU ArjMn dyv swihb jI',
+    'DMn gurU hrgoibMd swihb jI',
+    'DMn gurU hrrwie swihb jI',
+    'DMn gurU hrikRSn swihb jI',
+    'DMn gurU qygbhwdr swihb jI',
+    'DMn gurU goibMd isMG swihb jI',
+    'DMn gurU DMn gurU ipAwry',
   ];
   const getRandomWord = () => {
     return wordsToType[Math.floor(Math.random() * wordsToType.length)];
   };
-  const [textEntry, setTextEntry] = React.useState("");
+  const [textEntry, setTextEntry] = React.useState('');
   const [theWord, setWord] = React.useState(getRandomWord());
   return (
     <View style={styles.container}>
@@ -103,18 +103,20 @@ function MoreGiveUps({ navigation }) {
           style={styles.backButton}
           title="Home"
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate('Home');
           }}
         >
           <Image
-            source={require("../../images/left_arrow.png")}
+            source={require('../../images/left_arrow.png')}
             style={styles.backArrow}
           />
         </TouchableOpacity>
         <Text style={styles.title}>Get More Give Ups</Text>
       </View>
       <Text style={styles.giveUpLivesText}>
-        Give Up Lives: {state.giveUpsLeft}
+        Give Up Lives:
+        {' '}
+        {state.giveUpsLeft}
       </Text>
       <Text style={styles.instructionsText}>
         Try to type the following to get more Give Lives. You will have to
@@ -139,10 +141,10 @@ function MoreGiveUps({ navigation }) {
         style={styles.submitButton}
         onPress={() => {
           if (textEntry === theWord) {
-            console.log("GOood job");
+            console.log('GOood job');
             dispatch(setGiveUpLives());
             setWord(getRandomWord());
-            setTextEntry("");
+            setTextEntry('');
           }
         }}
       >
