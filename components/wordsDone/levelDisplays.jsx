@@ -25,16 +25,10 @@ function Level({ title, theWords, setAnswer }) {
       textAlign: 'center',
       fontSize: 30,
       backgroundColor: colors.levelDisplay.title,
-      // borderRadius: 20,
     },
-    flatList: {
-      // width: 200,
-      // height: 200,
-      // borderRadius: 20,
-    },
+    flatList: {},
     wordEven: {
       backgroundColor: colors.levelDisplay.wordEven,
-      // borderRadius: 20,
     },
     wordOdd: {
       backgroundColor: colors.levelDisplay.wordOdd,
@@ -64,7 +58,7 @@ function Level({ title, theWords, setAnswer }) {
       <Text style={styles.title}>{title}</Text>
       <FlatList
         style={styles.flatList}
-        keyExtractor={(word) => word.meaning}
+        keyExtractor={(word) => word.engText}
         data={words}
         scrollEnabled
         renderItem={({ item }) => {

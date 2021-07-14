@@ -17,7 +17,7 @@ describe("HomeScreen", () => {
     });
   });
 
-  it("has 9 children", () => {
+  it("has 8 children", () => {
     const tree = renderer
       .create(
         <Provider store={store}>
@@ -25,6 +25,6 @@ describe("HomeScreen", () => {
         </Provider>
       )
       .toJSON();
-    expect(tree.children.length).toBe(9);
+    expect(tree.children.length).toBe(8);
   });
 });

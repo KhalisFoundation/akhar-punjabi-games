@@ -43,6 +43,12 @@ export const setTheState = (state) => (dispatch) => {
     state,
   });
 };
+export const setGiveUpLives = () => (dispatch) => {
+  dispatch({
+    type: "SET_GIVE_UP_LIVES",
+  });
+};
+
 //settings page
 export const setTypeOfWords = (theType) => (dispatch) => {
   dispatch({

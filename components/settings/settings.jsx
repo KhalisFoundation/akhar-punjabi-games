@@ -28,21 +28,22 @@ function Settings({ navigation }) {
       backgroundColor: colors.settings.container,
       width: '100%',
       height: '100%',
-      paddingTop: '5%',
+      paddingTop: '10%',
+    },
+    header: {
+      flexDirection: 'row',
     },
     backButton: {
-      width: '10%',
-      height: '10%',
-      right: '40%',
-      top: '3%',
+      flex: 1,
     },
     backArrow: {
-      width: '70%',
-      height: '70%',
+      width: 50,
+      height: 50,
     },
     title: {
       fontSize: 32,
-      bottom: '130%',
+      flex: 2,
+      right: 20,
     },
     scroll: {
       width: '100%',
@@ -51,19 +52,19 @@ function Settings({ navigation }) {
   });
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        title="Home"
-        onPress={() => {
-          navigation.navigate('Home');
-        }}
-      >
-        <Image
-          source={require('../../images/left_arrow.png')}
-          style={styles.backArrow}
-        />
-      </TouchableOpacity>
-      <View>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          title="Home"
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        >
+          <Image
+            source={require('../../images/left_arrow.png')}
+            style={styles.backArrow}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>SETTINGS</Text>
       </View>
       {/* <SettingsBar theImage={} title={} data={}/> */}

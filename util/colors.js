@@ -38,6 +38,14 @@ const LightColors = {
     answerText: "red",
     answerForAnswerText: "blue",
   },
+  getMoreGiveUps: {
+    container: "#FFF2E1",
+    textInput: "#f8f8f8",
+    giveUpLivesText: "white",
+    instructionsText: "yellow",
+    textInputGurmukhi: "yellow",
+    submitButton: "yellow",
+  },
 };
 
 const DarkColors = {
@@ -79,6 +87,14 @@ const DarkColors = {
     answerBox: "#D5F3FE",
     answerText: "red",
     answerForAnswerText: "blue",
+  },
+  getMoreGiveUps: {
+    container: "#5F909C",
+    textInput: "#A0a0a0",
+    giveUpLivesText: "#f8f8",
+    instructionsText: "#a0a0a0",
+    textInputGurmukhi: "#a0a0a0",
+    submitButton: "blue",
   },
 };
 
