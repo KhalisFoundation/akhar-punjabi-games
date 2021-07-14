@@ -1,7 +1,9 @@
-export default function getWords(level, allWords) {
-  const words = allWords.filter((word) => word.level === level);
+export default function getWords(words) {
   // console.log(words);
   // console.log(words.length);
+  if (words.length < 5) {
+    console.log(words.length);
+  }
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
   const firstWord = getRandomWord();

@@ -18,10 +18,11 @@ const setWords = (level, allWords) => {
   return [charArray, firstWord, secondWord];
 };
 //puts words for level 1
-const generateWords = setWords(1, allWords);
+const generateWords = getWords(allWords.filter((word) => word.level === 1));
 
 export const initialState = {
-  allWords: [...allWords],
+  ALL_WORDS: allWords, //this list will not be changed
+  usableWords: allWords.filter((word) => word.level === 1),
   topWord: "",
   bottomWord: "",
   attempt: "",
@@ -30,6 +31,7 @@ export const initialState = {
   secondWord: generateWords[2],
   correctWords: [],
   givenUpWords: [],
+  giveUpsLeft: 10,
   levelProgress: [
     { level: 1, wordsNeeded: 10 },
     { level: 2, wordsNeeded: 10 },
@@ -59,7 +61,7 @@ export const initialState = {
   darkMode: "Off",
 };
 
-// setData("state", initialState); //to reset all state
+setData("state", initialState); //to reset all state
 
 function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
@@ -82,36 +84,73 @@ function theGameReducer(state = initialState, action) {
       attempt: action.theWord,
     };
   }
+  if (action.type === "SET_CORRECT_WORDS") {
+    const wordsLst = [...state.correctWords, action.theWord];
+    return {
+      ...state,
+      correctWords: wordsLst,
+    };
+  }
+  if (action.type === "SET_GIVENUP_WORDS") {
+    const wordsLst = [...state.givenUpWords, action.theWord];
+    const newState = {
+      ...state,
+      givenUpWords: wordsLst,
+      giveUpsLeft: state.giveUpsLeft - 1,
+    };
+    setData("state", newState);
+    return newState;
+  }
   if (action.type === "SET_NEW_WORDS") {
-    const wordsForCurrentLevel = state.allWords.filter(
-      (word) => word.level === state.levelProgress[0].level
-    );
-    let generateWords;
+    const allWordsForCurrentLevel = state.ALL_WORDS.map((word) => {
+      if (word.level === state.levelProgress[0].level) {
+        if (state.typesOfWords === "Both") {
+          return word;
+        } else if (state.typesOfWords === "Gurbani") {
+          if (word.type === "Gurbani") {
+            return word;
+          }
+        } else if (state.typesOfWords === "Punjabi") {
+          if (word.type === "Punjabi") {
+            return word;
+          }
+        }
+      }
+    });
+    let newUsableWords = [];
+    for (const word in allWordsForCurrentLevel) {
+      let wordInCorrectWordsAndGivenUpWords = 0;
+      for (const correctWord in state.correctWords) {
+        if (word.engText !== correctWord.engText) continue;
+        wordInCorrectWordsAndGivenUpWords += 1;
+      }
+      for (const giveUpWord in state.givenUpWords) {
+        if (word.engText !== giveUpWord.engText) continue;
+        wordInCorrectWordsAndGivenUpWords += 1;
+      }
+      //check if word is in correctWords or givenUpWords
+      if (wordInCorrectWordsAndGivenUpWords === 0) {
+        newUsableWords.push(word);
+      }
+      console.log(wordInCorrectWordsAndGivenUpWords);
+    }
     let newGiveUpWords;
-    let newAllWords;
-
-    if (wordsForCurrentLevel.length > 3) {
-      generateWords = setWords(state.levelProgress[0].level, state.allWords);
+    if (newUsableWords.length > 3) {
       newGiveUpWords = [...state.givenUpWords];
-      newAllWords = [...state.allWords];
     } else {
       //this code block will run when there are no more avaliable words for the particular level in all words.
-      // we will take the given up words for this level and put them back in allWords.
-      newAllWords = [...state.allWords];
-      state.givenUpWords.map((word) => {
+      // we will take the given up words for this level and put them back in usableWords.
+      newGiveUpWords = state.givenUpWords.map((word) => {
         if (word.level === state.levelProgress[0].level) {
-          newAllWords.push(word);
+          newUsableWords.push(word);
+        } else {
+          return word;
         }
       });
-      newGiveUpWords = state.givenUpWords.filter(
-        (word) => !newAllWords.includes(word)
-      );
-      generateWords = setWords(state.levelProgress[0].level, newAllWords);
     }
-    // console.log(wordsForCurrentLevel.length);
-    // console.log(newGiveUpWords.length);
-    // console.log(newAllWords.length);
-    const updatedState = {
+    const generateWords = getWords(newUsableWords);
+
+    const newState = {
       //doing this because it is used twice, once to return and second to setData
       ...state,
       topWord: "",
@@ -121,39 +160,11 @@ function theGameReducer(state = initialState, action) {
       firstWord: generateWords[1],
       secondWord: generateWords[2],
       givenUpWords: newGiveUpWords,
-      allWords: newAllWords,
+      usableWords: newUsableWords,
     };
 
-    setData("state", updatedState);
-    return updatedState;
-  }
-  if (action.type === "SET_CORRECT_WORDS") {
-    const wordsLst = [...state.correctWords];
-    wordsLst.push(action.theWord);
-
-    const updatedWords = state.allWords.filter(
-      (word) => word.punjabiText !== action.theWord.punjabiText
-    );
-
-    return {
-      ...state,
-      correctWords: wordsLst,
-      allWords: updatedWords,
-    };
-  }
-  if (action.type === "SET_GIVENUP_WORDS") {
-    const wordsLst = [...state.givenUpWords];
-    wordsLst.push(action.theWord);
-
-    const updatedWords = state.allWords.filter(
-      (word) => word.punjabiText !== action.theWord.punjabiText
-    );
-
-    return {
-      ...state,
-      givenUpWords: wordsLst,
-      allWords: updatedWords,
-    };
+    setData("state", newState);
+    return newState;
   }
   if (action.type === "SET_LEVEL_PROGRESS") {
     let theLevelProgress = [...state.levelProgress];
@@ -176,30 +187,16 @@ function theGameReducer(state = initialState, action) {
     };
   }
   if (action.type === "SET_THE_STATE") {
+    // for async storage
     return {
       ...action.state,
     };
   }
   if (action.type === "SET_TYPE_OF_WORDS") {
-    let newAllWords;
-    let newTypeOfWords;
-    if (action.theTypeOfWords === "Gurbani") {
-      newAllWords = state.allWords.filter((word) => word.type === "Gurbani");
-      console.log("Gurbani");
-      newTypeOfWords = "Gurbani";
-    } else if (action.theTypeOfWords === "Punjabi") {
-      newAllWords = state.allWords.filter((word) => word.type === "Punjabi");
-      console.log("Punjabi");
-      newTypeOfWords = "Punjabi";
-    } else {
-      newAllWords = [...state.allWords]; //if Both
-      console.log("Both");
-      newTypeOfWords = "Both";
-    }
+    console.log(action.theTypeOfWords);
     const newState = {
       ...state,
-      allWords: newAllWords,
-      typesOfWords: newTypeOfWords,
+      typesOfWords: action.theTypeOfWords,
     };
     setData("state", newState);
     return newState;
@@ -213,8 +210,17 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
+  if (action.type === "SET_GIVE_UP_LIVES") {
+    const newState = {
+      ...state,
+      giveUpsLeft: state.giveUpsLeft + 1,
+    };
+    setData("state", newState);
+    return newState;
+  }
 
-  return { ...state }; //default
+  //default
+  return { ...state };
 }
 
 export default theGameReducer;

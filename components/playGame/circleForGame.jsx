@@ -32,7 +32,6 @@ function TheCircle() {
 
   const commonStyles = StyleSheet.create({
     lettersCircle: {
-      bottom: '6%',
       width: '85%',
       height: '45%',
       borderRadius: 200,
