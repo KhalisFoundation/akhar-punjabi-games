@@ -30,6 +30,7 @@ export const initialState = {
   secondWord: generateWords[2],
   correctWords: [],
   givenUpWords: [],
+  giveUpsLeft: 10,
   levelProgress: [
     { level: 1, wordsNeeded: 10 },
     { level: 2, wordsNeeded: 10 },
@@ -59,7 +60,7 @@ export const initialState = {
   darkMode: "Off",
 };
 
-// setData("state", initialState); //to reset all state
+setData("state", initialState); //to reset all state
 
 function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
@@ -149,11 +150,14 @@ function theGameReducer(state = initialState, action) {
       (word) => word.punjabiText !== action.theWord.punjabiText
     );
 
-    return {
+    const updatedState = {
       ...state,
       givenUpWords: wordsLst,
       allWords: updatedWords,
+      giveUpsLeft: state.giveUpsLeft - 1,
     };
+    setData("state", updatedState);
+    return updatedState;
   }
   if (action.type === "SET_LEVEL_PROGRESS") {
     let theLevelProgress = [...state.levelProgress];
@@ -213,18 +217,13 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
-  if (action.type === "SET_TYPE_OF_WORD_INDEX") {
-    return {
+  if (action.type === "SET_GIVE_UP_LIVES") {
+    const newState = {
       ...state,
-      typesOfWordsSettingsIndex: action.index,
+      giveUpsLeft: state.giveUpsLeft + 1,
     };
-  }
-  if (action.type === "SET_DARK_MODE") {
-    console.log(action.onOrOff);
-    return {
-      ...state,
-      darkMode: action.onOrOff,
-    };
+    setData("state", newState);
+    return newState;
   }
 
   return { ...state }; //default

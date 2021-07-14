@@ -6,6 +6,7 @@ import HomeScreen from './components/homeScreen/landingPage';
 import GameScreen from './components/playGame/theGame';
 import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
+import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 
 import { Store } from './redux/store';
 
@@ -30,13 +31,16 @@ function App() {
             name="correctWords"
             options={{ headerShown: false }}
             component={RightWords}
-            initialParams={{ wordLst: [] }}
           />
           <Stack.Screen
             name="settings"
             options={{ headerShown: false }}
             component={Settings}
-            initialParams={{ wordLst: [] }}
+          />
+          <Stack.Screen
+            name="giveUps"
+            options={{ headerShown: false }}
+            component={MoreGiveUps}
           />
         </Stack.Navigator>
       </NavigationContainer>

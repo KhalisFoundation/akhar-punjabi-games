@@ -24,109 +24,118 @@ function GameScreen({ navigation }) {
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      // flex: 1,
       alignItems: 'center',
       backgroundColor: colors.theGame.container,
-      paddingTop: '9%',
+      paddingTop: '10%',
+    },
+    header: {
+      flexDirection: 'row',
+      // backgroundColor: "yellow",
     },
     backButton: {
-      width: '10%',
-      height: '7%',
-      right: '40%',
+      flex: 1,
     },
     backArrow: {
-      width: '90%',
-      height: '90%',
+      width: 50,
+      height: 50,
     },
     title: {
-      fontSize: 60,
-      bottom: '10%',
+      fontSize: 32,
+      flex: 2,
+      // right: 20,
     },
+
     levelDisplay: {
       backgroundColor: colors.theGame.levelDisplay,
-      bottom: '10%',
-      left: '20%',
     },
     wordBoxAnswers: {
-      bottom: 65,
-      width: 350,
+      // flexDirection: "column",
+      width: 400,
       height: 250,
       backgroundColor: colors.theGame.wordBoxAnswers,
       borderRadius: 20,
     },
+    answerRow: {
+      // flex: 1,
+      flexDirection: 'row',
+      marginTop: 40,
+    },
     hint: {
-      width: 60,
-      top: 60,
+      flex: 1,
+      marginLeft: 10,
     },
     wordBoxText: {
+      flex: 3,
       width: 250,
       height: 50,
-      left: 50,
-      top: 30,
       backgroundColor: colors.theGame.wordBoxText,
       borderRadius: 20,
     },
     answers: {
+      textAlign: 'center',
       fontSize: 35,
-      left: 10,
+    },
+    giveUp: {
+      flex: 1,
+      backgroundColor: colors.theGame.giveUp,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+    },
+    giveUpTxt: {
+      textAlign: 'center',
+      alignItems: 'center',
     },
     wordAttemptView: {
       flexDirection: 'row',
+      padding: 10,
     },
     wordAttempt: {
-      bottom: 58,
       width: 200,
       height: 50,
       backgroundColor: colors.theGame.wordAttempt,
       borderRadius: 20,
-      paddingLeft: 20,
       fontSize: 30,
     },
     clearBox: {
       width: 50,
       height: 30,
       backgroundColor: colors.theGame.clearBox,
-      top: -50,
-      left: 5,
       borderRadius: 20,
     },
-    giveUp: {
-      backgroundColor: colors.theGame.giveUp,
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      left: 300,
-      top: -20,
-    },
-    giveUpTxt: {
-      textAlign: 'center',
-    },
-    newWord: {
-      left: 265,
-      borderRadius: 20,
-      width: 90,
-      backgroundColor: colors.theGame.newWord,
-      alignItems: 'center',
-    },
+    // newWord: {
+    //   left: 265,
+    //   borderRadius: 20,
+    //   width: 90,
+    //   backgroundColor: colors.theGame.newWord,
+    //   alignItems: "center",
+    // },
+    theCircle: {},
   });
 
   return (
     <View style={styles.container}>
-      {/* BackButton */}
-      <TouchableOpacity
-        style={styles.backButton}
-        title="Home"
-        onPress={() => {
-          navigation.navigate('Home', { correctWords: state.correctWords });
-        }}
-      >
-        <Image
-          source={require('../../images/left_arrow.png')}
-          style={styles.backArrow}
-        />
-      </TouchableOpacity>
-      <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          title="Home"
+          onPress={() => {
+            navigation.navigate('Home', { correctWords: state.correctWords });
+          }}
+        >
+          <Image
+            source={require('../../images/left_arrow.png')}
+            style={styles.backArrow}
+          />
+        </TouchableOpacity>
+        <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
+      </View>
       <View style={styles.levelDisplay}>
+        <Text>
+          Give Ups left:
+          {state.giveUpsLeft}
+        </Text>
         <Text>
           Current Level:
           {state.levelProgress[0].level}
@@ -137,52 +146,71 @@ function GameScreen({ navigation }) {
           {state.levelProgress[0].wordsNeeded}
         </Text>
       </View>
+
       <View style={styles.wordBoxAnswers}>
-        <Text style={styles.hint}>
-          {`Len: ${state.firstWord.engText.length}`}
-        </Text>
-        <View style={styles.wordBoxText}>
-          <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
-          <View style={styles.definition}>
-            <Text style={styles.definitionText}>{state.firstWord.meaning}</Text>
+        <View style={styles.answerRow}>
+          <Text style={styles.hint}>
+            {`Length of Word: ${state.firstWord.engText.length}`}
+          </Text>
+          <View style={styles.wordBoxText}>
+            <Text style={styles.answers}>{Anvaad.unicode(state.topWord)}</Text>
+            <View style={styles.definition}>
+              <Text style={styles.definitionText}>
+                {state.firstWord.meaning}
+              </Text>
+            </View>
           </View>
-        </View>
-        <TouchableOpacity
-          style={styles.giveUp}
-          onPress={() => {
-            dispatch(setTopWord());
-            dispatch(setGivenUpWords(state.firstWord));
-            if (state.bottomWord !== '') {
-              setTimeout(() => dispatch(setNewWords()), 1000);
+          <TouchableOpacity
+            disabled={state.giveUpsLeft === 0}
+            style={
+              state.giveUpsLeft === 0
+                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                : styles.giveUp
             }
-          }}
-        >
-          <Text style={styles.giveUpTxt}>GIVE UP</Text>
-        </TouchableOpacity>
-        <Text style={styles.hint}>
-          {`Len: ${state.secondWord.engText.length}`}
-        </Text>
-        <View style={styles.wordBoxText}>
-          <Text style={styles.answers}>{Anvaad.unicode(state.bottomWord)}</Text>
-          <View style={styles.definition}>
-            <Text style={styles.definitionText}>
-              {state.secondWord.meaning}
+            onPress={() => {
+              dispatch(setTopWord());
+              dispatch(setGivenUpWords(state.firstWord));
+              if (state.bottomWord !== '') {
+                setTimeout(() => dispatch(setNewWords()), 1000);
+              }
+            }}
+          >
+            <Text style={styles.giveUpTxt}>GIVE UP</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.answerRow}>
+          <Text style={styles.hint}>
+            {`Length of Word: ${state.secondWord.engText.length}`}
+          </Text>
+          <View style={styles.wordBoxText}>
+            <Text style={styles.answers}>
+              {Anvaad.unicode(state.bottomWord)}
             </Text>
+            <View style={styles.definition}>
+              <Text style={styles.definitionText}>
+                {state.secondWord.meaning}
+              </Text>
+            </View>
           </View>
-        </View>
-        <TouchableOpacity
-          style={styles.giveUp}
-          onPress={() => {
-            dispatch(setBottomWord());
-            dispatch(setGivenUpWords(state.secondWord));
-            if (state.topWord !== '') {
-              setTimeout(() => dispatch(setNewWords()), 1000);
+          <TouchableOpacity
+            disabled={state.giveUpsLeft === 0}
+            style={
+              state.giveUpsLeft === 0
+                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                : styles.giveUp
             }
-          }}
-        >
-          <Text style={styles.giveUpTxt}>GIVE UP</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+            onPress={() => {
+              dispatch(setBottomWord());
+              dispatch(setGivenUpWords(state.secondWord));
+              if (state.topWord !== '') {
+                setTimeout(() => dispatch(setNewWords()), 1000);
+              }
+            }}
+          >
+            <Text style={styles.giveUpTxt}>GIVE UP</Text>
+          </TouchableOpacity>
+        </View>
+        {/* <TouchableOpacity
           style={styles.newWord}
           title="New Words"
           onPress={() => {
@@ -190,7 +218,7 @@ function GameScreen({ navigation }) {
           }}
         >
           <Text>New Word</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.wordAttemptView}>
@@ -207,13 +235,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <TheCircle
-        charArray={state.charArray}
-        // setAttempt={actions.setAttempt}
-        dispatch={dispatch}
-        state={state}
-      />
-      {/* there can only be from 4-18 characters as input */}
+      <TheCircle style={styles.theCircle} />
     </View>
   );
 }

@@ -38,6 +38,10 @@ const LightColors = {
     answerText: "red",
     answerForAnswerText: "blue",
   },
+  getMoreGiveUps: {
+    container: "#FFF2E1",
+    textInput: "#f8f8f8",
+  },
 };
 
 const DarkColors = {
@@ -79,6 +83,10 @@ const DarkColors = {
     answerBox: "#D5F3FE",
     answerText: "red",
     answerForAnswerText: "blue",
+  },
+  getMoreGiveUps: {
+    container: "#5F909C",
+    textInput: "#A0a0a0",
   },
 };
 

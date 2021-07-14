@@ -82,29 +82,22 @@ function HomeScreen({ navigation }) {
       width: '100%',
       height: '100%',
     },
-    settingsTouchableOpacity: {
-      height: '10%',
-      width: '20%',
-      right: '25%',
-      bottom: '12%',
+    otherScreens: {
+      flexDirection: 'row',
+      // backgroundColor: "yellow",
+      bottom: '43.5%',
+      justifyContent: 'space-between',
     },
-    settings: {
-      height: '100%',
-      width: '100%',
+    otherScreenTouchableOpacity: {
+      flex: 1,
+      margin: 10,
+    },
+    otherScreensImg: {
+      height: 100,
+      width: 100,
       borderRadius: 5,
       alignItems: 'center',
-    },
-    levelsTouchableOpacity: {
-      height: '10%',
-      width: '20%',
-      left: '25%',
-      bottom: '22%',
-    },
-    levels: {
-      height: '100%',
-      width: '100%',
-      borderRadius: 5,
-      alignItems: 'center',
+      backgroundColor: 'blue', // only here for the giveUp because no img
     },
     by: {
       bottom: '18%',
@@ -143,29 +136,45 @@ function HomeScreen({ navigation }) {
         <Image style={styles.play} source={require('../../images/Play.png')} />
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.settingsTouchableOpacity}
-        onPress={() => {
-          navigation.navigate('settings');
-        }}
-      >
-        <Image
-          style={styles.settings}
-          source={require('../../images/settings.png')}
-        />
-      </TouchableOpacity>
+      <View style={styles.otherScreens}>
+        <TouchableOpacity
+          style={styles.otherScreenTouchableOpacity}
+          onPress={() => {
+            navigation.navigate('settings');
+          }}
+        >
+          <Image
+            style={styles.otherScreensImg}
+            source={require('../../images/settings.png')}
+          />
+          <Text>SETTINGS</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.levelsTouchableOpacity}
-        onPress={() => {
-          navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
-        }}
-      >
-        <Image
-          style={styles.levels}
-          source={require('../../images/levels.png')}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.otherScreenTouchableOpacity}
+          onPress={() => {
+            navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
+          }}
+        >
+          <Image
+            style={styles.otherScreensImg}
+            source={require('../../images/levels.png')}
+          />
+          <Text>Words Done</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.otherScreenTouchableOpacity}
+          onPress={() => {
+            navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
+          }}
+        >
+          <View style={styles.otherScreensImg}>
+            <Text>Give Up</Text>
+          </View>
+          <Text>Get Give Ups</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.by}>
         <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
       </View>

@@ -21,7 +21,6 @@ function RightWords({ navigation }) {
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
       alignItems: 'center',
       backgroundColor: colors.wordsCompleted.container,
       justifyContent: 'center',
@@ -29,45 +28,43 @@ function RightWords({ navigation }) {
       height: '100%',
       paddingTop: '10%',
     },
+    header: {
+      flexDirection: 'row',
+    },
     backButton: {
-      width: '10%',
-      height: '10%',
-      right: '40%',
-      top: '3%',
+      flex: 1,
     },
     backArrow: {
-      width: '70%',
-      height: '70%',
+      width: 50,
+      height: 50,
     },
     title: {
       fontSize: 32,
-      bottom: '130%',
+      flex: 3,
+      right: 20,
     },
     listContainer: {
-      backgroundColor: colors.wordsCompleted.listContainer,
+      // backgroundColor: colors.wordsCompleted.listContainer,
       width: '95%',
       height: '60%',
-      bottom: '5%',
+      padding: 10,
     },
     answerBox: {
       backgroundColor: colors.wordsCompleted.answerBox,
       width: '95%',
       height: '30%',
       borderRadius: 20,
-      bottom: '4%',
     },
     answerRow: {
       flexDirection: 'row',
     },
     answerText: {
       fontSize: 20,
-      left: '1%',
       color: colors.wordsCompleted.answerText,
     },
     answerForAnswerText: {
       fontSize: 20,
-      left: '1%',
-      // top: "10%",
+
       color: colors.wordsCompleted.answerForAnswerText,
     },
   });
@@ -136,19 +133,19 @@ function RightWords({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        title="Home"
-        onPress={() => {
-          navigation.navigate('Home');
-        }}
-      >
-        <Image
-          source={require('../../images/left_arrow.png')}
-          style={styles.backArrow}
-        />
-      </TouchableOpacity>
-      <View>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          title="Home"
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        >
+          <Image
+            source={require('../../images/left_arrow.png')}
+            style={styles.backArrow}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>Words Completed</Text>
       </View>
       <View style={styles.listContainer}>
