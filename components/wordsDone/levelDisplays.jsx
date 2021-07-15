@@ -1,16 +1,16 @@
 /* eslint-disable react-native/no-color-literals */
-import * as Anvaad from 'anvaad-js';
-import * as React from 'react';
+import * as Anvaad from "anvaad-js";
+import * as React from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
-} from 'react-native';
+} from "react-native";
 
-import { useSelector } from 'react-redux';
-import theColors from '../../util/colors';
+import { useSelector } from "react-redux";
+import theColors from "../../util/colors";
 
 function Level({ title, theWords, setAnswer }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -22,7 +22,7 @@ function Level({ title, theWords, setAnswer }) {
       // flex: 1,
     },
     title: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 30,
       backgroundColor: colors.levelDisplay.title,
     },
@@ -35,7 +35,7 @@ function Level({ title, theWords, setAnswer }) {
     },
     wordText: {
       fontSize: 60,
-      textAlign: 'center',
+      textAlign: "center",
     },
   });
 
@@ -44,15 +44,36 @@ function Level({ title, theWords, setAnswer }) {
   if (words === undefined) {
     words = [
       {
-        engText: 'koeI sæbd nhIN',
-        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
-        meaning: 'There are no words',
-        type: 'Punjabi',
-        level: 'N/A',
-        status: 'N/A',
+        engText: "koeI sæbd nhIN",
+        punjabiText: "ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ",
+        meaning: "There are no words",
+        type: "Punjabi",
+        level: "N/A",
+        status: "N/A",
       },
     ];
   }
+  const renderItem = React.useCallback(({ item }) => {
+    a += 1;
+    let wordStyle;
+    if (a % 2 === 0) {
+      wordStyle = styles.wordEven;
+    } else {
+      wordStyle = styles.wordOdd;
+    }
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          // console.log(item.meaning);
+          setAnswer(item);
+        }}
+      >
+        <View style={wordStyle}>
+          <Text style={styles.wordText}>{Anvaad.unicode(item.engText)}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -61,29 +82,7 @@ function Level({ title, theWords, setAnswer }) {
         keyExtractor={(word) => word.engText}
         data={words}
         scrollEnabled
-        renderItem={({ item }) => {
-          a += 1;
-          let wordStyle;
-          if (a % 2 === 0) {
-            wordStyle = styles.wordEven;
-          } else {
-            wordStyle = styles.wordOdd;
-          }
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                // console.log(item.meaning);
-                setAnswer(item);
-              }}
-            >
-              <View style={wordStyle}>
-                <Text style={styles.wordText}>
-                  {Anvaad.unicode(item.engText)}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={renderItem}
       />
     </View>
   );

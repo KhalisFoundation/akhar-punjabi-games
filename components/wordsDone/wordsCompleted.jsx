@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   Text,
@@ -7,11 +7,11 @@ import {
   StyleSheet,
   Image,
   FlatList,
-} from 'react-native';
-import { useSelector } from 'react-redux';
-import Level from './levelDisplays';
+} from "react-native";
+import { useSelector } from "react-redux";
+import Level from "./levelDisplays";
 
-import theColors from '../../util/colors';
+import theColors from "../../util/colors";
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -21,15 +21,15 @@ function RightWords({ navigation }) {
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
-      alignItems: 'center',
+      alignItems: "center",
       backgroundColor: colors.wordsCompleted.container,
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-      paddingTop: '10%',
+      justifyContent: "center",
+      width: "100%",
+      height: "100%",
+      paddingTop: "10%",
     },
     header: {
-      flexDirection: 'row',
+      flexDirection: "row",
     },
     backButton: {
       flex: 1,
@@ -45,18 +45,18 @@ function RightWords({ navigation }) {
     },
     listContainer: {
       // backgroundColor: colors.wordsCompleted.listContainer,
-      width: '95%',
-      height: '60%',
+      width: "95%",
+      height: "60%",
       padding: 10,
     },
     answerBox: {
       backgroundColor: colors.wordsCompleted.answerBox,
-      width: '95%',
-      height: '30%',
+      width: "95%",
+      height: "30%",
       borderRadius: 20,
     },
     answerRow: {
-      flexDirection: 'row',
+      flexDirection: "row",
     },
     answerText: {
       fontSize: 20,
@@ -70,12 +70,12 @@ function RightWords({ navigation }) {
   });
 
   const longestMeaning = {
-    engText: '',
-    punjabiText: '',
-    meaning: '',
-    type: '',
-    level: '',
-    status: '',
+    engText: "",
+    punjabiText: "",
+    meaning: "",
+    type: "",
+    level: "",
+    status: "",
   };
 
   const [showAnswer, setAnswer] = React.useState(longestMeaning);
@@ -83,15 +83,15 @@ function RightWords({ navigation }) {
   const theWords = theCorrectWords.map((word) => {
     return {
       ...word,
-      status: 'Answered correctly',
+      status: "Answered correctly",
     };
   });
   theGivenUpWords.map((word) => {
     theWords.push({
       ...word,
-      status: 'Given Up',
+      status: "Given Up",
     });
-    return 'nothing';
+    return "nothing";
   });
 
   const levelsWithWords = {};
@@ -101,7 +101,7 @@ function RightWords({ navigation }) {
     } else {
       levelsWithWords[word.level].push(word);
     }
-    return 'nothing';
+    return "nothing";
   });
   const levels = [];
   for (let i = 0; i < 22; i += 1) {
@@ -119,18 +119,24 @@ function RightWords({ navigation }) {
     let theMeaning = [];
     for (let i = 0; i < meaning.length; i += 1) {
       if (i % 50 === 0 && i !== 0) {
-        theMeaning.push('-');
-        theMeaning.push('\n');
+        theMeaning.push("-");
+        theMeaning.push("\n");
       }
       theMeaning.push(meaning[i]);
     }
-    theMeaning = theMeaning.join('');
+    theMeaning = theMeaning.join("");
     return (
       <Text style={{ ...styles.answerForAnswerText, fontSize: 12 }}>
         {theMeaning}
       </Text>
     );
   }
+
+  const renderItem = React.useCallback(({ item }) => {
+    return (
+      <Level title={item.text} theWords={item.words} setAnswer={setAnswer} />
+    );
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -138,11 +144,11 @@ function RightWords({ navigation }) {
           style={styles.backButton}
           title="Home"
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate("Home");
           }}
         >
           <Image
-            source={require('../../images/left_arrow.png')}
+            source={require("../../images/left_arrow.png")}
             style={styles.backArrow}
           />
         </TouchableOpacity>
@@ -152,15 +158,7 @@ function RightWords({ navigation }) {
         <FlatList
           // style={styles.listContainer}
           data={levels}
-          renderItem={({ item }) => {
-            return (
-              <Level
-                title={item.text}
-                theWords={item.words}
-                setAnswer={setAnswer}
-              />
-            );
-          }}
+          renderItem={renderItem}
         />
       </View>
 
