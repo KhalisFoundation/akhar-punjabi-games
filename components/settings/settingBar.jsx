@@ -55,9 +55,9 @@ function SettingsBar({
   };
   const list = theList.map((theTitle) => {
     return {
-      title: theTitle,
+      title: String(theTitle),
       onPress: () => {
-        setCurrentSetting(theTitle);
+        setCurrentSetting(String(theTitle));
         setIsVisible(false);
         dispatch(theAction(theTitle));
       },
@@ -72,7 +72,7 @@ function SettingsBar({
   });
   const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
-    list[theCurrentOptionIndex].title
+    String(list[theCurrentOptionIndex].title)
   );
   // dispatch(theAction(currentSetting));
   // why does this cause it it craxh

@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 import SettingsBar from './settingBar';
 import SwitchBar from './settingBarSwitch';
-import { setTypeOfWords, setDarkMode } from '../../redux/actions';
+import { setTypeOfWords, setDarkMode, setShowPopUp } from '../../redux/actions';
 
 import theColors from '../../util/colors';
 
@@ -85,12 +85,19 @@ function Settings({ navigation }) {
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
           theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
         />
-        <SettingsBar
+        {/* <SettingsBar
           theSetting="Dark Mode"
-          theList={['Off', 'On']}
+          theList={["Off", "On"]}
           imageSource="khanda"
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
+          theCurrentOptionIndex={["Off", "On"].indexOf(state.darkMode)}
+        /> */}
+        <SettingsBar
+          theSetting="Show Pop Up after each word"
+          theList={[true, false]}
+          imageSource="ikOngkar"
+          theAction={setShowPopUp} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
       </ScrollView>
     </View>

@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import TheCircle from './circleForGame';
+import WordsDoneModal from './modalNextWord';
 
 import {
   setTopWord,
@@ -46,20 +47,27 @@ function GameScreen({ navigation }) {
       // right: 20,
     },
 
-    levelDisplay: {
+    info: {
+      flexDirection: 'row',
+    },
+    infoRow: {
+      marginLeft: 25,
+      borderRadius: 20,
       backgroundColor: colors.theGame.levelDisplay,
+      flex: 1,
+      textAlign: 'center',
     },
     wordBoxAnswers: {
       // flexDirection: "column",
       width: 400,
-      height: 250,
+      height: 200,
       backgroundColor: colors.theGame.wordBoxAnswers,
       borderRadius: 20,
     },
     answerRow: {
       // flex: 1,
       flexDirection: 'row',
-      marginTop: 40,
+      marginTop: 30,
     },
     hint: {
       flex: 1,
@@ -88,7 +96,7 @@ function GameScreen({ navigation }) {
       alignItems: 'center',
     },
     wordAttemptView: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       padding: 10,
     },
     wordAttempt: {
@@ -104,18 +112,13 @@ function GameScreen({ navigation }) {
       backgroundColor: colors.theGame.clearBox,
       borderRadius: 20,
     },
-    // newWord: {
-    //   left: 265,
-    //   borderRadius: 20,
-    //   width: 90,
-    //   backgroundColor: colors.theGame.newWord,
-    //   alignItems: "center",
-    // },
     theCircle: {},
   });
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+    >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -131,20 +134,34 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
         <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       </View>
-      <View style={styles.levelDisplay}>
-        <Text>
-          Give Ups left:
-          {state.giveUpsLeft}
-        </Text>
-        <Text>
-          Current Level:
-          {state.levelProgress[0].level}
-        </Text>
-        <Text>
-          Words Needed for next level:
-          {' '}
-          {state.levelProgress[0].wordsNeeded}
-        </Text>
+
+      {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
+      <View style={styles.info}>
+        <View style={styles.infoRow}>
+          <Text>
+            Word Type:
+            {state.typesOfWords}
+          </Text>
+          <Text>
+            Give Ups left:
+            {state.giveUpsLeft}
+          </Text>
+          <Text>
+            Current Level:
+            {state.levelProgress[0].level}
+          </Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text>
+            Words Needed for next level:
+            {' '}
+            {state.levelProgress[0].wordsNeeded}
+          </Text>
+          <Text>
+            Total Points:
+            {state.totalPoints}
+          </Text>
+        </View>
       </View>
 
       <View style={styles.wordBoxAnswers}>
@@ -171,7 +188,7 @@ function GameScreen({ navigation }) {
               dispatch(setTopWord());
               dispatch(setGivenUpWords(state.firstWord));
               if (state.bottomWord !== '') {
-                setTimeout(() => dispatch(setNewWords()), 1000);
+                dispatch(setNewWords());
               }
             }}
           >
@@ -203,7 +220,7 @@ function GameScreen({ navigation }) {
               dispatch(setBottomWord());
               dispatch(setGivenUpWords(state.secondWord));
               if (state.topWord !== '') {
-                setTimeout(() => dispatch(setNewWords()), 1000);
+                dispatch(setNewWords());
               }
             }}
           >

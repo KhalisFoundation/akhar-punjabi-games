@@ -131,6 +131,12 @@ function RightWords({ navigation }) {
       </Text>
     );
   }
+
+  const renderItem = React.useCallback(({ item }) => {
+    return (
+      <Level title={item.text} theWords={item.words} setAnswer={setAnswer} />
+    );
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -152,15 +158,7 @@ function RightWords({ navigation }) {
         <FlatList
           // style={styles.listContainer}
           data={levels}
-          renderItem={({ item }) => {
-            return (
-              <Level
-                title={item.text}
-                theWords={item.words}
-                setAnswer={setAnswer}
-              />
-            );
-          }}
+          renderItem={renderItem}
         />
       </View>
 
