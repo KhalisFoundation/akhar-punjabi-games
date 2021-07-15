@@ -48,6 +48,11 @@ export const setGiveUpLives = () => (dispatch) => {
     type: "SET_GIVE_UP_LIVES",
   });
 };
+export const closeNextLevelModal = () => (dispatch) => {
+  dispatch({
+    type: "CLOSE_NEXT_LEVEL_MODAL",
+  });
+};
 
 //settings page
 export const setTypeOfWords = (theType) => (dispatch) => {
@@ -59,6 +64,12 @@ export const setTypeOfWords = (theType) => (dispatch) => {
 export const setDarkMode = (set) => (dispatch) => {
   dispatch({
     type: "SET_DARK_MODE",
+    onOrOff: set,
+  });
+};
+export const setShowPopUp = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_SHOW_POP_UP",
     onOrOff: set,
   });
 };

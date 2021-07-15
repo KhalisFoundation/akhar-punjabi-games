@@ -39,7 +39,6 @@ function Level({ title, theWords, setAnswer }) {
     },
   });
 
-  let a = 0;
   let words = theWords;
   if (words === undefined) {
     words = [
@@ -53,6 +52,28 @@ function Level({ title, theWords, setAnswer }) {
       },
     ];
   }
+  const renderItem = React.useCallback(({ item }) => {
+    let a = 0;
+    a += 1;
+    let wordStyle;
+    if (a % 2 === 0) {
+      wordStyle = styles.wordEven;
+    } else {
+      wordStyle = styles.wordOdd;
+    }
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          // console.log(item.meaning);
+          setAnswer(item);
+        }}
+      >
+        <View style={wordStyle}>
+          <Text style={styles.wordText}>{Anvaad.unicode(item.engText)}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -61,29 +82,7 @@ function Level({ title, theWords, setAnswer }) {
         keyExtractor={(word) => word.engText}
         data={words}
         scrollEnabled
-        renderItem={({ item }) => {
-          a += 1;
-          let wordStyle;
-          if (a % 2 === 0) {
-            wordStyle = styles.wordEven;
-          } else {
-            wordStyle = styles.wordOdd;
-          }
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                // console.log(item.meaning);
-                setAnswer(item);
-              }}
-            >
-              <View style={wordStyle}>
-                <Text style={styles.wordText}>
-                  {Anvaad.unicode(item.engText)}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={renderItem}
       />
     </View>
   );

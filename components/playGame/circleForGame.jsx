@@ -928,7 +928,7 @@ function charDisplay(
       }
       // if bottomWord is filled that means both are now answered so will get new words
       if (state.bottomWord !== '') {
-        setTimeout(() => dispatch(setNewWords()), 500);
+        dispatch(setNewWords());
       }
     }
     if (word === state.secondWord.engText && state.bottomWord === '') {
@@ -939,7 +939,7 @@ function charDisplay(
       }
       // if topWord is filled that means both are now answered so will get new words
       if (state.topWord !== '') {
-        setTimeout(() => dispatch(setNewWords()), 500);
+        dispatch(setNewWords());
       }
     }
   };
