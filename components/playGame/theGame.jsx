@@ -1,11 +1,10 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
-import * as Anvaad from 'anvaad-js';
-import {
-  View, Text, TouchableOpacity, StyleSheet, Image
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import TheCircle from './circleForGame';
+import * as React from "react";
+import * as Anvaad from "anvaad-js";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import TheCircle from "./circleForGame";
+import WordsDoneModal from "./modalNextWord";
 
 import {
   setTopWord,
@@ -13,9 +12,9 @@ import {
   setAttempt,
   setNewWords,
   setGivenUpWords,
-} from '../../redux/actions';
+} from "../../redux/actions";
 
-import theColors from '../../util/colors';
+import theColors from "../../util/colors";
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -25,12 +24,12 @@ function GameScreen({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       // flex: 1,
-      alignItems: 'center',
+      alignItems: "center",
       backgroundColor: colors.theGame.container,
-      paddingTop: '10%',
+      paddingTop: "10%",
     },
     header: {
-      flexDirection: 'row',
+      flexDirection: "row",
       // backgroundColor: "yellow",
     },
     backButton: {
@@ -46,8 +45,15 @@ function GameScreen({ navigation }) {
       // right: 20,
     },
 
-    levelDisplay: {
+    info: {
+      flexDirection: "row",
+    },
+    infoRow: {
+      marginLeft: 25,
+      borderRadius: 20,
       backgroundColor: colors.theGame.levelDisplay,
+      flex: 1,
+      textAlign: "center",
     },
     wordBoxAnswers: {
       // flexDirection: "column",
@@ -58,7 +64,7 @@ function GameScreen({ navigation }) {
     },
     answerRow: {
       // flex: 1,
-      flexDirection: 'row',
+      flexDirection: "row",
       marginTop: 30,
     },
     hint: {
@@ -73,7 +79,7 @@ function GameScreen({ navigation }) {
       borderRadius: 20,
     },
     answers: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: 35,
     },
     giveUp: {
@@ -84,11 +90,11 @@ function GameScreen({ navigation }) {
       borderRadius: 25,
     },
     giveUpTxt: {
-      textAlign: 'center',
-      alignItems: 'center',
+      textAlign: "center",
+      alignItems: "center",
     },
     wordAttemptView: {
-      flexDirection: 'row',
+      flexDirection: "column",
       padding: 10,
     },
     wordAttempt: {
@@ -104,51 +110,55 @@ function GameScreen({ navigation }) {
       backgroundColor: colors.theGame.clearBox,
       borderRadius: 20,
     },
-    // newWord: {
-    //   left: 265,
-    //   borderRadius: 20,
-    //   width: 90,
-    //   backgroundColor: colors.theGame.newWord,
-    //   alignItems: "center",
-    // },
     theCircle: {},
   });
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        //make background dark
+        // state.nextLevelModal[0] ? { backgroundColor: "rgba(0,0,0,0.5)" } : "",
+      ]}
+    >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           title="Home"
           onPress={() => {
-            navigation.navigate('Home', { correctWords: state.correctWords });
+            navigation.navigate("Home", { correctWords: state.correctWords });
           }}
         >
           <Image
-            source={require('../../images/left_arrow.png')}
+            source={require("../../images/left_arrow.png")}
             style={styles.backArrow}
           />
         </TouchableOpacity>
         <Text style={styles.title}>ਅਖਰ ਜੋੜੋ </Text>
       </View>
-      <View style={styles.levelDisplay}>
-        <Text>
-          Word Type:
-          {state.typesOfWords}
-        </Text>
-        <Text>
-          Give Ups left:
-          {state.giveUpsLeft}
-        </Text>
-        <Text>
-          Current Level:
-          {state.levelProgress[0].level}
-        </Text>
-        <Text>
-          Words Needed for next level:
-          {' '}
-          {state.levelProgress[0].wordsNeeded}
-        </Text>
+
+      {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
+      <View style={styles.info}>
+        <View style={styles.infoRow}>
+          <Text>
+            Word Type:
+            {state.typesOfWords}
+          </Text>
+          <Text>
+            Give Ups left:
+            {state.giveUpsLeft}
+          </Text>
+          <Text>
+            Current Level:
+            {state.levelProgress[0].level}
+          </Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text>
+            Words Needed for next level: {state.levelProgress[0].wordsNeeded}
+          </Text>
+          <Text>Total Points: {state.totalPoints}</Text>
+        </View>
       </View>
 
       <View style={styles.wordBoxAnswers}>
@@ -168,14 +178,14 @@ function GameScreen({ navigation }) {
             disabled={state.giveUpsLeft === 0}
             style={
               state.giveUpsLeft === 0
-                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                ? { ...styles.giveUp, backgroundColor: "#909090" }
                 : styles.giveUp
             }
             onPress={() => {
               dispatch(setTopWord());
               dispatch(setGivenUpWords(state.firstWord));
-              if (state.bottomWord !== '') {
-                setTimeout(() => dispatch(setNewWords()), 1000);
+              if (state.bottomWord !== "") {
+                dispatch(setNewWords());
               }
             }}
           >
@@ -200,16 +210,14 @@ function GameScreen({ navigation }) {
             disabled={state.giveUpsLeft === 0}
             style={
               state.giveUpsLeft === 0
-                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                ? { ...styles.giveUp, backgroundColor: "#909090" }
                 : styles.giveUp
             }
             onPress={() => {
               dispatch(setBottomWord());
               dispatch(setGivenUpWords(state.secondWord));
-              if (state.topWord !== '') {
-                setTimeout(() => {
-                  dispatch(setNewWords());
-                }, 1000);
+              if (state.topWord !== "") {
+                dispatch(setNewWords());
               }
             }}
           >
@@ -234,7 +242,7 @@ function GameScreen({ navigation }) {
         <TouchableOpacity
           style={styles.clearBox}
           onPress={() => {
-            dispatch(setAttempt(''));
+            dispatch(setAttempt(""));
           }}
         >
           <Text style={styles.clearBoxText}>CLEAR</Text>

@@ -32,33 +32,36 @@ export const initialState = {
   correctWords: [],
   givenUpWords: [],
   giveUpsLeft: 100,
+  nextLevelModal: [false],
   levelProgress: [
-    // { level: 1, wordsNeeded: 10 },
-    // { level: 2, wordsNeeded: 10 },
-    // { level: 3, wordsNeeded: 10 },
-    // { level: 4, wordsNeeded: 10 },
-    // { level: 5, wordsNeeded: 10 },
-    // { level: 6, wordsNeeded: 10 },
-    // { level: 7, wordsNeeded: 10 },
-    // { level: 8, wordsNeeded: 10 },
-    // { level: 9, wordsNeeded: 10 },
-    // { level: 10, wordsNeeded: 10 },
-    // { level: 11, wordsNeeded: 10 },
-    // { level: 12, wordsNeeded: 10 },
-    // { level: 13, wordsNeeded: 10 },
-    // { level: 14, wordsNeeded: 10 },
-    // { level: 15, wordsNeeded: 10 },
-    // { level: 16, wordsNeeded: 10 },
-    // { level: 17, wordsNeeded: 10 },
-    { level: 18, wordsNeeded: 10 },
-    { level: 19, wordsNeeded: 10 },
-    { level: 20, wordsNeeded: 10 },
-    { level: 21, wordsNeeded: 10 },
-    { level: 22, wordsNeeded: 10 },
+    { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
+    { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
+    { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
+    { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
+    { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
+    { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
+    { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
+    { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
+    { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
+    { level: 10, wordsNeeded: 10, pointsPerWord: 14 },
+    { level: 11, wordsNeeded: 10, pointsPerWord: 15 },
+    { level: 12, wordsNeeded: 10, pointsPerWord: 16 },
+    { level: 13, wordsNeeded: 10, pointsPerWord: 17 },
+    { level: 14, wordsNeeded: 10, pointsPerWord: 18 },
+    { level: 15, wordsNeeded: 10, pointsPerWord: 19 },
+    { level: 16, wordsNeeded: 10, pointsPerWord: 21 },
+    { level: 17, wordsNeeded: 10, pointsPerWord: 22 },
+    { level: 18, wordsNeeded: 10, pointsPerWord: 23 },
+    { level: 19, wordsNeeded: 10, pointsPerWord: 24 },
+    { level: 20, wordsNeeded: 10, pointsPerWord: 25 },
+    { level: 21, wordsNeeded: 10, pointsPerWord: 26 },
+    { level: 22, wordsNeeded: 10, pointsPerWord: 27 },
   ],
+  totalPoints: 0,
   //settings stuff
   typesOfWords: "Both",
   darkMode: "Off",
+  showPopUp: true,
 };
 
 setData("state", initialState); //to reset all state
@@ -94,9 +97,13 @@ function theGameReducer(state = initialState, action) {
       );
     }
     wordsLst.push(action.theWord);
+
+    console.log(state.totalPoints, state.levelProgress[0].pointsPerWord);
+    console.log(state.totalPoints + state.levelProgress[0].pointsPerWord);
     return {
       ...state,
       correctWords: wordsLst,
+      totalPoints: state.totalPoints + state.levelProgress[0].pointsPerWord,
     };
   }
   if (action.type === "SET_GIVENUP_WORDS") {
@@ -133,10 +140,7 @@ function theGameReducer(state = initialState, action) {
     let allWordsForCurrentLevel = getAllWords(newWordType);
 
     //if there are not enough words of 1 type in a level, the word type will go back to 'Both'
-    if (
-      allWordsForCurrentLevel.length < state.levelProgress[0].wordsNeeded &&
-      newWordType !== "Both"
-    ) {
+    if (allWordsForCurrentLevel.length < 3 && newWordType !== "Both") {
       newWordType = "Both";
       allWordsForCurrentLevel = getAllWords(newWordType);
     }
@@ -163,8 +167,8 @@ function theGameReducer(state = initialState, action) {
     const generateWords = getWords(newUsableWords);
 
     const newState = {
-      //doing this because it is used twice, once to return and second to setData
       ...state,
+      nextLevelModal: [state.showPopUp, state.firstWord, state.secondWord],
       topWord: "",
       bottomWord: "",
       attempt: "",
@@ -176,6 +180,14 @@ function theGameReducer(state = initialState, action) {
       typesOfWords: newWordType,
     };
 
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "CLOSE_NEXT_LEVEL_MODAL") {
+    const newState = {
+      ...state,
+      nextLevelModal: [false],
+    };
     setData("state", newState);
     return newState;
   }
@@ -215,7 +227,6 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "SET_DARK_MODE") {
-    console.log(action.onOrOff);
     const newState = {
       ...state,
       darkMode: action.onOrOff,
@@ -227,6 +238,14 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       giveUpsLeft: state.giveUpsLeft + 1,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_SHOW_POP_UP") {
+    const newState = {
+      ...state,
+      showPopUp: action.onOrOff,
     };
     setData("state", newState);
     return newState;

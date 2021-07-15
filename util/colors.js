@@ -46,6 +46,11 @@ const LightColors = {
     textInputGurmukhi: "yellow",
     submitButton: "yellow",
   },
+  modalNextWord: {
+    container: "white",
+    wordBox: "#f8f8",
+    continue: "yellow",
+  },
 };
 
 const DarkColors = {
@@ -95,6 +100,11 @@ const DarkColors = {
     instructionsText: "#a0a0a0",
     textInputGurmukhi: "#a0a0a0",
     submitButton: "blue",
+  },
+  modalNextWord: {
+    container: "grey",
+    wordBox: "blue",
+    continue: "yellow",
   },
 };
 

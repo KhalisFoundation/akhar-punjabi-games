@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   Text,
@@ -7,14 +7,14 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-} from 'react-native';
-import { useSelector } from 'react-redux';
+} from "react-native";
+import { useSelector } from "react-redux";
 
-import SettingsBar from './settingBar';
-import SwitchBar from './settingBarSwitch';
-import { setTypeOfWords, setDarkMode } from '../../redux/actions';
+import SettingsBar from "./settingBar";
+import SwitchBar from "./settingBarSwitch";
+import { setTypeOfWords, setDarkMode, setShowPopUp } from "../../redux/actions";
 
-import theColors from '../../util/colors';
+import theColors from "../../util/colors";
 
 function Settings({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -23,15 +23,15 @@ function Settings({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
+      alignItems: "center",
       // justifyContent: "center",
       backgroundColor: colors.settings.container,
-      width: '100%',
-      height: '100%',
-      paddingTop: '10%',
+      width: "100%",
+      height: "100%",
+      paddingTop: "10%",
     },
     header: {
-      flexDirection: 'row',
+      flexDirection: "row",
     },
     backButton: {
       flex: 1,
@@ -46,8 +46,8 @@ function Settings({ navigation }) {
       right: 20,
     },
     scroll: {
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
     },
   });
   return (
@@ -57,11 +57,11 @@ function Settings({ navigation }) {
           style={styles.backButton}
           title="Home"
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate("Home");
           }}
         >
           <Image
-            source={require('../../images/left_arrow.png')}
+            source={require("../../images/left_arrow.png")}
             style={styles.backArrow}
           />
         </TouchableOpacity>
@@ -71,26 +71,33 @@ function Settings({ navigation }) {
       <ScrollView style={styles.scroll}>
         <SettingsBar
           theSetting="Type of Words"
-          theList={['Both', 'Gurbani', 'Punjabi']} // the 0 index in theList is the default setting
+          theList={["Both", "Gurbani", "Punjabi"]} // the 0 index in theList is the default setting
           imageSource="khalislogo150"
           theAction={setTypeOfWords} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Both', 'Gurbani', 'Punjabi'].indexOf(
+          theCurrentOptionIndex={["Both", "Gurbani", "Punjabi"].indexOf(
             state.typesOfWords
           )}
         />
         <SwitchBar
           theSetting="Dark Mode"
-          theList={['Off', 'On']}
+          theList={["Off", "On"]}
           imageSource="khanda"
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
+          theCurrentOptionIndex={["Off", "On"].indexOf(state.darkMode)}
         />
-        <SettingsBar
+        {/* <SettingsBar
           theSetting="Dark Mode"
-          theList={['Off', 'On']}
+          theList={["Off", "On"]}
           imageSource="khanda"
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
+          theCurrentOptionIndex={["Off", "On"].indexOf(state.darkMode)}
+        /> */}
+        <SettingsBar
+          theSetting="Show Pop Up after each word"
+          theList={[true, false]}
+          imageSource="ikOngkar"
+          theAction={setShowPopUp} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
       </ScrollView>
     </View>
