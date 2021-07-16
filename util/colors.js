@@ -109,8 +109,8 @@ const DarkColors = {
 };
 
 const theColors = {
-  Off: { ...LightColors },
-  On: { ...DarkColors },
+  false: { ...LightColors },
+  true: { ...DarkColors },
 };
 
 export default theColors;
