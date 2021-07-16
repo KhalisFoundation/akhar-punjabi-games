@@ -60,11 +60,11 @@ export const initialState = {
   totalPoints: 0,
   //settings stuff
   typesOfWords: "Both",
-  darkMode: "Off",
+  darkMode: false,
   showPopUp: true,
 };
 
-setData("state", initialState); //to reset all state
+// setData("state", initialState); //to reset all state
 
 function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {

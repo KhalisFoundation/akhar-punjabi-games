@@ -51,12 +51,9 @@ function HomeScreen({ navigation }) {
     getData();
   }, [dispatch]);
   // for styles
-  let colors;
-  if (state === undefined) {
-    colors = theColors.Off;
-  } else {
-    colors = theColors[state.darkMode];
-  }
+  const colors = state ? theColors[state.darkMode] : theColors.false;
+  // console.log(theColors[state.darkMode]);
+  // console.log(state.darkMode);
   const styles = StyleSheet.create({
     container: {
       flex: 1,

@@ -53,7 +53,7 @@ function SwitchBar({
     khanda: require('../../images/khanda.png'),
     ikOngkar: require('../../images/ikOngkar.png'),
   };
-  const [isVisible, setIsVisible] = React.useState(false);
+  // const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
     theList[theCurrentOptionIndex]
   );
@@ -65,23 +65,15 @@ function SwitchBar({
         <Text style={styles.text1}>{theSetting}</Text>
 
         <View style={styles.rightSide}>
-          <Text style={styles.text2}>{currentSetting}</Text>
+          <Text style={styles.text2}>
+            {String(currentSetting).charAt(0).toUpperCase()
+              + String(currentSetting).slice(1)}
+          </Text>
           <Switch
-            value={isVisible}
-            onValueChange={() => {
-              setIsVisible((prev) => {
-                // index 0 is Off and index 1 is On
-                let theTitle;
-                if (!prev === true) {
-                  theTitle = 'On';
-                } else {
-                  theTitle = 'Off';
-                }
-                dispatch(theAction(theTitle));
-                setCurrentSetting(theTitle);
-
-                return !prev;
-              });
+            value={currentSetting}
+            onValueChange={(newSetting) => {
+              dispatch(theAction(newSetting));
+              setCurrentSetting(newSetting);
             }}
           />
         </View>

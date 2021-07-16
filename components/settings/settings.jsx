@@ -80,25 +80,19 @@ function Settings({ navigation }) {
         />
         <SwitchBar
           theSetting="Dark Mode"
-          theList={['Off', 'On']}
+          theList={[true, false]}
           imageSource="khanda"
           theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Off', 'On'].indexOf(state.darkMode)}
+          theCurrentOptionIndex={[true, false].indexOf(state.darkMode)}
         />
-        {/* <SettingsBar
-          theSetting="Dark Mode"
-          theList={["Off", "On"]}
-          imageSource="khanda"
-          theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={["Off", "On"].indexOf(state.darkMode)}
-        /> */}
-        <SettingsBar
+        <SwitchBar
           theSetting="Show Pop Up after each word"
           theList={[true, false]}
           imageSource="ikOngkar"
           theAction={setShowPopUp} // setTypeOfWords take 1 param, both,gurbani or punjabi,
           theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
+        {/* <Text>Beware: Unreversable Actions</Text> */}
       </ScrollView>
     </View>
   );

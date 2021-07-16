@@ -13,7 +13,7 @@ function LoadingModal({ visible, theText }) {
 
   let colors;
   if (state === undefined) {
-    colors = theColors.Off;
+    colors = theColors.false;
   } else {
     colors = theColors[state.darkMode];
   }
