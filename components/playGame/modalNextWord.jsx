@@ -1,13 +1,15 @@
 /* eslint-disable react-native/no-color-literals */
-import * as React from "react";
-import { View, StyleSheet, Modal, Text, TouchableOpacity } from "react-native";
+import * as React from 'react';
+import {
+  View, StyleSheet, Modal, Text, TouchableOpacity
+} from 'react-native';
 
-import { useSelector, useDispatch } from "react-redux";
-import { Icon } from "react-native-elements";
+import { useSelector, useDispatch } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
-import { closeNextLevelModal } from "../../redux/actions";
+import { closeNextLevelModal } from '../../redux/actions';
 
-import theColors from "../../util/colors";
+import theColors from '../../util/colors';
 
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -22,18 +24,18 @@ function WordsDoneModal() {
 
   const styles = StyleSheet.create({
     container: {
-      width: "70%",
-      height: "60%",
-      left: "15%",
-      top: "15%",
-      alignContent: "center",
-      justifyContent: "center",
+      width: '70%',
+      height: '60%',
+      left: '15%',
+      top: '15%',
+      alignContent: 'center',
+      justifyContent: 'center',
       backgroundColor: colors.modalNextWord.container,
       borderRadius: 10,
     },
     titles: {
       fontSize: 20,
-      textAlign: "center",
+      textAlign: 'center',
     },
     wordBox: {
       backgroundColor: colors.modalNextWord.wordBox,
@@ -42,16 +44,16 @@ function WordsDoneModal() {
     },
     wordDoneText: {
       fontSize: 25,
-      textAlign: "center",
+      textAlign: 'center',
     },
     continue: {
-      flexDirection: "row",
+      flexDirection: 'row',
       backgroundColor: colors.modalNextWord.continue,
-      alignItems: "center",
-      justifyContent: "flex-end",
+      alignItems: 'center',
+      justifyContent: 'flex-end',
     },
     continueText: {
-      textAlign: "center",
+      textAlign: 'center',
     },
   });
   return (
@@ -67,31 +69,47 @@ function WordsDoneModal() {
           <Text style={styles.titles}>First Word</Text>
           <View style={styles.wordBox}>
             <Text style={styles.wordDoneText}>
-              Gurmukhi Text: {state.nextLevelModal[1].punjabiText}
+              Gurmukhi Text:
+              {' '}
+              {state.nextLevelModal[1].punjabiText}
             </Text>
             <Text style={styles.wordDoneText}>
-              English Text: {state.nextLevelModal[1].engText}
+              English Text:
+              {' '}
+              {state.nextLevelModal[1].engText}
             </Text>
             <Text style={styles.wordDoneText}>
-              Meaning: {state.nextLevelModal[1].meaning}
+              Meaning:
+              {' '}
+              {state.nextLevelModal[1].meaning}
             </Text>
             <Text style={styles.wordDoneText}>
-              Word Type: {state.nextLevelModal[1].type}
+              Word Type:
+              {' '}
+              {state.nextLevelModal[1].type}
             </Text>
           </View>
           <Text style={styles.titles}>Second Word</Text>
           <View style={styles.wordBox}>
             <Text style={styles.wordDoneText}>
-              Gurmukhi Text: {state.nextLevelModal[2].punjabiText}
+              Gurmukhi Text:
+              {' '}
+              {state.nextLevelModal[2].punjabiText}
             </Text>
             <Text style={styles.wordDoneText}>
-              English Text: {state.nextLevelModal[2].engText}
+              English Text:
+              {' '}
+              {state.nextLevelModal[2].engText}
             </Text>
             <Text style={styles.wordDoneText}>
-              Meaning: {state.nextLevelModal[2].meaning}
+              Meaning:
+              {' '}
+              {state.nextLevelModal[2].meaning}
             </Text>
             <Text style={styles.wordDoneText}>
-              Word Type: {state.nextLevelModal[2].type}
+              Word Type:
+              {' '}
+              {state.nextLevelModal[2].type}
             </Text>
           </View>
         </View>
