@@ -12,7 +12,7 @@ const LightColors = {
   theGame: {
     container: "#FFF2E1",
     levelDisplay: "#f8f8f8",
-    wordBoxAnswers: "#C3E2E6",
+    wordBoxAnswers: "blue",
     wordBoxText: "#f8f8f8",
     wordAttempt: "#CFF6FF",
     clearBox: "#f8f",
@@ -21,9 +21,11 @@ const LightColors = {
   },
   settingBar: {
     settingBar: "#f8f8f8",
+    border: "black",
   },
   settings: {
     container: "#FFF2E1",
+    new: "yellow",
   },
   levelDisplay: {
     // container: "#f8f8",
@@ -41,10 +43,11 @@ const LightColors = {
   getMoreGiveUps: {
     container: "#FFF2E1",
     textInput: "#f8f8f8",
-    giveUpLivesText: "white",
+    giveUpLivesText: "#0d0",
     instructionsText: "yellow",
     textInputGurmukhi: "yellow",
-    submitButton: "yellow",
+    submitButton: "#ff641c",
+    submitText: "#00035c",
   },
   modalNextWord: {
     container: "white",
@@ -76,9 +79,11 @@ const DarkColors = {
   },
   settingBar: {
     settingBar: "#f8f8",
+    border: "white",
   },
   settings: {
     container: "#5F909C",
+    new: "red",
   },
   levelDisplay: {
     // container: "#f8f8",
@@ -95,10 +100,10 @@ const DarkColors = {
   },
   getMoreGiveUps: {
     container: "#5F909C",
-    textInput: "#A0a0a0",
-    giveUpLivesText: "#f8f8",
-    instructionsText: "#a0a0a0",
-    textInputGurmukhi: "#a0a0a0",
+    textInput: "#99e1f2",
+    giveUpLivesText: "#0d0",
+    instructionsText: "#99e1f2",
+    textInputGurmukhi: "#99e1f2",
     submitButton: "blue",
   },
   modalNextWord: {

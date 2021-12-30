@@ -5,12 +5,17 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
   Image,
   FlatList,
 } from 'react-native';
+import { Header } from "react-native-elements";
 import { useSelector } from 'react-redux';
 import Level from './levelDisplays';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { LinearGradient } from "expo-linear-gradient";
+import { Animated } from "react-native";
+import GLOBAL from "../../util/globals";
 import theColors from '../../util/colors';
 
 function RightWords({ navigation }) {
@@ -26,10 +31,7 @@ function RightWords({ navigation }) {
       justifyContent: 'center',
       width: '100%',
       height: '100%',
-      paddingTop: '10%',
-    },
-    header: {
-      flexDirection: 'row',
+      marginTop: '3.5%',
     },
     backButton: {
       flex: 1,
@@ -40,7 +42,9 @@ function RightWords({ navigation }) {
     },
     title: {
       fontSize: 32,
+      fontFamily: 'Arial',
       flex: 3,
+      fontWeight: 'bold',
       right: 20,
     },
     listContainer: {
@@ -50,24 +54,35 @@ function RightWords({ navigation }) {
       padding: 10,
     },
     answerBox: {
-      backgroundColor: colors.wordsCompleted.answerBox,
+      backgroundColor: state.darkMode ? '#ffae00' : colors.wordsCompleted.answerBox,
       width: '95%',
       height: '30%',
       borderRadius: 20,
+      padding: 15,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
     answerRow: {
       flexDirection: 'row',
     },
     answerText: {
-      fontSize: 20,
-      color: colors.wordsCompleted.answerText,
+      fontSize: 18,
+      color: '#464646',
+      fontWeight: 'bold',
     },
     answerForAnswerText: {
-      fontSize: 20,
-
-      color: colors.wordsCompleted.answerForAnswerText,
+      fontSize: 18,
+      color: 'green',
+      fontWeight: 'bold',
     },
   });
+  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
   const longestMeaning = {
     engText: '',
@@ -84,12 +99,14 @@ function RightWords({ navigation }) {
     return {
       ...word,
       status: 'Answered correctly',
+      color: 'green',
     };
   });
   theGivenUpWords.map((word) => {
     theWords.push({
       ...word,
       status: 'Given Up',
+      color: 'red',
     });
     return 'nothing';
   });
@@ -114,7 +131,7 @@ function RightWords({ navigation }) {
 
   function meaningLength(meaning) {
     if (meaning.length < 60) {
-      return <Text style={styles.answerForAnswerText}>{meaning}</Text>;
+      return <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{meaning}</Text>;
     }
     let theMeaning = [];
     for (let i = 0; i < meaning.length; i += 1) {
@@ -139,21 +156,38 @@ function RightWords({ navigation }) {
   }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          title="Home"
-          onPress={() => {
-            navigation.navigate('Home');
+      <StatusBar
+          backgroundColor={
+            'black'
+          }
+          barStyle={"light-content"}
+        />
+      <Header
+          backgroundColor={
+            "cyan"
+          }
+          containerStyle={[
+            Platform.OS === "android" && { height: 56, paddingTop: 10 }
+          ]}
+          leftComponent={
+            <Icon
+              name="arrow-back"
+              color={
+                'black'
+              }
+              size={30}
+              onPress={() => {navigation.navigate('Home');}}
+            />
+          }
+          centerComponent={{
+            text: "Words Completed",
+            style: {
+              color: 'black',
+              fontSize: 18
+            }
           }}
-        >
-          <Image
-            source={require('../../images/left_arrow.png')}
-            style={styles.backArrow}
-          />
-        </TouchableOpacity>
-        <Text style={styles.title}>Words Completed</Text>
-      </View>
+        />
+        
       <View style={styles.listContainer}>
         <FlatList
           // style={styles.listContainer}
@@ -166,14 +200,14 @@ function RightWords({ navigation }) {
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Gurmukhi Text</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>
             {showAnswer.punjabiText}
           </Text>
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>English Text</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>{showAnswer.engText}</Text>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.engText}</Text>
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Meaning</Text>
@@ -183,17 +217,17 @@ function RightWords({ navigation }) {
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Level</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>{showAnswer.level}</Text>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.level}</Text>
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Type</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>{showAnswer.type}</Text>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.type}</Text>
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Status</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={styles.answerForAnswerText}>{showAnswer.status}</Text>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.status}</Text>
         </View>
       </View>
     </View>

@@ -6,14 +6,19 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  StatusBar,
   TextInput,
 } from 'react-native';
+import { Header } from "react-native-elements";
 import { useSelector, useDispatch } from 'react-redux';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as anvaad from 'anvaad-js';
 import { setGiveUpLives } from '../../redux/actions';
-
+import { LinearGradient } from "expo-linear-gradient";
+import { Animated } from "react-native";
+import GLOBAL from '../../util/globals';
 import theColors from '../../util/colors';
+import { Button } from 'react-native-elements';
 
 function MoreGiveUps({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -22,15 +27,11 @@ function MoreGiveUps({ navigation }) {
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
       alignItems: 'center',
       backgroundColor: colors.getMoreGiveUps.container,
-      width: '100%',
       height: '100%',
-      paddingTop: '10%',
-    },
-    header: {
-      flexDirection: 'row',
+      width:'100%',
+      marginTop: '3.5%',
     },
     backButton: {
       flex: 1,
@@ -40,44 +41,135 @@ function MoreGiveUps({ navigation }) {
       height: 50,
     },
     title: {
-      fontSize: 30,
+      fontSize: 32,
       flex: 3,
+      fontWeight: 'bold',
       right: 20,
     },
     giveUpLivesText: {
       backgroundColor: colors.getMoreGiveUps.giveUpLivesText,
-      fontSize: 20,
-      borderRadius: 100,
+      fontSize: 16,
+      borderRadius: 15,
+      padding: 10,
+      margin: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
     instructionsText: {
-      backgroundColor: colors.getMoreGiveUps.instructionsText,
-      fontSize: 25,
+      backgroundColor: 'white',
+      borderRadius: 5,
+      borderColor: 'black',
+      borderWidth: 1,
+      marginHorizontal: 5,
+      fontSize: 18,
+      padding:5,
       textAlign: 'center',
+      marginVertical: 5,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    infoText:{
+      marginHorizontal: 5,
+      fontSize: 15,
+      padding:5,
+      textAlign: 'center',
+      marginVertical: 5,
     },
     DHAN: {
-      padding: 20,
+      margin: 5,
+      padding: 10,
       fontSize: 30,
-      backgroundColor: 'blue',
+      textAlign: 'center',
+      backgroundColor: 'cyan',
+      borderRadius: 20,
+      textShadowRadius: 10,
+      textShadowColor: 'white',
+      fontWeight: 'bold',
+      textShadowOffset: {width: 1, height: 1},
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
     inputBox: {
-      padding: 20,
+      padding: 10,
+      width: '100%',
     },
     textInputGurmukhi: {
       fontSize: 25,
+      textAlign: 'center',
       backgroundColor: colors.getMoreGiveUps.textInputGurmukhi,
+      borderColor: 'black',
+      borderWidth: .5,
+      borderRadius: 20,
+      padding: 20,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
     textInput: {
-      margin: 20,
+      marginTop: 10,
+      marginBottom: 5,
+      marginHorizontal: 10,
       fontSize: 15,
       backgroundColor: colors.getMoreGiveUps.textInput,
+      borderRadius: 20,
+      padding: 15,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
-    submitButton: {
+    submitButton: { 
       backgroundColor: colors.getMoreGiveUps.submitButton,
+      alignItems:'center',
+      borderRadius: 15,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    submit:{
+      fontSize: 16,
+      fontWeight: 'bold',
+      alignSelf:'center',
+      padding: 10,
+      color: state.darkMode ? "white" : "black",
     },
   });
+  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
   const wordsToType = [
-    'vwhigurU',
+    'vwihgurU',
     'DMn gurU nwnk dyv swihb jI',
     'DMn gurU AMgd swihb jI',
     'DMn gurU Amr dws swihb jI',
@@ -88,6 +180,7 @@ function MoreGiveUps({ navigation }) {
     'DMn gurU hrikRSn swihb jI',
     'DMn gurU qygbhwdr swihb jI',
     'DMn gurU goibMd isMG swihb jI',
+    'DMn SRI gurU gRMQ swihb jI',
     'DMn gurU DMn gurU ipAwry',
   ];
   const getRandomWord = () => {
@@ -97,30 +190,48 @@ function MoreGiveUps({ navigation }) {
   const [theWord, setWord] = React.useState(getRandomWord());
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          title="Home"
-          onPress={() => {
-            navigation.navigate('Home');
+      <StatusBar
+          backgroundColor={
+            'black'
+          }
+          barStyle={"light-content"}
+        />
+      <Header
+          backgroundColor={
+            GLOBAL.COLOR.TOOLBAR_COLOR_ALT
+          }
+          containerStyle={[
+            Platform.OS === "android" && { height: 56, paddingTop: 10 }
+          ]}
+          leftComponent={
+            <Icon
+              name="arrow-back"
+              color={
+                'black'
+              }
+              size={30}
+              onPress={() => {navigation.navigate('Home');}}
+            />
+          }
+          centerComponent={{
+            text: "Get More Lives",
+            style: {
+              color: 'black',
+              fontSize: 18
+            }
           }}
-        >
-          <Image
-            source={require('../../images/left_arrow.png')}
-            style={styles.backArrow}
-          />
-        </TouchableOpacity>
-        <Text style={styles.title}>Get More Give Ups</Text>
-      </View>
+        />
+      
       <Text style={styles.giveUpLivesText}>
-        Give Up Lives:
+        Lives:
         {' '}
         {state.giveUpsLeft}
       </Text>
       <Text style={styles.instructionsText}>
-        Try to type the following to get more Give Lives. You will have to
-        figure out which english letters correspond to the respective Gurmukhi
-        characters
+        Try to type the following to get more Lives.
+      </Text>
+      <Text style={[{fontSize:10}, styles.infoText]}>
+        {'{'}You will have to figure out which english letters correspond to the respective Gurmukhi characters{'}'}
       </Text>
       <Text style={styles.DHAN}>{anvaad.unicode(theWord)}</Text>
       <View style={styles.inputBox}>
@@ -140,14 +251,15 @@ function MoreGiveUps({ navigation }) {
         style={styles.submitButton}
         onPress={() => {
           if (textEntry === theWord) {
-            console.log('GOood job');
+            console.log('Good job');
             dispatch(setGiveUpLives());
             setWord(getRandomWord());
             setTextEntry('');
           }
         }}
       >
-        <Text>SUBMIT</Text>
+        
+        <Text style={styles.submit}>SUBMIT</Text>
       </TouchableOpacity>
     </View>
   );

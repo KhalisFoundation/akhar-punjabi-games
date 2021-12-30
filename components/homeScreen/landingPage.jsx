@@ -9,10 +9,17 @@ import {
   ImageBackground,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingModal from './loadingScreen';
 import { setTheState } from '../../redux/actions';
+import { 
+  IMFellEnglish_400Regular,
+  IMFellEnglish_400Regular_Italic 
+} from '@expo-google-fonts/im-fell-english';
+import {useFonts} from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
 
 import { initialState } from '../../redux/reducers';
 
@@ -21,10 +28,19 @@ import theColors from '../../util/colors';
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
-
+  let [fontLoaded, error] = useFonts({
+    'im-fell': require('../../assets/fonts/IMFellEnglish-Regular.ttf')
+  })
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
-
+  {/*let [fontsLoaded] = useFonts({
+    'anmol-lipi': require('../../assets/fonts/AnmolLipiSG.ttf'),
+    'arial': require('../../assets/fonts/Arial.ttf'),
+    'gurbani-akhar-heavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    'gurbani-akhar': require('../../assets/fonts/GurbaniAkharSG.ttf'),
+    'gurbani-akhar-thick': require('../../assets/fonts/GurbaniAkharThickSG.ttf'),
+    imfell: require('../../assets/fonts/IMFellEnglish-Regular.ttf'),
+  });*/}
   let theState;
   React.useEffect(() => {
     async function getData() {
@@ -63,6 +79,7 @@ function HomeScreen({ navigation }) {
     mangal: {
       fontSize: 20,
       paddingTop: '3%',
+      fontWeight: "bold",
     },
     logo: {
       width: '100%',
@@ -71,7 +88,6 @@ function HomeScreen({ navigation }) {
     playTouchableOpacity: {
       width: '50%',
       height: '10%',
-      backgroundColor: colors.landingPage.playTouchableOpacity,
       borderRadius: 10,
       bottom: '23.5%',
     },
@@ -83,6 +99,7 @@ function HomeScreen({ navigation }) {
       flexDirection: 'row',
       // backgroundColor: "yellow",
       bottom: '43.5%',
+      alignItems: "center",
       justifyContent: 'space-between',
     },
     otherScreenTouchableOpacity: {
@@ -90,17 +107,17 @@ function HomeScreen({ navigation }) {
       margin: 10,
     },
     otherScreensImg: {
-      height: 100,
-      width: 100,
+      height: 75,
+      width: 75,
       borderRadius: 5,
-      alignItems: 'center',
-      backgroundColor: 'blue', // only here for the giveUp because no img
+      alignItems: 'center', // only here for the giveUp because no img
     },
     by: {
       bottom: '18%',
     },
     byText: {
       fontSize: 20,
+      fontWeight: "bold",
     },
     khalisTouchableOpacity: {
       height: '8%',
@@ -113,11 +130,18 @@ function HomeScreen({ navigation }) {
       borderRadius: 5,
       alignItems: 'center',
     },
+    bold: {
+      fontWeight: "bold",
+      alignSelf:"center",
+    },
   });
 
+  if (!fontLoaded) {
+    return <AppLoading/>
+  }
   return (
     <ImageBackground
-      source={require('../../images/background.png')}
+      source={require('../../images/background.jpg')}
       style={styles.container}
     >
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
@@ -132,7 +156,6 @@ function HomeScreen({ navigation }) {
       >
         <Image style={styles.play} source={require('../../images/Play.png')} />
       </TouchableOpacity>
-
       <View style={styles.otherScreens}>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -140,11 +163,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('settings');
           }}
         >
-          <Image
-            style={styles.otherScreensImg}
-            source={require('../../images/settings.png')}
-          />
-          <Text>SETTINGS</Text>
+          <Icon name="cog" size={85} color="#555" style={styles.bold}/>
+          <Text style={styles.bold}>Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -153,11 +173,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <Image
-            style={styles.otherScreensImg}
-            source={require('../../images/levels.png')}
-          />
-          <Text>Words Done</Text>
+          <Icon name="check-circle" size={85} color="#080" style={styles.bold}/>
+          <Text style={[styles.bold, {fontFamily:'im-fell'}]}>Words Done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -165,13 +182,11 @@ function HomeScreen({ navigation }) {
             navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <View style={styles.otherScreensImg}>
-            <Text>Give Up</Text>
-          </View>
-          <Text>Get Give Ups</Text>
+          
+          <Icon name="heart" size={85} color="#900" style={styles.bold} />
+          <Text style={styles.bold}>Get Lives</Text>
         </TouchableOpacity>
       </View>
-
       <View style={styles.by}>
         <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
       </View>

@@ -64,7 +64,8 @@ export const initialState = {
   showPopUp: true,
 };
 
-// setData("state", initialState); //to reset all state
+//to reset all state
+// setData("state", initialState);
 
 function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
@@ -156,8 +157,10 @@ function theGameReducer(state = initialState, action) {
     if (newUsableWords.length > 3) {
       newGiveUpWords = [...state.givenUpWords];
     } else {
+      let giveUp = state.givenUpWords
       newGiveUpWords = state.givenUpWords.map((word) => {
         if (word.level === state.levelProgress[0].level) {
+          newGiveUpWords = allWordsForCurrentLevel.filter((word)=> !word)
           newUsableWords.push(word);
         } else {
           return word;
