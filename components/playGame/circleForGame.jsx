@@ -14,6 +14,8 @@ import {
   setLevelProgress,
   setNewWords,
 } from '../../redux/actions';
+import { LinearGradient } from "expo-linear-gradient";
+import { Animated } from "react-native";
 
 import theColors from '../../util/colors';
 
@@ -32,10 +34,19 @@ function TheCircle() {
 
   const commonStyles = StyleSheet.create({
     lettersCircle: {
-      width: '85%',
-      height: '45%',
+      width: "95%",
+      height: "45%",
       borderRadius: 200,
+      margin: 10,
       backgroundColor: colors.circleForGame.lettersCircle,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
     characterText: {
       bottom: '15%',
@@ -943,9 +954,13 @@ function charDisplay(
       }
     }
   };
+  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
   return (
-    <View style={styleSheet.lettersCircle}>
+    <AnimatedLinearGradient
+        colors={["#F7971E", "#FFD200"]}
+        start={{ x: 0.5, y: 0.0 }}
+        style={styleSheet.lettersCircle}>
       {charArray.map((char) => {
         const charNum = `character${(charArray.indexOf(char) + 1).toString()}`;
         // let theLetter = String.fromCharCode(char);
@@ -981,7 +996,7 @@ function charDisplay(
           </TouchableOpacity>
         );
       })}
-    </View>
+    </AnimatedLinearGradient>
   );
 }
 

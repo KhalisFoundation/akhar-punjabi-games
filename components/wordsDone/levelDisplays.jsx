@@ -34,7 +34,7 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: 60,
+      fontSize: 40,
       textAlign: 'center',
     },
   });

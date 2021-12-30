@@ -8,7 +8,7 @@ export const allWords = [
   },
   {
     engText: "rhwau",
-    punjabiText: "ਰਹਾੳੁ",
+    punjabiText: "ਰਹਾਉ",
     meaning: "Pause, (marks chorus, or main theme line)",
     type: "Gurbani",
     level: 8,
@@ -17,13 +17,6 @@ export const allWords = [
     engText: "mhlw",
     punjabiText: "ਮਹਲਾ",
     meaning: "Identifies which Guru is author, neighborhood",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
-    engText: "rwm",
-    punjabiText: "ਰਾਮ",
-    meaning: "God, All pervading Divine Spirit",
     type: "Gurbani",
     level: 2,
   },
@@ -57,7 +50,7 @@ export const allWords = [
   },
   {
     engText: "jIau",
-    punjabiText: "ਜੀੳੁ",
+    punjabiText: "ਜੀਉ",
     meaning: "soul or life; respectful and affectionate apelation (Jee in MP)",
     type: "Gurbani",
     level: 8,
@@ -75,20 +68,6 @@ export const allWords = [
     meaning: "(devoted) servant, slave",
     type: "Gurbani",
     level: 1,
-  },
-  {
-    engText: "sB",
-    punjabiText: "ਸਭ",
-    meaning: "all",
-    type: "Gurbani",
-    level: 1,
-  },
-  {
-    engText: "mih",
-    punjabiText: "ਮਹਿ",
-    meaning: "in (preposition), within",
-    type: "Gurbani",
-    level: 3,
   },
   {
     engText: "scu",
@@ -119,13 +98,6 @@ export const allWords = [
     level: 7,
   },
   {
-    engText: "miweAw",
-    punjabiText: "ਮਾਿੲਅਾ",
-    meaning: "worldly entanglements, illusionary & transient",
-    type: "Gurbani",
-    level: 4,
-  },
-  {
     engText: "sMg",
     punjabiText: "ਸੰਗ",
     meaning: "with, close",
@@ -134,7 +106,7 @@ export const allWords = [
   },
   {
     engText: "hau",
-    punjabiText: "ਹੳੁ",
+    punjabiText: "ਹਉ",
     meaning: "I or me (pronoun)",
     type: "Gurbani",
     level: 7,
@@ -148,7 +120,7 @@ export const allWords = [
   },
   {
     engText: "soeI",
-    punjabiText: "ਸੋੲੀ",
+    punjabiText: "ਸੋਈ",
     meaning: "that one",
     type: "Gurbani",
     level: 16,
@@ -159,13 +131,6 @@ export const allWords = [
     meaning: "kindness, mercy",
     type: "Gurbani",
     level: 4,
-  },
-  {
-    engText: "sMq",
-    punjabiText: "ਸੰਤ",
-    meaning: "saintly person in tune with God, often used for Guru",
-    type: "Gurbani",
-    level: 19,
   },
   {
     engText: "AMqr",
@@ -183,14 +148,14 @@ export const allWords = [
   },
   {
     engText: "isau",
-    punjabiText: "ਸਿੳੁ",
+    punjabiText: "ਸਿਉ",
     meaning: "(pp) to, with (MP - noo)",
     type: "Gurbani",
     level: 8,
   },
   {
     engText: "ikAw",
-    punjabiText: "ਕਿਅਾ",
+    punjabiText: "ਕਿਆ",
     meaning: "what (MP - kee)",
     type: "Gurbani",
     level: 4,
@@ -212,7 +177,7 @@ export const allWords = [
   },
   {
     engText: "pweIAY",
-    punjabiText: "ਪਾੲੀਅੈ",
+    punjabiText: "ਪਾਈਐ",
     meaning: "obtain",
     type: "Gurbani",
     level: 14,
@@ -262,7 +227,7 @@ export const allWords = [
   {
     engText: "duK",
     punjabiText: "ਦੁਖ",
-    meaning: "sorrow, suffering",
+    meaning: "sorrow, suffering, unhappiness",
     type: "Gurbani",
     level: 7,
   },
@@ -275,7 +240,7 @@ export const allWords = [
   },
   {
     engText: "BweI",
-    punjabiText: "ਭਾੲੀ",
+    punjabiText: "ਭਾਈ",
     meaning: "brother, friend (used as address)",
     type: "Gurbani",
     level: 6,
@@ -309,29 +274,8 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "nit",
-    punjabiText: "nit",
-    meaning: "daily - (MP - roz) (syn andin)",
-    type: "Gurbani",
-    level: 3,
-  },
-  {
-    engText: "BwvY",
-    punjabiText: "ਭਾਵੈ",
-    meaning: "to ge pleasing, appeal to",
-    type: "Gurbani",
-    level: 14,
-  },
-  {
-    engText: "pweIAY",
-    punjabiText: "ਪਾੲੀਅੈ",
-    meaning: "obtain",
-    type: "Gurbani",
-    level: 14,
-  },
-  {
     engText: "Bey",
-    punjabiText: "ਭੲੇ",
+    punjabiText: "ਭਏ",
     meaning: "become",
     type: "Gurbani",
     level: 11,
@@ -365,13 +309,6 @@ export const allWords = [
     level: 3,
   },
   {
-    engText: "syvw",
-    punjabiText: "ਸੇਵਾ",
-    meaning: "service",
-    type: "Gurbani",
-    level: 12,
-  },
-  {
     engText: "jnm",
     punjabiText: "ਜਨਮ",
     meaning: "birth",
@@ -384,13 +321,6 @@ export const allWords = [
     meaning: "living being, tongue, soul",
     type: "Gurbani",
     level: 5,
-  },
-  {
-    engText: "bwxI",
-    punjabiText: "ਬਾਣੀ",
-    meaning: "speech, Word",
-    type: "Gurbani",
-    level: 6,
   },
   {
     engText: "shij",
@@ -429,20 +359,6 @@ export const allWords = [
     level: 4,
   },
   {
-    engText: "krm",
-    punjabiText: "ਕਰਮ",
-    meaning: "grace, action",
-    type: "Gurbani",
-    level: 1,
-  },
-  {
-    engText: "rMg",
-    punjabiText: "ਰੰਗ",
-    meaning: "dye, love",
-    type: "Gurbani",
-    level: 19,
-  },
-  {
     engText: "Anidnu",
     punjabiText: "ਅਨਦਿਨੁ",
     meaning: "daily",
@@ -464,13 +380,6 @@ export const allWords = [
     level: 3,
   },
   {
-    engText: "duK",
-    punjabiText: "ਦੁਖ",
-    meaning: "suffering, unhappiness",
-    type: "Gurbani",
-    level: 7,
-  },
-  {
     engText: "swD",
     punjabiText: "ਸਾਧ",
     meaning: "saintly person,",
@@ -480,7 +389,7 @@ export const allWords = [
   {
     engText: "kIAw",
     punjabiText: "ਕੀਆ",
-    meaning: "action, (MP - keeta)",
+    meaning: "keeta - action",
     type: "Gurbani",
     level: 6,
   },
@@ -534,13 +443,6 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "ipAwry",
-    punjabiText: "ਪਿਅਾਰੇ",
-    meaning: "beloved",
-    type: "Gurbani",
-    level: 12,
-  },
-  {
     engText: "purK",
     punjabiText: "ਪੁਰਖ",
     meaning: "person, being, God",
@@ -555,15 +457,8 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "vifAweI",
-    punjabiText: "ਵਡਿਆਈ",
-    meaning: "greatness, glory",
-    type: "Gurbani",
-    level: 6,
-  },
-  {
-    engText: "koਁt",
-    punjabiText: "ਕੋਁਟ",
+    engText: "kot",
+    punjabiText: "ਕੋਟ",
     meaning: "millions (lit. 10 million)",
     type: "Gurbani",
     level: 15,
@@ -588,20 +483,6 @@ export const allWords = [
     meaning: "(in the) heart, mind (MP - dil) abbrev: ridai",
     type: "Gurbani",
     level: 14,
-  },
-  {
-    engText: "inrml",
-    punjabiText: "ਨਿਰਮਲ",
-    meaning: "pure (mal=impurity)",
-    type: "Gurbani",
-    level: 3,
-  },
-  {
-    engText: "BY",
-    punjabiText: "ਭੈ",
-    meaning: "fear ; syn - bhau",
-    type: "Gurbani",
-    level: 13,
   },
   {
     engText: "ndr",
@@ -651,13 +532,6 @@ export const allWords = [
     meaning: "fear (bhaao - love)",
     type: "Gurbani",
     level: 7,
-  },
-  {
-    engText: "Bgq",
-    punjabiText: "ਭਗਤ",
-    meaning: "devotee of God, saintly person",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "dwqw",
@@ -793,13 +667,6 @@ export const allWords = [
     level: 3,
   },
   {
-    engText: "Dn",
-    punjabiText: "ਧਨ",
-    meaning: "wealth; blessed; wife or woman",
-    type: "Gurbani",
-    level: 1,
-  },
-  {
     engText: "myl",
     punjabiText: "ਮੇਲ",
     meaning: "union; melnaa - to unite",
@@ -911,13 +778,6 @@ export const allWords = [
     meaning: "glory",
     type: "Gurbani",
     level: 1,
-  },
-  {
-    engText: "iDAwieAw",
-    punjabiText: "ਧਿਆਇਆ",
-    meaning: "meditate on, remember, repeat name",
-    type: "Gurbani",
-    level: 4,
   },
   {
     engText: "Gt",
@@ -1233,13 +1093,6 @@ export const allWords = [
     meaning: "free from fear",
     type: "Gurbani",
     level: 8,
-  },
-  {
-    engText: "igAwnI",
-    punjabiText: "ਗਿਆਨੀ",
-    meaning: "wise, knowledgable",
-    type: "Gurbani",
-    level: 6,
   },
   {
     engText: "Ar",
@@ -2349,13 +2202,6 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "sB",
-    punjabiText: "ਸਭ",
-    meaning: "All",
-    type: "Punjabi",
-    level: 1,
-  },
-  {
     engText: "Kl",
     punjabiText: "ਖਲ",
     meaning: "Skin",
@@ -2436,13 +2282,6 @@ export const allWords = [
     engText: "hk",
     punjabiText: "ਹਕ",
     meaning: "Right",
-    type: "Punjabi",
-    level: 1,
-  },
-  {
-    engText: "Gr",
-    punjabiText: "ਘਰ",
-    meaning: "House",
     type: "Punjabi",
     level: 1,
   },
@@ -2555,13 +2394,6 @@ export const allWords = [
     engText: "cb",
     punjabiText: "ਚਬ",
     meaning: "Chew",
-    type: "Punjabi",
-    level: 1,
-  },
-  {
-    engText: "qn",
-    punjabiText: "ਤਨ",
-    meaning: "Body",
     type: "Punjabi",
     level: 1,
   },
@@ -2762,13 +2594,6 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "Sbd",
-    punjabiText: "ਸ਼ਬਦ",
-    meaning: "Word",
-    type: "Punjabi",
-    level: 1,
-  },
-  {
     engText: "kml",
     punjabiText: "ਕਮਲ",
     meaning: "Lotus",
@@ -2800,13 +2625,6 @@ export const allWords = [
     engText: "klm",
     punjabiText: "ਕਲਮ",
     meaning: "Pen",
-    type: "Punjabi",
-    level: 1,
-  },
-  {
-    engText: "jnm",
-    punjabiText: "ਜਨਮ",
-    meaning: "Birth",
     type: "Punjabi",
     level: 1,
   },
@@ -2963,13 +2781,6 @@ export const allWords = [
     meaning: "Turnip",
     type: "Punjabi",
     level: 1,
-  },
-  {
-    engText: "Awsw",
-    punjabiText: "ਆਸਾ",
-    meaning: "Hope",
-    type: "Punjabi",
-    level: 2,
   },
   {
     engText: "kwlw",
@@ -3241,13 +3052,6 @@ export const allWords = [
     engText: "vwl",
     punjabiText: "ਵਾਲ",
     meaning: "Hair",
-    type: "Punjabi",
-    level: 2,
-  },
-  {
-    engText: "sdw",
-    punjabiText: "ਸਦਾ",
-    meaning: "Always",
     type: "Punjabi",
     level: 2,
   },
@@ -3554,7 +3358,7 @@ export const allWords = [
   },
   {
     engText: "svwl ",
-    punjabiText: "ਸਵਾਲ ",
+    punjabiText: "ਸਵਾਲ",
     meaning: "Question",
     type: "Punjabi",
     level: 2,
@@ -4127,13 +3931,6 @@ export const allWords = [
     level: 5,
   },
   {
-    engText: "iml",
-    punjabiText: "ਮਿਲ",
-    meaning: "Mill",
-    type: "Punjabi",
-    level: 3,
-  },
-  {
     engText: "mIl",
     punjabiText: "ਮੀਲ",
     meaning: "Mile",
@@ -4477,13 +4274,6 @@ export const allWords = [
     level: 12,
   },
   {
-    engText: "syvw",
-    punjabiText: "ਸੇਵਾ",
-    meaning: "Charity",
-    type: "Punjabi",
-    level: 12,
-  },
-  {
     engText: "CyqI",
     punjabiText: "ਛੇਤੀ",
     meaning: "Quick",
@@ -4601,13 +4391,6 @@ export const allWords = [
     meaning: "Ox",
     type: "Punjabi",
     level: 13,
-  },
-  {
-    engText: "myl",
-    punjabiText: "ਮੇਲ",
-    meaning: "Meet",
-    type: "Punjabi",
-    level: 11,
   },
   {
     engText: "mYl",
@@ -4911,23 +4694,9 @@ export const allWords = [
     level: 6,
   },
   {
-    engText: "AwieAw",
-    punjabiText: "ਆਇਆ",
-    meaning: "to come (aanaa)",
-    type: "Gurbani",
-    level: 4,
-  },
-  {
     engText: "Awls",
     punjabiText: "ਆਲਸ",
     meaning: "lazy, idle, slow, indolent, slothful, lethargic",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
-    engText: "Awsw",
-    punjabiText: "ਆਸਾ",
-    meaning: "hope, desire",
     type: "Gurbani",
     level: 2,
   },
@@ -4944,13 +4713,6 @@ export const allWords = [
     meaning: "eight",
     type: "Gurbani",
     level: 2,
-  },
-  {
-    engText: "AwvY",
-    punjabiText: "ਆਵੈ",
-    meaning: "comes (aanaa, aavnaa - to come)",
-    type: "Gurbani",
-    level: 14,
   },
   {
     engText: "Acrj",
@@ -5058,13 +4820,6 @@ export const allWords = [
     meaning: "end, limit",
     type: "Gurbani",
     level: 20,
-  },
-  {
-    engText: "AMqr",
-    punjabiText: "ਅੰਤਰ",
-    meaning: "within, in (MP - vich)",
-    type: "Gurbani",
-    level: 19,
   },
   {
     engText: "AMqrjwmI",
@@ -5208,13 +4963,6 @@ export const allWords = [
     level: 12,
   },
   {
-    engText: "BweI",
-    punjabiText: "ਭਾਈ",
-    meaning: "brother, friend (used as address)",
-    type: "Gurbani",
-    level: 6,
-  },
-  {
     engText: "Bwg",
     punjabiText: "ਭਾਗ",
     meaning: "bhaagna - to run away; bhaag - fortune, destiny",
@@ -5227,13 +4975,6 @@ export const allWords = [
     meaning: "fortunate, happy, fortunate ones, flourish",
     type: "Gurbani",
     level: 2,
-  },
-  {
-    engText: "Bwie",
-    punjabiText: "ਭਾਇ",
-    meaning: "pleases; will; love (doojaa bhaai - duality)",
-    type: "Gurbani",
-    level: 4,
   },
   {
     engText: "Bwxw",
@@ -5417,13 +5158,6 @@ export const allWords = [
     meaning: "understands",
     type: "Gurbani",
     level: 14,
-  },
-  {
-    engText: "crn",
-    punjabiText: "ਚਰਨ",
-    meaning: "feet - symbolizes devotion, humility",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "Coif",
@@ -5645,20 +5379,6 @@ export const allWords = [
     level: 4,
   },
   {
-    engText: "dUjw",
-    punjabiText: "ਦੂਜਾ",
-    meaning: "second, other, duality",
-    type: "Gurbani",
-    level: 10,
-  },
-  {
-    engText: "ieh",
-    punjabiText: "ਇਹ",
-    meaning: "this",
-    type: "Gurbani",
-    level: 3,
-  },
-  {
     engText: "Pwsw",
     punjabiText: "ਫਾਸਾ",
     meaning: 'noose, snare, death warrant, see ਫਾਹਾ s  "faahaa"',
@@ -5744,13 +5464,6 @@ export const allWords = [
     level: 6,
   },
   {
-    engText: "igAwn",
-    punjabiText: "ਗਿਆਨ",
-    meaning: "knowledge, realization",
-    type: "Gurbani",
-    level: 4,
-  },
-  {
     engText: "igrsq",
     punjabiText: "ਗਿਰਸਤ",
     meaning: "1. householder. 2. engrossed",
@@ -5807,14 +5520,6 @@ export const allWords = [
     level: 7,
   },
   {
-    engText: "haumY",
-    punjabiText: "ਹਉਮੈ",
-    meaning:
-      "(hou-me, mai-I) ego, pride, sense of I (separate from God & creation)",
-    type: "Gurbani",
-    level: 14,
-  },
-  {
     engText: "hY",
     punjabiText: "ਹੈ",
     meaning: "O (form of address)",
@@ -5834,20 +5539,6 @@ export const allWords = [
     meaning: "impelled, urged on, set in motion, placed",
     type: "Gurbani",
     level: 14,
-  },
-  {
-    engText: "ihrdY",
-    punjabiText: "ਹਿਰਦੈ",
-    meaning: "(in the) heart, mind (MP - dil) abbrev: ridai",
-    type: "Gurbani",
-    level: 14,
-  },
-  {
-    engText: "hm",
-    punjabiText: "ਹਮ",
-    meaning: "We, I",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "iekMqI",
@@ -5907,25 +5598,11 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "jm",
-    punjabiText: "ਜਮ",
-    meaning: "death, god of death",
-    type: "Gurbani",
-    level: 1,
-  },
-  {
     engText: "jMmsI",
     punjabiText: "ਜੰਮਸੀ",
     meaning: "will be born, will take birth",
     type: "Gurbani",
     level: 20,
-  },
-  {
-    engText: "jnm",
-    punjabiText: "ਜਨਮ",
-    meaning: "birth",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "jMjIr",
@@ -6155,23 +5832,9 @@ export const allWords = [
     level: 11,
   },
   {
-    engText: "krih",
-    punjabiText: "ਕਰਹਿ",
-    meaning: "to do (MP- karnaa)",
-    type: "Gurbani",
-    level: 3,
-  },
-  {
     engText: "krnw",
     punjabiText: "ਕਰਨਾ",
     meaning: "To do, to act, to perform",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
-    engText: "krqw",
-    punjabiText: "ਕਰਤਾ",
-    meaning: "creator",
     type: "Gurbani",
     level: 2,
   },
@@ -6188,13 +5851,6 @@ export const allWords = [
     meaning: '"Kakah" the sixth letter of Gurmukhi alphabet.',
     type: "Gurbani",
     level: 1,
-  },
-  {
-    engText: "kIAw",
-    punjabiText: "ਕੀਆ",
-    meaning: "action (MP - keeta)",
-    type: "Gurbani",
-    level: 6,
   },
   {
     engText: "kImiq",
@@ -6297,13 +5953,6 @@ export const allWords = [
     level: 4,
   },
   {
-    engText: "ilv",
-    punjabiText: "ਲਿਵ",
-    meaning: "deep continuous love and absorption",
-    type: "Gurbani",
-    level: 3,
-  },
-  {
     engText: "loB",
     punjabiText: "ਲੋਭ",
     meaning: "greed",
@@ -6358,20 +6007,6 @@ export const allWords = [
     meaning: "impurity",
     type: "Gurbani",
     level: 13,
-  },
-  {
-    engText: "mhw",
-    punjabiText: "ਮਹਾ",
-    meaning: "great",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
-    engText: "mhlw",
-    punjabiText: "ਮਹਲਾ",
-    meaning: "Identifies which Guru is author, neighborhood",
-    type: "Gurbani",
-    level: 2,
   },
   {
     engText: "mihmw",
@@ -6468,13 +6103,6 @@ export const allWords = [
     level: 4,
   },
   {
-    engText: "myl",
-    punjabiText: "ਮੇਲ",
-    meaning: "union; (melnaa - to unite)",
-    type: "Gurbani",
-    level: 11,
-  },
-  {
     engText: "imlwie",
     punjabiText: "ਮਿਲਾਇ",
     meaning: "help to meet, unite",
@@ -6553,13 +6181,6 @@ export const allWords = [
     meaning: "woman, wife",
     type: "Gurbani",
     level: 6,
-  },
-  {
-    engText: "nwau",
-    punjabiText: "ਨਾਉ",
-    meaning: "*see Naam",
-    type: "Gurbani",
-    level: 8,
   },
   {
     engText: "ndir",
@@ -6694,13 +6315,6 @@ export const allWords = [
     meaning: "teachings, preaching",
     type: "Gurbani",
     level: 12,
-  },
-  {
-    engText: "Et",
-    punjabiText: "ਓਟ",
-    meaning: "support",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "aUTq",
@@ -6895,13 +6509,6 @@ export const allWords = [
     level: 10,
   },
   {
-    engText: "pUrn",
-    punjabiText: "ਪੂਰਨ",
-    meaning: "complete, perfect",
-    type: "Gurbani",
-    level: 9,
-  },
-  {
     engText: "prkwsæ",
     punjabiText: "ਪਰਕਾਸ਼",
     meaning:
@@ -6934,7 +6541,7 @@ export const allWords = [
     engText: "rwm",
     punjabiText: "ਰਾਮ",
     meaning:
-      "(1) One who resides everywhere, God, all prevading Spirit; (2) Raam Chandar - Hindu deity.",
+      "(1) One who resides everywhere, God, all prevading Spirit;",
     type: "Gurbani",
     level: 2,
   },
@@ -7001,13 +6608,6 @@ export const allWords = [
     meaning: "1. Dyed, absorbed, saturated  2. virtuous 3. tiny, minute",
     type: "Gurbani",
     level: 2,
-  },
-  {
-    engText: "rqy",
-    punjabiText: "ਰਤੇ",
-    meaning: "steeped, absorbed",
-    type: "Gurbani",
-    level: 11,
   },
   {
     engText: "riv",
@@ -7102,13 +6702,6 @@ export const allWords = [
     level: 6,
   },
   {
-    engText: "swD",
-    punjabiText: "ਸਾਧ",
-    meaning: "saintly person,",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
     engText: "sbd",
     punjabiText: "ਸਬਦ",
     meaning:
@@ -7124,25 +6717,11 @@ export const allWords = [
     level: 1,
   },
   {
-    engText: "sdw",
-    punjabiText: "ਸਦਾ",
-    meaning: "Always",
-    type: "Gurbani",
-    level: 2,
-  },
-  {
     engText: "swDy",
     punjabiText: "ਸਾਧੇ",
     meaning: "arrange, control, achieve by some method",
     type: "Gurbani",
     level: 12,
-  },
-  {
-    engText: "sgl",
-    punjabiText: "ਸਗਲ",
-    meaning: "all",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "shxw",
@@ -7194,25 +6773,11 @@ export const allWords = [
     level: 20,
   },
   {
-    engText: "sMg",
-    punjabiText: "ਸੰਗ",
-    meaning: "with, close",
-    type: "Gurbani",
-    level: 19,
-  },
-  {
     engText: "sMq",
     punjabiText: "ਸੰਤ",
     meaning: "Saint, saintly person in tune with God, often used for Guru",
     type: "Gurbani",
     level: 19,
-  },
-  {
-    engText: "srb",
-    punjabiText: "ਸਰਬ",
-    meaning: "all",
-    type: "Gurbani",
-    level: 1,
   },
   {
     engText: "srn",
@@ -7603,13 +7168,6 @@ export const allWords = [
     level: 4,
   },
   {
-    engText: "vsY",
-    punjabiText: "ਵਸੈ",
-    meaning: "live, abide",
-    type: "Gurbani",
-    level: 13,
-  },
-  {
     engText: "visAw",
     punjabiText: "ਵਸਿਆ",
     meaning: "dwells",
@@ -7763,13 +7321,6 @@ export const allWords = [
     meaning: "had",
     type: "Punjabi",
     level: 5,
-  },
-  {
-    engText: "The",
-    punjabiText: "The",
-    meaning: "the",
-    type: "Punjabi",
-    level: 1,
   },
   {
     engText: "dy",
@@ -8157,13 +7708,6 @@ export const allWords = [
     level: 11,
   },
   {
-    engText: "nwm",
-    punjabiText: "ਨਾਮ",
-    meaning: "name",
-    type: "Punjabi",
-    level: 2,
-  },
-  {
     engText: "duAwrw",
     punjabiText: "ਦੁਆਰਾ",
     meaning: "through",
@@ -8283,13 +7827,6 @@ export const allWords = [
     level: 12,
   },
   {
-    engText: "iPr",
-    punjabiText: "ਫਿਰ",
-    meaning: "then",
-    type: "Punjabi",
-    level: 3,
-  },
-  {
     engText: "ƒ",
     punjabiText: "ਨੂੰ",
     meaning: "them",
@@ -8309,13 +7846,6 @@ export const allWords = [
     meaning: "like",
     type: "Punjabi",
     level: 11,
-  },
-  {
-    engText: "ieh",
-    punjabiText: "ਇਹ",
-    meaning: "these",
-    type: "Punjabi",
-    level: 3,
   },
   {
     engText: "lMby",
@@ -8379,13 +7909,6 @@ export const allWords = [
     meaning: "sound",
     type: "Punjabi",
     level: 2,
-  },
-  {
-    engText: "sB",
-    punjabiText: "ਸਭ",
-    meaning: "most",
-    type: "Punjabi",
-    level: 1,
   },
   {
     engText: "lok",
@@ -9296,13 +8819,6 @@ export const allWords = [
     meaning: "star",
     type: "Punjabi",
     level: 4,
-  },
-  {
-    engText: "nwm",
-    punjabiText: "ਨਾਮ",
-    meaning: "noun",
-    type: "Punjabi",
-    level: 2,
   },
   {
     engText: "Kyqr",
@@ -10318,13 +9834,6 @@ export const allWords = [
     meaning: "flow",
     type: "Punjabi",
     level: 4,
-  },
-  {
-    engText: "mylw",
-    punjabiText: "ਮੇਲਾ",
-    meaning: "fair",
-    type: "Punjabi",
-    level: 12,
   },
   {
     engText: "bk",
@@ -11447,13 +10956,6 @@ export const allWords = [
     level: 5,
   },
   {
-    engText: "ipAwry",
-    punjabiText: "ਪਿਆਰੇ",
-    meaning: "dear",
-    type: "Punjabi",
-    level: 12,
-  },
-  {
     engText: "dusæmx",
     punjabiText: "ਦੁਸ਼ਮਣ",
     meaning: "enemy",
@@ -11678,13 +11180,6 @@ export const allWords = [
     level: 3,
   },
   {
-    engText: "kot",
-    punjabiText: "ਕੋਟ",
-    meaning: "coat",
-    type: "Punjabi",
-    level: 15,
-  },
-  {
     engText: "jnqk",
     punjabiText: "ਜਨਤਕ",
     meaning: "mass",
@@ -11886,13 +11381,6 @@ export const allWords = [
     meaning: "cotton",
     type: "Punjabi",
     level: 2,
-  },
-  {
-    engText: "jnm",
-    punjabiText: "ਜਨਮ",
-    meaning: "born",
-    type: "Punjabi",
-    level: 1,
   },
   {
     engText: "kvwtr",

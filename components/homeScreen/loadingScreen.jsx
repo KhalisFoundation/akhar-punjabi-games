@@ -39,7 +39,7 @@ function LoadingModal({ visible, theText }) {
       presentationStyle="overFullScreen"
     >
       <View style={styles.container}>
-        <Text style={styles.msg}>ਵਾਹਿਗੁਰੂਜੀਕਾਖਾਲਸਾਵਾਹਿਗੁਰੂਜੀਕੀਫਤੇ||</Text>
+        <Text style={styles.msg}>ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਿਹ||</Text>
         <ActivityIndicator
           size="large"
           color="blue"

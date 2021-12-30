@@ -7,6 +7,7 @@ import GameScreen from './components/playGame/theGame';
 import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
+import About from './components/about/about';
 
 import { Store } from './redux/store';
 
@@ -41,6 +42,11 @@ function App() {
             name="giveUps"
             options={{ headerShown: false }}
             component={MoreGiveUps}
+          />
+          <Stack.Screen
+            name="about"
+            options={{ headerShown: false }}
+            component={About}
           />
         </Stack.Navigator>
       </NavigationContainer>
