@@ -24,11 +24,15 @@ export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
   usableWords: allWords.filter((word) => word.level === 1),
   topWord: "",
+  topHint: "",
   bottomWord: "",
+  bottomHint: "",
   attempt: "",
   charArray: generateWords[0],
   firstWord: generateWords[1],
+  firstLength: parseInt(generateWords[1].engText.length),
   secondWord: generateWords[2],
+  secondLength: parseInt(generateWords[2].engText.length),
   correctWords: [],
   givenUpWords: [],
   giveUpsLeft: 100,
@@ -75,10 +79,24 @@ function theGameReducer(state = initialState, action) {
       attempt: "",
     };
   }
+  if (action.type === "SET_TOP_HINT") {
+    return {
+      ...state,
+      topHint: action.theTopHint,
+      attempt: "",
+    };
+  }
   if (action.type === "SET_BOTTOM_WORD") {
     return {
       ...state,
       bottomWord: state.secondWord.engText,
+      attempt: "",
+    };
+  }
+  if (action.type === "SET_BOTTOM_HINT") {
+    return {
+      ...state,
+      bottomHint: action.theBottomHint,
       attempt: "",
     };
   }
@@ -123,7 +141,6 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       givenUpWords: wordsLst,
-      giveUpsLeft: state.giveUpsLeft - 1,
     };
     // setData("state", newState);
     return newState;
@@ -173,11 +190,15 @@ function theGameReducer(state = initialState, action) {
       ...state,
       nextLevelModal: [state.showPopUp, state.firstWord, state.secondWord],
       topWord: "",
+      topHint: "",
       bottomWord: "",
+      bottomHint: "",
       attempt: "",
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
+      firstLength: parseInt(generateWords[1].engText.length),
+      secondLength: generateWords[2].engText.length,
       givenUpWords: newGiveUpWords,
       usableWords: newUsableWords,
       typesOfWords: newWordType,
@@ -238,9 +259,15 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "SET_GIVE_UP_LIVES") {
+    var lives = '';
+    if (action.addOrSub === '+') {
+      lives = state.giveUpsLeft + 1;
+    } else if (action.addOrSub === '-') {
+      lives = state.giveUpsLeft - 1;
+    }
     const newState = {
       ...state,
-      giveUpsLeft: state.giveUpsLeft + 1,
+      giveUpsLeft: lives,
     };
     setData("state", newState);
     return newState;

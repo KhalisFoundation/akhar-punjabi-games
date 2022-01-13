@@ -3,9 +3,21 @@ export const setTopWord = () => (dispatch) => {
     type: "SET_TOP_WORD",
   });
 };
+export const setTopHint = (hint) => (dispatch) => {
+  dispatch({
+    type: "SET_TOP_HINT",
+    theTopHint: hint,
+  });
+};
 export const setBottomWord = () => (dispatch) => {
   dispatch({
-    type: "SET_BOTTOM_WORD",
+    type: "SET_BOTTOM_WORD"
+  });
+};
+export const setBottomHint = (hint) => (dispatch) => {
+  dispatch({
+    type: "SET_BOTTOM_HINT",
+    theBottomHint: hint,
   });
 };
 export const setAttempt = (word) => (dispatch) => {
@@ -43,9 +55,10 @@ export const setTheState = (state) => (dispatch) => {
     state,
   });
 };
-export const setGiveUpLives = () => (dispatch) => {
+export const setGiveUpLives = (operator) => (dispatch) => {
   dispatch({
     type: "SET_GIVE_UP_LIVES",
+    addOrSub: operator,
   });
 };
 export const closeNextLevelModal = () => (dispatch) => {
