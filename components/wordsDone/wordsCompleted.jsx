@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image,
   FlatList,
+  ScrollView
 } from 'react-native';
 import { Header } from "react-native-elements";
 import { useSelector } from 'react-redux';
@@ -212,7 +213,12 @@ function RightWords({ navigation }) {
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Meaning</Text>
           <Text style={styles.answerText}> : </Text>
-          {meaningLength(showAnswer.meaning)}
+          <ScrollView 
+              scrollEventThrottle={16}
+              showsHorizontalScrollIndicator={false}
+              horizontal>
+                <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.meaning}</Text>
+          </ScrollView>
         </View>
         <View style={styles.answerRow}>
           <Text style={styles.answerText}>Level</Text>

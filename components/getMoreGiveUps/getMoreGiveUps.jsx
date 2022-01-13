@@ -252,7 +252,7 @@ function MoreGiveUps({ navigation }) {
         onPress={() => {
           if (textEntry === theWord) {
             console.log('Good job');
-            dispatch(setGiveUpLives());
+            dispatch(setGiveUpLives('+'));
             setWord(getRandomWord());
             setTextEntry('');
           }

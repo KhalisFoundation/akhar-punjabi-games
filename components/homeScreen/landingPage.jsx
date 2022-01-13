@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   ImageBackground,
+  SafeAreaView
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -145,8 +146,6 @@ function HomeScreen({ navigation }) {
       style={styles.container}
     >
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
-
-      <Text style={styles.mangal}>ੴਸਤਿਗੁਰਪ੍ਰਸਾਦਿ॥</Text>
       <Image style={styles.logo} source={require('../../images/logo.png')} />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
@@ -186,9 +185,6 @@ function HomeScreen({ navigation }) {
           <Icon name="heart" size={85} color="#900" style={styles.bold} />
           <Text style={styles.bold}>Get Lives</Text>
         </TouchableOpacity>
-      </View>
-      <View style={styles.by}>
-        <Text style={styles.byText}>ਪ੍ਰਕਾਸ਼ਕ:</Text>
       </View>
       <TouchableOpacity
         style={styles.khalisTouchableOpacity}
