@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import { Avatar, ListItem, BottomSheet, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
+import MaskedView from '@react-native-community/masked-view';
+import { LinearGradient } from "expo-linear-gradient";
 
 import theColors from '../../util/colors';
 
@@ -49,6 +51,15 @@ function SettingsBar({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    shadow: {
+      shadowColor: 'black',
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
     },
     text2: {
       // flex: 1,
@@ -101,7 +112,23 @@ function SettingsBar({
           });
         }}
         bottomDivider>
-        <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#464646"}/>
+          <MaskedView
+          style={{width:35,height: 35 }}
+          maskElement={
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#464646"} style={styles.shadow}/>
+            </View>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
         <ListItem.Content>
           <ListItem.Title style={state.darkMode && { color: "#fff" }}>{theSetting}</ListItem.Title>
           <ListItem.Subtitle style={{ color: state.darkMode ? "#fff" : "#a3a3a3" }}>{currentSetting}</ListItem.Subtitle>

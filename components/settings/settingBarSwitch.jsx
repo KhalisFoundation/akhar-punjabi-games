@@ -5,7 +5,10 @@ import {
 } from 'react-native';
 import { ListItem, Switch } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaskedView from '@react-native-community/masked-view';
+import { LinearGradient } from "expo-linear-gradient";
+import { Animated } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import theColors from '../../util/colors';
 
@@ -17,7 +20,7 @@ function SwitchBar({
   theCurrentOptionIndex,
 }) {
   const dispatch = useDispatch();
-
+  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   const state = useSelector((theState) => theState.theGameReducer);
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
@@ -46,6 +49,15 @@ function SwitchBar({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    shadow: {
+      shadowColor: 'black',
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+    },
     text2: {
       // flex: 1,
     },
@@ -56,16 +68,17 @@ function SwitchBar({
   const allImages = {
     khalislogo150: 'book',
     khanda: 'brightness-high',
-    ikOngkar: 'notifications',
+    ikOngkar: 'cards-outline',
+    ura: 'alphabetical'
   };
   // const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
     theList[theCurrentOptionIndex]
   );
   if (String(currentSetting) == 'false') {
-    allImages['khanda'] = 'brightness-high' 
+    allImages['khanda'] = 'brightness-5' 
   } else {
-    allImages['khanda'] = 'nights-stay'
+    allImages['khanda'] = 'brightness-2'
   }
 
   return (
@@ -78,7 +91,23 @@ function SwitchBar({
           {alignItems: 'flex-start'}
         ]}
         bottomDivider>
-        <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#464646"}/>
+        <MaskedView
+        style={{width:35,height: 35 }}
+        maskElement={
+          <View
+            style={{
+              backgroundColor: 'transparent',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#000"} style={styles.shadow}/>
+          </View>
+        }>
+        <LinearGradient
+          colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+          style={{ flex: 1 }}
+        />
+      </MaskedView>
         <ListItem.Content>
           <ListItem.Title style={state.darkMode && { color: "#fff" }}>{theSetting}</ListItem.Title>
         </ListItem.Content>

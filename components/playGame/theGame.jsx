@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { LinearGradient } from "expo-linear-gradient";
 import { Header } from "react-native-elements";
 import { Animated } from "react-native";
-import {useState} from 'react';
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 import {
   setTopWord,
@@ -22,16 +22,22 @@ import {
   setGivenUpWords,
   setTopHint,
   setBottomHint,
-  setGiveUpLives
+  setGiveUpLives,
+  setShowRomanised
 } from '../../redux/actions';
 
 import theColors from '../../util/colors';
+import { useEffect, useState } from 'react';
+import Explosion from 'react-native-confetti-cannon';
 
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
   const colors = theColors[state.darkMode];
+  const colorCombos = [["#E233FF", "#FF6B00"], ["#FF0076", "#590FB7"], ["#ffc500", "#c21500"], ["#182848", "#4b6cb7"], ["#e43a15","#e65245"], ["#480048","#c04848"], ["#dc2424","#4a569d"], ["#4776e6","#8e54e9"], ["#16222a","#3a6073"], ["#ff8008", "#ffc837"],["#eb3349", "#f45c43"],["#aa076b","#61045f"],["#ff512f","#dd2476"],["#e55d87","#5fc3e4"],["#c31432","#240b36"]];
+  let colorRandom = Math.floor(Math.random()*colorCombos.length);
+  const colorCenter = colorCombos[colorRandom];
   const styles = StyleSheet.create({
     container: {
       //flex: 1,
@@ -81,7 +87,7 @@ function GameScreen({ navigation }) {
     wordBoxAnswers: {
       // flexDirection: "column",
       width: 400,
-      height: 200,
+      height: 225,
       backgroundColor: colors.theGame.wordBoxAnswers,
       borderRadius: 20,
       shadowColor: "#000",
@@ -169,17 +175,22 @@ function GameScreen({ navigation }) {
       width: 200,
       height: 50,
       backgroundColor: colors.theGame.wordAttempt,
+      opacity: 0.77,
       borderRadius: 20,
       justifyContent:'center',
       textAlign:'center',
       fontSize: 30,
     },
     clearBox: {
-      width: 50,
-      height: 50,
+      width: 40,
+      height: 40,
       backgroundColor: colors.theGame.clearBox,
+      opacity: 0.8,
       borderRadius: 20,
       justifyContent:'center',
+      alignSelf:'center',
+      elevation:5,
+      margin:2
     },
     clearBoxText: {
       textAlignVertical: 'center',
@@ -191,8 +202,7 @@ function GameScreen({ navigation }) {
     },
     definitionText: {
       color: 'white',
-      margin: 15,
-      paddingBottom: 10
+      margin: 25,
     },
     upBox: {
       backgroundColor: "#072227",
@@ -211,6 +221,15 @@ function GameScreen({ navigation }) {
     }
   });
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+  /*
+  To know which word is longer
+  function longer() {
+    if (state.firstWord.engText.length >= state.secondWord.engText.length) {
+      return state.firstWord.engText.length;
+    } else {
+      return state.secondWord.engText.length;
+    }
+  }*/
 
   return (
     <View
@@ -261,16 +280,20 @@ function GameScreen({ navigation }) {
       </View>
 
       <AnimatedLinearGradient
-        colors={["#9B0000", "#160040"]}
+        colors={colorCenter}
         start={{ x: 0.5, y: 0.0 }}
         style={styles.wordBoxAnswers}>
         <View style={styles.answerRow}>
           <View style={styles.wordBoxText}>
-              <View style={{flex: 1, flexDirection:'row', justifyContent:'center'}}>
+              <View style={{flex: 1, flexDirection:'row', justifyContent:'flex-start', marginStart:15}}>
                 {/*{Array.from(Array(state.firstWord.engText.length), (e,i) => {
                   return <Text style={styles.answerText}>{Anvaad.unicode(state.topWord[i])}</Text>
                 })}*/}
-                <Text style={{...styles.answerText, width: 30*state.firstWord.engText.length}}>{Anvaad.unicode((state.topWord === '')? state.topHint : state.topWord)}</Text>
+                <TouchableOpacity onPress={() => { dispatch(setAttempt(Anvaad.unicode(state.topHint))); }} style={{width:"100%"}}>
+                  <Text style={{...styles.answerText, width: "95%"}}>
+                      {Anvaad.unicode((state.topWord === '')? state.topHint : state.topWord)}
+                  </Text>
+                </TouchableOpacity>
               </View>
             <ScrollView 
               scrollEventThrottle={16}
@@ -308,11 +331,15 @@ function GameScreen({ navigation }) {
         </View>
         <View style={styles.answerRow}>
           <View style={styles.wordBoxText}>
-              <View style={{flex: 1, flexDirection:'row', justifyContent:'center'}}>
+              <View style={{flex: 1, flexDirection:'row', justifyContent:'flex-start', marginStart:15}}>
                 {/*{Array.from(Array(state.secondWord.engText.length), (e,i) => {
                   return <Text style={styles.answerText}>{Anvaad.unicode(state.bottomWord[i])}</Text>
                 })}*/}
-                <Text style={{...styles.answerText, width: 30*state.secondWord.engText.length}}>{Anvaad.unicode((state.bottomWord === '')? state.bottomHint : state.bottomWord)}</Text>
+                <TouchableOpacity onPress={() => { dispatch(setAttempt(Anvaad.unicode(state.bottomHint))); }}  style={{width:"100%"}}>
+                  <Text style={{...styles.answerText, width: "95%"}}>
+                      {Anvaad.unicode((state.bottomWord === '')? state.bottomHint : state.bottomWord)}
+                  </Text>
+                </TouchableOpacity>
               </View>
             <ScrollView 
               scrollEventThrottle={16}
@@ -359,7 +386,9 @@ function GameScreen({ navigation }) {
         </TouchableOpacity> */}
       </AnimatedLinearGradient>
 
-      <View style={styles.wordAttemptView}>
+      <AnimatedLinearGradient
+       colors={colorCenter}
+       style={styles.wordAttemptView}>
         <Text style={styles.wordAttempt} placeHolder="Word">
           {Anvaad.unicode(state.attempt)}
         </Text>
@@ -371,7 +400,7 @@ function GameScreen({ navigation }) {
         >
           <Icon name='reload1' size={25} color='black' style={styles.clearBoxText} />
         </TouchableOpacity>
-      </View>
+      </AnimatedLinearGradient>
 
       <TheCircle style={styles.theCircle} />
     </View>

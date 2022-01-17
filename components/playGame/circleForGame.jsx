@@ -3,7 +3,7 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  View, Text, StyleSheet, TouchableOpacity,
+  View, Text, StyleSheet, TouchableOpacity, ImageBackground
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -18,21 +18,29 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Animated } from "react-native";
 
 import theColors from '../../util/colors';
+import { useState } from 'react';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+  function gurmukhi(text) {
+    if (state.romanised) {
+      return Anvaad.translit(text);
+    } else {
+      return Anvaad.unicode(text);
+    }
+  }
   const colors = theColors[state.darkMode];
   const { charArray } = state;
   const prevAttempt = state.attempt;
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      bottom: 0,
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       top: "10%",
+      borderRadius: 150
     },
     characterText: {
       bottom: '15%',
@@ -47,7 +55,7 @@ function TheCircle() {
       elevation: 5,
       borderColor: 'maroon',
       borderWidth: 5,
-      borderRadius: 10,
+      borderRadius: 15,
     }}
     )
 
@@ -77,12 +85,16 @@ function TheCircle() {
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   var angle = 0;
-  var width = 200;
-  var height = 200;
+  var width = 332.5;
+  var height = 332.5;
   var radius = 125;
   var step = (2*Math.PI) / charArray.length;
+  const colorCombos = [["#E233FF", "#FF6B00"], ["#FF0076", "#590FB7"], ["#ffc500", "#c21500"], ["#182848", "#4b6cb7"], ["#e43a15","#e65245"], ["#480048","#c04848"], ["#dc2424","#4a569d"], ["#4776e6","#8e54e9"], ["#16222a","#3a6073"], ["#ff8008", "#ffc837"],["#eb3349", "#f45c43"],["#aa076b","#61045f"],["#ff512f","#dd2476"],["#e55d87","#5fc3e4"],["#c31432","#240b36"]];
+  let colorRandom = Math.floor(Math.random()*colorCombos.length);
+  const [colorCenter, setColorCenter] = useState(colorCombos[colorRandom]);
   return (
-    <View
+    <AnimatedLinearGradient
+      colors={colorCenter}
       style={styles.lettersCircle}
     >
     {
@@ -91,7 +103,7 @@ function TheCircle() {
         var x = Math.round(width/2 + radius * Math.cos(angle) - width/8);
         var y = Math.round(height/2 + radius * Math.sin(angle) - height/8);
         // let theLetter = String.fromCharCode(char);
-        const theLetter = Anvaad.unicode(char);
+        const theLetter = gurmukhi(char);
         angle += step;
         return (
           <TouchableOpacity
@@ -127,7 +139,7 @@ function TheCircle() {
           </TouchableOpacity>
         );
       })}
-    </View>
+      </AnimatedLinearGradient>
   );
 }
 

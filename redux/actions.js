@@ -86,3 +86,9 @@ export const setShowPopUp = (set) => (dispatch) => {
     onOrOff: set,
   });
 };
+export const setShowRomanised = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_SHOW_ROMANISED",
+    onOrOff: set,
+  });
+};

@@ -14,19 +14,24 @@ import { Header } from "react-native-elements";
 import { useSelector } from 'react-redux';
 import Level from './levelDisplays';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from "expo-linear-gradient";
 import { Animated } from "react-native";
 import GLOBAL from "../../util/globals";
 import theColors from '../../util/colors';
+import { useState } from 'react';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
+  const [down, setDown] = useState(false);
 
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
+      position:'absolute',
+      top:0,
       alignItems: 'center',
       backgroundColor: colors.wordsCompleted.container,
       justifyContent: 'center',
@@ -42,6 +47,8 @@ function RightWords({ navigation }) {
       height: 50,
     },
     title: {
+      position:'absolute',
+      top:0,
       fontSize: 32,
       fontFamily: 'Arial',
       flex: 3,
@@ -50,9 +57,18 @@ function RightWords({ navigation }) {
     },
     listContainer: {
       // backgroundColor: colors.wordsCompleted.listContainer,
-      width: '95%',
       height: '60%',
+      width: '95%',
       padding: 10,
+    },
+    listContainerFull:{
+      width: '95%',
+      padding: 10,
+      height:'80%'
+    },
+    answerBoxAlt:{
+      height:25,
+      width:'95%'
     },
     answerBox: {
       backgroundColor: state.darkMode ? '#ffae00' : colors.wordsCompleted.answerBox,
@@ -72,6 +88,9 @@ function RightWords({ navigation }) {
     answerRow: {
       flexDirection: 'row',
     },
+    answerRowAlt:{
+      display:'none'
+    },
     answerText: {
       fontSize: 18,
       color: '#464646',
@@ -81,6 +100,15 @@ function RightWords({ navigation }) {
       fontSize: 18,
       color: 'green',
       fontWeight: 'bold',
+    },
+    shadow: {
+      shadowColor: 'black',
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
     },
   });
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -130,26 +158,6 @@ function RightWords({ navigation }) {
     });
   }
 
-  function meaningLength(meaning) {
-    if (meaning.length < 60) {
-      return <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{meaning}</Text>;
-    }
-    let theMeaning = [];
-    for (let i = 0; i < meaning.length; i += 1) {
-      if (i % 50 === 0 && i !== 0) {
-        theMeaning.push('-');
-        theMeaning.push('\n');
-      }
-      theMeaning.push(meaning[i]);
-    }
-    theMeaning = theMeaning.join('');
-    return (
-      <Text style={{ ...styles.answerForAnswerText, fontSize: 12 }}>
-        {theMeaning}
-      </Text>
-    );
-  }
-
   const renderItem = React.useCallback(({ item }) => {
     return (
       <Level title={item.text} theWords={item.words} setAnswer={setAnswer} />
@@ -161,20 +169,22 @@ function RightWords({ navigation }) {
           backgroundColor={
             'black'
           }
-          barStyle={"light-content"}
+          barStyle={state.darkMode ? "light-content" : "dark-content"}
         />
       <Header
-          backgroundColor={
-            "cyan"
-          }
+          backgroundColor={state.darkMode ? "#004ba6" : "cyan"}
           containerStyle={[
-            Platform.OS === "android" && { height: 56, paddingTop: 10 }
+            Platform.OS === "android" && { height: 56, paddingTop: 10 },
+            down ? {
+              position:'absolute',
+              top:0,
+            } : null
           ]}
           leftComponent={
             <Icon
               name="arrow-back"
               color={
-                'black'
+                state.darkMode? 'white':'black'
               }
               size={30}
               onPress={() => {navigation.navigate('Home');}}
@@ -183,13 +193,13 @@ function RightWords({ navigation }) {
           centerComponent={{
             text: "Words Completed",
             style: {
-              color: 'black',
+              color: state.darkMode? 'white':'black',
               fontSize: 18
             }
           }}
         />
         
-      <View style={styles.listContainer}>
+      <View style={down ? styles.listContainerFull : styles.listContainer}>
         <FlatList
           // style={styles.listContainer}
           data={levels}
@@ -197,20 +207,31 @@ function RightWords({ navigation }) {
         />
       </View>
 
-      <View style={styles.answerBox}>
-        <View style={styles.answerRow}>
+      <View style={down ? styles.answerBoxAlt: styles.answerBox}>
+        <TouchableOpacity style={{position: 'absolute', alignSelf:'flex-end', backgroundColor: state.darkMode? '#000':'#fff', borderRadius:20, elevation:5}} onPress={() => {console.log('clicked me??'); setDown(!down);}}>
+        <MaskedView
+          style={{height:40, width:40}}
+          maskElement={
+            <Icon name={down ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color={'black'} style={styles.shadow}/>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView></TouchableOpacity>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Gurmukhi Text</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>
+          <Text style={[styles.answerForAnswerText, {color: showAnswer.color, fontSize: 20}]}>
             {showAnswer.punjabiText}
           </Text>
         </View>
-        <View style={styles.answerRow}>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>English Text</Text>
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.engText}</Text>
         </View>
-        <View style={styles.answerRow}>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Meaning</Text>
           <Text style={styles.answerText}> : </Text>
           <ScrollView 
@@ -220,17 +241,17 @@ function RightWords({ navigation }) {
                 <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.meaning}</Text>
           </ScrollView>
         </View>
-        <View style={styles.answerRow}>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Level</Text>
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.level}</Text>
         </View>
-        <View style={styles.answerRow}>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Type</Text>
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.type}</Text>
         </View>
-        <View style={styles.answerRow}>
+        <View style={down ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Status</Text>
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, {color: showAnswer.color}]}>{showAnswer.status}</Text>

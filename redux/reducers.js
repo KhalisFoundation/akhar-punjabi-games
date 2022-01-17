@@ -66,6 +66,7 @@ export const initialState = {
   typesOfWords: "Both",
   darkMode: false,
   showPopUp: true,
+  romanised: true,
 };
 
 //to reset all state
@@ -276,6 +277,14 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       showPopUp: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_SHOW_ROMANISED") {
+    const newState = {
+      ...state,
+      romanised: action.onOrOff,
     };
     setData("state", newState);
     return newState;

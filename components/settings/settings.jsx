@@ -17,9 +17,10 @@ import SwitchBar from './settingBarSwitch';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 import FontAwesome5Icons from "react-native-vector-icons/FontAwesome5";
+import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from "expo-linear-gradient";
 import { Animated } from "react-native";
-import { setTypeOfWords, setDarkMode, setShowPopUp } from '../../redux/actions';
+import { setTypeOfWords, setDarkMode, setShowPopUp, setShowRomanised } from '../../redux/actions';
 
 import theColors from '../../util/colors';
 
@@ -31,7 +32,7 @@ function Settings({ navigation }) {
     container: {
       alignItems: 'center',
       // justifyContent: "center",
-      backgroundColor: colors.settings.container,
+      backgroundColor: state.darkMode ? '#333': colors.settings.container,
       width: '100%',
       height: '100%',
       marginTop: '3.5%',
@@ -43,9 +44,11 @@ function Settings({ navigation }) {
     },
     headerStyle: {
       color: 'black',
-      marginTop: 10,
+      margin: 10,
       padding: 5,
-      paddingLeft: 10
+      paddingBottom: 10,
+      fontWeight: 'bold',
+      fontSize: 15
     },
     backButton: {
       flex: 1,
@@ -60,6 +63,15 @@ function Settings({ navigation }) {
       flex: 2,
       fontWeight: 'bold',
       color: 'white',
+    },
+    shadow: {
+      shadowColor: 'black',
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
     },
     scroll: {
       width: '100%',
@@ -103,14 +115,28 @@ function Settings({ navigation }) {
       
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
-      <Text
-          style={[
-            styles.headerStyle,
-            state.darkMode && { color: "#fff" }
-          ]}
-        >
-          App Options
-        </Text>
+      <MaskedView
+          style={{width:"100%",height: 35 }}
+          maskElement={
+            <View
+              style={{
+                backgroundColor: 'transparent',
+              }}>
+                <Text
+                  style={[
+                    styles.headerStyle,
+                    state.darkMode && { color: "#fff" }
+                  ]}
+                >
+                  App Options
+                </Text>
+            </View>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
         <SettingsBar
           theSetting="Type of Words"
           theList={['Both', 'Gurbani', 'Punjabi']} // the 0 index in theList is the default setting
@@ -134,14 +160,35 @@ function Settings({ navigation }) {
           theAction={setShowPopUp} // setTypeOfWords take 1 param, both,gurbani or punjabi,
           theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
-        <Text
-          style={[
-            styles.headerStyle,
-            state.darkMode && { color: "#fff" }
-          ]}
-        >
-          Other Options
-        </Text>
+        <SwitchBar
+          theSetting="Romanised words"
+          theList={[true, false]}
+          imageSource="ura"
+          theAction={setShowRomanised} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
+        />
+        <MaskedView
+          style={{width:"100%",height: 35 }}
+          maskElement={
+            <View
+              style={{
+                backgroundColor: 'transparent',
+              }}>
+                <Text
+                  style={[
+                    styles.headerStyle,
+                    state.darkMode && { color: "#fff" }
+                  ]}
+                >
+                  Other Options
+                </Text>
+            </View>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
         <ListItem 
             containerStyle={[
               styles.titleText,
@@ -150,7 +197,23 @@ function Settings({ navigation }) {
             ]}
             onPress={() => Linking.openURL("https://khalisfoundation.org/donate/")}
           bottomDivider>
-          <FontAwesome5Icons name="donate" size={30} color={state.darkMode ? "#fff" : "#464646"}/>
+          <MaskedView
+          style={{width:35,height: 35 }}
+          maskElement={
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <FontAwesome5Icons name="donate" size={30} color={state.darkMode ? "#fff" : "#464646"} style={styles.shadow}/>
+            </View>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
           <ListItem.Content>
             <ListItem.Title style={state.darkMode && { color: "#fff" }}>Donate</ListItem.Title>
           </ListItem.Content>
@@ -164,7 +227,23 @@ function Settings({ navigation }) {
             ]}
             onPress={() => {navigation.navigate('about');}}
           bottomDivider>
-          <FontAwesomeIcons name="question-circle" size={30} color={state.darkMode ? "#fff" : "#464646"}/>
+          <MaskedView
+          style={{width:35,height: 35 }}
+          maskElement={
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <FontAwesomeIcons name="question-circle" size={30} color={state.darkMode ? "#fff" : "#464646"} style={styles.shadow}/>
+            </View>
+          }>
+          <LinearGradient
+            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
           <ListItem.Content>
             <ListItem.Title style={state.darkMode && { color: "#fff" }}>About</ListItem.Title>
           </ListItem.Content>

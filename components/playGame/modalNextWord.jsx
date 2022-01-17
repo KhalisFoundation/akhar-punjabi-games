@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Icon } from 'react-native-elements';
-
 import { closeNextLevelModal } from '../../redux/actions';
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -98,14 +96,23 @@ function WordsDoneModal() {
   const getRandomNum = (min,max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  const nowWow = getRandomNum(0,4);
+  const nowWow = getRandomNum(1,14);
   console.log(nowWow);
-  const wows = {
-    0: require('../../images/wow1.png'),
-    1: require('../../images/wow2.png'),
-    2: require('../../images/wow3.png'),
-    3: require('../../images/wow4.png'),
-    4: require('../../images/wow5.png'),
+  const wows = { 
+    1 : require('../../images/Group-1.png'),
+    2 : require('../../images/Group-2.png'),
+    3 : require('../../images/Group-3.png'),
+    4 : require('../../images/Group-4.png'),
+    5 : require('../../images/Group-5.png'),
+    6 : require('../../images/Group-6.png'),
+    7 : require('../../images/Group-7.png'),
+    8 : require('../../images/Group-8.png'),
+    9 : require('../../images/Group-9.png'),
+    10 : require('../../images/Group-10.png'),
+    11 : require('../../images/Group-11.png'),
+    12 : require('../../images/Group-12.png'),
+    13 : require('../../images/Group-13.png'),
+    14 : require('../../images/Group-14.png'),
   }
   const doneYet = Math.floor((10-state.levelProgress[0].wordsNeeded)/2);
   const stage = {
@@ -125,8 +132,8 @@ function WordsDoneModal() {
     >
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'}}>
       <ImageBackground source={require('../../images/word_modal.png')} resizeMode='cover' imageStyle={{ borderRadius: 30}} style={{width:"100%", alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Image source={wows[nowWow]} style={{transform: [{ scale: 0.55 }], height:150}}/>
-        <Image source={stage[doneYet]} style={{margin:5, transform: [{ scale: 0.75 }], top: -50}}/>
+        <Image source={wows[nowWow]} style={{transform: [{ scale: 1 }], margin:15, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4,}}/>
+        <Image source={stage[doneYet]} style={{margin:15, transform: [{ scale: 0.75 }],}}/>
         <AnimatedLinearGradient
           colors={state.darkMode ? ["#2F0743","#6f0000"] : ["#cb3066", "#F2994A"]}
           start={{ x: 1, y: 1 }}

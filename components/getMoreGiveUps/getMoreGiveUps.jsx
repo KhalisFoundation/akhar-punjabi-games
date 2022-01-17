@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as anvaad from 'anvaad-js';
 import { setGiveUpLives } from '../../redux/actions';
 import { LinearGradient } from "expo-linear-gradient";
+import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Animated } from "react-native";
 import GLOBAL from '../../util/globals';
 import theColors from '../../util/colors';
@@ -46,21 +47,6 @@ function MoreGiveUps({ navigation }) {
       fontWeight: 'bold',
       right: 20,
     },
-    giveUpLivesText: {
-      backgroundColor: colors.getMoreGiveUps.giveUpLivesText,
-      fontSize: 16,
-      borderRadius: 15,
-      padding: 10,
-      margin: 10,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
     instructionsText: {
       backgroundColor: 'white',
       borderRadius: 5,
@@ -83,6 +69,7 @@ function MoreGiveUps({ navigation }) {
     infoText:{
       marginHorizontal: 5,
       fontSize: 15,
+      color:state.darkMode ? '#fff': '#000',
       padding:5,
       textAlign: 'center',
       marginVertical: 5,
@@ -165,6 +152,23 @@ function MoreGiveUps({ navigation }) {
       padding: 10,
       color: state.darkMode ? "white" : "black",
     },
+    upBox: {
+      backgroundColor: "#072227",
+      flexDirection: 'row',
+      height: 40,
+      width: 100,
+      alignItems: 'center',
+      borderRadius:30,
+      margin:10,
+      elevation: 5,
+      justifyContent: 'space-between',
+      paddingHorizontal:10
+    },
+    upText: {
+      color: 'white',
+      fontSize: 15,
+      fontWeight: 'bold'
+    }
   });
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
@@ -221,12 +225,15 @@ function MoreGiveUps({ navigation }) {
             }
           }}
         />
-      
-      <Text style={styles.giveUpLivesText}>
-        Lives:
-        {' '}
-        {state.giveUpsLeft}
-      </Text>
+      <View
+          style={styles.upBox}>
+            <IconM
+              name='heart-circle-outline'
+              size={25}
+              color='#FF5959'
+              />
+          <Text style={[styles.upText, {color: 'cyan'}]}>{state.giveUpsLeft}</Text>
+        </View>
       <Text style={styles.instructionsText}>
         Try to type the following to get more Lives.
       </Text>
