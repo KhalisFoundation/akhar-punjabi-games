@@ -30,7 +30,7 @@ function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   let [fontLoaded, error] = useFonts({
-    'im-fell': require('../../assets/fonts/IMFellEnglish-Regular.ttf')
+    'im-fell': require('../../assets/fonts/IMFellEnglish_Regular.ttf')
   })
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');

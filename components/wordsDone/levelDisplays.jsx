@@ -25,6 +25,9 @@ function Level({ title, theWords, setAnswer }) {
     container: {
       // flex: 1,
     },
+    containerAlt:{
+      display:'none'
+    },
     title: {
       padding: 5,
       paddingBottom: 10,
@@ -46,10 +49,20 @@ function Level({ title, theWords, setAnswer }) {
       fontSize: 40,
       textAlign: 'center',
       fontWeight:'bold',
-      backgroundColor:'#e0c14d'
+      backgroundColor:'#ffbb00'
     },
   });
 
+  const nothing = [
+    {
+      engText: 'koeI sæbd nhIN',
+      punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
+      meaning: 'There are no words',
+      type: 'Punjabi',
+      level: 'N/A',
+      status: 'N/A',
+    },
+  ];
   let words = theWords;
   if (words === undefined) {
     words = [
