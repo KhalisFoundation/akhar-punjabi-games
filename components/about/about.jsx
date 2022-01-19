@@ -123,7 +123,7 @@ function About({navigation}) {
             />
           </MaskedView>
           </View>
-          <Image style={{height:250, alignSelf:'center'}} source={require('../../images/logo_squared.png')} resizeMode="contain"/>
+          <Image style={{height:250, alignSelf:'center'}} source={require('../../assets/logo_squared.png')} resizeMode="contain"/>
         <Text style={[state.darkMode && styles.nightMode, {fontSize:16, fontFamily:'Arial'}]}>
           {"\n"}
           <Text style={{fontFamily:'Mochy'}}>Akhar Jor - Punjabi Wordlink</Text> utilizes{" \n\n \u2022"}

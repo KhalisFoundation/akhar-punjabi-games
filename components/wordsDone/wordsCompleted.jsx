@@ -20,13 +20,19 @@ import { Animated } from "react-native";
 import GLOBAL from "../../util/globals";
 import theColors from '../../util/colors';
 import { useState } from 'react';
+import { useFonts } from 'expo-font';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
   const [down, setDown] = useState(false);
-
+  let [fontsLoaded] = useFonts({
+    'Arial': require('../../assets/fonts/Arial.ttf'),
+    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    'Bookish': require('../../assets/fonts/Bookish.ttf'),
+    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  });
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -194,7 +200,8 @@ function RightWords({ navigation }) {
             text: "Words Completed",
             style: {
               color: state.darkMode? 'white':'black',
-              fontSize: 18
+              fontSize: 18,
+              fontFamily:'Arial'
             }
           }}
         />

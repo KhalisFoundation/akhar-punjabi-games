@@ -26,7 +26,12 @@ import theColors from '../../util/colors';
 
 function Settings({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
-
+  let [fontsLoaded] = useFonts({
+    'Arial': require('../../assets/fonts/Arial.ttf'),
+    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    'Bookish': require('../../assets/fonts/Bookish.ttf'),
+    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  });
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -108,7 +113,8 @@ function Settings({ navigation }) {
             text: "Settings",
             style: {
               color: 'black',
-              fontSize: 18
+              fontSize: 18,
+              fontFamily:'Arial'
             }
           }}
         />
@@ -255,5 +261,6 @@ function Settings({ navigation }) {
 }
 
 // TODO - Move all colors to separate file and import as variables.
+import { useFonts } from 'expo-font';
 
 export default Settings;

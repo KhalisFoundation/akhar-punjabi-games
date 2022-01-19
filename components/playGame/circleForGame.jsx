@@ -39,7 +39,7 @@ function TheCircle() {
     lettersCircle: {
       height: 300,
       width: 300,
-      top: "10%",
+      top:'3%',
       borderRadius: 150
     },
     characterText: {

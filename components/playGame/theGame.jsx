@@ -9,6 +9,7 @@ import TheCircle from './circleForGame';
 import WordsDoneModal from './modalNextWord';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/AntDesign';
+import IconH from 'react-native-vector-icons/MaterialIcons';
 import { LinearGradient } from "expo-linear-gradient";
 import { Header } from "react-native-elements";
 import { Animated } from "react-native";
@@ -29,11 +30,18 @@ import {
 import theColors from '../../util/colors';
 import { useEffect, useState } from 'react';
 import Explosion from 'react-native-confetti-cannon';
+import { useFonts } from 'expo-font';
 
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+  let [fontsLoaded] = useFonts({
+    'Arial': require('../../assets/fonts/Arial.ttf'),
+    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    'Bookish': require('../../assets/fonts/Bookish.ttf'),
+    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  });
   const colors = theColors[state.darkMode];
   const colorCombos = [["#E233FF", "#FF6B00"], ["#FF0076", "#590FB7"], ["#ffc500", "#c21500"], ["#182848", "#4b6cb7"], ["#e43a15","#e65245"], ["#480048","#c04848"], ["#dc2424","#4a569d"], ["#4776e6","#8e54e9"], ["#16222a","#3a6073"], ["#ff8008", "#ffc837"],["#eb3349", "#f45c43"],["#aa076b","#61045f"],["#ff512f","#dd2476"],["#e55d87","#5fc3e4"],["#c31432","#240b36"]];
   let colorRandom = Math.floor(Math.random()*colorCombos.length);
@@ -45,6 +53,7 @@ function GameScreen({ navigation }) {
       backgroundColor: colors.theGame.container,
       width: '100%',
       height: '100%',
+      marginTop: '3.5%',
     },
     backButton: {
       flex: 1,
@@ -138,7 +147,7 @@ function GameScreen({ navigation }) {
       color:'black',
       fontSize: 35,
       backgroundColor: colors.theGame.wordBoxText,
-      borderRadius: 20,
+      borderRadius: 25,
       width: 50,
       height: 50,
       marginBottom: 5
@@ -176,7 +185,7 @@ function GameScreen({ navigation }) {
       height: 50,
       backgroundColor: colors.theGame.wordAttempt,
       opacity: 0.77,
-      borderRadius: 20,
+      borderRadius: 25,
       justifyContent:'center',
       textAlign:'center',
       fontSize: 30,
@@ -197,9 +206,7 @@ function GameScreen({ navigation }) {
       textAlign:'center',
       justifyContent:'center',
     },
-    theCircle: {
-      bottom:15
-    },
+    theCircle: {},
     definitionText: {
       color: 'white',
       margin: 25,
@@ -241,6 +248,32 @@ function GameScreen({ navigation }) {
             'black'
           }
           barStyle={"light-content"}
+        />
+      <Header
+          backgroundColor={
+            "orange"
+          }
+          containerStyle={[
+            Platform.OS === "android" && { height: 56, paddingTop: 0 }
+          ]}
+          leftComponent={
+            <IconH
+              name="arrow-back"
+              color={
+                'black'
+              }
+              size={30}
+              onPress={() => {navigation.navigate('Home');}}
+            />
+          }
+          centerComponent={{
+            text: "ਅਖਰ ਜੋੜ",
+            style: {
+              color: 'black',
+              fontSize: 18,
+              fontFamily: 'Bookish'
+            }
+          }}
         />
       <View
         style={ styles.header }

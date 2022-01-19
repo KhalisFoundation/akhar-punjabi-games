@@ -29,9 +29,12 @@ import theColors from '../../util/colors';
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
-  let [fontLoaded, error] = useFonts({
-    'im-fell': require('../../assets/fonts/IMFellEnglish_Regular.ttf')
-  })
+  let [fontLoaded] = useFonts({
+    'Arial': require('../../assets/fonts/Arial.ttf'),
+    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    'Bookish': require('../../assets/fonts/Bookish.ttf'),
+    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  });
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
   {/*let [fontsLoaded] = useFonts({
@@ -163,7 +166,7 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Icon name="cog" size={85} color="#555" style={styles.bold}/>
-          <Text style={styles.bold}>Settings</Text>
+          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -173,7 +176,7 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Icon name="check-circle" size={85} color="#080" style={styles.bold}/>
-          <Text style={[styles.bold, {fontFamily:'im-fell'}]}>Words Done</Text>
+          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Words Done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -183,7 +186,7 @@ function HomeScreen({ navigation }) {
         >
           
           <Icon name="heart" size={85} color="#900" style={styles.bold} />
-          <Text style={styles.bold}>Get Lives</Text>
+          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Get Lives</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity

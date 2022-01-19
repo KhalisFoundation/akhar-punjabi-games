@@ -227,7 +227,8 @@ function MoreGiveUps({ navigation }) {
             text: "Get More Lives",
             style: {
               color: 'black',
-              fontSize: 18
+              fontSize: 18,
+              fontFamily:'Arial'
             }
           }}
         />

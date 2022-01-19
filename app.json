@@ -4,7 +4,7 @@
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/final_logo.png",
     "splash": {
       "image": "./assets/splash_new.png",
       "resizeMode": "cover",
@@ -21,12 +21,12 @@
       "package": "com.khalis.akharjor",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/app_icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/foreground_logo.png"
     }
   }
 }
