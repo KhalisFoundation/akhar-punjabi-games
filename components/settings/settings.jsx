@@ -122,7 +122,7 @@ function Settings({ navigation }) {
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
       <MaskedView
-          style={{width:"100%",height: 35 }}
+          style={{width:"100%",height: 50 }}
           maskElement={
             <View
               style={{
@@ -174,7 +174,7 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
         />
         <MaskedView
-          style={{width:"100%",height: 35 }}
+          style={{width:"100%",height: 50 }}
           maskElement={
             <View
               style={{

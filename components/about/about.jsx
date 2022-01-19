@@ -99,7 +99,7 @@ function About({navigation}) {
                 style={{
                   backgroundColor: 'transparent',
                 }}>
-                <Text style={[styles.title, state.darkMode && styles.nightMode, {fontFamily:'Bookish'}]} > ਅਖਰ ਜੋੜ</Text>
+                <Text style={[styles.title, {fontFamily:'Bookish'}]} > ਅਖਰ ਜੋੜ</Text>
               </View>
             }>
             <LinearGradient
@@ -123,7 +123,7 @@ function About({navigation}) {
             />
           </MaskedView>
           </View>
-          <Image style={{height:250, alignSelf:'center'}} source={require('../../assets/logo_squared.png')} resizeMode="contain"/>
+          <Image style={{height:250, alignSelf:'center'}} source={state.darkMode ? require('../../assets/logo_squared_dark.png') : require('../../assets/logo_squared.png')} resizeMode="contain"/>
         <Text style={[state.darkMode && styles.nightMode, {fontSize:16, fontFamily:'Arial'}]}>
           {"\n"}
           <Text style={{fontFamily:'Mochy'}}>Akhar Jor - Punjabi Wordlink</Text> utilizes{" \n\n \u2022"}
@@ -165,7 +165,7 @@ function About({navigation}) {
             {"\n"}
         </Text>
         <View>
-        <Text style={state.darkMode && styles.nightMode, {fontFamily:'Arial', alignSelf:'flex-end'}}>
+        <Text style={{fontFamily:'Arial', alignSelf:'flex-end', color: state.darkMode? "#fff": "#000" }}>
           {"\n"}Bhul Chuk Maaf!{"\n"}
         </Text>
         

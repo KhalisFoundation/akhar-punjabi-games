@@ -44,10 +44,6 @@ function SwitchBar({
       alignSelf: 'center',
     },
     rightSide: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     shadow: {
       shadowColor: 'black',
@@ -82,7 +78,7 @@ function SwitchBar({
   }
 
   return (
-    <View style={styles.container}>
+    <View>
       <ListItem 
         key={theSetting}
         containerStyle={[
@@ -108,10 +104,9 @@ function SwitchBar({
           style={{ flex: 1 }}
         />
       </MaskedView>
-        <ListItem.Content>
+        <ListItem.Content style={{flexDirection:'row', justifyContent:'space-between'}}>
           <ListItem.Title style={state.darkMode && { color: "#fff" }}>{theSetting}</ListItem.Title>
-        </ListItem.Content>
-        <Switch
+          <Switch
             style={styles.rightSide}
             value={currentSetting}
             onValueChange={(newSetting) => {
@@ -119,6 +114,7 @@ function SwitchBar({
               setCurrentSetting(newSetting);
             }}
           />
+        </ListItem.Content>
       </ListItem>
     </View>
   );
