@@ -5,32 +5,31 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
   StatusBar,
   TextInput,
+  Animated,
+  Platform
 } from 'react-native';
-import { Header } from "react-native-elements";
+import { Header } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import * as anvaad from 'anvaad-js';
-import { setGiveUpLives } from '../../redux/actions';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Animated } from "react-native";
-import GLOBAL from '../../util/globals';
-import theColors from '../../util/colors';
 import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import GLOBAL from '../../util/globals';
+import { setGiveUpLives } from '../../redux/actions';
+import theColors from '../../util/colors';
 
 function MoreGiveUps({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  let [fontsLoaded] = useFonts({
-    'Arial': require('../../assets/fonts/Arial.ttf'),
-    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    'Bookish': require('../../assets/fonts/Bookish.ttf'),
-    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  const [fontsLoaded] = useFonts({
+    Arial: require('../../assets/fonts/Arial.ttf'),
+    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    Bookish: require('../../assets/fonts/Bookish.ttf'),
+    Mochy: require('../../assets/fonts/Mochy.ttf'),
   });
 
   const colors = theColors[state.darkMode];
@@ -39,21 +38,8 @@ function MoreGiveUps({ navigation }) {
       alignItems: 'center',
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
-      width:'100%',
+      width: '100%',
       marginTop: '3.5%',
-    },
-    backButton: {
-      flex: 1,
-    },
-    backArrow: {
-      width: 50,
-      height: 50,
-    },
-    title: {
-      fontSize: 32,
-      flex: 3,
-      fontWeight: 'bold',
-      right: 20,
     },
     instructionsText: {
       backgroundColor: 'white',
@@ -62,10 +48,10 @@ function MoreGiveUps({ navigation }) {
       borderWidth: 1,
       marginHorizontal: 5,
       fontSize: 18,
-      padding:5,
+      padding: 5,
       textAlign: 'center',
       marginVertical: 5,
-      shadowColor: "#000",
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 2
@@ -74,51 +60,33 @@ function MoreGiveUps({ navigation }) {
       shadowRadius: 4,
       elevation: 5,
     },
-    infoText:{
+    infoText: {
       marginHorizontal: 5,
       fontSize: 15,
-      color:state.darkMode ? '#fff': '#000',
-      padding:5,
+      color: state.darkMode ? '#fff' : '#000',
+      padding: 5,
       textAlign: 'center',
       marginVertical: 5,
     },
     DHANcover: {
       height: 70,
-      width: "100%",
-      elevation:5,
-      justifyContent:'center',
+      width: '100%',
+      elevation: 5,
+      justifyContent: 'center',
       backgroundColor: state.darkMode ? '#000' : '#fff',
       borderRadius: 20,
     },
     DHAN: {
       height: 100,
-      fontSize: 30,
       textAlign: 'center',
       padding: 5,
       fontSize: 30,
       textShadowRadius: 10,
-      fontFamily:'Bookish'
+      fontFamily: 'Bookish'
     },
     inputBox: {
       padding: 10,
       width: '100%',
-    },
-    textInputGurmukhi: {
-      fontSize: 25,
-      textAlign: 'center',
-      backgroundColor: colors.getMoreGiveUps.textInputGurmukhi,
-      borderColor: 'black',
-      borderWidth: .5,
-      borderRadius: 20,
-      padding: 20,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
     },
     textInput: {
       marginTop: 10,
@@ -128,7 +96,7 @@ function MoreGiveUps({ navigation }) {
       backgroundColor: colors.getMoreGiveUps.textInput,
       borderRadius: 20,
       padding: 15,
-      shadowColor: "#000",
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 2
@@ -138,9 +106,9 @@ function MoreGiveUps({ navigation }) {
       elevation: 5,
     },
     submitButton: {
-      alignItems:'center',
+      alignItems: 'center',
       borderRadius: 15,
-      shadowColor: "#000",
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 2
@@ -149,23 +117,23 @@ function MoreGiveUps({ navigation }) {
       shadowRadius: 4,
       elevation: 5,
     },
-    submit:{
+    submit: {
       fontSize: 16,
-      alignSelf:'center',
+      alignSelf: 'center',
       padding: 10,
-      color: state.darkMode ? "black" : "white",
+      color: state.darkMode ? 'black' : 'white',
     },
     upBox: {
-      backgroundColor: "#072227",
+      backgroundColor: '#072227',
       flexDirection: 'row',
       height: 40,
       width: 100,
       alignItems: 'center',
-      borderRadius:30,
-      margin:10,
+      borderRadius: 30,
+      margin: 10,
       elevation: 5,
       justifyContent: 'space-between',
-      paddingHorizontal:10
+      paddingHorizontal: 10
     },
     upText: {
       color: 'white',
@@ -197,91 +165,97 @@ function MoreGiveUps({ navigation }) {
   const [theWord, setWord] = React.useState(getRandomWord());
   if (!fontsLoaded) {
     return <AppLoading />;
-  } else {
+  }
   return (
     <View style={styles.container}>
       <StatusBar
-          backgroundColor={
-            'black'
-          }
-          barStyle={"light-content"}
-        />
+        backgroundColor="black"
+        barStyle="light-content"
+      />
       <Header
-          backgroundColor={
+        backgroundColor={
             GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
-          containerStyle={[
-            Platform.OS === "android" && { height: 56, paddingTop: 10 }
-          ]}
-          leftComponent={
-            <Icon
-              name="arrow-back"
-              color={
-                'black'
-              }
-              size={30}
-              onPress={() => {navigation.navigate('Home');}}
-            />
+        containerStyle={[
+          Platform.OS === 'android' && { height: 56, paddingTop: 10 }
+        ]}
+        leftComponent={(
+          <Icon
+            name="arrow-back"
+            color="black"
+            size={30}
+            onPress={() => { navigation.navigate('Home'); }}
+          />
+          )}
+        centerComponent={{
+          text: 'Get More Lives',
+          style: {
+            color: 'black',
+            fontSize: 18,
+            fontFamily: 'Arial'
           }
-          centerComponent={{
-            text: "Get More Lives",
-            style: {
-              color: 'black',
-              fontSize: 18,
-              fontFamily:'Arial'
-            }
-          }}
-        />
+        }}
+      />
       <View
-          style={styles.upBox}>
-            <IconM
-              name='heart-circle-outline'
-              size={25}
-              color='#FF5959'
-              />
-          <Text style={[styles.upText, {color: 'cyan'}]}>{state.giveUpsLeft}</Text>
-        </View>
+        style={styles.upBox}
+      >
+        <IconM
+          name="heart-circle-outline"
+          size={25}
+          color="#FF5959"
+        />
+        <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
+      </View>
       <Text style={styles.instructionsText}>
         Try to type the following to get more Lives.
       </Text>
-      <Text style={[{fontSize:10}, styles.infoText]}>
-        {'{'}You will have to figure out which english letters correspond to the respective Gurmukhi characters{'}'}
+      <Text style={[{ fontSize: 10 }, styles.infoText]}>
+        {'{'}
+        You will have to figure out which english letters correspond to the
+        respective Gurmukhi characters
+        {'}'}
       </Text>
       <View style={styles.DHANcover}>
-      <MaskedView
-          style={{height: 50, width:"100%"}}
-          maskElement={
+        <MaskedView
+          style={{ height: 50, width: '100%' }}
+          maskElement={(
             <View
               style={{
                 backgroundColor: 'transparent',
-              }}>
-                <Text style={styles.DHAN}>{theWord}</Text>
+              }}
+            >
+              <Text style={styles.DHAN}>{theWord}</Text>
             </View>
-          }>
+          )}
+        >
           <LinearGradient
-            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
-        </MaskedView></View>
+        </MaskedView>
+      </View>
       <View style={styles.inputBox}>
-      <View style={{...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000'}}>
-      <MaskedView
-          style={{height: 50, width:"100%"}}
-          maskElement={
-            <View
-              style={{
-                backgroundColor: 'transparent',
-              }}>
-                <Text style={{...styles.DHAN, fontFamily:'GurbaniHeavy'}}>
+        <View style={{ ...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000' }}>
+          <MaskedView
+            style={{ height: 50, width: '100%' }}
+            maskElement={(
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                }}
+              >
+                <Text style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}>
                   {textEntry}
                 </Text>
-            </View>
-          }>
-          <LinearGradient
-            colors={state.darkMode? ["#FF0076", "#590FB7"] : ["#ff8008", "#ffc837"]}
-            style={{ flex: 1 }}
-          />
-        </MaskedView></View>
+              </View>
+          )}
+          >
+            <LinearGradient
+              colors={state.darkMode ? ['#FF0076', '#590FB7'] : ['#ff8008', '#ffc837']}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
+        </View>
         <TextInput
           style={styles.textInput}
           placeholder="type here"
@@ -302,12 +276,12 @@ function MoreGiveUps({ navigation }) {
           }
         }}
       >
-        <AnimatedLinearGradient colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]} style={styles.submitButton}>
-        <Text style={{...styles.submit, fontFamily:'Mochy'}}>Submit</Text>
+        <AnimatedLinearGradient colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']} style={styles.submitButton}>
+          <Text style={{ ...styles.submit, fontFamily: 'Mochy' }}>Submit</Text>
         </AnimatedLinearGradient>
       </TouchableOpacity>
     </View>
   );
-}}
+}
 
 export default MoreGiveUps;

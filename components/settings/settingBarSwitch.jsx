@@ -1,16 +1,13 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, Image
+  View, StyleSheet
 } from 'react-native';
 import { ListItem, Switch } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from "expo-linear-gradient";
-import { Animated } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import theColors from '../../util/colors';
 
 function SwitchBar({
   theSetting,
@@ -20,29 +17,8 @@ function SwitchBar({
   theCurrentOptionIndex,
 }) {
   const dispatch = useDispatch();
-  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   const state = useSelector((theState) => theState.theGameReducer);
-  const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
-    settingBar: {
-      flexDirection: 'row',
-      width: '100%',
-      height: '99%',
-      backgroundColor: colors.settingBar.settingBar,
-      borderColor: colors.settingBar.border,
-      borderWidth: 1,
-    },
-    image: {
-      width: '10%',
-      height: '100%',
-      margin: 10,      
-      alignItems: 'center',
-    },
-    text1: {
-      flex: 1,
-      margin: 10,
-      alignSelf: 'center',
-    },
     rightSide: {
     },
     shadow: {
@@ -53,12 +29,6 @@ function SwitchBar({
         width: 0,
         height: 1,
       },
-    },
-    text2: {
-      // flex: 1,
-    },
-    icon: {
-      // flex: 1,
     },
   });
   const allImages = {
@@ -71,41 +41,44 @@ function SwitchBar({
   const [currentSetting, setCurrentSetting] = React.useState(
     theList[theCurrentOptionIndex]
   );
-  if (String(currentSetting) == 'false') {
-    allImages['khanda'] = 'brightness-5' 
+  if (String(currentSetting) === 'false') {
+    allImages.khanda = 'brightness-5';
   } else {
-    allImages['khanda'] = 'brightness-2'
+    allImages.khanda = 'brightness-2';
   }
 
   return (
     <View>
-      <ListItem 
+      <ListItem
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          state.darkMode && { backgroundColor: "#464646" },
-          {alignItems: 'flex-start'}
+          state.darkMode && { backgroundColor: '#464646' },
+          { alignItems: 'flex-start' }
         ]}
-        bottomDivider>
+        bottomDivider
+      >
         <MaskedView
-        style={{width:35,height: 35 }}
-        maskElement={
-          <View
-            style={{
-              backgroundColor: 'transparent',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#000"} style={styles.shadow}/>
-          </View>
-        }>
-        <LinearGradient
-          colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
-          style={{ flex: 1 }}
-        />
-      </MaskedView>
-        <ListItem.Content style={{flexDirection:'row', justifyContent:'space-between'}}>
-          <ListItem.Title style={state.darkMode && { color: "#fff" }}>{theSetting}</ListItem.Title>
+          style={{ width: 35, height: 35 }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? '#fff' : '#000'} style={styles.shadow} />
+            </View>
+        )}
+        >
+          <LinearGradient
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
+        <ListItem.Content style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <ListItem.Title style={state.darkMode && { color: '#fff' }}>{theSetting}</ListItem.Title>
           <Switch
             style={styles.rightSide}
             value={currentSetting}

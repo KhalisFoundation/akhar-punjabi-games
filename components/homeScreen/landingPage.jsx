@@ -6,45 +6,29 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  ImageBackground,
-  SafeAreaView
+  ImageBackground
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoadingModal from './loadingScreen';
-import { setTheState } from '../../redux/actions';
-import { 
-  IMFellEnglish_400Regular,
-  IMFellEnglish_400Regular_Italic 
-} from '@expo-google-fonts/im-fell-english';
-import {useFonts} from 'expo-font';
+import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-
+import { setTheState } from '../../redux/actions';
+import LoadingModal from './loadingScreen';
 
 import { initialState } from '../../redux/reducers';
 
-import theColors from '../../util/colors';
-
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
-  const state = useSelector((theState) => theState.theGameReducer);
-  let [fontLoaded] = useFonts({
-    'Arial': require('../../assets/fonts/Arial.ttf'),
-    'GurbaniHeavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    'Bookish': require('../../assets/fonts/Bookish.ttf'),
-    'Mochy': require('../../assets/fonts/Mochy.ttf'),
+  // const state = useSelector((theState) => theState.theGameReducer);
+  const [fontLoaded] = useFonts({
+    Arial: require('../../assets/fonts/Arial.ttf'),
+    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    Bookish: require('../../assets/fonts/Bookish.ttf'),
+    Mochy: require('../../assets/fonts/Mochy.ttf'),
   });
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
-  {/*let [fontsLoaded] = useFonts({
-    'anmol-lipi': require('../../assets/fonts/AnmolLipiSG.ttf'),
-    'arial': require('../../assets/fonts/Arial.ttf'),
-    'gurbani-akhar-heavy': require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    'gurbani-akhar': require('../../assets/fonts/GurbaniAkharSG.ttf'),
-    'gurbani-akhar-thick': require('../../assets/fonts/GurbaniAkharThickSG.ttf'),
-    imfell: require('../../assets/fonts/IMFellEnglish-Regular.ttf'),
-  });*/}
   let theState;
   React.useEffect(() => {
     async function getData() {
@@ -70,8 +54,6 @@ function HomeScreen({ navigation }) {
     }
     getData();
   }, [dispatch]);
-  // for styles
-  const colors = state ? theColors[state.darkMode] : theColors.false;
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
@@ -79,11 +61,6 @@ function HomeScreen({ navigation }) {
       flex: 1,
       alignItems: 'center',
       paddingTop: '5%',
-    },
-    mangal: {
-      fontSize: 20,
-      paddingTop: '3%',
-      fontWeight: "bold",
     },
     logo: {
       width: '100%',
@@ -103,25 +80,12 @@ function HomeScreen({ navigation }) {
       flexDirection: 'row',
       // backgroundColor: "yellow",
       bottom: '43.5%',
-      alignItems: "center",
+      alignItems: 'center',
       justifyContent: 'space-between',
     },
     otherScreenTouchableOpacity: {
       flex: 1,
       margin: 10,
-    },
-    otherScreensImg: {
-      height: 75,
-      width: 75,
-      borderRadius: 5,
-      alignItems: 'center', // only here for the giveUp because no img
-    },
-    by: {
-      bottom: '18%',
-    },
-    byText: {
-      fontSize: 20,
-      fontWeight: "bold",
     },
     khalisTouchableOpacity: {
       height: '8%',
@@ -135,13 +99,13 @@ function HomeScreen({ navigation }) {
       alignItems: 'center',
     },
     bold: {
-      fontWeight: "bold",
-      alignSelf:"center",
+      fontWeight: 'bold',
+      alignSelf: 'center',
     },
   });
 
   if (!fontLoaded) {
-    return <AppLoading/>
+    return <AppLoading />;
   }
   return (
     <ImageBackground
@@ -165,8 +129,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('settings');
           }}
         >
-          <Icon name="cog" size={85} color="#555" style={styles.bold}/>
-          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Settings</Text>
+          <Icon name="cog" size={85} color="#555" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -175,8 +139,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <Icon name="check-circle" size={85} color="#080" style={styles.bold}/>
-          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Words Done</Text>
+          <Icon name="check-circle" size={85} color="#080" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Words Done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -184,9 +148,9 @@ function HomeScreen({ navigation }) {
             navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          
+
           <Icon name="heart" size={85} color="#900" style={styles.bold} />
-          <Text style={{...styles.bold, fontFamily:'Arial', fontWeight:'normal'}}>Get Lives</Text>
+          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Get Lives</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity

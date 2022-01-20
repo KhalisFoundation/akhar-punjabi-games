@@ -1,14 +1,14 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, Image
+  View, StyleSheet
 } from 'react-native';
-import { Avatar, ListItem, BottomSheet, Icon } from 'react-native-elements';
+import {
+  ListItem, BottomSheet, Icon
+} from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from "expo-linear-gradient";
-
-import theColors from '../../util/colors';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function SettingsBar({
   theSetting,
@@ -20,37 +20,9 @@ function SettingsBar({
   const dispatch = useDispatch();
 
   const state = useSelector((theState) => theState.theGameReducer);
-  const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
-    settingBar: {
-      flexDirection: 'row',
-      width: '100%',
-      height: '99%',
-      backgroundColor: colors.settingBar.settingBar,
-      borderColor: colors.settingBar.border,
-      borderWidth: 1,
-    },
-    image: {
-      // flex: 1,
-      width: '100%',
-      height: '100%',
-      margin: 10,      
-      alignSelf: 'center',
-    },
-    text1: {
-      flex: 1,
-      margin: 10,
-      alignSelf: 'center',
-      color: 'black',
-    },
-    titleText:{
-      color:'black'
-    },
-    rightSide: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+    titleText: {
+      color: 'black'
     },
     shadow: {
       shadowColor: 'black',
@@ -60,12 +32,6 @@ function SettingsBar({
         width: 0,
         height: 1,
       },
-    },
-    text2: {
-      // flex: 1,
-    },
-    icon: {
-      // flex: 1,
     },
   });
   const allImages = {
@@ -98,12 +64,12 @@ function SettingsBar({
   // why does this cause it it craxh
   return (
     <View style={styles.container}>
-      <ListItem 
+      <ListItem
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          state.darkMode && { backgroundColor: "#464646" },
-          {alignItems: 'flex-start'}
+          state.darkMode && { backgroundColor: '#464646' },
+          { alignItems: 'flex-start' }
         ]}
         onPress={() => {
           setIsVisible((prev) => {
@@ -111,31 +77,34 @@ function SettingsBar({
             return !prev;
           });
         }}
-        bottomDivider>
-          <MaskedView
-          style={{width:35,height: 35 }}
-          maskElement={
+        bottomDivider
+      >
+        <MaskedView
+          style={{ width: 35, height: 35 }}
+          maskElement={(
             <View
               style={{
                 backgroundColor: 'transparent',
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}>
-                <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? "#fff" : "#464646"} style={styles.shadow}/>
+              }}
+            >
+              <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
             </View>
-          }>
+          )}
+        >
           <LinearGradient
-            colors={state.darkMode? ["#ff8008", "#ffc837"]: ["#FF0076", "#590FB7"]}
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
         </MaskedView>
         <ListItem.Content>
-          <ListItem.Title style={state.darkMode && { color: "#fff" }}>{theSetting}</ListItem.Title>
-          <ListItem.Subtitle style={{ color: state.darkMode ? "#fff" : "#a3a3a3" }}>{currentSetting}</ListItem.Subtitle>
+          <ListItem.Title style={state.darkMode && { color: '#fff' }}>{theSetting}</ListItem.Title>
+          <ListItem.Subtitle style={{ color: state.darkMode ? '#fff' : '#a3a3a3' }}>{currentSetting}</ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
       </ListItem>
-      
+
       <BottomSheet
         modalProps={{
           animationType: 'slide',
