@@ -3,9 +3,11 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated
+  Text, StyleSheet, TouchableOpacity, Animated, View
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useState } from 'react';
@@ -29,6 +31,9 @@ function TheCircle() {
     return Anvaad.unicode(text);
 
   }
+  function touchedMe(object) {
+    console.log(`${object} was touched!`);
+  }
   const { charArray } = state;
   const prevAttempt = state.attempt;
 
@@ -38,6 +43,12 @@ function TheCircle() {
       width: 300,
       top: '3%',
       borderRadius: 150
+    },
+    clearBox: {
+      height: 40,
+      width: 40,
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     characterText: {
       bottom: '15%',
@@ -122,6 +133,7 @@ function TheCircle() {
               } else {
                 final = prevAttempt + char;
               }
+              touchedMe(char);
               dispatch(setAttempt(final));
               ifCorrectWord(final);
             }}
@@ -139,6 +151,43 @@ function TheCircle() {
         );
       })
 }
+      <TouchableOpacity
+        style={{
+          backgroundColor: state.darkMode ? 'black' : 'white',
+          borderRadius: 25,
+          height: 40,
+          width: 40,
+          alignSelf: 'center',
+          position: 'absolute',
+          top: '45%',
+          left: '45%',
+        }}
+        onPress={() => {
+          dispatch(setAttempt(''));
+        }}
+      >
+        <MaskedView
+          style={{
+            height: 50,
+            width: 50
+          }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                padding: 5
+              }}
+            >
+              <IconM name="reload" size={30} color="black" style={styles.clearBox} />
+            </View>
+        )}
+        >
+          <LinearGradient
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
+      </TouchableOpacity>
     </AnimatedLinearGradient>
   );
 }

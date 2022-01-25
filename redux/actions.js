@@ -66,7 +66,6 @@ export const closeNextLevelModal = () => (dispatch) => {
     type: "CLOSE_NEXT_LEVEL_MODAL",
   });
 };
-
 //settings page
 export const setTypeOfWords = (theType) => (dispatch) => {
   dispatch({

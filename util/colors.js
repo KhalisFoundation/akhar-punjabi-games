@@ -16,7 +16,7 @@ const LightColors = {
     wordBoxText: "#f8f8f8",
     wordAttempt: "#CFF6FF",
     clearBox: "#f8f",
-    giveUp: "#f8f8",
+    giveUp: "orange",
     newWord: "yellow",
   },
   settingBar: {
@@ -74,7 +74,7 @@ const DarkColors = {
     wordBoxText: "#f8f8f8",
     wordAttempt: "#CFF6FF",
     clearBox: "#f8f",
-    giveUp: "#f8f8",
+    giveUp: "#ff7b00",
     newWord: "yellow",
   },
   settingBar: {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import HomeScreen from './components/homeScreen/landingPage';
 import GameScreen from './components/playGame/theGame';
@@ -19,33 +19,33 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            options={{ headerShown: false }}
+            options={{ headerShown: false, }}
             name="Home"
             component={HomeScreen}
           />
           <Stack.Screen
             name="play"
-            options={{ headerShown: false }}
+            options={{ headerShown: false, ...TransitionPresets.RevealFromBottomAndroid }}
             component={GameScreen}
           />
           <Stack.Screen
             name="correctWords"
-            options={{ headerShown: false }}
+            options={{ headerShown: false, ...TransitionPresets.SlideFromRightIOS }}
             component={RightWords}
           />
           <Stack.Screen
             name="settings"
-            options={{ headerShown: false }}
+            options={{ headerShown: false, ...TransitionPresets.SlideFromRightIOS }}
             component={Settings}
           />
           <Stack.Screen
             name="giveUps"
-            options={{ headerShown: false }}
+            options={{ headerShown: false, ...TransitionPresets.ModalPresentationIOS }}
             component={MoreGiveUps}
           />
           <Stack.Screen
             name="about"
-            options={{ headerShown: false }}
+            options={{ headerShown: false, ...TransitionPresets.ModalSlideFromBottomIOS }}
             component={About}
           />
         </Stack.Navigator>

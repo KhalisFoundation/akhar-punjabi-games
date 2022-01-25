@@ -39,7 +39,6 @@ function MoreGiveUps({ navigation }) {
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
-      marginTop: '3.5%',
     },
     instructionsText: {
       backgroundColor: 'white',
@@ -184,7 +183,7 @@ function MoreGiveUps({ navigation }) {
             name="arrow-back"
             color="black"
             size={30}
-            onPress={() => { navigation.navigate('Home'); }}
+            onPress={() => { navigation.goBack(null); }}
           />
           )}
         centerComponent={{
@@ -200,9 +199,9 @@ function MoreGiveUps({ navigation }) {
         style={styles.upBox}
       >
         <IconM
-          name="heart-circle-outline"
+          name="lightbulb-on"
           size={25}
-          color="#FF5959"
+          color="orange"
         />
         <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
       </View>

@@ -205,7 +205,7 @@ function About({ navigation }) {
           <View style={styles.singleLine}>
             <View style={styles.leftContainer}>
               <Text
-                style={[styles.small, { fontFamily: 'Arial', color: state.darkMode ? white : black  }]}
+                style={[styles.small, { fontFamily: 'Arial', color: state.darkMode ? white : black }]}
               >
                 &copy;
                 {' '}

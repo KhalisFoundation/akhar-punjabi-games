@@ -5,17 +5,22 @@ import {
   View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
   Animated, Platform
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/AntDesign';
 import IconH from 'react-native-vector-icons/MaterialIcons';
+import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Header } from 'react-native-elements';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import WordsDoneModal from './modalNextWord';
-import TheCircle from './circleForGame';
+import { useState } from 'react';
+// import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+// import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+// import { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import theColors from '../../util/colors';
+import TheCircle from './circleForGame';
+import WordsDoneModal from './modalNextWord';
 import {
   setTopWord,
   setBottomWord,
@@ -29,6 +34,51 @@ import {
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
+  /* Can be referred while implementing swipes, if any
+  const [swipeWay, setSwipeWay] = useState({
+    myText: 'I\'m ready to get swiped!',
+    gestureName: 'none',
+    backgroundColor: '#fff'
+  });
+
+  function onSwipeUp(gestureState) {
+    setSwipeWay({myText: 'You swiped up!'});
+  }
+
+  function onSwipeDown(gestureState) {
+    setSwipeWay({myText: 'You swiped down!'});
+  }
+
+  function onSwipeLeft(gestureState) {
+    setSwipeWay({myText: 'You swiped left!'});
+  }
+
+  function onSwipeRight(gestureState) {
+    setSwipeWay({myText: 'You swiped right!'});
+    navigation.navigate('Home');
+  }
+  function onSwipe(gestureName, gestureState) {
+    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+    setSwipeWay({gestureName: gestureName});
+    switch (gestureName) {
+      case SWIPE_UP:
+        setSwipeWay({backgroundColor: 'red'});
+        break;
+      case SWIPE_DOWN:
+        setSwipeWay({backgroundColor: 'green'});
+        break;
+      case SWIPE_LEFT:
+        setSwipeWay({backgroundColor: 'blue'});
+        break;
+      case SWIPE_RIGHT:
+        setSwipeWay({backgroundColor: 'yellow'});
+        break;
+    }
+  }
+  const config = {
+    velocityThreshold: 0.3,
+    directionalOffsetThreshold: 80
+  }; */
   const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -39,7 +89,7 @@ function GameScreen({ navigation }) {
   const colors = theColors[state.darkMode];
   const colorCombos = [['#E233FF', '#FF6B00'], ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'], ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'], ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'], ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
   const colorRandom = Math.floor(Math.random() * colorCombos.length);
-  const colorCenter = colorCombos[colorRandom];
+  const [colorCenter] = useState(colorCombos[colorRandom]);
   const styles = StyleSheet.create({
     container: {
       // flex: 1,
@@ -48,6 +98,13 @@ function GameScreen({ navigation }) {
       width: '100%',
       height: '100%',
       marginTop: '3.5%',
+    },
+    ball: {
+      width: 100,
+      height: 100,
+      borderRadius: 100,
+      backgroundColor: 'blue',
+      alignSelf: 'center',
     },
     wordBoxAnswers: {
       // flexDirection: "column",
@@ -106,15 +163,19 @@ function GameScreen({ navigation }) {
     giveUp: {
       margin: 8,
       alignItems: 'center',
+      justifyContent: 'center',
       backgroundColor: colors.theGame.giveUp,
-      width: 35,
-      height: 35,
+      opacity: 1,
+      width: 40,
+      height: 40,
+      borderColor: state.darkMode ? 'white' : 'black',
+      borderWidth: 2,
       borderRadius: 20,
     },
     giveUpTxt: {
       textAlign: 'center',
       alignItems: 'center',
-      fontSize: 35,
+      fontSize: (state.giveUpsLeft === 0 || state.topWord !== '') ? 30 : 35,
     },
     wordAttemptView: {
       flexDirection: 'row',
@@ -135,27 +196,22 @@ function GameScreen({ navigation }) {
       width: 200,
       height: 50,
       backgroundColor: colors.theGame.wordAttempt,
-      opacity: 0.77,
-      borderRadius: 25,
+      opacity: 0.8,
+      borderRadius: 100,
       justifyContent: 'center',
       textAlign: 'center',
       fontSize: 30,
+      marginEnd: 5
     },
     clearBox: {
-      width: 40,
-      height: 40,
-      backgroundColor: colors.theGame.clearBox,
-      opacity: 0.8,
-      borderRadius: 20,
-      justifyContent: 'center',
       alignSelf: 'center',
-      elevation: 5,
-      margin: 2
+      width: 50,
+      height: 50,
     },
     clearBoxText: {
-      textAlignVertical: 'center',
       textAlign: 'center',
       justifyContent: 'center',
+      alignContent: 'center'
     },
     theCircle: {},
     definitionText: {
@@ -245,7 +301,7 @@ function GameScreen({ navigation }) {
           <IconM
             name="star-four-points"
             size={25}
-            color="#ffaa00"
+            color="yellow"
           />
           <Text style={styles.upText}>{state.totalPoints}</Text>
         </View>
@@ -253,9 +309,9 @@ function GameScreen({ navigation }) {
           style={styles.upBox}
         >
           <IconM
-            name="heart-circle-outline"
+            name="lightbulb-on"
             size={25}
-            color="#FF5959"
+            color="orange"
           />
           <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
           <TouchableOpacity
@@ -300,7 +356,7 @@ function GameScreen({ navigation }) {
             disabled={state.giveUpsLeft === 0 || state.topWord !== ''}
             style={
               (state.giveUpsLeft === 0 || state.topWord !== '')
-                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                ? { ...styles.giveUp, backgroundColor: '#919191' }
                 : styles.giveUp
             }
             onPress={() => {
@@ -319,7 +375,7 @@ function GameScreen({ navigation }) {
               console.log(`first word from state: ${state.firstWord.engText}`);
             }}
           >
-            <Icon name="questioncircleo" size={25} color="black" style={styles.giveUpTxt} />
+            <IconM name={(state.giveUpsLeft === 0 || state.topWord !== '') ? 'lightbulb-outline' : 'lightbulb-on-outline'} size={25} color={state.darkMode ? 'white' : 'black'} style={styles.giveUpTxt} />
           </TouchableOpacity>
         </View>
         <View style={styles.answerRow}>
@@ -353,7 +409,7 @@ function GameScreen({ navigation }) {
             disabled={state.giveUpsLeft === 0 || state.bottomWord !== ''}
             style={
               (state.giveUpsLeft === 0 || state.bottomWord !== '')
-                ? { ...styles.giveUp, backgroundColor: '#909090' }
+                ? { ...styles.giveUp, backgroundColor: '#919191' }
                 : styles.giveUp
             }
             onPress={() => {
@@ -372,7 +428,7 @@ function GameScreen({ navigation }) {
               console.log(`first word from state: ${state.secondWord.engText}`);
             }}
           >
-            <Icon name="questioncircleo" size={25} color="black" style={styles.giveUpTxt} />
+            <IconM name={(state.giveUpsLeft === 0 || state.bottomWord !== '') ? 'lightbulb-outline' : 'lightbulb-on-outline'} size={25} color={state.darkMode ? 'white' : 'black'} style={styles.giveUpTxt} />
           </TouchableOpacity>
         </View>
         {/* <TouchableOpacity
@@ -394,16 +450,53 @@ function GameScreen({ navigation }) {
           {Anvaad.unicode(state.attempt)}
         </Text>
         <TouchableOpacity
-          style={styles.clearBox}
+          style={{
+            backgroundColor: state.darkMode ? 'black' : 'white', borderRadius: 25, height: 40, width: 40, alignSelf: 'center'
+          }}
           onPress={() => {
-            dispatch(setAttempt(''));
+            const slico = state.attempt.slice(0, (state.attempt.length - 1));
+            console.log(slico);
+            dispatch(setAttempt(state.attempt.slice(0, (state.attempt.length - 1))));
           }}
         >
-          <Icon name="reload1" size={25} color="black" style={styles.clearBoxText} />
+          <MaskedView
+            style={{
+              height: 40,
+              width: 40,
+            }}
+            maskElement={(
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                  alignSelf: 'center',
+                  padding: 5
+                }}
+              >
+                <IconM name="backspace" size={25} />
+              </View>
+          )}
+          >
+            <LinearGradient
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
         </TouchableOpacity>
       </AnimatedLinearGradient>
 
-      <TheCircle style={styles.theCircle} />
+      <Animatable.View
+        animation="fadeIn"
+        iterationCount={1}
+        delay={30}
+      >
+        <Animatable.View
+          animation="rotate"
+          iterationCount={1}
+          delay={30}
+        >
+          <TheCircle style={styles.theCircle} />
+        </Animatable.View>
+      </Animatable.View>
     </View>
   );
 }

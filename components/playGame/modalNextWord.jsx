@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, StyleSheet, Modal, Text, TouchableOpacity, Animated, ImageBackground, Image
+  StyleSheet, Modal, Text, TouchableOpacity, Animated, ImageBackground,
 } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 import { closeNextLevelModal } from '../../redux/actions';
 
 import theColors from '../../util/colors';
@@ -104,66 +105,94 @@ function WordsDoneModal() {
   return (
     <Modal
       visible={state.nextLevelModal[0]}
-      animationType="slide"
+      animationType="fade"
       transparent
       onRequestClose={() => dispatch(closeNextLevelModal())}
     >
-      <View style={{
-        flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'
-      }}
+      <Animatable.View
+        animation="slideInDown"
+        iterationCount={1}
+        style={{
+          flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'
+        }}
       >
         <ImageBackground source={require('../../images/word_modal.png')} resizeMode="cover" imageStyle={{ borderRadius: 30 }} style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start' }}>
-          <Image
+          <Animatable.Image
+            animation="tada"
+            iterationCount="infinite"
             source={wows[nowWow]}
             style={{
-              transform: [{ scale: 1 }], margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4,
+              margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4,
             }}
           />
-          <Image source={stage[doneYet]} style={{ margin: 15, transform: [{ scale: 0.75 }], }} />
-          <AnimatedLinearGradient
-            colors={state.darkMode ? ['#2F0743', '#6f0000'] : ['#cb3066', '#F2994A']}
-            start={{ x: 1, y: 1 }}
-            style={[styles.container, { bottom: 10 }]}
+          <Animatable.Image
+            animation="bounceIn"
+            easing="ease-in"
+            iterationCount={1}
+            source={stage[doneYet]}
+            style={{ margin: 15, transform: [{ scale: 0.75 }], }}
+          />
+          <Animatable.View
+            animation="slideInDown"
+            iterationCount={1}
           >
             <AnimatedLinearGradient
-              colors={state.darkMode ? ['#F7971E', '#FFD200'] : ['#904e95', '#e96443']}
+              colors={state.darkMode ? ['#2F0743', '#6f0000'] : ['#cb3066', '#F2994A']}
               start={{ x: 1, y: 1 }}
-              style={styles.wordBox}
+              style={[styles.container, { bottom: 10 }]}
             >
-              <Text style={styles.wordDoneText}>
-                {state.nextLevelModal[1].punjabiText}
-              </Text>
-              <Text style={styles.meaningText}>
-                {state.nextLevelModal[1].meaning}
-              </Text>
-            </AnimatedLinearGradient>
-            <AnimatedLinearGradient
-              colors={state.darkMode ? ['#F7971E', '#FFD200'] : ['#904e95', '#e96443']}
-              start={{ x: 1, y: 1 }}
-              style={styles.wordBox}
-            >
-              <Text style={styles.wordDoneText}>
-                {state.nextLevelModal[2].punjabiText}
-              </Text>
-              <Text style={styles.meaningText}>
-                {state.nextLevelModal[2].meaning}
-              </Text>
-            </AnimatedLinearGradient>
-            <TouchableOpacity
-              style={styles.continue}
-              onPress={() => dispatch(closeNextLevelModal())}
-            >
-              <AnimatedLinearGradient
-                colors={['#f0cb35', '#ed8f03']}
-                start={{ x: 0.9, y: 1.5 }}
-                style={styles.wordBox}
+              <Animatable.View
+                animation="bounceIn"
+                easing="ease-in"
+                iterationCount={1}
               >
-                <Text style={styles.continueText}>Continue &rarr;</Text>
-              </AnimatedLinearGradient>
-            </TouchableOpacity>
-          </AnimatedLinearGradient>
+                <AnimatedLinearGradient
+                  colors={state.darkMode ? ['#F7971E', '#FFD200'] : ['#904e95', '#e96443']}
+                  start={{ x: 1, y: 1 }}
+                  style={styles.wordBox}
+                >
+                  <Text style={styles.wordDoneText}>
+                    {state.nextLevelModal[1].punjabiText}
+                  </Text>
+                  <Text style={styles.meaningText}>
+                    {state.nextLevelModal[1].meaning}
+                  </Text>
+                </AnimatedLinearGradient>
+              </Animatable.View>
+              <Animatable.View
+                animation="bounceIn"
+                easing="ease-in"
+                iterationCount={1}
+              >
+                <AnimatedLinearGradient
+                  colors={state.darkMode ? ['#F7971E', '#FFD200'] : ['#904e95', '#e96443']}
+                  start={{ x: 1, y: 1 }}
+                  style={styles.wordBox}
+                >
+                  <Text style={styles.wordDoneText}>
+                    {state.nextLevelModal[2].punjabiText}
+                  </Text>
+                  <Text style={styles.meaningText}>
+                    {state.nextLevelModal[2].meaning}
+                  </Text>
+                </AnimatedLinearGradient>
+              </Animatable.View>
+              <TouchableOpacity
+                style={styles.continue}
+                onPress={() => dispatch(closeNextLevelModal())}
+              >
+                <AnimatedLinearGradient
+                  colors={['#f0cb35', '#ed8f03']}
+                  start={{ x: 0.9, y: 1.5 }}
+                  style={styles.wordBox}
+                >
+                  <Text style={styles.continueText}>Continue &rarr;</Text>
+                </AnimatedLinearGradient>
+              </TouchableOpacity>
+            </AnimatedLinearGradient>
+          </Animatable.View>
         </ImageBackground>
-      </View>
+      </Animatable.View>
     </Modal>
   );
 }

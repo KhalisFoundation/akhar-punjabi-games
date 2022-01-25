@@ -66,7 +66,7 @@ export const initialState = {
   typesOfWords: "Both",
   darkMode: false,
   showPopUp: true,
-  romanised: true,
+  romanised: false,
 };
 
 //to reset all state
