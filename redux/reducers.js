@@ -17,6 +17,7 @@ const setWords = (level, allWords) => {
   const [charArray, firstWord, secondWord] = getWords(level, allWords);
   return [charArray, firstWord, secondWord];
 };
+
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
 
@@ -67,6 +68,8 @@ export const initialState = {
   darkMode: false,
   showPopUp: true,
   romanised: false,
+  showNumOfLetters: false,
+  includeMatra: false
 };
 
 //to reset all state
@@ -277,6 +280,22 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       showPopUp: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_SHOW_NUM_OF_LETTERS") {
+    const newState = {
+      ...state,
+      showNumOfLetters: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  if (action.type === "SET_INCLUDE_MATRA") {
+    const newState = {
+      ...state,
+      includeMatra: action.onOrOff,
     };
     setData("state", newState);
     return newState;

@@ -19,7 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import {
-  setTypeOfWords, setDarkMode, setShowPopUp, setShowRomanised
+  setTypeOfWords, setDarkMode, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra
 } from '../../redux/actions';
 
 // TODO - Move all colors to separate file and import as variables.
@@ -154,6 +154,21 @@ function Settings({ navigation }) {
           imageSource="ura"
           theAction={setShowRomanised} // setTypeOfWords take 1 param, both,gurbani or punjabi,
           theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
+        />
+        <SwitchBar
+          theSetting="Indicate Number of Letters"
+          theList={[true, false]}
+          imageSource="letters"
+          theAction={setShowNumOfLetters} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={[true, false].indexOf(state.showNumOfLetters)}
+        />
+        <SwitchBar
+          theSetting="Include Matras"
+          theList={[true, false]}
+          imageSource="matra"
+          theAction={setIncludeMatra} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theCurrentOptionIndex={[true, false].indexOf(state.includeMatra)}
+          displayParam={state.showNumOfLetters}
         />
         <MaskedView
           style={{ width: '100%', height: 50 }}

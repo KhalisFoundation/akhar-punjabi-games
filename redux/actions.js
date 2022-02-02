@@ -85,6 +85,18 @@ export const setShowPopUp = (set) => (dispatch) => {
     onOrOff: set,
   });
 };
+export const setShowNumOfLetters = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_SHOW_NUM_OF_LETTERS",
+    onOrOff: set,
+  });
+};
+export const setIncludeMatra = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_INCLUDE_MATRA",
+    onOrOff: set,
+  });
+};
 export const setShowRomanised = (set) => (dispatch) => {
   dispatch({
     type: "SET_SHOW_ROMANISED",

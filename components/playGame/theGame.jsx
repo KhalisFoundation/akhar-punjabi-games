@@ -87,6 +87,8 @@ function GameScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
   });
   const colors = theColors[state.darkMode];
+  const [matrafiedTop, setMatrafiedTop] = useState('');
+  const [matrafiedBottom, setMatrafiedBottom] = useState('');
   const colorCombos = [['#E233FF', '#FF6B00'], ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'], ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'], ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'], ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
   const colorRandom = Math.floor(Math.random() * colorCombos.length);
   const [colorCenter] = useState(colorCombos[colorRandom]);
@@ -235,6 +237,75 @@ function GameScreen({ navigation }) {
     }
   });
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+  // find out how divByMatra should work
+  const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '\`', '~'];
+  const divByMatra = (word) => {
+    let newWord = '';
+    for (i=0; i < (word.length); i++) {
+      // newWord += `,${word[i]}${word[i+1]}`;
+      if (word[i+1] === 'æ'){
+        newWord += `${word[i]}${word[i+1]},`;
+        i++;
+      }
+      if (!matras.includes(word[i])) {
+        if (i+1 !== word.length && matras.includes(word[i+1]) && word[i+1]!=='i') {
+            newWord += `${word[i]}${word[i+1]},`;
+            i++;
+        } else if (word[i-1] === 'i'){
+          newWord += `${word[i-1]}${word[i]},`;
+        } else {
+          newWord += `${word[i]},`;
+        }
+      }
+    }
+    newWord = newWord.slice(0, -1); 
+    console.log(newWord);
+    return newWord.split(',');
+  }
+  const awayOrTogether = (which) => {
+    var printed = ''
+    if (which === 'top') {
+      printed = (state.topWord === '') ? state.topHint : state.topWord;
+    } else {
+      printed = (state.bottomWord === '') ? state.bottomHint : state.bottomWord;
+    }
+    if (state.includeMatra) {
+      printed = divByMatra(printed);
+    }
+    if (state.showNumOfLetters) {
+      return (
+        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+          {Array.from(state.includeMatra ? divByMatra((which === 'top') ? state.firstWord.engText : state.secondWord.engText) : Array((which === 'top') ? state.firstWord.engText.length : state.secondWord.engText.length), (e,i) => {
+              return <Text style={{...styles.answerText, borderRadius:15}}>{Anvaad.unicode(printed[i])}</Text>
+            })}
+        </View>
+      )
+    } else {
+      return (
+        <Text style={{ ...styles.answerText, width: '95%' }}>
+          {Anvaad.unicode((which === 'top') ? ((state.topWord === '') ? state.topHint : state.topWord) : ((state.bottomWord === '') ? state.bottomHint : state.bottomWord))}
+        </Text>
+      )
+    }
+  }
+  
+  // // get length after removing laga matra
+  // function woMatra(word) {
+  //   var wordWOMatras = Array();
+  //   const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~'];
+  //   let listedWord = word.split();
+  //   console.log(`splitted: ${listedWord}`);
+  //   for (ele in matras) {
+  //     for (letter in listedWord) {
+  //       if (ele === letter) {
+  //         wordWOMatras.push(letter);
+  //       }
+  //     }
+  //   }
+  //   console.log(`word: ${word} \nlist: ${wordWOMatras} \nlength: ${wordWOMatras.length}\n final: ${wordWOMatras.join('')}`);
+  //   return wordWOMatras.join('');
+  // }
+
   /*
   To know which word is longer
   function longer() {
@@ -333,13 +404,8 @@ function GameScreen({ navigation }) {
               flex: 1, flexDirection: 'row', justifyContent: 'flex-start', marginStart: 15
             }}
             >
-              {/* {Array.from(Array(state.firstWord.engText.length), (e,i) => {
-                  return <Text style={styles.answerText}>{Anvaad.unicode(state.topWord[i])}</Text>
-                })} */}
-              <TouchableOpacity onPress={() => { dispatch(setAttempt(Anvaad.unicode(state.topHint))); }} style={{ width: '100%' }}>
-                <Text style={{ ...styles.answerText, width: '95%' }}>
-                  {Anvaad.unicode((state.topWord === '') ? state.topHint : state.topWord)}
-                </Text>
+              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={{ width: '100%' }}>
+                {awayOrTogether('top')}
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -389,10 +455,8 @@ function GameScreen({ navigation }) {
                   {Anvaad.unicode(state.bottomWord[i])}
                   </Text>}
                 })} */}
-              <TouchableOpacity onPress={() => { dispatch(setAttempt(Anvaad.unicode(state.bottomHint))); }} style={{ width: '100%' }}>
-                <Text style={{ ...styles.answerText, width: '95%' }}>
-                  {Anvaad.unicode((state.bottomWord === '') ? state.bottomHint : state.bottomWord)}
-                </Text>
+              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.bottomWord === '') ? state.bottomHint : state.bottomWord)); }} style={{ width: '100%' }}>
+                {awayOrTogether('bottom')}
               </TouchableOpacity>
             </View>
             <ScrollView

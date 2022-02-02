@@ -15,6 +15,7 @@ function SwitchBar({
   theList,
   theAction,
   theCurrentOptionIndex,
+  displayParam = true
 }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
@@ -35,7 +36,9 @@ function SwitchBar({
     khalislogo150: 'book',
     khanda: 'brightness-high',
     ikOngkar: 'cards-outline',
-    ura: 'alphabetical'
+    ura: 'alphabetical',
+    letters: 'counter',
+    matra: 'image-filter-tilt-shift'
   };
   // const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
@@ -54,7 +57,8 @@ function SwitchBar({
         containerStyle={[
           styles.titleText,
           state.darkMode && { backgroundColor: '#464646' },
-          { alignItems: 'flex-start' }
+          { alignItems: 'flex-start'},
+          displayParam ? null : {display:'none'}
         ]}
         bottomDivider
       >
