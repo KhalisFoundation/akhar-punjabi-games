@@ -8,7 +8,6 @@ import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 import About from './components/about/about';
-
 import { Store } from './redux/store';
 
 const Stack = createStackNavigator();

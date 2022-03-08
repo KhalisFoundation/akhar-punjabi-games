@@ -20,8 +20,6 @@ function SwitchBar({
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({
-    rightSide: {
-    },
     shadow: {
       shadowColor: 'black',
       shadowOpacity: 0.5,
@@ -33,7 +31,6 @@ function SwitchBar({
     },
   });
   const allImages = {
-    khalislogo150: 'book',
     khanda: 'brightness-high',
     ikOngkar: 'cards-outline',
     ura: 'alphabetical',
@@ -63,13 +60,11 @@ function SwitchBar({
         bottomDivider
       >
         <MaskedView
-          style={{ width: 35, height: 35 }}
+          style={{ width: 35, height: 35, alignSelf:'center' }}
           maskElement={(
             <View
               style={{
                 backgroundColor: 'transparent',
-                justifyContent: 'center',
-                alignItems: 'center',
               }}
             >
               <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? '#fff' : '#000'} style={styles.shadow} />
@@ -82,9 +77,8 @@ function SwitchBar({
           />
         </MaskedView>
         <ListItem.Content style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <ListItem.Title style={state.darkMode && { color: '#fff' }}>{theSetting}</ListItem.Title>
+          <ListItem.Title style={[state.darkMode && { color: '#fff' }, {alignSelf:'center'}]}>{theSetting}</ListItem.Title>
           <Switch
-            style={styles.rightSide}
             value={currentSetting}
             onValueChange={(newSetting) => {
               dispatch(theAction(newSetting));

@@ -63,7 +63,6 @@ function Level({ title, theWords, setAnswer }) {
         engText: 'koeI sæbd nhIN',
         punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
         meaning: 'There are no words',
-        type: 'Punjabi',
         level: 'N/A',
         status: 'N/A',
       },

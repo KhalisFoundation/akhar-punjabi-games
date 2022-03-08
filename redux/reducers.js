@@ -48,19 +48,6 @@ export const initialState = {
     { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
     { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
     { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
-    { level: 10, wordsNeeded: 10, pointsPerWord: 14 },
-    { level: 11, wordsNeeded: 10, pointsPerWord: 15 },
-    { level: 12, wordsNeeded: 10, pointsPerWord: 16 },
-    { level: 13, wordsNeeded: 10, pointsPerWord: 17 },
-    { level: 14, wordsNeeded: 10, pointsPerWord: 18 },
-    { level: 15, wordsNeeded: 10, pointsPerWord: 19 },
-    { level: 16, wordsNeeded: 10, pointsPerWord: 21 },
-    { level: 17, wordsNeeded: 10, pointsPerWord: 22 },
-    { level: 18, wordsNeeded: 10, pointsPerWord: 23 },
-    { level: 19, wordsNeeded: 10, pointsPerWord: 24 },
-    { level: 20, wordsNeeded: 10, pointsPerWord: 25 },
-    { level: 21, wordsNeeded: 10, pointsPerWord: 26 },
-    { level: 22, wordsNeeded: 10, pointsPerWord: 27 },
   ],
   totalPoints: 0,
   //settings stuff
@@ -69,11 +56,11 @@ export const initialState = {
   showPopUp: true,
   romanised: false,
   showNumOfLetters: false,
-  includeMatra: false
+  includeMatra: true
 };
 
 //to reset all state
-// setData("state", initialState);
+//setData("state", initialState);
 
 function theGameReducer(state = initialState, action) {
   if (action.type === "SET_TOP_WORD") {
@@ -307,6 +294,10 @@ function theGameReducer(state = initialState, action) {
     };
     setData("state", newState);
     return newState;
+  }
+  if (action.type === "RESET_LEVELS") {
+    setData("state", initialState);
+    return initialState
   }
 
   //default

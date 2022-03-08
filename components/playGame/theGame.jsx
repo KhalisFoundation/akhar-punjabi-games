@@ -218,7 +218,7 @@ function GameScreen({ navigation }) {
     theCircle: {},
     definitionText: {
       color: 'white',
-      margin: 25,
+      flexDirection:'row',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -330,7 +330,7 @@ function GameScreen({ navigation }) {
       <Header
         backgroundColor="orange"
         containerStyle={[
-          Platform.OS === 'android' && { height: 56, paddingTop: 0 }
+          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
         ]}
         leftComponent={(
           <IconH
@@ -344,7 +344,7 @@ function GameScreen({ navigation }) {
           text: 'ਅਖਰ ਜੋੜ',
           style: {
             color: 'black',
-            fontSize: 18,
+            fontSize: 25,
             fontFamily: 'Bookish'
           }
         }}
@@ -364,6 +364,7 @@ function GameScreen({ navigation }) {
             Level
             {' '}
             {state.levelProgress[0].level}
+            {console.log(state.levelProgress[0])}
           </Text>
         </View>
         <View
@@ -412,6 +413,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
+              style={{marginStart: 15, width: '90%'}}
             >
               <Text style={styles.definitionText}>
                 {state.firstWord.meaning}
@@ -463,6 +465,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
+              style={{marginStart: 15, width: '90%', height:10}}
             >
               <Text style={styles.definitionText}>
                 {state.secondWord.meaning}

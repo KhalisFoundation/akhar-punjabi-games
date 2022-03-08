@@ -9,17 +9,18 @@ import {
   ScrollView,
   Platform
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ListItem, Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
+import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import {
-  setTypeOfWords, setDarkMode, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra
+  setDarkMode, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
 } from '../../redux/actions';
 
 // TODO - Move all colors to separate file and import as variables.
@@ -28,6 +29,7 @@ import SettingsBar from './settingBar';
 import theColors from '../../util/colors';
 
 function Settings({ navigation }) {
+  const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -47,11 +49,8 @@ function Settings({ navigation }) {
     },
     headerStyle: {
       color: 'black',
-      margin: 10,
-      padding: 5,
-      paddingBottom: 10,
       fontWeight: 'bold',
-      fontSize: 15
+      fontSize: 15,
     },
     shadow: {
       shadowColor: 'black',
@@ -79,7 +78,7 @@ function Settings({ navigation }) {
       <Header
         backgroundColor="orange"
         containerStyle={[
-          Platform.OS === 'android' && { height: 56, paddingTop: 0 }
+          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
         ]}
         leftComponent={(
           <Icon
@@ -102,7 +101,7 @@ function Settings({ navigation }) {
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
         <MaskedView
-          style={{ width: '100%', height: 50 }}
+          style={{ width: '100%', height: 40, marginLeft:10, marginTop: 10, marginBottom: -10 }}
           maskElement={(
             <View
               style={{
@@ -125,15 +124,6 @@ function Settings({ navigation }) {
             style={{ flex: 1 }}
           />
         </MaskedView>
-        <SettingsBar
-          theSetting="Type of Words"
-          theList={['Both', 'Gurbani', 'Punjabi']} // the 0 index in theList is the default setting
-          imageSource="khalislogo150"
-          theAction={setTypeOfWords} // setTypeOfWords take 1 param, both,gurbani or punjabi,
-          theCurrentOptionIndex={['Both', 'Gurbani', 'Punjabi'].indexOf(
-            state.typesOfWords
-          )}
-        />
         <SwitchBar
           theSetting="Dark Mode"
           theList={[true, false]}
@@ -170,8 +160,40 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.includeMatra)}
           displayParam={state.showNumOfLetters}
         />
+        <ListItem
+          containerStyle={[
+            styles.titleText,
+            state.darkMode && { backgroundColor: '#464646' },
+            { alignItems: 'flex-start' }
+          ]}
+          onPress={() => {dispatch(reset())}}
+          bottomDivider
+        >
+          <MaskedView
+            style={{ width: 35, height: 35 }}
+            maskElement={(
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <IonIcons name="reload" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              </View>
+          )}
+          >
+            <LinearGradient
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
+          <ListItem.Content style={{alignSelf:'center'}}>
+            <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Reset</Text></ListItem.Title>
+          </ListItem.Content>
+        </ListItem>
         <MaskedView
-          style={{ width: '100%', height: 50 }}
+          style={{ width: '100%', height: 40, marginLeft:10, marginTop: 10, marginBottom: -10  }}
           maskElement={(
             <View
               style={{
@@ -213,7 +235,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesome5Icons name="donate" size={30} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+                <FontAwesome5Icons name="donate" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
               </View>
           )}
           >
@@ -222,7 +244,7 @@ function Settings({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <ListItem.Content>
+          <ListItem.Content style={{alignSelf:'center'}}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Donate</Text></ListItem.Title>
           </ListItem.Content>
           <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
@@ -246,7 +268,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcons name="question-circle" size={30} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+                <FontAwesomeIcons name="question-circle" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
               </View>
           )}
           >
@@ -255,7 +277,7 @@ function Settings({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <ListItem.Content>
+          <ListItem.Content style={{alignSelf:'center'}}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>About</Text></ListItem.Title>
           </ListItem.Content>
           <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />

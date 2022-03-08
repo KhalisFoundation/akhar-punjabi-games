@@ -103,3 +103,8 @@ export const setShowRomanised = (set) => (dispatch) => {
     onOrOff: set,
   });
 };
+export const reset = () => (dispatch) => {
+  dispatch({
+    type: "RESET_LEVELS",
+  });
+};

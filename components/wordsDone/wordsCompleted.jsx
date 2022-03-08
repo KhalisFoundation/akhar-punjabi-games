@@ -44,7 +44,6 @@ function RightWords({ navigation }) {
       height: '100%',
       marginTop: '3.5%',
     },
-    androidStyle: { height: 56, paddingTop: 10 },
     downStyle: {
       position: 'absolute',
       top: 0,
@@ -118,7 +117,6 @@ function RightWords({ navigation }) {
     engText: '',
     punjabiText: '',
     meaning: '',
-    type: '',
     level: '',
     status: '',
   };
@@ -151,7 +149,7 @@ function RightWords({ navigation }) {
     return 'nothing';
   });
   const levels = [];
-  for (let i = 0; i < 22; i += 1) {
+  for (let i = 0; i < 9; i += 1) {
     levels.push({
       key: String(i + 1),
       text: `Level ${String(i + 1)}`,
@@ -176,7 +174,7 @@ function RightWords({ navigation }) {
       <Header
         backgroundColor={state.darkMode ? '#004ba6' : 'cyan'}
         containerStyle={[
-          Platform.OS === 'android' && styles.androidStyle,
+          Platform.OS === 'android' && { height: 75, paddingTop: 0 },
           down ? styles.downStyle : null
         ]}
         leftComponent={(
@@ -256,13 +254,6 @@ function RightWords({ navigation }) {
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
             {showAnswer.level}
-          </Text>
-        </View>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>Type</Text>
-          <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
-            {showAnswer.type}
           </Text>
         </View>
         <View style={down ? styles.answerRowAlt : styles.answerRow}>

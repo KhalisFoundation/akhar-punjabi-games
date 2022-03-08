@@ -4,18 +4,18 @@ import {
   View, StyleSheet
 } from 'react-native';
 import {
-  ListItem, BottomSheet, Icon
+  ListItem, BottomSheet
 } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 function SettingsBar({
   theSetting,
   imageSource,
   theList,
   theAction,
-  theCurrentOptionIndex,
 }) {
   const dispatch = useDispatch();
 
@@ -35,9 +35,7 @@ function SettingsBar({
     },
   });
   const allImages = {
-    khalislogo150: 'book',
-    khanda: 'khanda',
-    ikOngkar: 'bell',
+    reload: 'reload'
   };
   const list = theList.map((theTitle) => {
     return {
@@ -58,7 +56,7 @@ function SettingsBar({
   });
   const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
-    String(list[theCurrentOptionIndex].title)
+    "Wanna reset the game?"
   );
   // dispatch(theAction(currentSetting));
   // why does this cause it it craxh
