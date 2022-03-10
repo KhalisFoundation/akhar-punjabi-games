@@ -3,6 +3,7 @@ import getWords from "../util/generateWords";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
 const setData = async (title, state) => {
   try {
     await AsyncStorage.setItem(title, JSON.stringify(state));
@@ -63,6 +64,7 @@ export const initialState = {
 //setData("state", initialState);
 
 function theGameReducer(state = initialState, action) {
+  const finalLevel=9
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
@@ -218,7 +220,9 @@ function theGameReducer(state = initialState, action) {
       wordsNeeded: newWordssNeeded,
     };
     if (newWordssNeeded === 0) {
+      if(theLevelProgress[0].level!=finalLevel){
       theLevelProgress = theLevelProgress.slice(1);
+      }
     }
 
     return {
