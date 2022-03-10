@@ -33,7 +33,8 @@ import {
 } from '../../redux/actions';
 
 function GameScreen({ navigation }) {
-  const state = useSelector((theState) => theState.theGameReducer);
+  const state = useSelector((theState) => 
+    theState.theGameReducer);
   /* Can be referred while implementing swipes, if any
   const [swipeWay, setSwipeWay] = useState({
     myText: 'I\'m ready to get swiped!',
@@ -364,7 +365,6 @@ function GameScreen({ navigation }) {
             Level
             {' '}
             {state.levelProgress[0].level}
-            {console.log(state.levelProgress[0])}
           </Text>
         </View>
         <View

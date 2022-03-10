@@ -7,7 +7,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
-import { closeNextLevelModal } from '../../redux/actions';
+import { closeNextLevelModal,reset } from '../../redux/actions';
 
 import theColors from '../../util/colors';
 
@@ -177,6 +177,20 @@ function WordsDoneModal() {
                   </Text>
                 </AnimatedLinearGradient>
               </Animatable.View>
+              {(state.levelProgress[0].level==9 && state.levelProgress[0].wordsNeeded==0)?
+              <TouchableOpacity
+                style={styles.continue}
+                onPress={() => dispatch(reset())}
+              >
+                <AnimatedLinearGradient
+                  colors={['#f0cb35', '#ed8f03']}
+                  start={{ x: 0.9, y: 1.5 }}
+                  style={styles.wordBox}
+                >
+                  <Text style={styles.continueText}>Start Over &rarr;</Text>
+                </AnimatedLinearGradient>
+              </TouchableOpacity>:
+              
               <TouchableOpacity
                 style={styles.continue}
                 onPress={() => dispatch(closeNextLevelModal())}
@@ -188,7 +202,7 @@ function WordsDoneModal() {
                 >
                   <Text style={styles.continueText}>Continue &rarr;</Text>
                 </AnimatedLinearGradient>
-              </TouchableOpacity>
+              </TouchableOpacity>}
             </AnimatedLinearGradient>
           </Animatable.View>
         </ImageBackground>
