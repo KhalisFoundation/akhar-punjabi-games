@@ -149,7 +149,7 @@ function RightWords({ navigation }) {
     return 'nothing';
   });
   const levels = [];
-  for (let i = 0; i < 9; i += 1) {
+  for (let i = 0; i < 8; i += 1) { // reference to level number
     levels.push({
       key: String(i + 1),
       text: `Level ${String(i + 1)}`,

@@ -41,19 +41,15 @@ function GameScreen({ navigation }) {
     gestureName: 'none',
     backgroundColor: '#fff'
   });
-
   function onSwipeUp(gestureState) {
     setSwipeWay({myText: 'You swiped up!'});
   }
-
   function onSwipeDown(gestureState) {
     setSwipeWay({myText: 'You swiped down!'});
   }
-
   function onSwipeLeft(gestureState) {
     setSwipeWay({myText: 'You swiped left!'});
   }
-
   function onSwipeRight(gestureState) {
     setSwipeWay({myText: 'You swiped right!'});
     navigation.navigate('Home');

@@ -3,7 +3,9 @@ import * as React from 'react';
 import {
   StyleSheet, Modal, Text, TouchableOpacity, Animated, ImageBackground,
 } from 'react-native';
+import { useFonts } from 'expo-font';
 
+import AppLoading from 'expo-app-loading';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
@@ -14,6 +16,10 @@ import theColors from '../../util/colors';
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+  const [fontsLoaded] = useFonts({
+    Bookish: require('../../assets/fonts/Bookish.ttf'),
+    Mochy: require('../../assets/fonts/Mochy.ttf'),
+  });
 
   let colors;
   if (state === undefined) {
@@ -71,6 +77,21 @@ function WordsDoneModal() {
       fontStyle: 'italic',
       fontWeight: 'bold'
     },
+    text: {
+      textAlign: 'center',
+      fontSize: 35,
+      color: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 2,
+        height: 2
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 2,
+      elevation: 5,
+      paddingTop: 25,
+      fontFamily: 'Bookish',
+    }
   });
   const getRandomNum = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -102,6 +123,10 @@ function WordsDoneModal() {
     4: require('../../images/stage5.png')
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <Modal
       visible={state.nextLevelModal[0]}
@@ -116,10 +141,48 @@ function WordsDoneModal() {
           flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'
         }}
       >
+        {(state.levelProgress[0].level == 8 && state.levelProgress[0].wordsNeeded == 0)?
+        <ImageBackground source={require('../../images/word_modal.png')} resizeMode="cover" imageStyle={{ borderRadius: 30 }} style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start' }}>
+          <Animatable.View animation="fadeIn" iterationCount={1} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+            <Text style={styles.text}>
+              ਵਧਾਈਆਂ ਜੀ!
+            </Text>
+          </Animatable.View>
+          <Animatable.Image
+            animation="tada"
+            iterationCount={2}
+            source={require('../../images/Win.png')}
+            style={{
+              margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4, height: 250, resizeMode: 'contain',
+            }}
+          />
+          <Text style={[styles.text, {fontFamily:'Mochy', fontWeight: 'normal', fontSize: 20}]}>
+              More levels coming soon!
+          </Text>
+          <Animatable.View
+            animation="slideInDown"
+            iterationCount={1}
+          >
+              <TouchableOpacity
+                style={styles.continue}
+                onPress={() => {dispatch(reset()); dispatch(closeNextLevelModal());}}
+              >
+                <AnimatedLinearGradient
+                  colors={['#f0cb35', '#ed8f03']}
+                  start={{ x: 0.9, y: 1.5 }}
+                  style={styles.wordBox}
+                >
+                  <Text style={styles.continueText}>Start Over &rarr;</Text>
+                </AnimatedLinearGradient>
+              </TouchableOpacity>
+          </Animatable.View>
+          
+        </ImageBackground>
+        :
         <ImageBackground source={require('../../images/word_modal.png')} resizeMode="cover" imageStyle={{ borderRadius: 30 }} style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start' }}>
           <Animatable.Image
             animation="tada"
-            iterationCount="infinite"
+            iterationCount={2}
             source={wows[nowWow]}
             style={{
               margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4,
@@ -177,23 +240,10 @@ function WordsDoneModal() {
                   </Text>
                 </AnimatedLinearGradient>
               </Animatable.View>
-              {(state.levelProgress[0].level==9 && state.levelProgress[0].wordsNeeded==0)?
-              <TouchableOpacity
-                style={styles.continue}
-                onPress={() => dispatch(reset())}
-              >
-                <AnimatedLinearGradient
-                  colors={['#f0cb35', '#ed8f03']}
-                  start={{ x: 0.9, y: 1.5 }}
-                  style={styles.wordBox}
-                >
-                  <Text style={styles.continueText}>Start Over &rarr;</Text>
-                </AnimatedLinearGradient>
-              </TouchableOpacity>:
               
               <TouchableOpacity
                 style={styles.continue}
-                onPress={() => dispatch(closeNextLevelModal())}
+                onPress={() => {dispatch(closeNextLevelModal());}}
               >
                 <AnimatedLinearGradient
                   colors={['#f0cb35', '#ed8f03']}
@@ -202,10 +252,10 @@ function WordsDoneModal() {
                 >
                   <Text style={styles.continueText}>Continue &rarr;</Text>
                 </AnimatedLinearGradient>
-              </TouchableOpacity>}
+              </TouchableOpacity>
             </AnimatedLinearGradient>
           </Animatable.View>
-        </ImageBackground>
+        </ImageBackground>}
       </Animatable.View>
     </Modal>
   );

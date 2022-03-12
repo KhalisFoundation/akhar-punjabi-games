@@ -48,7 +48,7 @@ export const initialState = {
     { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
     { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
     { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
-    { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
+    // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
   ],
   totalPoints: 0,
   //settings stuff
@@ -64,7 +64,7 @@ export const initialState = {
 //setData("state", initialState);
 
 function theGameReducer(state = initialState, action) {
-  const finalLevel=9
+  const finalLevel = 8 // was 9
   if (action.type === "SET_TOP_WORD") {
     return {
       ...state,
