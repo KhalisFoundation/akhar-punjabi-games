@@ -5,7 +5,6 @@ import {
   View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
   Animated, Platform
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconH from 'react-native-vector-icons/MaterialIcons';
@@ -33,8 +32,7 @@ import {
 } from '../../redux/actions';
 
 function GameScreen({ navigation }) {
-  const state = useSelector((theState) => 
-    theState.theGameReducer);
+  const state = useSelector((theState) => theState.theGameReducer);
   /* Can be referred while implementing swipes, if any
   const [swipeWay, setSwipeWay] = useState({
     myText: 'I\'m ready to get swiped!',
@@ -84,11 +82,7 @@ function GameScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
   });
   const colors = theColors[state.darkMode];
-  const [matrafiedTop, setMatrafiedTop] = useState('');
-  const [matrafiedBottom, setMatrafiedBottom] = useState('');
-  const colorCombos = [['#E233FF', '#FF6B00'], ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'], ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'], ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'], ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
-  const colorRandom = Math.floor(Math.random() * colorCombos.length);
-  const [colorCenter] = useState(colorCombos[colorRandom]);
+  const [colorCenter] = useState(['#2a59f0', '#0a0298']);
   const styles = StyleSheet.create({
     container: {
       // flex: 1,
@@ -96,7 +90,7 @@ function GameScreen({ navigation }) {
       backgroundColor: colors.theGame.container,
       width: '100%',
       height: '100%',
-      marginTop: '3.5%',
+      paddingTop: '3.5%',
     },
     ball: {
       width: 100,
@@ -109,16 +103,8 @@ function GameScreen({ navigation }) {
       // flexDirection: "column",
       width: 400,
       height: 225,
-      backgroundColor: colors.theGame.wordBoxAnswers,
-      borderRadius: 20,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
+      backgroundColor: 'transparent',
+      paddingHorizontal: 10,
     },
     header: {
       height: 65,
@@ -151,9 +137,8 @@ function GameScreen({ navigation }) {
     answerText: {
       justifyContent: 'center',
       textAlign: 'center',
-      color: 'black',
+      color: state.darkMode ? 'white' : 'black',
       fontSize: 35,
-      backgroundColor: colors.theGame.wordBoxText,
       borderRadius: 25,
       width: 50,
       height: 50,
@@ -194,8 +179,8 @@ function GameScreen({ navigation }) {
     wordAttempt: {
       width: 200,
       height: 50,
-      backgroundColor: colors.theGame.wordAttempt,
       opacity: 0.8,
+      color: state.darkMode ? 'darkblue' : 'white',
       borderRadius: 100,
       justifyContent: 'center',
       textAlign: 'center',
@@ -214,8 +199,8 @@ function GameScreen({ navigation }) {
     },
     theCircle: {},
     definitionText: {
-      color: 'white',
-      flexDirection:'row',
+      color: (state.darkMode) ? 'white' : 'black',
+      flexDirection: 'row',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -234,33 +219,71 @@ function GameScreen({ navigation }) {
     }
   });
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+  const func = (what) => {
+    if (what === 'top') {
+      return ((state.topWord === '') ? state.topHint : state.topWord);
+    }
+    return ((state.bottomWord === '') ? state.bottomHint : state.bottomWord);
+
+  };
   // find out how divByMatra should work
-  const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '\`', '~'];
+  const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~'];
   const divByMatra = (word) => {
     let newWord = '';
-    for (i=0; i < (word.length); i++) {
+    for (let i = 0; i < (word.length); i += 1) {
       // newWord += `,${word[i]}${word[i+1]}`;
-      if (word[i+1] === 'æ'){
-        newWord += `${word[i]}${word[i+1]},`;
-        i++;
+      if (word[i + 1] === 'æ') {
+        newWord += `${word[i]}${word[i + 1]},`;
+        i += 1;
       }
       if (!matras.includes(word[i])) {
-        if (i+1 !== word.length && matras.includes(word[i+1]) && word[i+1]!=='i') {
-            newWord += `${word[i]}${word[i+1]},`;
-            i++;
-        } else if (word[i-1] === 'i'){
-          newWord += `${word[i-1]}${word[i]},`;
+        if (i + 1 !== word.length && matras.includes(word[i + 1]) && word[i + 1] !== 'i') {
+          newWord += `${word[i]}${word[i + 1]},`;
+          i += 1;
+        } else if (word[i - 1] === 'i') {
+          newWord += `${word[i - 1]}${word[i]},`;
         } else {
           newWord += `${word[i]},`;
         }
       }
     }
-    newWord = newWord.slice(0, -1); 
+    newWord = newWord.slice(0, -1);
     console.log(newWord);
     return newWord.split(',');
-  }
+  };
+
+  const hintBtn = (word) => {
+    let bgColor = 'orange';
+    let iconColor = 'black';
+    let iconName = 'lightbulb-on-outline';
+    if (state.giveUpsLeft === 0 && word !== '') {
+      bgColor = '#00cb21';
+      iconColor = (state.darkMode) ? 'white' : 'black';
+      iconName = 'check';
+    } else if (state.giveUpsLeft === 0) {
+      bgColor = '#919191';
+      iconColor = 'white';
+      iconName = 'lightbulb-outline';
+    } else if (word !== '') {
+      bgColor = '#00cb21';
+      iconColor = (state.darkMode) ? 'white' : 'black';
+      iconName = 'check';
+    } else {
+      bgColor = 'orange';
+      iconColor = 'black';
+      iconName = 'lightbulb-on-outline';
+    }
+
+    return (
+      {
+        backgroundColor: bgColor,
+        color: iconColor,
+        name: iconName,
+      }
+    );
+  };
   const awayOrTogether = (which) => {
-    var printed = ''
+    let printed = '';
     if (which === 'top') {
       printed = (state.topWord === '') ? state.topHint : state.topWord;
     } else {
@@ -271,21 +294,28 @@ function GameScreen({ navigation }) {
     }
     if (state.showNumOfLetters) {
       return (
-        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
-          {Array.from(state.includeMatra ? divByMatra((which === 'top') ? state.firstWord.engText : state.secondWord.engText) : Array((which === 'top') ? state.firstWord.engText.length : state.secondWord.engText.length), (e,i) => {
-              return <Text style={{...styles.answerText, borderRadius:15}}>{Anvaad.unicode(printed[i])}</Text>
-            })}
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+          {Array.from(state.includeMatra ? divByMatra((which === 'top')
+            ? state.firstWord.engText : state.secondWord.engText)
+            : Array((which === 'top') ? state.firstWord.engText.length : state.secondWord.engText.length), (e, i) => {
+            return (
+              <Text style={{ ...styles.answerText, borderRadius: 15 }} key={i}>
+                {Anvaad.unicode(printed[i])}
+              </Text>
+            );
+          })}
         </View>
-      )
-    } else {
-      return (
-        <Text style={{ ...styles.answerText, width: '95%' }}>
-          {Anvaad.unicode((which === 'top') ? ((state.topWord === '') ? state.topHint : state.topWord) : ((state.bottomWord === '') ? state.bottomHint : state.bottomWord))}
-        </Text>
-      )
+      );
     }
-  }
-  
+    return (
+      <Text style={{ ...styles.answerText, width: '95%', backgroundColor: 'transparent' }}>
+        {Anvaad.unicode((which === 'top')
+          ? func('top')
+          : func('bottom'))}
+      </Text>
+    );
+  };
+
   // // get length after removing laga matra
   // function woMatra(word) {
   //   var wordWOMatras = Array();
@@ -299,7 +329,8 @@ function GameScreen({ navigation }) {
   //       }
   //     }
   //   }
-  //   console.log(`word: ${word} \nlist: ${wordWOMatras} \nlength: ${wordWOMatras.length}\n final: ${wordWOMatras.join('')}`);
+  //   console.log(`word: ${word} \nlist:
+  //  ${wordWOMatras} \nlength: ${wordWOMatras.length}\n final: ${wordWOMatras.join('')}`);
   //   return wordWOMatras.join('');
   // }
 
@@ -316,7 +347,8 @@ function GameScreen({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View
+    <AnimatedLinearGradient
+      colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container}
     >
       {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
@@ -325,14 +357,14 @@ function GameScreen({ navigation }) {
         barStyle="light-content"
       />
       <Header
-        backgroundColor="orange"
+        backgroundColor="transparent"
         containerStyle={[
           Platform.OS === 'android' && { height: 75, paddingTop: 0 }
         ]}
         leftComponent={(
           <IconH
             name="arrow-back"
-            color="black"
+            color={state.darkMode ? 'white' : 'black'}
             size={30}
             onPress={() => { navigation.navigate('Home'); }}
           />
@@ -340,7 +372,7 @@ function GameScreen({ navigation }) {
         centerComponent={{
           text: 'ਅਖਰ ਜੋੜ',
           style: {
-            color: 'black',
+            color: state.darkMode ? '#ff6e00' : 'black',
             fontSize: 25,
             fontFamily: 'Bookish'
           }
@@ -383,19 +415,17 @@ function GameScreen({ navigation }) {
           />
           <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
           <TouchableOpacity
-            onPress={() => { navigation.navigate('giveUps'); }}
+            onPress={() => { navigation.navigate('giveUps', {prevScreen: 1}); }}
           >
             <IconM name="plus-circle" size={25} color="#06FF00" />
           </TouchableOpacity>
         </View>
       </View>
 
-      <AnimatedLinearGradient
-        colors={colorCenter}
-        start={{ x: 0.5, y: 0.0 }}
+      <View
         style={styles.wordBoxAnswers}
       >
-        <View style={styles.answerRow}>
+        <View style={[styles.answerRow, { borderBottomWidth: 2, borderBottomColor: 'darkblue', }]}>
           <View style={styles.wordBoxText}>
             <View style={{
               flex: 1, flexDirection: 'row', justifyContent: 'flex-start', marginStart: 15
@@ -409,7 +439,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={{marginStart: 15, width: '90%'}}
+              style={{ marginStart: 15, width: '90%' }}
             >
               <Text style={styles.definitionText}>
                 {state.firstWord.meaning}
@@ -418,11 +448,7 @@ function GameScreen({ navigation }) {
           </View>
           <TouchableOpacity
             disabled={state.giveUpsLeft === 0 || state.topWord !== ''}
-            style={
-              (state.giveUpsLeft === 0 || state.topWord !== '')
-                ? { ...styles.giveUp, backgroundColor: '#919191' }
-                : styles.giveUp
-            }
+            style={{ ...styles.giveUp, backgroundColor: hintBtn(state.topWord).backgroundColor }}
             onPress={() => {
               dispatch(setGiveUpLives('-'));
               const newTopLength = state.topHint.length;
@@ -439,7 +465,12 @@ function GameScreen({ navigation }) {
               console.log(`first word from state: ${state.firstWord.engText}`);
             }}
           >
-            <IconM name={(state.giveUpsLeft === 0 || state.topWord !== '') ? 'lightbulb-outline' : 'lightbulb-on-outline'} size={25} color={state.darkMode ? 'white' : 'black'} style={styles.giveUpTxt} />
+            <IconM
+              name={hintBtn(state.topWord).name}
+              size={25}
+              color={hintBtn(state.topWord).color}
+              style={styles.giveUpTxt}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.answerRow}>
@@ -461,7 +492,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={{marginStart: 15, width: '90%', height:10}}
+              style={{ marginStart: 15, width: '90%', height: 10 }}
             >
               <Text style={styles.definitionText}>
                 {state.secondWord.meaning}
@@ -470,11 +501,7 @@ function GameScreen({ navigation }) {
           </View>
           <TouchableOpacity
             disabled={state.giveUpsLeft === 0 || state.bottomWord !== ''}
-            style={
-              (state.giveUpsLeft === 0 || state.bottomWord !== '')
-                ? { ...styles.giveUp, backgroundColor: '#919191' }
-                : styles.giveUp
-            }
+            style={{ ...styles.giveUp, backgroundColor: hintBtn(state.bottomWord).backgroundColor }}
             onPress={() => {
               dispatch(setGiveUpLives('-'));
               const newBottomLength = state.bottomHint.length;
@@ -487,11 +514,16 @@ function GameScreen({ navigation }) {
                   dispatch(setNewWords());
                 }
               }
-              console.log(`topHint from state: ${state.bottomHint}`);
-              console.log(`first word from state: ${state.secondWord.engText}`);
+              console.log(`bottomHint from state: ${state.bottomHint}`);
+              console.log(`second word from state: ${state.secondWord.engText}`);
             }}
           >
-            <IconM name={(state.giveUpsLeft === 0 || state.bottomWord !== '') ? 'lightbulb-outline' : 'lightbulb-on-outline'} size={25} color={state.darkMode ? 'white' : 'black'} style={styles.giveUpTxt} />
+            <IconM
+              name={hintBtn(state.bottomWord).name}
+              size={25}
+              color={hintBtn(state.bottomWord).color}
+              style={styles.giveUpTxt}
+            />
           </TouchableOpacity>
         </View>
         {/* <TouchableOpacity
@@ -503,10 +535,10 @@ function GameScreen({ navigation }) {
         >
           <Text>New Word</Text>
         </TouchableOpacity> */}
-      </AnimatedLinearGradient>
+      </View>
 
       <AnimatedLinearGradient
-        colors={colorCenter}
+        colors={state.darkMode ? ['#dca104', '#ff8a00'] : colorCenter}
         style={styles.wordAttemptView}
       >
         <Text style={styles.wordAttempt} placeHolder="Word">
@@ -547,20 +579,10 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </AnimatedLinearGradient>
 
-      <Animatable.View
-        animation="fadeIn"
-        iterationCount={1}
-        delay={30}
-      >
-        <Animatable.View
-          animation="rotate"
-          iterationCount={1}
-          delay={30}
-        >
-          <TheCircle style={styles.theCircle} />
-        </Animatable.View>
-      </Animatable.View>
-    </View>
+      <View>
+        <TheCircle style={styles.theCircle} />
+      </View>
+    </AnimatedLinearGradient>
   );
 }
 

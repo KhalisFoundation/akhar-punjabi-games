@@ -4,7 +4,7 @@
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/ioslogo.png",
     "splash": {
       "image": "./assets/splash_new.png",
       "resizeMode": "cover",
@@ -23,7 +23,7 @@
       "package": "com.khalisfoundation.gurmukhi_games",
       "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/app_icon.png",
+        "foregroundImage": "./assets/blogo.png",
         "backgroundColor": "#FFFFFF"
       }
     },

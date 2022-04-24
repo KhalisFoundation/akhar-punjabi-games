@@ -9,8 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
-
-import { useState } from 'react';
 import {
   setAttempt,
   setBottomWord,
@@ -31,8 +29,10 @@ function TheCircle() {
     return Anvaad.unicode(text);
 
   }
-  function touchedMe(object) {
+  function touchedMe(object, final) {
     console.log(`${object} was touched!`);
+    dispatch(setAttempt(final));
+    ifCorrectWord(final);
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
@@ -51,20 +51,19 @@ function TheCircle() {
       alignItems: 'center'
     },
     characterText: {
-      bottom: '15%',
+      paddingBottom: 5,
       fontSize: state.romanised ? 22.5 : 30,
+      color: state.darkMode ? 'darkblue' : 'orange',
       textAlign: 'center',
     },
     commonChar: {
       position: 'absolute',
       width: 50,
       height: 50,
-      backgroundColor: 'gold',
+      backgroundColor: state.darkMode ? 'orange' : 'darkblue',
       elevation: 5,
-      borderColor: 'maroon',
-      borderWidth: 5,
-      borderRadius: 15,
-      justifyContent: 'center'
+      borderRadius: 25,
+      justifyContent: 'center',
     }
   });
 
@@ -98,12 +97,16 @@ function TheCircle() {
   const height = 332.5;
   const radius = 125;
   const step = (2 * Math.PI) / charArray.length;
-  const colorCombos = [['#E233FF', '#FF6B00'], ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'], ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'], ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'], ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
-  const colorRandom = Math.floor(Math.random() * colorCombos.length);
-  const [colorCenter] = useState(colorCombos[colorRandom]);
+  //  const colorCombos = [['#E233FF', '#FF6B00'],
+  // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
+  // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
+  // ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'],
+  // ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
+  // const colorRandom = Math.floor(Math.random() * colorCombos.length);
+  // const [colorCenter] = useState(colorCombos[colorRandom]);;
   return (
     <AnimatedLinearGradient
-      colors={colorCenter}
+      colors={['transparent', 'transparent']}
       style={styles.lettersCircle}
     >
       {
@@ -133,9 +136,7 @@ function TheCircle() {
               } else {
                 final = prevAttempt + char;
               }
-              touchedMe(char);
-              dispatch(setAttempt(final));
-              ifCorrectWord(final);
+              touchedMe(char, final);
             }}
             key={char}
             style={{
@@ -161,6 +162,7 @@ function TheCircle() {
           position: 'absolute',
           top: '45%',
           left: '45%',
+          elevation: 5
         }}
         onPress={() => {
           dispatch(setAttempt(''));

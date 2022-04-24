@@ -25,7 +25,6 @@ import {
 
 // TODO - Move all colors to separate file and import as variables.
 import SwitchBar from './settingBarSwitch';
-import SettingsBar from './settingBar';
 import theColors from '../../util/colors';
 
 function Settings({ navigation }) {
@@ -101,7 +100,9 @@ function Settings({ navigation }) {
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
         <MaskedView
-          style={{ width: '100%', height: 40, marginLeft:10, marginTop: 10, marginBottom: -10 }}
+          style={{
+            width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
+          }}
           maskElement={(
             <View
               style={{
@@ -166,7 +167,7 @@ function Settings({ navigation }) {
             state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
-          onPress={() => {dispatch(reset())}}
+          onPress={() => { dispatch(reset()); }}
           bottomDivider
         >
           <MaskedView
@@ -188,12 +189,14 @@ function Settings({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <ListItem.Content style={{alignSelf:'center'}}>
+          <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Reset</Text></ListItem.Title>
           </ListItem.Content>
         </ListItem>
         <MaskedView
-          style={{ width: '100%', height: 40, marginLeft:10, marginTop: 10, marginBottom: -10  }}
+          style={{
+            width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
+          }}
           maskElement={(
             <View
               style={{
@@ -244,7 +247,7 @@ function Settings({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <ListItem.Content style={{alignSelf:'center'}}>
+          <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Donate</Text></ListItem.Title>
           </ListItem.Content>
           <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
@@ -277,7 +280,7 @@ function Settings({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <ListItem.Content style={{alignSelf:'center'}}>
+          <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>About</Text></ListItem.Title>
           </ListItem.Content>
           <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />

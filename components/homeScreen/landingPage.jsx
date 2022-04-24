@@ -62,10 +62,7 @@ function HomeScreen({ navigation }) {
       alignItems: 'center',
       paddingTop: '5%',
     },
-    logo: {
-      width: '100%',
-      height: '70%',
-    },
+    logo: { height: 250, alignSelf: 'center', marginTop: '25%',marginBottom: '50%' },
     playTouchableOpacity: {
       width: '50%',
       height: '10%',
@@ -109,18 +106,18 @@ function HomeScreen({ navigation }) {
   }
   return (
     <ImageBackground
-      source={require('../../images/background.jpg')}
+      source={require('../../assets/background.jpg')}
       style={styles.container}
     >
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
-      <Image style={styles.logo} source={require('../../images/logo.png')} />
+      <Image style={styles.logo} source={require('../../assets/blogo.png')} resizeMode="contain" />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
           navigation.navigate('play');
         }}
       >
-        <Image style={styles.play} source={require('../../images/Play.png')} />
+        <Image style={styles.play} source={require('../../assets/Play.png')} />
       </TouchableOpacity>
       <View style={styles.otherScreens}>
         <TouchableOpacity
@@ -145,7 +142,7 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
           onPress={() => {
-            navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
+            navigation.navigate('giveUps', {prevScreen: 0}); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
 
@@ -161,7 +158,7 @@ function HomeScreen({ navigation }) {
       >
         <Image
           style={styles.khalis}
-          source={require('../../images/khalislogo150.png')}
+          source={require('../../assets/khalislogo150.png')}
         />
       </TouchableOpacity>
     </ImageBackground>

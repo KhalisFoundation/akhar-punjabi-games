@@ -54,13 +54,13 @@ function SwitchBar({
         containerStyle={[
           styles.titleText,
           state.darkMode && { backgroundColor: '#464646' },
-          { alignItems: 'flex-start'},
-          displayParam ? null : {display:'none'}
+          { alignItems: 'flex-start' },
+          displayParam ? null : { display: 'none' }
         ]}
         bottomDivider
       >
         <MaskedView
-          style={{ width: 35, height: 35, alignSelf:'center' }}
+          style={{ width: 35, height: 35, alignSelf: 'center' }}
           maskElement={(
             <View
               style={{
@@ -77,7 +77,7 @@ function SwitchBar({
           />
         </MaskedView>
         <ListItem.Content style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <ListItem.Title style={[state.darkMode && { color: '#fff' }, {alignSelf:'center'}]}>{theSetting}</ListItem.Title>
+          <ListItem.Title style={[state.darkMode && { color: '#fff' }, { alignSelf: 'center' }]}>{theSetting}</ListItem.Title>
           <Switch
             value={currentSetting}
             onValueChange={(newSetting) => {

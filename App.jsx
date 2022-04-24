@@ -41,6 +41,7 @@ function App() {
             name="giveUps"
             options={{ headerShown: false, ...TransitionPresets.ModalPresentationIOS }}
             component={MoreGiveUps}
+            initialParams={{ prevScreen: 0 }}
           />
           <Stack.Screen
             name="about"

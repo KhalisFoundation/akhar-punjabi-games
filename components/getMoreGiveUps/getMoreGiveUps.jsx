@@ -22,16 +22,16 @@ import GLOBAL from '../../util/globals';
 import { setGiveUpLives } from '../../redux/actions';
 import theColors from '../../util/colors';
 
-function MoreGiveUps({ navigation }) {
-  const state = useSelector((theState) => theState.theGameReducer);
+function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
+  const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
   });
-
+  const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -148,7 +148,7 @@ function MoreGiveUps({ navigation }) {
     'DMn gurU AMgd swihb jI',
     'DMn gurU Amr dws swihb jI',
     'DMn gurU rwm dws swihb jI',
-    'DMn gurU ArjMn dyv swihb jI',
+    'DMn gurU Arjn dyv swihb jI',
     'DMn gurU hrgoibMd swihb jI',
     'DMn gurU hrrwie swihb jI',
     'DMn gurU hrikRSn swihb jI',
@@ -183,7 +183,7 @@ function MoreGiveUps({ navigation }) {
             name="arrow-back"
             color="black"
             size={30}
-            onPress={() => { navigation.goBack(null); }}
+            onPress={() => { navigation.navigate(prevScreen); }}
           />
           )}
         centerComponent={{
@@ -243,7 +243,9 @@ function MoreGiveUps({ navigation }) {
                   backgroundColor: 'transparent',
                 }}
               >
-                <Text style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}>
+                <Text
+                  style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}
+                >
                   {textEntry}
                 </Text>
               </View>
@@ -256,12 +258,10 @@ function MoreGiveUps({ navigation }) {
           </MaskedView>
         </View>
         <TextInput
-          style={styles.textInput}
+          style={{ ...styles.textInput, fontFamily: 'Arial' }}
           placeholder="type here"
-          value={textEntry}
-          onChangeText={(text) => {
-            setTextEntry(text);
-          }}
+          onChangeText={(newText) => { setTextEntry(newText); }}
+          defaultValue={textEntry}
         />
       </View>
       <TouchableOpacity

@@ -29,7 +29,8 @@ function About({ navigation }) {
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
   const styles = StyleSheet.create({
-    container: {
+    container: { flex: 1, marginTop: '3.5%' },
+    scrollview: {
       flex: 1,
       flexDirection: 'column',
       padding: 8,
@@ -57,7 +58,7 @@ function About({ navigation }) {
   }
   return (
     <View
-      style={{ flex: 1, marginTop: '3.5%' }}
+      style={styles.container}
     >
       <StatusBar
         backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
@@ -80,7 +81,7 @@ function About({ navigation }) {
         }}
       />
       <ScrollView
-        style={[styles.container, state.darkMode && { backgroundColor: black }]}
+        style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
         contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}
       >
         <View>
@@ -119,7 +120,7 @@ function About({ navigation }) {
             />
           </MaskedView>
         </View>
-        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/logo_squared_dark.png') : require('../../assets/logo_squared.png')} resizeMode="contain" />
+        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/wlogo.png') : require('../../assets/blogo.png')} resizeMode="contain" />
         <Text style={{ fontSize: 16, fontFamily: 'Arial', color: state.darkMode ? white : black }}>
           {'\n'}
           <Text style={{ fontFamily: 'Mochy' }}>Akhar Jor - Punjabi Wordlink</Text>
@@ -194,8 +195,8 @@ function About({ navigation }) {
             <Image
               source={
               state.darkMode
-                ? require('../../images/khalislogo150white.png')
-                : require('../../images/khalislogo150.png')
+                ? require('../../assets/khalislogo150white.png')
+                : require('../../assets/khalislogo150.png')
             }
               style={{ width: 125 }}
               resizeMode="contain"
