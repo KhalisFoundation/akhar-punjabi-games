@@ -154,44 +154,44 @@ function TheCircle() {
 }
       {state.attempt !== '' ? (
         <TouchableOpacity
-        style={{
-          backgroundColor: state.darkMode ? 'black' : 'white',
-          borderRadius: 25,
-          height: 40,
-          width: 40,
-          alignSelf: 'center',
-          position: 'absolute',
-          top: '45%',
-          left: '45%',
-          elevation: 5,
-        }}
-        onPress={() => {
-          dispatch(setAttempt(''));
-        }}
-      >
-        <MaskedView
           style={{
-            height: 50,
-            width: 50
+            backgroundColor: state.darkMode ? 'black' : 'white',
+            borderRadius: 25,
+            height: 40,
+            width: 40,
+            alignSelf: 'center',
+            position: 'absolute',
+            top: '45%',
+            left: '45%',
+            elevation: 5,
           }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-                padding: 5
-              }}
-            >
-              <IconM name="reload" size={30} color="black" style={styles.clearBox} />
-            </View>
-        )}
+          onPress={() => {
+            dispatch(setAttempt(''));
+          }}
         >
-          <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
-      </TouchableOpacity>
-      ): (<View></View>)}
+          <MaskedView
+            style={{
+              height: 50,
+              width: 50
+            }}
+            maskElement={(
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                  padding: 5
+                }}
+              >
+                <IconM name="reload" size={30} color="black" style={styles.clearBox} />
+              </View>
+        )}
+          >
+            <LinearGradient
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
+        </TouchableOpacity>
+      ) : (<View />)}
     </AnimatedLinearGradient>
   );
 }

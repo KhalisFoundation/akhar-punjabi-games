@@ -415,7 +415,7 @@ function GameScreen({ navigation }) {
           />
           <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
           <TouchableOpacity
-            onPress={() => { navigation.navigate('giveUps', {prevScreen: 1}); }}
+            onPress={() => { navigation.navigate('giveUps', { prevScreen: 1 }); }}
           >
             <IconM name="plus-circle" size={25} color="#06FF00" />
           </TouchableOpacity>

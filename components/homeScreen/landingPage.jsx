@@ -63,7 +63,9 @@ function HomeScreen({ navigation }) {
       alignItems: 'center',
       paddingTop: '5%',
     },
-    logo: { height: 250, alignSelf: 'center', marginTop: '10%', marginBottom: '50%' },
+    logo: {
+      height: 250, alignSelf: 'center', marginTop: '10%', marginBottom: '50%'
+    },
     playTouchableOpacity: {
       width: '50%',
       height: '10%',
