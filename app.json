@@ -17,11 +17,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/blogo.png",
         "backgroundColor": "#FFFFFF"
