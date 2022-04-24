@@ -152,7 +152,8 @@ function TheCircle() {
         );
       })
 }
-      <TouchableOpacity
+      {state.attempt !== '' ? (
+        <TouchableOpacity
         style={{
           backgroundColor: state.darkMode ? 'black' : 'white',
           borderRadius: 25,
@@ -162,7 +163,7 @@ function TheCircle() {
           position: 'absolute',
           top: '45%',
           left: '45%',
-          elevation: 5
+          elevation: 5,
         }}
         onPress={() => {
           dispatch(setAttempt(''));
@@ -190,6 +191,7 @@ function TheCircle() {
           />
         </MaskedView>
       </TouchableOpacity>
+      ): (<View></View>)}
     </AnimatedLinearGradient>
   );
 }

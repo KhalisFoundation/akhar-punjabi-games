@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Linking,
   Image,
   ImageBackground
 } from 'react-native';
@@ -62,12 +63,12 @@ function HomeScreen({ navigation }) {
       alignItems: 'center',
       paddingTop: '5%',
     },
-    logo: { height: 250, alignSelf: 'center', marginTop: '25%',marginBottom: '50%' },
+    logo: { height: 250, alignSelf: 'center', marginTop: '10%', marginBottom: '50%' },
     playTouchableOpacity: {
       width: '50%',
       height: '10%',
       borderRadius: 10,
-      bottom: '23.5%',
+      bottom: '15%',
     },
     play: {
       width: '100%',
@@ -76,7 +77,7 @@ function HomeScreen({ navigation }) {
     otherScreens: {
       flexDirection: 'row',
       // backgroundColor: "yellow",
-      bottom: '43.5%',
+      bottom: '25%',
       alignItems: 'center',
       justifyContent: 'space-between',
     },
@@ -87,7 +88,6 @@ function HomeScreen({ navigation }) {
     khalisTouchableOpacity: {
       height: '8%',
       width: '45%',
-      bottom: '17%',
     },
     khalis: {
       height: '100%',
@@ -142,7 +142,7 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
           onPress={() => {
-            navigation.navigate('giveUps', {prevScreen: 0}); // how to pass params to other screen. We probaly won't need but there just for refrence
+            navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
 
@@ -152,13 +152,12 @@ function HomeScreen({ navigation }) {
       </View>
       <TouchableOpacity
         style={styles.khalisTouchableOpacity}
-        onPress={() => {
-          console.log('Khalis Foundation');
-        }}
+        onPress={() => Linking.openURL('https://khalisfoundation.org')}
       >
         <Image
-          style={styles.khalis}
           source={require('../../assets/khalislogo150.png')}
+          style={{ width: 150, alignSelf: 'center' }}
+          resizeMode="contain"
         />
       </TouchableOpacity>
     </ImageBackground>
