@@ -38,16 +38,17 @@ function TheCircle() {
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
+  const width = Dimensions.get('window').width;
+  const height = Dimensions.get('window').height;
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      height: "50%",
-      width: "90%",
-      borderRadius: 150
+      height: 300,
+      width: '100%',
     },
     clearBox: {
-      height: 40,
-      width: 40,
+      width: 0.12*width,
+      height: 0.12*width,
       justifyContent: 'center',
       alignItems: 'center'
     },
@@ -59,8 +60,8 @@ function TheCircle() {
     },
     commonChar: {
       position: 'absolute',
-      width: 50,
-      height: 50,
+      width: 0.12*width,
+      height: 0.12*width,
       backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
       elevation: 5,
       borderRadius: 25,
@@ -94,24 +95,12 @@ function TheCircle() {
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
-  const getPercent = (num) => {
-    const newNum = num.slice(0, -1);
-    const percent = parseInt(newNum, 10)/100;
-    return percent;
-  };
 
-  function gcd(a, b)
-{
-    if (b == 0)
-        return a;
-         
-    return gcd(b, a % b);
-}
-
-  const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
-  const radius =  125;
+  const radius =  110;
   const step = (2 * Math.PI) / charArray.length;
+  const new_height = height/(Math.floor(height/100)-1);
+  const sub = (width>400)? 1.7 : .75;
+  const new_width = width/(Math.floor(width/100)-sub);
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
@@ -126,9 +115,9 @@ function TheCircle() {
     >
       {
       charArray.map((char) => {
-
-        const x = Math.round(width / 2 + radius * Math.cos(angle) - width / 8);
-        const y = Math.round(height / 2 + radius * Math.sin(angle) - height / 8);
+        const x = Math.round(new_width + radius * Math.cos(angle));
+        const y = Math.round(new_height + radius * Math.sin(angle));
+        console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
         // let theLetter = String.fromCharCode(char);
         const theLetter = gurmukhi(char);
         angle += step;
@@ -156,8 +145,8 @@ function TheCircle() {
             key={char}
             style={{
               ...styles.commonChar,
-              left: x - 175,
-              top: y - 100,
+              left: x,
+              top: y,
             }}
           >
             <Text key={char} style={styles.characterText}>
@@ -175,8 +164,7 @@ function TheCircle() {
           height: 40,
           width: 40,
           alignSelf: 'center',
-          position: 'absolute',
-          top: '100%',
+          top: new_height,
           elevation: 5
         }}
         onPress={() => {

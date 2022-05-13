@@ -626,9 +626,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </AnimatedLinearGradient>
 
-      <View>
-        <TheCircle style={styles.theCircle} />
-      </View>
+      <TheCircle style={styles.theCircle} />
     </AnimatedLinearGradient>
   );
 }
