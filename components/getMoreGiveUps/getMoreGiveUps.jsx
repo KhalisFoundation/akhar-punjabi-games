@@ -30,6 +30,8 @@ function MoreGiveUps({ route, navigation }) {
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
+    Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
   const colors = theColors[state.darkMode];
@@ -39,8 +41,10 @@ function MoreGiveUps({ route, navigation }) {
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
+      marginTop: '3.5%',
     },
     instructionsText: {
+      fontFamily: 'Muli',
       backgroundColor: 'white',
       borderRadius: 5,
       borderColor: 'black',
@@ -60,6 +64,7 @@ function MoreGiveUps({ route, navigation }) {
       elevation: 5,
     },
     infoText: {
+      fontFamily: 'Muli',
       marginHorizontal: 5,
       fontSize: 15,
       color: state.darkMode ? '#fff' : '#000',
@@ -117,6 +122,7 @@ function MoreGiveUps({ route, navigation }) {
       elevation: 5,
     },
     submit: {
+      fontFamily: 'Nasa',
       fontSize: 16,
       alignSelf: 'center',
       padding: 10,
@@ -175,9 +181,7 @@ function MoreGiveUps({ route, navigation }) {
         backgroundColor={
             GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
-        containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
-        ]}
+        containerStyle={Platform.OS === 'android' && { height: 75, paddingTop: 0 }}
         leftComponent={(
           <Icon
             name="arrow-back"
@@ -190,8 +194,9 @@ function MoreGiveUps({ route, navigation }) {
           text: 'Get More Lives',
           style: {
             color: 'black',
-            fontSize: 18,
-            fontFamily: 'Arial'
+            fontSize: 20,
+            fontFamily: 'Muli',
+            margin:0,
           }
         }}
       />
@@ -258,7 +263,7 @@ function MoreGiveUps({ route, navigation }) {
           </MaskedView>
         </View>
         <TextInput
-          style={{ ...styles.textInput, fontFamily: 'Arial' }}
+          style={{ ...styles.textInput, fontFamily: 'Muli' }}
           placeholder="type here"
           onChangeText={(newText) => { setTextEntry(newText); }}
           defaultValue={textEntry}
@@ -276,7 +281,7 @@ function MoreGiveUps({ route, navigation }) {
         }}
       >
         <AnimatedLinearGradient colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']} style={styles.submitButton}>
-          <Text style={{ ...styles.submit, fontFamily: 'Mochy' }}>Submit</Text>
+          <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
         </AnimatedLinearGradient>
       </TouchableOpacity>
     </View>

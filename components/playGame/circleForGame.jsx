@@ -3,7 +3,7 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated, View
+  Text, StyleSheet, TouchableOpacity, Animated, View, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,6 +22,8 @@ function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
   function gurmukhi(text) {
     if (state.romanised) {
       return Anvaad.translit(text);
@@ -39,9 +41,8 @@ function TheCircle() {
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      height: 300,
-      width: 300,
-      top: '3%',
+      height: "50%",
+      width: "90%",
       borderRadius: 150
     },
     clearBox: {
@@ -53,14 +54,14 @@ function TheCircle() {
     characterText: {
       paddingBottom: 5,
       fontSize: state.romanised ? 22.5 : 30,
-      color: state.darkMode ? 'darkblue' : 'orange',
+      color: state.darkMode ? 'darkblue' : '#FF7E00',
       textAlign: 'center',
     },
     commonChar: {
       position: 'absolute',
       width: 50,
       height: 50,
-      backgroundColor: state.darkMode ? 'orange' : 'darkblue',
+      backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
       elevation: 5,
       borderRadius: 25,
       justifyContent: 'center',
@@ -93,9 +94,23 @@ function TheCircle() {
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
-  const width = 332.5;
-  const height = 332.5;
-  const radius = 125;
+  const getPercent = (num) => {
+    const newNum = num.slice(0, -1);
+    const percent = parseInt(newNum, 10)/100;
+    return percent;
+  };
+
+  function gcd(a, b)
+{
+    if (b == 0)
+        return a;
+         
+    return gcd(b, a % b);
+}
+
+  const width = Dimensions.get('window').width;
+  const height = Dimensions.get('window').height;
+  const radius =  125;
   const step = (2 * Math.PI) / charArray.length;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
@@ -141,8 +156,8 @@ function TheCircle() {
             key={char}
             style={{
               ...styles.commonChar,
-              left: x,
-              top: y,
+              left: x - 175,
+              top: y - 100,
             }}
           >
             <Text key={char} style={styles.characterText}>
@@ -152,46 +167,44 @@ function TheCircle() {
         );
       })
 }
-      {state.attempt !== '' ? (
-        <TouchableOpacity
+      {(state.attempt == "") ? <View></View> :
+      <TouchableOpacity
+        style={{
+          backgroundColor: state.darkMode ? 'black' : 'white',
+          borderRadius: 25,
+          height: 40,
+          width: 40,
+          alignSelf: 'center',
+          position: 'absolute',
+          top: '100%',
+          elevation: 5
+        }}
+        onPress={() => {
+          dispatch(setAttempt(''));
+        }}
+      >
+        <MaskedView
           style={{
-            backgroundColor: state.darkMode ? 'black' : 'white',
-            borderRadius: 25,
-            height: 40,
-            width: 40,
-            alignSelf: 'center',
-            position: 'absolute',
-            top: '45%',
-            left: '45%',
-            elevation: 5,
+            height: 50,
+            width: 50
           }}
-          onPress={() => {
-            dispatch(setAttempt(''));
-          }}
-        >
-          <MaskedView
-            style={{
-              height: 50,
-              width: 50
-            }}
-            maskElement={(
-              <View
-                style={{
-                  backgroundColor: 'transparent',
-                  padding: 5
-                }}
-              >
-                <IconM name="reload" size={30} color="black" style={styles.clearBox} />
-              </View>
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                padding: 5
+              }}
+            >
+              <IconM name="reload" size={30} color="black" style={styles.clearBox} />
+            </View>
         )}
-          >
-            <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-              style={{ flex: 1 }}
-            />
-          </MaskedView>
-        </TouchableOpacity>
-      ) : (<View />)}
+        >
+          <LinearGradient
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
+      </TouchableOpacity>}
     </AnimatedLinearGradient>
   );
 }

@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Linking,
   Image,
-  ImageBackground
+  ImageBackground, 
+  SafeAreaView
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -27,6 +28,8 @@ function HomeScreen({ navigation }) {
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
+    Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
@@ -61,27 +64,29 @@ function HomeScreen({ navigation }) {
     container: {
       flex: 1,
       alignItems: 'center',
-      paddingTop: '5%',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      backgroundColor: "#274C7C",
     },
     logo: {
-      height: 250, alignSelf: 'center', marginTop: '10%', marginBottom: '50%'
+      height: '30%', alignSelf: 'center', marginTop: '5%'
     },
     playTouchableOpacity: {
-      width: '50%',
-      height: '10%',
-      borderRadius: 10,
-      bottom: '15%',
+      height: '20%',
     },
     play: {
-      width: '100%',
-      height: '100%',
+      fontSize: 70,
+      fontFamily: 'Nasa',
+      color: '#acf',
+      textShadowOffset: {width: 2, height: 2},
+      textShadowRadius: 5,
+      textShadowColor: 'blue',
     },
     otherScreens: {
       flexDirection: 'row',
       // backgroundColor: "yellow",
-      bottom: '25%',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
     },
     otherScreenTouchableOpacity: {
       flex: 1,
@@ -107,19 +112,16 @@ function HomeScreen({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <ImageBackground
-      source={require('../../assets/background.jpg')}
-      style={styles.container}
-    >
+    <SafeAreaView style={styles.container}>
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
-      <Image style={styles.logo} source={require('../../assets/blogo.png')} resizeMode="contain" />
+      <Image style={styles.logo} source={require('../../assets/logo.png')} resizeMode="contain" />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
           navigation.navigate('play');
         }}
       >
-        <Image style={styles.play} source={require('../../assets/Play.png')} />
+        <Text style={styles.play}>Play</Text>
       </TouchableOpacity>
       <View style={styles.otherScreens}>
         <TouchableOpacity
@@ -128,8 +130,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('settings');
           }}
         >
-          <Icon name="cog" size={85} color="#555" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Settings</Text>
+          <Icon name="cog" size={85} color="#aaa" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -138,8 +140,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <Icon name="check-circle" size={85} color="#080" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Words Done</Text>
+          <Icon name="check-circle" size={85} color="#00aa00" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Words Done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -148,8 +150,8 @@ function HomeScreen({ navigation }) {
           }}
         >
 
-          <Icon name="heart" size={85} color="#900" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Arial', fontWeight: 'normal' }}>Get Lives</Text>
+          <Icon name="heart" size={85} color="#a00" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Get Lives</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -157,12 +159,12 @@ function HomeScreen({ navigation }) {
         onPress={() => Linking.openURL('https://khalisfoundation.org')}
       >
         <Image
-          source={require('../../assets/khalislogo150.png')}
+          source={require('../../assets/khalislogo150white.png')}
           style={{ width: 150, alignSelf: 'center' }}
           resizeMode="contain"
         />
       </TouchableOpacity>
-    </ImageBackground>
+    </SafeAreaView>
   );
 }
 

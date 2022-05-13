@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
+import { useRef, useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
 import {
-  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
-  Animated, Platform
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Platform, Animated
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,7 +16,7 @@ import AppLoading from 'expo-app-loading';
 import { useState } from 'react';
 // import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 // import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-// import { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
+// import Animated, { FadeIn,AnimatedLayout, Layout, FadeOut } from 'react-native-reanimated';
 import theColors from '../../util/colors';
 import TheCircle from './circleForGame';
 import WordsDoneModal from './modalNextWord';
@@ -80,9 +80,11 @@ function GameScreen({ navigation }) {
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
   });
   const colors = theColors[state.darkMode];
-  const [colorCenter] = useState(['#2a59f0', '#0a0298']);
+  const [prevAttempt, setPrevAttempt] = useState("");
+  const [colorCenter] = useState(['#274C7C', '#274C7C']);
   const styles = StyleSheet.create({
     container: {
       // flex: 1,
@@ -90,7 +92,10 @@ function GameScreen({ navigation }) {
       backgroundColor: colors.theGame.container,
       width: '100%',
       height: '100%',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
       paddingTop: '3.5%',
+      paddingBottom: '3.5%',
     },
     ball: {
       width: 100,
@@ -101,8 +106,9 @@ function GameScreen({ navigation }) {
     },
     wordBoxAnswers: {
       // flexDirection: "column",
-      width: 400,
-      height: 225,
+      width: "100%",
+      height: "25%",
+      marginBottom: 5,
       backgroundColor: 'transparent',
       paddingHorizontal: 10,
     },
@@ -131,18 +137,23 @@ function GameScreen({ navigation }) {
       margin: 5,
       flexDirection: 'column',
       justifyContent: 'space-evenly',
-      width: 250,
-      height: 125,
+      width: "100%",
+      height: "100%",
     },
     answerText: {
-      justifyContent: 'center',
       textAlign: 'center',
       color: state.darkMode ? 'white' : 'black',
       fontSize: 35,
       borderRadius: 25,
-      width: 50,
+      width: "100%",
       height: 50,
-      marginBottom: 5
+    },
+    answerTouchOpacity: {
+      justifyContent: 'center',
+      paddingTop: 10,
+      height: 50,
+      width: "100%",
+      opacity: fadeAnimation,
     },
     giveUp: {
       margin: 8,
@@ -160,10 +171,13 @@ function GameScreen({ navigation }) {
       textAlign: 'center',
       alignItems: 'center',
       fontSize: (state.giveUpsLeft === 0 || state.topWord !== '') ? 30 : 35,
+      width: '100%',
+      height: '100%',
     },
     wordAttemptView: {
       flexDirection: 'row',
-      padding: 10,
+      marginTop: 10,
+      padding: 5,
       backgroundColor: colors.theGame.clearBox,
       borderRadius: 20,
       shadowColor: '#000',
@@ -174,10 +188,9 @@ function GameScreen({ navigation }) {
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
-      marginTop: 5
     },
     wordAttempt: {
-      width: 200,
+      width: "75%",
       height: 50,
       opacity: 0.8,
       color: state.darkMode ? 'darkblue' : 'white',
@@ -185,7 +198,6 @@ function GameScreen({ navigation }) {
       justifyContent: 'center',
       textAlign: 'center',
       fontSize: 30,
-      marginEnd: 5
     },
     clearBox: {
       alignSelf: 'center',
@@ -197,16 +209,26 @@ function GameScreen({ navigation }) {
       justifyContent: 'center',
       alignContent: 'center'
     },
-    theCircle: {},
+    theCircle: {
+      width: '100%',
+    },
     definitionText: {
+      fontFamily: 'Muli',
+      fontSize: 16,
+      textShadowColor: (state.darkMode) ? 'white' : 'black',
+      textShadowOffset: {
+        width: 0.5,
+        height: 0.5
+      },
+      textShadowRadius: 1,
       color: (state.darkMode) ? 'white' : 'black',
       flexDirection: 'row',
     },
     upBox: {
       backgroundColor: '#072227',
       flexDirection: 'row',
-      height: 40,
-      width: 100,
+      height: "70%",
+      width: "25%",
       alignItems: 'center',
       borderRadius: 30,
       elevation: 5,
@@ -218,6 +240,30 @@ function GameScreen({ navigation }) {
       fontWeight: 'bold'
     }
   });
+
+  // fade in & out animation
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
+  const fadeIn = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 1,
+      duration: 4000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 0,
+      duration: 4000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeIn();
+  }, []);
+  
+  // Animated gradient
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   const func = (what) => {
     if (what === 'top') {
@@ -248,16 +294,16 @@ function GameScreen({ navigation }) {
       }
     }
     newWord = newWord.slice(0, -1);
-    console.log(newWord);
+    // console.log(newWord); prints out comma separated word with matras
     return newWord.split(',');
   };
 
   const hintBtn = (word) => {
-    let bgColor = 'orange';
+    let bgColor = '#FF7E00';
     let iconColor = 'black';
     let iconName = 'lightbulb-on-outline';
     if (state.giveUpsLeft === 0 && word !== '') {
-      bgColor = '#00cb21';
+      bgColor = '#FF7E00';
       iconColor = (state.darkMode) ? 'white' : 'black';
       iconName = 'check';
     } else if (state.giveUpsLeft === 0) {
@@ -265,11 +311,11 @@ function GameScreen({ navigation }) {
       iconColor = 'white';
       iconName = 'lightbulb-outline';
     } else if (word !== '') {
-      bgColor = '#00cb21';
+      bgColor = '#06FF00';
       iconColor = (state.darkMode) ? 'white' : 'black';
       iconName = 'check';
     } else {
-      bgColor = 'orange';
+      bgColor = '#FF7E00';
       iconColor = 'black';
       iconName = 'lightbulb-on-outline';
     }
@@ -294,9 +340,9 @@ function GameScreen({ navigation }) {
     }
     if (state.showNumOfLetters) {
       return (
-        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-          {Array.from(state.includeMatra ? divByMatra((which === 'top')
-            ? state.firstWord.engText : state.secondWord.engText)
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          {Array.from(state.includeMatra 
+            ? divByMatra((which === 'top') ? state.firstWord.engText : state.secondWord.engText)
             : Array((which === 'top') ? state.firstWord.engText.length : state.secondWord.engText.length), (e, i) => {
             return (
               <Text style={{ ...styles.answerText, borderRadius: 15 }} key={i}>
@@ -308,7 +354,7 @@ function GameScreen({ navigation }) {
       );
     }
     return (
-      <Text style={{ ...styles.answerText, width: '95%', backgroundColor: 'transparent' }}>
+      <Text style={{ ...styles.answerText, width: '95%', backgroundColor: 'transparent'}}>
         {Anvaad.unicode((which === 'top')
           ? func('top')
           : func('bottom'))}
@@ -359,7 +405,7 @@ function GameScreen({ navigation }) {
       <Header
         backgroundColor="transparent"
         containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
+          Platform.OS === 'android' && { height: 80, paddingTop: 0, justifyContent: 'center' },
         ]}
         leftComponent={(
           <IconH
@@ -373,8 +419,9 @@ function GameScreen({ navigation }) {
           text: 'ਅਖਰ ਜੋੜ',
           style: {
             color: state.darkMode ? '#ff6e00' : 'black',
-            fontSize: 25,
-            fontFamily: 'Bookish'
+            fontSize: 30,
+            fontFamily: 'Bookish',
+            
           }
         }}
       />
@@ -411,7 +458,7 @@ function GameScreen({ navigation }) {
           <IconM
             name="lightbulb-on"
             size={25}
-            color="orange"
+            color="#FF7E00"
           />
           <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
           <TouchableOpacity
@@ -431,7 +478,7 @@ function GameScreen({ navigation }) {
               flex: 1, flexDirection: 'row', justifyContent: 'flex-start', marginStart: 15
             }}
             >
-              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={{ width: '100%' }}>
+              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={styles.answerTouchOpacity}>
                 {awayOrTogether('top')}
               </TouchableOpacity>
             </View>
@@ -439,7 +486,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={{ marginStart: 15, width: '90%' }}
+              style={{ marginTop: 35, marginStart:15, width: '90%' }}
             >
               <Text style={styles.definitionText}>
                 {state.firstWord.meaning}
@@ -484,7 +531,7 @@ function GameScreen({ navigation }) {
                   {Anvaad.unicode(state.bottomWord[i])}
                   </Text>}
                 })} */}
-              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.bottomWord === '') ? state.bottomHint : state.bottomWord)); }} style={{ width: '100%' }}>
+              <TouchableOpacity onPress={() => { dispatch(setAttempt((state.bottomWord === '') ? state.bottomHint : state.bottomWord)); }} style={styles.answerTouchOpacity}>
                 {awayOrTogether('bottom')}
               </TouchableOpacity>
             </View>
@@ -492,7 +539,7 @@ function GameScreen({ navigation }) {
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={{ marginStart: 15, width: '90%', height: 10 }}
+              style={{  marginTop: 35, marginStart:15, width: '90%', height: 10 }}
             >
               <Text style={styles.definitionText}>
                 {state.secondWord.meaning}
@@ -536,7 +583,7 @@ function GameScreen({ navigation }) {
           <Text>New Word</Text>
         </TouchableOpacity> */}
       </View>
-
+      
       <AnimatedLinearGradient
         colors={state.darkMode ? ['#dca104', '#ff8a00'] : colorCenter}
         style={styles.wordAttemptView}

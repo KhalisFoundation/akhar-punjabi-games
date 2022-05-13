@@ -17,6 +17,7 @@ function WordsDoneModal() {
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
   const styles = StyleSheet.create({
@@ -34,7 +35,7 @@ function WordsDoneModal() {
       padding: 10,
     },
     wordBox: {
-      backgroundColor: '#ff6e00',
+      backgroundColor: '#FF7E00',
       borderRadius: 14,
       margin: 10,
       padding: 10,
@@ -54,8 +55,8 @@ function WordsDoneModal() {
       color: 'white',
     },
     meaningText: {
+      fontFamily: 'Muli',
       fontSize: 16,
-      fontStyle: 'italic',
       textAlign: 'center',
       color: state.darkMode ? '#ff6e00' : 'white',
       marginBottom: 10,
@@ -68,7 +69,7 @@ function WordsDoneModal() {
       textAlign: 'center',
       fontSize: 15,
       margin: 'auto',
-      fontFamily: 'Mochy',
+      fontFamily: 'Muli',
       color: 'white',
     },
     text: {
@@ -137,7 +138,7 @@ function WordsDoneModal() {
       >
         {(state.levelProgress[0].level === 8 && state.levelProgress[0].wordsNeeded === 0)
           ? (
-            <ImageBackground source={require('../../assets/word_modal.png')} resizeMode="cover" imageStyle={{ borderRadius: 30 }} style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#274C7C' }}>
               <Animatable.View
                 animation="fadeIn"
                 iterationCount={1}
@@ -157,7 +158,7 @@ function WordsDoneModal() {
                   margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4, height: 250, resizeMode: 'contain',
                 }}
               />
-              <Text style={[styles.text, { fontFamily: 'Mochy', fontWeight: 'normal', fontSize: 20 }]}>
+              <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20 }]}>
                 More levels coming soon!
               </Text>
               <Animatable.View
@@ -178,10 +179,10 @@ function WordsDoneModal() {
                 </TouchableOpacity>
               </Animatable.View>
 
-            </ImageBackground>
+            </View>
           )
           : (
-            <ImageBackground source={require('../../assets/word_modal.png')} resizeMode="cover" imageStyle={{ borderRadius: 30 }} style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#21218b' }}>
               <Animatable.Image
                 animation="tada"
                 iterationCount={2}
@@ -202,7 +203,7 @@ function WordsDoneModal() {
                 iterationCount={1}
               >
                 <AnimatedLinearGradient
-                  colors={state.darkMode ? ['#000', '#000'] : ['blue', 'blue']}
+                  colors={state.darkMode ? ['#000', '#000'] : ['darkblue', 'darkblue']}
                   start={{ x: 1, y: 1 }}
                   style={[styles.container, { bottom: 10 }]}
                 >
@@ -244,7 +245,7 @@ function WordsDoneModal() {
                   </TouchableOpacity>
                 </AnimatedLinearGradient>
               </Animatable.View>
-            </ImageBackground>
+            </View>
           )}
       </Animatable.View>
     </Modal>

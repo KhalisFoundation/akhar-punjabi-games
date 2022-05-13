@@ -35,6 +35,7 @@ function Settings({ navigation }) {
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
   });
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
@@ -92,7 +93,7 @@ function Settings({ navigation }) {
           style: {
             color: 'black',
             fontSize: 18,
-            fontFamily: 'Arial'
+            fontFamily: 'Muli'
           }
         }}
       />

@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/ioslogo.png",
     "splash": {
-      "image": "./assets/splash_new.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +17,13 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
-      "buildNumber": "3"
+      "buildNumber": "4"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/blogo.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
       }
     },

@@ -22,11 +22,13 @@ import GLOBAL from '../../util/globals';
 function About({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
-    Arial: require('../../assets/fonts/Arial.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
+    Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const styles = StyleSheet.create({
     container: { flex: 1, marginTop: '3.5%' },
@@ -81,6 +83,7 @@ function About({ navigation }) {
         }}
       />
       <ScrollView
+        scrollEventThrottle={16}
         style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
         contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}
       >
@@ -110,7 +113,7 @@ function About({ navigation }) {
                   backgroundColor: transparent,
                 }}
               >
-                <Text style={{ fontFamily: 'Mochy', margin: 10 }}>(Akhar Jor)</Text>
+                <Text style={{ fontFamily: 'Nasa', margin:10}}>(Akhar Jor)</Text>
               </View>
             )}
           >
@@ -120,10 +123,9 @@ function About({ navigation }) {
             />
           </MaskedView>
         </View>
-        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/wlogo.png') : require('../../assets/blogo.png')} resizeMode="contain" />
-        <Text style={{ fontSize: 16, fontFamily: 'Arial', color: state.darkMode ? white : black }}>
-          {'\n'}
-          <Text style={{ fontFamily: 'Mochy' }}>Akhar Jor - Punjabi Wordlink</Text>
+        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/logo.png') : require('../../assets/logo.png')} resizeMode="contain" />
+          <Text style={{ fontFamily: 'Nasa', fontSize: 20, color: state.darkMode ? white : black }}>{'\n'}Akhar Jor</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
           <Text>
             {' '}
             utilizes
@@ -165,7 +167,7 @@ function About({ navigation }) {
           <Text>{' '}</Text>
           {'\n'}
         </Text>
-        <Text style={{ fontSize: 16, fontFamily: 'Arial', color: state.darkMode ? white : black }}>
+        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
           <Text>{'\n '}</Text>
           <Text>
             We welcome your comments, suggestions, and corrections!
@@ -174,7 +176,7 @@ function About({ navigation }) {
             {'  '}
           </Text>
           <Text
-            style={{ color: linkColor, fontFamily: 'Mochy' }}
+            style={{ color: linkColor, fontWeight: 'bold' }}
             onPress={() => Linking.openURL('https://khalisfoundation.org')}
           >
             KhalisFoundation.org
@@ -182,7 +184,7 @@ function About({ navigation }) {
           {'\n'}
         </Text>
         <View>
-          <Text style={{ fontFamily: 'Arial', alignSelf: 'flex-end', color: state.darkMode ? white : black }}>
+          <Text style={{ fontFamily: 'Muli', alignSelf: 'flex-end', color: state.darkMode ? white : black }}>
             {'\n'}
             Bhul Chuk Maaf!
             {'\n'}
@@ -206,7 +208,7 @@ function About({ navigation }) {
           <View style={styles.singleLine}>
             <View style={styles.leftContainer}>
               <Text
-                style={[styles.small, { fontFamily: 'Arial', color: state.darkMode ? white : black }]}
+                style={[styles.small, { fontFamily: 'Muli', color: state.darkMode ? white : black }]}
               >
                 &copy;
                 {' '}
@@ -216,7 +218,7 @@ function About({ navigation }) {
               </Text>
             </View>
             <Text
-              style={[styles.small, { fontFamily: 'Arial', color: state.darkMode ? white : black }]}
+              style={[styles.small, { fontFamily: 'Muli', color: state.darkMode ? white : black }]}
             >
               Chardikala
               {'\n'}
