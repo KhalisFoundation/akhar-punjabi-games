@@ -10,7 +10,10 @@ import {
   ImageBackground, 
   SafeAreaView
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import IonIcons from 'react-native-vector-icons/Ionicons';
+import MaskedView from '@react-native-community/masked-view';
+import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
@@ -31,6 +34,7 @@ function HomeScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
+  const state = useSelector((theState) => theState.theGameReducer);
   const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
   let theState;
@@ -69,18 +73,20 @@ function HomeScreen({ navigation }) {
       backgroundColor: "#274C7C",
     },
     logo: {
-      height: '30%', alignSelf: 'center', marginTop: '5%'
+      height: '30%', alignSelf: 'center'
     },
     playTouchableOpacity: {
       height: '20%',
+      width: '100%',
     },
     play: {
       fontSize: 70,
       fontFamily: 'Nasa',
-      color: '#acf',
+      color: '#cdff',
+      textAlign: 'center',
       textShadowOffset: {width: 2, height: 2},
-      textShadowRadius: 5,
-      textShadowColor: 'blue',
+      textShadowRadius: 10,
+      textShadowColor: 'darkblue',
     },
     otherScreens: {
       flexDirection: 'row',
@@ -102,6 +108,13 @@ function HomeScreen({ navigation }) {
       borderRadius: 5,
       alignItems: 'center',
     },
+    back: {
+      backgroundColor: '#035',
+      padding: 10,
+      borderRadius: 50,
+      alignSelf: 'flex-start',
+      margin: 0, marginTop: '5%'
+    },
     bold: {
       fontWeight: 'bold',
       alignSelf: 'center',
@@ -114,6 +127,30 @@ function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
+      <TouchableOpacity
+        style={styles.back}
+        onPress={() => navigation.goBack()}
+      >
+      <MaskedView
+          style={{ width: 35, height: 35 }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <IonIcons name="arrow-back" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+            </View>
+        )}
+        >
+          <LinearGradient
+            colors={['#ff8008', '#ffc837']}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
+      </TouchableOpacity>  
       <Image style={styles.logo} source={require('../../assets/logo.png')} resizeMode="contain" />
       <TouchableOpacity
         style={styles.playTouchableOpacity}
@@ -141,7 +178,7 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Icon name="check-circle" size={85} color="#00aa00" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Words Done</Text>
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Completed Levels</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -150,7 +187,7 @@ function HomeScreen({ navigation }) {
           }}
         >
 
-          <Icon name="heart" size={85} color="#a00" style={styles.bold} />
+          <Icon name="heart" size={85} color="#f00" style={styles.bold} />
           <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Get Lives</Text>
         </TouchableOpacity>
       </View>

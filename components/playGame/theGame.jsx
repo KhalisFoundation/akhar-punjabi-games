@@ -133,7 +133,7 @@ function GameScreen({ navigation }) {
       marginTop: 20,
     },
     wordBoxText: {
-      flex: 3,
+      flex: 2,
       margin: 5,
       flexDirection: 'column',
       justifyContent: 'space-evenly',
@@ -153,10 +153,9 @@ function GameScreen({ navigation }) {
       paddingTop: 10,
       height: 50,
       width: "100%",
-      opacity: fadeAnimation,
     },
     giveUp: {
-      margin: 8,
+      margin: 5,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: colors.theGame.giveUp,
@@ -191,7 +190,7 @@ function GameScreen({ navigation }) {
     },
     wordAttempt: {
       width: "75%",
-      height: 50,
+      height: "100%",
       opacity: 0.8,
       color: state.darkMode ? 'darkblue' : 'white',
       borderRadius: 100,
@@ -222,7 +221,6 @@ function GameScreen({ navigation }) {
       },
       textShadowRadius: 1,
       color: (state.darkMode) ? 'white' : 'black',
-      flexDirection: 'row',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -240,28 +238,6 @@ function GameScreen({ navigation }) {
       fontWeight: 'bold'
     }
   });
-
-  // fade in & out animation
-  const fadeAnimation = useRef(new Animated.Value(0)).current;
-  const fadeIn = () => {
-    Animated.timing(fadeAnimation, {
-      toValue: 1,
-      duration: 4000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeOut = () => {
-    Animated.timing(fadeAnimation, {
-      toValue: 0,
-      duration: 4000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  useEffect(() => {
-    fadeIn();
-  }, []);
   
   // Animated gradient
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -470,29 +446,24 @@ function GameScreen({ navigation }) {
       </View>
 
       <View
-        style={styles.wordBoxAnswers}
+        style={{...styles.wordBoxAnswers, justifyContent: 'space-evenly'}}
       >
-        <View style={[styles.answerRow, { borderBottomWidth: 2, borderBottomColor: 'darkblue', }]}>
-          <View style={styles.wordBoxText}>
-            <View style={{
-              flex: 1, flexDirection: 'row', justifyContent: 'flex-start', marginStart: 15
-            }}
-            >
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', width:'100%'}}>
+            <View style={{flexDirection: 'column', width: "80%"}}>
               <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={styles.answerTouchOpacity}>
                 {awayOrTogether('top')}
               </TouchableOpacity>
+              <ScrollView
+                scrollEventThrottle={16}
+                showsHorizontalScrollIndicator={false}
+                horizontal
+                style={{ marginStart:15, width: '90%', ...styles.definitionText }}
+              >
+                <Text style={styles.definitionText}>
+                  {state.firstWord.meaning}
+                </Text>
+              </ScrollView>
             </View>
-            <ScrollView
-              scrollEventThrottle={16}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              style={{ marginTop: 35, marginStart:15, width: '90%' }}
-            >
-              <Text style={styles.definitionText}>
-                {state.firstWord.meaning}
-              </Text>
-            </ScrollView>
-          </View>
           <TouchableOpacity
             disabled={state.giveUpsLeft === 0 || state.topWord !== ''}
             style={{ ...styles.giveUp, backgroundColor: hintBtn(state.topWord).backgroundColor }}
@@ -520,12 +491,8 @@ function GameScreen({ navigation }) {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.answerRow}>
-          <View style={styles.wordBoxText}>
-            <View style={{
-              flex: 1, flexDirection: 'row', justifyContent: 'flex-start', marginStart: 15
-            }}
-            >
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', width:'100%'}}>
+          <View style={{flexDirection: 'column', width: "80%"}}>
               {/* {Array.from(Array(state.secondWord.engText.length), (e,i) => {
                   return {<Text style={styles.answerText}>
                   {Anvaad.unicode(state.bottomWord[i])}
@@ -534,12 +501,11 @@ function GameScreen({ navigation }) {
               <TouchableOpacity onPress={() => { dispatch(setAttempt((state.bottomWord === '') ? state.bottomHint : state.bottomWord)); }} style={styles.answerTouchOpacity}>
                 {awayOrTogether('bottom')}
               </TouchableOpacity>
-            </View>
             <ScrollView
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               horizontal
-              style={{  marginTop: 35, marginStart:15, width: '90%', height: 10 }}
+              style={{ marginStart:15, width: '90%', ...styles.definitionText }}
             >
               <Text style={styles.definitionText}>
                 {state.secondWord.meaning}
