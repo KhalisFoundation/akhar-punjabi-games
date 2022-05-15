@@ -189,7 +189,7 @@ function RightWords({ navigation }) {
           />
           )}
         centerComponent={{
-          text: 'Words Completed',
+          text: 'Completed Levels',
           style: {
             color: state.darkMode ? 'white' : 'black',
             fontSize: 20,
