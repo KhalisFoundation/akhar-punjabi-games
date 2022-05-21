@@ -22,16 +22,18 @@ import GLOBAL from '../../util/globals';
 import { setGiveUpLives } from '../../redux/actions';
 import theColors from '../../util/colors';
 
-function MoreGiveUps({ navigation }) {
-  const state = useSelector((theState) => theState.theGameReducer);
+function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
+  const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
+    Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
-
+  const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -39,8 +41,10 @@ function MoreGiveUps({ navigation }) {
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
+      marginTop: '3.5%',
     },
     instructionsText: {
+      fontFamily: 'Muli',
       backgroundColor: 'white',
       borderRadius: 5,
       borderColor: 'black',
@@ -60,6 +64,7 @@ function MoreGiveUps({ navigation }) {
       elevation: 5,
     },
     infoText: {
+      fontFamily: 'Muli',
       marginHorizontal: 5,
       fontSize: 15,
       color: state.darkMode ? '#fff' : '#000',
@@ -117,6 +122,7 @@ function MoreGiveUps({ navigation }) {
       elevation: 5,
     },
     submit: {
+      fontFamily: 'Nasa',
       fontSize: 16,
       alignSelf: 'center',
       padding: 10,
@@ -145,14 +151,14 @@ function MoreGiveUps({ navigation }) {
   const wordsToType = [
     'vwihgurU',
     'DMn gurU nwnk dyv swihb jI',
-    'DMn gurU AMgd swihb jI',
-    'DMn gurU Amr dws swihb jI',
-    'DMn gurU rwm dws swihb jI',
-    'DMn gurU ArjMn dyv swihb jI',
+    'DMn gurU AMgd dyv swihb jI',
+    'DMn gurU Amrdws swihb jI',
+    'DMn gurU rwmdws swihb jI',
+    'DMn gurU Arjn dyv swihb jI',
     'DMn gurU hrgoibMd swihb jI',
     'DMn gurU hrrwie swihb jI',
     'DMn gurU hrikRSn swihb jI',
-    'DMn gurU qygbhwdr swihb jI',
+    'DMn gurU qyg bhwdr swihb jI',
     'DMn gurU goibMd isMG swihb jI',
     'DMn SRI gurU gRMQ swihb jI',
     'DMn gurU DMn gurU ipAwry',
@@ -175,23 +181,22 @@ function MoreGiveUps({ navigation }) {
         backgroundColor={
             GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
-        containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
-        ]}
+        containerStyle={Platform.OS === 'android' && { height: 75, paddingTop: 0 }}
         leftComponent={(
           <Icon
             name="arrow-back"
             color="black"
             size={30}
-            onPress={() => { navigation.goBack(null); }}
+            onPress={() => { navigation.navigate(prevScreen); }}
           />
           )}
         centerComponent={{
           text: 'Get More Lives',
           style: {
             color: 'black',
-            fontSize: 18,
-            fontFamily: 'Arial'
+            fontSize: 20,
+            fontFamily: 'Muli',
+            margin:0,
           }
         }}
       />
@@ -243,7 +248,9 @@ function MoreGiveUps({ navigation }) {
                   backgroundColor: 'transparent',
                 }}
               >
-                <Text style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}>
+                <Text
+                  style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}
+                >
                   {textEntry}
                 </Text>
               </View>
@@ -256,12 +263,10 @@ function MoreGiveUps({ navigation }) {
           </MaskedView>
         </View>
         <TextInput
-          style={styles.textInput}
+          style={{ ...styles.textInput, fontFamily: 'Muli' }}
           placeholder="type here"
-          value={textEntry}
-          onChangeText={(text) => {
-            setTextEntry(text);
-          }}
+          onChangeText={(newText) => { setTextEntry(newText); }}
+          defaultValue={textEntry}
         />
       </View>
       <TouchableOpacity
@@ -276,7 +281,7 @@ function MoreGiveUps({ navigation }) {
         }}
       >
         <AnimatedLinearGradient colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']} style={styles.submitButton}>
-          <Text style={{ ...styles.submit, fontFamily: 'Mochy' }}>Submit</Text>
+          <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
         </AnimatedLinearGradient>
       </TouchableOpacity>
     </View>

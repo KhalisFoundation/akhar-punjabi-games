@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Akhar JoR",
+    "name": "ੳਅੲ Games - Learn Gurmukhi",
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/final_logo.png",
+    "icon": "./assets/ioslogo.png",
     "splash": {
-      "image": "./assets/splash_new.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -15,14 +15,16 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
+      "buildNumber": "5"
     },
     "android": {
-      "package": "com.khalis.akharjor",
-      "versionCode": 1,
+      "package": "com.khalisfoundation.gurmukhi_games",
+      "versionCode": 5,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/app_icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {

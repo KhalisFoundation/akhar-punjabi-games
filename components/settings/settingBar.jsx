@@ -56,7 +56,7 @@ function SettingsBar({
   });
   const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState(
-    "Wanna reset the game?"
+    'Wanna reset the game?'
   );
   // dispatch(theAction(currentSetting));
   // why does this cause it it craxh

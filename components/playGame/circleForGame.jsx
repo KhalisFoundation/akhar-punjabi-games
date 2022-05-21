@@ -3,14 +3,12 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated, View
+  Text, StyleSheet, TouchableOpacity, Animated, View, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
-
-import { useState } from 'react';
 import {
   setAttempt,
   setBottomWord,
@@ -24,6 +22,8 @@ function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
   function gurmukhi(text) {
     if (state.romanised) {
       return Anvaad.translit(text);
@@ -31,40 +31,41 @@ function TheCircle() {
     return Anvaad.unicode(text);
 
   }
-  function touchedMe(object) {
+  function touchedMe(object, final) {
     console.log(`${object} was touched!`);
+    dispatch(setAttempt(final));
+    ifCorrectWord(final);
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
+  const width = Dimensions.get('window').width;
+  const height = Dimensions.get('window').height;
 
   const styles = StyleSheet.create({
     lettersCircle: {
       height: 300,
-      width: 300,
-      top: '3%',
-      borderRadius: 150
+      width: '100%',
     },
     clearBox: {
-      height: 40,
-      width: 40,
+      width: 0.12*width,
+      height: 0.12*width,
       justifyContent: 'center',
       alignItems: 'center'
     },
     characterText: {
-      bottom: '15%',
+      paddingBottom: 5,
       fontSize: state.romanised ? 22.5 : 30,
+      color: state.darkMode ? 'darkblue' : '#FF7E00',
       textAlign: 'center',
     },
     commonChar: {
       position: 'absolute',
-      width: 50,
-      height: 50,
-      backgroundColor: 'gold',
+      width: 0.12*width,
+      height: 0.12*width,
+      backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
       elevation: 5,
-      borderColor: 'maroon',
-      borderWidth: 5,
-      borderRadius: 15,
-      justifyContent: 'center'
+      borderRadius: 25,
+      justifyContent: 'center',
     }
   });
 
@@ -94,23 +95,29 @@ function TheCircle() {
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
-  const width = 332.5;
-  const height = 332.5;
-  const radius = 125;
+
+  const radius =  110;
   const step = (2 * Math.PI) / charArray.length;
-  const colorCombos = [['#E233FF', '#FF6B00'], ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'], ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'], ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'], ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
-  const colorRandom = Math.floor(Math.random() * colorCombos.length);
-  const [colorCenter] = useState(colorCombos[colorRandom]);
+  const new_height = height/(Math.floor(height/100)-1);
+  const sub = (width>400)? 1.7 : .75;
+  const new_width = width/(Math.floor(width/100)-sub);
+  //  const colorCombos = [['#E233FF', '#FF6B00'],
+  // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
+  // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
+  // ['#16222a', '#3a6073'], ['#ff8008', '#ffc837'], ['#eb3349', '#f45c43'], ['#aa076b', '#61045f'],
+  // ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
+  // const colorRandom = Math.floor(Math.random() * colorCombos.length);
+  // const [colorCenter] = useState(colorCombos[colorRandom]);;
   return (
     <AnimatedLinearGradient
-      colors={colorCenter}
+      colors={['transparent', 'transparent']}
       style={styles.lettersCircle}
     >
       {
       charArray.map((char) => {
-
-        const x = Math.round(width / 2 + radius * Math.cos(angle) - width / 8);
-        const y = Math.round(height / 2 + radius * Math.sin(angle) - height / 8);
+        const x = Math.round(new_width + radius * Math.cos(angle));
+        const y = Math.round(new_height + radius * Math.sin(angle));
+        console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
         // let theLetter = String.fromCharCode(char);
         const theLetter = gurmukhi(char);
         angle += step;
@@ -133,9 +140,7 @@ function TheCircle() {
               } else {
                 final = prevAttempt + char;
               }
-              touchedMe(char);
-              dispatch(setAttempt(final));
-              ifCorrectWord(final);
+              touchedMe(char, final);
             }}
             key={char}
             style={{
@@ -151,6 +156,7 @@ function TheCircle() {
         );
       })
 }
+      {(state.attempt == "") ? <View></View> :
       <TouchableOpacity
         style={{
           backgroundColor: state.darkMode ? 'black' : 'white',
@@ -158,9 +164,8 @@ function TheCircle() {
           height: 40,
           width: 40,
           alignSelf: 'center',
-          position: 'absolute',
-          top: '45%',
-          left: '45%',
+          top: new_height,
+          elevation: 5
         }}
         onPress={() => {
           dispatch(setAttempt(''));
@@ -187,7 +192,7 @@ function TheCircle() {
             style={{ flex: 1 }}
           />
         </MaskedView>
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </AnimatedLinearGradient>
   );
 }

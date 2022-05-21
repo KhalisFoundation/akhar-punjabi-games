@@ -1,29 +1,14 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import { Provider } from "react-redux";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import HomeScreen from './homeScreen/landingPage';
 
-import configureStore from "redux-mock-store";
-import HomeScreen from "./homeScreen/landingPage";
-
-const mockStore = configureStore([]);
-
-jest.useFakeTimers();
-describe("HomeScreen", () => {
-  let store;
-
-  beforeEach(() => {
-    store = mockStore({
-      myState: "sample text",
-    });
+describe('<HomeScreen />', () => {
+  it('has 1 child', () => {
+    const tree = renderer.create(<HomeScreen />).toJSON();
+    expect(tree.children.length).toBe(1);
   });
-
-  it("has 7 children", () => {
-    const tree = renderer.create(
-        <Provider store={store}>
-          <HomeScreen />
-        </Provider>
-      )
-      .toJSON();
-    expect(tree.children.length).toBe(7);
+  it('renders correctly', () => {
+    const tree = renderer.create(<HomeScreen />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
