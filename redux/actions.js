@@ -108,3 +108,37 @@ export const reset = () => (dispatch) => {
     type: "RESET_LEVELS",
   });
 };
+
+// actions for 2048
+
+export const setBoard = (board) => (dispatch) => {
+  dispatch({
+    type: "SET_BOARD",
+    theBoard: board,
+  });
+}
+
+export const resetBoard = () => (dispatch) => {
+  dispatch({
+    type: "RESET_BOARD",
+  });
+}
+
+export const setNewBoardOnComplete = () => (dispatch) => {
+  dispatch({
+    type: "SET_NEW_BOARD",
+  });
+}
+
+export const setPunjabiNums = (bool) => (dispatch) => {
+  dispatch({
+    type: "2048_PUNJABI_NUMS",
+    theNums: bool,
+  });
+}
+
+export const closeResultModal = () => (dispatch) => {
+  dispatch({
+    type: "CLOSE_RESULT_MODAL",
+  });
+}

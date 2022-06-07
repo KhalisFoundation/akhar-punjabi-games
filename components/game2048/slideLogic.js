@@ -1,5 +1,5 @@
 export const getEmptyBoard = () => {
-    const board = Array([0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]);
+    const board = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]];
     return board;
 };
 

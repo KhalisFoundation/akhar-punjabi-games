@@ -12,23 +12,28 @@ import {
   Dimensions,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+
+// import resultModal which is handled if user won or lost
+// refer to the use of nextLevelModal to understand how it works
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { setTheState } from '../../redux/actions';
+import { setTheState, setBoard, resetBoard, setPunjabiNums, setNewBoardOnComplete } from '../../redux/actions';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import LoadingModal from './loadingScreen';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import { moveUp, moveDown, moveLeft, moveRight, getEmptyBoard, isFull, generateRandom, checkWin, isOver } from './slideLogic';
+import { moveUp, moveDown, moveLeft, moveRight, checkWin, isOver, generateRandom, getEmptyBoard } from './slideLogic';
 import * as Anvaad from 'anvaad-js';
-import { initialState } from '../../redux/reducers';
+import YouWonModal from './resultModal';
+import { useState } from 'react';
 
 function Game2048({ navigation }) {
   const dispatch = useDispatch();
-  // const state = useSelector((theState) => theState.theGameReducer);
+  const state = useSelector((theState) => theState.theGameReducer);
   const [fontLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -40,40 +45,10 @@ function Game2048({ navigation }) {
   
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
-  const state = useSelector((theState) => theState.theGameReducer);
-  const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
-  const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
-  let theState;
-  React.useEffect(() => {
-    async function getData() {
-      setLoadingScreenText(
-        'Getting previously stored Data from Async Storage!!!'
-      );
-      try {
-        const theStringState = await AsyncStorage.getItem('state');
-        if (theStringState !== null) {
-          theState = JSON.parse(theStringState);
-          console.log('got state that was previously saved');
-          // console.log(theState);
-        } else {
-          console.log('there is nothing is state');
-          theState = initialState;
-        }
-        dispatch(setTheState(theState));
-        setLoadingScreen(false);
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    }
-    getData();
-  }, [dispatch]);
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
 
-  const [punj, setPunj] = React.useState(true);
-  const sampleData = generateRandom(getEmptyBoard());
-  const [data, setData] = React.useState(sampleData);
+  const data = state.board;
   const colorCodes = {
     2: '#eee4da',
     4: '#ede0c8',
@@ -96,23 +71,23 @@ function Game2048({ navigation }) {
   });
   function onSwipeUp(gestureState) {
     setSwipeWay({myText: 'You swiped up!'});
-    let newData = moveUp(data);
-    setData(newData);
+    let newData = moveUp(state.board);
+    dispatch(setBoard(newData));
   }
   function onSwipeDown(gestureState) {
     setSwipeWay({myText: 'You swiped down!'});
-    let newData = moveDown(data);
-    setData(newData);
+    let newData = moveDown(state.board);
+    dispatch(setBoard(newData));
   }
   function onSwipeLeft(gestureState) {
     setSwipeWay({myText: 'You swiped left!'});
-    let newData = moveLeft(data);
-    setData(newData);
+    let newData = moveLeft(state.board);
+    dispatch(setBoard(newData));
   }
   function onSwipeRight(gestureState) {
     setSwipeWay({myText: 'You swiped right!'});
-    let newData = moveRight(data);
-    setData(newData);
+    let newData = moveRight(state.board);
+    dispatch(setBoard(newData));
   }
   function onSwipe(gestureName, gestureState) {
     const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
@@ -178,8 +153,8 @@ function Game2048({ navigation }) {
     numText: {
       textAlign: 'center',
       color: '#000',
-      fontSize: (punj) ? 30 : 20,
-      fontFamily: (punj) ? 'GurbaniHeavy' : 'Muli',
+      fontSize: (state.punjabiNums) ? 30 : 20,
+      fontFamily: (state.punjabiNums) ? 'GurbaniHeavy' : 'Muli',
     },
     otherScreens: {
       flexDirection: 'row',
@@ -210,23 +185,27 @@ function Game2048({ navigation }) {
       padding: 10,
       borderRadius: 50,
       alignSelf: 'flex-start',
-      margin: 0,
+      marginTop: 20,
     },
   });
 
-  if (checkWin(data)) {
-    console.log('You Won!!!');
+  let happen = false;
+  const [won, setWon] = useState(false);
+  if (!checkWin(state.board) && isOver(state.board)) {
+    setWon(false);
+    happen = true;
   }
-
-  if (isOver(data)) {
-    console.log('Lol, try again?!!!');
+  if (checkWin(state.board)) {
+    setWon(true);
+    happen = true;
   }
-
+  if (happen) { dispatch(setNewBoardOnComplete()); happen = false; }
   if (!fontLoaded) {
     return <AppLoading />;
   }
   return (
     <SafeAreaView style={styles.container}>
+      {state.resultShow ? <YouWonModal won={won} /> : null}
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.goBack()}
@@ -237,7 +216,6 @@ function Game2048({ navigation }) {
             <View
               style={{
                 backgroundColor: 'transparent',
-                justifyContent: 'center',
                 alignItems: 'center',
               }}
             >
@@ -268,7 +246,7 @@ function Game2048({ navigation }) {
               if (num!==0) {
               return (
                 <View style={{...styles.gridSquare, backgroundColor: colorCodes[num], borderColor: '#0005', borderWidth: 1,}} key={numIndex}>
-                  <Text style={{...styles.numText, fontSize: (num>=128) ? 25 : 30}}>{(punj) ? Anvaad.unicode(num) : num}</Text>
+                  <Text style={{...styles.numText, fontSize: (num>=128) ? 25 : 30}}>{(state.punjabiNums) ? Anvaad.unicode(num) : num}</Text>
                 </View>
               )} else {
                 return (<View style={styles.gridSquare} key={numIndex}></View>)
@@ -279,10 +257,9 @@ function Game2048({ navigation }) {
           ))}
         </View>
       </View>
-      <Text>{swipeWay.myText}</Text>
       </GestureRecognizer>
       <View style={styles.otherScreens}>
-        <TouchableOpacity style={{width:'50%', flexDirection:'row'}} onPress={()=>{console.log("State reloaded!"); setData(sampleData)}}>
+        <TouchableOpacity style={{width:'50%', flexDirection:'row'}} onPress={()=>{console.log("Board refreshed!"); dispatch(resetBoard())}}>
         <MaskedView
           style={{ width: 35, height: 35 }}
           maskElement={(
@@ -304,7 +281,7 @@ function Game2048({ navigation }) {
         </MaskedView>
         <Text style={styles.optText}>Reset</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width:'50%', flexDirection:'row'}} onPress={()=>{console.log("Language changed to %s!", (!punj)?"Punjabi":"English"); setPunj(!punj)}}>
+        <TouchableOpacity style={{width:'50%', flexDirection:'row'}} onPress={()=>{console.log("Language changed to %s!", (!state.punjabiNums)?"Punjabi":"English"); dispatch(setPunjabiNums(!state.punjabiNums))}}>
         <MaskedView
           style={{ width: 35, height: 35 }}
           maskElement={(

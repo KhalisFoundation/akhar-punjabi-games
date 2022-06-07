@@ -1,7 +1,8 @@
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getEmptyBoard} from '../components/game2048/slideLogic';
+import { generateRandom } from './../components/game2048/slideLogic';
 
 
 const setData = async (title, state) => {
@@ -21,6 +22,7 @@ const setWords = (level, allWords) => {
 
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
+const newBoard = getEmptyBoard();
 
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
@@ -57,7 +59,11 @@ export const initialState = {
   showPopUp: true,
   romanised: false,
   showNumOfLetters: false,
-  includeMatra: true
+  includeMatra: true,
+  // 2048 stuff
+  board: generateRandom(newBoard),
+  punjabiNums: true,
+  resultShow: false,
 };
 
 //to reset all state
@@ -302,6 +308,54 @@ function theGameReducer(state = initialState, action) {
   if (action.type === "RESET_LEVELS") {
     setData("state", initialState);
     return initialState
+  }
+
+  // actions for 2048
+
+  if (action.type === "SET_BOARD") {
+    const newState = {
+      ...state,
+      board: action.theBoard,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "RESET_BOARD") {
+    const newState = {
+      ...state,
+      board: generateRandom(getEmptyBoard()),
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "2048_PUNJABI_NUMS") {
+    const newState = {
+      ...state,
+      punjabiNums: action.theNums,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_NEW_BOARD") {
+    const newState = {
+      ...state,
+      board: generateRandom(getEmptyBoard()),
+      resultShow: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "CLOSE_RESULT_MODAL") {
+    const newState = {
+      ...state,
+      resultShow: false,
+    };
+    setData("state", newState);
+    return newState;
   }
 
   //default

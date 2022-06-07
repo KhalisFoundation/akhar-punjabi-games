@@ -117,7 +117,7 @@ function TheCircle() {
       charArray.map((char) => {
         const x = Math.round(new_width + radius * Math.cos(angle));
         const y = Math.round(new_height + radius * Math.sin(angle));
-        console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
+        //console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
         // let theLetter = String.fromCharCode(char);
         const theLetter = gurmukhi(char);
         angle += step;
