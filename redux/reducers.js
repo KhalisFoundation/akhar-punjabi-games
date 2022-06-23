@@ -64,6 +64,7 @@ export const initialState = {
   board: generateRandom(newBoard),
   punjabiNums: true,
   resultShow: false,
+  playbgm: true,
 };
 
 //to reset all state
@@ -358,8 +359,18 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
+  if (action.type === "SET_BACKGROUND_MUSIC") {
+    const newState = {
+      ...state,
+      playbgm: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  
   //default
   return { ...state };
 }
+
 
 export default theGameReducer;

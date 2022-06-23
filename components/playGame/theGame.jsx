@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useRef, useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
 import {
-  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Platform, Animated
+  View, Text, TouchableOpacity, StyleSheet, StatusBar,Dimensions, ScrollView, Platform, Animated
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,6 +23,8 @@ import WordsDoneModal from './modalNextWord';
 import {
   setTopWord,
   setBottomWord,
+  setCorrectWords,
+  setLevelProgress,
   setAttempt,
   setNewWords,
   setGivenUpWords,
@@ -82,6 +84,8 @@ function GameScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
+  
+  const screenWidth = Dimensions.get('window').width;
   const colors = theColors[state.darkMode];
   const [prevAttempt, setPrevAttempt] = useState("");
   const [colorCenter] = useState(['#274C7C', '#274C7C']);
@@ -338,6 +342,86 @@ function GameScreen({ navigation }) {
     );
   };
 
+  // animations
+  const [rotateAnimation, setRotateAnimation] = useState(new Animated.Value(0));
+
+  const handleAnimation = () => {
+    Animated.timing(rotateAnimation, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: true,
+    }).start(() => {
+      rotateAnimation.setValue(0);
+    });
+  };
+
+  const interpolateRotating = rotateAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '720deg'],
+  });
+
+  const animatedStyle = {
+    transform: [
+      {
+        rotate: interpolateRotating,
+      },
+    ],
+    width: screenWidth
+  };
+
+  // checking if the word is correct
+  useEffect(() => {
+    if (state.topWord === state.firstWord.engText && state.bottomWord === state.secondWord.engText) {
+      setTimeout(() => {
+        setState({
+          ...state,
+          giveUpsLeft: state.giveUpsLeft - 1,
+          topWord: '',
+          bottomWord: '',
+          topHint: '',
+          bottomHint: '',
+          firstWord: {
+            ...state.firstWord,
+            isCorrect: true,
+            isAnswered: true,
+          },
+          secondWord: {
+            ...state.secondWord,
+            isCorrect: true,
+            isAnswered: true,
+          },
+        });
+        handleAnimation();
+      }
+      , 1000);
+    }
+  }, [state.topWord, state.bottomWord]);
+  let word = state.attempt;
+  if (word === state.firstWord.engText && state.topWord === '') {
+    handleAnimation();
+    if (!state.correctWords.includes(state.firstWord)) {
+      dispatch(setTopWord());
+      dispatch(setCorrectWords(state.firstWord));
+      dispatch(setLevelProgress(state.firstWord));
+    }
+    // if bottomWord is filled that means both are now answered so will get new words
+    if (state.bottomWord !== '') {
+      dispatch(setNewWords());
+    }
+  }
+  if (word === state.secondWord.engText && state.bottomWord === '') {
+    handleAnimation();
+    if (!state.correctWords.includes(state.secondWord)) {
+      dispatch(setBottomWord());
+      dispatch(setCorrectWords(state.secondWord));
+      dispatch(setLevelProgress(state.secondWord));
+    }
+    // if topWord is filled that means both are now answered so will get new words
+    if (state.topWord !== '') {
+      dispatch(setNewWords());
+    }
+  };
+
   // // get length after removing laga matra
   // function woMatra(word) {
   //   var wordWOMatras = Array();
@@ -474,6 +558,7 @@ function GameScreen({ navigation }) {
               dispatch(setTopHint(hT));
               if (newTopLength === (state.firstLength - 1)) {
                 dispatch(setTopWord());
+                handleAnimation();
                 dispatch(setGivenUpWords(state.firstWord));
                 if (state.bottomWord !== '') {
                   dispatch(setNewWords());
@@ -522,6 +607,7 @@ function GameScreen({ navigation }) {
               dispatch(setBottomHint(hB));
               if (newBottomLength === (state.secondLength - 1)) {
                 dispatch(setBottomWord());
+                handleAnimation();
                 dispatch(setGivenUpWords(state.secondWord));
                 if (state.topWord !== '') {
                   dispatch(setNewWords());
@@ -591,8 +677,9 @@ function GameScreen({ navigation }) {
           </MaskedView>
         </TouchableOpacity>
       </AnimatedLinearGradient>
-
-      <TheCircle style={styles.theCircle} />
+      <Animated.View style={animatedStyle}>
+        <TheCircle style={{width: screenWidth}} />
+      </Animated.View>
     </AnimatedLinearGradient>
   );
 }

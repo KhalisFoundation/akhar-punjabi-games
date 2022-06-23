@@ -1,15 +1,19 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
+  Linking,
   Image,
   ImageBackground, 
-  SafeAreaView
+  SafeAreaView,
+  BackHandler, 
+  Alert, AppState
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
@@ -17,12 +21,19 @@ import AppLoading from 'expo-app-loading';
 import { setTheState } from '../../redux/actions';
 import LoadingModal from '../homeScreen/loadingScreen';
 import * as Anvaad from 'anvaad-js';
-
+import Khalis from '../../assets/khalis_logo.svg';
+import simran from '../../assets/simran.mp3'
 import { initialState } from '../../redux/reducers';
+import { Audio } from 'expo-av';
+import { screenName } from '../whichScreen';
+
+const audioPlayer = new Audio.Sound();
 
 function MenuScreen({ navigation }) {
+
+  // code for menu page
   const dispatch = useDispatch();
-  // const state = useSelector((theState) => theState.theGameReducer);
+  const state = useSelector((theState) => theState.theGameReducer);
   const [fontLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -30,14 +41,62 @@ function MenuScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
-  const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
+  
+  async function playSound() {
+    try {
+      console.log('Playing sound');
+      await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
+      await audioPlayer.playAsync();
+      await audioPlayer.setIsLoopingAsync(true);
+    } catch (err) {
+      console.warn("Couldn't Play audio", err)
+    }
+  }
+  async function stopSound() {
+    try {
+      if (audioPlayer) {
+        console.log('Stopping Sound');
+        await audioPlayer.stopAsync();
+        await audioPlayer.unloadAsync();
+      }
+    } catch (err) {
+      console.warn("Couldn't Stop audio", err)
+    }
+  }
+
+  let screen = screenName();
+  useEffect(() => {
+    if (screen === 'Menu') {
+      playSound();
+    }
+  }, [screen]);
+
+  //handling app state change
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", _handleAppStateChange);
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const _handleAppStateChange = nextAppState => {
+    if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground!');
+    } else {
+      console.log('App is in the background!');
+      stopSound();
+    }
+
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
+  };
+
   let theState;
-  React.useEffect(() => {
+  useEffect(() => {
     async function getData() {
-      setLoadingScreenText(
-        'Getting previously stored Data from Async Storage!!!'
-      );
       try {
         const theStringState = await AsyncStorage.getItem('state');
         if (theStringState !== null) {
@@ -49,7 +108,6 @@ function MenuScreen({ navigation }) {
           theState = initialState;
         }
         dispatch(setTheState(theState));
-        setLoadingScreen(false);
       } catch (error) {
         // Error retrieving data
         console.log(error);
@@ -82,7 +140,7 @@ function MenuScreen({ navigation }) {
       borderBottomWidth: 1
     },
     text: {color:'#fff', fontSize: 20, fontFamily: 'Muli', alignSelf:'center', margin: 10},
-    item: {backgroundColor: '#FF7E00', borderRadius: 10, margin: 10},
+    item: {backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'},
     menulogo: {
       width: '80%',
       resizeMode: 'contain',
@@ -136,7 +194,7 @@ function MenuScreen({ navigation }) {
         <View style={styles.columns}>
           <TouchableOpacity 
             style={styles.item}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => {stopSound();navigation.navigate('Home')}}
           >
             <Text style={[styles.text]}>Gurmukhi Wordlink</Text>
           </TouchableOpacity>
@@ -144,7 +202,7 @@ function MenuScreen({ navigation }) {
         <View style={styles.columns}>
           <TouchableOpacity 
             style={styles.item}
-            onPress={() => navigation.navigate('2048')}
+            onPress={() => {stopSound();navigation.navigate('2048')}}
           >
             <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
           </TouchableOpacity>
@@ -152,14 +210,9 @@ function MenuScreen({ navigation }) {
       </View>
       <TouchableOpacity
         style={styles.khalisTouchableOpacity}
-        onPress={() => {
-          console.log('Khalis Foundation');
-        }}
+        onPress={() => Linking.openURL('https://khalisfoundation.org')}
       >
-        <Image
-          style={styles.khalis}
-          source={require('../../assets/khalislogo150white.png')}
-        />
+        <Khalis/>
       </TouchableOpacity>
     </SafeAreaView>
   );

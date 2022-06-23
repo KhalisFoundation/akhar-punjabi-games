@@ -142,3 +142,10 @@ export const closeResultModal = () => (dispatch) => {
     type: "CLOSE_RESULT_MODAL",
   });
 }
+
+export const setBGM = (set) => (dispatch) => {
+  dispatch({
+    type: "SET_BACKGROUND_MUSIC",
+    onOrOff: set
+  });
+}

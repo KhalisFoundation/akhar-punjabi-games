@@ -41,7 +41,7 @@ function MoreGiveUps({ route, navigation }) {
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
-      marginTop: '3.5%',
+      marginTop: 0,
     },
     instructionsText: {
       fontFamily: 'Muli',

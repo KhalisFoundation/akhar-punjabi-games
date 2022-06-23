@@ -20,7 +20,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import {
-  setDarkMode, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
+  setDarkMode, setBGM, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
 } from '../../redux/actions';
 
 // TODO - Move all colors to separate file and import as variables.
@@ -38,6 +38,7 @@ function Settings({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   const colors = theColors[state.darkMode];
+  const platform = Platform.OS;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
@@ -45,7 +46,6 @@ function Settings({ navigation }) {
       backgroundColor: state.darkMode ? '#333' : colors.settings.container,
       width: '100%',
       height: '100%',
-      marginTop: '3.5%',
     },
     headerStyle: {
       color: 'black',
@@ -130,35 +130,35 @@ function Settings({ navigation }) {
           theSetting="Dark Mode"
           theList={[true, false]}
           imageSource="khanda"
-          theAction={setDarkMode} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theAction={setDarkMode} // setDarkMode toggles the darkMode
           theCurrentOptionIndex={[true, false].indexOf(state.darkMode)}
         />
         <SwitchBar
           theSetting="Show Pop Up after each word"
           theList={[true, false]}
           imageSource="ikOngkar"
-          theAction={setShowPopUp} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theAction={setShowPopUp} // setShowPopUp toggles the showing of pop up on level completion.
           theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
         <SwitchBar
           theSetting="Romanised words"
           theList={[true, false]}
           imageSource="ura"
-          theAction={setShowRomanised} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theAction={setShowRomanised} // setShowRomanised toggles the showing of romanised words.
           theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
         />
         <SwitchBar
           theSetting="Indicate Number of Letters"
           theList={[true, false]}
           imageSource="letters"
-          theAction={setShowNumOfLetters} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theAction={setShowNumOfLetters} // toggles the showing of number of letters in the word.
           theCurrentOptionIndex={[true, false].indexOf(state.showNumOfLetters)}
         />
         <SwitchBar
           theSetting="Include Matras"
           theList={[true, false]}
           imageSource="matra"
-          theAction={setIncludeMatra} // setTypeOfWords take 1 param, both,gurbani or punjabi,
+          theAction={setIncludeMatra} // toggles the showing of matras in the word.
           theCurrentOptionIndex={[true, false].indexOf(state.includeMatra)}
           displayParam={state.showNumOfLetters}
         />

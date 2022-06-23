@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 import theColors from '../../util/colors';
 
-function LoadingModal({ visible, theText }) {
+function LoadingModal({ visible }) {
   const state = useSelector((theState) => theState.theGameReducer);
 
   let colors;
@@ -46,7 +46,7 @@ function LoadingModal({ visible, theText }) {
           disable="disabled"
           animating
         />
-        <Text style={styles.msg}>{theText}</Text>
+        <Text style={styles.msg}>Let's Play</Text>
       </View>
     </Modal>
   );

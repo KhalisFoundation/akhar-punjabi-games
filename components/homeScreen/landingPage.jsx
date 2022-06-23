@@ -21,6 +21,7 @@ import AppLoading from 'expo-app-loading';
 import { setTheState } from '../../redux/actions';
 import LoadingModal from './loadingScreen';
 
+import Khalis from '../../assets/khalis_logo.svg';
 import { initialState } from '../../redux/reducers';
 
 function HomeScreen({ navigation }) {
@@ -30,19 +31,16 @@ function HomeScreen({ navigation }) {
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
+    Prabhki: require('../../assets/fonts/Prabhki.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const state = useSelector((theState) => theState.theGameReducer);
-  const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
-  const [loadingScreenText, setLoadingScreenText] = React.useState('Loading');
+  //const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   let theState;
   React.useEffect(() => {
     async function getData() {
-      setLoadingScreenText(
-        'Getting previously stored Data from Async Storage!!!'
-      );
       try {
         const theStringState = await AsyncStorage.getItem('state');
         if (theStringState !== null) {
@@ -54,7 +52,7 @@ function HomeScreen({ navigation }) {
           theState = initialState;
         }
         dispatch(setTheState(theState));
-        setLoadingScreen(false);
+        //setLoadingScreen(false);
       } catch (error) {
         // Error retrieving data
         console.log(error);
@@ -113,20 +111,21 @@ function HomeScreen({ navigation }) {
       padding: 10,
       borderRadius: 50,
       alignSelf: 'flex-start',
-      margin: 0, marginTop: '5%'
+      marginTop: 10,
+      marginLeft: 10,
     },
     bold: {
       fontWeight: 'bold',
       alignSelf: 'center',
     },
   });
-
+  
   if (!fontLoaded) {
     return <AppLoading />;
   }
   return (
     <SafeAreaView style={styles.container}>
-      <LoadingModal visible={loadingScreenStatus} theText={loadingScreenText} />
+      {/* <LoadingModal visible={loadingScreenStatus} /> */}
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.goBack()}
@@ -141,17 +140,37 @@ function HomeScreen({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <IonIcons name="arrow-back" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              <IonIcons name="arrow-back" size={35} color={'#fff'}/>
             </View>
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#ff8008', '#ffc837'] }
             style={{ flex: 1 }}
           />
         </MaskedView>
-      </TouchableOpacity>  
-      <Image style={styles.logo} source={require('../../assets/logo.png')} resizeMode="contain" />
+      </TouchableOpacity>
+      <MaskedView
+          style={{ width: '100%', height: 100 }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+        <Text style={{fontFamily: 'Prabhki', fontSize: 80}}>
+          AKr joV
+        </Text> 
+        </View>
+        )}
+        >
+          <LinearGradient
+            colors={['#ff8008', '#ffc837'] }
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
       <TouchableOpacity
         style={styles.playTouchableOpacity}
         onPress={() => {
@@ -195,11 +214,7 @@ function HomeScreen({ navigation }) {
         style={styles.khalisTouchableOpacity}
         onPress={() => Linking.openURL('https://khalisfoundation.org')}
       >
-        <Image
-          source={require('../../assets/khalislogo150white.png')}
-          style={{ width: 150, alignSelf: 'center' }}
-          resizeMode="contain"
-        />
+        <Khalis/>
       </TouchableOpacity>
     </SafeAreaView>
   );

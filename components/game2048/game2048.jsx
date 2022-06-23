@@ -10,6 +10,7 @@ import {
   ImageBackground, 
   SafeAreaView, 
   Dimensions,
+  Animated, Easing, TouchableWithoutFeedback
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,10 +27,10 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import LoadingModal from './loadingScreen';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import { moveUp, moveDown, moveLeft, moveRight, checkWin, isOver, generateRandom, getEmptyBoard } from './slideLogic';
+import { moveUp, moveDown, moveLeft, moveRight, checkWin, isOver, generateRandom, getEmptyBoard, changed } from './slideLogic';
 import * as Anvaad from 'anvaad-js';
 import YouWonModal from './resultModal';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Game2048({ navigation }) {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function Game2048({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
+    Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
   
   const screenWidth = Dimensions.get('window').width;
@@ -72,43 +74,37 @@ function Game2048({ navigation }) {
   function onSwipeUp(gestureState) {
     setSwipeWay({myText: 'You swiped up!'});
     let newData = moveUp(state.board);
-    dispatch(setBoard(newData));
+    if (changed(newData, state.board)) {
+      dispatch(setBoard(generateRandom(newData)));
+    }
   }
   function onSwipeDown(gestureState) {
     setSwipeWay({myText: 'You swiped down!'});
     let newData = moveDown(state.board);
-    dispatch(setBoard(newData));
+    if (changed(newData, state.board)) {
+      dispatch(setBoard(generateRandom(newData)));
+    }
   }
   function onSwipeLeft(gestureState) {
     setSwipeWay({myText: 'You swiped left!'});
     let newData = moveLeft(state.board);
-    dispatch(setBoard(newData));
+    if (changed(newData, state.board)) {
+      dispatch(setBoard(generateRandom(newData)));
+    }
   }
   function onSwipeRight(gestureState) {
     setSwipeWay({myText: 'You swiped right!'});
     let newData = moveRight(state.board);
-    dispatch(setBoard(newData));
-  }
-  function onSwipe(gestureName, gestureState) {
-    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-    setSwipeWay({gestureName: gestureName});
-    switch (gestureName) {
-      case SWIPE_UP:
-        setSwipeWay({backgroundColor: 'red'});
-        break;
-      case SWIPE_DOWN:
-        setSwipeWay({backgroundColor: 'green'});
-        break;
-      case SWIPE_LEFT:
-        setSwipeWay({backgroundColor: 'blue'});
-        break;
-      case SWIPE_RIGHT:
-        setSwipeWay({backgroundColor: 'yellow'});
-        break;
+    if (changed(newData, state.board)) {
+      dispatch(setBoard(generateRandom(newData)));
     }
   }
+  function onSwipe(gestureName, gestureState) {
+    setSwipeWay({gestureName: gestureName});
+  }
+  
   const config = {
-    velocityThreshold: 0.3,
+    velocityThreshold: 0.25,
     directionalOffsetThreshold: 80
   }; 
 
@@ -118,8 +114,7 @@ function Game2048({ navigation }) {
       flex: 1,
       alignItems: 'center',
       flexDirection: 'column',
-      justifyContent: 'space-between',
-      padding: 10, 
+      justifyContent: 'space-evenly',
       backgroundColor: "#274C7C",
     },
     bgSquare: {
@@ -130,6 +125,11 @@ function Game2048({ navigation }) {
       padding: 10,
       backgroundColor: '#FFB846',
     },
+    box: {
+      backgroundColor: '#000',
+      height: 500, 
+      width: 500,
+    },
     gridRow: {
       flexDirection: 'row',
       justifyContent: 'center',
@@ -139,6 +139,7 @@ function Game2048({ navigation }) {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      
     },
     gridSquare: {
       width: screenWidth * 0.7 / 4,
@@ -181,13 +182,58 @@ function Game2048({ navigation }) {
       textShadowRadius: 1,
     },
     back: {
-      backgroundColor: state.darkMode ? '#035' : '#fff',
+      backgroundColor: '#035',
       padding: 10,
       borderRadius: 50,
       alignSelf: 'flex-start',
-      marginTop: 20,
+      marginTop: 15,
+      marginLeft: 10,
     },
   });
+
+  const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+
+
+  useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.bounce,
+        useNativeDriver: true,
+      }
+    ).start();
+  }, [state.board])
+
+  const animatedValue = new Animated.Value(0);
+
+  const buttonScale = animatedValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 1.035, 1.07]
+  });
+
+  const onPressIn = () => {
+      Animated.timing(animatedValue, {
+        toValue: 1,
+        duration: 250,
+        easing: Easing.linear,
+        useNativeDriver: true
+      }).start();
+  }
+
+  const onPressOut = () => {
+      Animated.timing(animatedValue, {
+          toValue: 0,
+          duration: 100,
+          easing: Easing.linear,
+          useNativeDriver: true
+        }).start();
+  };
+
+  const animatedScaleStyle = {
+      transform: [{scale: buttonScale}]
+  };
 
   let happen = false;
   const [won, setWon] = useState(false);
@@ -209,6 +255,8 @@ function Game2048({ navigation }) {
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.goBack()}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
       >
       <MaskedView
           style={{ width: 35, height: 35 }}
@@ -219,16 +267,37 @@ function Game2048({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <IonIcons name="arrow-back" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              <IonIcons name="arrow-back" size={35} color={'#464646'} style={styles.shadow} />
             </View>
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#ff8008', '#ffc837']}
             style={{ flex: 1 }}
           />
         </MaskedView>
       </TouchableOpacity>
+      <MaskedView
+          style={{ width: '100%', height: 100 }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+        <Text style={{fontFamily: 'GurbaniHeavy', fontSize: 80}}>
+          2048
+        </Text> 
+        </View>
+        )}
+        >
+          <LinearGradient
+            colors={['#ff8008', '#ffc837'] }
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
       <GestureRecognizer
         onSwipe={(direction, state) => onSwipe(direction, state)}
         onSwipeUp={(state) => onSwipeUp(state)}
@@ -240,21 +309,27 @@ function Game2048({ navigation }) {
         >
       <View style={styles.bgSquare}>
         <View style={styles.gridColumn}>
-        {data.map((row, rowIndex) => (
-          <View style={styles.gridRow} key={rowIndex}>
-            {row.map((num, numIndex) => {
-              if (num!==0) {
-              return (
-                <View style={{...styles.gridSquare, backgroundColor: colorCodes[num], borderColor: '#0005', borderWidth: 1,}} key={numIndex}>
-                  <Text style={{...styles.numText, fontSize: (num>=128) ? 25 : 30}}>{(state.punjabiNums) ? Anvaad.unicode(num) : num}</Text>
-                </View>
-              )} else {
-                return (<View style={styles.gridSquare} key={numIndex}></View>)
+          {data.map((row, rowIndex) => (
+            <View style={styles.gridRow} key={rowIndex}>
+              {row.map((num, numIndex) => {
+                if (num!==0) {
+                return (
+                  <TouchableWithoutFeedback
+                  onPressIn={onPressIn}
+                  onPressOut={onPressOut}>
+                  <Animated.View style={animatedScaleStyle} key={numIndex+13}>
+                  <View style={{...styles.gridSquare, backgroundColor: colorCodes[num], borderColor: '#0005', borderWidth: 1,}} key={numIndex}>
+                    <Text style={{...styles.numText, fontSize: (num>=128) ? 25 : 30}}>{(state.punjabiNums) ? Anvaad.unicode(num) : num}</Text>
+                  </View>
+                  </Animated.View>
+                  </TouchableWithoutFeedback>
+                )} else {
+                  return (<Animated.View style={{opacity: fadeAnim}}><View style={styles.gridSquare} key={numIndex}></View></Animated.View>)
+                }
               }
-            }
-            )}
-          </View>
-          ))}
+              )}
+            </View>
+            ))}
         </View>
       </View>
       </GestureRecognizer>

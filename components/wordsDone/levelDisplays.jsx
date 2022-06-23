@@ -8,6 +8,7 @@ import {
   StyleSheet,
   FlatList,
 } from 'react-native';
+import * as Speech from 'expo-speech';
 
 import { useSelector } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
@@ -82,6 +83,7 @@ function Level({ title, theWords, setAnswer }) {
         onPress={() => {
           // console.log(item.meaning);
           setAnswer(item);
+          //Speech.speak(Anvaad.translit(item.engText));
         }}
       >
         <View style={[wordStyle, styles.wordsStyle]}>

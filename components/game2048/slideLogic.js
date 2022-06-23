@@ -89,10 +89,10 @@ export const moveLeft = (board) => {
     const newBoard1 = compress(board);
     const newBoard2 = merge(newBoard1);
     const newBoard3 = compress(newBoard2);
-    const finalBoard = generateRandom(newBoard3);
+    let final = newBoard3;
     //console.log("after move left");
     //printBoard(finalBoard);
-    return finalBoard;
+    return final;
 };
 
 const reverse = (board) => {
@@ -114,10 +114,10 @@ export const moveRight = (board) => {
     //printBoard(board);
     const reversedBoard = reverse(board);
     const newBoard = moveLeft(reversedBoard);
-    const newBoard2 = reverse(newBoard);
+    let final = reverse(newBoard);
     //console.log("after move right");
-    //printBoard(newBoard2);
-    return newBoard2;
+    //printBoard(final);
+    return final;
 };
 
 const rotateLeft = (board) => {
@@ -160,7 +160,7 @@ export const moveUp = (board) => {
     //printBoard(board);
     const rotateBoard = rotateLeft(board);
     const newBoard = moveLeft(rotateBoard);
-    const final = rotateRight(newBoard);
+    let final = rotateRight(newBoard);
     //console.log("after move up");
     //printBoard(final);
     return final;
@@ -170,7 +170,7 @@ export const moveDown = (board) => {
     //printBoard(board);
     const rotateBoard = rotateRight(board);
     const newBoard = moveLeft(rotateBoard);
-    const final = rotateLeft(newBoard);
+    let final = rotateLeft(newBoard);
     //console.log("after move down");
     //printBoard(final);
     return final;
@@ -206,4 +206,8 @@ export const isOver = (board) => {
     }
     return true;
 };
+
+export const changed = (board, updatedBoard) => {
+    return hasDiff(board, updatedBoard);
+}
 

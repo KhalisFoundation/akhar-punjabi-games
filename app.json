@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ੳਅੲ Games - Learn Gurmukhi",
+    "name": "Sikh Games",
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
@@ -17,11 +17,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
-      "buildNumber": "6"
+      "buildNumber": "7"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#000000"

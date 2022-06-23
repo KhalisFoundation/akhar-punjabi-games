@@ -43,7 +43,7 @@ function RightWords({ navigation }) {
       justifyContent: 'center',
       width: '100%',
       height: '100%',
-      marginTop: '3.5%',
+      marginTop: (Platform.OS == 'android') ? '3.5%' : 0,
     },
     downStyle: {
       position: 'absolute',
