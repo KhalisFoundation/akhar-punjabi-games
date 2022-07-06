@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { closeResultModal } from '../../redux/actions';
+import Icon from '../../assets/Group-14.svg';
+import Win from '../../assets/Win.svg'
 
 function YouWonModal(won) {
   won = won.won
@@ -104,19 +106,20 @@ function YouWonModal(won) {
         animation="slideInDown"
         iterationCount={1}
         style={{
-          flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'
+          flex: 1, alignItems: 'center', justifyContent: 'center', padding:25, paddingTop:100, backgroundColor: 'rgba(0,0,0,0.5)'
         }}
       >
         
-            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#274C7C' }}>
-              <Animatable.Image
+            <View style={{ width: '100%', borderRadius: 30, backgroundColor:'#274C7C' }}>
+              <Animatable.View
                 animation="tada"
                 iterationCount={2}
-                source={won ? require('../../assets/Win.png') : require('../../assets/Group-14.png')}
                 style={{
-                  margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4, height: won?250:150, width: won?250:150, resizeMode: 'contain'
+                 marginBottom: won ? 0 : 25, alignItems:'center' 
                 }}
-              />
+              >
+                {won ? <Win height={300} style={{marginTop: -75}}/> : <Icon style={{transform: [{scale:2}]}}/>}
+              </Animatable.View>
               <Text style={styles.text}>
                 {won ? "vDweIAwN jI!" : "koeI g~l nhIN!"}
               </Text>

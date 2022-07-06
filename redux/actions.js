@@ -149,3 +149,10 @@ export const setBGM = (set) => (dispatch) => {
     onOrOff: set
   });
 }
+
+export const showMeaningPopUp = (set) => (dispatch) => {
+  dispatch({
+    type: "SHOW_MEANING_POPUP",
+    onOrOff: set
+  });
+}

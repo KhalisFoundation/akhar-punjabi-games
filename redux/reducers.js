@@ -20,6 +20,27 @@ const setWords = (level, allWords) => {
   return [charArray, firstWord, secondWord];
 };
 
+// generate words for getMoreLives Page
+
+const wordsToType = [
+  'vwihgurU',
+  'DMn gurU nwnk dyv swihb jI',
+  'DMn gurU AMgd dyv swihb jI',
+  'DMn gurU Amrdws swihb jI',
+  'DMn gurU rwmdws swihb jI',
+  'DMn gurU Arjn dyv swihb jI',
+  'DMn gurU hrgoibMd swihb jI',
+  'DMn gurU hrrwie swihb jI',
+  'DMn gurU hrikRSn swihb jI',
+  'DMn gurU qyg bhwdr swihb jI',
+  'DMn gurU goibMd isMG swihb jI',
+  'DMn SRI gurU gRMQ swihb jI',
+  'DMn gurU DMn gurU ipAwry',
+];
+const getRandomWord = () => {
+  return wordsToType[Math.floor(Math.random() * wordsToType.length)];
+};
+
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
 const newBoard = getEmptyBoard();
@@ -65,6 +86,8 @@ export const initialState = {
   punjabiNums: true,
   resultShow: false,
   playbgm: true,
+  // levels completed
+  meaningPopup: false,
 };
 
 //to reset all state
@@ -202,6 +225,7 @@ function theGameReducer(state = initialState, action) {
       givenUpWords: newGiveUpWords,
       usableWords: newUsableWords,
       typesOfWords: newWordType,
+      livesWord: getRandomWord(),
     };
 
     setData("state", newState);
@@ -363,6 +387,15 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       playbgm: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SHOW_MEANING_POPUP") {
+    const newState = {
+      ...state,
+      meaningPopup: action.onOrOff,
     };
     setData("state", newState);
     return newState;

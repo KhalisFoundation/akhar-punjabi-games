@@ -11,6 +11,30 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { closeNextLevelModal, reset } from '../../redux/actions';
 
+// importing svg graphics
+import Stage1 from '../../assets/stage1.svg';
+import Stage2 from '../../assets/stage2.svg';
+import Stage3 from '../../assets/stage3.svg';
+import Stage4 from '../../assets/stage4.svg';
+import Stage5 from '../../assets/stage5.svg';
+
+import Icon1 from '../../assets/Group-1.svg';
+import Icon2 from '../../assets/Group-2.svg';
+import Icon3 from '../../assets/Group-3.svg';
+import Icon4 from '../../assets/Group-4.svg';
+import Icon5 from '../../assets/Group-5.svg';
+import Icon6 from '../../assets/Group-6.svg';
+import Icon7 from '../../assets/Group-7.svg';
+import Icon8 from '../../assets/Group-8.svg';
+import Icon9 from '../../assets/Group-9.svg';
+import Icon10 from '../../assets/Group-10.svg';
+import Icon11 from '../../assets/Group-11.svg';
+import Icon12 from '../../assets/Group-12.svg';
+import Icon13 from '../../assets/Group-13.svg';
+import Icon14 from '../../assets/Group-14.svg';
+
+import Win from '../../assets/Win.svg'
+
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
@@ -76,16 +100,8 @@ function WordsDoneModal() {
       textAlign: 'center',
       fontSize: 35,
       color: 'white',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 2,
-        height: 2
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 2,
-      elevation: 5,
       paddingTop: 25,
-      fontFamily: 'Bookish',
+      fontFamily: 'Prabhki',
     }
   });
   const getRandomNum = (min, max) => {
@@ -94,28 +110,28 @@ function WordsDoneModal() {
   const nowWow = getRandomNum(1, 14);
   console.log(nowWow);
   const wows = {
-    1: require('../../assets/Group-1.png'),
-    2: require('../../assets/Group-2.png'),
-    3: require('../../assets/Group-3.png'),
-    4: require('../../assets/Group-4.png'),
-    5: require('../../assets/Group-5.png'),
-    6: require('../../assets/Group-6.png'),
-    7: require('../../assets/Group-7.png'),
-    8: require('../../assets/Group-8.png'),
-    9: require('../../assets/Group-9.png'),
-    10: require('../../assets/Group-10.png'),
-    11: require('../../assets/Group-11.png'),
-    12: require('../../assets/Group-12.png'),
-    13: require('../../assets/Group-13.png'),
-    14: require('../../assets/Group-14.png'),
+    1: <Icon1 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    2: <Icon2 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    3: <Icon3 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    4: <Icon4 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    5: <Icon5 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    6: <Icon6 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    7: <Icon7 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    8: <Icon8 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    9: <Icon9 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    10:<Icon10 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    11:<Icon11 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    12:<Icon12 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    13:<Icon13 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    14:<Icon14 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
   };
   const doneYet = Math.floor((10 - state.levelProgress[0].wordsNeeded) / 2);
   const stage = {
-    0: require('../../assets/stage1.png'),
-    1: require('../../assets/stage2.png'),
-    2: require('../../assets/stage3.png'),
-    3: require('../../assets/stage4.png'),
-    4: require('../../assets/stage5.png')
+    0: <Stage1/>,
+    1: <Stage2/>,
+    2: <Stage3/>,
+    3: <Stage4/>,
+    4: <Stage5/>
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
@@ -138,27 +154,18 @@ function WordsDoneModal() {
       >
         {(state.levelProgress[0].level === 8 && state.levelProgress[0].wordsNeeded === 0)
           ? (
-            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#274C7C' }}>
+            <View style={{ width: '100%', flexDirection: 'column',alignItems: 'center', borderRadius: 30, backgroundColor:'#274C7C', marginVertical: 50 }}>
               <Animatable.View
-                animation="fadeIn"
-                iterationCount={1}
-                style={{
-                  flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20
-                }}
-              >
-                <Text style={styles.text}>
-                  ਵਧਾਈਆਂ ਜੀ!
-                </Text>
-              </Animatable.View>
-              <Animatable.Image
                 animation="tada"
                 iterationCount={2}
-                source={require('../../assets/Win.png')}
-                style={{
-                  margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4, height: 250, resizeMode: 'contain',
-                }}
-              />
-              <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20 }]}>
+                style={{margin: 0, padding: 0}}
+              >
+                <Win style={{transform:[{ scale: 2 }], marginBottom:50}}/>
+              </Animatable.View>
+              <Animatable.Text animation="fadeIn" iterationCount={1} style={styles.text}>
+                vDweIAwN jI
+              </Animatable.Text>
+              <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20, padding:0 }]}>
                 More levels coming soon!
               </Text>
               <Animatable.View
@@ -183,21 +190,21 @@ function WordsDoneModal() {
           )
           : (
             <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#21218b' }}>
-              <Animatable.Image
+              <Animatable.View
                 animation="tada"
                 iterationCount={2}
-                source={wows[nowWow]}
-                style={{
-                  margin: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4,
-                }}
-              />
-              <Animatable.Image
+                style={{ margin: 15 }}
+              >
+                {wows[nowWow]}
+              </Animatable.View>
+              <Animatable.View
                 animation="bounceIn"
                 easing="ease-in"
                 iterationCount={1}
-                source={stage[doneYet]}
-                style={{ margin: 15, transform: [{ scale: 0.75 }], }}
-              />
+                style={{ margin: 15 }}
+              >
+                {stage[doneYet]}
+              </Animatable.View>
               <Animatable.View
                 animation="slideInDown"
                 iterationCount={1}

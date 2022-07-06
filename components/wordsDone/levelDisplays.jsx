@@ -10,14 +10,16 @@ import {
 } from 'react-native';
 import * as Speech from 'expo-speech';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import theColors from '../../util/colors';
+import { showMeaningPopUp } from '../../redux/actions';
 
 function Level({ title, theWords, setAnswer }) {
   const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   const [up, setUp] = useState(false);
 
   const colors = theColors[state.darkMode];
@@ -59,15 +61,7 @@ function Level({ title, theWords, setAnswer }) {
 
   let words = theWords;
   if (words === undefined) {
-    words = [
-      {
-        engText: 'koeI sæbd nhIN',
-        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
-        meaning: 'There are no words',
-        level: 'N/A',
-        status: 'N/A',
-      },
-    ];
+    words = [];
   }
   const renderItem = React.useCallback(({ item }) => {
     let a = 0;
@@ -83,7 +77,8 @@ function Level({ title, theWords, setAnswer }) {
         onPress={() => {
           // console.log(item.meaning);
           setAnswer(item);
-          //Speech.speak(Anvaad.translit(item.engText));
+          dispatch(showMeaningPopUp(false));
+          // Speech.speak(Anvaad.translit(item.engText));
         }}
       >
         <View style={[wordStyle, styles.wordsStyle]}>

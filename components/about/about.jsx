@@ -20,6 +20,7 @@ import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
 import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
+import Logo from '../../assets/sikh_games.svg';
 
 function About({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -110,7 +111,7 @@ function About({ navigation }) {
           </MaskedView>
           <Text style={{ fontFamily: 'Nasa', fontSize:25, color: "#61CAE5"}}>(SIKH GAMES)</Text>
         </View>
-        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/logo.png') : require('../../assets/logo.png')} resizeMode="contain" />
+        <Logo style={{height: 175, marginTop: 20}}/>
 
         {/* Explaining Akhar Jor*/}
         <Text style={{ fontFamily: 'Nasa', fontSize: 25, color: state.darkMode ? white : black }}>{'\n'}Akhar Jor</Text>

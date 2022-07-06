@@ -12,42 +12,39 @@ import {
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import Level from './levelDisplays';
+import { showMeaningPopUp } from '../../redux/actions';
 import theColors from '../../util/colors';
+import { useEffect } from 'react';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
-  const [down, setDown] = useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
+    Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
-      position: 'absolute',
-      top: 0,
       alignItems: 'center',
       backgroundColor: colors.wordsCompleted.container,
-      justifyContent: 'center',
+      justifyContent: 'space-between',
+      paddingBottom: 25,
       width: '100%',
-      height: '100%',
-      marginTop: (Platform.OS == 'android') ? '3.5%' : 0,
+      height: '100%'
     },
     downStyle: {
-      position: 'absolute',
-      top: 0,
     },
     arrow: {
       position: 'absolute',
@@ -60,12 +57,14 @@ function RightWords({ navigation }) {
       // backgroundColor: colors.wordsCompleted.listContainer,
       height: '60%',
       width: '95%',
-      padding: 10,
+      paddingBottom: 5,
+      paddingTop: 0
     },
     listContainerFull: {
       width: '95%',
-      padding: 10,
-      height: '80%'
+      height: '80%',
+      paddingBottom: 10,
+      paddingTop: 0
     },
     answerBoxAlt: {
       height: 25,
@@ -74,7 +73,7 @@ function RightWords({ navigation }) {
     answerBox: {
       backgroundColor: state.darkMode ? '#ffae00' : colors.wordsCompleted.answerBox,
       width: '95%',
-      height: '30%',
+      height: '20%',
       borderRadius: 20,
       padding: 15,
       shadowColor: '#000',
@@ -94,13 +93,11 @@ function RightWords({ navigation }) {
     },
     answerText: {
       fontSize: 18,
-      color: '#464646',
-      fontWeight: 'bold',
+      color: '#464646',fontFamily: 'Muli'
     },
     answerForAnswerText: {
       fontSize: 18,
       color: 'green',
-      fontWeight: 'bold',
     },
     shadow: {
       shadowColor: 'black',
@@ -158,6 +155,10 @@ function RightWords({ navigation }) {
     });
   }
 
+  useEffect(() => {
+    dispatch(showMeaningPopUp(state.meaningPopup))
+  }, [state.meaningPopup]);
+
   const renderItem = React.useCallback(({ item }) => {
     return (
       <Level title={item.text} theWords={item.words} setAnswer={setAnswer} />
@@ -176,7 +177,7 @@ function RightWords({ navigation }) {
         backgroundColor={state.darkMode ? '#004ba6' : 'cyan'}
         containerStyle={[
           Platform.OS === 'android' && { height: 75, paddingTop: 0 },
-          down ? styles.downStyle : null
+          (!state.meaningPopup) ? styles.downStyle : null
         ]}
         leftComponent={(
           <Icon
@@ -198,7 +199,7 @@ function RightWords({ navigation }) {
         }}
       />
 
-      <View style={down ? styles.listContainerFull : styles.listContainer}>
+      <View style={state.meaningPopup ? styles.listContainerFull : styles.listContainer}>
         <FlatList
           // style={styles.listContainer}
           data={levels}
@@ -207,61 +208,33 @@ function RightWords({ navigation }) {
         />
       </View>
 
-      <View style={down ? styles.answerBoxAlt : styles.answerBox}>
+      <View style={state.meaningPopup ? styles.answerBoxAlt : styles.answerBox}>
         <TouchableOpacity
           style={styles.arrow}
-          onPress={() => { setDown(!down); }}
+          onPress={() => { dispatch(showMeaningPopUp(!state.meaningPopup)); }}
         >
-          <MaskedView
-            style={{ height: 40, width: 40 }}
-            maskElement={
-              <Icon name={down ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color="black" style={styles.shadow} />
-          }
-          >
-            <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-              style={styles.arrowGradient}
-            />
-          </MaskedView>
+          <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color="#274C7C" style={styles.shadow} />
         </TouchableOpacity>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>Gurmukhi Text</Text>
-          <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: 20 }]}>
-            {showAnswer.punjabiText}
-          </Text>
-        </View>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>English Text</Text>
-          <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
+        <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: 35, fontFamily: 'Prabhki' }]}>
             {showAnswer.engText}
           </Text>
         </View>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>Meaning</Text>
-          <Text style={styles.answerText}> : </Text>
+        <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
           <ScrollView
             scrollEventThrottle={16}
             showsHorizontalScrollIndicator={false}
             horizontal
           >
-            <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
+            <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontFamily: 'Muli' }]}>
               {showAnswer.meaning}
             </Text>
           </ScrollView>
         </View>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>Level</Text>
-          <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
-            {showAnswer.level}
-          </Text>
-        </View>
-        <View style={down ? styles.answerRowAlt : styles.answerRow}>
+        <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Status</Text>
           <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color }]}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontFamily: 'Muli' }]}>
             {showAnswer.status}
           </Text>
         </View>

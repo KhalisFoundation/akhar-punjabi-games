@@ -465,7 +465,7 @@ function GameScreen({ navigation }) {
       <Header
         backgroundColor="transparent"
         containerStyle={[
-          Platform.OS === 'android' && { height: 80, paddingTop: 0, justifyContent: 'center' },
+          Platform.OS === 'android' && { height: 100, paddingTop: 0, justifyContent: 'center' },
         ]}
         leftComponent={(
           <IconH
@@ -678,7 +678,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </AnimatedLinearGradient>
       <Animated.View style={animatedStyle}>
-        <TheCircle style={{width: screenWidth}} />
+        <TheCircle />
       </Animated.View>
     </AnimatedLinearGradient>
   );

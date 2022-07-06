@@ -8,10 +8,14 @@ import {
   StatusBar,
   TextInput,
   Animated,
-  Platform
+  Platform,
+  ScrollView
 } from 'react-native';
+import { useState } from 'react';
 import { Header } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
+import { getKeyboardKeyValue, getMatraAkhar } from '../GurmukhiKeyboard/utils';
+import { defaultMatraValue, matras, withMatra, withoutMatra } from '../GurmukhiKeyboard/constants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
@@ -19,8 +23,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
-import { setGiveUpLives } from '../../redux/actions';
+import { setGiveUpLives, setLivesWord } from '../../redux/actions';
 import theColors from '../../util/colors';
+import { useEffect } from 'react';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -33,6 +38,43 @@ function MoreGiveUps({ route, navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
+
+  const [textEntry, setTextEntry] = useState('');
+
+  // code for gurmukhi keyboard
+  const defaultMatraKeys = Object.keys(defaultMatraValue);
+  const isWithMatras = true;
+  const keys = isWithMatras ? withMatra : withoutMatra;
+  const keyboardGrid = [keys];
+  useEffect(() => {
+    console.log(textEntry);
+  });
+
+  const handleClick = (keyValue) => {
+    const lastChar = textEntry.slice(-1);
+
+    switch (keyValue) {
+      case 'meta':
+        if (textEntry !== '') {
+          setTextEntry(textEntry.slice(0, -1));
+        }
+        break;
+
+      case 'space':
+        setTextEntry(`${textEntry} `);
+        break;
+
+      default:
+        // checks if matra could be applied to last character in search textEntry
+        if (!matras.includes(lastChar) && keyValue.includes(lastChar) && keyValue !== lastChar) {
+          setTextEntry(`${textEntry.slice(0, -1)}${keyValue}`);
+        } else {
+          setTextEntry(textEntry + keyValue);
+        }
+        break;
+    }
+  };
+
   const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
@@ -41,7 +83,39 @@ function MoreGiveUps({ route, navigation }) {
       backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
-      marginTop: 0,
+      marginTop: (Platform.OS == 'android') ? '3.5%' : 0,
+    },
+    scrollview: {
+      flex: 1,
+      flexDirection: 'column',
+      padding: 8,
+      height: '100%', width: '100%'
+    },keyboardRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 7
+    },
+    key: {
+      width: 34,
+      alignItems: 'center',
+      marginHorizontal: 2,
+      padding: 2,
+      borderColor: '#000',
+      borderWidth: .5,
+      borderRadius: 5,
+      backgroundColor: "#072227",
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 1,
+        height: 1
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 2,
+      elevation: 5,
+    },
+    keyText: {
+      color:'white'
     },
     instructionsText: {
       fontFamily: 'Muli',
@@ -73,7 +147,7 @@ function MoreGiveUps({ route, navigation }) {
       marginVertical: 5,
     },
     DHANcover: {
-      height: 70,
+      margin: 5,
       width: '100%',
       elevation: 5,
       justifyContent: 'center',
@@ -81,12 +155,12 @@ function MoreGiveUps({ route, navigation }) {
       borderRadius: 20,
     },
     DHAN: {
-      height: 100,
       textAlign: 'center',
       padding: 5,
       fontSize: 30,
       textShadowRadius: 10,
-      fontFamily: 'Bookish'
+      fontFamily: 'Bookish',
+      color: "#ff8008"
     },
     inputBox: {
       padding: 10,
@@ -97,7 +171,8 @@ function MoreGiveUps({ route, navigation }) {
       marginBottom: 5,
       marginHorizontal: 10,
       fontSize: 15,
-      backgroundColor: colors.getMoreGiveUps.textInput,
+      color: "#ffc837",
+      backgroundColor: "#000",
       borderRadius: 20,
       padding: 15,
       shadowColor: '#000',
@@ -112,10 +187,10 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignItems: 'center',
       borderRadius: 15,
-      shadowColor: '#000',
+      shadowColor: '#fff',
       shadowOffset: {
         width: 0,
-        height: 2
+        height: 1
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
@@ -166,8 +241,8 @@ function MoreGiveUps({ route, navigation }) {
   const getRandomWord = () => {
     return wordsToType[Math.floor(Math.random() * wordsToType.length)];
   };
-  const [textEntry, setTextEntry] = React.useState('');
-  const [theWord, setWord] = React.useState(getRandomWord());
+  const [word, setWord] = useState(getRandomWord());
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -200,6 +275,11 @@ function MoreGiveUps({ route, navigation }) {
           }
         }}
       />
+      <ScrollView
+        scrollEventThrottle={16}
+        style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
+        contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+      >
       <View
         style={styles.upBox}
       >
@@ -220,59 +300,63 @@ function MoreGiveUps({ route, navigation }) {
         {'}'}
       </Text>
       <View style={styles.DHANcover}>
-        <MaskedView
-          style={{ height: 50, width: '100%' }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-              }}
-            >
-              <Text style={styles.DHAN}>{theWord}</Text>
-            </View>
-          )}
-        >
-          <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
+        <Text style={{...styles.DHAN, color: '#0600bd'}}>{word}</Text>
       </View>
-      <View style={styles.inputBox}>
-        <View style={{ ...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000' }}>
-          <MaskedView
-            style={{ height: 50, width: '100%' }}
-            maskElement={(
-              <View
-                style={{
-                  backgroundColor: 'transparent',
-                }}
-              >
-                <Text
-                  style={{ ...styles.DHAN, fontFamily: 'GurbaniHeavy' }}
-                >
-                  {textEntry}
-                </Text>
+      <View style={{ ...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000', shadowColor: '#000' }}>
+        <Text
+          style={{ ...styles.DHAN, fontFamily: 'Bookish' }}>
+          {textEntry}
+        </Text>
+      </View>
+      {keyboardGrid.map((rows, index) => {
+        return (
+          <View key={index} id={`gurmukhi-keyboard-page-${index + 1}`}>
+            {rows.map((chars, rowIndex) => (
+              <View style={styles.keyboardRow} key={`${index}-${rowIndex}`}>
+                  {chars.map((keyboardKey, i) => {
+                    if (keyboardKey === 'meta') {
+                      return (
+                        <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
+                          <Text style={{...styles.keyText,fontSize:25}}>{"\u2190"}</Text>
+                        </TouchableOpacity>
+                      );
+                    }
+
+                    if (keyboardKey === 'space') {
+                      return (
+                        <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
+                          <Text style={{...styles.keyText,fontSize:25}}>{"\u2423"}</Text>
+                        </TouchableOpacity>
+                      );
+                    }
+
+                    const isCurrentKeyDefaultMatraKey = defaultMatraKeys.includes(keyboardKey);
+
+                    return (
+                      <TouchableOpacity
+                      style={styles.key} 
+                        key={i}
+                        onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
+                      >
+                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: 25}}>
+                          {isCurrentKeyDefaultMatraKey
+                            ? getMatraAkhar(keyboardKey, textEntry)
+                            : keyboardKey}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
               </View>
-          )}
-          >
-            <LinearGradient
-              colors={state.darkMode ? ['#FF0076', '#590FB7'] : ['#ff8008', '#ffc837']}
-              style={{ flex: 1 }}
-            />
-          </MaskedView>
-        </View>
-        <TextInput
-          style={{ ...styles.textInput, fontFamily: 'Muli' }}
-          placeholder="type here"
-          onChangeText={(newText) => { setTextEntry(newText); }}
-          defaultValue={textEntry}
-        />
-      </View>
+            ))}
+          </View>
+        );
+      })}
       <TouchableOpacity
         style={styles.submitButton}
         onPress={() => {
-          if (textEntry === theWord) {
+          console.log(textEntry);
+          console.log(word);
+          if (textEntry === word) {
             console.log('Good job');
             dispatch(setGiveUpLives('+'));
             setWord(getRandomWord());
@@ -284,6 +368,7 @@ function MoreGiveUps({ route, navigation }) {
           <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
         </AnimatedLinearGradient>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }

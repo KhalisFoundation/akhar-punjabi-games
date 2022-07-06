@@ -133,7 +133,7 @@ function TheCircle() {
   const radius =  110;
   const step = (2 * Math.PI) / charArray.length;
   const new_height = height/(Math.floor(height/100)-1);
-  const new_width = width/(Math.floor(width/100)-0.75);
+  const new_width = 100 + width/5.25;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],

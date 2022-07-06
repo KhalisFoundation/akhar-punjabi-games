@@ -22,6 +22,7 @@ import { setTheState } from '../../redux/actions';
 import LoadingModal from '../homeScreen/loadingScreen';
 import * as Anvaad from 'anvaad-js';
 import Khalis from '../../assets/khalis_logo.svg';
+import Logo from '../../assets/sikh_games_logo_with_text.svg'
 import simran from '../../assets/simran.mp3'
 import { initialState } from '../../redux/reducers';
 import { Audio } from 'expo-av';
@@ -69,19 +70,12 @@ function MenuScreen({ navigation }) {
     if (screen === 'Menu') {
       playSound();
     }
-  }, [screen]);
-
+  }, []);
+  
   //handling app state change
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", _handleAppStateChange);
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
+  
   const _handleAppStateChange = nextAppState => {
     if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground!');
@@ -93,6 +87,14 @@ function MenuScreen({ navigation }) {
     appState.current = nextAppState;
     setAppStateVisible(appState.current);
   };
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", _handleAppStateChange);
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
 
   let theState;
   useEffect(() => {
@@ -188,7 +190,7 @@ function MenuScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Image style={styles.menulogo} source={require('../../assets/sikh_games_logo_with_text.png')} />
+        <Logo style={styles.menulogo}/>
         <Text style={styles.mainmenu}>MAIN MENU</Text>
         <Text style={styles.text}>Select a game to Play</Text>
         <View style={styles.columns}>
