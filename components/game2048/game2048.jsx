@@ -4,10 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Linking,
-  Image,
-  ImageBackground, 
+  StyleSheet, 
   SafeAreaView, 
   Dimensions,
   Animated, Easing, TouchableWithoutFeedback
@@ -255,8 +252,6 @@ function Game2048({ navigation }) {
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.goBack()}
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
       >
       <MaskedView
           style={{ width: 35, height: 35 }}
@@ -305,7 +300,6 @@ function Game2048({ navigation }) {
         onSwipeLeft={(state) => onSwipeLeft(state)}
         onSwipeRight={(state) => onSwipeRight(state)}
         config={config}
-        getureEnabled={false}
         >
       <View style={styles.bgSquare}>
         <View style={styles.gridColumn}>
@@ -314,17 +308,11 @@ function Game2048({ navigation }) {
               {row.map((num, numIndex) => {
                 if (num!==0) {
                 return (
-                  <TouchableWithoutFeedback
-                  onPressIn={onPressIn}
-                  onPressOut={onPressOut}>
-                  <Animated.View style={animatedScaleStyle} key={numIndex+13}>
                   <View style={{...styles.gridSquare, backgroundColor: colorCodes[num], borderColor: '#0005', borderWidth: 1,}} key={numIndex}>
                     <Text style={{...styles.numText, fontSize: (num>=128) ? 25 : 30}}>{(state.punjabiNums) ? Anvaad.unicode(num) : num}</Text>
                   </View>
-                  </Animated.View>
-                  </TouchableWithoutFeedback>
                 )} else {
-                  return (<Animated.View style={{opacity: fadeAnim}}><View style={styles.gridSquare} key={numIndex}></View></Animated.View>)
+                  return (<View style={styles.gridSquare} key={numIndex}></View>)
                 }
               }
               )}

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   StatusBar,
   TextInput,
+  Dimensions,
   Animated,
   Platform,
   ScrollView
@@ -38,6 +39,10 @@ function MoreGiveUps({ route, navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
+
+  const screenWidth = Dimensions.get('window').width;
+  console.log('screenWidth: ', screenWidth);
+  const screenHeight = Dimensions.get('window').height;
 
   const [textEntry, setTextEntry] = useState('');
 
@@ -90,15 +95,18 @@ function MoreGiveUps({ route, navigation }) {
       flexDirection: 'column',
       padding: 8,
       height: '100%', width: '100%'
-    },keyboardRow: {
+    },
+    keyboardRow: {
+      width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: 7
     },
     key: {
-      width: 34,
+      minWidth: 20,
       alignItems: 'center',
+      justifyContent: 'center',
       marginHorizontal: 2,
       padding: 2,
       borderColor: '#000',
@@ -115,7 +123,7 @@ function MoreGiveUps({ route, navigation }) {
       elevation: 5,
     },
     keyText: {
-      color:'white'
+      color:'white',
     },
     instructionsText: {
       fontFamily: 'Muli',
@@ -124,7 +132,7 @@ function MoreGiveUps({ route, navigation }) {
       borderColor: 'black',
       borderWidth: 1,
       marginHorizontal: 5,
-      fontSize: 18,
+      fontSize: (screenWidth<370 ? 13 : 18),
       padding: 5,
       textAlign: 'center',
       marginVertical: 5,
@@ -140,7 +148,7 @@ function MoreGiveUps({ route, navigation }) {
     infoText: {
       fontFamily: 'Muli',
       marginHorizontal: 5,
-      fontSize: 15,
+      fontSize: (screenWidth<370 ? 10 : 15),
       color: state.darkMode ? '#fff' : '#000',
       padding: 5,
       textAlign: 'center',
@@ -157,7 +165,7 @@ function MoreGiveUps({ route, navigation }) {
     DHAN: {
       textAlign: 'center',
       padding: 5,
-      fontSize: 30,
+      fontSize: (screenWidth<370 ? 20 : 30),
       textShadowRadius: 10,
       fontFamily: 'Bookish',
       color: "#ff8008"
@@ -187,18 +195,18 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignItems: 'center',
       borderRadius: 15,
-      shadowColor: '#fff',
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
-        height: 1
+        height: 0
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
-      elevation: 5,
+      marginBottom: 15,
     },
     submit: {
       fontFamily: 'Nasa',
-      fontSize: 16,
+      fontSize: (screenWidth<370 ? 10 : 16),
       alignSelf: 'center',
       padding: 10,
       color: state.darkMode ? 'black' : 'white',
@@ -217,7 +225,7 @@ function MoreGiveUps({ route, navigation }) {
     },
     upText: {
       color: 'white',
-      fontSize: 15,
+      fontSize: (screenWidth<370 ? 12 : 15),
       fontWeight: 'bold'
     }
   });
@@ -269,7 +277,7 @@ function MoreGiveUps({ route, navigation }) {
           text: 'Get More Lives',
           style: {
             color: 'black',
-            fontSize: 20,
+            fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
           }
@@ -293,7 +301,7 @@ function MoreGiveUps({ route, navigation }) {
       <Text style={styles.instructionsText}>
         Try to type the following to get more Lives.
       </Text>
-      <Text style={[{ fontSize: 10 }, styles.infoText]}>
+      <Text style={styles.infoText}>
         {'{'}
         You will have to figure out which english letters correspond to the
         respective Gurmukhi characters
@@ -317,7 +325,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'meta') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
-                          <Text style={{...styles.keyText,fontSize:25}}>{"\u2190"}</Text>
+                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2190"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -325,7 +333,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'space') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
-                          <Text style={{...styles.keyText,fontSize:25}}>{"\u2423"}</Text>
+                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2423"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -338,7 +346,7 @@ function MoreGiveUps({ route, navigation }) {
                         key={i}
                         onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
                       >
-                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: 25}}>
+                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 18 : 25)}}>
                           {isCurrentKeyDefaultMatraKey
                             ? getMatraAkhar(keyboardKey, textEntry)
                             : keyboardKey}

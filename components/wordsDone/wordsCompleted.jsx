@@ -8,7 +8,8 @@ import {
   StatusBar,
   FlatList,
   ScrollView,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
@@ -26,6 +27,7 @@ function RightWords({ navigation }) {
   const dispatch = useDispatch();
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
+  const screenWidth = Dimensions.get('window').width;
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -48,21 +50,22 @@ function RightWords({ navigation }) {
     },
     arrow: {
       position: 'absolute',
-      alignSelf: 'flex-end',
+      bottom: 0,
+      right: 0,
       backgroundColor: state.darkMode ? '#000' : '#fff',
       borderRadius: 20,
-      elevation: 5
+      elevation: 5,
     },
     listContainer: {
       // backgroundColor: colors.wordsCompleted.listContainer,
-      height: '60%',
+      height: '70%',
       width: '95%',
       paddingBottom: 5,
       paddingTop: 0
     },
     listContainerFull: {
+      height: '88%',
       width: '95%',
-      height: '80%',
       paddingBottom: 10,
       paddingTop: 0
     },
@@ -92,11 +95,11 @@ function RightWords({ navigation }) {
       display: 'none'
     },
     answerText: {
-      fontSize: 18,
+      fontSize: (screenWidth<370 ? 13 : 18),
       color: '#464646',fontFamily: 'Muli'
     },
     answerForAnswerText: {
-      fontSize: 18,
+      fontSize: (screenWidth<370 ? 13 : 18),
       color: 'green',
     },
     shadow: {
@@ -156,8 +159,8 @@ function RightWords({ navigation }) {
   }
 
   useEffect(() => {
-    dispatch(showMeaningPopUp(state.meaningPopup))
-  }, [state.meaningPopup]);
+    dispatch(showMeaningPopUp(true));
+  }, []);
 
   const renderItem = React.useCallback(({ item }) => {
     return (
@@ -193,7 +196,7 @@ function RightWords({ navigation }) {
           text: 'Completed Levels',
           style: {
             color: state.darkMode ? 'white' : 'black',
-            fontSize: 20,
+            fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli'
           }
         }}
@@ -216,7 +219,7 @@ function RightWords({ navigation }) {
           <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color="#274C7C" style={styles.shadow} />
         </TouchableOpacity>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: 35, fontFamily: 'Prabhki' }]}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:(screenWidth<370 ? 25 : 35), fontFamily: 'Prabhki' }]}>
             {showAnswer.engText}
           </Text>
         </View>

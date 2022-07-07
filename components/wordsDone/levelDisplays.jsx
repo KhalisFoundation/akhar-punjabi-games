@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  Dimensions
 } from 'react-native';
 import * as Speech from 'expo-speech';
 
@@ -23,6 +24,7 @@ function Level({ title, theWords, setAnswer }) {
   const [up, setUp] = useState(false);
 
   const colors = theColors[state.darkMode];
+  const screenWidth = Dimensions.get('window').width;
 
   const styles = StyleSheet.create({
     container: {
@@ -39,7 +41,7 @@ function Level({ title, theWords, setAnswer }) {
       paddingBottom: 10,
       fontWeight: 'bold',
       height: 50,
-      fontSize: 30,
+      fontSize: (screenWidth<370 ? 24 : 30),
       textAlign: 'center',
     },
     flatList: {},
@@ -51,7 +53,7 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: 40,
+      fontSize: (screenWidth<370 ? 33 : 40),
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'

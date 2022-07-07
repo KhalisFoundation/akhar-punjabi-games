@@ -53,6 +53,23 @@ export const generateRandom = (board) => {
     return board;
 }
 
+export const moveLeftNew = (board) => {
+    console.log("before move left");
+    printBoard(board);
+    const newBoard = getEmptyBoard();
+    for (let i=0; i<board.length; i++) {
+        let val = board[i];
+        for (let j = 0; j < val.length; j++) {
+            if (val[j] !== 0) {
+                newBoard[i][j] = val[j];
+            }
+        } 
+    };
+    console.log("after move left");
+    printBoard(newBoard);
+    return newBoard;
+}
+
 const compress = (board) => {
     const newBoard = getEmptyBoard();
     for (let i=0; i<board.length; i++) {
@@ -65,6 +82,7 @@ const compress = (board) => {
             }
         }
     };
+    //printBoard(newBoard);
     return newBoard;
 };
 
@@ -91,7 +109,7 @@ export const moveLeft = (board) => {
     const newBoard3 = compress(newBoard2);
     let final = newBoard3;
     //console.log("after move left");
-    //printBoard(finalBoard);
+    //printBoard(final);
     return final;
 };
 
