@@ -65,11 +65,8 @@ function MenuScreen({ navigation }) {
     }
   }
 
-  let screen = screenName();
   useEffect(() => {
-    if (screen === 'Menu') {
       playSound();
-    }
   }, []);
   
   //handling app state change
@@ -81,7 +78,7 @@ function MenuScreen({ navigation }) {
       console.log('App has come to the foreground!');
     } else {
       console.log('App is in the background!');
-      stopSound();
+      if (audioPlayer._loaded) {stopSound()};
     }
 
     appState.current = nextAppState;
@@ -91,7 +88,9 @@ function MenuScreen({ navigation }) {
   useEffect(() => {
     const subscription = AppState.addEventListener("change", _handleAppStateChange);
     return () => {
-      subscription.remove();
+      if (subscription) {
+        subscription.remove();
+      }
     };
   }, []);
 
@@ -196,7 +195,9 @@ function MenuScreen({ navigation }) {
         <View style={styles.columns}>
           <TouchableOpacity 
             style={styles.item}
-            onPress={() => {stopSound();navigation.navigate('Home')}}
+            onPress={() => {
+              if (audioPlayer._loaded) {stopSound()};
+              navigation.navigate('Home')}}
           >
             <Text style={[styles.text]}>Gurmukhi Wordlink</Text>
           </TouchableOpacity>
@@ -204,7 +205,9 @@ function MenuScreen({ navigation }) {
         <View style={styles.columns}>
           <TouchableOpacity 
             style={styles.item}
-            onPress={() => {stopSound();navigation.navigate('2048')}}
+            onPress={() => {
+              if (audioPlayer._loaded) {stopSound()};
+              navigation.navigate('2048')}}
           >
             <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
           </TouchableOpacity>

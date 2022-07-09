@@ -186,6 +186,14 @@ function Game2048({ navigation }) {
       marginTop: 15,
       marginLeft: 10,
     },
+    help: {
+      backgroundColor: '#035',
+      padding: 10,
+      borderRadius: 50,
+      alignSelf: 'flex-end',
+      marginTop: 15,
+      marginLeft: 10,
+    }
   });
 
   const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
@@ -249,6 +257,8 @@ function Game2048({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       {state.resultShow ? <YouWonModal won={won} /> : null}
+      <View
+        style={{justifyContent: 'space-between', flexDirection: 'row', width: '90%'}}>
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.goBack()}
@@ -272,6 +282,30 @@ function Game2048({ navigation }) {
           />
         </MaskedView>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.help}
+        onPress={() => navigation.navigate('help')}
+      >
+      <MaskedView
+          style={{ width: 35, height: 35 }}
+          maskElement={(
+            <View
+              style={{
+                backgroundColor: 'transparent',
+                alignItems: 'center',
+              }}
+            >
+              <IonIcons name="help" size={35} color={'#464646'} style={styles.shadow} />
+            </View>
+        )}
+        >
+          <LinearGradient
+            colors={['#ff8008', '#ffc837']}
+            style={{ flex: 1 }}
+          />
+        </MaskedView>
+      </TouchableOpacity>
+      </View>
       <MaskedView
           style={{ width: '100%', height: 100 }}
           maskElement={(

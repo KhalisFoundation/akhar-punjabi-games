@@ -10,6 +10,9 @@ import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 import About from './components/about/about';
+import helpGrid1 from './components/game2048/helpGrids/helpGrid1';
+import helpGrid2 from './components/game2048/helpGrids/helpGrid2';
+import helpGrid3 from './components/game2048/helpGrids/helpGrid3';
 import { Store } from './redux/store';
 
 const Stack = createStackNavigator();
@@ -59,6 +62,21 @@ function App() {
             name="about"
             options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
             component={About}
+          />
+          <Stack.Screen
+            name="help"
+            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
+            component={helpGrid1}
+          />
+          <Stack.Screen
+            name="help2"
+            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
+            component={helpGrid2}
+          />
+          <Stack.Screen
+            name="help3"
+            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
+            component={helpGrid3}
           />
         </Stack.Navigator>
       </NavigationContainer>
