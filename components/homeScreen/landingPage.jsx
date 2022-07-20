@@ -8,7 +8,8 @@ import {
   Linking,
   Image,
   ImageBackground, 
-  SafeAreaView
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import IonIcons from 'react-native-vector-icons/Ionicons';
@@ -125,6 +126,10 @@ function HomeScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="light-content" />
       {/* <LoadingModal visible={loadingScreenStatus} /> */}
       <TouchableOpacity
         style={styles.back}

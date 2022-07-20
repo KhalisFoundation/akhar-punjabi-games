@@ -17,10 +17,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "buildNumber": "8"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
+      "googleServicesFile": "./google-services.json",
       "versionCode": 8,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -28,7 +30,18 @@
       }
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/icon.png",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyAxeQSmufN-0kiAqfQnNzw4jFrz93IrfKo",
+          "authDomain": "sikh-games.firebaseapp.com",
+          "projectId": "sikh-games",
+          "storageBucket": "sikh-games.appspot.com",
+          "messagingSenderId": "370328077829",
+          "appId": "1:370328077829:web:2f0c04971b989c52bf3e6c",
+          "measurementId": "G-G5D0PLV9PG"
+        }
+      }
     }
   }
 }

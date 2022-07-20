@@ -82,7 +82,7 @@ export const initialState = {
   showNumOfLetters: false,
   includeMatra: true,
   // 2048 stuff
-  board: generateRandom(newBoard),
+  board: newBoard,
   punjabiNums: true,
   resultShow: false,
   playbgm: true,
@@ -92,6 +92,7 @@ export const initialState = {
 
 //to reset all state
 //setData("state", initialState);
+
 
 function theGameReducer(state = initialState, action) {
   const finalLevel = 8 // was 9
@@ -400,6 +401,77 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
+
+  if (action.type === "CREATE_TILES") {
+    let tilesList = tiles(initialState.board);
+    const newState = {
+        ...state,
+        tiles: tilesList,
+        byIds: [tileList.map((tile) => tile.id)],
+        hasChanged: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "UPDATE_TILE") {
+    const newState = {
+      ...state,
+      tiles: {
+          ...state.tiles,
+          [action.tile.id]: action.tile,
+      },
+      hasChanged: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "MERGE_TILE") {
+    const { [action.source.id]: source, [action.destination.id]: destination, ...restTiles } = state.tiles;
+    const newState = {
+      ...state,
+      tiles: {
+          ...restTiles,
+          [action.destination.id]: {
+              id: action.destination.id,
+              value: action.source.value + action.destination.value,
+              position: action.destination.position,
+          },
+      },
+      byIds: state.byIds.filter((id) => id !== action.source.id),
+      hasChanged: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "START_MOVE") {
+    const newState = {
+      ...state,
+      inMotion: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "END_MOVE") {
+    const newState = {
+      ...state,
+      inMotion: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  // sample for action.type handler
+  // if (action.type === "") {
+  //   const newState = {
+  //   };
+  //   setData("state", newState);
+  //   return newState;
+  // }
+  
   
   //default
   return { ...state };

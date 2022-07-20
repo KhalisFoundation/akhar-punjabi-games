@@ -16,7 +16,7 @@ import AppLoading from 'expo-app-loading';
 import HelpImg from '../../../assets/helpGrid1.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
-function helpGrid1({navigation}) {
+function HelpGrid1({navigation}) {
     
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
@@ -95,4 +95,4 @@ function helpGrid1({navigation}) {
     );
 }
 
-export default helpGrid1;
+export default HelpGrid1;

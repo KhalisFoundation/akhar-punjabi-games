@@ -72,8 +72,9 @@ function Settings({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar
-        backgroundColor="black"
-        barStyle="light-content"
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="dark-content"
       />
       <Header
         backgroundColor="orange"
@@ -85,7 +86,7 @@ function Settings({ navigation }) {
             name="arrow-back"
             color="black"
             size={30}
-            onPress={() => { navigation.navigate('Home'); }}
+            onPress={() => { navigation.navigate('AkharJor'); }}
           />
           )}
         centerComponent={{

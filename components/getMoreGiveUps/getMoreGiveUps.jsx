@@ -41,7 +41,7 @@ function MoreGiveUps({ route, navigation }) {
   });
 
   const screenWidth = Dimensions.get('window').width;
-  console.log('screenWidth: ', screenWidth);
+  //console.log('screenWidth: ', screenWidth);
   const screenHeight = Dimensions.get('window').height;
 
   const [textEntry, setTextEntry] = useState('');
@@ -80,7 +80,7 @@ function MoreGiveUps({ route, navigation }) {
     }
   };
 
-  const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
+  const prevScreen = route.params.prevScreen === 0 ? 'AkharJor' : 'play';
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -257,14 +257,14 @@ function MoreGiveUps({ route, navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar
-        backgroundColor="black"
-        barStyle="light-content"
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="dark-content"
       />
       <Header
         backgroundColor={
             GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
-        containerStyle={Platform.OS === 'android' && { height: 75, paddingTop: 0 }}
         leftComponent={(
           <Icon
             name="arrow-back"

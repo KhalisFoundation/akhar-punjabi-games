@@ -41,7 +41,6 @@ function Game2048({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
-  
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   // console.log(theColors[state.darkMode]);
