@@ -27,6 +27,7 @@ import GLOBAL from '../../util/globals';
 import { setGiveUpLives, setLivesWord } from '../../redux/actions';
 import theColors from '../../util/colors';
 import { useEffect } from 'react';
+import * as Analytics from 'expo-firebase-analytics';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -51,9 +52,6 @@ function MoreGiveUps({ route, navigation }) {
   const isWithMatras = true;
   const keys = isWithMatras ? withMatra : withoutMatra;
   const keyboardGrid = [keys];
-  useEffect(() => {
-    console.log(textEntry);
-  });
 
   const handleClick = (keyValue) => {
     const lastChar = textEntry.slice(-1);
@@ -243,13 +241,17 @@ function MoreGiveUps({ route, navigation }) {
     'DMn gurU hrikRSn swihb jI',
     'DMn gurU qyg bhwdr swihb jI',
     'DMn gurU goibMd isMG swihb jI',
-    'DMn SRI gurU gRMQ swihb jI',
+    'DMn gurU gRMQ swihb jI',
     'DMn gurU DMn gurU ipAwry',
   ];
   const getRandomWord = () => {
     return wordsToType[Math.floor(Math.random() * wordsToType.length)];
   };
   const [word, setWord] = useState(getRandomWord());
+
+  async function used_get_lives(current_lives) {
+    await Analytics.logEvent('used_get_lives', {has_lives: current_lives});
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -367,6 +369,7 @@ function MoreGiveUps({ route, navigation }) {
           if (textEntry === word) {
             console.log('Good job');
             dispatch(setGiveUpLives('+'));
+            used_get_lives(state.giveUpsLeft);
             setWord(getRandomWord());
             setTextEntry('');
           }

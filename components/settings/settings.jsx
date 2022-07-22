@@ -26,6 +26,7 @@ import {
 // TODO - Move all colors to separate file and import as variables.
 import SwitchBar from './settingBarSwitch';
 import theColors from '../../util/colors';
+import * as Analytics from 'expo-firebase-analytics';
 
 function Settings({ navigation }) {
   const dispatch = useDispatch();
@@ -66,6 +67,11 @@ function Settings({ navigation }) {
       height: '100%',
     },
   });
+
+  async function reset_game() {
+    await Analytics.logEvent('setting_used', {setting: 'reset'});
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -128,6 +134,7 @@ function Settings({ navigation }) {
           />
         </MaskedView>
         <SwitchBar
+          title="dark_mode"
           theSetting="Dark Mode"
           theList={[true, false]}
           imageSource="khanda"
@@ -135,6 +142,7 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.darkMode)}
         />
         <SwitchBar
+          title="show_pop_up"
           theSetting="Show Pop Up after each word"
           theList={[true, false]}
           imageSource="ikOngkar"
@@ -142,6 +150,7 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
         <SwitchBar
+          title="show_romanised"
           theSetting="Romanised words"
           theList={[true, false]}
           imageSource="ura"
@@ -149,6 +158,7 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
         />
         <SwitchBar
+          title="show_num_of_letters"
           theSetting="Indicate Number of Letters"
           theList={[true, false]}
           imageSource="letters"
@@ -156,6 +166,7 @@ function Settings({ navigation }) {
           theCurrentOptionIndex={[true, false].indexOf(state.showNumOfLetters)}
         />
         <SwitchBar
+          title="include_matra"
           theSetting="Include Matras"
           theList={[true, false]}
           imageSource="matra"
@@ -169,7 +180,10 @@ function Settings({ navigation }) {
             state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
-          onPress={() => { dispatch(reset()); }}
+          onPress={() => { 
+            reset_game();
+            dispatch(reset()); 
+          }}
           bottomDivider
         >
           <MaskedView

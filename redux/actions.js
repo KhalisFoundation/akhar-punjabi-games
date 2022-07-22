@@ -143,49 +143,9 @@ export const closeResultModal = () => (dispatch) => {
   });
 }
 
-export const setBGM = (set) => (dispatch) => {
-  dispatch({
-    type: "SET_BACKGROUND_MUSIC",
-    onOrOff: set
-  });
-}
-
 export const showMeaningPopUp = (set) => (dispatch) => {
   dispatch({
     type: "SHOW_MEANING_POPUP",
     onOrOff: set
-  });
-}
-
-export const createTiles = () => (dispatch)  => {
-  dispatch({
-    type: "CREATE_TILES",
-  });
-}
-
-export const mergeTile = (source, destination) => (dispatch)  => {
-  dispatch({
-    type: "MERGE_TILE",
-    source: source,
-    destination: destination
-  });
-}
-
-export const updateTile = (theTile) => (dispatch)  => {
-  dispatch({
-    type: "UPDATE_TILE",
-    tile: theTile
-  });
-}
-
-export const startMove = () => (dispatch)  => {
-  dispatch({
-    type: "START_MOVE",
-  });
-}
-
-export const endMove = () => (dispatch)  => {
-  dispatch({
-    type: "END_MOVE",
   });
 }

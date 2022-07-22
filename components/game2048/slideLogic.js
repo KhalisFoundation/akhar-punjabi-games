@@ -3,6 +3,41 @@ export const getEmptyBoard = () => {
     return board;
 };
 
+const maxValue = (board) => {
+    let max = 0;
+    for (let i=0; i<board.length; i++) {
+        for (let j=0; j<board[i].length; j++) {
+            if (board[i][j] > max) {
+                max = board[i][j];
+            }
+        }
+    }
+    return max;
+}
+
+export const scoreCalculator = (board) => {
+    let score = Object();
+    board.forEach(item => {
+        item.forEach(val => {
+            if (val > 0) {;
+                if (val in score) {
+                    score[val] = score[val] + 1;
+                } else {
+                    score[val] = 1;
+                }
+            }
+        })
+    });
+    let result = 0;
+    let keys = Object.keys(score);
+    keys.forEach(key => {
+        if (key > 2) {
+            result = result + score[key] * key;
+        }
+    })
+    return result;
+}
+
 const printBoard = (board) => {
     let [a, b, c, d] = board;
     let [a1, a2, a3, a4] = a;

@@ -33,6 +33,8 @@ import {
   setGiveUpLives,
 } from '../../redux/actions';
 
+import * as Analytics from 'expo-firebase-analytics';
+
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
   /* Can be referred while implementing swipes, if any
@@ -330,7 +332,7 @@ function GameScreen({ navigation }) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
           {Array.from(newArray , (e, i) => {
             return (
-              <Text style={{ ...styles.answerText, borderRadius: 50, backgroundColor: '#fff', width: newsize, height: newsize, fontSize: fontsize }} key={i}>
+              <Text style={{ ...styles.answerText, borderRadius: 50, backgroundColor: '#fff', width: newsize, height: newsize, fontSize: fontsize }} >
                 {Anvaad.unicode(printed[i])}
               </Text>
             );
@@ -400,6 +402,24 @@ function GameScreen({ navigation }) {
       dispatch(setNewWords());
     }
   };
+
+  async function hint_used(the_word, eng_text) {
+    await Analytics.logEvent('hint_used', { word: the_word, eng: eng_text });
+  }
+
+  async function given_up_word(the_word, eng_text) {
+    await Analytics.logEvent('given_up_word', { word: the_word, eng: eng_text });
+  }
+
+  async function ran_out_of_lives(level) {
+    await Analytics.logEvent('ran_out_of_lives', { level_at: level });
+  }
+
+  useEffect(() => {
+    if (state.giveUpsLeft === 0) {
+      ran_out_of_lives(state.levelProgress[0].level);
+    }
+  }, [state.giveUpsLeft]);
 
   // // get length after removing laga matra
   // function woMatra(word) {
@@ -539,9 +559,12 @@ function GameScreen({ navigation }) {
                 dispatch(setTopWord());
                 handleAnimation();
                 dispatch(setGivenUpWords(state.firstWord));
+                given_up_word(state.firstWord.punjabiText, state.firstWord.engText);
                 if (state.bottomWord !== '') {
                   dispatch(setNewWords());
                 }
+              } else {
+                hint_used(state.firstWord.punjabiText, state.firstWord.engText);
               }
               console.log(`topHint from state: ${state.topHint}`);
               console.log(`first word from state: ${state.firstWord.engText}`);
@@ -588,9 +611,12 @@ function GameScreen({ navigation }) {
                 dispatch(setBottomWord());
                 handleAnimation();
                 dispatch(setGivenUpWords(state.secondWord));
+                given_up_word(state.secondWord.punjabiText, state.secondWord.engText);
                 if (state.topWord !== '') {
                   dispatch(setNewWords());
                 }
+              } else {
+                hint_used(state.secondWord.punjabiText, state.secondWord.engText);
               }
               console.log(`bottomHint from state: ${state.bottomHint}`);
               console.log(`second word from state: ${state.secondWord.engText}`);

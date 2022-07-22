@@ -1,8 +1,7 @@
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getEmptyBoard} from '../components/game2048/slideLogic';
-import { generateRandom } from './../components/game2048/slideLogic';
+import {getEmptyBoard, scoreCalculator, generateRandom} from '../components/game2048/slideLogic';
 
 
 const setData = async (title, state) => {
@@ -81,13 +80,14 @@ export const initialState = {
   romanised: false,
   showNumOfLetters: false,
   includeMatra: true,
+  // levels completed
+  meaningPopup: false,
   // 2048 stuff
   board: newBoard,
   punjabiNums: true,
   resultShow: false,
-  playbgm: true,
-  // levels completed
-  meaningPopup: false,
+  moves: 0,
+  score: 0
 };
 
 //to reset all state
@@ -332,8 +332,47 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "RESET_LEVELS") {
-    setData("state", initialState);
-    return initialState
+    const newState = {
+      ...state,
+      usableWords: allWords.filter((word) => word.level === 1),
+      topWord: "",
+      topHint: "",
+      bottomWord: "",
+      bottomHint: "",
+      attempt: "",
+      charArray: generateWords[0],
+      firstWord: generateWords[1],
+      firstLength: parseInt(generateWords[1].engText.length),
+      secondWord: generateWords[2],
+      secondLength: parseInt(generateWords[2].engText.length),
+      correctWords: [],
+      givenUpWords: [],
+      giveUpsLeft: 100,
+      nextLevelModal: [false],
+      levelProgress: [
+        { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
+        { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
+        { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
+        { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
+        { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
+        { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
+        { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
+        { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
+        // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
+      ],
+      totalPoints: 0,
+      //settings stuff
+      typesOfWords: "Both",
+      darkMode: false,
+      showPopUp: true,
+      romanised: false,
+      showNumOfLetters: false,
+      includeMatra: true,
+      // levels completed
+      meaningPopup: false,
+    }
+    setData("state", newState);
+    return newState
   }
 
   // actions for 2048
@@ -342,6 +381,8 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       board: action.theBoard,
+      moves: state.moves + 1,
+      score: scoreCalculator(action.theBoard),
     };
     setData("state", newState);
     return newState;
@@ -351,6 +392,8 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       board: generateRandom(getEmptyBoard()),
+      moves: 0,
+      score: 0
     };
     setData("state", newState);
     return newState;
@@ -379,15 +422,6 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       resultShow: false,
-    };
-    setData("state", newState);
-    return newState;
-  }
-
-  if (action.type === "SET_BACKGROUND_MUSIC") {
-    const newState = {
-      ...state,
-      playbgm: action.onOrOff,
     };
     setData("state", newState);
     return newState;

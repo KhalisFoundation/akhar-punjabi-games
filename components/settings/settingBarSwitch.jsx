@@ -8,8 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Analytics from 'expo-firebase-analytics';
 
 function SwitchBar({
+  title,
   theSetting,
   imageSource,
   theList,
@@ -45,6 +47,10 @@ function SwitchBar({
     allImages.khanda = 'brightness-5';
   } else {
     allImages.khanda = 'brightness-2';
+  }
+
+  async function setting_used(setup) {
+    await Analytics.logEvent('setting_used', { setting: setup });
   }
 
   return (
@@ -83,6 +89,7 @@ function SwitchBar({
             onValueChange={(newSetting) => {
               dispatch(theAction(newSetting));
               setCurrentSetting(newSetting);
+              setting_used(`${title} set to ${newSetting ? 'on' : 'off'}`);
             }}
           />
         </ListItem.Content>
