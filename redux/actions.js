@@ -143,13 +143,6 @@ export const closeResultModal = () => (dispatch) => {
   });
 }
 
-export const setBGM = (set) => (dispatch) => {
-  dispatch({
-    type: "SET_BACKGROUND_MUSIC",
-    onOrOff: set
-  });
-}
-
 export const showMeaningPopUp = (set) => (dispatch) => {
   dispatch({
     type: "SHOW_MEANING_POPUP",

@@ -26,7 +26,7 @@ import Logo from '../../assets/sikh_games_logo_with_text.svg'
 import simran from '../../assets/simran.mp3'
 import { initialState } from '../../redux/reducers';
 import { Audio } from 'expo-av';
-import { screenName } from '../whichScreen';
+import * as Analytics from 'expo-firebase-analytics';
 
 const audioPlayer = new Audio.Sound();
 
@@ -182,6 +182,9 @@ function MenuScreen({ navigation }) {
         fontFamily: 'Mochy', fontWeight: 'normal', fontSize: 20, alignSelf: 'center'
     }
   });
+  async function whichGame(game_name) {
+    await Analytics.logEvent('game_chosen', { game_name: game_name });
+  }
 
   if (!fontLoaded) {
     return <AppLoading />;
@@ -197,7 +200,9 @@ function MenuScreen({ navigation }) {
             style={styles.item}
             onPress={() => {
               if (audioPlayer._loaded) {stopSound()};
-              navigation.navigate('Home')}}
+              whichGame('akhar_jor');
+              navigation.navigate('AkharJor');
+            }}
           >
             <Text style={[styles.text]}>Gurmukhi Wordlink</Text>
           </TouchableOpacity>
@@ -207,7 +212,9 @@ function MenuScreen({ navigation }) {
             style={styles.item}
             onPress={() => {
               if (audioPlayer._loaded) {stopSound()};
-              navigation.navigate('2048')}}
+              whichGame('2048');
+              navigation.navigate('2048');
+            }}
           >
             <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
           </TouchableOpacity>

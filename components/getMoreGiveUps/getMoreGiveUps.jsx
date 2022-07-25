@@ -27,6 +27,7 @@ import GLOBAL from '../../util/globals';
 import { setGiveUpLives, setLivesWord } from '../../redux/actions';
 import theColors from '../../util/colors';
 import { useEffect } from 'react';
+import * as Analytics from 'expo-firebase-analytics';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function MoreGiveUps({ route, navigation }) {
   });
 
   const screenWidth = Dimensions.get('window').width;
-  console.log('screenWidth: ', screenWidth);
+  //console.log('screenWidth: ', screenWidth);
   const screenHeight = Dimensions.get('window').height;
 
   const [textEntry, setTextEntry] = useState('');
@@ -51,9 +52,6 @@ function MoreGiveUps({ route, navigation }) {
   const isWithMatras = true;
   const keys = isWithMatras ? withMatra : withoutMatra;
   const keyboardGrid = [keys];
-  useEffect(() => {
-    console.log(textEntry);
-  });
 
   const handleClick = (keyValue) => {
     const lastChar = textEntry.slice(-1);
@@ -80,7 +78,7 @@ function MoreGiveUps({ route, navigation }) {
     }
   };
 
-  const prevScreen = route.params.prevScreen === 0 ? 'Home' : 'play';
+  const prevScreen = route.params.prevScreen === 0 ? 'AkharJor' : 'play';
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -243,7 +241,7 @@ function MoreGiveUps({ route, navigation }) {
     'DMn gurU hrikRSn swihb jI',
     'DMn gurU qyg bhwdr swihb jI',
     'DMn gurU goibMd isMG swihb jI',
-    'DMn SRI gurU gRMQ swihb jI',
+    'DMn gurU gRMQ swihb jI',
     'DMn gurU DMn gurU ipAwry',
   ];
   const getRandomWord = () => {
@@ -251,20 +249,24 @@ function MoreGiveUps({ route, navigation }) {
   };
   const [word, setWord] = useState(getRandomWord());
 
+  async function used_get_lives(current_lives) {
+    await Analytics.logEvent('used_get_lives', {has_lives: current_lives});
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
   return (
     <View style={styles.container}>
       <StatusBar
-        backgroundColor="black"
-        barStyle="light-content"
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="dark-content"
       />
       <Header
         backgroundColor={
             GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
-        containerStyle={Platform.OS === 'android' && { height: 75, paddingTop: 0 }}
         leftComponent={(
           <Icon
             name="arrow-back"
@@ -367,6 +369,7 @@ function MoreGiveUps({ route, navigation }) {
           if (textEntry === word) {
             console.log('Good job');
             dispatch(setGiveUpLives('+'));
+            used_get_lives(state.giveUpsLeft);
             setWord(getRandomWord());
             setTextEntry('');
           }

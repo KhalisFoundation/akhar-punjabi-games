@@ -28,6 +28,8 @@ import { moveUp, moveDown, moveLeft, moveRight, checkWin, isOver, generateRandom
 import * as Anvaad from 'anvaad-js';
 import YouWonModal from './resultModal';
 import { useState, useRef, useEffect } from 'react';
+import * as Analytics from 'expo-firebase-analytics';
+import { setMoves } from './../../redux/actions';
 
 function Game2048({ navigation }) {
   const dispatch = useDispatch();
@@ -41,7 +43,6 @@ function Game2048({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
-  
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   // console.log(theColors[state.darkMode]);
@@ -193,6 +194,20 @@ function Game2048({ navigation }) {
       alignSelf: 'flex-end',
       marginTop: 15,
       marginLeft: 10,
+    },
+    upBox: {
+      backgroundColor: '#035',
+      padding: 10,
+      borderRadius: 50,
+      alignSelf: 'center',
+      alignItems: 'center',
+      marginTop: 15,
+      marginLeft: 10,
+    },
+    upText: {
+      color: 'white',
+      fontSize: 15,
+      fontFamily: 'Muli',
     }
   });
 
@@ -240,17 +255,18 @@ function Game2048({ navigation }) {
       transform: [{scale: buttonScale}]
   };
 
-  let happen = false;
   const [won, setWon] = useState(false);
-  if (!checkWin(state.board) && isOver(state.board)) {
-    setWon(false);
-    happen = true;
-  }
-  if (checkWin(state.board)) {
-    setWon(true);
-    happen = true;
-  }
-  if (happen) { dispatch(setNewBoardOnComplete()); happen = false; }
+  useEffect(() => {
+    if (!checkWin(state.board) && isOver(state.board)) {
+      setWon(false);
+      dispatch(setNewBoardOnComplete());
+    }
+    if (checkWin(state.board)) {
+      setWon(true);
+      dispatch(setNewBoardOnComplete());
+    }
+  }, [state.board]);
+
   if (!fontLoaded) {
     return <AppLoading />;
   }
@@ -282,6 +298,24 @@ function Game2048({ navigation }) {
           />
         </MaskedView>
       </TouchableOpacity>
+      <View
+          style={styles.upBox}
+        >
+          <Text style={styles.upText}>
+            Moves
+            {': '}
+            {state.moves}
+          </Text>
+      </View>
+      <View
+          style={styles.upBox}
+        >
+          <Text style={styles.upText}>
+            Score
+            {': '}
+            {state.score}
+          </Text>
+      </View>
       <TouchableOpacity
         style={styles.help}
         onPress={() => navigation.navigate('help')}
