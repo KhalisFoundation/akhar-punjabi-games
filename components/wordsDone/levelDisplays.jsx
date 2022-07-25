@@ -7,19 +7,24 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  Dimensions
 } from 'react-native';
+import * as Speech from 'expo-speech';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import theColors from '../../util/colors';
+import { showMeaningPopUp } from '../../redux/actions';
 
 function Level({ title, theWords, setAnswer }) {
   const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   const [up, setUp] = useState(false);
 
   const colors = theColors[state.darkMode];
+  const screenWidth = Dimensions.get('window').width;
 
   const styles = StyleSheet.create({
     container: {
@@ -36,7 +41,7 @@ function Level({ title, theWords, setAnswer }) {
       paddingBottom: 10,
       fontWeight: 'bold',
       height: 50,
-      fontSize: 30,
+      fontSize: (screenWidth<370 ? 24 : 30),
       textAlign: 'center',
     },
     flatList: {},
@@ -48,7 +53,7 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: 40,
+      fontSize: (screenWidth<370 ? 33 : 40),
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'
@@ -58,15 +63,7 @@ function Level({ title, theWords, setAnswer }) {
 
   let words = theWords;
   if (words === undefined) {
-    words = [
-      {
-        engText: 'koeI sæbd nhIN',
-        punjabiText: 'ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ',
-        meaning: 'There are no words',
-        level: 'N/A',
-        status: 'N/A',
-      },
-    ];
+    words = [];
   }
   const renderItem = React.useCallback(({ item }) => {
     let a = 0;
@@ -82,6 +79,8 @@ function Level({ title, theWords, setAnswer }) {
         onPress={() => {
           // console.log(item.meaning);
           setAnswer(item);
+          dispatch(showMeaningPopUp(false));
+          // Speech.speak(Anvaad.translit(item.engText));
         }}
       >
         <View style={[wordStyle, styles.wordsStyle]}>

@@ -6,7 +6,7 @@ import {
   Text,
   Linking,
   ScrollView,
-  TouchableHighlight,
+  TouchableOpacity,
   StatusBar,
   Platform
 } from 'react-native';
@@ -18,6 +18,9 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
+import Khalis from '../../assets/khalis_logo.svg';
+import KhalisDark from '../../assets/khalis_logo_dark.svg';
+import Logo from '../../assets/sikh_games.svg';
 
 function About({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -31,7 +34,8 @@ function About({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const styles = StyleSheet.create({
-    container: { flex: 1, marginTop: '3.5%' },
+    container: { flex: 1, 
+      marginTop: (Platform.OS == 'android') ? '3.5%' : 0, },
     scrollview: {
       flex: 1,
       flexDirection: 'column',
@@ -96,7 +100,7 @@ function About({ navigation }) {
                   backgroundColor: transparent,
                 }}
               >
-                <Text style={[styles.title, { fontFamily: 'Bookish' }]}> ਅਖਰ ਜੋੜ</Text>
+                <Text style={[styles.title, { fontFamily: 'Bookish' }]}>is~K gyms</Text>
               </View>
             )}
           >
@@ -105,84 +109,73 @@ function About({ navigation }) {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          <MaskedView
-            style={{ height: 50, width: '100%', marginTop: 0 }}
-            maskElement={(
-              <View
-                style={{
-                  backgroundColor: transparent,
-                }}
-              >
-                <Text style={{ fontFamily: 'Nasa', margin:10}}>(Akhar Jor)</Text>
-              </View>
-            )}
-          >
-            <LinearGradient
-              colors={state.darkMode ? lightGradient : darkGradient}
-              style={{ flex: 1 }}
-            />
-          </MaskedView>
+          <Text style={{ fontFamily: 'Nasa', fontSize:25, color: "#61CAE5"}}>(SIKH GAMES)</Text>
         </View>
-        <Image style={{ height: 250, alignSelf: 'center' }} source={state.darkMode ? require('../../assets/logo.png') : require('../../assets/logo.png')} resizeMode="contain" />
-          <Text style={{ fontFamily: 'Nasa', fontSize: 20, color: state.darkMode ? white : black }}>{'\n'}Akhar Jor</Text>
-          <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
-          <Text>
-            {' '}
-            utilizes
-          </Text>
-          <Text
-            style={{ color: linkColor, }}
-            onPress={() => Linking.openURL('https://www.discoversikhism.com/sikh.html')}
-          >
-            {' \n\n \u2022 '}
-            DiscoverSikhism
-          </Text>
-          <Text
-            style={{ color: linkColor }}
-            onPress={() => Linking.openURL('https://1000mostcommonwords.com/1000-most-common-punjabi-words/')}
-          >
-            {', \n \u2022 '}
-            1000MostCommonWords
-          </Text>
-          <Text
-            style={{ color: linkColor }}
-            onPress={() => Linking.openURL('https://www.chardikalaa.com/?page_id=61')}
-          >
-            {', \n \u2022 '}
-            Chardikalaa
-          </Text>
-          <Text
-            style={{ color: linkColor }}
-            onPress={() => Linking.openURL('https://www.sikhiwiki.org/index.php/Gurmukhi_to_English')}
-          >
-            {', \n \u2022 '}
-            SikhiWiki
-          </Text>
-          {' \n'}
-          <Text>
-            to create Punjabi Wordlink, an interactive game,
-            {' '}
-            for spreading the knowledge of our Mother Tongue, Punjabi.
-          </Text>
-          <Text>{' '}</Text>
-          {'\n'}
+        <Logo style={{height: 175, marginTop: 20}}/>
+
+        {/* Explaining Akhar Jor*/}
+        <Text style={{ fontFamily: 'Nasa', fontSize: 25, color: state.darkMode ? white : black }}>{'\n'}Akhar Jor</Text>
+        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black, margin:10, marginTop: 0 }}>
+          {' '}
+          utilizes
+        <Text
+          style={{ color: linkColor, }}
+          onPress={() => Linking.openURL('https://www.discoversikhism.com/sikh.html')}
+        >
+          {' \n\n \u2022 '}
+          DiscoverSikhism
         </Text>
-        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
-          <Text>{'\n '}</Text>
-          <Text>
-            We welcome your comments, suggestions, and corrections!
-            {' '}
-            For information, suggestions, or help, visit us at
-            {'  '}
-          </Text>
-          <Text
-            style={{ color: linkColor, fontWeight: 'bold' }}
-            onPress={() => Linking.openURL('https://khalisfoundation.org')}
-          >
-            KhalisFoundation.org
-          </Text>
-          {'\n'}
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://1000mostcommonwords.com/1000-most-common-punjabi-words/')}
+        >
+          {', \n \u2022 '}
+          1000MostCommonWords
         </Text>
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://www.chardikalaa.com/?page_id=61')}
+        >
+          {', \n \u2022 '}
+          Chardikalaa
+        </Text>
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://www.sikhiwiki.org/index.php/Gurmukhi_to_English')}
+        >
+          {', \n \u2022 '}
+          SikhiWiki
+        </Text>
+        {' \n'}
+          to create Punjabi Wordlink, an interactive game,
+          {' '}
+          for spreading the knowledge of our Mother Tongue, Punjabi.
+          {' '}
+      </Text>
+
+      {/* Explaining 2048 */}
+      <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: 30, color: state.darkMode ? white : black}}>{'\n'}2048</Text>
+        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black, margin:10, marginTop: 0 }}>
+          {' '}utilizes the concept of a popular number game 2048 combined with Punjabi numerals to make learning easy and a game that is fun to play.
+        </Text>
+
+      {/* Welcoming comments and suggestions */}
+      <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
+      <Text>{'\n '}</Text>
+      <Text>
+        We welcome your comments, suggestions, and corrections!
+        {' '}
+        For information, suggestions, or help, visit us at
+        {'  '}
+      </Text>
+      <Text
+        style={{ color: linkColor, fontWeight: 'bold' }}
+        onPress={() => Linking.openURL('https://khalisfoundation.org')}
+      >
+        KhalisFoundation.org
+      </Text>
+      {'\n'}
+      </Text>
         <View>
           <Text style={{ fontFamily: 'Muli', alignSelf: 'flex-end', color: state.darkMode ? white : black }}>
             {'\n'}
@@ -190,24 +183,15 @@ function About({ navigation }) {
             {'\n'}
           </Text>
 
-          <TouchableHighlight
+          <TouchableOpacity
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalisfoundation.org')}
           >
-            <Image
-              source={
-              state.darkMode
-                ? require('../../assets/khalislogo150white.png')
-                : require('../../assets/khalislogo150.png')
-            }
-              style={{ width: 125 }}
-              resizeMode="contain"
-            />
-          </TouchableHighlight>
+            {state.darkMode ? <Khalis height={50} /> : <KhalisDark height={50} />}
+          </TouchableOpacity>
 
           <View style={styles.singleLine}>
-            <View style={styles.leftContainer}>
-              <Text
+            <Text
                 style={[styles.small, { fontFamily: 'Muli', color: state.darkMode ? white : black }]}
               >
                 &copy;
@@ -216,7 +200,6 @@ function About({ navigation }) {
                 {' '}
                 Khalis Foundation
               </Text>
-            </View>
             <Text
               style={[styles.small, { fontFamily: 'Muli', color: state.darkMode ? white : black }]}
             >

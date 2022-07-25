@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "ੳਅੲ Games - Learn Gurmukhi",
+    "name": "Sikh Games",
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/ioslogo.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
@@ -17,18 +17,18 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
-      "buildNumber": "5"
+      "buildNumber": "8"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
-      "versionCode": 5,
+      "versionCode": 8,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000"
       }
     },
     "web": {
-      "favicon": "./assets/foreground_logo.png"
+      "favicon": "./assets/icon.png"
     }
   }
 }

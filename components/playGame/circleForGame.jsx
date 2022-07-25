@@ -3,19 +3,15 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated, View, Dimensions
+  Text, StyleSheet, TouchableOpacity, Animated, Easing, View, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
 import {
-  setAttempt,
-  setBottomWord,
-  setTopWord,
-  setCorrectWords,
-  setLevelProgress,
-  setNewWords,
+  setAttempt
 } from '../../redux/actions';
 
 function TheCircle() {
@@ -34,12 +30,74 @@ function TheCircle() {
   function touchedMe(object, final) {
     console.log(`${object} was touched!`);
     dispatch(setAttempt(final));
-    ifCorrectWord(final);
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
+ 
+  //animations
+  const animatedValue = new Animated.Value(0);
+
+  const buttonScale = animatedValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 1.05, 1.1]
+  });
+
+  // const buttonRotate = animatedValue.interpolate({
+  //     inputRange: [0, 0.5, 1],
+  //     outputRange: ['0deg', '90deg', '180deg']
+  // })
+
+  const onPressIn = () => {
+      Animated.timing(animatedValue, {
+        toValue: 1,
+        duration: 500,
+        easing: Easing.linear,
+        useNativeDriver: true
+      }).start();
+  }
+
+  const onPressOut = () => {
+      Animated.timing(animatedValue, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.linear,
+          useNativeDriver: true
+        }).start();
+  };
+
+  const animatedScaleStyle = {
+      transform: [{scale: buttonScale}]
+  };
+
+  // // rotation animations
+  // const [rotateAnimation, setRotateAnimation] = useState(new Animated.Value(0));
+
+  // const handleAnimation = () => {
+  //   Animated.timing(rotateAnimation, {
+  //     toValue: 1,
+  //     duration: 800,
+  //     useNativeDriver: true,
+  //   }).start(() => {
+  //     rotateAnimation.setValue(0);
+  //   });
+  // };
+
+  // const interpolateRotating = rotateAnimation.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: ['0deg', '720deg'],
+  // });
+
+  // const animatedStyle = {
+  //   transform: [
+  //     {
+  //       rotate: interpolateRotating,
+  //     },
+  //   ],
+  //   width: screenWidth
+  // };
+
 
   const styles = StyleSheet.create({
     lettersCircle: {
@@ -69,38 +127,13 @@ function TheCircle() {
     }
   });
 
-  const ifCorrectWord = (word) => {
-    if (word === state.firstWord.engText && state.topWord === '') {
-      if (!state.correctWords.includes(state.firstWord)) {
-        dispatch(setTopWord());
-        dispatch(setCorrectWords(state.firstWord));
-        dispatch(setLevelProgress(state.firstWord));
-      }
-      // if bottomWord is filled that means both are now answered so will get new words
-      if (state.bottomWord !== '') {
-        dispatch(setNewWords());
-      }
-    }
-    if (word === state.secondWord.engText && state.bottomWord === '') {
-      if (!state.correctWords.includes(state.secondWord)) {
-        dispatch(setBottomWord());
-        dispatch(setCorrectWords(state.secondWord));
-        dispatch(setLevelProgress(state.secondWord));
-      }
-      // if topWord is filled that means both are now answered so will get new words
-      if (state.topWord !== '') {
-        dispatch(setNewWords());
-      }
-    }
-  };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
 
   const radius =  110;
   const step = (2 * Math.PI) / charArray.length;
   const new_height = height/(Math.floor(height/100)-1);
-  const sub = (width>400)? 1.7 : .75;
-  const new_width = width/(Math.floor(width/100)-sub);
+  const new_width = 100 + width/5.25;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
@@ -117,7 +150,7 @@ function TheCircle() {
       charArray.map((char) => {
         const x = Math.round(new_width + radius * Math.cos(angle));
         const y = Math.round(new_height + radius * Math.sin(angle));
-        console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
+        //console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
         // let theLetter = String.fromCharCode(char);
         const theLetter = gurmukhi(char);
         angle += step;
@@ -142,9 +175,12 @@ function TheCircle() {
               }
               touchedMe(char, final);
             }}
+            onPressIn={onPressIn}
+            onPressOut={onPressOut}
             key={char}
             style={{
               ...styles.commonChar,
+              ...animatedScaleStyle,
               left: x,
               top: y,
             }}
@@ -156,7 +192,9 @@ function TheCircle() {
         );
       })
 }
-      {(state.attempt == "") ? <View></View> :
+      {(state.attempt == "") ? <View style={{borderRadius: 25,
+          height: 40,
+          width: 40,alignSelf: 'center'}}></View> :
       <TouchableOpacity
         style={{
           backgroundColor: state.darkMode ? 'black' : 'white',
@@ -165,7 +203,8 @@ function TheCircle() {
           width: 40,
           alignSelf: 'center',
           top: new_height,
-          elevation: 5
+          elevation: 5, 
+          ...animatedScaleStyle
         }}
         onPress={() => {
           dispatch(setAttempt(''));
