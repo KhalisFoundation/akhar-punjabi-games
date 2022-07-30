@@ -19,7 +19,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { setTheState } from '../../redux/actions';
-import LoadingModal from '../homeScreen/loadingScreen';
 import * as Anvaad from 'anvaad-js';
 import Khalis from '../../assets/khalis_logo.svg';
 import Logo from '../../assets/sikh_games_logo_with_text.svg'
@@ -213,10 +212,10 @@ function MenuScreen({ navigation }) {
             onPress={() => {
               if (audioPlayer._loaded) {stopSound()};
               whichGame('2048');
-              navigation.navigate('2048');
+              navigation.navigate('2048');              
             }}
           >
-            <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
+            <Text style={[styles.text, {fontFamily: 'Muli'}]}>2048</Text>
           </TouchableOpacity>
         </View>
       </View>

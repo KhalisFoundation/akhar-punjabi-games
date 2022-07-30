@@ -1,7 +1,6 @@
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getEmptyBoard, scoreCalculator, generateRandom} from '../components/game2048/slideLogic';
 
 
 const setData = async (title, state) => {
@@ -42,7 +41,6 @@ const getRandomWord = () => {
 
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
-const newBoard = getEmptyBoard();
 
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
@@ -83,11 +81,8 @@ export const initialState = {
   // levels completed
   meaningPopup: false,
   // 2048 stuff
-  board: newBoard,
-  punjabiNums: true,
   resultShow: false,
-  moves: 0,
-  score: 0
+  moves: 0
 };
 
 //to reset all state
@@ -377,28 +372,6 @@ function theGameReducer(state = initialState, action) {
 
   // actions for 2048
 
-  if (action.type === "SET_BOARD") {
-    const newState = {
-      ...state,
-      board: action.theBoard,
-      moves: state.moves + 1,
-      score: scoreCalculator(action.theBoard),
-    };
-    setData("state", newState);
-    return newState;
-  }
-
-  if (action.type === "RESET_BOARD") {
-    const newState = {
-      ...state,
-      board: generateRandom(getEmptyBoard()),
-      moves: 0,
-      score: 0
-    };
-    setData("state", newState);
-    return newState;
-  }
-
   if (action.type === "2048_PUNJABI_NUMS") {
     const newState = {
       ...state,
@@ -408,10 +381,9 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "SET_NEW_BOARD") {
+  if (action.type === "SET_RESULT_SHOW") {
     const newState = {
       ...state,
-      board: generateRandom(getEmptyBoard()),
       resultShow: true,
     };
     setData("state", newState);
@@ -436,63 +408,74 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "CREATE_TILES") {
-    let tilesList = tiles(initialState.board);
+  if (action.type === "SET_MOVING") {
     const newState = {
-        ...state,
-        tiles: tilesList,
-        byIds: [tileList.map((tile) => tile.id)],
-        hasChanged: false,
+      ...state,
+      moving: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "UPDATE_TILE") {
+  if (action.type === "UPDATE_GRID") {
     const newState = {
       ...state,
-      tiles: {
-          ...state.tiles,
-          [action.tile.id]: action.tile,
-      },
-      hasChanged: true,
+      grid: action.theGrid,
+    };
+    setData("state", newState);
+    return newState;  
+  }
+
+  if (action.type === "SET_WON") {
+    const newState = {
+      ...state,
+      won: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "MERGE_TILE") {
-    const { [action.source.id]: source, [action.destination.id]: destination, ...restTiles } = state.tiles;
+  if (action.type === "SET_OVER") {
     const newState = {
       ...state,
-      tiles: {
-          ...restTiles,
-          [action.destination.id]: {
-              id: action.destination.id,
-              value: action.source.value + action.destination.value,
-              position: action.destination.position,
-          },
-      },
-      byIds: state.byIds.filter((id) => id !== action.source.id),
-      hasChanged: true,
+      over: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "START_MOVE") {
+  if (action.type === "KEEP_PLAYING") {
     const newState = {
       ...state,
-      inMotion: true,
+      keepPlaying: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "END_MOVE") {
+  if (action.type === "SET_SCORE") {
     const newState = {
       ...state,
-      inMotion: false,
+      score: action.theScore,
+    };
+
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_BEST") {
+    const newState = {
+      ...state,
+      best: action.theBest,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_TILES") {
+    const newState = {
+      ...state,
+      tiles: action.theTiles,
     };
     setData("state", newState);
     return newState;

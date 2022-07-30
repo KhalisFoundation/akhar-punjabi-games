@@ -97,19 +97,21 @@ function MoreGiveUps({ route, navigation }) {
     keyboardRow: {
       width: '100%',
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      alignSelf: 'center',
       padding: 7
     },
     key: {
-      minWidth: 20,
+      width: 36,
+      height: 36,
       alignItems: 'center',
+      textAlign: 'center',
       justifyContent: 'center',
       marginHorizontal: 2,
       padding: 2,
       borderColor: '#000',
       borderWidth: .5,
-      borderRadius: 5,
+      borderRadius: 75,
       backgroundColor: "#072227",
       shadowColor: '#000',
       shadowOffset: {
@@ -327,7 +329,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'meta') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
-                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2190"}</Text>
+                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2190"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -335,7 +337,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'space') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
-                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2423"}</Text>
+                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2423"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -348,7 +350,7 @@ function MoreGiveUps({ route, navigation }) {
                         key={i}
                         onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
                       >
-                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 18 : 25)}}>
+                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 15 : 22)}}>
                           {isCurrentKeyDefaultMatraKey
                             ? getMatraAkhar(keyboardKey, textEntry)
                             : keyboardKey}

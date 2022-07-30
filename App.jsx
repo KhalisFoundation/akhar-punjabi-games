@@ -5,7 +5,6 @@ import { TransitionPresets, createStackNavigator } from '@react-navigation/stack
 import { Provider } from 'react-redux';
 import MenuScreen from './components/menuScreen/menuPage';
 import HomeScreen from './components/homeScreen/landingPage';
-import Game2048 from './components/game2048/game2048';
 import GameScreen from './components/playGame/theGame';
 import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
@@ -14,8 +13,8 @@ import About from './components/about/about';
 import HelpGrid1 from './components/game2048/helpGrids/helpGrid1';
 import HelpGrid2 from './components/game2048/helpGrids/helpGrid2';
 import HelpGrid3 from './components/game2048/helpGrids/helpGrid3';
+import New2048 from './components/game2048/appo';  
 import { Store } from './redux/store';
-import screenName from './components/whichScreen';
 import { auth } from './firebase';
 import * as Analytics from 'expo-firebase-analytics';
 
@@ -97,7 +96,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
             name="2048"
-            component={Game2048}
+            component={New2048}
           />
           <Stack.Screen
             name="play"
