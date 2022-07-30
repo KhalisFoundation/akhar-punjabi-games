@@ -173,13 +173,13 @@ function RightWords({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar
-        backgroundColor="black"
-        barStyle={state.darkMode ? 'light-content' : 'dark-content'}
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle='dark-content'
       />
       <Header
         backgroundColor={state.darkMode ? '#004ba6' : 'cyan'}
         containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 },
           (!state.meaningPopup) ? styles.downStyle : null
         ]}
         leftComponent={(
@@ -189,7 +189,7 @@ function RightWords({ navigation }) {
                 state.darkMode ? 'white' : 'black'
               }
             size={30}
-            onPress={() => { navigation.navigate('Home'); }}
+            onPress={() => { navigation.navigate('AkharJor'); }}
           />
           )}
         centerComponent={{

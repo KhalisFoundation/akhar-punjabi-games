@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';;
 import {
   StyleSheet,
   Image,
@@ -67,7 +67,8 @@ function About({ navigation }) {
       style={styles.container}
     >
       <StatusBar
-        backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
+        translucent={true}
+        backgroundColor={'transparent'}
         barStyle="light-content"
       />
       <Header

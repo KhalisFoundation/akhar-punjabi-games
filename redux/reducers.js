@@ -1,8 +1,6 @@
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getEmptyBoard} from '../components/game2048/slideLogic';
-import { generateRandom } from './../components/game2048/slideLogic';
 
 
 const setData = async (title, state) => {
@@ -43,7 +41,6 @@ const getRandomWord = () => {
 
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
-const newBoard = getEmptyBoard();
 
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
@@ -81,17 +78,16 @@ export const initialState = {
   romanised: false,
   showNumOfLetters: false,
   includeMatra: true,
-  // 2048 stuff
-  board: generateRandom(newBoard),
-  punjabiNums: true,
-  resultShow: false,
-  playbgm: true,
   // levels completed
   meaningPopup: false,
+  // 2048 stuff
+  resultShow: false,
+  moves: 0
 };
 
 //to reset all state
 //setData("state", initialState);
+
 
 function theGameReducer(state = initialState, action) {
   const finalLevel = 8 // was 9
@@ -331,29 +327,50 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "RESET_LEVELS") {
-    setData("state", initialState);
-    return initialState
+    const newState = {
+      ...state,
+      usableWords: allWords.filter((word) => word.level === 1),
+      topWord: "",
+      topHint: "",
+      bottomWord: "",
+      bottomHint: "",
+      attempt: "",
+      charArray: generateWords[0],
+      firstWord: generateWords[1],
+      firstLength: parseInt(generateWords[1].engText.length),
+      secondWord: generateWords[2],
+      secondLength: parseInt(generateWords[2].engText.length),
+      correctWords: [],
+      givenUpWords: [],
+      giveUpsLeft: 100,
+      nextLevelModal: [false],
+      levelProgress: [
+        { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
+        { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
+        { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
+        { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
+        { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
+        { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
+        { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
+        { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
+        // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
+      ],
+      totalPoints: 0,
+      //settings stuff
+      typesOfWords: "Both",
+      darkMode: false,
+      showPopUp: true,
+      romanised: false,
+      showNumOfLetters: false,
+      includeMatra: true,
+      // levels completed
+      meaningPopup: false,
+    }
+    setData("state", newState);
+    return newState
   }
 
   // actions for 2048
-
-  if (action.type === "SET_BOARD") {
-    const newState = {
-      ...state,
-      board: action.theBoard,
-    };
-    setData("state", newState);
-    return newState;
-  }
-
-  if (action.type === "RESET_BOARD") {
-    const newState = {
-      ...state,
-      board: generateRandom(getEmptyBoard()),
-    };
-    setData("state", newState);
-    return newState;
-  }
 
   if (action.type === "2048_PUNJABI_NUMS") {
     const newState = {
@@ -364,10 +381,9 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "SET_NEW_BOARD") {
+  if (action.type === "SET_RESULT_SHOW") {
     const newState = {
       ...state,
-      board: generateRandom(getEmptyBoard()),
       resultShow: true,
     };
     setData("state", newState);
@@ -383,15 +399,6 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "SET_BACKGROUND_MUSIC") {
-    const newState = {
-      ...state,
-      playbgm: action.onOrOff,
-    };
-    setData("state", newState);
-    return newState;
-  }
-
   if (action.type === "SHOW_MEANING_POPUP") {
     const newState = {
       ...state,
@@ -400,6 +407,88 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
+
+  if (action.type === "SET_MOVING") {
+    const newState = {
+      ...state,
+      moving: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "UPDATE_GRID") {
+    const newState = {
+      ...state,
+      grid: action.theGrid,
+    };
+    setData("state", newState);
+    return newState;  
+  }
+
+  if (action.type === "SET_WON") {
+    const newState = {
+      ...state,
+      won: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_OVER") {
+    const newState = {
+      ...state,
+      over: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "KEEP_PLAYING") {
+    const newState = {
+      ...state,
+      keepPlaying: action.onOrOff,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_SCORE") {
+    const newState = {
+      ...state,
+      score: action.theScore,
+    };
+
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_BEST") {
+    const newState = {
+      ...state,
+      best: action.theBest,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_TILES") {
+    const newState = {
+      ...state,
+      tiles: action.theTiles,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  // sample for action.type handler
+  // if (action.type === "") {
+  //   const newState = {
+  //   };
+  //   setData("state", newState);
+  //   return newState;
+  // }
+  
   
   //default
   return { ...state };

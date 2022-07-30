@@ -8,7 +8,8 @@ import {
   Linking,
   Image,
   ImageBackground, 
-  SafeAreaView
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import IonIcons from 'react-native-vector-icons/Ionicons';
@@ -19,7 +20,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { setTheState } from '../../redux/actions';
-import LoadingModal from './loadingScreen';
 
 import Khalis from '../../assets/khalis_logo.svg';
 import { initialState } from '../../redux/reducers';
@@ -125,6 +125,10 @@ function HomeScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="light-content" />
       {/* <LoadingModal visible={loadingScreenStatus} /> */}
       <TouchableOpacity
         style={styles.back}
@@ -197,7 +201,7 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Icon name="check-circle" size={85} color="#00aa00" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Completed Levels</Text>
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Levels</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}

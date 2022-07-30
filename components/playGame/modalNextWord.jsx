@@ -221,7 +221,7 @@ function WordsDoneModal() {
                     style={{ borderBottomWidth: 2, borderBottomColor: 'white', paddingBottom: 10 }}
                   >
                     <Text style={styles.wordDoneText}>
-                      {state.nextLevelModal[1].punjabiText}
+                      {state.nextLevelModal[1].engText}
                     </Text>
                     <Text style={styles.meaningText}>
                       {state.nextLevelModal[1].meaning}
@@ -233,7 +233,7 @@ function WordsDoneModal() {
                     iterationCount={1}
                   >
                     <Text style={styles.wordDoneText}>
-                      {state.nextLevelModal[2].punjabiText}
+                      {state.nextLevelModal[2].engText}
                     </Text>
                     <Text style={styles.meaningText}>
                       {state.nextLevelModal[2].meaning}
