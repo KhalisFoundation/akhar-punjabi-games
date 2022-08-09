@@ -37,15 +37,14 @@ function HelpGrid3({navigation}) {
             textAlign: 'center',
             fontFamily: 'Muli',
             fontSize: 25,
-            marginBottom: 10,
         },
         continue:{
             justifyContent: 'center',
             textAlign: 'center',
             backgroundColor: '#274C7C',
-            borderRadius: 10, margin: 10,
+            borderRadius: 10,
             height: 50,
-            width: 150,
+            width: width*.45,
             elevation: 5,
         },
         continueTxt: {
@@ -81,7 +80,6 @@ function HelpGrid3({navigation}) {
         <View style={styles.container}>
             <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
                 <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {navigation.navigate('2048')}} />
-                <Text style={{...styles.header, fontSize: 20 }}>3/3</Text>
             </View>
             <Text style={styles.header}>
             Reach the 2048 tile to win the game!
@@ -94,6 +92,9 @@ function HelpGrid3({navigation}) {
                     PLAY
                 </Text>
             </TouchableOpacity>
+            <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
+                <Text style={{...styles.header, fontSize: 20 }}>3/3</Text>
+            </View>
         </View>
     );
 }

@@ -3,11 +3,12 @@ import * as React from 'react';
 import { useRef, useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
 import {
-  View, Text, TouchableOpacity, StyleSheet, StatusBar,Dimensions, ScrollView, Platform, Animated
+  View, Text, TouchableOpacity, StyleSheet, StatusBar,Dimensions, ScrollView, Platform, Animated, TouchableWithoutFeedback
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconH from 'react-native-vector-icons/MaterialIcons';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Header } from 'react-native-elements';
@@ -18,7 +19,7 @@ import { useState } from 'react';
 // import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 // import Animated, { FadeIn,AnimatedLayout, Layout, FadeOut } from 'react-native-reanimated';
 import theColors from '../../util/colors';
-import TheCircle from './circleForGame';
+import {TheCircle} from './indo';
 import WordsDoneModal from './modalNextWord';
 import {
   setTopWord,
@@ -34,6 +35,7 @@ import {
 } from '../../redux/actions';
 
 import * as Analytics from 'expo-firebase-analytics';
+import dimensions from '../game2048/utils/dimensions';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -448,6 +450,17 @@ function GameScreen({ navigation }) {
       return state.secondWord.engText.length;
     }
   } */
+  
+  const [ visited, setVisited ] = useState([]);
+  const [ wordFromSwipe, setWordFromSwipe ] = useState('');
+  useEffect(() => {
+    console.log("visited:")
+    visited.forEach((point, index) => {
+      console.log(`point no.${index} ${point.x}, ${point.y}`);
+    });
+    console.log(`new word: ${wordFromSwipe}`);
+  }, [visited]);
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -650,7 +663,7 @@ function GameScreen({ navigation }) {
         </Text>
         <TouchableOpacity
           style={{
-            backgroundColor: state.darkMode ? 'black' : 'white', borderRadius: 25, height: 40, width: 40, alignSelf: 'center'
+            backgroundColor: state.darkMode ? 'black' : 'white', borderRadius: 25, height: 40, width: 40, justifyContent: 'center'
           }}
           onPress={() => {
             const slico = state.attempt.slice(0, (state.attempt.length - 1));
@@ -660,18 +673,18 @@ function GameScreen({ navigation }) {
         >
           <MaskedView
             style={{
-              height: 40,
-              width: 40,
+              height: (dimensions.size["14"]+dimensions.size["16"])/2.02,
+              width: (dimensions.size["14"]+dimensions.size["16"])/2.02
             }}
             maskElement={(
               <View
                 style={{
                   backgroundColor: 'transparent',
-                  alignSelf: 'center',
+                  alignItems: 'center',
                   padding: 5
                 }}
               >
-                <IconM name="backspace" size={25} />
+                <IonIcon name="backspace" size={dimensions.size["10"]}/>
               </View>
           )}
           >
@@ -683,7 +696,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity>
       </AnimatedLinearGradient>
       <Animated.View style={animatedStyle}>
-        <TheCircle />
+          <TheCircle visited={visited} setVisited={setVisited} word={wordFromSwipe} setWord={setWordFromSwipe} style={{position: 'relative'}}/>
       </Animated.View>
       </ScrollView>
     </AnimatedLinearGradient>
