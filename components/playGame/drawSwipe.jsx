@@ -11,10 +11,6 @@ export const PanRes = ({ visited, setVisited, points }) => {
   const [endXY, setEndXY] = useState({x: 0, y: 0});
   const [word, setWord] = useState('');
 
-  useEffect(() => {
-    console.log('word:', word);
-  }, [word]);
-
   const pathMaker = (start, passed, end) => {
     let path;
     if (passed.length > 0) {

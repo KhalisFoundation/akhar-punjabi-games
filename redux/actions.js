@@ -211,3 +211,10 @@ export const setBest = (best) => {
     theBest: best
   };
 }
+
+export const setVisited = (visit) => {
+  return {
+    type: "SET_VISITED",
+    theVisited: visit
+  };
+}

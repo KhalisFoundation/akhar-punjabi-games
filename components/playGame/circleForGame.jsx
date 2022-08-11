@@ -11,11 +11,11 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState, useRef,useEffect } from 'react';
 import {
-  setAttempt
+  setAttempt, setVisited
 } from '../../redux/actions';
 import Svg, {Polyline, Circle, Path} from 'react-native-svg';
 
-export const TheCircle = ({ visited, setVisited, word, setWord }) => {
+export const TheCircle = () => {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
@@ -26,10 +26,22 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
     return Anvaad.unicode(text);
 
   }
+
   function touchedMe(object, final) {
     console.log(`${object} was touched!`);
     dispatch(setAttempt(final));
   }
+
+  function attemptMade(word) {
+    let w = state.attempt;
+    if (!w.includes(word)) {
+      let newWord = w + word;
+      dispatch(setAttempt(newWord));
+    } else {
+      dispatch(setAttempt(w));
+    }
+  }
+
   const { charArray } = state;
   const prevAttempt = state.attempt;
   const width = Dimensions.get('window').width;
@@ -43,11 +55,6 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
       inputRange: [0, 0.5, 1],
       outputRange: [1, 1.05, 1.1]
   });
-
-  
-  useEffect(() => {
-    console.log(visited)
-  }, [visited])
 
   // const buttonRotate = animatedValue.interpolate({
   //     inputRange: [0, 0.5, 1],
@@ -114,6 +121,7 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
       width: width,
     },
     clearBox: {
+      zIndex: -1,
       width: 0.12*width,
       height: 0.12*width,
       justifyContent: 'center',
@@ -156,18 +164,15 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
   // pan responder for swipes
   const pan = useRef(new Animated.ValueXY()).current;
   const [startXY, setStartXY] = useState({x: 0, y: 0});
-  const [endXY, setEndXY] = useState({x: 0, y: 0});
+  const [endXY, setEndXY] = useState({x: "", y: ""});
 
-  useEffect(() => {
-    console.log('word:', word);
-  }, [word]);
-
-  const pathMaker = (start, passed, end) => {
+  const pathMaker = (start, end) => {
     let path;
+    let passed = [...state.visited];
     if (passed.length > 0) {
-      path = `${start.x},${start.y} `;
+      path = "";
       passed.forEach(point => {
-        path += `${point.x},${point.y} `;
+        path += `${point.x+25},${point.y+25} `;
       });
       path += `${end.x},${end.y}`;
     } else {
@@ -208,12 +213,7 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
         if (!!res) {
           const {x, y} = res;
           setStartXY({x, y});
-          setWord((w) => {
-            if (!w.includes(firstLetter)) {
-              return w + firstLetter;
-            }
-            return w;
-          });
+          attemptMade(firstLetter);
         } else {
           setStartXY({x: "", y: ""});
         }
@@ -221,27 +221,21 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
         const [foundCoordinate, foundWord] = checkIfFound(gestureState.x0 + gestureState.dx, gestureState.y0 + gestureState.dy);
         if (!!foundCoordinate) {
           const {x, y} = foundCoordinate;
-          setVisited((v) => {
-            if(!v.some(foundCoordinate => foundCoordinate.x === x && foundCoordinate.y === y)) {
-              return [...v, foundCoordinate]
-            }
-            return v;
-          });
-          setWord((w) => {
-            if (!w.includes(foundWord)) {
-              return w + foundWord;
-            }
-            return w;
-          });
+          let v = [...state.visited];
+          if (!v.some(foundCoordinate => foundCoordinate.x === x && foundCoordinate.y === y)) {
+            let newPassed = [...v, foundCoordinate];
+            dispatch(setVisited(newPassed));
+          }
+          attemptMade(foundWord);
         }
         setEndXY({x: gestureState.moveX, y: gestureState.moveY});
       },
     
       onPanResponderRelease: (event, gestureState) => {
         setStartXY({x: 0, y: 0});
-        setEndXY({x: 0, y: 0});
-        setVisited([]);
-        setWord('');
+        setEndXY({x: "", y: ""});
+        dispatch(setVisited([]));
+        dispatch(setAttempt(""));
         console.log('release');
       }
     })
@@ -260,8 +254,7 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
   return (
     <Animated.View 
       style={[styles.container, {height: width, width: width, position: "relative"}]}
-      {...panResponder.panHandlers}
-      onPress={() => {
+      onPressOut={() => {
         let final;
 
         if (prevAttempt === undefined) {
@@ -280,13 +273,15 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
         }
         touchedMe(char, final);
       }}>
+    <Animated.View style={[styles.lettersCircle, {backgroundColor: 'transparent', position: 'absolute', zIndex: 1}]}
+    {...panResponder.panHandlers}></Animated.View>
     <AnimatedLinearGradient
       colors={['transparent', 'transparent']}
       style={styles.lettersCircle}
     >
         <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}>
           <Polyline
-            points={pathMaker(startXY, visited, endXY)} //"M100,250 Q200,150 260,250"
+            points={pathMaker(startXY, endXY)} //"M100,250 Q200,150 260,250"
             fill="none"
             stroke="white"
             strokeWidth="10"
@@ -332,47 +327,6 @@ export const TheCircle = ({ visited, setVisited, word, setWord }) => {
           </Text>
         </TouchableOpacity>)
     })}
-      {(state.attempt == "") ? <View style={{borderRadius: 25,
-          height: 40,
-          width: 40,alignSelf: 'center'}}></View> :
-      <TouchableOpacity
-        style={{
-          backgroundColor: state.darkMode ? 'black' : 'white',
-          borderRadius: 25,
-          height: 40,
-          width: 40,
-          alignSelf: 'center',
-          top: new_height,
-          elevation: 5, 
-          ...animatedScaleStyle
-        }}
-        onPress={() => {
-          dispatch(setAttempt(''));
-        }}
-      >
-        <MaskedView
-          style={{
-            height: 50,
-            width: 50
-          }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-                padding: 5
-              }}
-            >
-              <IconM name="reload" size={30} color="black" style={styles.clearBox} />
-            </View>
-        )}
-        >
-          <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
-      </TouchableOpacity>}
-
     </AnimatedLinearGradient>
     </Animated.View>
   );

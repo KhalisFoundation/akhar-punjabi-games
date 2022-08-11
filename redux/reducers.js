@@ -1,6 +1,9 @@
+import * as React from 'react';
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRef } from 'react';
+import {Animated, Dimensions} from 'react-native';
 
 
 const setData = async (title, state) => {
@@ -19,6 +22,12 @@ const setWords = (level, allWords) => {
 };
 
 // generate words for getMoreLives Page
+const rotateAnimation = new Animated.Value(0);  
+const interpolateRotating = rotateAnimation.interpolate({
+  inputRange: [0, 1],
+  outputRange: ['0deg', '720deg'],
+});
+const screenWidth = Dimensions.get('window').width;
 
 const wordsToType = [
   'vwihgurU',
@@ -45,11 +54,22 @@ const generateWords = getWords(allWords.filter((word) => word.level === 1));
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
   usableWords: allWords.filter((word) => word.level === 1),
+  //logic states for akharjor
   topWord: "",
   topHint: "",
   bottomWord: "",
   bottomHint: "",
+  visited: [],
   attempt: "",
+  animatedStyle: {
+    transform: [
+      {
+        rotate: interpolateRotating,
+      },
+    ],
+    width: screenWidth,
+    marginBottom: 25
+  },
   charArray: generateWords[0],
   firstWord: generateWords[1],
   firstLength: parseInt(generateWords[1].engText.length),
@@ -96,6 +116,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       topWord: state.firstWord.engText,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_TOP_HINT") {
@@ -103,6 +124,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       topHint: action.theTopHint,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_BOTTOM_WORD") {
@@ -110,6 +132,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       bottomWord: state.secondWord.engText,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_BOTTOM_HINT") {
@@ -117,6 +140,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       bottomHint: action.theBottomHint,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_ATTEMPT") {
@@ -213,6 +237,7 @@ function theGameReducer(state = initialState, action) {
       bottomWord: "",
       bottomHint: "",
       attempt: "",
+      visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
@@ -335,6 +360,7 @@ function theGameReducer(state = initialState, action) {
       bottomWord: "",
       bottomHint: "",
       attempt: "",
+      visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
       firstLength: parseInt(generateWords[1].engText.length),
@@ -476,6 +502,15 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       tiles: action.theTiles,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_VISITED") {
+    const newState = {
+      ...state,
+      visited: action.theVisited,
     };
     setData("state", newState);
     return newState;
