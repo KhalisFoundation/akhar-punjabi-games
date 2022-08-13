@@ -94,7 +94,6 @@ function GameScreen({ navigation }) {
     container: {
       width: '100%',
       height: '100%',
-      paddingBottom: '3.5%',
       alignItems: 'center', 
       flexDirection: 'column', 
       justifyContent: 'space-evenly', 
@@ -102,7 +101,6 @@ function GameScreen({ navigation }) {
     scroller: {
       width: '100%',
       height: '100%',
-      paddingBottom: '3.5%',
       flexDirection: 'column',
     },
     scrollContent: {

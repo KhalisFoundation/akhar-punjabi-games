@@ -34,7 +34,7 @@ export const TheCircle = () => {
 
   function attemptMade(word) {
     let w = state.attempt;
-    if (!w.includes(word)) {
+    if (w[w.length-1] !== word) {
       let newWord = w + word;
       dispatch(setAttempt(newWord));
     } else {
@@ -117,8 +117,12 @@ export const TheCircle = () => {
       justifyContent: 'center',
     },
     lettersCircle: {
-      height: width,
+      height: height,
       width: width,
+      zIndex:-1,
+      position: 'absolute',
+      top: 0,
+      left: 0,
     },
     clearBox: {
       zIndex: -1,
@@ -172,7 +176,7 @@ export const TheCircle = () => {
     if (passed.length > 0) {
       path = "";
       passed.forEach(point => {
-        path += `${point.x+25},${point.y+25} `;
+        path += `${point.x+25},${point.y + width + 25} `;
       });
       path += `${end.x},${end.y}`;
     } else {
@@ -185,7 +189,7 @@ export const TheCircle = () => {
     let foundCoordinates;
     let foundWord = '';
     points.map(({x,y,letter}) => {
-      if((x - 20 <= xTouch && xTouch <= x + 20) && (y - 20 <= yTouch && yTouch<= y + 20)) {
+      if((x - 20 <= xTouch && xTouch <= x + 20) && (width + y - 20 <= yTouch && yTouch<= width + y + 20)) {
         foundCoordinates = {x, y};
         foundWord = letter;
     }});
@@ -279,7 +283,7 @@ export const TheCircle = () => {
       colors={['transparent', 'transparent']}
       style={styles.lettersCircle}
     >
-        <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}>
+        <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: -width, left: 0, right: 0, bottom: 0}}>
           <Polyline
             points={pathMaker(startXY, endXY)} //"M100,250 Q200,150 260,250"
             fill="none"
@@ -317,6 +321,7 @@ export const TheCircle = () => {
           style={{
             ...styles.commonChar,
             ...animatedScaleStyle,
+            position: 'absolute',
             left: x,
             top: y,
             zIndex: -1,

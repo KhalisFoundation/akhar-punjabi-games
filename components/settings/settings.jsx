@@ -7,7 +7,8 @@ import {
   StatusBar,
   Linking,
   ScrollView,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListItem, Header } from 'react-native-elements';
@@ -38,13 +39,14 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
+  const screenWidth = Dimensions.get('window').width;
   const colors = theColors[state.darkMode];
   const platform = Platform.OS;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       // justifyContent: "center",
-      backgroundColor: state.darkMode ? '#333' : colors.settings.container,
+      backgroundColor: state.darkMode ? '#D1FBFF' :'#eeccaa',
       width: '100%',
       height: '100%',
     },
@@ -83,7 +85,7 @@ function Settings({ navigation }) {
         barStyle="dark-content"
       />
       <Header
-        backgroundColor="orange"
+        backgroundColor={state.darkMode ? "#274C7C" : "orange"}
         containerStyle={[
           Platform.OS === 'android' && { height: 75, paddingTop: 0 }
         ]}
@@ -99,7 +101,7 @@ function Settings({ navigation }) {
           text: 'Settings',
           style: {
             color: 'black',
-            fontSize: 18,
+            fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli'
           }
         }}
@@ -129,7 +131,7 @@ function Settings({ navigation }) {
           )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#274CCC', '#274C77']}
             style={{ flex: 1 }}
           />
         </MaskedView>
@@ -201,7 +203,7 @@ function Settings({ navigation }) {
           )}
           >
             <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              colors={['#274CCC', '#274C77']}
               style={{ flex: 1 }}
             />
           </MaskedView>
@@ -231,7 +233,7 @@ function Settings({ navigation }) {
           )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#274CCC', '#274C77']}
             style={{ flex: 1 }}
           />
         </MaskedView>
@@ -259,7 +261,7 @@ function Settings({ navigation }) {
           )}
           >
             <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              colors={['#274CCC', '#274C77']}
               style={{ flex: 1 }}
             />
           </MaskedView>
@@ -292,7 +294,7 @@ function Settings({ navigation }) {
           )}
           >
             <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              colors={['#274CCC', '#274C77']}
               style={{ flex: 1 }}
             />
           </MaskedView>

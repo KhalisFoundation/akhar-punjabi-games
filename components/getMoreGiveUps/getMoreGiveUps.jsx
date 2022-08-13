@@ -23,9 +23,7 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import GLOBAL from '../../util/globals';
 import { setGiveUpLives, setLivesWord } from '../../redux/actions';
-import theColors from '../../util/colors';
 import { useEffect } from 'react';
 import * as Analytics from 'expo-firebase-analytics';
 
@@ -79,14 +77,12 @@ function MoreGiveUps({ route, navigation }) {
   };
 
   const prevScreen = route.params.prevScreen === 0 ? 'AkharJor' : 'play';
-  const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: colors.getMoreGiveUps.container,
+      backgroundColor: "#D1FBFF",
       height: '100%',
       width: '100%',
-      marginTop: (Platform.OS == 'android') ? '3.5%' : 0,
     },
     scrollview: {
       flex: 1,
@@ -112,7 +108,7 @@ function MoreGiveUps({ route, navigation }) {
       borderColor: '#000',
       borderWidth: .5,
       borderRadius: 75,
-      backgroundColor: "#072227",
+      backgroundColor: "#072270",
       shadowColor: '#000',
       shadowOffset: {
         width: 1,
@@ -168,7 +164,7 @@ function MoreGiveUps({ route, navigation }) {
       fontSize: (screenWidth<370 ? 20 : 30),
       textShadowRadius: 10,
       fontFamily: 'Bookish',
-      color: "#ff8008"
+      color: "#FF7E00"
     },
     inputBox: {
       padding: 10,
@@ -195,21 +191,19 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignItems: 'center',
       borderRadius: 15,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 0
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
       marginBottom: 15,
+      elevation: 5,
+      backgroundColor: "#FF7E00",
+      borderColor: "#911",
+      borderWidth: .5,
     },
     submit: {
       fontFamily: 'Nasa',
       fontSize: (screenWidth<370 ? 10 : 16),
       alignSelf: 'center',
       padding: 10,
-      color: state.darkMode ? 'black' : 'white',
+      textShadowRadius: 4,
+      color: '#000',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -267,12 +261,12 @@ function MoreGiveUps({ route, navigation }) {
       />
       <Header
         backgroundColor={
-            GLOBAL.COLOR.TOOLBAR_COLOR_ALT
+        "#274C7C"
           }
         leftComponent={(
           <Icon
             name="arrow-back"
-            color="black"
+            color="#D1FBFF"
             size={30}
             onPress={() => { navigation.navigate(prevScreen); }}
           />
@@ -280,7 +274,7 @@ function MoreGiveUps({ route, navigation }) {
         centerComponent={{
           text: 'Get More Lives',
           style: {
-            color: 'black',
+            color: '#D1FBFF',
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
@@ -300,7 +294,7 @@ function MoreGiveUps({ route, navigation }) {
           size={25}
           color="orange"
         />
-        <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
+        <Text style={[styles.upText, { color: '#D1FBFF' }]}>{state.giveUpsLeft}</Text>
       </View>
       <Text style={styles.instructionsText}>
         Try to type the following to get more Lives.
@@ -314,7 +308,7 @@ function MoreGiveUps({ route, navigation }) {
       <View style={styles.DHANcover}>
         <Text style={{...styles.DHAN, color: '#0600bd'}}>{word}</Text>
       </View>
-      <View style={{ ...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000', shadowColor: '#000' }}>
+      <View style={{ ...styles.DHANcover, backgroundColor: "#072270", shadowColor: '#000' }}>
         <Text
           style={{ ...styles.DHAN, fontFamily: 'Bookish' }}>
           {textEntry}
@@ -377,9 +371,7 @@ function MoreGiveUps({ route, navigation }) {
           }
         }}
       >
-        <AnimatedLinearGradient colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']} style={styles.submitButton}>
-          <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
-        </AnimatedLinearGradient>
+        <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
       </TouchableOpacity>
       </ScrollView>
     </View>
