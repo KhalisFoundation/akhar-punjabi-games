@@ -96,7 +96,6 @@ export const PanRes = ({ visited, setVisited, points }) => {
   return (
     <View style={styles.container}>
         <Animated.View style={{
-            zIndex: 1,
             width: width,
             height: height,
         }}

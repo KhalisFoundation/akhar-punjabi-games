@@ -59,7 +59,7 @@ function SwitchBar({
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          state.darkMode && { backgroundColor: '#464646' },
+          state.darkMode && { backgroundColor: '#081a55' },
           { alignItems: 'flex-start' },
           displayParam ? null : { display: 'none' }
         ]}

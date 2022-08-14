@@ -52,8 +52,9 @@ function Settings({ navigation }) {
     },
     headerStyle: {
       color: 'black',
-      fontWeight: 'bold',
-      fontSize: 15,
+      fontFamily: 'Muli',
+      fontWeight: '600',
+      fontSize: 18,
     },
     shadow: {
       shadowColor: 'black',
@@ -92,7 +93,7 @@ function Settings({ navigation }) {
         leftComponent={(
           <Icon
             name="arrow-back"
-            color="black"
+            color={state.darkMode ? "white" :"black"}
             size={30}
             onPress={() => { navigation.navigate('AkharJor'); }}
           />
@@ -100,7 +101,7 @@ function Settings({ navigation }) {
         centerComponent={{
           text: 'Settings',
           style: {
-            color: 'black',
+            color: (state.darkMode ? "white" : 'black'),
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli'
           }
@@ -130,10 +131,10 @@ function Settings({ navigation }) {
             </View>
           )}
         >
-          <LinearGradient
-            colors={['#274CCC', '#274C77']}
-            style={{ flex: 1 }}
-          />
+        <LinearGradient
+          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+          style={{ flex: 1 }}
+        />
         </MaskedView>
         <SwitchBar
           title="dark_mode"
@@ -179,7 +180,7 @@ function Settings({ navigation }) {
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
+            state.darkMode && { backgroundColor: '#081a55' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { 
@@ -202,10 +203,10 @@ function Settings({ navigation }) {
               </View>
           )}
           >
-            <LinearGradient
-              colors={['#274CCC', '#274C77']}
-              style={{ flex: 1 }}
-            />
+          <LinearGradient
+            colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+            style={{ flex: 1 }}
+          />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Reset</Text></ListItem.Title>
@@ -232,15 +233,15 @@ function Settings({ navigation }) {
             </View>
           )}
         >
-          <LinearGradient
-            colors={['#274CCC', '#274C77']}
-            style={{ flex: 1 }}
-          />
+        <LinearGradient
+          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+          style={{ flex: 1 }}
+        />
         </MaskedView>
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
+            state.darkMode && { backgroundColor: '#081a55' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => Linking.openURL('https://khalisfoundation.org/donate/')}
@@ -260,10 +261,10 @@ function Settings({ navigation }) {
               </View>
           )}
           >
-            <LinearGradient
-              colors={['#274CCC', '#274C77']}
-              style={{ flex: 1 }}
-            />
+          <LinearGradient
+            colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+            style={{ flex: 1 }}
+          />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Donate</Text></ListItem.Title>
@@ -273,7 +274,7 @@ function Settings({ navigation }) {
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
+            state.darkMode && { backgroundColor: '#081a55' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { navigation.navigate('about'); }}

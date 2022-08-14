@@ -145,7 +145,7 @@ function MoreGiveUps({ route, navigation }) {
       fontFamily: 'Muli',
       marginHorizontal: 5,
       fontSize: (screenWidth<370 ? 10 : 15),
-      color: state.darkMode ? '#fff' : '#000',
+      color: '#000',
       padding: 5,
       textAlign: 'center',
       marginVertical: 5,
@@ -155,7 +155,7 @@ function MoreGiveUps({ route, navigation }) {
       width: '100%',
       elevation: 5,
       justifyContent: 'center',
-      backgroundColor: state.darkMode ? '#000' : '#fff',
+      backgroundColor: '#fff',
       borderRadius: 20,
     },
     DHAN: {
@@ -283,7 +283,7 @@ function MoreGiveUps({ route, navigation }) {
       />
       <ScrollView
         scrollEventThrottle={16}
-        style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
+        style={styles.scrollview}
         contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
       >
       <View
