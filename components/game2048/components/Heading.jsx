@@ -11,6 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import React from 'react'
 import { NumText } from './NumText'	
 import Dimensions from '../utils/dimensions'
+import { openHelpModal } from '../../../redux/actions';
+import HelpGrid1 from '../helpGrids/helpGrid1';
+import HelpGrid2 from './../helpGrids/helpGrid2';
+import HelpGrid3 from './../helpGrids/helpGrid3';
 const {height, width} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
@@ -48,9 +52,13 @@ const styles = StyleSheet.create({
 const Heading = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
+
   return (
       <View
         style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
+        { state.helpPage[0] === 0 ? <HelpGrid1 /> : null }
+        { state.helpPage[0] === 1 ? <HelpGrid2 /> : null }
+        { state.helpPage[0] === 2 ? <HelpGrid3 /> : null }
       <TouchableOpacity
         style={styles.back}
         onPress={() => props.nav.goBack()}
@@ -94,7 +102,7 @@ const Heading = (props) => {
       </View>
       <TouchableOpacity
         style={styles.help}
-        onPress={() => props.nav.navigate('help')}
+        onPress={() => {dispatch(openHelpModal(0)); console.log(state.helpPage)}}
       >
       <MaskedView
           style={{ width: 35, height: 35 }}

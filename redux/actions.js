@@ -218,3 +218,10 @@ export const setVisited = (visit) => {
     theVisited: visit
   };
 }
+
+export const openHelpModal = (page) => {
+  return {
+    type: "OPEN_HELP_MODAL",
+    thePage: page
+  };
+}

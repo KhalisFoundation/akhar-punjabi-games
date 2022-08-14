@@ -10,9 +10,6 @@ import RightWords from './components/wordsDone/wordsCompleted';
 import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 import About from './components/about/about';
-import HelpGrid1 from './components/game2048/helpGrids/helpGrid1';
-import HelpGrid2 from './components/game2048/helpGrids/helpGrid2';
-import HelpGrid3 from './components/game2048/helpGrids/helpGrid3';
 import New2048 from './components/game2048/appo';  
 import { Store } from './redux/store';
 import { auth } from './firebase';
@@ -123,21 +120,6 @@ function App() {
             name="about"
             options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
             component={About}
-          />
-          <Stack.Screen
-            name="help"
-            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
-            component={HelpGrid1}
-          />
-          <Stack.Screen
-            name="help2"
-            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
-            component={HelpGrid2}
-          />
-          <Stack.Screen
-            name="help3"
-            options={{ headerShown: false, ...TransitionPresets.ScaleFromCenterAndroid }}
-            component={HelpGrid3}
           />
         </Stack.Navigator>
       </NavigationContainer>

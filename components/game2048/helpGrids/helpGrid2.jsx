@@ -9,16 +9,22 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Platform
+    Platform,
+    Modal
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import HelpImg from '../../../assets/helpGrid2.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import Dimensions from '../utils/dimensions';
+import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function HelpGrid2({navigation}) {
+function HelpGrid2() {
+    const dispatch = useDispatch();
+    const state = useSelector((theState) => theState.theGameReducer);
     
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
@@ -28,9 +34,21 @@ function HelpGrid2({navigation}) {
         container: {
             flex: 1,
             justifyContent: 'space-evenly',
+            alignSelf: 'center',
             alignItems: 'center',
+            backgroundColor: '#0003',
+            width: '100%',
+            height: '100%',
+        },
+        page: {
             backgroundColor: '#7FC8DE',
             padding: 10,
+            borderRadius: 25,
+            justifyContent: 'space-evenly',
+            alignSelf: 'center',
+            alignItems: 'center',
+            height: height*.8,
+            width: width*.95,
         },
         header: {
             justifyContent: 'center',
@@ -77,25 +95,38 @@ function HelpGrid2({navigation}) {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
-                <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {navigation.navigate('2048')}} />
-            </View>
-            <Text style={styles.header}>
-                Two tiles with the same number merge when they touch!
-            </Text>
-            <HelpImg height={300}/>
-            <TouchableOpacity
-                style={styles.continue}
-                onPress={() => {navigation.navigate('help3')}}>
-                <Text style={styles.continueTxt}>
-                    CONTINUE
+        <Modal
+            visible={state.helpPage[0] === 1}
+            animationType="none"
+        transparent
+        onRequestClose={() => dispatch(openHelpModal())}
+      >
+        <Animatable.View 
+            animation="fadeInRight"
+            iterationCount={1}
+            iterationDelay={50}
+            style={styles.container}>
+            <View style={styles.page}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
+                    <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
+                </View>
+                <Text style={styles.header}>
+                    Two tiles with the same number merge when they touch!
                 </Text>
-            </TouchableOpacity>
-            <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
-                <Text style={{...styles.header, fontSize: 20 }}>2/3</Text>
+                <HelpImg height={300}/>
+                <TouchableOpacity
+                    style={styles.continue}
+                    onPress={() => {dispatch(openHelpModal(2))}}>
+                    <Text style={styles.continueTxt}>
+                        CONTINUE
+                    </Text>
+                </TouchableOpacity>
+                <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
+                    <Text style={{...styles.header, fontSize: 20 }}>2/3</Text>
+                </View>
             </View>
-        </View>
+        </Animatable.View>
+        </Modal>
     );
 }
 

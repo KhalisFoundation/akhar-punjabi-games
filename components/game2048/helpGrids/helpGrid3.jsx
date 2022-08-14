@@ -9,16 +9,21 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Platform
+    Modal
 } from 'react-native';
 import { useFonts } from 'expo-font';
+import * as Animatable from 'react-native-animatable';
+import {useSelector, useDispatch } from 'react-redux';
 import AppLoading from 'expo-app-loading';
 import HelpImg from '../../../assets/helpGrid3.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import Dimensions from '../utils/dimensions';
+import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function HelpGrid3({navigation}) {
+function HelpGrid3() {
+    const dispatch = useDispatch();
+    const state = useSelector((theState) => theState.theGameReducer);
     
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
@@ -28,9 +33,21 @@ function HelpGrid3({navigation}) {
         container: {
             flex: 1,
             justifyContent: 'space-evenly',
+            alignSelf: 'center',
             alignItems: 'center',
+            backgroundColor: '#0003',
+            width: '100%',
+            height: '100%',
+        },
+        page: {
             backgroundColor: '#7FC8DE',
             padding: 10,
+            borderRadius: 25,
+            justifyContent: 'space-evenly',
+            alignSelf: 'center',
+            alignItems: 'center',
+            height: height*.8,
+            width: width*.95,
         },
         header: {
             justifyContent: 'center',
@@ -77,25 +94,38 @@ function HelpGrid3({navigation}) {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
-                <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {navigation.navigate('2048')}} />
-            </View>
-            <Text style={styles.header}>
-            Reach the 2048 tile to win the game!
-            </Text>
-            <HelpImg height={300}/>
-            <TouchableOpacity
-                style={styles.continue}
-                onPress={() => {navigation.navigate('2048')}}>
-                <Text style={styles.continueTxt}>
-                    PLAY
+        <Modal
+            visible={state.helpPage[0] === 2}
+            animationType="none"
+        transparent
+        onRequestClose={() => dispatch(openHelpModal())}
+      >
+        <Animatable.View 
+            animation="fadeInRight"
+            iterationCount={1}
+            iterationDelay={50}
+            style={styles.container}>
+            <View style={styles.page}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
+                    <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
+                </View>
+                <Text style={styles.header}>
+                Reach the 2048 tile to win the game!
                 </Text>
-            </TouchableOpacity>
-            <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
-                <Text style={{...styles.header, fontSize: 20 }}>3/3</Text>
+                <HelpImg height={300}/>
+                <TouchableOpacity
+                    style={styles.continue}
+                    onPress={() => {dispatch(openHelpModal())}}>
+                    <Text style={styles.continueTxt}>
+                        PLAY
+                    </Text>
+                </TouchableOpacity>
+                <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
+                    <Text style={{...styles.header, fontSize: 20 }}>3/3</Text>
+                </View>
             </View>
-        </View>
+        </Animatable.View>
+        </Modal>
     );
 }
 
