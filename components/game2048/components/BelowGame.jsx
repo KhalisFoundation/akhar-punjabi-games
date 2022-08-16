@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPunjabiNums } from '../../../redux/actions';
 import React from 'react'
 import { NumText } from './NumText'	
-import Dimensions from '../utils/dimensions'
+import Dimensions from '../../../util/dimensions';
 
 export const BelowGame = (props) => {
   const dispatch = useDispatch();

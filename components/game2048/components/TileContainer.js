@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import React from 'react';
 import Tile from './Tile';
-import Dimensions from '../utils/dimensions';
+import Dimensions from '../../../util/dimensions';
 const { width } = Dimensions.get('window');
 
 const styles = {

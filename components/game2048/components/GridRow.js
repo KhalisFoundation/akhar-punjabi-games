@@ -3,7 +3,7 @@ import React from 'react';
 
 import GridCell from './GridCell';
 
-import Dimensions from '../utils/dimensions';
+import Dimensions from '../../../util/dimensions';
 const { width } = Dimensions.get('window');
 const MARGIN_WIDTH = Dimensions.size['2'];
 const ITEM_WIDTH = (width - Dimensions.size['10'] - MARGIN_WIDTH * 10) / 4;

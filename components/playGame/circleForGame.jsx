@@ -278,11 +278,7 @@ export const TheCircle = () => {
         touchedMe(char, final);
       }}>
     <Animated.View style={[styles.lettersCircle, {backgroundColor: 'transparent', position: 'absolute', zIndex: 1}]}
-    {...panResponder.panHandlers}></Animated.View>
-    <AnimatedLinearGradient
-      colors={['transparent', 'transparent']}
-      style={styles.lettersCircle}
-    >
+    {...panResponder.panHandlers}>
         <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: -width, left: 0, right: 0, bottom: 0}}>
           <Polyline
             points={pathMaker(startXY, endXY)} //"M100,250 Q200,150 260,250"
@@ -332,7 +328,7 @@ export const TheCircle = () => {
           </Text>
         </TouchableOpacity>)
     })}
-    </AnimatedLinearGradient>
+      </Animated.View>
     </Animated.View>
   );
 }

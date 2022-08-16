@@ -8,14 +8,14 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from 'react-redux';
-import React from 'react'
-import { NumText } from './NumText'	
-import Dimensions from '../utils/dimensions'
+import React from 'react';
+import { NumText } from './NumText';
+import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
 import HelpGrid1 from '../helpGrids/helpGrid1';
 import HelpGrid2 from './../helpGrids/helpGrid2';
 import HelpGrid3 from './../helpGrids/helpGrid3';
-const {height, width} = Dimensions.get('window')
+const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   headingTitle:{

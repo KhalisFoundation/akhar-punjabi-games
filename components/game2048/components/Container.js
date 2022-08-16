@@ -22,7 +22,7 @@ import GameContainer from './GameContainer'
 import YouWonModal from '../resultModal';
 
 // Dimensions
-import Dimensions from '../utils/dimensions'
+import Dimensions from '../../../util/dimensions'
 import { BelowGame } from './BelowGame'
 const { height, width } = Dimensions.get('window')
 

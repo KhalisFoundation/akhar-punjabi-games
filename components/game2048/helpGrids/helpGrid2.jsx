@@ -18,7 +18,7 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import HelpImg from '../../../assets/helpGrid2.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-import Dimensions from '../utils/dimensions';
+import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
@@ -101,12 +101,13 @@ function HelpGrid2() {
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
       >
-        <Animatable.View 
-            animation="fadeInRight"
-            iterationCount={1}
-            iterationDelay={50}
-            style={styles.container}>
-            <View style={styles.page}>
+      <View 
+          style={styles.container}>
+          <Animatable.View
+              animation="slideInRight"
+              iterationCount={1}
+              iterationDelay={100}
+              style={styles.page}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
                     <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
@@ -124,8 +125,8 @@ function HelpGrid2() {
                 <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
                     <Text style={{...styles.header, fontSize: 20 }}>2/3</Text>
                 </View>
-            </View>
-        </Animatable.View>
+            </Animatable.View>
+        </View>
         </Modal>
     );
 }

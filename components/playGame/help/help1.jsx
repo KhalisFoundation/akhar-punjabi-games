@@ -23,7 +23,7 @@ import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function HelpGrid1() {
+function Help1() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
 
@@ -97,7 +97,7 @@ function HelpGrid1() {
 
     return (
     <Modal
-        visible={state.helpPage[0] === 0}
+        visible={state.helpPage[0] === 3}
         animationType="none"
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
@@ -120,7 +120,7 @@ function HelpGrid1() {
                 <HelpImg height={300}/>
                 <TouchableOpacity
                     style={styles.continue}
-                    onPress={() => {dispatch(openHelpModal(1))}}>
+                    onPress={() => {dispatch(openHelpModal(4))}}>
                     <Text style={styles.continueTxt}>
                         CONTINUE
                     </Text>
@@ -134,4 +134,4 @@ function HelpGrid1() {
     );
 }
 
-export default HelpGrid1;
+export default Help1;

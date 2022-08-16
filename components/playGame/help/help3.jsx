@@ -9,24 +9,22 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Modal,
-    Platform
+    Modal
 } from 'react-native';
+import { useFonts } from 'expo-font';
 import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
-import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg from '../../../assets/helpGrid1.svg';
+import HelpImg from '../../../assets/helpGrid3.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-
 import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function HelpGrid1() {
+function Help3() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
-
+    
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
     });
@@ -96,37 +94,35 @@ function HelpGrid1() {
     }
 
     return (
-    <Modal
-        visible={state.helpPage[0] === 0}
-        animationType="none"
+        <Modal
+            visible={state.helpPage[0] === 5}
+            animationType="none"
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
       >
-        <View 
-            style={styles.container}>
-            <Animatable.View
-                animation="slideInRight"
-                iterationCount={1}
-                iterationDelay={100}
-                style={styles.page}>
+      <View 
+          style={styles.container}>
+          <Animatable.View
+              animation="slideInRight"
+              iterationCount={1}
+              iterationDelay={100}
+              style={styles.page}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
                     <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
                 <Text style={styles.header}>
-                    Welcome to 2048 game.
-                    {'\n\n'}
-                    Swipe to move all tiles.
+                Reach the 2048 tile to win the game!
                 </Text>
                 <HelpImg height={300}/>
                 <TouchableOpacity
                     style={styles.continue}
-                    onPress={() => {dispatch(openHelpModal(1))}}>
+                    onPress={() => {dispatch(openHelpModal())}}>
                     <Text style={styles.continueTxt}>
-                        CONTINUE
+                        PLAY
                     </Text>
                 </TouchableOpacity>
                 <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
-                    <Text style={{...styles.header, fontSize: 20 }}>1/3</Text>
+                    <Text style={{...styles.header, fontSize: 20 }}>3/3</Text>
                 </View>
             </Animatable.View>
         </View>
@@ -134,4 +130,4 @@ function HelpGrid1() {
     );
 }
 
-export default HelpGrid1;
+export default Help3;

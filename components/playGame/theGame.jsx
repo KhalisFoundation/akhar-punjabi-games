@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useRef } from 'react';
 import * as Anvaad from 'anvaad-js';
 import {
-  View, Text, TouchableOpacity, StyleSheet, StatusBar,Dimensions, ScrollView, Platform, Animated, TouchableWithoutFeedback
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Platform, Animated, TouchableWithoutFeedback
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,6 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Header } from 'react-native-elements';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import IonIcons from 'react-native-vector-icons/Ionicons';
 // import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 // import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 // import Animated, { FadeIn,AnimatedLayout, Layout, FadeOut } from 'react-native-reanimated';
@@ -31,10 +32,13 @@ import {
   setTopHint,
   setBottomHint,
   setGiveUpLives,
+  openHelpModal
 } from '../../redux/actions';
-
 import * as Analytics from 'expo-firebase-analytics';
-import dimensions from '../game2048/utils/dimensions';
+import Dimensions from '../../util/dimensions';
+import Help1 from './help/help1';
+import Help2 from './help/help2';
+import Help3 from './help/help3';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -88,7 +92,7 @@ function GameScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   
-  const screenWidth = Dimensions.get('window').width;
+  const {height, width} = Dimensions.get('window');
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -205,6 +209,11 @@ function GameScreen({ navigation }) {
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
+    },
+    help: {
+      padding: Dimensions.size["4"],
+      borderRadius: 50,
+      marginTop: 15,
     },
     wordAttempt: {
       width: "75%",
@@ -348,7 +357,7 @@ function GameScreen({ navigation }) {
         rotate: interpolateRotating,
       },
     ],
-    width: screenWidth,
+    width: width,
     marginBottom: 25
   };
 
@@ -426,6 +435,9 @@ function GameScreen({ navigation }) {
       colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container }
     >
+      { state.helpPage[0] === 3 ? <Help1 /> : null }
+      { state.helpPage[0] === 4 ? <Help2 /> : null }
+      { state.helpPage[0] === 5 ? <Help3 /> : null }
       {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
       <StatusBar
         translucent={true}
@@ -446,6 +458,9 @@ function GameScreen({ navigation }) {
           text: 'ਅਖਰ ਜੋੜ',
           style: {...styles.status}
         }}
+        rightComponent={(
+            <IonIcons name="help" size={35} color={'#464646'} style={styles.shadow} onPress={() => {dispatch(openHelpModal(3)); console.log(state.helpPage)}}/>
+        )}
       />
       <ScrollView style={styles.scroller}
       contentContainerStyle={styles.scrollContent}>
@@ -476,7 +491,7 @@ function GameScreen({ navigation }) {
       
       <AttemptInput />
 
-      <Animated.View style={state.animatedStyle}>
+      <Animated.View>
           <TheCircle style={styles.theCircle}/>
       </Animated.View>
       </ScrollView>

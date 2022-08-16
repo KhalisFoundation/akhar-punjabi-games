@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { NumText } from './NumText';
-import dimensions from '../utils/dimensions';
+import dimensions from '../../../util/dimensions';
 import { useSelector, useDispatch } from 'react-redux';
 const { width } = dimensions.get('window');
 

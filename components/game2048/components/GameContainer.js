@@ -8,7 +8,7 @@ import React, {
 import GameMessage from './GameMessage';
 import GridContainer from './GridContainer';
 import TileContainer from './TileContainer';
-import Dimensions from '../utils/dimensions';
+import Dimensions from '../../../util/dimensions';
 const { width } = Dimensions.get('window');
 
 

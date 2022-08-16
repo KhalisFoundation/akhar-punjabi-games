@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import React from 'react';
 
-import Dimensions from '../utils/dimensions';
+import Dimensions from '../../../util/dimensions';
 const { width } = Dimensions.get('window');
 
 const MARGIN_WIDTH = Dimensions.size['2'];

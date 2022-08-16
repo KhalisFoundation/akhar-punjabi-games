@@ -7,7 +7,7 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Anvaad from 'anvaad-js';
-import dimensions from '../game2048/utils/dimensions';
+import dimensions from '../../util/dimensions';
 import { setAttempt, setVisited } from '../../redux/actions';
 
 export const AttemptInput = () => {
