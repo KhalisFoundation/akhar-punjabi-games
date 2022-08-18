@@ -19,7 +19,8 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 // import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 // import Animated, { FadeIn,AnimatedLayout, Layout, FadeOut } from 'react-native-reanimated';
 import theColors from '../../util/colors';
-import {TheCircle, StatsBox, WordBox, AttemptInput} from '.';
+import { StatsBox, WordBox, AttemptInput} from '.';
+import TheCircle from './circleForGame';
 import WordsDoneModal from './modalNextWord';
 import {
   setTopWord,

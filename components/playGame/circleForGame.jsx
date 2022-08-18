@@ -15,7 +15,7 @@ import {
 } from '../../redux/actions';
 import Svg, {Polyline, Circle, Path} from 'react-native-svg';
 
-export const TheCircle = () => {
+function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
@@ -189,7 +189,7 @@ export const TheCircle = () => {
     let foundCoordinates;
     let foundWord = '';
     points.map(({x,y,letter}) => {
-      if((x - 20 <= xTouch && xTouch <= x + 20) && (width + y - 20 <= yTouch && yTouch<= width + y + 20)) {
+      if((x - 20 <= xTouch && xTouch <= x + 20) && (width + y - 10 <= yTouch && yTouch<= width + y + 30)) {
         foundCoordinates = {x, y};
         foundWord = letter;
     }});
@@ -333,3 +333,4 @@ export const TheCircle = () => {
   );
 }
 
+export default TheCircle;

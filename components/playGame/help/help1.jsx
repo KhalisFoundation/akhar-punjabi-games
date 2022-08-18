@@ -16,7 +16,7 @@ import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg from '../../../assets/helpGrid1.svg';
+import HelpImg from '../../../assets/helpPage1.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 import Dimensions from '../../../util/dimensions';
@@ -37,30 +37,31 @@ function Help1() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            backgroundColor: '#0003',
+            backgroundColor: '#0005',
             width: '100%',
             height: '100%',
         },
         page: {
-            backgroundColor: '#7FC8DE',
+            backgroundColor: '#274C7C',
             padding: 10,
             borderRadius: 25,
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            height: height*.8,
-            width: width*.95,
+            width: '98%',
+            height: '90%',
         },
         header: {
             justifyContent: 'center',
             textAlign: 'center',
             fontFamily: 'Muli',
-            fontSize: 25,
+            fontSize: Dimensions.size['8'],
+            color: '#fff',
         },
         continue:{
             justifyContent: 'center',
             textAlign: 'center',
-            backgroundColor: '#274C7C',
+            backgroundColor: '#ff8c00',
             borderRadius: 10,
             height: 50,
             width: width*.45,
@@ -109,15 +110,15 @@ function Help1() {
                 iterationCount={1}
                 iterationDelay={100}
                 style={styles.page}>
-                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
-                    <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
+                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width}}>
+                    <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
                 <Text style={styles.header}>
-                    Welcome to 2048 game.
+                    Welcome to Akhar Jor game.
                     {'\n\n'}
-                    Swipe to move all tiles.
+                    Swipe to join Gurmukhi letters to create words from meaning.
                 </Text>
-                <HelpImg height={300}/>
+                <HelpImg height={Dimensions.size["14"]*10}/>
                 <TouchableOpacity
                     style={styles.continue}
                     onPress={() => {dispatch(openHelpModal(4))}}>

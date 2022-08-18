@@ -92,29 +92,7 @@ function MenuScreen({ navigation }) {
       }
     };
   }, []);
-
-
-  let theState;
-  useEffect(() => {
-    async function getData() {
-      try {
-        const theStringState = await AsyncStorage.getItem('state');
-        if (theStringState !== null) {
-          theState = JSON.parse(theStringState);
-          console.log('got state that was previously saved');
-          // console.log(theState);
-        } else {
-          console.log('there is nothing is state');
-          theState = initialState;
-        }
-        dispatch(setTheState(theState));
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    }
-    getData();
-  }, [dispatch]);
+  
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
