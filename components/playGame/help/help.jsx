@@ -16,6 +16,9 @@ import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import Help1 from './help1';
+import Help2 from './help2';
+import Help3 from './help3';
 import HelpImg from '../../../assets/helpPage1.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
@@ -23,7 +26,7 @@ import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function Help1() {
+function Help() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
 
@@ -37,6 +40,7 @@ function Help1() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
+            backgroundColor: '#0005',
             width: '100%',
             height: '100%',
         },
@@ -97,41 +101,18 @@ function Help1() {
 
     return (
     <Modal
-        visible={state.helpPage[0] === 3}
+        visible={state.helpPage !== []}
         animationType="none"
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
       >
-        <View 
-            style={styles.container}>
-            <Animatable.View
-                animation="slideInRight"
-                iterationCount={1}
-                iterationDelay={100}
-                style={styles.page}>
-                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width}}>
-                    <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
-                </View>
-                <Text style={styles.header}>
-                    Welcome to Akhar Jor game.
-                    {'\n\n'}
-                    Swipe to join Gurmukhi letters to create words from meaning.
-                </Text>
-                <HelpImg height={Dimensions.size["14"]*10}/>
-                <TouchableOpacity
-                    style={styles.continue}
-                    onPress={() => {dispatch(openHelpModal(4))}}>
-                    <Text style={styles.continueTxt}>
-                        CONTINUE
-                    </Text>
-                </TouchableOpacity>
-                <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: width*.9}}>
-                    <Text style={{...styles.header, fontSize: 20 }}>1/3</Text>
-                </View>
-            </Animatable.View>
+        <View style={styles.container}>
+            { state.helpPage[0] === 3 ? <Help1 /> : null }
+            { state.helpPage[0] === 4 ? <Help2 /> : null }
+            { state.helpPage[0] === 5 ? <Help3 /> : null }
         </View>
-        </Modal>
+    </Modal>
     );
 }
 
-export default Help1;
+export default Help;

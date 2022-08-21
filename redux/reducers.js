@@ -54,6 +54,7 @@ const generateWords = getWords(allWords.filter((word) => word.level === 1));
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
   usableWords: allWords.filter((word) => word.level === 1),
+  showIntroModal: false,
   //logic states for akharjor
   topWord: "",
   topHint: "",
@@ -307,15 +308,9 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "SET_GIVE_UP_LIVES") {
-    var lives = '';
-    if (action.addOrSub === '+') {
-      lives = state.giveUpsLeft + 1;
-    } else if (action.addOrSub === '-') {
-      lives = state.giveUpsLeft - 1;
-    }
     const newState = {
       ...state,
-      giveUpsLeft: lives,
+      giveUpsLeft: eval(`${state.giveUpsLeft} ${action.addOrSub} 1`),
     };
     setData("state", newState);
     return newState;
@@ -521,6 +516,24 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       helpPage: [action.thePage],
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "CLOSE_INTRO_MODAL") {
+    const newState = {
+      ...state,
+      showIntroModal: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SHOW_INTRO_MODAL") {
+    const newState = {
+      ...state,
+      showIntroModal: true,
     };
     setData("state", newState);
     return newState;

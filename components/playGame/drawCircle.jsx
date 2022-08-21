@@ -33,7 +33,6 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
       return Anvaad.translit(text);
     }
     return Anvaad.unicode(text);
-
   }
 
   const ifCorrectWord = (word) => {
@@ -69,19 +68,11 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
 
   useEffect(() => {
     console.log(`word is ${word}`);
+    dispatch(setAttempt(word));
+    ifCorrectWord(state.attempt);
   },[word]);
 
-  function attemptMade(word) {
-    let w = word;
-    if (w[w.length-1] !== word) {
-      let newWord = w + word;
-      setWord(newWord);
-    } else {
-      setWord(w);
-    }
-  }
-
-  const prevAttempt = state.attempt;
+  const prevAttempt = word;
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
   
@@ -185,17 +176,13 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
     }
   });
 
-  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
-
-  // pan responder for swipes
-
   const pathMaker = (start, end) => {
     let path;
-    let passed = visited;
-    if (passed.length > 0) {
+    if (visited.length > 0) {
       path = "";
-      passed.forEach(point => {
-        path += `${point.x+25},${point.y + width + 25} `;
+      visited.forEach(point => {
+        let [x, y] = point.split(",").map(value => parseInt(value));
+        path += `${x+25},${y + width + 25} `;
       });
       path += `${end.x},${(end.y != "")? end.y-25 : end.y}`;
     } else {
@@ -205,22 +192,23 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
   }
 
   function checkIfFound(xTouch, yTouch) {
-    let foundCoordinates;
+    let foundCoordinates = '';
     let foundWord = '';
     points.map(({x,y,letter}) => {
       if((x <= xTouch && xTouch <= x + 40) && (width + y + 30 <= yTouch && yTouch<= width + y + 70)) {
-        foundCoordinates = {x, y};
+        foundCoordinates = `${x},${y}`;
         foundWord = letter;
     }});
     return [foundCoordinates, foundWord];
   }
 
   const panResponder = useRef(
-    PanResponder.create({      
+    PanResponder.create({  
+      // Ask to be the responder:
       onStartShouldSetPanResponder: (event, gestureState) => true,
       onStartShouldSetPanResponderCapture: (event, gestureState) => true,
-      onMoveShouldSetPanResponder: (event, gestureState) => false,
-      onMoveShouldSetPanResponderCapture: (event, gestureState) => false,
+      onMoveShouldSetPanResponder: (event, gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (event, gestureState) => true,
       onPanResponderGrant:  (event, gestureState) => {
         setStartXY({x: 0, y: 0});
         setEndXY({x: 0, y: 0});
@@ -236,26 +224,24 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
         if (!!res) {
           const {x, y} = res;
           setStartXY({x, y});
-          attemptMade(firstLetter);
         } else {
           setStartXY({x: "", y: ""});
         }
 
         const [foundCoordinate, foundWord] = checkIfFound(gestureState.x0 + gestureState.dx, gestureState.y0 + gestureState.dy);
         if (!!foundCoordinate) {
-          const {x, y} = foundCoordinate;
-          let v = visited;
-          let newPassed;
-          if (v.length > 0) {
-            if (!(v[v.length-1].x == x && v[v.length-1].y == y)) {
-              newPassed = [...v, foundCoordinate];
-              setVisited(newPassed);
+          setVisited((v) => {
+            if(v[v.length - 1] !== foundCoordinate) {
+              return [...v, foundCoordinate]
             }
-          } else {
-            newPassed = [...v, foundCoordinate];
-            setVisited(newPassed);
-          }
-          attemptMade(foundWord);
+            return v;
+          });
+          setWord((w) => {
+            if (w.slice(-1) !== foundWord) {
+              return w + foundWord;
+            }
+            return w;
+          });
         }
         setEndXY({x: gestureState.moveX, y: gestureState.moveY});
       },
@@ -280,17 +266,17 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
   return (
     <View 
       style={[styles.container, {height: width, width: width, position: "relative"}]} >
-    <Animated.View style={[styles.lettersCircle, {backgroundColor: 'transparent', position: 'absolute', zIndex: 1}]}
+    <View style={[styles.lettersCircle, {backgroundColor: 'transparent', position: 'absolute', zIndex: 1}]}
     {...panResponder.panHandlers}>
-        <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: -width, left: 0, right: 0, bottom: 0}}>
+      <Svg  height={height} width={width} style={{zIndex:-1, position: 'absolute', top: -width, left: 0, right: 0, bottom: 0}}>
           <Polyline
             points={pathMaker(startXY, endXY)} //"M100,250 Q200,150 260,250"
             fill="none"
             stroke="white"
             strokeWidth="10"
           />
-        </Svg>
-      
+      </Svg>
+          
     {points.map(({x, y, letter}) => {
       let char = letter;
       let theLetter = gurmukhi(char);
@@ -331,7 +317,7 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
           </Text>
         </TouchableOpacity>)
     })}
-      </Animated.View>
+      </View>
     </View>
   );
 }

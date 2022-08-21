@@ -36,34 +36,6 @@ export const HintButton = ({wordType}) => {
             height: '100%',
           },
     });
-
-    // animations
-    const rotateAnimation = useRef(new Animated.Value(0)).current;
-    
-    const handleAnimation = () => {
-        Animated.timing(rotateAnimation, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-        }).start(() => {
-        rotateAnimation.setValue(0);
-        });
-    };
-    
-    const interpolateRotating = rotateAnimation.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '720deg'],
-    });
-    
-    const animatedStyle = {
-        transform: [
-        {
-            rotate: interpolateRotating,
-        },
-        ],
-        width: screenWidth,
-        marginBottom: 25
-    };
     
     async function hint_used(the_word, eng_text) {
         await Analytics.logEvent('hint_used', { word: the_word, eng: eng_text });
@@ -90,7 +62,7 @@ export const HintButton = ({wordType}) => {
           iconColor = 'white';
           iconName = 'lightbulb-outline';
         } else if (word !== '') {
-          bgColor = '#06FF00';
+          bgColor = (state.darkMode) ? "green" : '#06FF00';
           iconColor = (state.darkMode) ? 'white' : 'black';
           iconName = 'check';
         } else {
@@ -113,17 +85,16 @@ export const HintButton = ({wordType}) => {
         disabled={state.giveUpsLeft === 0 || state.topWord !== ''}
         style={{ ...styles.giveUp, backgroundColor: hintBtn(state.topWord).backgroundColor }}
         onPress={() => {
-        dispatch(setGiveUpLives('-'));
         const newTopLength = state.topHint.length;
         const hT = (state.topHint + state.firstWord.engText[newTopLength]).toString();
         dispatch(setTopHint(hT));
+        dispatch(setGiveUpLives('-'));
         if (newTopLength === (state.firstLength - 1)) {
-            dispatch(setTopWord());
-            handleAnimation();
-            dispatch(setGivenUpWords(state.firstWord));
             given_up_word(state.firstWord.punjabiText, state.firstWord.engText);
+            dispatch(setTopWord());
+            dispatch(setGivenUpWords(state.firstWord));
             if (state.bottomWord !== '') {
-            dispatch(setNewWords());
+              dispatch(setNewWords());
             }
         } else {
             hint_used(state.firstWord.punjabiText, state.firstWord.engText);
@@ -144,15 +115,14 @@ export const HintButton = ({wordType}) => {
             disabled={state.giveUpsLeft === 0 || state.bottomWord !== ''}
             style={{ ...styles.giveUp, backgroundColor: hintBtn(state.bottomWord).backgroundColor }}
             onPress={() => {
-              dispatch(setGiveUpLives('-'));
               const newBottomLength = state.bottomHint.length;
               const hB = (state.bottomHint + state.secondWord.engText[newBottomLength]).toString();
               dispatch(setBottomHint(hB));
+              dispatch(setGiveUpLives('-'));
               if (newBottomLength === (state.secondLength - 1)) {
-                dispatch(setBottomWord());
-                handleAnimation();
-                dispatch(setGivenUpWords(state.secondWord));
                 given_up_word(state.secondWord.punjabiText, state.secondWord.engText);
+                dispatch(setBottomWord());
+                dispatch(setGivenUpWords(state.secondWord));
                 if (state.topWord !== '') {
                   dispatch(setNewWords());
                 }

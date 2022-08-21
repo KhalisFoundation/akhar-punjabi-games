@@ -8,10 +8,12 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
-  Platform
+  Platform,
+  Modal,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { Header } from 'react-native-elements';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
 import MaskedView from '@react-native-community/masked-view';
@@ -21,9 +23,11 @@ import GLOBAL from '../../util/globals';
 import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
+import { closeIntroModal } from './../../redux/actions';
 
-function About({ navigation }) {
+function AppIntro() {
   const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Muli: require('../../assets/fonts/Muli.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -40,7 +44,7 @@ function About({ navigation }) {
       flex: 1,
       flexDirection: 'column',
       padding: 15,
-      height: '100%'
+      height: '100%',
     },
     singleLine: {
       flexDirection: 'row',
@@ -63,7 +67,7 @@ function About({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View
+    <Modal
       style={styles.container}
     >
       <StatusBar
@@ -71,25 +75,16 @@ function About({ navigation }) {
         backgroundColor={'transparent'}
         barStyle="light-content"
       />
-      <Header
-        backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
-        containerStyle={[Platform.OS === 'android' && { height: 75, paddingTop: 0 }]}
-        leftComponent={(
-          <Icon
-            name="arrow-back"
-            color={GLOBAL.COLOR.TOOLBAR_TINT}
-            size={30}
-            onPress={() => { navigation.navigate('settings'); }}
-          />
-        )}
-        centerComponent={{
-          text: 'About',
-          style: { color: GLOBAL.COLOR.TOOLBAR_TINT, fontSize: 18 }
-        }}
-      />
+      <Icon
+          name="close"
+          color={"#000"}
+          size={30}
+          style={{margin: 15}}
+          onPress={() => {dispatch(closeIntroModal())}}
+        />
       <ScrollView
         scrollEventThrottle={16}
-        style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
+        style={[styles.scrollview, state.darkMode && { backgroundColor: 'black', color: '#fff'  }]}
         contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}
       >
         <View>
@@ -130,22 +125,6 @@ function About({ navigation }) {
         </Text>
 
       {/* Welcoming comments and suggestions */}
-      <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
-      <Text>{'\n'}</Text>
-      <Text>
-        We welcome your comments, suggestions, and corrections!
-        {' '}
-        For information, suggestions, or help, visit us at
-        {'  '}
-      </Text>
-      <Text
-        style={{ color: linkColor, fontWeight: 'bold' }}
-        onPress={() => Linking.openURL('https://khalisfoundation.org')}
-      >
-        KhalisFoundation.org
-      </Text>
-      {'\n'}
-      </Text>
         <View>
           <Text style={{ fontFamily: 'Muli', alignSelf: 'flex-end', color: state.darkMode ? white : black }}>
             {'\n'}
@@ -179,8 +158,8 @@ function About({ navigation }) {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </Modal>
   );
 }
 
-export default About;
+export default AppIntro;

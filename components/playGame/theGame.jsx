@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
 import {
   View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Platform, Animated, TouchableWithoutFeedback
@@ -15,75 +15,22 @@ import { Header } from 'react-native-elements';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-// import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-// import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-// import Animated, { FadeIn,AnimatedLayout, Layout, FadeOut } from 'react-native-reanimated';
 import theColors from '../../util/colors';
-import { StatsBox, WordBox, AttemptInput} from '.';
-import TheCircle from './circleForGame';
+import { StatsBox, WordBox, AttemptInput, TheCircle } from '.';
 import WordsDoneModal from './modalNextWord';
 import {
-  setTopWord,
-  setBottomWord,
-  setCorrectWords,
-  setLevelProgress,
-  setAttempt,
-  setNewWords,
-  setGivenUpWords,
-  setTopHint,
-  setBottomHint,
-  setGiveUpLives,
   openHelpModal
 } from '../../redux/actions';
 import * as Analytics from 'expo-firebase-analytics';
 import Dimensions from '../../util/dimensions';
-import Help1 from './help/help1';
-import Help2 from './help/help2';
-import Help3 from './help/help3';
+import Help from './help/help';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
-  /* Can be referred while implementing swipes, if any
-  const [swipeWay, setSwipeWay] = useState({
-    myText: 'I\'m ready to get swiped!',
-    gestureName: 'none',
-    backgroundColor: '#fff'
-  });
-  function onSwipeUp(gestureState) {
-    setSwipeWay({myText: 'You swiped up!'});
-  }
-  function onSwipeDown(gestureState) {
-    setSwipeWay({myText: 'You swiped down!'});
-  }
-  function onSwipeLeft(gestureState) {
-    setSwipeWay({myText: 'You swiped left!'});
-  }
-  function onSwipeRight(gestureState) {
-    setSwipeWay({myText: 'You swiped right!'});
-    navigation.navigate('AkharJor');
-  }
-  function onSwipe(gestureName, gestureState) {
-    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-    setSwipeWay({gestureName: gestureName});
-    switch (gestureName) {
-      case SWIPE_UP:
-        setSwipeWay({backgroundColor: 'red'});
-        break;
-      case SWIPE_DOWN:
-        setSwipeWay({backgroundColor: 'green'});
-        break;
-      case SWIPE_LEFT:
-        setSwipeWay({backgroundColor: 'blue'});
-        break;
-      case SWIPE_RIGHT:
-        setSwipeWay({backgroundColor: 'yellow'});
-        break;
-    }
-  }
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80
-  }; */
+  const [visited, setVisited] = useState([]);
+  const [word, setWord] = useState('');
+  // dummy state const [reset, setReset] = useState(false);
+  
   const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -94,6 +41,25 @@ function GameScreen({ navigation }) {
   });
   
   const {height, width} = Dimensions.get('window');
+
+  const points = [];
+  const charArray = state.charArray;
+  console.log("charArray is ",charArray);
+  
+  let angle = 0;
+  const radius =  110;
+  const step = (2 * Math.PI) / charArray.length;
+  let charShuffled = (state.levelProgress[0].level < 3 || state.levelProgress[0].level > 5) ? charArray : charArray.sort();
+  console.log("charShuffled is ",charShuffled);
+  charShuffled.map((char) => {
+    const x = Math.round(radius * Math.cos(angle)) + width/2.5;
+    const y = Math.round(radius* Math.sin(angle)) + width/2.5;
+    //console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
+    // let theLetter = String.fromCharCode(char);
+    angle += step;
+    points.push({ x, y, letter:char });
+  })
+
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
@@ -362,32 +328,6 @@ function GameScreen({ navigation }) {
     marginBottom: 25
   };
 
-  let word = state.attempt;
-  if (word === state.firstWord.engText && state.topWord === '') {
-    handleAnimation();
-    if (!state.correctWords.includes(state.firstWord)) {
-      dispatch(setTopWord());
-      dispatch(setCorrectWords(state.firstWord));
-      dispatch(setLevelProgress(state.firstWord));
-    }
-    // if bottomWord is filled that means both are now answered so will get new words
-    if (state.bottomWord !== '') {
-      dispatch(setNewWords());
-    }
-  }
-  if (word === state.secondWord.engText && state.bottomWord === '') {
-    handleAnimation();
-    if (!state.correctWords.includes(state.secondWord)) {
-      dispatch(setBottomWord());
-      dispatch(setCorrectWords(state.secondWord));
-      dispatch(setLevelProgress(state.secondWord));
-    }
-    // if topWord is filled that means both are now answered so will get new words
-    if (state.topWord !== '') {
-      dispatch(setNewWords());
-    }
-  };
-
   async function hint_used(the_word, eng_text) {
     await Analytics.logEvent('hint_used', { word: the_word, eng: eng_text });
   }
@@ -432,13 +372,11 @@ function GameScreen({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <AnimatedLinearGradient
+    <LinearGradient
       colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container }
     >
-      { state.helpPage[0] === 3 ? <Help1 /> : null }
-      { state.helpPage[0] === 4 ? <Help2 /> : null }
-      { state.helpPage[0] === 5 ? <Help3 /> : null }
+      { state.helpPage[0] >= 3 ? <Help /> : null }
       {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
       <StatusBar
         translucent={true}
@@ -493,10 +431,10 @@ function GameScreen({ navigation }) {
       <AttemptInput />
 
       <Animated.View>
-          <TheCircle style={styles.theCircle}/>
+        <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/>
       </Animated.View>
       </ScrollView>
-    </AnimatedLinearGradient>
+    </LinearGradient>
   );
 }
 

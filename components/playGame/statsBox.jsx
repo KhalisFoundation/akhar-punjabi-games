@@ -3,11 +3,10 @@ import {
     View, TextView, TouchableOpacity, StyleSheet, Text
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const StatsBox = ({stat, navigation}) => {
     const state = useSelector((theState) => theState.theGameReducer);
-    const dispatch = useDispatch();
 
     const items = {
         levels: {

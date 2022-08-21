@@ -2,6 +2,8 @@ import * as React from 'react';
 import {
     View, TouchableOpacity, StyleSheet, Text, ScrollView, Animated, Dimensions
 } from 'react-native';
+import MaskedView from '@react-native-community/masked-view';
+import { LinearGradient } from 'expo-linear-gradient';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
@@ -15,6 +17,8 @@ export const WordBox = ({ wordType }) => {
     const state = useSelector((theState) => theState.theGameReducer);
     const dispatch = useDispatch();
     const screenWidth = Dimensions.get('window').width;
+    
+    const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
     
     // animations
     const rotateAnimation = useRef(new Animated.Value(0)).current;
@@ -43,46 +47,30 @@ export const WordBox = ({ wordType }) => {
         width: screenWidth,
         marginBottom: 25
     };
-    let word = state.attempt;
-    if (word === state.firstWord.engText && state.topWord === '') {
-        handleAnimation();
-        if (!state.correctWords.includes(state.firstWord)) {
-        dispatch(setTopWord());
-        dispatch(setCorrectWords(state.firstWord));
-        dispatch(setLevelProgress(state.firstWord));
-        }
-        // if bottomWord is filled that means both are now answered so will get new words
-        if (state.bottomWord !== '') {
-        dispatch(setNewWords());
-        }
-    }
-    if (word === state.secondWord.engText && state.bottomWord === '') {
-        handleAnimation();
-        if (!state.correctWords.includes(state.secondWord)) {
-        dispatch(setBottomWord());
-        dispatch(setCorrectWords(state.secondWord));
-        dispatch(setLevelProgress(state.secondWord));
-        }
-        // if topWord is filled that means both are now answered so will get new words
-        if (state.topWord !== '') {
-        dispatch(setNewWords());
-        }
-    };
 
     const styles = StyleSheet.create({
+        wordBox: {
+          flexDirection: 'row', 
+          justifyContent: 'space-between', 
+          width:'100%', 
+          alignSelf: 'center',
+          borderRadius: 100,
+          margin: 5,
+        },
         answerText: {
           textAlign: 'center',
           color: state.darkMode ? 'white' : 'black',
           fontSize: 35,
           borderRadius: 25,
           height: 50,
+          marginTop: 5
         },
         answerTouchOpacity: {
           justifyContent: 'center',
           paddingTop: 10,
           height: 50,
           width: "100%",
-          marginBottom: 10,
+          marginBottom: 5,
         },
         definitionText: {
           fontFamily: 'Muli',
@@ -190,7 +178,11 @@ export const WordBox = ({ wordType }) => {
       };
     
     if (wordType === 'top') {
-    return (<View style={{flexDirection: 'row', justifyContent: 'space-between', width:'100%', alignSelf: 'center',}}>
+    return (<LinearGradient
+              colors={['transparent', '#fff9']} 
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.wordBox}>
         <View style={{flexDirection: 'column', width: "80%"}}>
         <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={styles.answerTouchOpacity}>
             {awayOrTogether('top')}
@@ -207,11 +199,14 @@ export const WordBox = ({ wordType }) => {
         </ScrollView>
         </View>
         <HintButton wordType={wordType} />
-    </View>
+    </LinearGradient>
     )
     } else if (wordType === 'bottom') {
-        return (
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width:'100%'}}>
+        return (<LinearGradient
+                colors={['transparent', '#fff9']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.wordBox}>
           <View style={{flexDirection: 'column', width: "80%"}}>
               {/* {Array.from(Array(state.secondWord.engText.length), (e,i) => {
                   return {<Text style={styles.answerText}>
@@ -233,7 +228,7 @@ export const WordBox = ({ wordType }) => {
             </ScrollView>
           </View>
           <HintButton wordType={wordType} />
-        </View>
+        </LinearGradient>
         );
     }
 

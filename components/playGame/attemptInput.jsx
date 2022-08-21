@@ -72,18 +72,19 @@ export const AttemptInput = () => {
       >
         <MaskedView
           style={{
-            height: (dimensions.size["14"]+dimensions.size["16"])/2.02,
-            width: (dimensions.size["14"]+dimensions.size["16"])/2.02
+            height: 40,
+            width: 40,
           }}
           maskElement={(
             <View
               style={{
                 backgroundColor: 'transparent',
                 alignItems: 'center',
+                justifyContent: 'center',
                 padding: 5
               }}
             >
-              <IconM name="reload" size={dimensions.size["10"]} />
+              <IconM name="reload" size={25} />
             </View>
         )}
         >

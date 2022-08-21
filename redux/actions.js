@@ -225,3 +225,15 @@ export const openHelpModal = (page) => {
     thePage: page
   };
 }
+
+export const closeIntroModal = () => {
+  return {
+    type: "CLOSE_INTRO_MODAL",
+  }
+}
+
+export const showIntroModal = () => {
+  return {
+    type: "SHOW_INTRO_MODAL",
+  }
+}
