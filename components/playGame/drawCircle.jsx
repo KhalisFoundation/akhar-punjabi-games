@@ -36,15 +36,18 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
   }
 
   const ifCorrectWord = (word) => {
+    let somethingHappened = false;
     if (word === state.firstWord.engText && state.topWord === '') {
       if (!state.correctWords.includes(state.firstWord)) {
         dispatch(setTopWord());
         dispatch(setCorrectWords(state.firstWord));
         dispatch(setLevelProgress(state.firstWord));
+        somethingHappened = true;
       }
       // if bottomWord is filled that means both are now answered so will get new words
       if (state.bottomWord !== '') {
         dispatch(setNewWords());
+        somethingHappened = true;
       }
     }
     if (word === state.secondWord.engText && state.bottomWord === '') {
@@ -52,11 +55,21 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
         dispatch(setBottomWord());
         dispatch(setCorrectWords(state.secondWord));
         dispatch(setLevelProgress(state.secondWord));
+        somethingHappened = true;
       }
       // if topWord is filled that means both are now answered so will get new words
       if (state.topWord !== '') {
         dispatch(setNewWords());
+        somethingHappened = true;
       }
+    }
+    // this condition resets all the logic if a word is completed
+    if (somethingHappened) {
+      dispatch(setAttempt(''));
+      setStartXY({x: 0, y: 0});
+      setEndXY({x: "", y: ""});
+      setWord('');
+      setVisited([]);
     }
   };
 
@@ -65,12 +78,6 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
     setWord(final);
     ifCorrectWord(final);
   }
-
-  useEffect(() => {
-    console.log(`word is ${word}`);
-    dispatch(setAttempt(word));
-    ifCorrectWord(state.attempt);
-  },[word]);
 
   const prevAttempt = word;
   const width = Dimensions.get('window').width;
@@ -202,60 +209,117 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
     return [foundCoordinates, foundWord];
   }
 
-  const panResponder = useRef(
-    PanResponder.create({  
-      // Ask to be the responder:
-      onStartShouldSetPanResponder: (event, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (event, gestureState) => true,
-      onMoveShouldSetPanResponder: (event, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (event, gestureState) => true,
-      onPanResponderGrant:  (event, gestureState) => {
-        setStartXY({x: 0, y: 0});
-        setEndXY({x: 0, y: 0});
-        console.log('grant');
-        //setPassed([]);
-      },
-    
-      onPanResponderMove: (event, gestureState) => {
-        //console.log('here you are => ', gestureState.moveX, gestureState.moveY);
-        pan.setValue({x: 0, y: 0});
-        // setting start point if location is right
-        const [res, firstLetter] = checkIfFound(gestureState.x0, gestureState.y0);
-        if (!!res) {
-          const {x, y} = res;
-          setStartXY({x, y});
-        } else {
-          setStartXY({x: "", y: ""});
-        }
+  let [panResponder, setPanResponder] = useState(PanResponder.create({  
+   // Ask to be the responder:
+   onStartShouldSetPanResponder: (event, gestureState) => true,
+   onStartShouldSetPanResponderCapture: (event, gestureState) => true,
+   onMoveShouldSetPanResponder: (event, gestureState) => true,
+   onMoveShouldSetPanResponderCapture: (event, gestureState) => true,
+   onPanResponderGrant:  (event, gestureState) => {
+     setStartXY({x: 0, y: 0});
+     setEndXY({x: 0, y: 0});
+     console.log('grant');
+     //setPassed([]);
+   },
+ 
+   onPanResponderMove: (event, gestureState) => {
+     //console.log('here you are => ', gestureState.moveX, gestureState.moveY);
+     pan.setValue({x: 0, y: 0});
+     // setting start point if location is right
+     const [res, firstLetter] = checkIfFound(gestureState.x0, gestureState.y0);
+     if (!!res) {
+       const {x, y} = res;
+       setStartXY({x, y});
+     } else {
+       setStartXY({x: "", y: ""});
+     }
 
-        const [foundCoordinate, foundWord] = checkIfFound(gestureState.x0 + gestureState.dx, gestureState.y0 + gestureState.dy);
-        if (!!foundCoordinate) {
-          setVisited((v) => {
-            if(v[v.length - 1] !== foundCoordinate) {
-              return [...v, foundCoordinate]
-            }
-            return v;
-          });
-          setWord((w) => {
-            if (w.slice(-1) !== foundWord) {
-              return w + foundWord;
-            }
-            return w;
-          });
-        }
-        setEndXY({x: gestureState.moveX, y: gestureState.moveY});
-      },
-    
-      onPanResponderRelease: (event, gestureState) => {
-        setStartXY({x: 0, y: 0});
-        setEndXY({x: "", y: ""});
-        setVisited([]);
-        setWord("");
-        console.log('release');
-      }
-    })
-  ).current;
+     const [foundCoordinate, foundWord] = checkIfFound(gestureState.x0 + gestureState.dx, gestureState.y0 + gestureState.dy);
+     if (!!foundCoordinate) {
+       setVisited((v) => {
+         if(v[v.length - 1] !== foundCoordinate) {
+           return [...v, foundCoordinate]
+         }
+         return v;
+       });
+       setWord((w) => {
+         if (w.slice(-1) !== foundWord) {
+           return w + foundWord;
+         }
+         return w;
+       });
+     }
+     setEndXY({x: gestureState.moveX, y: gestureState.moveY});
+   },
+ 
+   onPanResponderRelease: (event, gestureState) => {
+     setStartXY({x: 0, y: 0});
+     setEndXY({x: "", y: ""});
+     setVisited([]);
+     setWord("");
+     console.log('release');
+   }
+ }));
 
+  useEffect( () => {
+    setPanResponder(PanResponder.create({  
+     // Ask to be the responder:
+     onStartShouldSetPanResponder: (event, gestureState) => true,
+     onStartShouldSetPanResponderCapture: (event, gestureState) => true,
+     onMoveShouldSetPanResponder: (event, gestureState) => true,
+     onMoveShouldSetPanResponderCapture: (event, gestureState) => true,
+     onPanResponderGrant:  (event, gestureState) => {
+       setStartXY({x: 0, y: 0});
+       setEndXY({x: 0, y: 0});
+       console.log('grant');
+       //setPassed([]);
+     },
+   
+     onPanResponderMove: (event, gestureState) => {
+       //console.log('here you are => ', gestureState.moveX, gestureState.moveY);
+       pan.setValue({x: 0, y: 0});
+       // setting start point if location is right
+       const [res, firstLetter] = checkIfFound(gestureState.x0, gestureState.y0);
+       if (!!res) {
+         const {x, y} = res;
+         setStartXY({x, y});
+       } else {
+         setStartXY({x: "", y: ""});
+       }
+
+       const [foundCoordinate, foundWord] = checkIfFound(gestureState.x0 + gestureState.dx, gestureState.y0 + gestureState.dy);
+       if (!!foundCoordinate) {
+         setVisited((v) => {
+           if(v[v.length - 1] !== foundCoordinate) {
+             return [...v, foundCoordinate]
+           }
+           return v;
+         });
+         setWord((w) => {
+           if (w.slice(-1) !== foundWord) {
+             return w + foundWord;
+           }
+           return w;
+         });
+       }
+       setEndXY({x: gestureState.moveX, y: gestureState.moveY});
+     },
+   
+     onPanResponderRelease: (event, gestureState) => {
+       setStartXY({x: 0, y: 0});
+       setEndXY({x: "", y: ""});
+       setVisited([]);
+       setWord("");
+       console.log('release');
+     }
+   }))
+  }, [state.charArray]);
+
+  useEffect(() => {
+    console.log(`word is ${word}`);
+    dispatch(setAttempt(word));
+    ifCorrectWord(state.attempt);
+  },[state.attempt, word]);
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
