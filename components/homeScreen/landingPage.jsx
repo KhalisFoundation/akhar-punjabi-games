@@ -20,6 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { setTheState } from '../../redux/actions';
+import LoadingModal from './loadingScreen';
 
 import Khalis from '../../assets/khalis_logo.svg';
 import { initialState } from '../../redux/reducers';
@@ -78,8 +79,8 @@ function HomeScreen({ navigation }) {
       width: '100%',
     },
     play: {
-      fontSize: 50,
-      fontFamily: 'Mochy',
+      fontSize: 70,
+      fontFamily: 'Nasa',
       color: '#cdff',
       textAlign: 'center',
       textShadowOffset: {width: 2, height: 2},
@@ -181,7 +182,7 @@ function HomeScreen({ navigation }) {
           navigation.navigate('play');
         }}
       >
-        <Text style={styles.play}>PLAY</Text>
+        <Text style={styles.play}>Play</Text>
       </TouchableOpacity>
       <View style={styles.otherScreens}>
         <TouchableOpacity
@@ -190,7 +191,7 @@ function HomeScreen({ navigation }) {
             navigation.navigate('settings');
           }}
         >
-          <Icon name="cog" size={60} color="#aaa" style={styles.bold} />
+          <Icon name="cog" size={85} color="#aaa" style={styles.bold} />
           <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Settings</Text>
         </TouchableOpacity>
 
@@ -200,8 +201,8 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <Icon name="check-circle" size={60} color="#00aa00" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Levels</Text>
+          <Icon name="check-circle" size={85} color="#00aa00" style={styles.bold} />
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Completed Levels</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.otherScreenTouchableOpacity}
@@ -210,7 +211,7 @@ function HomeScreen({ navigation }) {
           }}
         >
 
-          <Icon name="heart" size={60/*was 85*/} color="#f00" style={styles.bold} />
+          <Icon name="heart" size={85} color="#f00" style={styles.bold} />
           <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Get Lives</Text>
         </TouchableOpacity>
       </View>

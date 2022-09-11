@@ -7,8 +7,7 @@ import {
   StatusBar,
   Linking,
   ScrollView,
-  Platform,
-  Dimensions
+  Platform
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListItem, Header } from 'react-native-elements';
@@ -39,22 +38,20 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const screenWidth = Dimensions.get('window').width;
   const colors = theColors[state.darkMode];
   const platform = Platform.OS;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       // justifyContent: "center",
-      backgroundColor: state.darkMode ? '#D1FBFF' :'#eeccaa',
+      backgroundColor: state.darkMode ? '#333' : colors.settings.container,
       width: '100%',
       height: '100%',
     },
     headerStyle: {
       color: 'black',
-      fontFamily: 'Muli',
-      fontWeight: '600',
-      fontSize: 18,
+      fontWeight: 'bold',
+      fontSize: 15,
     },
     shadow: {
       shadowColor: 'black',
@@ -86,14 +83,14 @@ function Settings({ navigation }) {
         barStyle="dark-content"
       />
       <Header
-        backgroundColor={state.darkMode ? "#274C7C" : "orange"}
+        backgroundColor="orange"
         containerStyle={[
           Platform.OS === 'android' && { height: 75, paddingTop: 0 }
         ]}
         leftComponent={(
           <Icon
             name="arrow-back"
-            color={state.darkMode ? "white" :"black"}
+            color="black"
             size={30}
             onPress={() => { navigation.navigate('AkharJor'); }}
           />
@@ -101,8 +98,8 @@ function Settings({ navigation }) {
         centerComponent={{
           text: 'Settings',
           style: {
-            color: (state.darkMode ? "white" : 'black'),
-            fontSize: (screenWidth<370 ? 16 : 20),
+            color: 'black',
+            fontSize: 18,
             fontFamily: 'Muli'
           }
         }}
@@ -131,10 +128,10 @@ function Settings({ navigation }) {
             </View>
           )}
         >
-        <LinearGradient
-          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
-          style={{ flex: 1 }}
-        />
+          <LinearGradient
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            style={{ flex: 1 }}
+          />
         </MaskedView>
         <SwitchBar
           title="dark_mode"
@@ -180,7 +177,7 @@ function Settings({ navigation }) {
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#081a55' },
+            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { 
@@ -203,10 +200,10 @@ function Settings({ navigation }) {
               </View>
           )}
           >
-          <LinearGradient
-            colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
-            style={{ flex: 1 }}
-          />
+            <LinearGradient
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              style={{ flex: 1 }}
+            />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Reset</Text></ListItem.Title>
@@ -233,15 +230,15 @@ function Settings({ navigation }) {
             </View>
           )}
         >
-        <LinearGradient
-          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
-          style={{ flex: 1 }}
-        />
+          <LinearGradient
+            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            style={{ flex: 1 }}
+          />
         </MaskedView>
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#081a55' },
+            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => Linking.openURL('https://khalisfoundation.org/donate/')}
@@ -261,10 +258,10 @@ function Settings({ navigation }) {
               </View>
           )}
           >
-          <LinearGradient
-            colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
-            style={{ flex: 1 }}
-          />
+            <LinearGradient
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              style={{ flex: 1 }}
+            />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Donate</Text></ListItem.Title>
@@ -274,7 +271,7 @@ function Settings({ navigation }) {
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#081a55' },
+            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { navigation.navigate('about'); }}
@@ -295,7 +292,7 @@ function Settings({ navigation }) {
           )}
           >
             <LinearGradient
-              colors={['#274CCC', '#274C77']}
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
               style={{ flex: 1 }}
             />
           </MaskedView>

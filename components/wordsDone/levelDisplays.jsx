@@ -17,21 +17,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import theColors from '../../util/colors';
 import { showMeaningPopUp } from '../../redux/actions';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
 
 function Level({ title, theWords, setAnswer }) {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
   const [up, setUp] = useState(false);
-  const [fontsLoaded] = useFonts({
-    Arial: require('../../assets/fonts/Arial.ttf'),
-    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    Bookish: require('../../assets/fonts/Bookish.ttf'),
-    Mochy: require('../../assets/fonts/Mochy.ttf'),
-    Muli: require('../../assets/fonts/Muli.ttf'),
-    Nasa: require('../../assets/fonts/Nasalization.otf'),
-  });
 
   const colors = theColors[state.darkMode];
   const screenWidth = Dimensions.get('window').width;
@@ -49,14 +39,9 @@ function Level({ title, theWords, setAnswer }) {
     title: {
       padding: 5,
       paddingBottom: 10,
-      fontFamily: 'Mochy',
-      fontWeight: '400',
-      borderColor: '#fff',
-      textShadowColor: '#000',
-      textShadowOffset: { width: 0, height: -1 },
-      textShadowRadius: 5,
+      fontWeight: 'bold',
       height: 50,
-      fontSize: (screenWidth<370 ? 20 : 24),
+      fontSize: (screenWidth<370 ? 24 : 30),
       textAlign: 'center',
     },
     flatList: {},
@@ -73,13 +58,7 @@ function Level({ title, theWords, setAnswer }) {
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'
     },
-    levels: { 
-      backgroundColor: '#def', 
-      elevation: 5, 
-      borderRadius: 15,
-      borderColor: '#446',
-      borderWidth: .3,
-     }
+    levels: { backgroundColor: state.darkMode ? 'black' : 'white', elevation: 5, borderRadius: 15 }
   });
 
   let words = theWords;
@@ -110,10 +89,6 @@ function Level({ title, theWords, setAnswer }) {
       </TouchableOpacity>
     );
   }, []);
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
   return (
     <View style={styles.container}>
       <View style={styles.levels}>
@@ -131,7 +106,7 @@ function Level({ title, theWords, setAnswer }) {
           )}
           >
             <LinearGradient
-              colors={['#00E9FE', '#274CCC']}
+              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
               style={{ flex: 1 }}
             />
           </MaskedView>
