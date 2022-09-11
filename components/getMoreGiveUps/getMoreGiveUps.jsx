@@ -23,7 +23,9 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import GLOBAL from '../../util/globals';
 import { setGiveUpLives, setLivesWord } from '../../redux/actions';
+import theColors from '../../util/colors';
 import { useEffect } from 'react';
 import * as Analytics from 'expo-firebase-analytics';
 
@@ -77,12 +79,14 @@ function MoreGiveUps({ route, navigation }) {
   };
 
   const prevScreen = route.params.prevScreen === 0 ? 'AkharJor' : 'play';
+  const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: "#D1FBFF",
+      backgroundColor: colors.getMoreGiveUps.container,
       height: '100%',
       width: '100%',
+      marginTop: (Platform.OS == 'android') ? '3.5%' : 0,
     },
     scrollview: {
       flex: 1,
@@ -93,22 +97,20 @@ function MoreGiveUps({ route, navigation }) {
     keyboardRow: {
       width: '100%',
       flexDirection: 'row',
-      justifyContent: 'space-evenly',
-      alignSelf: 'center',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       padding: 7
     },
     key: {
-      width: 36,
-      height: 36,
+      minWidth: 20,
       alignItems: 'center',
-      textAlign: 'center',
       justifyContent: 'center',
       marginHorizontal: 2,
       padding: 2,
       borderColor: '#000',
       borderWidth: .5,
-      borderRadius: 75,
-      backgroundColor: "#072270",
+      borderRadius: 5,
+      backgroundColor: "#072227",
       shadowColor: '#000',
       shadowOffset: {
         width: 1,
@@ -145,7 +147,7 @@ function MoreGiveUps({ route, navigation }) {
       fontFamily: 'Muli',
       marginHorizontal: 5,
       fontSize: (screenWidth<370 ? 10 : 15),
-      color: '#000',
+      color: state.darkMode ? '#fff' : '#000',
       padding: 5,
       textAlign: 'center',
       marginVertical: 5,
@@ -155,7 +157,7 @@ function MoreGiveUps({ route, navigation }) {
       width: '100%',
       elevation: 5,
       justifyContent: 'center',
-      backgroundColor: '#fff',
+      backgroundColor: state.darkMode ? '#000' : '#fff',
       borderRadius: 20,
     },
     DHAN: {
@@ -164,7 +166,7 @@ function MoreGiveUps({ route, navigation }) {
       fontSize: (screenWidth<370 ? 20 : 30),
       textShadowRadius: 10,
       fontFamily: 'Bookish',
-      color: "#FF7E00"
+      color: "#ff8008"
     },
     inputBox: {
       padding: 10,
@@ -191,19 +193,21 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignItems: 'center',
       borderRadius: 15,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 0
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
       marginBottom: 15,
-      elevation: 5,
-      backgroundColor: "#FF7E00",
-      borderColor: "#911",
-      borderWidth: .5,
     },
     submit: {
       fontFamily: 'Nasa',
       fontSize: (screenWidth<370 ? 10 : 16),
       alignSelf: 'center',
       padding: 10,
-      textShadowRadius: 4,
-      color: '#000',
+      color: state.darkMode ? 'black' : 'white',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -261,12 +265,12 @@ function MoreGiveUps({ route, navigation }) {
       />
       <Header
         backgroundColor={
-        "#274C7C"
+            GLOBAL.COLOR.TOOLBAR_COLOR_ALT
           }
         leftComponent={(
           <Icon
             name="arrow-back"
-            color="#D1FBFF"
+            color="black"
             size={30}
             onPress={() => { navigation.navigate(prevScreen); }}
           />
@@ -274,7 +278,7 @@ function MoreGiveUps({ route, navigation }) {
         centerComponent={{
           text: 'Get More Lives',
           style: {
-            color: '#D1FBFF',
+            color: 'black',
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
@@ -283,7 +287,7 @@ function MoreGiveUps({ route, navigation }) {
       />
       <ScrollView
         scrollEventThrottle={16}
-        style={styles.scrollview}
+        style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}
         contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
       >
       <View
@@ -294,7 +298,7 @@ function MoreGiveUps({ route, navigation }) {
           size={25}
           color="orange"
         />
-        <Text style={[styles.upText, { color: '#D1FBFF' }]}>{state.giveUpsLeft}</Text>
+        <Text style={[styles.upText, { color: 'cyan' }]}>{state.giveUpsLeft}</Text>
       </View>
       <Text style={styles.instructionsText}>
         Try to type the following to get more Lives.
@@ -308,7 +312,7 @@ function MoreGiveUps({ route, navigation }) {
       <View style={styles.DHANcover}>
         <Text style={{...styles.DHAN, color: '#0600bd'}}>{word}</Text>
       </View>
-      <View style={{ ...styles.DHANcover, backgroundColor: "#072270", shadowColor: '#000' }}>
+      <View style={{ ...styles.DHANcover, backgroundColor: state.darkMode ? '#fff' : '#000', shadowColor: '#000' }}>
         <Text
           style={{ ...styles.DHAN, fontFamily: 'Bookish' }}>
           {textEntry}
@@ -323,7 +327,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'meta') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
-                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2190"}</Text>
+                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2190"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -331,7 +335,7 @@ function MoreGiveUps({ route, navigation }) {
                     if (keyboardKey === 'space') {
                       return (
                         <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
-                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2423"}</Text>
+                          <Text style={{...styles.keyText,fontSize:(screenWidth<370 ? 18 : 25)}}>{"\u2423"}</Text>
                         </TouchableOpacity>
                       );
                     }
@@ -344,7 +348,7 @@ function MoreGiveUps({ route, navigation }) {
                         key={i}
                         onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
                       >
-                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 15 : 22)}}>
+                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 18 : 25)}}>
                           {isCurrentKeyDefaultMatraKey
                             ? getMatraAkhar(keyboardKey, textEntry)
                             : keyboardKey}
@@ -371,7 +375,9 @@ function MoreGiveUps({ route, navigation }) {
           }
         }}
       >
-        <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
+        <AnimatedLinearGradient colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']} style={styles.submitButton}>
+          <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
+        </AnimatedLinearGradient>
       </TouchableOpacity>
       </ScrollView>
     </View>

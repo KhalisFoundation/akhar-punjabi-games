@@ -1,4 +1,4 @@
-import * as React from 'react';;
+import React from 'react';
 import {
   StyleSheet,
   Image,
@@ -39,7 +39,7 @@ function About({ navigation }) {
     scrollview: {
       flex: 1,
       flexDirection: 'column',
-      padding: 15,
+      padding: 8,
       height: '100%'
     },
     singleLine: {
@@ -118,7 +118,38 @@ function About({ navigation }) {
         <Text style={{ fontFamily: 'Nasa', fontSize: 25, color: state.darkMode ? white : black }}>{'\n'}Akhar Jor</Text>
         <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black, margin:10, marginTop: 0 }}>
           {' '}
-          utilizes a collection of commonly used Punjabi/Gurmukhi words to create an interactive game that is fun and easy to learn,
+          utilizes
+        <Text
+          style={{ color: linkColor, }}
+          onPress={() => Linking.openURL('https://www.discoversikhism.com/sikh.html')}
+        >
+          {' \n\n \u2022 '}
+          DiscoverSikhism
+        </Text>
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://1000mostcommonwords.com/1000-most-common-punjabi-words/')}
+        >
+          {', \n \u2022 '}
+          1000MostCommonWords
+        </Text>
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://www.chardikalaa.com/?page_id=61')}
+        >
+          {', \n \u2022 '}
+          Chardikalaa
+        </Text>
+        <Text
+          style={{ color: linkColor }}
+          onPress={() => Linking.openURL('https://www.sikhiwiki.org/index.php/Gurmukhi_to_English')}
+        >
+          {', \n \u2022 '}
+          SikhiWiki
+        </Text>
+        {' \n'}
+          to create Punjabi Wordlink, an interactive game,
+          {' '}
           for spreading the knowledge of our Mother Tongue, Punjabi.
           {' '}
       </Text>
@@ -126,12 +157,12 @@ function About({ navigation }) {
       {/* Explaining 2048 */}
       <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: 30, color: state.darkMode ? white : black}}>{'\n'}2048</Text>
         <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black, margin:10, marginTop: 0 }}>
-          {' '}utilizes the concept of a popular number game 2048 combined with Punjabi numerals to make learning easy.
+          {' '}utilizes the concept of a popular number game 2048 combined with Punjabi numerals to make learning easy and a game that is fun to play.
         </Text>
 
       {/* Welcoming comments and suggestions */}
       <Text style={{ fontSize: 16, fontFamily: 'Muli', color: state.darkMode ? white : black }}>
-      <Text>{'\n'}</Text>
+      <Text>{'\n '}</Text>
       <Text>
         We welcome your comments, suggestions, and corrections!
         {' '}
