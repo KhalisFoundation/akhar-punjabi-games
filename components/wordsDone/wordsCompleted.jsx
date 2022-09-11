@@ -40,11 +40,11 @@ function RightWords({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: colors.wordsCompleted.container,
+      backgroundColor: "#D1FBFF",
       justifyContent: 'space-between',
-      paddingBottom: 25,
       width: '100%',
-      height: '100%'
+      height: '100%',
+      paddingBottom: 10
     },
     downStyle: {
     },
@@ -52,7 +52,8 @@ function RightWords({ navigation }) {
       position: 'absolute',
       bottom: 0,
       right: 0,
-      backgroundColor: state.darkMode ? '#000' : '#fff',
+      marginBottom: 10,
+      backgroundColor: '#fff',
       borderRadius: 20,
       elevation: 5,
     },
@@ -61,31 +62,24 @@ function RightWords({ navigation }) {
       height: '70%',
       width: '95%',
       paddingBottom: 5,
-      paddingTop: 0
+      paddingTop: 10
     },
     listContainerFull: {
       height: '88%',
       width: '95%',
-      paddingBottom: 10,
-      paddingTop: 0
+      paddingBottom: 30,
+      paddingTop: 10
     },
     answerBoxAlt: {
       height: 25,
       width: '95%'
     },
     answerBox: {
-      backgroundColor: state.darkMode ? '#ffae00' : colors.wordsCompleted.answerBox,
+      backgroundColor: '#fff',
       width: '95%',
       height: '20%',
       borderRadius: 20,
       padding: 15,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
       elevation: 5,
     },
     answerRow: {
@@ -178,15 +172,15 @@ function RightWords({ navigation }) {
         barStyle='dark-content'
       />
       <Header
-        backgroundColor={state.darkMode ? '#004ba6' : 'cyan'}
+        backgroundColor={'#00E9FE'}
         containerStyle={[
-          (!state.meaningPopup) ? styles.downStyle : null
+          (!state.meaningPopup) ? styles.downStyle : null,
         ]}
         leftComponent={(
           <Icon
             name="arrow-back"
             color={
-                state.darkMode ? 'white' : 'black'
+              '#000'
               }
             size={30}
             onPress={() => { navigation.navigate('AkharJor'); }}
@@ -195,7 +189,7 @@ function RightWords({ navigation }) {
         centerComponent={{
           text: 'Completed Levels',
           style: {
-            color: state.darkMode ? 'white' : 'black',
+            color: '#000',
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli'
           }

@@ -13,8 +13,7 @@ import { closeResultModal } from '../../redux/actions';
 import Icon from '../../assets/Group-14.svg';
 import Win from '../../assets/Win.svg'
 
-function YouWonModal(won) {
-  won = won.won
+function YouWonModal(props) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
@@ -98,7 +97,6 @@ function YouWonModal(won) {
   }
   return (
     <Modal
-      visible={state.resultShow}
       animationType="fade"
       transparent
     >
@@ -115,16 +113,16 @@ function YouWonModal(won) {
                 animation="tada"
                 iterationCount={2}
                 style={{
-                 marginBottom: won ? 0 : 25, alignItems:'center' 
+                 marginBottom: props.won ? 0 : 25, alignItems:'center' 
                 }}
               >
-                {won ? <Win height={300} style={{marginTop: -75}}/> : <Icon style={{transform: [{scale:2}]}}/>}
+                {props.won ? <Win height={300} style={{marginTop: -75}}/> : <Icon style={{transform: [{scale:2}]}}/>}
               </Animatable.View>
               <Text style={styles.text}>
-                {won ? "vDweIAwN jI!" : "koeI g~l nhIN!"}
+                {props.won ? "vDweIAwN jI!" : "koeI g~l nhIN!"}
               </Text>
               <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20 }]}>
-                {won ? "You Won!" : "No Problem!\nBetter Luck Next Time!"}
+                {props.won ? "You Won!" : "No Problem!\nBetter Luck Next Time!"}
               </Text>
               <Animatable.View
                 animation="slideInDown"
@@ -132,7 +130,7 @@ function YouWonModal(won) {
               >
                 <TouchableOpacity
                   style={styles.continue}
-                  onPress={() => { dispatch(closeResultModal()) }}
+                  onPress={props.onRestart}
                 >
                   <AnimatedLinearGradient
                     colors={['#f0cb35', '#ed8f03']}
