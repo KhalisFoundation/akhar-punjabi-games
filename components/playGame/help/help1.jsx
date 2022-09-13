@@ -9,22 +9,25 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Modal
+    Modal,
+    Platform
 } from 'react-native';
-import { useFonts } from 'expo-font';
 import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
+import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg from '../../../assets/helpGrid3.svg';
+import HelpImg from '../../../assets/helpPage1.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+
 import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
+
 const { height, width } = Dimensions.get('window');
 
-function HelpGrid3() {
+function Help1() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
-    
+
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
     });
@@ -35,12 +38,11 @@ function HelpGrid3() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            backgroundColor: '#0003',
             width: '90%',
             height: '100%',
         },
         page: {
-            backgroundColor: '#7FC8DE',
+            backgroundColor: '#274C7C',
             padding: 10,
             borderRadius: 25,
             justifyContent: 'space-evenly',
@@ -54,11 +56,12 @@ function HelpGrid3() {
             textAlign: 'center',
             fontFamily: 'Muli',
             fontSize: Dimensions.size['8'],
+            color: '#fff',
         },
         continue:{
             justifyContent: 'center',
             textAlign: 'center',
-            backgroundColor: '#274C7C',
+            backgroundColor: '#ff8c00',
             borderRadius: 10,
             height: Dimensions.size['16'],
             width: width*.4,
@@ -94,35 +97,37 @@ function HelpGrid3() {
     }
 
     return (
-        <Modal
-            visible={state.helpPage[0] === 2}
-            animationType="none"
+    <Modal
+        visible={state.helpPage[0] === 3}
+        animationType="none"
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
       >
-      <View 
-          style={styles.container}>
-          <Animatable.View
-              animation="slideInRight"
-              iterationCount={1}
-              iterationDelay={100}
-              style={styles.page}>
-                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
-                    <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
+        <View 
+            style={styles.container}>
+            <Animatable.View
+                animation="slideInRight"
+                iterationCount={1}
+                iterationDelay={100}
+                style={styles.page}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row', width: '100%'}}>
+                    <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
                 <Text style={styles.header}>
-                Reach the 2048 tile to win the game!
+                    Welcome to Akhar Jor game.
+                    {'\n\n'}
+                    Swipe to join Gurmukhi letters to create words from meaning.
                 </Text>
                 <HelpImg height={2*Dimensions.size['60']}/>
                 <TouchableOpacity
                     style={styles.continue}
-                    onPress={() => {dispatch(openHelpModal())}}>
+                    onPress={() => {dispatch(openHelpModal(4))}}>
                     <Text style={styles.continueTxt}>
-                        PLAY
+                        CONTINUE
                     </Text>
                 </TouchableOpacity>
                 <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: '100%'}}>
-                    <Text style={{...styles.header, fontSize: Dimensions.size['6'] }}>3/3</Text>
+                    <Text style={{...styles.header, fontSize:  Dimensions.size['6'] }}>1/3</Text>
                 </View>
             </Animatable.View>
         </View>
@@ -130,4 +135,4 @@ function HelpGrid3() {
     );
 }
 
-export default HelpGrid3;
+export default Help1;

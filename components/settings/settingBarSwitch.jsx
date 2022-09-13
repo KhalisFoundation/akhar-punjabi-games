@@ -59,7 +59,7 @@ function SwitchBar({
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          state.darkMode && { backgroundColor: '#464646' },
+          state.darkMode && { backgroundColor: '#081a55' },
           { alignItems: 'flex-start' },
           displayParam ? null : { display: 'none' }
         ]}
@@ -78,7 +78,7 @@ function SwitchBar({
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
             style={{ flex: 1 }}
           />
         </MaskedView>

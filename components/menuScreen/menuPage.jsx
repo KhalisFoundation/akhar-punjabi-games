@@ -14,12 +14,11 @@ import {
   Alert, AppState
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { setTheState } from '../../redux/actions';
-import LoadingModal from '../homeScreen/loadingScreen';
+import { setTheState, showIntroModal } from '../../redux/actions';
 import * as Anvaad from 'anvaad-js';
 import Khalis from '../../assets/khalis_logo.svg';
 import Logo from '../../assets/sikh_games_logo_with_text.svg'
@@ -27,6 +26,8 @@ import simran from '../../assets/simran.mp3'
 import { initialState } from '../../redux/reducers';
 import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
+import AppIntro from './../about/appIntro';
+import { closeIntroModal } from './../../redux/actions';
 
 const audioPlayer = new Audio.Sound();
 
@@ -93,43 +94,20 @@ function MenuScreen({ navigation }) {
       }
     };
   }, []);
-
-
-  let theState;
-  useEffect(() => {
-    async function getData() {
-      try {
-        const theStringState = await AsyncStorage.getItem('state');
-        if (theStringState !== null) {
-          theState = JSON.parse(theStringState);
-          console.log('got state that was previously saved');
-          // console.log(theState);
-        } else {
-          console.log('there is nothing is state');
-          theState = initialState;
-        }
-        dispatch(setTheState(theState));
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    }
-    getData();
-  }, [dispatch]);
+  
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
     container: {
       height: '100%',
+      justifyContent: 'center',
       alignItems: 'center',
       textAlign: 'center',
-      paddingTop: '5%',
       padding: 10,
       backgroundColor: "#274C7C",
     },
     header: {
       width:'100%',
-      margin: '10%',
       textAlign: 'center',
     },
     mainmenu: {
@@ -137,6 +115,13 @@ function MenuScreen({ navigation }) {
       fontSize: 25,
       fontFamily: 'Muli',
       textAlign: 'center',
+      justifyContent: 'center',
+    },
+    mainMenuContainer: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
       borderBottomColor: '#00E9FE', 
       borderBottomWidth: 1
     },
@@ -191,9 +176,14 @@ function MenuScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
+      {state.showIntroModal ? <AppIntro /> : null}
       <View style={styles.header}>
         <Logo style={styles.menulogo}/>
+        <View style={styles.mainMenuContainer}>
         <Text style={styles.mainmenu}>MAIN MENU</Text>
+        <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
+          <Icon name='info-circle' color={"#7FC8DE"} size={22} />
+        </TouchableOpacity></View>
         <Text style={styles.text}>Select a game to Play</Text>
         <View style={styles.columns}>
           <TouchableOpacity 
@@ -213,10 +203,10 @@ function MenuScreen({ navigation }) {
             onPress={() => {
               if (audioPlayer._loaded) {stopSound()};
               whichGame('2048');
-              navigation.navigate('2048');
+              navigation.navigate('2048');              
             }}
           >
-            <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
+            <Text style={[styles.text, {fontFamily: 'Muli'}]}>2048</Text>
           </TouchableOpacity>
         </View>
       </View>
