@@ -22,6 +22,7 @@ import { showMeaningPopUp } from '../../redux/actions';
 import theColors from '../../util/colors';
 import { useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -168,7 +169,7 @@ function RightWords({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
         backgroundColor={'transparent'}
@@ -244,7 +245,7 @@ function RightWords({ navigation }) {
           </Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

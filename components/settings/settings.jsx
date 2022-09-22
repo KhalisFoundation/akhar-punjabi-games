@@ -28,6 +28,7 @@ import {
 import SwitchBar from './settingBarSwitch';
 import theColors from '../../util/colors';
 import * as Analytics from 'expo-firebase-analytics';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function Settings({ navigation }) {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ function Settings({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
         backgroundColor={'transparent'}
@@ -302,7 +303,7 @@ function Settings({ navigation }) {
           <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
         </ListItem>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

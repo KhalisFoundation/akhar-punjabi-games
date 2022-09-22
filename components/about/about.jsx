@@ -21,6 +21,7 @@ import GLOBAL from '../../util/globals';
 import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function About({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -34,8 +35,7 @@ function About({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const styles = StyleSheet.create({
-    container: { flex: 1, 
-      marginTop: (Platform.OS == 'android') ? '3.5%' : 0, },
+    container: { flex: 1},
     scrollview: {
       flex: 1,
       flexDirection: 'column',
@@ -63,7 +63,7 @@ function About({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View
+    <SafeAreaView
       style={styles.container}
     >
       <StatusBar
@@ -179,7 +179,7 @@ function About({ navigation }) {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

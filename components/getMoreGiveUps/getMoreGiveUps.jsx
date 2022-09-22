@@ -27,6 +27,7 @@ import { setGiveUpLives, setLivesWord } from '../../redux/actions';
 import { useEffect } from 'react';
 import * as Analytics from 'expo-firebase-analytics';
 import dimensions from '../../util/dimensions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -220,7 +221,7 @@ function MoreGiveUps({ route, navigation }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
         backgroundColor={'transparent'}
@@ -339,7 +340,7 @@ function MoreGiveUps({ route, navigation }) {
       </TouchableOpacity>
       </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

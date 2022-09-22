@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     Image,
     View,
     Text,
@@ -23,6 +22,7 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 
 import Dimensions from '../../../util/dimensions';
 import { closeHelpModal } from '../../../redux/actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const { height, width } = Dimensions.get('window');
 
 function Help() {
@@ -48,11 +48,13 @@ function Help() {
         scrollview: {
             flexDirection: 'column',
             alignSelf: 'center',
-            borderRadius: 25,
+            borderRadius: 15,
             padding: 15,
-            minHeight: '80%',
+            marginVertical: 15,
+            height: '80%',
             width: '90%',
             backgroundColor: '#7FC8DE',
+            overflow: 'hidden',
           },
         page: {
             backgroundColor: '#274C7C',
@@ -61,7 +63,7 @@ function Help() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            width: '98%',
+            width: '80%',
             height: '90%',
         },
         header: {
@@ -111,7 +113,7 @@ function Help() {
         style={ { flex: 1, 
             marginTop: (Platform.OS == 'android') ? '3.5%' : 0, }}
       >
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView 
                 style={styles.scrollview}
                 contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -142,7 +144,7 @@ function Help() {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     </Modal>
     );
 }

@@ -24,6 +24,7 @@ import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
 import { closeIntroModal } from './../../redux/actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function AppIntro() {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -38,8 +39,7 @@ function AppIntro() {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const styles = StyleSheet.create({
-    container: { flex: 1, 
-      marginTop: (Platform.OS == 'android') ? '3.5%' : 0, },
+    container: { flex: 1, },
     scrollview: {
       flex: 1,
       flexDirection: 'column',
@@ -67,9 +67,8 @@ function AppIntro() {
     return <AppLoading />;
   }
   return (
-    <Modal
-      style={styles.container}
-    >
+    <Modal>
+      <SafeAreaView style={{flex:1}}>
       <StatusBar
         translucent={true}
         backgroundColor={'transparent'}
@@ -158,6 +157,7 @@ function AppIntro() {
           </View>
         </View>
       </ScrollView>
+      </SafeAreaView>
     </Modal>
   );
 }

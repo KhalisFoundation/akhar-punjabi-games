@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MenuScreen from './components/menuScreen/menuPage';
 import HomeScreen from './components/homeScreen/landingPage';
 import GameScreen from './components/playGame/theGame';
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <Provider store={Store}>
+      <SafeAreaProvider>
       <NavigationContainer
         ref={navigationRef}
         onReady={() => {
@@ -123,6 +125,7 @@ function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 }

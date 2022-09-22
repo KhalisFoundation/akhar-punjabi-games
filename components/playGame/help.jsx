@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     Image,
     View,
     Text,
@@ -13,6 +12,7 @@ import {
     Platform
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -82,10 +82,12 @@ function Help() {
         scrollview: {
             flexDirection: 'column',
             alignSelf: 'center',
-            borderRadius: 25,
+            borderRadius: 15,
             padding: 15,
-            minHeight: '80%',
+            marginVertical: 15,
+            height: '80%',
             width: '90%',
+            overflow: 'hidden',
             backgroundColor: '#274C7C',
           },
         singleLine: {
@@ -111,7 +113,7 @@ function Help() {
         style={ { flex: 1, 
             marginTop: (Platform.OS == 'android') ? '3.5%' : 0, }}
     >
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView 
                 style={styles.scrollview}
                 contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -143,7 +145,7 @@ function Help() {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     </Modal>
     );
 }

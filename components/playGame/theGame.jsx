@@ -21,6 +21,7 @@ import WordsDoneModal from './modalNextWord';
 import {
   openHelpModal
 } from '../../redux/actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Analytics from 'expo-firebase-analytics';
 import Dimensions from '../../util/dimensions';
 import Help from './help';
@@ -46,7 +47,7 @@ function GameScreen({ navigation }) {
   const charArray = state.charArray;
 
   let angle = 0;
-  const radius =  Dimensions.size["44"];
+  const radius =  width / 3.5;
   const step = (2 * Math.PI) / charArray.length;
   let charShuffled = (state.levelProgress[0].level < 3 || state.levelProgress[0].level > 5) ? charArray : charArray.sort();
   charShuffled.map((char) => {
@@ -375,64 +376,66 @@ function GameScreen({ navigation }) {
       colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container }
     >
-      { state.helpPage ? <Help /> : null }
-      {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
-      <StatusBar
-        translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="dark-content"
-      />
-      <Header
-        backgroundColor="transparent"
-        leftComponent={(
-          <IconH
-            name="arrow-back"
-            color={state.darkMode ? 'white' : 'black'}
-            size={Dimensions.size['14']}
-            onPress={() => { navigation.navigate('AkharJor'); }}
-          />
-          )}
-        centerComponent={{
-          text: 'ਅਖਰ ਜੋੜ',
-          style: {...styles.status}
-        }}
-        rightComponent={(
-            <IonIcons name="help" size={Dimensions.size['14']} color={state.darkMode ? 'white' : 'black'} style={styles.shadow} onPress={() => {dispatch(openHelpModal(3)); console.log(state.helpPage)}}/>
-        )}
-      />
-      <View style={styles.scroller}
-      contentContainerStyle={styles.scrollContent}>
-      <View
-        style={styles.header}
-      >
-        <StatsBox stat="levels" navigation={navigation} />
-        <StatsBox stat="points" navigation={navigation} />
-        <StatsBox stat="hints" navigation={navigation} />
-      </View>
-
-      <View
-        style={styles.wordBoxAnswers}
-      >
-          <WordBox wordType={"top"} />
-          <WordBox wordType={"bottom"} /> 
-
-        {/* <TouchableOpacity
-          style={styles.newWord}
-          title="New Words"
-          onPress={() => {
-            dispatch(setNewWords());
+      <SafeAreaView style={styles.container}>
+        { state.helpPage ? <Help /> : null }
+        {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
+        <StatusBar
+          translucent={true}
+          backgroundColor={'transparent'}
+          barStyle="dark-content"
+        />
+        <Header
+          backgroundColor="transparent"
+          leftComponent={(
+            <IconH
+              name="arrow-back"
+              color={state.darkMode ? 'white' : 'black'}
+              size={Dimensions.size['14']}
+              onPress={() => { navigation.navigate('AkharJor'); }}
+            />
+            )}
+          centerComponent={{
+            text: 'ਅਖਰ ਜੋੜ',
+            style: {...styles.status}
           }}
+          rightComponent={(
+              <IonIcons name="help" size={Dimensions.size['14']} color={state.darkMode ? 'white' : 'black'} style={styles.shadow} onPress={() => {dispatch(openHelpModal(3)); console.log(state.helpPage)}}/>
+          )}
+        />
+        <View style={styles.scroller}
+          contentContainerStyle={styles.scrollContent}>
+        <View
+          style={styles.header}
         >
-          <Text>New Word</Text>
-        </TouchableOpacity> */}
-      </View>
-      
-      <AttemptInput setWord={setWord}/>
+          <StatsBox stat="levels" navigation={navigation} />
+          <StatsBox stat="points" navigation={navigation} />
+          <StatsBox stat="hints" navigation={navigation} />
+        </View>
 
-      <Animated.View>
-        <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/>
-      </Animated.View>
-      </View>
+        <View
+          style={styles.wordBoxAnswers}
+        >
+            <WordBox wordType={"top"} />
+            <WordBox wordType={"bottom"} /> 
+
+          {/* <TouchableOpacity
+            style={styles.newWord}
+            title="New Words"
+            onPress={() => {
+              dispatch(setNewWords());
+            }}
+          >
+            <Text>New Word</Text>
+          </TouchableOpacity> */}
+        </View>
+        
+        <AttemptInput setWord={setWord}/>
+
+        <Animated.View>
+          <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/>
+        </Animated.View>
+        </View>
+      </SafeAreaView>
     </LinearGradient>
   );
 }

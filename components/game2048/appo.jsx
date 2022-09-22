@@ -8,6 +8,7 @@ import {
   StatusBar,
   TouchableOpacity
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Container from './components/Container';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
@@ -24,7 +25,7 @@ export default function New2048({ navigation }) {
   const {height, width} = Dimensions.get('window');
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       { state.helpPage ? <Help /> : null } 
       <StatusBar
         translucent={true}
@@ -81,7 +82,7 @@ export default function New2048({ navigation }) {
         </TouchableOpacity>
       </View>
       <Container startTiles={2} size={4} navigation={navigation} />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -95,7 +96,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    paddingTop: (Platform.OS == 'android') ? '3.5%' : 0
   },
     headingTitle:{
       fontSize:Dimensions.size["12"],

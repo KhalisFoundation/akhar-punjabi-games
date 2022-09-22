@@ -7,10 +7,10 @@ import {
   StyleSheet,
   Linking,
   Image,
-  ImageBackground, 
-  SafeAreaView,
+  ImageBackground,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-community/masked-view';
@@ -67,8 +67,9 @@ function HomeScreen({ navigation }) {
       flex: 1,
       alignItems: 'center',
       flexDirection: 'column',
-      justifyContent: 'space-evenly',
+      justifyContent: 'space-between',
       backgroundColor: "#274C7C",
+      padding: 10
     },
     logo: {
       height: '30%', alignSelf: 'center'

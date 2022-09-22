@@ -8,8 +8,7 @@ import {
   StyleSheet,
   Linking,
   Image,
-  ImageBackground, 
-  SafeAreaView,
+  ImageBackground,
   BackHandler, 
   Alert, AppState
 } from 'react-native';
@@ -28,6 +27,7 @@ import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
 import AppIntro from './../about/appIntro';
 import { closeIntroModal } from './../../redux/actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const audioPlayer = new Audio.Sound();
 
