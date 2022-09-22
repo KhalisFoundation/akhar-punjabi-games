@@ -37,7 +37,7 @@ function HelpGrid2() {
             alignSelf: 'center',
             alignItems: 'center',
             backgroundColor: '#0003',
-            width: '90%',
+            width: '100%',
             height: '100%',
         },
         page: {
@@ -47,8 +47,8 @@ function HelpGrid2() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            width: '100%',
-            height: '90%',
+            width: '90%',
+            minHeight: '80%',
         },
         header: {
             justifyContent: 'center',
@@ -90,24 +90,15 @@ function HelpGrid2() {
         }
     });
 
-    if (!fontLoaded) {
-      return <AppLoading />;
-    }
-
     return (
         <Modal
             visible={state.helpPage[0] === 1}
-            animationType="none"
-        transparent
-        onRequestClose={() => dispatch(openHelpModal())}
-      >
-      <View 
-          style={styles.container}>
-          <Animatable.View
-              animation="slideInRight"
-              iterationCount={1}
-              iterationDelay={100}
-              style={styles.page}>
+            animationType="slide"
+            transparent
+            onRequestClose={() => dispatch(openHelpModal())}
+        >
+        <View style={styles.container}>
+            <View style={styles.page}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
                     <IonIcons name="close" size={30} color="#000" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
@@ -125,7 +116,7 @@ function HelpGrid2() {
                 <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: '100%'}}>
                     <Text style={{...styles.header, fontSize: Dimensions.size['6'] }}>2/3</Text>
                 </View>
-            </Animatable.View>
+            </View>
         </View>
         </Modal>
     );

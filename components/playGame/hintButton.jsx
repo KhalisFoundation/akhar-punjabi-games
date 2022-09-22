@@ -32,7 +32,7 @@ export const HintButton = ({wordType}) => {
           giveUpTxt: {
             textAlign: 'center',
             alignItems: 'center',
-            fontSize: (state.giveUpsLeft === 0 || state.topWord !== '') ? dimensions.size['10'] : dimensions.size['12'],
+            fontSize: dimensions.size['12'],
             width: '100%',
             height: '100%',
             margin: 'auto'
@@ -107,7 +107,6 @@ export const HintButton = ({wordType}) => {
     >
         <IconM
           name={hintBtn(state.topWord).name}
-          size={dimensions.size['5']}
           color={hintBtn(state.topWord).color}
           style={styles.giveUpTxt}
         />
@@ -137,7 +136,6 @@ export const HintButton = ({wordType}) => {
           >
             <IconM
               name={hintBtn(state.bottomWord).name}
-              size={25}
               color={hintBtn(state.bottomWord).color}
               style={styles.giveUpTxt}
             />

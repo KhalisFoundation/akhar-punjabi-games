@@ -19,14 +19,13 @@ export const BelowGame = (props) => {
   const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({   
     otherScreens: {
-        flexDirection: 'row',
         // backgroundColor: "yellow",
+        //width: 100*Dimensions.scale,
+        flexDirection: 'row',
         justifyContent: 'space-between',
-        width: 100*Dimensions.scale,
         backgroundColor: state.darkMode ? '#035': '#fff',
         padding: Dimensions.size["4"],
         borderRadius: 50,
-        margin: Dimensions.size["4"]
       },
       optText: {
         textAlign: 'center',
@@ -44,8 +43,12 @@ export const BelowGame = (props) => {
     })
     
     return (
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: width}}>
+      <TouchableOpacity onPress={props.onRestart} style={{flexDirection:'row'}} >
         <View style={styles.otherScreens}>
-        <TouchableOpacity onPress={props.onRestart} style={{flexDirection:'row'}} >
         <MaskedView
           style={{ width: Dimensions.size['15'], height: Dimensions.size['15'] }}
           maskElement={(
@@ -66,8 +69,10 @@ export const BelowGame = (props) => {
           />
         </MaskedView>
         <Text style={styles.optText}>Reset</Text>
+        </View>
         </TouchableOpacity>
         <TouchableOpacity style={{ flexDirection:'row'}} onPress={()=>{console.log("Language changed to %s!", (!state.punjabiNums)?"Punjabi":"English"); dispatch(setPunjabiNums(!state.punjabiNums))}}>
+          <View style={styles.otherScreens}>
         <MaskedView
           style={{ width: Dimensions.size['15'], height: Dimensions.size['15'] }}
           maskElement={(
@@ -88,6 +93,7 @@ export const BelowGame = (props) => {
           />
         </MaskedView>
         <Text style={styles.optText}>Language</Text>
+        </View>
         </TouchableOpacity>
       </View>
     )

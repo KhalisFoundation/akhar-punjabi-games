@@ -12,49 +12,50 @@ import React from 'react';
 import { NumText } from './NumText';
 import Dimensions from '../../../util/dimensions';
 import { openHelpModal } from '../../../redux/actions';
-import Help from '../helpGrids/help';
-const {height, width} = Dimensions.get('window');
+import Help from './help';
 
-const styles = StyleSheet.create({
-  headingTitle:{
-    fontSize:Dimensions.size["12"],
-    color: '#776E65',
-  },
-  back: {
-    backgroundColor: '#035',
-    padding: Dimensions.size["4"],
-    borderRadius: 50,
-    marginTop: 15,
-  },
-  help: {
-    backgroundColor: '#035',
-    padding: Dimensions.size["4"],
-    borderRadius: 50,
-    marginTop: 15,
-  },
-  upBox: {
-    backgroundColor: '#035',
-    padding: Dimensions.size["4"],
-    borderRadius: 50,
-    alignSelf: 'center',
-    alignItems: 'center',
-    marginTop: 15,
-  },
-  upText: {
-    color: 'white',
-    fontSize: 15,
-    fontFamily: 'Muli',
-  }
-})
 
-const Heading = (props) => {
+function Heading(props) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
 
+  const {height, width} = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    headingTitle:{
+      fontSize:Dimensions.size["12"],
+      color: '#776E65',
+    },
+    back: {
+      backgroundColor: '#035',
+      padding: Dimensions.size["4"],
+      borderRadius: 50,
+      marginTop: 15,
+    },
+    help: {
+      backgroundColor: '#035',
+      padding: Dimensions.size["4"],
+      borderRadius: 50,
+      marginTop: 15,
+    },
+    upBox: {
+      backgroundColor: '#035',
+      padding: Dimensions.size["4"],
+      borderRadius: 50,
+      alignSelf: 'center',
+      alignItems: 'center',
+      marginTop: 15,
+    },
+    upText: {
+      color: 'white',
+      fontSize: 15,
+      fontFamily: 'Muli',
+    }
+  })
+
   return (
       <View
-        style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>
-        { state.helpPage[0] <= 3 ? <Help /> : null }
+        style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>  
       <TouchableOpacity
         style={styles.back}
         onPress={() => props.nav.goBack()}
@@ -98,7 +99,7 @@ const Heading = (props) => {
       </View>
       <TouchableOpacity
         style={styles.help}
-        onPress={() => {dispatch(openHelpModal(0)); console.log(state.helpPage)}}
+        onPress={() => {dispatch(openHelpModal()); console.log(props.help)}}
       >
       <MaskedView
           style={{ width: 35, height: 35 }}
@@ -123,4 +124,4 @@ const Heading = (props) => {
   )
 }
 
-export default Heading
+export default Heading;

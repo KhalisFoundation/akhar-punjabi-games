@@ -99,17 +99,12 @@ function Help1() {
     return (
     <Modal
         visible={state.helpPage[0] === 3}
-        animationType="none"
+        animationType="slide"
         transparent
         onRequestClose={() => dispatch(openHelpModal())}
       >
-        <View 
-            style={styles.container}>
-            <Animatable.View
-                animation="slideInRight"
-                iterationCount={1}
-                iterationDelay={100}
-                style={styles.page}>
+        <View style={styles.container}>
+            <View style={styles.page}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row', width: '100%'}}>
                     <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
                 </View>
@@ -129,7 +124,7 @@ function Help1() {
                 <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: '100%'}}>
                     <Text style={{...styles.header, fontSize:  Dimensions.size['6'] }}>1/3</Text>
                 </View>
-            </Animatable.View>
+        </View>
         </View>
         </Modal>
     );

@@ -10,7 +10,7 @@ import * as Anvaad from 'anvaad-js';
 import dimensions from '../../util/dimensions';
 import { setAttempt, setVisited } from '../../redux/actions';
 
-export const AttemptInput = () => {
+export const AttemptInput = ({setWord}) => {
     const state = useSelector((theState) => theState.theGameReducer);
     const dispatch = useDispatch();
     // Animated gradient
@@ -18,22 +18,18 @@ export const AttemptInput = () => {
     
     const styles = StyleSheet.create({
         wordAttemptView: {
+          width: '80%',
+          alignSelf: 'center',
           flexDirection: 'row',
+          justifyContent: 'space-evenly',
           marginTop: 5,
-          padding: 5,
+          paddingVertical: 5,
           backgroundColor: "#f8f",
           borderRadius: 20,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 4,
           elevation: 5,
         },
         wordAttempt: {
-          width: "75%",
+          width: '80%',
           height: "100%",
           opacity: 0.8,
           color: state.darkMode ? 'darkblue' : 'white',
@@ -54,38 +50,26 @@ export const AttemptInput = () => {
         </Text>
         
       {(state.attempt == "") ? 
-        <View style={{borderRadius: 25,
-            height: dimensions.size['15'],
-            width: dimensions.size['15'],alignSelf: 'center'}}></View> : 
+        null : 
       <TouchableOpacity
       style={{
         backgroundColor: state.darkMode ? 'black' : 'white',
         borderRadius: 25, 
         height: dimensions.size['15'], 
         width:  dimensions.size['15'], 
-        justifyContent: 'center',
         }}
         onPress={() => {
           dispatch(setVisited([]));
           dispatch(setAttempt(''));
+          setWord('');
         }}
       >
         <MaskedView
           style={{
-            height: 40,
-            width: 40,
+            height: dimensions.size['15'],
+            width: dimensions.size['15'],
           }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 5
-              }}
-            >
-              <IconM name="reload" size={25} />
-            </View>
+          maskElement={(<IconM name="reload" style={{alignSelf: 'center', marginVertical: 5}} size={dimensions.size['10']} />
         )}
         >
           <LinearGradient

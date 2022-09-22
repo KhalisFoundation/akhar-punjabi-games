@@ -219,10 +219,15 @@ export const setVisited = (visit) => {
   };
 }
 
-export const openHelpModal = (page) => {
+export const openHelpModal = () => {
   return {
     type: "OPEN_HELP_MODAL",
-    thePage: page
+  };
+}
+
+export const closeHelpModal = () => {
+  return {
+    type: "CLOSE_HELP_MODAL",
   };
 }
 

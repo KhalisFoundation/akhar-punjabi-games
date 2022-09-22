@@ -9,34 +9,37 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Platform,
-    Modal
+    Modal,
+    Platform
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg from '../../../assets/helpPage.svg';
+import HelpImg1 from '../../../assets/helpPage1.svg';
+import HelpImg2 from '../../../assets/helpPage2.svg';
+import HelpImg3 from '../../../assets/helpPage3.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+
 import Dimensions from '../../../util/dimensions';
-import { openHelpModal } from '../../../redux/actions';
+import { closeHelpModal } from '../../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
-function Help2() {
+function Help() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
-    
+
     const [fontLoaded] = useFonts({
         Muli: require('../../../assets/fonts/Muli.ttf'),
     });
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            justifyContent: 'space-evenly',
             alignSelf: 'center',
-            alignItems: 'center',
-            width: '90%',
+            alignContent: 'center',
+            justifyContent: 'space-around',
+            backgroundColor: '#0003',
+            width: '100%',
             height: '100%',
         },
         page: {
@@ -46,8 +49,11 @@ function Help2() {
             justifyContent: 'space-evenly',
             alignSelf: 'center',
             alignItems: 'center',
-            width: '100%',
+            width: '98%',
             height: '90%',
+        },
+        img: {
+            alignSelf: 'center',
         },
         header: {
             justifyContent: 'center',
@@ -59,24 +65,29 @@ function Help2() {
         continue:{
             justifyContent: 'center',
             textAlign: 'center',
+            alignSelf: 'center',
+            margin: 20,
             backgroundColor: '#ff8c00',
             borderRadius: 10,
-            height: Dimensions.size['16'],
-            width: width*.4,
+            height: 50,
+            width: width*.45,
             elevation: 5,
         },
         continueTxt: {
             textAlign: 'center',
             fontFamily: 'Muli',
-            fontSize: Dimensions.size['6'],
+            fontSize: 20,
             color: '#FFFFFF',
         },
         scrollview: {
-            flex: 1,
             flexDirection: 'column',
-            padding: 8,
-            height: '100%'
-        },
+            alignSelf: 'center',
+            borderRadius: 25,
+            padding: 15,
+            minHeight: '80%',
+            width: '90%',
+            backgroundColor: '#274C7C',
+          },
         singleLine: {
             flexDirection: 'row',
             justifyContent: 'space-between'
@@ -95,35 +106,46 @@ function Help2() {
     }
 
     return (
-        <Modal
-            visible={state.helpPage[0] === 4}
-            animationType="slide"
-            transparent
-            onRequestClose={() => dispatch(openHelpModal())}
-        >
+    <Modal
+        transparent
+        style={ { flex: 1, 
+            marginTop: (Platform.OS == 'android') ? '3.5%' : 0, }}
+    >
         <View style={styles.container}>
-          <View style={styles.page}>
-            <View style={{justifyContent: 'space-between', flexDirection: 'row', width: '100%'}}>
-                    <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(openHelpModal())}} />
-                </View>
+            <ScrollView 
+                style={styles.scrollview}
+                contentContainerStyle={{ flexDirection: 'column', justifyContent: 'space-between' }}>
+                <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(closeHelpModal())}} />
                 <Text style={styles.header}>
+                    Welcome to Akhar Jor game.
+                    {'\n\n'}
+                    Swipe to join Gurmukhi letters to create words from meaning.
+                </Text>
+                <HelpImg1 height={2*Dimensions.size['80']}  style={styles.img}/>
+
+                <Text style={styles.header}>
+                    {'\n\n'}
                     Some basics to get you started!
                 </Text>
-                <HelpImg height={2*Dimensions.size['60']}/>
+                <HelpImg2 height={2*Dimensions.size['80']}  style={styles.img}/>
+                
+                <Text style={styles.header}>
+                    {'\n\n'}
+                    The more you try, the more you learn Punjabi!
+                </Text>
+                <HelpImg3 height={2*Dimensions.size['80']}  style={styles.img}/>
+
                 <TouchableOpacity
                     style={styles.continue}
-                    onPress={() => {dispatch(openHelpModal(5))}}>
+                    onPress={() => {dispatch(closeHelpModal())}}>
                     <Text style={styles.continueTxt}>
-                        CONTINUE
+                        PLAY
                     </Text>
                 </TouchableOpacity>
-                <View style={{justifyContent: 'flex-end', flexDirection: 'row', width: '100%'}}>
-                    <Text style={{...styles.header, fontSize:  Dimensions.size['6'] }}>2/3</Text>
-                </View>
-            </View>
+            </ScrollView>
         </View>
-        </Modal>
+    </Modal>
     );
 }
 
-export default Help2;
+export default Help;

@@ -104,7 +104,7 @@ export const initialState = {
   // 2048 stuff
   resultShow: false,
   moves: 0,
-  helpPage: []
+  helpPage: false
 };
 
 //to reset all state
@@ -515,7 +515,16 @@ function theGameReducer(state = initialState, action) {
   if (action.type === "OPEN_HELP_MODAL") {
     const newState = {
       ...state,
-      helpPage: [action.thePage],
+      helpPage: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  
+  if (action.type === "CLOSE_HELP_MODAL") {
+    const newState = {
+      ...state,
+      helpPage: false,
     };
     setData("state", newState);
     return newState;

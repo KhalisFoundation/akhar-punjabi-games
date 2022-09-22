@@ -87,9 +87,6 @@ function Settings({ navigation }) {
       />
       <Header
         backgroundColor={state.darkMode ? "#274C7C" : "orange"}
-        containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
-        ]}
         leftComponent={(
           <Icon
             name="arrow-back"

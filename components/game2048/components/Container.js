@@ -91,8 +91,7 @@ class Container extends Component {
             onKeepGoing={() => this.keepGoing()}
             onTryAgain={() => this.restart()}
           />
-      <View {...this._panResponder.panHandlers} style={styles.container} >
-          <Heading score={this.state.score} best={this.state.best} nav={this.props.navigation}></Heading>
+          <View {...this._panResponder.panHandlers} style={styles.container} >
           <MaskedView
               style={{ width: width, height: dimensions.size['30'] }}
               maskElement={(

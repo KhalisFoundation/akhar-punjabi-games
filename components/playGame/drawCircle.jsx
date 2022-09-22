@@ -188,7 +188,7 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
       path = "";
       visited.forEach(point => {
         let [x, y] = point.split(",").map(value => parseInt(value));
-        path += `${x+20},${y+20} `;
+        path += `${x+dimensions.size['18']/2},${y+dimensions.size['18']/2} `;
       });
       path += `${end.x},${(end.y!="")? end.y - dimensions.scale*180 : end.y}`;
     } else {
@@ -331,7 +331,7 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
   return (
     <View 
       style={styles.container} >
-    <View style={[styles.lettersCircle, {backgroundColor: 'transparent',  zIndex: 1}]}
+    <View style={[styles.lettersCircle, {backgroundColor: 'transparent',  zIndex: -1}]}
     {...panResponder.panHandlers}>
       <Svg style={{zIndex:-1, position: 'absolute', top: 0,left: 0, right: 0, bottom: 0}}>
           <Polyline
@@ -341,6 +341,7 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
             strokeWidth="10"
           />
       </Svg>
+      </View>
           
     {points.map(({x, y, letter}) => {
       let char = letter;
@@ -374,15 +375,14 @@ export const TheCircle = ({ visited, setVisited, points, word, setWord }) => {
             position: 'absolute',
             left: x,
             top: y,
-            zIndex: -1,
+            zIndex: 0,
           }}
         >
-          <Text key={char} style={{...styles.characterText, zIndex: -1,}}>
+          <Text key={char} style={{...styles.characterText, zIndex: 0,}}>
             {theLetter}
           </Text>
         </TouchableOpacity>)
     })}
       </View>
-    </View>
   );
 }

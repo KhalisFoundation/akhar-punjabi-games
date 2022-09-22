@@ -23,8 +23,7 @@ import {
 } from '../../redux/actions';
 import * as Analytics from 'expo-firebase-analytics';
 import Dimensions from '../../util/dimensions';
-import Help from './help/help';
-import dimensions from '../../util/dimensions';
+import Help from './help';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -376,7 +375,7 @@ function GameScreen({ navigation }) {
       colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container }
     >
-      { state.helpPage[0] >= 3 ? <Help /> : null }
+      { state.helpPage ? <Help /> : null }
       {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
       <StatusBar
         translucent={true}
@@ -428,7 +427,7 @@ function GameScreen({ navigation }) {
         </TouchableOpacity> */}
       </View>
       
-      <AttemptInput />
+      <AttemptInput setWord={setWord}/>
 
       <Animated.View>
         <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/>
