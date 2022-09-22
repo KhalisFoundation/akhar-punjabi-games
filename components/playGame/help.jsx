@@ -119,7 +119,7 @@ function Help() {
                 <Text style={styles.header}>
                     Welcome to Akhar Jor game.
                     {'\n\n'}
-                    Swipe to join Gurmukhi letters to create words from meaning.
+                    Click or Swipe to join Gurmukhi letters to create words from meaning.
                 </Text>
                 <HelpImg1 height={2*Dimensions.size['80']}  style={styles.img}/>
 
@@ -127,7 +127,7 @@ function Help() {
                     {'\n\n'}
                     Some basics to get you started!
                 </Text>
-                <HelpImg2 height={2*Dimensions.size['80']}  style={styles.img}/>
+                <HelpImg2 height={2*Dimensions.size['60']}  style={styles.img}/>
                 
                 <Text style={styles.header}>
                     {'\n\n'}
