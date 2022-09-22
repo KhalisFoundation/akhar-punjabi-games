@@ -16,13 +16,13 @@ import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg1 from '../../../assets/helpPage1.svg';
-import HelpImg2 from '../../../assets/helpPage2.svg';
-import HelpImg3 from '../../../assets/helpPage3.svg';
+import HelpImg1 from '../../assets/helpPage1.svg';
+import HelpImg2 from '../../assets/helpPage2.svg';
+import HelpImg3 from '../../assets/helpPage3.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
-import Dimensions from '../../../util/dimensions';
-import { closeHelpModal } from '../../../redux/actions';
+import Dimensions from '../../util/dimensions';
+import { closeHelpModal } from '../../redux/actions';
 const { height, width } = Dimensions.get('window');
 
 function Help() {
@@ -30,7 +30,7 @@ function Help() {
     const state = useSelector((theState) => theState.theGameReducer);
 
     const [fontLoaded] = useFonts({
-        Muli: require('../../../assets/fonts/Muli.ttf'),
+        Muli: require('../../assets/fonts/Muli.ttf'),
     });
 
     const styles = StyleSheet.create({

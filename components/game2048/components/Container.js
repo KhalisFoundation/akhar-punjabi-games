@@ -96,11 +96,11 @@ class Container extends Component {
               style={{ width: width, height: dimensions.size['30'] }}
               maskElement={(
                 <View
-                  style={{
-                    backgroundColor: 'transparent',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
+                style={{
+                  backgroundColor: 'transparent',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
                 >
             <Text style={{fontFamily: 'GurbaniHeavy', fontSize: dimensions.size['27']}}>
               2048
@@ -114,6 +114,7 @@ class Container extends Component {
               />
             </MaskedView>
           {/* <AboveGame onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
+          <Heading score={this.state.score} best={this.state.best} />
           <GameContainer size={this.state.size} tiles={this.state.tiles} won={this.state.won} over={this.state.over}
             onKeepGoing={() => this.keepGoing()} onTryAagin={() => this.restart()} move={this.move}>
           </GameContainer>

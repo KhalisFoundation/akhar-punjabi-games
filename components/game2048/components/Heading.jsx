@@ -26,25 +26,12 @@ const styles = StyleSheet.create({
       fontSize:Dimensions.size["12"],
       color: '#776E65',
     },
-    back: {
-      backgroundColor: '#035',
-      padding: Dimensions.size["4"],
-      borderRadius: 50,
-      marginTop: 15,
-    },
-    help: {
-      backgroundColor: '#035',
-      padding: Dimensions.size["4"],
-      borderRadius: 50,
-      marginTop: 15,
-    },
     upBox: {
       backgroundColor: '#035',
       padding: Dimensions.size["4"],
       borderRadius: 50,
       alignSelf: 'center',
       alignItems: 'center',
-      marginTop: 15,
     },
     upText: {
       color: 'white',
@@ -56,29 +43,6 @@ const styles = StyleSheet.create({
   return (
       <View
         style={{justifyContent: 'space-between', flexDirection: 'row', width: width*.9}}>  
-      <TouchableOpacity
-        style={styles.back}
-        onPress={() => props.nav.goBack()}
-      >
-      <MaskedView
-          style={{ width: 35, height: 35 }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-                alignItems: 'center',
-              }}
-            >
-              <IonIcons name="arrow-back" size={35} color={'#464646'} style={styles.shadow} />
-            </View>
-        )}
-        >
-          <LinearGradient
-            colors={['#ff8008', '#ffc837']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
-      </TouchableOpacity>
       <View
           style={styles.upBox}
         >
@@ -97,29 +61,6 @@ const styles = StyleSheet.create({
             {props.score}
           </Text>
       </View>
-      <TouchableOpacity
-        style={styles.help}
-        onPress={() => {dispatch(openHelpModal()); console.log(props.help)}}
-      >
-      <MaskedView
-          style={{ width: 35, height: 35 }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-                alignItems: 'center',
-              }}
-            >
-              <IonIcons name="help" size={35} color={'#464646'} style={styles.shadow} />
-            </View>
-        )}
-        >
-          <LinearGradient
-            colors={['#ff8008', '#ffc837']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
-      </TouchableOpacity>
     </View>
   )
 }
