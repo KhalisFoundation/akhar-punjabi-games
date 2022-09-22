@@ -382,26 +382,25 @@ function GameScreen({ navigation }) {
         <StatusBar
           translucent={true}
           backgroundColor={'transparent'}
-          barStyle="dark-content"
+          barStyle={state.darkMode ? 'light-content' : 'dark-content'}
         />
-        <Header
-          backgroundColor="transparent"
-          leftComponent={(
-            <IconH
+        <View style={{width: '100%', height: Dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth:1, borderColor: '#000'}}>
+          <IconH
               name="arrow-back"
               color={state.darkMode ? 'white' : 'black'}
               size={Dimensions.size['14']}
-              onPress={() => { navigation.navigate('AkharJor'); }}
+              style={{position: 'absolute', left: 10}}
+              onPress={() => { navigation.goBack(); }}
             />
-            )}
-          centerComponent={{
-            text: 'ਅਖਰ ਜੋੜ',
-            style: {...styles.status}
-          }}
-          rightComponent={(
-              <IonIcons name="help" size={Dimensions.size['14']} color={state.darkMode ? 'white' : 'black'} style={styles.shadow} onPress={() => {dispatch(openHelpModal(3)); console.log(state.helpPage)}}/>
-          )}
-        />
+            <Text style={{
+              color: '#D1FBFF',
+              fontSize: (width<370 ? 16 : 20),
+              fontFamily: 'Muli',
+              margin:0,
+              ...styles.status
+            }}>ਅਖਰ ਜੋੜ</Text>
+            <IonIcons name="help" size={Dimensions.size['14']} color={state.darkMode ? 'white' : 'black'} style={[styles.shadow, {position: 'absolute', right: 10}]} onPress={() => {dispatch(openHelpModal()); console.log(state.helpPage)}}/>
+        </View>
         <View style={styles.scroller}
           contentContainerStyle={styles.scrollContent}>
         <View

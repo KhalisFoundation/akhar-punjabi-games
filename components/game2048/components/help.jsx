@@ -40,18 +40,18 @@ function Help() {
             justifyContent: 'space-around',
             backgroundColor: '#0003',
             width: '100%',
-            height: '100%',
+            flex:1
         },
         img: {
             alignSelf: 'center',
         },
         scrollview: {
+            flex: 1,
             flexDirection: 'column',
             alignSelf: 'center',
             borderRadius: 15,
             padding: 15,
-            marginVertical: 15,
-            height: '80%',
+            marginVertical: 40,
             width: '90%',
             backgroundColor: '#7FC8DE',
             overflow: 'hidden',
@@ -110,9 +110,7 @@ function Help() {
     return (
     <Modal
         transparent
-        style={ { flex: 1, 
-            marginTop: (Platform.OS == 'android') ? '3.5%' : 0, }}
-      >
+        style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
             <ScrollView 
                 style={styles.scrollview}

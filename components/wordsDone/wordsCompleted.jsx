@@ -22,6 +22,7 @@ import { showMeaningPopUp } from '../../redux/actions';
 import theColors from '../../util/colors';
 import { useEffect } from 'react';
 import * as Anvaad from 'anvaad-js';
+import dimensions from '../../util/dimensions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function RightWords({ navigation }) {
@@ -172,34 +173,25 @@ function RightWords({ navigation }) {
     <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
-        backgroundColor={'transparent'}
+        backgroundColor={'#00E9FE'}
         barStyle='dark-content'
       />
-      <Header
-        backgroundColor={'#00E9FE'}
-        containerStyle={[
-          (!state.meaningPopup) ? styles.downStyle : null,
-        ]}
-        leftComponent={(
+      <View 
+        style={[(!state.meaningPopup) ? styles.downStyle : null,{width: '100%', height: dimensions.size['24'], backgroundColor:"#00E9FE", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}]}>
           <Icon
             name="arrow-back"
-            color={
-              '#000'
-              }
+            color='#000'
+            style={{position: 'absolute', left: 10}}
             size={30}
             onPress={() => { navigation.navigate('AkharJor'); }}
           />
-          )}
-        centerComponent={{
-          text: 'Completed Levels',
-          style: {
+          <Text style={{
             color: '#000',
             fontSize: (screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli'
-          }
-        }}
-      />
-
+            fontFamily: 'Muli',
+            margin:0,
+          }}>Completed Levels</Text>
+      </View>
       <View style={state.meaningPopup ? styles.listContainerFull : styles.listContainer}>
         <FlatList
           // style={styles.listContainer}

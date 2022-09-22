@@ -21,6 +21,7 @@ import GLOBAL from '../../util/globals';
 import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
+import dimensions, { width } from '../../util/dimensions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function About({ navigation }) {
@@ -68,25 +69,24 @@ function About({ navigation }) {
     >
       <StatusBar
         translucent={true}
-        backgroundColor={'transparent'}
+        backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
         barStyle="light-content"
       />
-      <Header
-        backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
-        containerStyle={[Platform.OS === 'android' && { height: 75, paddingTop: 0 }]}
-        leftComponent={(
-          <Icon
+      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:GLOBAL.COLOR.TOOLBAR_COLOR_ALT2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+        <Icon
             name="arrow-back"
             color={GLOBAL.COLOR.TOOLBAR_TINT}
             size={30}
-            onPress={() => { navigation.navigate('settings'); }}
+            style={{position: 'absolute', left: 10}}
+            onPress={() => { navigation.goBack(); }}
           />
-        )}
-        centerComponent={{
-          text: 'About',
-          style: { color: GLOBAL.COLOR.TOOLBAR_TINT, fontSize: 18 }
-        }}
-      />
+          <Text style={{
+            color: GLOBAL.COLOR.TOOLBAR_TINT,
+            fontSize: (dimensions.screenWidth<370 ? 16 : 20),
+            fontFamily: 'Muli',
+            margin:0,
+          }}>About</Text>
+      </View>
       <ScrollView
         scrollEventThrottle={16}
         style={[styles.scrollview, state.darkMode && { backgroundColor: black }]}

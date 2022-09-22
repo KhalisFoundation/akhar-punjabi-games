@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
+  StatusBar,
   Image,
   ImageBackground,
   BackHandler, 
@@ -177,6 +178,10 @@ function MenuScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       {state.showIntroModal ? <AppIntro /> : null}
+      <StatusBar
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle="light-content" />
       <View style={styles.header}>
         <Logo style={styles.menulogo}/>
         <View style={styles.mainMenuContainer}>

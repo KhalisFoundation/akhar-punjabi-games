@@ -20,6 +20,7 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import dimensions from '../../util/dimensions';
 import {
   setDarkMode, setBGM, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
 } from '../../redux/actions';
@@ -83,28 +84,24 @@ function Settings({ navigation }) {
     <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="dark-content"
-      />
-      <Header
         backgroundColor={state.darkMode ? "#274C7C" : "orange"}
-        leftComponent={(
-          <Icon
+        barStyle={state.darkMode ? 'light-content' : 'dark-content'}
+      />
+      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:state.darkMode ? "#274C7C" : "orange", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+        <Icon
             name="arrow-back"
             color={state.darkMode ? "white" :"black"}
             size={30}
-            onPress={() => { navigation.navigate('AkharJor'); }}
+            style={{position: 'absolute', left: 10}}
+            onPress={() => { navigation.goBack(); }}
           />
-          )}
-        centerComponent={{
-          text: 'Settings',
-          style: {
+          <Text style={{
             color: (state.darkMode ? "white" : 'black'),
             fontSize: (screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli'
-          }
-        }}
-      />
+            fontFamily: 'Muli',
+            margin:0,
+          }}>Settings</Text>
+      </View>
 
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>

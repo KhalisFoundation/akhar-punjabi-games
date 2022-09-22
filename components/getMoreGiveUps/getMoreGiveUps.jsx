@@ -26,7 +26,7 @@ import AppLoading from 'expo-app-loading';
 import { setGiveUpLives, setLivesWord } from '../../redux/actions';
 import { useEffect } from 'react';
 import * as Analytics from 'expo-firebase-analytics';
-import dimensions from '../../util/dimensions';
+import dimensions, { height } from '../../util/dimensions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function MoreGiveUps({ route, navigation }) {
@@ -83,8 +83,26 @@ function MoreGiveUps({ route, navigation }) {
     container: {
       alignItems: 'center',
       backgroundColor: "#D1FBFF",
+      paddingTop: Platform.OS == 'android' ? StatusBar.height : 0,
       height: '100%',
       width: '100%',
+    },
+    header: {
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#333',
+        letterSpacing: 1,
+    },
+    icon: {
+        position: 'absolute',
+        left: 16,
     },
     scrollview: {
       flex: 1,
@@ -224,31 +242,24 @@ function MoreGiveUps({ route, navigation }) {
     <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="dark-content"
+        backgroundColor={'#274C7C'}
+        barStyle={'light-content'}
       />
-      <Header
-        backgroundColor={
-        "#274C7C"
-          }
-        leftComponent={(
-          <Icon
+      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"#274C7C", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+        <Icon
             name="arrow-back"
             color="#D1FBFF"
             size={30}
+            style={styles.icon}
             onPress={() => { navigation.navigate(prevScreen); }}
           />
-          )}
-        centerComponent={{
-          text: 'Get More Lives',
-          style: {
+          <Text style={{
             color: '#D1FBFF',
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
-          }
-        }}
-      />
+          }}>Get More Lives</Text>
+      </View>
       <ScrollView
         scrollEventThrottle={16}
         style={styles.scrollview}
