@@ -284,25 +284,32 @@ function MoreGiveUps({ route, navigation }) {
         <Text style={{...styles.DHAN, color: '#0600bd'}}>{word}</Text>
       </View>
       <View style={{width: '100%'}}>
-      <View style={{ ...styles.DHANcover, backgroundColor: "#072270", shadowColor: '#000' }}>
+      <View style={{ ...styles.DHANcover, backgroundColor: "#072270", shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
         <Text
-          style={{ ...styles.DHAN, fontSize: 26, fontFamily: 'Bookish' }}>
+          style={{ ...styles.DHAN, fontSize: 26, width:'80%', fontFamily: 'Bookish' }}>
           {textEntry}
         </Text>
+        { textEntry == "" ? null :
+          <Icon  
+          name="backspace"
+          color={'#D1FBFF'}
+          size={dimensions.size['8']}
+          style={{position: 'absolute', right: 10}}
+          onPress={() => { handleClick('meta') }}/>}
       </View>
       {keyboardGrid.map((rows, index) => {
         return (
-          <View key={index} id={`gurmukhi-keyboard-page-${index + 1}`}>
+          <View key={index} >
             {rows.map((chars, rowIndex) => (
               <View style={styles.keyboardRow} key={`${index}-${rowIndex}`}>
                   {chars.map((keyboardKey, i) => {
-                    if (keyboardKey === 'meta') {
-                      return (
-                        <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
-                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2190"}</Text>
-                        </TouchableOpacity>
-                      );
-                    }
+                    // if (keyboardKey === 'meta') {
+                    //   return (
+                    //     <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
+                    //       <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2190"}</Text>
+                    //     </TouchableOpacity>
+                    //   );
+                    // }
 
                     if (keyboardKey === 'space') {
                       return (

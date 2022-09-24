@@ -121,19 +121,19 @@ function Help() {
                     {'\n\n'}
                     Swipe to move all tiles.
                 </Text>
-                <HelpImg1 height={2*Dimensions.size['60']} style={styles.img}/>
+                <HelpImg1 height={300} style={styles.img}/>
 
                 <Text style={styles.header}>
                     {'\n\n'}
                     Two tiles with the same number merge when they touch!
                 </Text>
-                <HelpImg2 height={2*Dimensions.size['60']} style={styles.img}/>
+                <HelpImg2 height={300} style={styles.img}/>
                 
                 <Text style={styles.header}>
                     {'\n\n'}
                     Reach the 2048 tile to win the game!
                 </Text>
-                <HelpImg3 height={2*Dimensions.size['60']} style={styles.img}/>
+                <HelpImg3 height={300} style={styles.img}/>
                 <TouchableOpacity
                     style={styles.continue}
                     onPress={() => {dispatch(closeHelpModal())}}>

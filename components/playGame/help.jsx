@@ -121,19 +121,19 @@ function Help() {
                     {'\n\n'}
                     Click or Swipe to join Gurmukhi letters to create words from meaning.
                 </Text>
-                <HelpImg1 height={2*Dimensions.size['80']}  style={styles.img}/>
+                <HelpImg1 height={400}  style={styles.img}/>
 
                 <Text style={styles.header}>
                     {'\n\n'}
                     Some basics to get you started!
                 </Text>
-                <HelpImg2 height={2*Dimensions.size['60']}  style={styles.img}/>
+                <HelpImg2 height={300}  style={styles.img}/>
                 
                 <Text style={styles.header}>
                     {'\n\n'}
                     The more you try, the more you learn Punjabi!
                 </Text>
-                <HelpImg3 height={2*Dimensions.size['80']}  style={styles.img}/>
+                <HelpImg3 height={400}  style={styles.img}/>
 
                 <TouchableOpacity
                     style={styles.continue}

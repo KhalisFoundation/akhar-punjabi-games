@@ -19,12 +19,19 @@ import theColors from '../../util/colors';
 import { StatsBox, WordBox, AttemptInput, TheCircle } from '.';
 import WordsDoneModal from './modalNextWord';
 import {
-  openHelpModal
+  openHelpModal,
+  setAttempt,
+  setCorrectWords,
+  setBottomWord,
+  setTopWord,
+  setLevelProgress,
+  setNewWords
 } from '../../redux/actions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Analytics from 'expo-firebase-analytics';
 import Dimensions from '../../util/dimensions';
 import Help from './help';
+import dimensions from '../../util/dimensions';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -64,15 +71,13 @@ function GameScreen({ navigation }) {
     container: {
       width: '100%',
       height: '100%',
-      alignItems: 'center', 
       flexDirection: 'column',
+      alignItems: 'center',
     },
     scroller: {
       width: '100%',
-      height: '100%',
-      paddingHorizontal: 10,
       flexDirection: 'column',
-      justifyContent:'space-between',
+      justifyContent:'space-evenly',
     },
     scrollContent: {
       alignItems: 'center', 
@@ -231,7 +236,32 @@ function GameScreen({ navigation }) {
       color: 'white',
       fontSize: 15,
       fontWeight: 'bold'
-    }
+    },
+    keyboardRow: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      alignSelf: 'center',
+      padding: 7
+    },
+    key: {
+      width: dimensions.size['16'],
+      height: dimensions.size['16'],
+      alignItems: 'center',
+      textAlign: 'center',
+      justifyContent: 'center',
+      marginHorizontal: 5,
+      marginVertical: 0,
+      padding: 2,
+      borderColor: '#000',
+      borderWidth: .5,
+      borderRadius: 75,
+      backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
+      elevation: 5
+    },
+    keyText: {
+      color: state.darkMode ? 'black' : 'white',
+    },
   });
   
   // Animated gradient
@@ -340,6 +370,64 @@ function GameScreen({ navigation }) {
     await Analytics.logEvent('ran_out_of_lives', { level_at: level });
   }
 
+  const ifCorrectWord = (word) => {
+    let somethingHappened = false;
+    if (word === state.firstWord.engText && state.topWord === '') {
+      if (!state.correctWords.includes(state.firstWord)) {
+        dispatch(setTopWord());
+        dispatch(setCorrectWords(state.firstWord));
+        dispatch(setLevelProgress(state.firstWord));
+        somethingHappened = true;
+      }
+      // if bottomWord is filled that means both are now answered so will get new words
+      if (state.bottomWord !== '') {
+        dispatch(setNewWords());
+        somethingHappened = true;
+      }
+    }
+    if (word === state.secondWord.engText && state.bottomWord === '') {
+      if (!state.correctWords.includes(state.secondWord)) {
+        dispatch(setBottomWord());
+        dispatch(setCorrectWords(state.secondWord));
+        dispatch(setLevelProgress(state.secondWord));
+        somethingHappened = true;
+      }
+      // if topWord is filled that means both are now answered so will get new words
+      if (state.topWord !== '') {
+        dispatch(setNewWords());
+        somethingHappened = true;
+      }
+    }
+    // this condition resets all the logic if a word is completed
+    if (somethingHappened) {
+      dispatch(setAttempt(''));
+    }
+  };
+
+  function touchedMe(final) {
+    dispatch(setAttempt(final));
+    ifCorrectWord(final);
+  }
+
+  function gurmukhi(text) {
+    if (state.romanised) {
+      return Anvaad.translit(text);
+    }
+    return Anvaad.unicode(text);
+  }
+
+  function splitArray(arr, chunk) {
+    const groups = arr.map((e, i) => { 
+      return i % chunk === 0 ? arr.slice(i, i + chunk) : null; 
+    }).filter(e => { return e; });
+    return groups;
+  }
+
+  const keysArray = points.map(a=>a.letter);
+  let chunk = keysArray.length%2 == 0 ? keysArray.length/2 : (keysArray.length + 1)/2
+  const keyboardGrid = splitArray(keysArray, chunk)
+  console.log(keyboardGrid);
+
   // // get length after removing laga matra
   // function woMatra(word) {
   //   var wordWOMatras = Array();
@@ -376,9 +464,9 @@ function GameScreen({ navigation }) {
       colors={state.darkMode ? ['#180188', '#00194f', '#2022fd'] : ['#5fdeff', '#9eebff', '#00bcff']}
       style={styles.container }
     >
-      <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.scroller}>
         { state.helpPage ? <Help /> : null }
-        {state.nextLevelModal[0] ? <WordsDoneModal /> : <View />}
+        {state.nextLevelModal[0] ? <WordsDoneModal /> : null }
         <StatusBar
           translucent={true}
           backgroundColor={'transparent'}
@@ -430,11 +518,44 @@ function GameScreen({ navigation }) {
         
         <AttemptInput setWord={setWord}/>
 
-        <Animated.View>
-          <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/>
-        </Animated.View>
+        <View style={{flexDirection:'column', justifyContent: 'space-evenly', height:'40%'}}>
+              {keyboardGrid.map((letters, index) => {
+                return (
+                  <View style={styles.keyboardRow} >
+                    {letters.map((letter, index)=>{
+                    //   if (letter === 'meta') {
+                    //   return (
+                    //     <TouchableOpacity style={styles.key} key={letter} onPress={() => {touchedMe(state.attempt.slice(0,-1))}}>
+                    //       <Text style={{...styles.keyText, fontSize:(width<370 ? 14 : 20)}}>{"\u2190"}</Text>
+                    //     </TouchableOpacity>
+                    //   );
+                    // }
+
+                    // if (letter === 'space') {
+                    //   return (
+                    //     <TouchableOpacity style={styles.key} key={letter} onPress={() => {dispatch(setAttempt(' '))}}>
+                    //       <Text style={{...styles.keyText, fontSize:(width<370 ? 14 : 20)}}>{"\u2423"}</Text>
+                    //     </TouchableOpacity>
+                    //   );
+                    // }
+
+                    return (
+                      <TouchableOpacity
+                      style={styles.key} 
+                        onPress={() => {touchedMe(state.attempt+letter)}}
+                      >
+                        <Text style={{...styles.keyText, fontFamily: state.romanised ? 'Muli' : 'Bookish', fontSize: dimensions.size['8']}}>
+                          {gurmukhi(letter)}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                    })}
+                </View>)
+            })}
+          {/* <TheCircle visited={visited} setVisited={setVisited} points={points} word={word} setWord={setWord}/> */}
         </View>
-      </SafeAreaView>
+        </View>
+    </SafeAreaView>
     </LinearGradient>
   );
 }

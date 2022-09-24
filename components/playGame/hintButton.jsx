@@ -27,7 +27,7 @@ export const HintButton = ({wordType}) => {
             height: dimensions.size['15'],
             borderColor: state.darkMode ? 'white' : 'black',
             borderWidth: 2,
-            borderRadius: 20,
+            borderRadius: 50,
           },
           giveUpTxt: {
             textAlign: 'center',

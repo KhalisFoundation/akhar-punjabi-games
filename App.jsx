@@ -12,6 +12,7 @@ import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 import About from './components/about/about';
 import New2048 from './components/game2048/appo';  
+import Help2048 from './components/game2048/components/help';
 import { Store } from './redux/store';
 import { auth } from './firebase';
 import * as Analytics from 'expo-firebase-analytics';

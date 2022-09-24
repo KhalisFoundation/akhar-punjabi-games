@@ -68,15 +68,13 @@ function AppIntro() {
   }
   return (
     <Modal>
-      <SafeAreaView style={{flex:1}}>
+      <SafeAreaView style={{ flex:1, backgroundColor: state.darkMode ? 'black' : 'white' , justifyContent:'space-around', paddingHorizontal: 10, paddingVertical: 25}}>
       <StatusBar
-        translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="light-content"
+        barStyle="dark-content"
       />
       <Icon
           name="close"
-          color={"#000"}
+          color={!state.darkMode ? 'black' : 'white'}
           size={30}
           style={{margin: 15}}
           onPress={() => {dispatch(closeIntroModal())}}

@@ -21,15 +21,15 @@ export const AttemptInput = ({setWord}) => {
           width: '80%',
           alignSelf: 'center',
           flexDirection: 'row',
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-between',
           marginTop: 5,
-          paddingVertical: 5,
+          padding: 5,
           backgroundColor: "#f8f",
-          borderRadius: 20,
+          borderRadius: 50,
           elevation: 5,
         },
         wordAttempt: {
-          width: '80%',
+          width: "60%",
           height: "100%",
           opacity: 0.8,
           color: state.darkMode ? 'darkblue' : 'white',
@@ -45,39 +45,67 @@ export const AttemptInput = ({setWord}) => {
         colors={state.darkMode ? ['#dca104', '#ff8a00'] : ['#274C7C', '#274C7C']}
         style={styles.wordAttemptView}
       >
+      {(state.attempt == "") ? 
+        null : 
+        <TouchableOpacity
+          style={{
+            backgroundColor: state.darkMode ? 'black' : 'white',
+            borderRadius: 50, 
+            height: dimensions.size['15'], 
+            width:  dimensions.size['15'], 
+            alignSelf:'center'
+            }}
+            onPress={() => {
+              dispatch(setAttempt(''));
+            }}
+          >
+          <MaskedView
+            style={{
+              height: dimensions.size['15'],
+              width: dimensions.size['15'],
+            }}
+            maskElement={(<IconM name="reload" style={{alignSelf: 'center', marginVertical: 5}} size={dimensions.size['10']} />
+          )}
+          >
+            <LinearGradient
+                colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+                style={{ flex: 1 }}
+            />
+          </MaskedView>
+        </TouchableOpacity>}
+
         <Text style={styles.wordAttempt} placeHolder="Word">
           {Anvaad.unicode(state.attempt)}
         </Text>
         
       {(state.attempt == "") ? 
         null : 
-      <TouchableOpacity
-      style={{
-        backgroundColor: state.darkMode ? 'black' : 'white',
-        borderRadius: 25, 
-        height: dimensions.size['15'], 
-        width:  dimensions.size['15'], 
-        }}
-        onPress={() => {
-          dispatch(setVisited([]));
-          dispatch(setAttempt(''));
-          setWord('');
-        }}
-      >
-        <MaskedView
+        <TouchableOpacity
           style={{
-            height: dimensions.size['15'],
-            width: dimensions.size['15'],
-          }}
-          maskElement={(<IconM name="reload" style={{alignSelf: 'center', marginVertical: 5}} size={dimensions.size['10']} />
-        )}
-        >
-          <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-              style={{ flex: 1 }}
-          />
-        </MaskedView>
-      </TouchableOpacity>}
+            backgroundColor: state.darkMode ? 'black' : 'white',
+            borderRadius: 50, 
+            height: dimensions.size['15'], 
+            width:  dimensions.size['15'], 
+            alignSelf:'center'
+            }}
+            onPress={() => {
+              dispatch(setAttempt(state.attempt.slice(0,-1)));
+            }}
+          >
+          <MaskedView
+            style={{
+              height: dimensions.size['15'],
+              width: dimensions.size['15'],
+            }}
+            maskElement={(<IconM name="backspace" style={{alignSelf: 'center', marginVertical: 5}} size={dimensions.size['10']} />
+          )}
+          >
+            <LinearGradient
+                colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+                style={{ flex: 1 }}
+            />
+          </MaskedView>
+        </TouchableOpacity>}
       </AnimatedLinearGradient>
     )
 };
