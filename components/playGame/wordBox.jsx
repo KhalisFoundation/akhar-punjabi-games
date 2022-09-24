@@ -57,12 +57,13 @@ export const WordBox = ({ wordType }) => {
           alignSelf: 'center',
           borderRadius: 100,
           margin: 5,
+          padding:5
         },
         answerText: {
           textAlign: 'center',
-          color: state.darkMode ? 'white' : 'black',
+          color: state.showNumOfLetters ? 'black' : state.darkMode ? 'white' : 'black',
           fontSize: dimensions.size['12'],
-          borderRadius: 25,
+          borderRadius: 50,
           height: dimensions.size['20']
         },
         answerTouchOpacity: {
@@ -92,7 +93,7 @@ export const WordBox = ({ wordType }) => {
           width: 40,
           height: 40,
           borderColor: state.darkMode ? 'white' : 'black',
-          borderRadius: 20,
+          borderRadius: 50,
         },
         giveUpTxt: {
           textAlign: 'center',
@@ -158,9 +159,11 @@ export const WordBox = ({ wordType }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               {Array.from(newArray , (e, i) => {
                 return (
-                  <Text style={{ ...styles.answerText, borderRadius: 50, backgroundColor: '#fff', width: newsize, height: newsize, fontSize: fontsize }} >
-                    {Anvaad.unicode(printed[i])}
-                  </Text>
+                  <View style={{borderRadius: 100, backgroundColor: '#fff', textAlign: 'center', justifyContent:'center',}}>
+                    <Text style={{ ...styles.answerText, width: newsize, height: newsize, fontSize: fontsize }} >
+                      {Anvaad.unicode(printed[i])}
+                    </Text>
+                  </View>
                 );
               })}
             </View>

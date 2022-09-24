@@ -213,10 +213,15 @@ function RightWords({ navigation }) {
             {showAnswer.engText}
           </Text>
           {/* to be asked */}
-          { (showAnswer.level < 8) ? (
+          { (showAnswer.level < 8)&&(showAnswer.engText) ? (
             <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
             {" {"}{Anvaad.translit(showAnswer.engText)}{"}"}
-          </Text>) : null }
+          </Text>) 
+          :
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
+            {"Select any word to know more!"}
+          </Text>
+          }
         </View>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
           <ScrollView
@@ -229,13 +234,14 @@ function RightWords({ navigation }) {
             </Text>
           </ScrollView>
         </View>
-        <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
+        {showAnswer.status?<View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
           <Text style={styles.answerText}>Status</Text>
           <Text style={styles.answerText}> : </Text>
           <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontFamily: 'Muli' }]}>
             {showAnswer.status}
           </Text>
         </View>
+        :null}
       </View>
     </SafeAreaView>
   );

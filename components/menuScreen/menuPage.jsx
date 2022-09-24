@@ -21,8 +21,7 @@ import AppLoading from 'expo-app-loading';
 import { setTheState, showIntroModal } from '../../redux/actions';
 import * as Anvaad from 'anvaad-js';
 import Khalis from '../../assets/khalis_logo.svg';
-import Logo from '../../assets/sikh_games_logo_with_text.svg'
-import simran from '../../assets/simran.mp3'
+import Logo from '../../assets/sikh_games_logo_with_text.svg';
 import { initialState } from '../../redux/reducers';
 import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
@@ -45,56 +44,56 @@ function MenuScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   
-  async function playSound() {
-    try {
-      console.log('Playing sound');
-      await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
-      await audioPlayer.playAsync();
-      await audioPlayer.setIsLoopingAsync(true);
-    } catch (err) {
-      console.warn("Couldn't Play audio", err)
-    }
-  }
-  async function stopSound() {
-    try {
-      if (audioPlayer) {
-        console.log('Stopping Sound');
-        await audioPlayer.stopAsync();
-        await audioPlayer.unloadAsync();
-      }
-    } catch (err) {
-      console.warn("Couldn't Stop audio", err)
-    }
-  }
+  // async function playSound() {
+  //   try {
+  //     console.log('Playing sound');
+  //     await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
+  //     await audioPlayer.playAsync();
+  //     await audioPlayer.setIsLoopingAsync(true);
+  //   } catch (err) {
+  //     console.warn("Couldn't Play audio", err)
+  //   }
+  // }
+  // async function stopSound() {
+  //   try {
+  //     if (audioPlayer) {
+  //       console.log('Stopping Sound');
+  //       await audioPlayer.stopAsync();
+  //       await audioPlayer.unloadAsync();
+  //     }
+  //   } catch (err) {
+  //     console.warn("Couldn't Stop audio", err)
+  //   }
+  // }
 
-  useEffect(() => {
-      playSound();
-  }, []);
+  // // useEffect(() => {
+  // //     playSound();
+  // // }, []);
   
   //handling app state change
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  // const appState = useRef(AppState.currentState);
+  // const [appStateVisible, setAppStateVisible] = useState(appState.current);
   
-  const _handleAppStateChange = nextAppState => {
-    if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground!');
-    } else {
-      console.log('App is in the background!');
-      if (audioPlayer._loaded) {stopSound()};
-    }
+  // const _handleAppStateChange = nextAppState => {
+  //   if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+  //     console.log('App has come to the foreground!');
+  //   } else {
+  //     console.log('App is in the background!');
+  //     if (audioPlayer._loaded) {stopSound()};
+  //   }
 
-    appState.current = nextAppState;
-    setAppStateVisible(appState.current);
-  };
+  //   appState.current = nextAppState;
+  //   setAppStateVisible(appState.current);
+  // };
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", _handleAppStateChange);
-    return () => {
-      if (subscription) {
-        subscription.remove();
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   const subscription = AppState.addEventListener("change", _handleAppStateChange);
+  //   return () => {
+  //     if (subscription) {
+  //       subscription.remove();
+  //     }
+  //   };
+  // }, []);
   
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
@@ -179,9 +178,7 @@ function MenuScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       {state.showIntroModal ? <AppIntro /> : null}
       <StatusBar
-        translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="light-content" />
+        hidden />
       <View style={styles.header}>
         <Logo style={styles.menulogo}/>
         <View style={styles.mainMenuContainer}>
@@ -194,7 +191,7 @@ function MenuScreen({ navigation }) {
           <TouchableOpacity 
             style={styles.item}
             onPress={() => {
-              if (audioPlayer._loaded) {stopSound()};
+              // if (audioPlayer._loaded) {stopSound()};
               whichGame('akhar_jor');
               navigation.navigate('AkharJor');
             }}
@@ -206,7 +203,7 @@ function MenuScreen({ navigation }) {
           <TouchableOpacity 
             style={styles.item}
             onPress={() => {
-              if (audioPlayer._loaded) {stopSound()};
+              //if (audioPlayer._loaded) {stopSound()};
               whichGame('2048');
               navigation.navigate('2048');              
             }}

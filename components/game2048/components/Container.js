@@ -82,6 +82,8 @@ class Container extends Component {
     this.moving = false;
   }
 
+  
+
   render() {
     return (
       <View style={styles.container}>
@@ -91,7 +93,7 @@ class Container extends Component {
             onKeepGoing={() => this.keepGoing()}
             onTryAgain={() => this.restart()}
           />
-          <View {...this._panResponder.panHandlers} style={styles.container} >
+          <View style={styles.container} >
           <MaskedView
               style={{ width: width, height: dimensions.size['30'] }}
               maskElement={(
@@ -115,9 +117,11 @@ class Container extends Component {
             </MaskedView>
           {/* <AboveGame onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
           <Heading score={this.state.score} best={this.state.best} />
-          <GameContainer size={this.state.size} tiles={this.state.tiles} won={this.state.won} over={this.state.over}
-            onKeepGoing={() => this.keepGoing()} onTryAagin={() => this.restart()} move={this.move}>
-          </GameContainer>
+          <View {...this._panResponder.panHandlers}>
+            <GameContainer size={this.state.size} tiles={this.state.tiles} won={this.state.won} over={this.state.over}
+              onKeepGoing={() => this.keepGoing()} onTryAagin={() => this.restart()} move={this.move}>
+            </GameContainer>
+          </View>
           <BelowGame onRestart={() => this.restart()} />
       </View></View>
     )

@@ -68,8 +68,7 @@ function About({ navigation }) {
       style={styles.container}
     >
       <StatusBar
-        translucent={true}
-        backgroundColor={GLOBAL.COLOR.TOOLBAR_COLOR_ALT2}
+        backgroundColor="#003436"
         barStyle="light-content"
       />
       <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:GLOBAL.COLOR.TOOLBAR_COLOR_ALT2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
