@@ -56,7 +56,7 @@ function GameScreen({ navigation }) {
   let angle = 0;
   const radius =  width / 3.5;
   const step = (2 * Math.PI) / charArray.length;
-  let charShuffled = (state.levelProgress[0].level < 3 || state.levelProgress[0].level > 5) ? charArray : charArray.sort();
+  let charShuffled = charArray.sort();
   charShuffled.map((char) => {
     const x = Math.round(radius * Math.cos(angle)) + width/2.35;
     const y = Math.round(radius* Math.sin(angle)) + width/3.75;
@@ -65,6 +65,24 @@ function GameScreen({ navigation }) {
     angle += step;
     points.push({ x, y, letter:char });
   })
+
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
   const colors = theColors[state.darkMode];
   const styles = StyleSheet.create({
