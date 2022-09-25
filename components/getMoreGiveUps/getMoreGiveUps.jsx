@@ -285,7 +285,7 @@ function MoreGiveUps({ route, navigation }) {
       <View style={{width: '100%'}}>
       <AnimatedLinearGradient colors={state.darkMode ? ['#dca104', '#ff8a00'] : ['#274C7C', '#274C7C']} style={{ ...styles.DHANcover, backgroundColor: "#083380", shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
         <Text
-          style={{ ...styles.DHAN, fontSize: 26, width:'80%', fontFamily: 'Prabhki' }}>
+          style={{ ...styles.DHAN, fontSize: 26, width:'80%', fontFamily: 'Prabhki', color: state.darkMode ? 'darkblue' : '#FF7E00' }}>
           {textEntry}
         </Text>
         { textEntry == "" ? null :

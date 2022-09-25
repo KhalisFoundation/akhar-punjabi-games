@@ -52,21 +52,22 @@ export const HintButton = ({wordType}) => {
     }
     
     const hintBtn = (word) => {
-        let bgColor = '#FF7E00';
-        let iconColor = 'black';
-        let iconName = 'lightbulb-on-outline';
-        if (state.giveUpsLeft === 0 && word !== '') {
-          bgColor = '#FF7E00';
-          iconColor = (state.darkMode) ? 'white' : 'black';
-          iconName = 'check';
-        } else if (state.giveUpsLeft === 0) {
+        let bgColor;
+        let iconColor;
+        let iconName;
+        if (state.giveUpsLeft === 0) {
           bgColor = '#919191';
           iconColor = 'white';
           iconName = 'lightbulb-outline';
+          if (word !== '') {
+            bgColor = (state.darkMode) ? "green" : '#06FF00';
+            iconColor = (state.darkMode) ? 'white' : 'black';
+            iconName = 'check';
+          }
         } else if (word !== '') {
-          bgColor = (state.darkMode) ? "green" : '#06FF00';
-          iconColor = (state.darkMode) ? 'white' : 'black';
-          iconName = 'check';
+            bgColor = (state.darkMode) ? "green" : '#06FF00';
+            iconColor = (state.darkMode) ? 'white' : 'black';
+            iconName = 'check';
         } else {
           bgColor = '#FF7E00';
           iconColor = 'black';
