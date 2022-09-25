@@ -8,6 +8,7 @@ import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
 import * as Anvaad from 'anvaad-js';
+import { useFonts } from 'expo-font';
 import * as Analytics from 'expo-firebase-analytics';
 import { HintButton } from '.';
 import dimensions from "../../util/dimensions";
@@ -20,7 +21,15 @@ export const WordBox = ({ wordType }) => {
     const screenWidth = Dimensions.get('window').width;
     
     const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
-    
+    const [fontsLoaded] = useFonts({
+      Arial: require('../../assets/fonts/Arial.ttf'),
+      GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+      Bookish: require('../../assets/fonts/Bookish.ttf'),
+      Mochy: require('../../assets/fonts/Mochy.ttf'),
+      Muli: require('../../assets/fonts/Muli.ttf'),
+      Prabhki: require('../../assets/fonts/Prabhki.ttf')
+    });
+
     // animations
     const rotateAnimation = useRef(new Animated.Value(0)).current;
     
@@ -64,7 +73,8 @@ export const WordBox = ({ wordType }) => {
           color: state.showNumOfLetters ? 'black' : state.darkMode ? 'white' : 'black',
           fontSize: dimensions.size['12'],
           borderRadius: 50,
-          height: dimensions.size['20']
+          height: dimensions.size['20'],
+          fontFamily: 'Prabhki'
         },
         answerTouchOpacity: {
           justifyContent: 'center',

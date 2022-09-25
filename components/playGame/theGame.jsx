@@ -388,6 +388,10 @@ function GameScreen({ navigation }) {
     await Analytics.logEvent('ran_out_of_lives', { level_at: level });
   }
 
+  if (state.giveUpsLeft == 0) {
+    ran_out_of_lives(state.levelProgress[0].level)
+  }
+
   const ifCorrectWord = (word) => {
     let somethingHappened = false;
     if (word === state.firstWord.engText && state.topWord === '') {
@@ -490,7 +494,7 @@ function GameScreen({ navigation }) {
           backgroundColor={'transparent'}
           barStyle={state.darkMode ? 'light-content' : 'dark-content'}
         />
-        <View style={{width: '100%', height: Dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth:1, borderColor: '#000'}}>
+        <View style={{width: '100%', height: Dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderBottomWidth:1, borderColor: state.darkMode ? '#fff' : '#000'}}>
           <IconH
               name="arrow-back"
               color={state.darkMode ? 'white' : 'black'}

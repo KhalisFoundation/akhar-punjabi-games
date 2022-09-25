@@ -43,7 +43,7 @@ function RightWords({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: "#D1FBFF",
+      backgroundColor: state.darkMode ? "#00bcff" : "#D1FBFF",
       justifyContent: 'space-between',
       width: '100%',
       height: '100%',
@@ -80,7 +80,7 @@ function RightWords({ navigation }) {
       width: '95%',
     },
     answerBox: {
-      backgroundColor: '#fff',
+      backgroundColor: state.darkMode?'#233350':'#fff',
       width: '95%',
       height: '20%',
       borderRadius: 20,
@@ -95,7 +95,7 @@ function RightWords({ navigation }) {
     },
     answerText: {
       fontSize: (screenWidth<370 ? 13 : 18),
-      color: '#464646',fontFamily: 'Muli'
+      color: state.darkMode?'#fff':'#464646',fontFamily: 'Muli'
     },
     answerForAnswerText: {
       fontSize: (screenWidth<370 ? 13 : 18),
@@ -127,14 +127,14 @@ function RightWords({ navigation }) {
     return {
       ...word,
       status: 'Answered correctly',
-      color: 'green',
+      color: state.darkMode?'#22ee22':'green',
     };
   });
   theGivenUpWords.map((word) => {
     theWords.push({
       ...word,
       status: 'Given Up',
-      color: 'red',
+      color: state.darkMode?'#f93a24':'red',
     });
     return 'nothing';
   });
@@ -177,16 +177,16 @@ function RightWords({ navigation }) {
         barStyle='dark-content'
       />
       <View 
-        style={[(!state.meaningPopup) ? styles.downStyle : null,{width: '100%', height: dimensions.size['24'], backgroundColor:"#00E9FE", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}]}>
+        style={[(!state.meaningPopup) ? styles.downStyle : null,{width: '100%', height: dimensions.size['24'], backgroundColor:state.darkMode?"#274C7C":"#00E9FE", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}]}>
           <Icon
             name="arrow-back"
-            color='#000'
+            color={state.darkMode?'#fff':'#000'}
             style={{position: 'absolute', left: 10}}
             size={30}
             onPress={() => { navigation.navigate('AkharJor'); }}
           />
           <Text style={{
-            color: '#000',
+            color: state.darkMode?'#fff':'#000',
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
@@ -218,7 +218,7 @@ function RightWords({ navigation }) {
             {" {"}{Anvaad.translit(showAnswer.engText)}{"}"}
           </Text>) 
           :
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
+          <Text style={[styles.answerText, { fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
             {"Select any word to know more!"}
           </Text>
           }

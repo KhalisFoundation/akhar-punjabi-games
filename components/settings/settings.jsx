@@ -48,7 +48,7 @@ function Settings({ navigation }) {
     container: {
       alignItems: 'center',
       // justifyContent: "center",
-      backgroundColor: state.darkMode ? '#D1FBFF' :'#eeccaa',
+      backgroundColor: state.darkMode ? '#182747' :'#eeccaa',
       width: '100%',
       height: '100%',
     },
@@ -127,7 +127,7 @@ function Settings({ navigation }) {
           )}
         >
         <LinearGradient
-          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+          colors={[state.darkMode ? '#6868ff' : '#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
           style={{ flex: 1 }}
         />
         </MaskedView>
@@ -229,7 +229,7 @@ function Settings({ navigation }) {
           )}
         >
         <LinearGradient
-          colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
+          colors={[state.darkMode ? '#6868ff' : '#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
           style={{ flex: 1 }}
         />
         </MaskedView>
@@ -290,7 +290,7 @@ function Settings({ navigation }) {
           )}
           >
             <LinearGradient
-              colors={['#274CCC', '#274C77']}
+              colors={['#274CCC', (state.darkMode)?'#00E9FE':'#274C77']}
               style={{ flex: 1 }}
             />
           </MaskedView>

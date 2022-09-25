@@ -82,7 +82,7 @@ function MoreGiveUps({ route, navigation }) {
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: "#D1FBFF",
+      backgroundColor: state.darkMode ? "#00bcff" : "#D1FBFF",
       paddingTop: Platform.OS == 'android' ? StatusBar.height : 0,
       height: '100%',
       width: '100%',
@@ -126,14 +126,14 @@ function MoreGiveUps({ route, navigation }) {
       marginHorizontal: 5,
       marginVertical: 0,
       padding: 2,
-      borderColor: '#000',
+      borderColor: state.darkMode ? 'orange' :'#000',
       borderWidth: .5,
       borderRadius: 75,
-      backgroundColor: "#072270",
+      backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
       elevation: 5,
     },
     keyText: {
-      color:'white',
+      color:state.darkMode ? 'black' :'white',
     },
     instructionsText: {
       fontFamily: 'Muli',
@@ -160,7 +160,7 @@ function MoreGiveUps({ route, navigation }) {
       width: '99%',
       elevation: 5,
       justifyContent: 'center',
-      backgroundColor: '#fff',
+      backgroundColor: state.darkMode ? 'darkblue' : '#fff',
       borderRadius: 20,
     },
     DHAN: {
@@ -169,7 +169,7 @@ function MoreGiveUps({ route, navigation }) {
       fontSize: 30,
       textShadowRadius: 10,
       fontFamily: 'Prabhki',
-      color: "#FF7E00"
+      color: state.darkMode ? '#FF7E00' : 'darkblue'
     },
     submitButton: {
       alignSelf: 'center',
@@ -178,8 +178,7 @@ function MoreGiveUps({ route, navigation }) {
       borderRadius: 15,
       marginBottom: 15,
       elevation: 5,
-      backgroundColor: "#FF7E00",
-      borderColor: "#911",
+      backgroundColor: state.darkMode ? '#274C7C' : "#FF7E00",
       borderWidth: .5,
     },
     submit: {
@@ -189,7 +188,7 @@ function MoreGiveUps({ route, navigation }) {
       padding: 5,
       margin: 5,
       textShadowRadius: 4,
-      color: '#000',
+      color: state.darkMode?'#D1FBFF':'#000',
     },
     upBox: {
       backgroundColor: '#072227',
@@ -281,22 +280,22 @@ function MoreGiveUps({ route, navigation }) {
       </Text>
       </View>
       <View style={styles.DHANcover}>
-        <Text style={{...styles.DHAN, color: '#0600bd'}}>{word}</Text>
+        <Text style={{...styles.DHAN}}>{word}</Text>
       </View>
       <View style={{width: '100%'}}>
-      <View style={{ ...styles.DHANcover, backgroundColor: "#072270", shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+      <AnimatedLinearGradient colors={state.darkMode ? ['#dca104', '#ff8a00'] : ['#274C7C', '#274C7C']} style={{ ...styles.DHANcover, backgroundColor: "#083380", shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
         <Text
-          style={{ ...styles.DHAN, fontSize: 26, width:'80%', fontFamily: 'Bookish' }}>
+          style={{ ...styles.DHAN, fontSize: 26, width:'80%', fontFamily: 'Prabhki' }}>
           {textEntry}
         </Text>
         { textEntry == "" ? null :
           <Icon  
           name="backspace"
-          color={'#D1FBFF'}
+          color={state.darkMode?'#000':'#D1FBFF'}
           size={dimensions.size['8']}
           style={{position: 'absolute', right: 10}}
           onPress={() => { handleClick('meta') }}/>}
-      </View>
+      </AnimatedLinearGradient>
       {keyboardGrid.map((rows, index) => {
         return (
           <View key={index} >

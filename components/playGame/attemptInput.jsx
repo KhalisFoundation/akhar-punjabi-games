@@ -6,6 +6,7 @@ import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFonts } from 'expo-font';
 import * as Anvaad from 'anvaad-js';
 import dimensions from '../../util/dimensions';
 import { setAttempt, setVisited } from '../../redux/actions';
@@ -15,7 +16,14 @@ export const AttemptInput = ({setWord}) => {
     const dispatch = useDispatch();
     // Animated gradient
     const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
-    
+    const [fontsLoaded] = useFonts({
+      Arial: require('../../assets/fonts/Arial.ttf'),
+      GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+      Bookish: require('../../assets/fonts/Bookish.ttf'),
+      Mochy: require('../../assets/fonts/Mochy.ttf'),
+      Muli: require('../../assets/fonts/Muli.ttf'),
+    });
+
     const styles = StyleSheet.create({
         wordAttemptView: {
           width: '80%',
