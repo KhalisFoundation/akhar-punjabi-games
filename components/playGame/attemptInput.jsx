@@ -27,6 +27,7 @@ export const AttemptInput = ({setWord}) => {
     const styles = StyleSheet.create({
         wordAttemptView: {
           width: '80%',
+          height: 70,
           alignSelf: 'center',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -82,7 +83,7 @@ export const AttemptInput = ({setWord}) => {
           </MaskedView>
         </TouchableOpacity>}
 
-        <Text style={styles.wordAttempt} placeHolder="Word">
+        <Text style={styles.wordAttempt}>
           {Anvaad.unicode(state.attempt)}
         </Text>
         
