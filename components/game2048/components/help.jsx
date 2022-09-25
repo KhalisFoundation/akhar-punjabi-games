@@ -70,7 +70,7 @@ function Help() {
             justifyContent: 'center',
             textAlign: 'center',
             fontFamily: 'Muli',
-            fontSize: Dimensions.size['8'],
+            fontSize: 20,
             color: '#000',
         },
         continue:{

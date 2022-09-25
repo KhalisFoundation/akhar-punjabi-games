@@ -180,7 +180,7 @@ export const WordBox = ({ wordType }) => {
     
     if (wordType === 'top') {
     return (<LinearGradient
-              colors={['transparent', '#fff9']} 
+              colors={state.darkMode ? ['transparent', '#fff9'] : ['#fff1', '#5fdeff', '#00bcff']} 
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.wordBox}>
@@ -204,7 +204,7 @@ export const WordBox = ({ wordType }) => {
     )
     } else if (wordType === 'bottom') {
         return (<LinearGradient
-                colors={['transparent', '#fff9']}
+                colors={state.darkMode ? ['transparent', '#fff9'] : ['#fff1', '#5fdeff', '#00bcff']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.wordBox}>

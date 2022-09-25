@@ -18,7 +18,6 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import HelpImg1 from '../../assets/helpPage1.svg';
 import HelpImg2 from '../../assets/helpPage2.svg';
-import HelpImg3 from '../../assets/helpPage3.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 import Dimensions from '../../util/dimensions';
@@ -59,7 +58,7 @@ function Help() {
             justifyContent: 'center',
             textAlign: 'center',
             fontFamily: 'Muli',
-            fontSize: Dimensions.size['8'],
+            fontSize: 20,
             color: '#fff',
         },
         continue:{
@@ -119,7 +118,7 @@ function Help() {
                 <Text style={styles.header}>
                     Welcome to Akhar Jor game.
                     {'\n\n'}
-                    Click or Swipe to join Gurmukhi letters to create words from meaning.
+                    Click to select Gurmukhi letters to create word from meaning.
                 </Text>
                 <HelpImg1 height={400}  style={styles.img}/>
 
@@ -133,7 +132,6 @@ function Help() {
                     {'\n\n'}
                     The more you try, the more you learn Punjabi!
                 </Text>
-                <HelpImg3 height={400}  style={styles.img}/>
 
                 <TouchableOpacity
                     style={styles.continue}
