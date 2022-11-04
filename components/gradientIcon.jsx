@@ -21,7 +21,7 @@ export const gradionIcon = (data, height, width) => {
                 )}
             >
             <LinearGradient
-                colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+                colors={['#FF0076', '#590FB7']}
                 style={{ flex: 1 }}
             />
             </MaskedView>)

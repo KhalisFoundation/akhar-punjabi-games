@@ -8,10 +8,12 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
-  Platform
+  Platform,
+  Modal,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { Header } from 'react-native-elements';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
 import MaskedView from '@react-native-community/masked-view';
@@ -21,11 +23,12 @@ import GLOBAL from '../../util/globals';
 import Khalis from '../../assets/khalis_logo.svg';
 import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
-import dimensions, { width } from '../../util/dimensions';
+import { closeIntroModal } from './../../redux/actions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-function About({ navigation }) {
+function AppIntro() {
   const state = useSelector((theState) => theState.theGameReducer);
+  const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Muli: require('../../assets/fonts/Muli.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -36,12 +39,12 @@ function About({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const styles = StyleSheet.create({
-    container: { flex: 1},
+    container: { flex: 1, },
     scrollview: {
       flex: 1,
       flexDirection: 'column',
       padding: 15,
-      height: '100%'
+      height: '100%',
     },
     singleLine: {
       flexDirection: 'row',
@@ -64,28 +67,18 @@ function About({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <SafeAreaView
-      style={styles.container}
-    >
+    <Modal>
+      <SafeAreaView style={{ flex:1, backgroundColor: 'white' , justifyContent:'space-around', paddingHorizontal: 10, paddingVertical: 25}}>
       <StatusBar
-        backgroundColor="#003436"
-        barStyle="light-content"
+        barStyle="dark-content"
       />
-      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:GLOBAL.COLOR.TOOLBAR_COLOR_ALT2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
-        <Icon
-            name="arrow-back"
-            color={GLOBAL.COLOR.TOOLBAR_TINT}
-            size={30}
-            style={{position: 'absolute', left: 10}}
-            onPress={() => { navigation.goBack(); }}
-          />
-          <Text style={{
-            color: GLOBAL.COLOR.TOOLBAR_TINT,
-            fontSize: (dimensions.screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli',
-            margin:0,
-          }}>About</Text>
-      </View>
+      <Icon
+          name="close"
+          color={'black'}
+          size={30}
+          style={{margin: 15}}
+          onPress={() => {dispatch(closeIntroModal())}}
+        />
       <ScrollView
         scrollEventThrottle={16}
         style={styles.scrollview}
@@ -129,22 +122,6 @@ function About({ navigation }) {
         </Text>
 
       {/* Welcoming comments and suggestions */}
-      <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black }}>
-      <Text>{'\n'}</Text>
-      <Text>
-        We welcome your comments, suggestions, and corrections!
-        {' '}
-        For information, suggestions, or help, visit us at
-        {'  '}
-      </Text>
-      <Text
-        style={{ color: linkColor, fontWeight: 'bold' }}
-        onPress={() => Linking.openURL('https://khalisfoundation.org')}
-      >
-        KhalisFoundation.org
-      </Text>
-      {'\n'}
-      </Text>
         <View>
           <Text style={{ fontFamily: 'Muli', alignSelf: 'flex-end', color: black }}>
             {'\n'}
@@ -156,7 +133,7 @@ function About({ navigation }) {
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalisfoundation.org')}
           >
-            {<KhalisDark height={50} />}
+            <KhalisDark height={50} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>
@@ -178,8 +155,9 @@ function About({ navigation }) {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Modal>
   );
 }
 
-export default About;
+export default AppIntro;

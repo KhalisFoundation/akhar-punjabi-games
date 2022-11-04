@@ -7,26 +7,27 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
+  StatusBar,
   Image,
-  ImageBackground, 
-  SafeAreaView,
+  ImageBackground,
   BackHandler, 
   Alert, AppState
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { setTheState } from '../../redux/actions';
-import LoadingModal from '../homeScreen/loadingScreen';
+import { setTheState, showIntroModal } from '../../redux/actions';
 import * as Anvaad from 'anvaad-js';
 import Khalis from '../../assets/khalis_logo.svg';
-import Logo from '../../assets/sikh_games_logo_with_text.svg'
-import simran from '../../assets/simran.mp3'
+import Logo from '../../assets/sikh_games_logo_with_text.svg';
 import { initialState } from '../../redux/reducers';
 import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
+import AppIntro from './../about/appIntro';
+import { closeIntroModal } from './../../redux/actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const audioPlayer = new Audio.Sound();
 
@@ -43,93 +44,70 @@ function MenuScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   
-  async function playSound() {
-    try {
-      console.log('Playing sound');
-      await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
-      await audioPlayer.playAsync();
-      await audioPlayer.setIsLoopingAsync(true);
-    } catch (err) {
-      console.warn("Couldn't Play audio", err)
-    }
-  }
-  async function stopSound() {
-    try {
-      if (audioPlayer) {
-        console.log('Stopping Sound');
-        await audioPlayer.stopAsync();
-        await audioPlayer.unloadAsync();
-      }
-    } catch (err) {
-      console.warn("Couldn't Stop audio", err)
-    }
-  }
+  // async function playSound() {
+  //   try {
+  //     console.log('Playing sound');
+  //     await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
+  //     await audioPlayer.playAsync();
+  //     await audioPlayer.setIsLoopingAsync(true);
+  //   } catch (err) {
+  //     console.warn("Couldn't Play audio", err)
+  //   }
+  // }
+  // async function stopSound() {
+  //   try {
+  //     if (audioPlayer) {
+  //       console.log('Stopping Sound');
+  //       await audioPlayer.stopAsync();
+  //       await audioPlayer.unloadAsync();
+  //     }
+  //   } catch (err) {
+  //     console.warn("Couldn't Stop audio", err)
+  //   }
+  // }
 
-  useEffect(() => {
-      playSound();
-  }, []);
+  // // useEffect(() => {
+  // //     playSound();
+  // // }, []);
   
   //handling app state change
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  // const appState = useRef(AppState.currentState);
+  // const [appStateVisible, setAppStateVisible] = useState(appState.current);
   
-  const _handleAppStateChange = nextAppState => {
-    if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground!');
-    } else {
-      console.log('App is in the background!');
-      if (audioPlayer._loaded) {stopSound()};
-    }
+  // const _handleAppStateChange = nextAppState => {
+  //   if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+  //     console.log('App has come to the foreground!');
+  //   } else {
+  //     console.log('App is in the background!');
+  //     if (audioPlayer._loaded) {stopSound()};
+  //   }
 
-    appState.current = nextAppState;
-    setAppStateVisible(appState.current);
-  };
+  //   appState.current = nextAppState;
+  //   setAppStateVisible(appState.current);
+  // };
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", _handleAppStateChange);
-    return () => {
-      if (subscription) {
-        subscription.remove();
-      }
-    };
-  }, []);
-
-
-  let theState;
-  useEffect(() => {
-    async function getData() {
-      try {
-        const theStringState = await AsyncStorage.getItem('state');
-        if (theStringState !== null) {
-          theState = JSON.parse(theStringState);
-          console.log('got state that was previously saved');
-          // console.log(theState);
-        } else {
-          console.log('there is nothing is state');
-          theState = initialState;
-        }
-        dispatch(setTheState(theState));
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    }
-    getData();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const subscription = AppState.addEventListener("change", _handleAppStateChange);
+  //   return () => {
+  //     if (subscription) {
+  //       subscription.remove();
+  //     }
+  //   };
+  // }, []);
+  
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
     container: {
       height: '100%',
+      justifyContent: 'center',
       alignItems: 'center',
       textAlign: 'center',
-      paddingTop: '5%',
       padding: 10,
       backgroundColor: "#274C7C",
     },
     header: {
       width:'100%',
-      margin: '10%',
       textAlign: 'center',
     },
     mainmenu: {
@@ -137,6 +115,13 @@ function MenuScreen({ navigation }) {
       fontSize: 25,
       fontFamily: 'Muli',
       textAlign: 'center',
+      justifyContent: 'center',
+    },
+    mainMenuContainer: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
       borderBottomColor: '#00E9FE', 
       borderBottomWidth: 1
     },
@@ -191,15 +176,23 @@ function MenuScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
+      {state.showIntroModal ? <AppIntro /> : null}
+      <StatusBar
+        hidden />
       <View style={styles.header}>
         <Logo style={styles.menulogo}/>
+        <View style={styles.mainMenuContainer}>
         <Text style={styles.mainmenu}>MAIN MENU</Text>
+        {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
+          <Icon name='info-circle' color={"#7FC8DE"} size={22} />
+        </TouchableOpacity> */}
+        </View>
         <Text style={styles.text}>Select a game to Play</Text>
         <View style={styles.columns}>
           <TouchableOpacity 
             style={styles.item}
             onPress={() => {
-              if (audioPlayer._loaded) {stopSound()};
+              // if (audioPlayer._loaded) {stopSound()};
               whichGame('akhar_jor');
               navigation.navigate('AkharJor');
             }}
@@ -211,12 +204,12 @@ function MenuScreen({ navigation }) {
           <TouchableOpacity 
             style={styles.item}
             onPress={() => {
-              if (audioPlayer._loaded) {stopSound()};
+              //if (audioPlayer._loaded) {stopSound()};
               whichGame('2048');
-              navigation.navigate('2048');
+              navigation.navigate('2048');              
             }}
           >
-            <Text style={[styles.text]}>{Anvaad.unicode('2048')}</Text>
+            <Text style={[styles.text, {fontFamily: 'Muli'}]}>2048</Text>
           </TouchableOpacity>
         </View>
       </View>

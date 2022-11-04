@@ -66,7 +66,6 @@ function SettingsBar({
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          state.darkMode && { backgroundColor: '#464646' },
           { alignItems: 'flex-start' }
         ]}
         onPress={() => {
@@ -87,20 +86,20 @@ function SettingsBar({
                 alignItems: 'center',
               }}
             >
-              <Icon name={allImages[imageSource]} size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              <Icon name={allImages[imageSource]} size={35} color={'#464646'} style={styles.shadow} />
             </View>
           )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
         </MaskedView>
         <ListItem.Content>
-          <ListItem.Title style={state.darkMode && { color: '#fff' }}>{theSetting}</ListItem.Title>
-          <ListItem.Subtitle style={{ color: state.darkMode ? '#fff' : '#a3a3a3' }}>{currentSetting}</ListItem.Subtitle>
+          <ListItem.Title>{theSetting}</ListItem.Title>
+          <ListItem.Subtitle style={{ color: '#a3a3a3' }}>{currentSetting}</ListItem.Subtitle>
         </ListItem.Content>
-        <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
+        <ListItem.Chevron color={'black'} />
       </ListItem>
 
       <BottomSheet

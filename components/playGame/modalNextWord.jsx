@@ -82,7 +82,7 @@ function WordsDoneModal() {
       fontFamily: 'Muli',
       fontSize: 16,
       textAlign: 'center',
-      color: state.darkMode ? '#ff6e00' : 'white',
+      color: 'white',
       marginBottom: 10,
     },
     continue: {
@@ -210,7 +210,7 @@ function WordsDoneModal() {
                 iterationCount={1}
               >
                 <AnimatedLinearGradient
-                  colors={state.darkMode ? ['#000', '#000'] : ['darkblue', 'darkblue']}
+                  colors={ ['#21218b', '#21218b']}
                   start={{ x: 1, y: 1 }}
                   style={[styles.container, { bottom: 10 }]}
                 >

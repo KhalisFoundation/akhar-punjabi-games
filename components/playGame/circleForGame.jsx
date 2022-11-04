@@ -11,8 +11,15 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import {
-  setAttempt
+  setAttempt,
+  setCorrectWords,
+  setBottomWord,
+  setTopWord,
+  setLevelProgress,
+  setNewWords,
+  setConfetti
 } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
@@ -27,9 +34,55 @@ function TheCircle() {
     return Anvaad.unicode(text);
 
   }
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
+  const ifCorrectWord = async (word) => {
+    let somethingHappened = false;
+    if (word === state.firstWord.engText && state.topWord === '') {
+      if (!state.correctWords.includes(state.firstWord)) {
+        dispatch(setTopWord());
+        dispatch(setCorrectWords(state.firstWord));
+        dispatch(setLevelProgress(state.firstWord));
+        somethingHappened = true;
+      }
+      // if bottomWord is filled that means both are now answered so will get new words
+      if (state.bottomWord !== '') {
+        // time delay for 1500 seconds
+        dispatch(setConfetti(true));
+        await delay(3000);
+        dispatch(setNewWords());
+        somethingHappened = true;
+      }
+    }
+    if (word === state.secondWord.engText && state.bottomWord === '') {
+      if (!state.correctWords.includes(state.secondWord)) {
+        dispatch(setBottomWord());
+        dispatch(setCorrectWords(state.secondWord));
+        dispatch(setLevelProgress(state.secondWord));
+        somethingHappened = true;
+      }
+      // if topWord is filled that means both are now answered so will get new words
+      if (state.topWord !== '') {
+        // time delay for 1500 seconds
+        dispatch(setConfetti(true));
+        await delay(3000);
+        dispatch(setNewWords());
+        somethingHappened = true;
+      }
+    }
+    // this condition resets all the logic if a word is completed
+    if (somethingHappened) {
+      dispatch(setAttempt(''));
+    }
+  };
+
   function touchedMe(object, final) {
     console.log(`${object} was touched!`);
     dispatch(setAttempt(final));
+    ifCorrectWord(final);
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
@@ -113,16 +166,16 @@ function TheCircle() {
     characterText: {
       paddingBottom: 5,
       fontSize: state.romanised ? 22.5 : 30,
-      color: state.darkMode ? 'darkblue' : '#FF7E00',
+      color: '#FF7E00',
       textAlign: 'center',
     },
     commonChar: {
-      position: 'absolute',
-      width: 0.12*width,
-      height: 0.12*width,
-      backgroundColor: state.darkMode ? '#FF7E00' : '#274C7C',
+      position: 'relative',
+      width: dimensions.size['20'],
+      height: dimensions.size['20'],
+      backgroundColor: 'transparent',
       elevation: 5,
-      borderRadius: 25,
+      borderRadius: 10,
       justifyContent: 'center',
     }
   });
@@ -181,23 +234,26 @@ function TheCircle() {
             style={{
               ...styles.commonChar,
               ...animatedScaleStyle,
+              position: 'absolute',
               left: x,
               top: y,
+              zIndex: 0,
             }}
           >
-            <Text key={char} style={styles.characterText}>
+            <LinearGradient colors={["#ffe400", "#848900"]} style={styles.commonChar}>
+            <Text key={char} style={{...styles.characterText, zIndex: 0, color: '#032b45'}}>
               {theLetter}
             </Text>
+            </LinearGradient>
           </TouchableOpacity>
         );
-      })
-}
-      {(state.attempt == "") ? <View style={{borderRadius: 25,
+      })}
+      {/* {(state.attempt == "") ? <View style={{borderRadius: 25,
           height: 40,
           width: 40,alignSelf: 'center'}}></View> :
       <TouchableOpacity
         style={{
-          backgroundColor: state.darkMode ? 'black' : 'white',
+          backgroundColor: 'white',
           borderRadius: 25,
           height: 40,
           width: 40,
@@ -227,11 +283,11 @@ function TheCircle() {
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
         </MaskedView>
-      </TouchableOpacity>}
+      </TouchableOpacity>} */}
     </AnimatedLinearGradient>
   );
 }

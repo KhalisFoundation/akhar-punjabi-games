@@ -161,18 +161,18 @@ function Game2048({ navigation }) {
       alignItems: 'center',
       justifyContent: 'space-evenly',
       width:'80%',
-      backgroundColor: state.darkMode ? '#035': '#fff',
+      backgroundColor:'#fff',
       padding: 10,
       borderRadius: 50,
       margin:10
     },
     optText: {
       textAlign: 'center',
-      color: state.darkMode ? '#fff' : '#000',
+      color: '#000',
       fontFamily: 'Muli',
       alignSelf: 'center',
       fontSize: 18,
-      textShadowColor: (state.darkMode) ? 'white' : 'black',
+      textShadowColor: 'black',
       textShadowOffset: {
         width: 0.5,
         height: 0.5
@@ -401,12 +401,12 @@ function Game2048({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <IonIcons name="reload" size={30} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              <IonIcons name="reload" size={30} color={'#464646'} style={styles.shadow} />
             </View>
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
         </MaskedView>
@@ -423,12 +423,12 @@ function Game2048({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <IonIcons name="language" size={30} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+              <IonIcons name="language" size={30} color={'#464646'} style={styles.shadow} />
             </View>
         )}
         >
           <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+            colors={['#FF0076', '#590FB7']}
             style={{ flex: 1 }}
           />
         </MaskedView>

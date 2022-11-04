@@ -7,7 +7,8 @@ import {
   StatusBar,
   Linking,
   ScrollView,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListItem, Header } from 'react-native-elements';
@@ -19,6 +20,7 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import dimensions from '../../util/dimensions';
 import {
   setDarkMode, setBGM, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
 } from '../../redux/actions';
@@ -27,6 +29,7 @@ import {
 import SwitchBar from './settingBarSwitch';
 import theColors from '../../util/colors';
 import * as Analytics from 'expo-firebase-analytics';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function Settings({ navigation }) {
   const dispatch = useDispatch();
@@ -38,20 +41,22 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const colors = theColors[state.darkMode];
+  const screenWidth = Dimensions.get('window').width;
+  const colors = theColors.false;
   const platform = Platform.OS;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       // justifyContent: "center",
-      backgroundColor: state.darkMode ? '#333' : colors.settings.container,
+      backgroundColor: '#eeccaa',
       width: '100%',
       height: '100%',
     },
     headerStyle: {
-      color: 'black',
-      fontWeight: 'bold',
-      fontSize: 15,
+      color: '#274CCC',
+      fontFamily: 'Muli',
+      fontWeight: '600',
+      fontSize: 18,
     },
     shadow: {
       shadowColor: 'black',
@@ -76,71 +81,51 @@ function Settings({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="dark-content"
+        backgroundColor={"orange"}
+        barStyle={'dark-content'}
       />
-      <Header
-        backgroundColor="orange"
-        containerStyle={[
-          Platform.OS === 'android' && { height: 75, paddingTop: 0 }
-        ]}
-        leftComponent={(
-          <Icon
-            name="arrow-back"
-            color="black"
-            size={30}
-            onPress={() => { navigation.navigate('AkharJor'); }}
+      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"orange", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+        <IonIcons
+            name="chevron-back"
+            color={"black"}
+            size={35}
+            style={{position: 'absolute', left: 10}}
+            onPress={() => { navigation.goBack(); }}
           />
-          )}
-        centerComponent={{
-          text: 'Settings',
-          style: {
-            color: 'black',
-            fontSize: 18,
-            fontFamily: 'Muli'
-          }
-        }}
-      />
+          <Text style={{
+            color: ('black'),
+            fontSize: (screenWidth<370 ? 16 : 20),
+            fontFamily: 'Muli',
+            margin:0,
+          }}>Settings</Text>
+      </View>
 
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
-        <MaskedView
+        <View
           style={{
             width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
           }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-              }}
-            >
-              <Text
-                style={[
-                  styles.headerStyle,
-                  state.darkMode && { color: '#fff' }
-                ]}
-              >
-                App Options
-              </Text>
-            </View>
-          )}
         >
-          <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
-        <SwitchBar
+          <Text
+            style={[
+              styles.headerStyle
+            ]}
+          >
+            App Options
+          </Text>
+        </View>
+        {/* <SwitchBar
           title="dark_mode"
           theSetting="Dark Mode"
           theList={[true, false]}
           imageSource="khanda"
           theAction={setDarkMode} // setDarkMode toggles the darkMode
           theCurrentOptionIndex={[true, false].indexOf(state.darkMode)}
-        />
+        /> */}
         <SwitchBar
           title="show_pop_up"
           theSetting="Show Pop Up after each word"
@@ -157,7 +142,7 @@ function Settings({ navigation }) {
           theAction={setShowRomanised} // setShowRomanised toggles the showing of romanised words.
           theCurrentOptionIndex={[true, false].indexOf(state.romanised)}
         />
-        <SwitchBar
+        {/* <SwitchBar
           title="show_num_of_letters"
           theSetting="Indicate Number of Letters"
           theList={[true, false]}
@@ -173,11 +158,10 @@ function Settings({ navigation }) {
           theAction={setIncludeMatra} // toggles the showing of matras in the word.
           theCurrentOptionIndex={[true, false].indexOf(state.includeMatra)}
           displayParam={state.showNumOfLetters}
-        />
+        /> */}
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { 
@@ -196,49 +180,35 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <IonIcons name="reload" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+                <IonIcons name="reload" size={35} color={'#464646'} style={styles.shadow} />
               </View>
           )}
           >
-            <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-              style={{ flex: 1 }}
-            />
+          <LinearGradient
+            colors={['#274CCC', '#274C77']}
+            style={{ flex: 1 }}
+          />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Reset</Text></ListItem.Title>
+            <ListItem.Title><Text>Reset</Text></ListItem.Title>
           </ListItem.Content>
         </ListItem>
-        <MaskedView
+        <View
           style={{
             width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
           }}
-          maskElement={(
-            <View
-              style={{
-                backgroundColor: 'transparent',
-              }}
-            >
-              <Text
-                style={[
-                  styles.headerStyle,
-                  state.darkMode && { color: '#fff' }
-                ]}
-              >
-                Other Options
-              </Text>
-            </View>
-          )}
         >
-          <LinearGradient
-            colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
+          <Text
+            style={[
+              styles.headerStyle
+            ]}
+          >
+            Other Options
+          </Text>
+        </View>
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => Linking.openURL('https://khalisfoundation.org/donate/')}
@@ -254,24 +224,23 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesome5Icons name="donate" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+                <FontAwesome5Icons name="donate" size={35} color={'#464646'} style={styles.shadow} />
               </View>
           )}
           >
-            <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
-              style={{ flex: 1 }}
-            />
+          <LinearGradient
+            colors={['#274CCC', '#274C77']}
+            style={{ flex: 1 }}
+          />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>Donate</Text></ListItem.Title>
+            <ListItem.Title><Text>Donate</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
+          <ListItem.Chevron color={'black'} />
         </ListItem>
         <ListItem
           containerStyle={[
             styles.titleText,
-            state.darkMode && { backgroundColor: '#464646' },
             { alignItems: 'flex-start' }
           ]}
           onPress={() => { navigation.navigate('about'); }}
@@ -287,22 +256,22 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcons name="question-circle" size={35} color={state.darkMode ? '#fff' : '#464646'} style={styles.shadow} />
+                <FontAwesomeIcons name="question-circle" size={35} color={'#464646'} style={styles.shadow} />
               </View>
           )}
           >
             <LinearGradient
-              colors={state.darkMode ? ['#ff8008', '#ffc837'] : ['#FF0076', '#590FB7']}
+              colors={['#274CCC', '#274C77']}
               style={{ flex: 1 }}
             />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title style={state.darkMode && { color: '#fff' }}><Text>About</Text></ListItem.Title>
+            <ListItem.Title><Text>About</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color={state.darkMode ? 'white' : 'black'} />
+          <ListItem.Chevron color={'black'} />
         </ListItem>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

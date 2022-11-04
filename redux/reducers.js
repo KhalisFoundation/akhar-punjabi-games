@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { allWords } from "../util/allWords";
 import getWords from "../util/generateWords";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getEmptyBoard, scoreCalculator, generateRandom} from '../components/game2048/slideLogic';
+import { useRef } from 'react';
+import {Animated, Dimensions} from 'react-native';
 
 
 const setData = async (title, state) => {
@@ -20,6 +22,12 @@ const setWords = (level, allWords) => {
 };
 
 // generate words for getMoreLives Page
+const rotateAnimation = new Animated.Value(0);  
+const interpolateRotating = rotateAnimation.interpolate({
+  inputRange: [0, 1],
+  outputRange: ['0deg', '720deg'],
+});
+const screenWidth = Dimensions.get('window').width;
 
 const wordsToType = [
   'vwihgurU',
@@ -42,16 +50,27 @@ const getRandomWord = () => {
 
 //puts words for level 1
 const generateWords = getWords(allWords.filter((word) => word.level === 1));
-const newBoard = getEmptyBoard();
 
 export const initialState = {
   ALL_WORDS: allWords, //this list will not be changed
   usableWords: allWords.filter((word) => word.level === 1),
+  showIntroModal: false,
+  //logic states for akharjor
   topWord: "",
   topHint: "",
   bottomWord: "",
   bottomHint: "",
+  visited: [],
   attempt: "",
+  animatedStyle: {
+    transform: [
+      {
+        rotate: interpolateRotating,
+      },
+    ],
+    width: screenWidth,
+    marginBottom: 25
+  },
   charArray: generateWords[0],
   firstWord: generateWords[1],
   firstLength: parseInt(generateWords[1].engText.length),
@@ -75,19 +94,17 @@ export const initialState = {
   totalPoints: 0,
   //settings stuff
   typesOfWords: "Both",
-  darkMode: false,
   showPopUp: true,
   romanised: false,
-  showNumOfLetters: false,
+  showNumOfLetters: true,
   includeMatra: true,
   // levels completed
   meaningPopup: false,
   // 2048 stuff
-  board: newBoard,
-  punjabiNums: true,
   resultShow: false,
   moves: 0,
-  score: 0
+  helpPage: false,
+  confetti: false,
 };
 
 //to reset all state
@@ -101,6 +118,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       topWord: state.firstWord.engText,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_TOP_HINT") {
@@ -108,6 +126,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       topHint: action.theTopHint,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_BOTTOM_WORD") {
@@ -115,6 +134,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       bottomWord: state.secondWord.engText,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_BOTTOM_HINT") {
@@ -122,6 +142,7 @@ function theGameReducer(state = initialState, action) {
       ...state,
       bottomHint: action.theBottomHint,
       attempt: "",
+      visited: [],
     };
   }
   if (action.type === "SET_ATTEMPT") {
@@ -218,6 +239,7 @@ function theGameReducer(state = initialState, action) {
       bottomWord: "",
       bottomHint: "",
       attempt: "",
+      visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
@@ -227,6 +249,7 @@ function theGameReducer(state = initialState, action) {
       usableWords: newUsableWords,
       typesOfWords: newWordType,
       livesWord: getRandomWord(),
+      confetti: false,
     };
 
     setData("state", newState);
@@ -277,24 +300,10 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
-  if (action.type === "SET_DARK_MODE") {
-    const newState = {
-      ...state,
-      darkMode: action.onOrOff,
-    };
-    setData("state", newState);
-    return newState;
-  }
   if (action.type === "SET_GIVE_UP_LIVES") {
-    var lives = '';
-    if (action.addOrSub === '+') {
-      lives = state.giveUpsLeft + 1;
-    } else if (action.addOrSub === '-') {
-      lives = state.giveUpsLeft - 1;
-    }
     const newState = {
       ...state,
-      giveUpsLeft: lives,
+      giveUpsLeft: eval(`${state.giveUpsLeft} ${action.addOrSub} 1`),
     };
     setData("state", newState);
     return newState;
@@ -303,22 +312,6 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       showPopUp: action.onOrOff,
-    };
-    setData("state", newState);
-    return newState;
-  }
-  if (action.type === "SET_SHOW_NUM_OF_LETTERS") {
-    const newState = {
-      ...state,
-      showNumOfLetters: action.onOrOff,
-    };
-    setData("state", newState);
-    return newState;
-  }
-  if (action.type === "SET_INCLUDE_MATRA") {
-    const newState = {
-      ...state,
-      includeMatra: action.onOrOff,
     };
     setData("state", newState);
     return newState;
@@ -340,6 +333,7 @@ function theGameReducer(state = initialState, action) {
       bottomWord: "",
       bottomHint: "",
       attempt: "",
+      visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
       firstLength: parseInt(generateWords[1].engText.length),
@@ -363,10 +357,9 @@ function theGameReducer(state = initialState, action) {
       totalPoints: 0,
       //settings stuff
       typesOfWords: "Both",
-      darkMode: false,
       showPopUp: true,
       romanised: false,
-      showNumOfLetters: false,
+      showNumOfLetters: true,
       includeMatra: true,
       // levels completed
       meaningPopup: false,
@@ -377,28 +370,6 @@ function theGameReducer(state = initialState, action) {
 
   // actions for 2048
 
-  if (action.type === "SET_BOARD") {
-    const newState = {
-      ...state,
-      board: action.theBoard,
-      moves: state.moves + 1,
-      score: scoreCalculator(action.theBoard),
-    };
-    setData("state", newState);
-    return newState;
-  }
-
-  if (action.type === "RESET_BOARD") {
-    const newState = {
-      ...state,
-      board: generateRandom(getEmptyBoard()),
-      moves: 0,
-      score: 0
-    };
-    setData("state", newState);
-    return newState;
-  }
-
   if (action.type === "2048_PUNJABI_NUMS") {
     const newState = {
       ...state,
@@ -408,10 +379,9 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "SET_NEW_BOARD") {
+  if (action.type === "SET_RESULT_SHOW") {
     const newState = {
       ...state,
-      board: generateRandom(getEmptyBoard()),
       resultShow: true,
     };
     setData("state", newState);
@@ -436,63 +406,128 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
 
-  if (action.type === "CREATE_TILES") {
-    let tilesList = tiles(initialState.board);
+  if (action.type === "SET_MOVING") {
     const newState = {
-        ...state,
-        tiles: tilesList,
-        byIds: [tileList.map((tile) => tile.id)],
-        hasChanged: false,
+      ...state,
+      moving: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "UPDATE_TILE") {
+  if (action.type === "UPDATE_GRID") {
     const newState = {
       ...state,
-      tiles: {
-          ...state.tiles,
-          [action.tile.id]: action.tile,
-      },
-      hasChanged: true,
+      grid: action.theGrid,
+    };
+    setData("state", newState);
+    return newState;  
+  }
+
+  if (action.type === "SET_WON") {
+    const newState = {
+      ...state,
+      won: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "MERGE_TILE") {
-    const { [action.source.id]: source, [action.destination.id]: destination, ...restTiles } = state.tiles;
+  if (action.type === "SET_OVER") {
     const newState = {
       ...state,
-      tiles: {
-          ...restTiles,
-          [action.destination.id]: {
-              id: action.destination.id,
-              value: action.source.value + action.destination.value,
-              position: action.destination.position,
-          },
-      },
-      byIds: state.byIds.filter((id) => id !== action.source.id),
-      hasChanged: true,
+      over: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "START_MOVE") {
+  if (action.type === "KEEP_PLAYING") {
     const newState = {
       ...state,
-      inMotion: true,
+      keepPlaying: action.onOrOff,
     };
     setData("state", newState);
     return newState;
   }
 
-  if (action.type === "END_MOVE") {
+  if (action.type === "SET_SCORE") {
     const newState = {
       ...state,
-      inMotion: false,
+      score: action.theScore,
+    };
+
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_BEST") {
+    const newState = {
+      ...state,
+      best: action.theBest,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_TILES") {
+    const newState = {
+      ...state,
+      tiles: action.theTiles,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_VISITED") {
+    const newState = {
+      ...state,
+      visited: action.theVisited,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "OPEN_HELP_MODAL") {
+    const newState = {
+      ...state,
+      helpPage: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+  
+  if (action.type === "CLOSE_HELP_MODAL") {
+    const newState = {
+      ...state,
+      helpPage: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "CLOSE_INTRO_MODAL") {
+    const newState = {
+      ...state,
+      showIntroModal: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SHOW_INTRO_MODAL") {
+    const newState = {
+      ...state,
+      showIntroModal: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "SET_CONFETTI") {
+    const newState = {
+      ...state,
+      confetti: action.onOrOff,
     };
     setData("state", newState);
     return newState;
