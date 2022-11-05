@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "370328077829",
+    "project_id": "sikh-games",
+    "storage_bucket": "sikh-games.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370328077829:android:06d5e746da5d323abf3e6c",
+        "android_client_info": {
+          "package_name": "com.khalisfoundation.gurmukhi_games"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370328077829-s28d3o8t2nk06ots32415h7h5b5uif7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxjhDMefZjX1jHojXZZDSDjYGIjStIcjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370328077829-s28d3o8t2nk06ots32415h7h5b5uif7c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "370328077829-4ei8ihah3h21qdth5ut4qqd1ulaka6nv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.khalisfoundation.gurmukhi-games"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,8 +14,6 @@ function LoadingModal({ visible }) {
   let colors;
   if (state === undefined) {
     colors = theColors.false;
-  } else {
-    colors = theColors[state.darkMode];
   }
 
   const styles = StyleSheet.create({

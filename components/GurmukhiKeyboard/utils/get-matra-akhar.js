@@ -8,5 +8,8 @@ export const getMatraAkhar = (matra, query) => {
   if (query.length && !matras.includes(lastChar)) {
     return matraValue.replace(notMatraRegex, lastChar);
   }
+  if (matras.includes(lastChar) && lastChar=='R') {
+    return matraValue;
+  }
   return matraValue;
 };
