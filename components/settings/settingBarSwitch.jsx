@@ -50,7 +50,7 @@ function SwitchBar({
   }
 
   async function setting_used(setup) {
-    await Analytics.logEvent('setting_used', { setting: setup });
+    await Analytics.logEvent('setting_used', { setting_used: setup });
   }
 
   return (

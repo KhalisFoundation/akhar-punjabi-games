@@ -28,6 +28,7 @@ import * as Analytics from 'expo-firebase-analytics';
 import AppIntro from './../about/appIntro';
 import { closeIntroModal } from './../../redux/actions';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import dimensions from '../../util/dimensions';
 
 const audioPlayer = new Audio.Sound();
 
@@ -36,6 +37,7 @@ function MenuScreen({ navigation }) {
   // code for menu page
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
+  const width = dimensions.width;
   const [fontLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -112,7 +114,7 @@ function MenuScreen({ navigation }) {
     },
     mainmenu: {
       color: '#fff',
-      fontSize: 25,
+      fontSize: width*.06,
       fontFamily: 'Muli',
       textAlign: 'center',
       justifyContent: 'center',
@@ -125,7 +127,7 @@ function MenuScreen({ navigation }) {
       borderBottomColor: '#00E9FE', 
       borderBottomWidth: 1
     },
-    text: {color:'#fff', fontSize: 20, fontFamily: 'Muli', alignSelf:'center', margin: 10},
+    text: {color:'#fff', fontSize: width*.045, fontFamily: 'Muli', alignSelf:'center', margin: 10},
     item: {backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'},
     menulogo: {
       width: '80%',
@@ -157,14 +159,6 @@ function MenuScreen({ navigation }) {
       width: '100%',
       borderRadius: 5,
       alignItems: 'center',
-    },
-    logo: {
-        height: 70,
-        width: 70,
-        alignSelf: 'center',
-    },
-    title: {
-        fontFamily: 'Mochy', fontWeight: 'normal', fontSize: 20, alignSelf: 'center'
     }
   });
   async function whichGame(game_name) {

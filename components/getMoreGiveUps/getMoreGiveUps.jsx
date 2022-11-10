@@ -231,7 +231,7 @@ function MoreGiveUps({ route, navigation }) {
   const [word, setWord] = useState(getRandomWord());
 
   async function used_get_lives(current_lives) {
-    await Analytics.logEvent('used_get_lives', {has_lives: current_lives});
+    await Analytics.logEvent('used_get_lives', {lives_count: current_lives});
   }
 
   if (!fontsLoaded) {
@@ -283,9 +283,9 @@ function MoreGiveUps({ route, navigation }) {
         <Text style={{...styles.DHAN}}>{word}</Text>
       </View>
       <View style={{width: '100%'}}>
-      <View style={{ ...styles.DHANcover, backgroundColor: '#274C7C', shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ ...styles.DHANcover, backgroundColor: '#274C7C', shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
         <Text
-          style={{ ...styles.DHAN, fontSize: 26, width:'80%', height:50, fontFamily: 'Prabhki', color: '#FF7E00' }}>
+          style={{ ...styles.DHAN, fontSize: 26, width:'90%', height:50, fontFamily: 'Prabhki', color: '#FF7E00', alignItems: 'flex-start' }}>
           {textEntry}
         </Text>
         { textEntry == "" ? null :
@@ -293,8 +293,8 @@ function MoreGiveUps({ route, navigation }) {
           name="backspace"
           color={'#D1FBFF'}
           size={dimensions.size['8']}
-          style={{position: 'absolute', right: 10}}
-          onPress={() => { handleClick('meta') }}/>}
+          onPress={() => { handleClick('meta') }}/>
+        }
       </View>
       {keyboardGrid.map((rows, index) => {
         return (

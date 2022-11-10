@@ -5,7 +5,9 @@ import {
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import EnIcon from 'react-native-vector-icons/Entypo';
 import { useSelector } from 'react-redux';
+import dimensions from '../../util/dimensions';
 
+const {height, width} = dimensions;
 export const StatsBox = ({stat, navigation}) => {
     const state = useSelector((theState) => theState.theGameReducer);
 
@@ -25,34 +27,21 @@ export const StatsBox = ({stat, navigation}) => {
     }
 
     const item = items[stat];
-    if (stat == "levels") {
-        return (<View
-            style={styles.upBox}
-          >
-            <EnIcon
-              name={item.icon}
-              size={25}
-              color={item.color}
-            />
-            <Text style={styles.upText}>
-                {(item.name === "Level") ? `${item.name} ${item.value}` : `${item.value}`}
-            </Text>
-            {(item.name === "Hints") ? 
-                <TouchableOpacity
-                    onPress={() => { navigation.navigate('giveUps', { prevScreen: 1 }); }}
-                >
-                    <IconM name="plus-circle" size={25} color="#06FF00" />
-                </TouchableOpacity> : null}
-          </View>)
-    }
     return (<View
         style={styles.upBox}
       >
+        {stat==="levels" ? 
+        <EnIcon
+            name={item.icon}
+            size={width*0.05}
+            color={item.color}
+        />:
         <IconM
           name={item.icon}
-          size={25}
+          size={width*0.05}
           color={item.color}
         />
+        }
         <Text style={styles.upText}>
             {(item.name === "Level") ? `${item.name} ${item.value}` : `${item.value}`}
         </Text>
@@ -60,7 +49,7 @@ export const StatsBox = ({stat, navigation}) => {
             <TouchableOpacity
                 onPress={() => { navigation.navigate('giveUps', { prevScreen: 1 }); }}
             >
-                <IconM name="plus-circle" size={25} color="#06FF00" />
+                <IconM name="plus-circle" size={width*0.05} color="#06FF00" />
             </TouchableOpacity> : null}
       </View>)
 }
@@ -69,16 +58,17 @@ const styles = StyleSheet.create({
     upBox: {
       backgroundColor: '#072227',
       flexDirection: 'row',
-      height: "60%",
-      width: "25%",
+      height: height*0.045,
+      width: width*0.3,
       alignItems: 'center',
-      borderRadius: 30,
+      borderRadius: 10,
       elevation: 5,
+      paddingHorizontal: width*0.02,
       justifyContent: 'space-evenly'
     },
     upText: {
       color: 'white',
-      fontSize: 15,
+      fontSize: width*0.035,
       fontWeight: 'bold'
     }
 });

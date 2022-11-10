@@ -29,34 +29,6 @@ export const WordBox = ({ wordType }) => {
       Prabhki: require('../../assets/fonts/Prabhki.ttf')
     });
 
-    // animations
-    const rotateAnimation = useRef(new Animated.Value(0)).current;
-    
-    const handleAnimation = () => {
-        Animated.timing(rotateAnimation, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-        }).start(() => {
-        rotateAnimation.setValue(0);
-        });
-    };
-    
-    const interpolateRotating = rotateAnimation.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '720deg'],
-    });
-    
-    const animatedStyle = {
-        transform: [
-        {
-            rotate: interpolateRotating,
-        },
-        ],
-        width: screenWidth,
-        marginBottom: 25
-    };
-
     const styles = StyleSheet.create({
         wordBox: {
           flexDirection: 'row', 
@@ -112,13 +84,6 @@ export const WordBox = ({ wordType }) => {
         },
     
     });
-
-    const func = (what) => {
-        if (what === 'top') {
-            return ((state.topWord === '') ? state.topHint : state.topWord);
-        }
-        return ((state.bottomWord === '') ? state.bottomHint : state.bottomWord);
-    };
     
       // find out how divByMatra should work
       const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~'];
@@ -162,7 +127,7 @@ export const WordBox = ({ wordType }) => {
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             {Array.from(newArray , (e, i) => {
               return (
-                <View style={{borderRadius: 10, backgroundColor: '#ffe0bf', textAlign: 'center', justifyContent:'center', marginHorizontal:5}}>
+                <View key={`${printed[i]}-${which}${i}}`} style={{borderRadius: 10, backgroundColor: '#ffe0bf', textAlign: 'center', justifyContent:'center', marginHorizontal:5}}>
                   <Text style={{ ...styles.answerText, width: newsize, height: newsize, fontSize: fontsize }} >
                     {Anvaad.unicode(printed[i])}
                   </Text>

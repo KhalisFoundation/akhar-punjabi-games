@@ -32,7 +32,6 @@ import {
 } from '../../redux/actions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Analytics from 'expo-firebase-analytics';
-import Dimensions from '../../util/dimensions';
 import Help from './help';
 import dimensions from '../../util/dimensions';
 import TheCircle from './circleForGame';
@@ -52,41 +51,9 @@ function GameScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   
-  const {height, width} = Dimensions.get('window');
+  const {height, width} = dimensions;
 
   const points = [];
-  const charArray = state.charArray;
-
-  let angle = 0;
-  const radius =  width / 3.5;
-  const step = (2 * Math.PI) / charArray.length;
-  let charShuffled = charArray.sort();
-  charShuffled.map((char) => {
-    const x = Math.round(radius * Math.cos(angle)) + width/2.35;
-    const y = Math.round(radius* Math.sin(angle)) + width/3.75;
-    //console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
-    // let theLetter = String.fromCharCode(char);
-    angle += step;
-    points.push({ x, y, letter:char });
-  })
-
-  function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-  
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  
-    return array;
-  }
 
   const colors = theColors.false;
   const styles = StyleSheet.create({
@@ -101,7 +68,7 @@ function GameScreen({ navigation }) {
       height: '100%',
       width: '100%',
       flexDirection: 'column',
-      paddingVertical: 20,
+      paddingVertical: width*0.05,
       justifyContent:'space-evenly',
     },
     scrollContent: {
@@ -110,7 +77,7 @@ function GameScreen({ navigation }) {
     },
     status: {
       color: 'black',
-      fontSize: Dimensions.size['10'],
+      fontSize: dimensions.size['10'],
       fontFamily: 'Bookish',
       justifyContent: 'center',
     },
@@ -210,7 +177,7 @@ function GameScreen({ navigation }) {
       elevation: 5,
     },
     help: {
-      padding: Dimensions.size["4"],
+      padding: dimensions.size["4"],
       borderRadius: 50,
       marginTop: 15,
     },
@@ -357,11 +324,11 @@ function GameScreen({ navigation }) {
           barStyle={'dark-content'}
           />
         <View style={{width: '100%', backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding:20}}>
-          <TouchableOpacity
-            style={{justifyContent: 'flex-start'}}
-            onPress={() => navigation.goBack()}
-            >
-              <IonIcons name="chevron-back" size={35} color={'black'}/>
+            <TouchableOpacity
+              style={{justifyContent: 'flex-start'}}
+              onPress={() => navigation.goBack()}
+              >
+              <IonIcons name="chevron-back" size={width*0.08} color={'black'}/>
             </TouchableOpacity>
             <View
               style={styles.header}
@@ -370,11 +337,10 @@ function GameScreen({ navigation }) {
               <StatsBox stat="hints" navigation={navigation} />
               {/* <StatsBox stat="points" navigation={navigation} /> */}
             </View>
-            <IonIcons name="help" size={35} color={'black'} style={{justifyContent: 'flex-end'}} onPress={() => {dispatch(openHelpModal()); console.log(state.helpPage)}}/>
+            <IonIcons name="help" size={width*0.08} color={'black'} style={{justifyContent: 'flex-end'}} onPress={() => {dispatch(openHelpModal()); console.log(state.helpPage)}}/>
         </View>
         <View style={styles.scroller}
           contentContainerStyle={styles.scrollContent}>
-            { state.confetti ? <ConfettiCannon count={200} origin={{x: -10, y: 0}} fallSpeed={2000} autoStart/> : null }
         {/* <View
           style={styles.header}
           >
@@ -442,12 +408,13 @@ function GameScreen({ navigation }) {
             })} */}
             <TheCircle/>
           {/*condition to show hint button only when both words are not guessed*/}
-          <View style={{width: '100%', height: Dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', padding:10}}>
+          <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', padding:10}}>
             {((state.topHint.length !== state.firstLength) && (state.topWord.length !== state.firstLength)) ? <HintButton wordType={"top"}/> : <HintButton wordType={"bottom"}/>}
           </View>
         </View>
         </View>
     </SafeAreaView>
+    { state.confetti ? <ConfettiCannon count={200} origin={{x: -10, y: 0}} fallSpeed={2000} autoStart/> : null }
     </LinearGradient>
   );
 }

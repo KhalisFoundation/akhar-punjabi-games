@@ -301,9 +301,13 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === "SET_GIVE_UP_LIVES") {
+    let newlives = 1;
+    if (action.addOrSub === "+") {
+      newlives = 3;
+    }
     const newState = {
       ...state,
-      giveUpsLeft: eval(`${state.giveUpsLeft} ${action.addOrSub} 1`),
+      giveUpsLeft: eval(`${state.giveUpsLeft} ${action.addOrSub} ${newlives}`),
     };
     setData("state", newState);
     return newState;

@@ -17,6 +17,7 @@ import EnIcon from 'react-native-vector-icons/Entypo';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import { setTheState } from '../../redux/actions';
@@ -24,6 +25,7 @@ import Help from '../playGame/help';
 import Khalis from '../../assets/khalis_logo.svg';
 import { initialState } from '../../redux/reducers';
 import { openHelpModal } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ function HomeScreen({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const state = useSelector((theState) => theState.theGameReducer);
+  const width = dimensions.width;
   //const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   let theState;
   React.useEffect(() => {
@@ -86,7 +89,7 @@ function HomeScreen({ navigation }) {
       backgroundColor: "#FF7E00",
     },
     play: {
-      fontSize: 30,
+      fontSize: width*.07,
       fontFamily: 'Nasa',
       color: '#fff',
       textAlign: 'center',marginVertical: 10,
@@ -127,7 +130,10 @@ function HomeScreen({ navigation }) {
       alignSelf: 'center',
     },
   });
-  
+
+  if (!fontLoaded) {
+    return <AppLoading />;
+  }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -148,7 +154,7 @@ function HomeScreen({ navigation }) {
             marginTop: 10,
           }}>
 
-        <IonIcons name="chevron-back" size={35} color={'#fff'}/>
+        <IonIcons name="chevron-back" size={width*.07} color={'#fff'}/>
         </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -156,7 +162,7 @@ function HomeScreen({ navigation }) {
             navigation.navigate('settings');
           }}
         >
-          <Icon name="cog" size={35} color="#ccc" style={styles.bold} />
+          <Icon name="cog" size={width*.07} color="#ccc" style={styles.bold} />
       </TouchableOpacity>
       </View>
       <View
@@ -166,11 +172,11 @@ function HomeScreen({ navigation }) {
                 alignItems: 'center',
               }}
             >
-        <Text style={{fontFamily: 'Bookish', fontSize: 60,
+        <Text style={{fontFamily: 'Bookish', fontSize: width*.14,
       color: '#cdff',}}>
           AKr joV
         </Text>
-        <Text style={{fontFamily: 'Nasa', fontSize: 40,color: '#cdff'}}>
+        <Text style={{fontFamily: 'Nasa', fontSize: width*.09,color: '#cdff'}}>
           Akhar Jor
         </Text> 
         </View>
@@ -186,7 +192,7 @@ function HomeScreen({ navigation }) {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => {dispatch(openHelpModal()); console.log(state.helpPage)}}
       >
-        <Text style={{...styles.play, fontFamily:'Muli', fontSize:20, textDecorationStyle:'solid', textDecorationColor: "#fff", textDecorationLine:"underline"}}>How do I play?</Text>
+        <Text style={{...styles.play, fontFamily:'Muli', fontSize: width*.05, textDecorationStyle:'solid', textDecorationColor: "#fff", textDecorationLine:"underline"}}>How do I play?</Text>
       </TouchableOpacity>
       </View>
       <View style={styles.otherScreens}>
@@ -198,7 +204,7 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <EnIcon name="shield" size={60} color="yellow" style={styles.bold} />
+          <EnIcon name="shield" size={width*.15} color="yellow" style={styles.bold} />
           <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign:'center' }}>Levels</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -208,7 +214,7 @@ function HomeScreen({ navigation }) {
           }}
         >
 
-          <Icon name="heart" size={60/*was 85*/} color="#f55aff" style={styles.bold} />
+          <Icon name="heart" size={width*.15} color="#f55aff" style={styles.bold} />
           <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Get Lives</Text>
         </TouchableOpacity>
       </View>

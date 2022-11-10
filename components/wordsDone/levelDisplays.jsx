@@ -49,12 +49,8 @@ function Level({ title, theWords, setAnswer }) {
     title: {
       padding: 5,
       paddingBottom: 10,
-      fontFamily: 'Mochy',
+      fontFamily: 'Muli',
       fontWeight: '400',
-      borderColor: '#fff',
-      textShadowColor: '#000',
-      textShadowOffset: { width: 0, height: -1 },
-      textShadowRadius: 5,
       height: 50,
       fontSize: (screenWidth<370 ? 20 : 24),
       textAlign: 'center',
@@ -118,23 +114,13 @@ function Level({ title, theWords, setAnswer }) {
     <View style={styles.container}>
       <View style={styles.levels}>
         <TouchableOpacity onPress={() => { setUp(!up); }}>
-          <MaskedView
-            style={{ ...styles.title, width: '100%' }}
-            maskElement={(
-              <View
-                style={{
-                  backgroundColor: 'transparent',
-                }}
-              >
-                <Text style={styles.title}>{title}</Text>
-              </View>
-          )}
+          <View
+            style={{
+              ...styles.title, width: '100%'
+            }}
           >
-            <LinearGradient
-              colors={['#00E9FE', '#274CCC']}
-              style={{ flex: 1 }}
-            />
-          </MaskedView>
+            <Text style={{...styles.title, color: '#274C7C', textShadowColor: '#274C7C', textShadowRadius:1}}>{title}</Text>
+          </View>
         </TouchableOpacity>
       </View>
       <FlatList

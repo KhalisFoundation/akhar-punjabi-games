@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
     View, TouchableOpacity, StyleSheet, Text, ScrollView, Animated, Dimensions
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -25,6 +26,7 @@ export const AttemptInput = ({setWord}) => {
       Muli: require('../../assets/fonts/Muli.ttf'),
     });
 
+    const {height, width} = dimensions;
     const maxLength= () => {
       if (state.firstLength > state.secondLength) {
         return state.firstLength;
@@ -34,7 +36,7 @@ export const AttemptInput = ({setWord}) => {
 
     const styles = StyleSheet.create({
       container: {
-        height: 60,
+        flex: 1,
         width:'100%',
         alignSelf: 'center',
         flexDirection: 'row',
@@ -44,11 +46,10 @@ export const AttemptInput = ({setWord}) => {
         elevation: 5,
       },
       wordAttemptView: {
-          height: 60,
           alignSelf: 'center',
           flexDirection: 'row',
-          justifyContent: 'center',
-          paddingHorizontal: 20,
+          justifyContent: 'space-between',
+          paddingHorizontal: 8,
           backgroundColor: (maxLength() < state.attempt.length) ? "#dd4444" : "#b34e00",
           borderWidth: 1,
           borderColor: (maxLength() < state.attempt.length) ? "#bb0000" : "#ff882c",
@@ -56,14 +57,21 @@ export const AttemptInput = ({setWord}) => {
           elevation: 5,
         },
         wordAttempt: {
-          height: "100%",
           opacity: 0.8,
           color: 'white',
           borderRadius: 100,
           justifyContent: 'center',
           textAlign: 'center',
-          fontSize:  dimensions.size['12'],
+          fontSize: width*0.08,
+          marginEnd: 10,
         },
+        backspace: {
+          textAlign: 'center',
+          alignSelf: 'center',
+          justifyContent: 'center',
+          fontSize: 25,
+          padding: 8,
+        }
     });
 
     const refresh = () => {
@@ -72,10 +80,8 @@ export const AttemptInput = ({setWord}) => {
 
     const FlashView = () => {
       return (
-        <Animatable.View animation="flash" duration={1000} iterationCount={3} onAnimationEnd={()=> {refresh()}}>
-          <View style={styles.wordAttemptView}>
+        <Animatable.View animation="flash" duration={1000} iterationCount={3} onAnimationEnd={()=> {refresh()}} style={styles.wordAttemptView}>
             <Text style={styles.wordAttempt}>{Anvaad.unicode(state.attempt)}</Text>
-          </View>
         </Animatable.View>
       );
     }
@@ -83,28 +89,35 @@ export const AttemptInput = ({setWord}) => {
     const NormalView = () => {
       return (
         <View
-            style={styles.wordAttemptView}
+            style={{...styles.wordAttemptView}}
           >
             {/* flash for a sec if letter is worng and length greater than longest word */}
-
-          <Text style={styles.wordAttempt}>
-            {Anvaad.unicode(state.attempt)}
-          </Text>
-          <TouchableOpacity
-            style={{
-                marginStart: 10,
-                marginTop: 3,
-                alignSelf:'center',
-                justifyContent: 'center',
-              }}
-              onPress={() => {
-                dispatch(setAttempt(state.attempt.slice(0,-1)));
-              }}
-            >
-            <IconM name="backspace" style={{alignSelf: 'center'}} color={"white"} size={dimensions.size['8']} />
-            
-          </TouchableOpacity>
-          
+              <Text
+                style={styles.wordAttempt}
+                selectable>
+                {Anvaad.unicode(state.attempt)}
+              </Text>
+              <IconM
+                name="backspace"
+                color={'white'}
+                style={styles.backspace}
+                onPress={ () => {
+                  dispatch(setAttempt(state.attempt.slice(0,-1)))
+                }}
+              />
+              {/* <TouchableOpacity
+                style={{ padding: 10}}
+                onPress={() => {dispatch(setAttempt(state.attempt.slice(0,-1)))}}
+              >
+              <Icon  
+                name="backspace"
+                color={'white'}
+                size={width*0.05}/>
+              </TouchableOpacity> */}
+            {/* <Text style={{...styles.wordAttempt, paddingEnd:75*(width/height)}}>
+              {Anvaad.unicode(state.attempt)}
+            </Text>
+            <IconM name="backspace" color={"white"} size={width*0.055} style={{position: 'absolute', right:0, alignSelf:'center', justifyContent:'flex-end', padding: 10}} onPress={() => {dispatch(setAttempt(state.attempt.slice(0,-1)))}} /> */}
         </View>
       );
     };

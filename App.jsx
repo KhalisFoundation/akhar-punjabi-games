@@ -27,7 +27,7 @@ function App() {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        //await Analytics.setAnalyticsCollectionEnabled(false);
+        await Analytics.setAnalyticsCollectionEnabled(false);
         console.log('Permission to access location was denied');
         return;
       }

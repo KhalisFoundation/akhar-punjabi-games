@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    View, TouchableOpacity, StyleSheet, Text, ScrollView, Animated, Dimensions
+    View, TouchableOpacity, StyleSheet, Text, ScrollView, Animated
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ import { setBottomHint, setGivenUpWords, setNewWords, setTopHint, setTopWord, se
 export const HintButton = ({wordType}) => {
     const state = useSelector((theState) => theState.theGameReducer);
     const dispatch = useDispatch();
-    const screenWidth = Dimensions.get('window').width;
+    const width = dimensions.width;
 
     const styles = StyleSheet.create({
         giveUp: {
@@ -23,26 +23,26 @@ export const HintButton = ({wordType}) => {
             alignSelf: 'center',
             backgroundColor: "orange",
             opacity: 1,
-            width: dimensions.size['20'],
-            height: dimensions.size['20'],
+            width: width*0.1,
+            height: width*0.1,
             borderRadius: 10,
           },
           giveUpTxt: {
             textAlign: 'center',
             alignItems: 'center',
             alignSelf: 'center',
-            fontSize: dimensions.size['14'],
+            fontSize: width*0.08,
             width: '100%',
             margin: 'auto'
           },
     });
     
     async function hint_used(the_word, eng_text) {
-        await Analytics.logEvent('hint_used', { word: the_word, eng: eng_text });
+        await Analytics.logEvent('hint_used', { the_word: the_word, eng_text: eng_text });
     }
 
     async function given_up_word(the_word, eng_text) {
-        await Analytics.logEvent('given_up_word', { word: the_word, eng: eng_text });
+        await Analytics.logEvent('given_up_word', { the_word: the_word, eng_text: eng_text });
     }
     const hintBtn = (word) => {
       let bgColor;

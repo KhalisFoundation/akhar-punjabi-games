@@ -25,8 +25,8 @@ function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const screenWidth = Dimensions.get('window').width;
-  const screenHeight = Dimensions.get('window').height;
+  const width = Dimensions.get('window').width;
+  const height = Dimensions.get('window').height;
   function gurmukhi(text) {
     if (state.romanised) {
       return Anvaad.translit(text);
@@ -86,8 +86,6 @@ function TheCircle() {
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
-  const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
  
   //animations
   const animatedValue = new Animated.Value(0);
@@ -154,25 +152,25 @@ function TheCircle() {
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      height: 300,
+      height: width,
       width: '100%',
     },
-    clearBox: {
-      width: 0.12*width,
-      height: 0.12*width,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
+    // clearBox: {
+    //   width: 0.12*width,
+    //   height: 0.12*width,
+    //   justifyContent: 'center',
+    //   alignItems: 'center'
+    // },
     characterText: {
       paddingBottom: 5,
-      fontSize: state.romanised ? 22.5 : 30,
+      fontSize: width*0.06,
       color: '#FF7E00',
       textAlign: 'center',
     },
     commonChar: {
       position: 'relative',
-      width: dimensions.size['20'],
-      height: dimensions.size['20'],
+      width: width*0.09,
+      height: width*0.09,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,
@@ -183,10 +181,10 @@ function TheCircle() {
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
 
-  const radius =  110;
+  const radius =  width*0.25;
   const step = (2 * Math.PI) / charArray.length;
-  const new_height = height/(Math.floor(height/100)-1);
-  const new_width = 100 + width/5.25;
+  const new_height = width*0.4;
+  const new_width = width*0.45;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
