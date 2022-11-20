@@ -13,6 +13,7 @@ import {
 import { Header } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -22,6 +23,7 @@ import KhalisDark from '../../assets/khalis_logo_dark.svg';
 import Logo from '../../assets/sikh_games.svg';
 import dimensions, { width } from '../../util/dimensions';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AppLoading from 'expo-app-loading';
 
 function About({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -60,6 +62,9 @@ function About({ navigation }) {
   const darkGradient = ['#ff8008', '#ffc837'];
   const transparent = 'transparent';
 
+  if (!fontsLoaded) {
+    return <AppLoading/>
+  }
   return (
     <SafeAreaView
       style={styles.container}
@@ -69,8 +74,8 @@ function About({ navigation }) {
         barStyle="light-content"
       />
       <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:GLOBAL.COLOR.TOOLBAR_COLOR_ALT2, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
-        <Icon
-            name="arrow-back"
+        <IonIcons
+            name="chevron-back"
             color={GLOBAL.COLOR.TOOLBAR_TINT}
             size={30}
             style={{position: 'absolute', left: 10}}

@@ -367,12 +367,9 @@ export const TheCircle = ({ visited, setVisited, points}) => {
           }
           touchedMe(char, final);
         }}
-          onPressIn={onPressIn}
-          onPressOut={onPressOut}
           key={char}
           style={{
             ...styles.commonChar,
-            ...animatedScaleStyle,
             position: 'absolute',
             left: x,
             top: y,

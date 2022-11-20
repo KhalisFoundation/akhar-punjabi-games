@@ -28,7 +28,7 @@ function Help() {
     const dispatch = useDispatch();
     const state = useSelector((theState) => theState.theGameReducer);
 
-    const [fontLoaded] = useFonts({
+    const [fontsLoaded] = useFonts({
         Muli: require('../../assets/fonts/Muli.ttf'),
     });
 
@@ -102,7 +102,7 @@ function Help() {
         }
     });
 
-    if (!fontLoaded) {
+    if (!fontsLoaded) {
       return <AppLoading />;
     }
 

@@ -214,7 +214,7 @@ function RightWords({ navigation }) {
             {showAnswer.engText}
           </Text>
           {/* to be asked */}
-          { (showAnswer.level < 8)&&(showAnswer.engText) ? (
+          { (showAnswer.engText) ? (
             <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
             {" {"}{Anvaad.translit(showAnswer.engText)}{"}"}
           </Text>) 

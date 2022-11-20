@@ -34,7 +34,7 @@ import { setMoves } from './../../redux/actions';
 function Game2048({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
-  const [fontLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
@@ -267,7 +267,7 @@ function Game2048({ navigation }) {
     }
   }, [state.board]);
 
-  if (!fontLoaded) {
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
   return (

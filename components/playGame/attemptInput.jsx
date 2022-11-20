@@ -12,6 +12,7 @@ import * as Anvaad from 'anvaad-js';
 import * as Animatable from 'react-native-animatable';
 import dimensions from '../../util/dimensions';
 import { setAttempt, setVisited } from '../../redux/actions';
+import AppLoading from 'expo-app-loading';
 
 export const AttemptInput = ({setWord}) => {
     const state = useSelector((theState) => theState.theGameReducer);
@@ -21,6 +22,7 @@ export const AttemptInput = ({setWord}) => {
     const [fontsLoaded] = useFonts({
       Arial: require('../../assets/fonts/Arial.ttf'),
       GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+      GurbaniAkharSG: require('../../assets/fonts/GurbaniAkharSG.ttf'),
       Bookish: require('../../assets/fonts/Bookish.ttf'),
       Mochy: require('../../assets/fonts/Mochy.ttf'),
       Muli: require('../../assets/fonts/Muli.ttf'),
@@ -63,7 +65,7 @@ export const AttemptInput = ({setWord}) => {
           justifyContent: 'center',
           textAlign: 'center',
           fontSize: width*0.08,
-          marginEnd: 10,
+          fontFamily: 'GurbaniAkharSG'
         },
         backspace: {
           textAlign: 'center',
@@ -73,6 +75,13 @@ export const AttemptInput = ({setWord}) => {
           padding: 8,
         }
     });
+    const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
+    function gurmukhi(text) {
+      if (matras.includes(text)) {
+        return ` ${text}`;
+      }
+      return text;
+    }
 
     const refresh = () => {
       dispatch(setAttempt(""));
@@ -81,7 +90,7 @@ export const AttemptInput = ({setWord}) => {
     const FlashView = () => {
       return (
         <Animatable.View animation="flash" duration={1000} iterationCount={3} onAnimationEnd={()=> {refresh()}} style={styles.wordAttemptView}>
-            <Text style={styles.wordAttempt}>{Anvaad.unicode(state.attempt)}</Text>
+            <Text style={styles.wordAttempt}>{gurmukhi(state.attempt)}</Text>
         </Animatable.View>
       );
     }
@@ -95,7 +104,7 @@ export const AttemptInput = ({setWord}) => {
               <Text
                 style={styles.wordAttempt}
                 selectable>
-                {Anvaad.unicode(state.attempt)}
+                {gurmukhi(state.attempt)}
               </Text>
               <IconM
                 name="backspace"
@@ -121,6 +130,10 @@ export const AttemptInput = ({setWord}) => {
         </View>
       );
     };
+
+    if (!fontsLoaded) {
+      return <AppLoading/>;
+    }
 
     return (
       <View style={styles.container}>

@@ -63,6 +63,7 @@ function AppIntro() {
   const lightGradient = ['#FF0076', '#590FB7'];
   const darkGradient = ['#ff8008', '#ffc837'];
   const transparent = 'transparent';
+  
   if (!fontsLoaded) {
     return <AppLoading />;
   }

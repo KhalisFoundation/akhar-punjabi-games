@@ -12,6 +12,7 @@ import { useFonts } from 'expo-font';
 import { HintButton } from '.';
 import dimensions from "../../util/dimensions";
 import { setBottomHint, setGivenUpWords, setNewWords, setTopHint, setTopWord, setCorrectWords, setLevelProgress, setBottomWord, setAttempt, setGiveUpLives } from './../../redux/actions';
+import AppLoading from 'expo-app-loading';
 
 
 export const WordBox = ({ wordType }) => {
@@ -23,6 +24,7 @@ export const WordBox = ({ wordType }) => {
     const [fontsLoaded] = useFonts({
       Arial: require('../../assets/fonts/Arial.ttf'),
       GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+      GurbaniAkharSG: require('../../assets/fonts/GurbaniAkharSG.ttf'),
       Bookish: require('../../assets/fonts/Bookish.ttf'),
       Mochy: require('../../assets/fonts/Mochy.ttf'),
       Muli: require('../../assets/fonts/Muli.ttf'),
@@ -44,7 +46,7 @@ export const WordBox = ({ wordType }) => {
           fontSize: dimensions.size['12'],
           borderRadius: 20,
           height: dimensions.size['20'],
-          fontFamily: 'Prabhki'
+          fontFamily: 'GurbaniAkharSG',
         },
         answerTouchOpacity: {
           justifyContent: 'center',
@@ -86,28 +88,60 @@ export const WordBox = ({ wordType }) => {
     });
     
       // find out how divByMatra should work
-      const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~'];
+      const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
       const divByMatra = (word) => {
         let newWord = '';
-        for (let i = 0; i < (word.length); i += 1) {
-          // newWord += `,${word[i]}${word[i+1]}`;
-          if (word[i + 1] === 'æ') {
-            newWord += `${word[i]}${word[i + 1]},`;
-            i += 1;
-          }
-          if (!matras.includes(word[i])) {
-            if (i + 1 !== word.length && matras.includes(word[i + 1]) && word[i + 1] !== 'i') {
-              newWord += `${word[i]}${word[i + 1]},`;
-              i += 1;
-            } else if (word[i - 1] === 'i') {
-              newWord += `${word[i - 1]}${word[i]},`;
-            } else {
-              newWord += `${word[i]},`;
+        //while loop for the following logic
+        //if the word has a matra, then split the word at the matra and add a space after the matra
+        //if the word does not have a matra, then add a space after the word
+        while (word.length > 0) {
+          if (matras.includes(word[0])) {
+            newWord += word[0];
+            if (word.length > 1 && matras.includes(word[1])) {
+              newWord += word[1];
+              word = word.slice(1);
+            }
+            if (word[0] !== 'i') {
+              newWord += ',';
+            }
+          } else {
+            newWord += word[0]
+            if (word.length > 1 && (!matras.includes(word[1]) || word[1] == 'i')) {
+              newWord += ',';
             }
           }
+          word = word.slice(1);
         }
-        newWord = newWord.slice(0, -1);
-        // console.log(newWord); prints out comma separated word with matras
+        
+        // for (let i = 0; i < (word.length); i += 0) {
+        //   console.log(i,word[i]);
+        //   if (!matras.includes(word[i])) {
+        //     if (i + 1 !== word.length && matras.includes(word[i + 1]) && word[i + 1] !== 'i') {
+        //       newWord += `${word[i]}${word[i + 1]},`;
+        //       i += 2;
+        //     } else {
+        //       newWord += `${word[i]}`;
+        //       if (i+1 !== word.length) {
+        //         newWord += ',';
+        //       }
+        //       i+=1;
+        //     }
+        //   } else {
+        //     if (word[i]=='i') {
+        //       if (i+1 < word.length) {
+        //         newWord += `${word[i]}${word[i + 1]},`;
+        //         i += 2;
+        //       } else {
+        //         newWord += `${word[i]}`;
+        //         i += 1;
+        //       }
+        //     }
+        //   }
+        // }
+        if (newWord[newWord.length - 1] === ',') {
+          newWord = newWord.slice(0, -1);
+        }
+        newWord = newWord.replace(",undefined", "");
         return newWord.split(',');
       };
     
@@ -129,7 +163,7 @@ export const WordBox = ({ wordType }) => {
               return (
                 <View key={`${printed[i]}-${which}${i}}`} style={{borderRadius: 10, backgroundColor: '#ffe0bf', textAlign: 'center', justifyContent:'center', marginHorizontal:5}}>
                   <Text style={{ ...styles.answerText, width: newsize, height: newsize, fontSize: fontsize }} >
-                    {Anvaad.unicode(printed[i])}
+                    {printed[i]}
                   </Text>
                 </View>
               );
@@ -138,6 +172,10 @@ export const WordBox = ({ wordType }) => {
         );
       };
     
+    if (!fontsLoaded) {
+      return <AppLoading />;
+    }
+
     if (wordType === 'top') {
     return (<View
               style={styles.wordBox}>

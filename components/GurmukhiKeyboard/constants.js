@@ -7,10 +7,10 @@ export const withoutMatra = [
 
 export const withMatra = [
   ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M'],
-  ['a', 'A', 'e', 's', 'h', 'k', 'K', 'g', 'G', '`'],
-  ['c', 'C', 'j', 'J', 't', 'T', 'f', 'F', 'x', 'H'],
+  ['a', 'A', 'e', 's', 'h', 'k', 'K', 'g', 'G', 'N'],
+  ['c', 'C', 'j', 'J', 't', 'T', 'f', 'F', 'x', 'R'],
   ['q', 'Q', 'd', 'D', 'n', 'p', 'P', 'b', 'B', 'm'],
-  ['X', 'r', 'l', 'v', 'V', 'S', 'R', 'space'],
+  ['X', 'r', 'l', 'v', 'V', 'S', 'SRI', 'gRM', 'space'],
 ];
 
 export const defaultMatraValue = {
@@ -25,7 +25,7 @@ export const defaultMatraValue = {
   O: 'AO',
   M: ' M',
   '`': ' `',
-  H: ' H',
+  N: ' N',
   R: ' R', 
   ' ': ' ',
 };

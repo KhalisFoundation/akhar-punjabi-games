@@ -10,6 +10,7 @@ import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
+import { useFonts } from 'expo-font';
 import {
   setAttempt,
   setCorrectWords,
@@ -20,6 +21,7 @@ import {
   setConfetti
 } from '../../redux/actions';
 import dimensions from '../../util/dimensions';
+import AppLoading from 'expo-app-loading';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
@@ -27,13 +29,24 @@ function TheCircle() {
   const dispatch = useDispatch();
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
+  
+  const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
   function gurmukhi(text) {
     if (state.romanised) {
       return Anvaad.translit(text);
     }
-    return Anvaad.unicode(text);
-
+    if (matras.includes(text)) {
+      return ` ${text}`;
+    }
+    return text;
   }
+
+  const [fontsLoaded] = useFonts({
+    Arial: require('../../assets/fonts/Arial.ttf'),
+    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+    GurbaniAkharSG: require('../../assets/fonts/GurbaniAkharSG.ttf'),
+    Muli: require('../../assets/fonts/Muli.ttf'),
+  });
 
   const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
@@ -166,6 +179,7 @@ function TheCircle() {
       fontSize: width*0.06,
       color: '#FF7E00',
       textAlign: 'center',
+      fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
@@ -192,6 +206,11 @@ function TheCircle() {
   // ['#ff512f', '#dd2476'], ['#e55d87', '#5fc3e4'], ['#c31432', '#240b36']];
   // const colorRandom = Math.floor(Math.random() * colorCombos.length);
   // const [colorCenter] = useState(colorCombos[colorRandom]);;
+
+  if (!fontsLoaded) {
+    return <AppLoading/>;
+  }
+
   return (
     <AnimatedLinearGradient
       colors={['transparent', 'transparent']}
@@ -226,12 +245,9 @@ function TheCircle() {
               }
               touchedMe(char, final);
             }}
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
             key={char}
             style={{
               ...styles.commonChar,
-              ...animatedScaleStyle,
               position: 'absolute',
               left: x,
               top: y,

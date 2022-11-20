@@ -42,6 +42,7 @@ function WordsDoneModal() {
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
+    Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
 
   const styles = StyleSheet.create({
@@ -55,7 +56,6 @@ function WordsDoneModal() {
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
-      elevation: 5,
       padding: 10,
     },
     wordBox: {
@@ -75,7 +75,7 @@ function WordsDoneModal() {
     wordDoneText: {
       fontSize: 30,
       textAlign: 'center',
-      fontFamily: 'Bookish',
+      fontFamily: 'Prabhki',
       color: 'white',
     },
     meaningText: {

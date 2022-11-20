@@ -372,7 +372,7 @@ function GameScreen({ navigation }) {
         
         <AttemptInput setWord={setWord}/>
 
-        <View style={{flexDirection:'column', justifyContent: 'space-evenly', height:'40%'}}>
+        <View style={{flexDirection:'column', justifyContent: 'space-evenly', height:'50%'}}>
               {/* {keyboardGrid.map((letters, index) => {
                 return (
                   <View style={styles.keyboardRow} >
@@ -408,11 +408,11 @@ function GameScreen({ navigation }) {
             })} */}
             <TheCircle/>
           {/*condition to show hint button only when both words are not guessed*/}
-          <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', padding:10}}>
+          <View style={{width: '100%', backgroundColor:"transparent", flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
             {((state.topHint.length !== state.firstLength) && (state.topWord.length !== state.firstLength)) ? <HintButton wordType={"top"}/> : <HintButton wordType={"bottom"}/>}
           </View>
         </View>
-        </View>
+      </View>
     </SafeAreaView>
     { state.confetti ? <ConfettiCannon count={200} origin={{x: -10, y: 0}} fallSpeed={2000} autoStart/> : null }
     </LinearGradient>

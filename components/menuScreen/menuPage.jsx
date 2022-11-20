@@ -38,7 +38,7 @@ function MenuScreen({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   const width = dimensions.width;
-  const [fontLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
@@ -165,7 +165,7 @@ function MenuScreen({ navigation }) {
     await Analytics.logEvent('game_chosen', { game_name: game_name });
   }
 
-  if (!fontLoaded) {
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
   return (

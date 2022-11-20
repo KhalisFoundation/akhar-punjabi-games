@@ -30,7 +30,7 @@ import dimensions from '../../util/dimensions';
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   // const state = useSelector((theState) => theState.theGameReducer);
-  const [fontLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
     Bookish: require('../../assets/fonts/Bookish.ttf'),
@@ -131,7 +131,7 @@ function HomeScreen({ navigation }) {
     },
   });
 
-  if (!fontLoaded) {
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
   return (
@@ -143,24 +143,19 @@ function HomeScreen({ navigation }) {
         
         { state.helpPage ? <Help /> : null }
       {/* <LoadingModal visible={loadingScreenStatus} /> */}
-      <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',width:'100%', paddingHorizontal:15}}>
+      <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',width:'100%', paddingHorizontal:5, marginTop:5}}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
-        style={{width:'100%'}}
+        style={{padding:5}}
       >
-        <View
-          style={{
-            alignSelf: 'flex-start',
-            marginTop: 10,
-          }}>
 
         <IonIcons name="chevron-back" size={width*.07} color={'#fff'}/>
-        </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('settings');
           }}
+          style={{padding:5}}
         >
           <Icon name="cog" size={width*.07} color="#ccc" style={styles.bold} />
       </TouchableOpacity>
