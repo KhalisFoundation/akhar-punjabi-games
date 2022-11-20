@@ -222,7 +222,7 @@ function MoreGiveUps({ route, navigation }) {
     'DMn gurU hrikRSn swihb jI',
     'DMn gurU qyg bhwdr swihb jI',
     'DMn gurU goibMd isMG swihb jI',
-    'DMn gurU gRMQ swihb jI',
+    'DMn SRI gurU gRMQ swihb jI',
     'DMn gurU DMn gurU ipAwry',
   ];
   const getRandomWord = () => {
