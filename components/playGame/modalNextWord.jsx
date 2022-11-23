@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  StyleSheet, Modal, Text, TouchableOpacity, Animated, ImageBackground, View
+  StyleSheet, Modal, Text, TouchableOpacity, Animated, View
 } from 'react-native';
 import { useFonts } from 'expo-font';
 

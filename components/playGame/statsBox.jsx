@@ -1,6 +1,7 @@
+/* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, TextView, TouchableOpacity, StyleSheet, Text
+  View, TouchableOpacity, StyleSheet, Text
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import EnIcon from 'react-native-vector-icons/Entypo';
