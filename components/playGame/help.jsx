@@ -16,8 +16,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {useSelector, useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import HelpImg1 from '../../assets/helpPage1.svg';
-import HelpImg2 from '../../assets/helpPage2.svg';
+import WordWheel from '../../assets/wordWheel.svg';
+import Tools from '../../assets/toolTips.svg';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 import Dimensions from '../../util/dimensions';
@@ -117,20 +117,30 @@ function Help() {
                 <IonIcons name="close" size={30} color="#fff" style={{marginLeft: 10}} onPress={() => {dispatch(closeHelpModal())}} />
                 <Text style={styles.header}>
                     Welcome to Akhar Jor game.
-                    {'\n\n'}
-                    Click to select Gurmukhi letters to create word from meaning.
+                    {'\n'}
                 </Text>
-                <HelpImg1 height={400}  style={styles.img}/>
+                <Text style={{...styles.header, textAlign: 'justify' }}>
+                    The game where you link up letters in Gurmukhi to spell a word associated with a Sikh-related, Gurbani, or Punjabi context. Here are some of the things you need to know.
+                </Text>
+                {/* <HelpImg1 height={400}  style={styles.img}/> */}
 
-                <Text style={styles.header}>
-                    {'\n\n'}
-                    Some basics to get you started!
+                <Text style={{...styles.header, textAlign: 'justify'}}>
+                    {'\n'}
+                    ◎ The game is split into many levels - in each level you will need to spell at least ten words using the Gurmukhi wheel of letters. The words get harder at each level but you are provided with a clue to help you solve the word.
+                    {'\n'}
                 </Text>
-                <HelpImg2 height={300}  style={styles.img}/>
-                
-                <Text style={styles.header}>
+                <WordWheel height={350}  style={styles.img}/>
+                <Text style={{...styles.header, textAlign: 'justify'}}>
+                    {'\n'}
+                    Simply click the letters in the wheel to spell the word. If you get it wrong, you must try again. You can try as many times as you want without getting penalized. And if you get it right, you will be awarded points and the word will be added to your list of words.
                     {'\n\n'}
-                    The more you try, the more you learn Punjabi!
+                    ◎ If you get stuck and need help, click on the bulb icon in the bottom left for a clue. The helper will fill in one letter for you - but beware, this will cost you credits you have accumulated that you can see by looking at the counter in the top-right corner.
+                    {'\n'}
+                </Text>
+                <Tools height={300}  style={styles.img}/>
+                <Text style={{...styles.header, textAlign: 'justify' }}>
+                    {'\n'}
+                    The counter tells you how many credits you have left but clicking on the + icon next to it will give you the opportunity to earn some extra ones. You will just need to spell out a sentence to be gifted credits.
                 </Text>
 
                 <TouchableOpacity

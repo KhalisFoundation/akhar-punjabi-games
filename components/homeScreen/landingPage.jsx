@@ -210,7 +210,7 @@ function HomeScreen({ navigation }) {
         >
 
           <Icon name="heart" size={width*.15} color="#f55aff" style={styles.bold} />
-          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Get Lives</Text>
+          <Text style={{ ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white' }}>Credits</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity

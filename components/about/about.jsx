@@ -117,24 +117,25 @@ function About({ navigation }) {
 
         {/* Explaining Akhar Jor*/}
         <Text style={{ fontFamily: 'Nasa', fontSize: 25, color: black }}>{'\n'}Akhar Jor</Text>
-        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black, margin:10, marginTop: 0 }}>
+        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black, margin:10, marginTop: 0, marginStart:0 }}>
           {''}
-          utilizes a collection of commonly used Punjabi/Gurmukhi words to create an interactive game that is fun and easy to learn,
-          for spreading the knowledge of our Mother Tongue, Punjabi.
+          This game uses a collection of commonly used Gurmukhi/Punjabi words to create a game that is fun and easy to play. It will help you increase your vocabulary and understand more words that appear in Gurbani.
           {' '}
       </Text>
 
       {/* Explaining 2048 */}
       <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: 30, color: black}}>{'\n'}2048</Text>
-        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black, margin:10, marginTop: 0 }}>
-          {''}utilizes the concept of a popular number game 2048 combined with Punjabi numerals to make learning easy.
+        <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black, margin:10, marginTop: 0, marginStart:0 }}>
+          {''}A popular game combined with Punjabi numerals to help you learn and recognize numbers.
         </Text>
 
       {/* Welcoming comments and suggestions */}
       <Text style={{ fontSize: 16, fontFamily: 'Muli', color: black }}>
       <Text>{'\n'}</Text>
       <Text>
-        We welcome your comments, suggestions, and corrections!
+        Khalis Foundation is a non-profit, 501(c)3 organization registered in, and operated from, California, USA. Our focus is spreading Gurbani and influencing a Sikh way of life through the education and technology.
+        {'\n\n'}
+        We welcome your comments and corrections!
         {' '}
         For information, suggestions, or help, visit us at
         {'  '}

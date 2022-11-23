@@ -257,7 +257,7 @@ function MoreGiveUps({ route, navigation }) {
             fontSize: (screenWidth<370 ? 16 : 20),
             fontFamily: 'Muli',
             margin:0,
-          }}>Get More Lives</Text>
+          }}>Get More Credits</Text>
       </View>
       <ScrollView
         scrollEventThrottle={16}
