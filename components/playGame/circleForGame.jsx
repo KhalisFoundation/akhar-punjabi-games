@@ -1,16 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable no-console */
 /* eslint-disable react-native/no-color-literals */
 import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated, Easing, View, Dimensions
+  Text, StyleSheet, TouchableOpacity, Animated, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useState } from 'react';
 import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 import {
   setAttempt,
   setCorrectWords,
@@ -20,16 +20,13 @@ import {
   setNewWords,
   setConfetti
 } from '../../redux/actions';
-import dimensions from '../../util/dimensions';
-import AppLoading from 'expo-app-loading';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
-  
+  const { width } = Dimensions.get('window');
+
   const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
   function gurmukhi(text) {
     if (state.romanised) {
@@ -48,8 +45,8 @@ function TheCircle() {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
-  const delay = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
+  const delay = (ms) => new Promise(
+    (resolve) => setTimeout(resolve, ms)
   );
 
   const ifCorrectWord = async (word) => {
@@ -99,41 +96,41 @@ function TheCircle() {
   }
   const { charArray } = state;
   const prevAttempt = state.attempt;
- 
-  //animations
-  const animatedValue = new Animated.Value(0);
 
-  const buttonScale = animatedValue.interpolate({
-      inputRange: [0, 0.5, 1],
-      outputRange: [1, 1.05, 1.1]
-  });
+  // animations
+  // const animatedValue = new Animated.Value(0);
+
+  // const buttonScale = animatedValue.interpolate({
+  //   inputRange: [0, 0.5, 1],
+  //   outputRange: [1, 1.05, 1.1]
+  // });
 
   // const buttonRotate = animatedValue.interpolate({
   //     inputRange: [0, 0.5, 1],
   //     outputRange: ['0deg', '90deg', '180deg']
   // })
 
-  const onPressIn = () => {
-      Animated.timing(animatedValue, {
-        toValue: 1,
-        duration: 500,
-        easing: Easing.linear,
-        useNativeDriver: true
-      }).start();
-  }
+  // const onPressIn = () => {
+  //   Animated.timing(animatedValue, {
+  //     toValue: 1,
+  //     duration: 500,
+  //     easing: Easing.linear,
+  //     useNativeDriver: true
+  //   }).start();
+  // };
 
-  const onPressOut = () => {
-      Animated.timing(animatedValue, {
-          toValue: 0,
-          duration: 500,
-          easing: Easing.linear,
-          useNativeDriver: true
-        }).start();
-  };
+  // const onPressOut = () => {
+  //   Animated.timing(animatedValue, {
+  //     toValue: 0,
+  //     duration: 500,
+  //     easing: Easing.linear,
+  //     useNativeDriver: true
+  //   }).start();
+  // };
 
-  const animatedScaleStyle = {
-      transform: [{scale: buttonScale}]
-  };
+  // const animatedScaleStyle = {
+  //   transform: [{ scale: buttonScale }]
+  // };
 
   // // rotation animations
   // const [rotateAnimation, setRotateAnimation] = useState(new Animated.Value(0));
@@ -162,7 +159,6 @@ function TheCircle() {
   //   width: screenWidth
   // };
 
-
   const styles = StyleSheet.create({
     lettersCircle: {
       height: width,
@@ -176,15 +172,15 @@ function TheCircle() {
     // },
     characterText: {
       paddingBottom: 5,
-      fontSize: width*0.06,
+      fontSize: width * 0.06,
       color: '#FF7E00',
       textAlign: 'center',
       fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
-      width: width*0.09,
-      height: width*0.09,
+      width: width * 0.09,
+      height: width * 0.09,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,
@@ -195,10 +191,10 @@ function TheCircle() {
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
 
-  const radius =  width*0.25;
+  const radius = width * 0.25;
   const step = (2 * Math.PI) / charArray.length;
-  const new_height = width*0.4;
-  const new_width = width*0.45;
+  const newHeight = width * 0.4;
+  const newWidth = width * 0.45;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],
@@ -208,7 +204,7 @@ function TheCircle() {
   // const [colorCenter] = useState(colorCombos[colorRandom]);;
 
   if (!fontsLoaded) {
-    return <AppLoading/>;
+    return <AppLoading />;
   }
 
   return (
@@ -218,9 +214,9 @@ function TheCircle() {
     >
       {
       charArray.map((char) => {
-        const x = Math.round(new_width + radius * Math.cos(angle));
-        const y = Math.round(new_height + radius * Math.sin(angle));
-        //console.log("height: %d, width: %d, x %d, y %d", new_height, new_width, x, y)
+        const x = Math.round(newWidth + radius * Math.cos(angle));
+        const y = Math.round(newHeight + radius * Math.sin(angle));
+        // console.log("height: %d, width: %d, x %d, y %d", newHeight, newWidth, x, y)
         // let theLetter = String.fromCharCode(char);
         const theLetter = gurmukhi(char);
         angle += step;
@@ -254,14 +250,15 @@ function TheCircle() {
               zIndex: 0,
             }}
           >
-            <LinearGradient colors={["#ffe400", "#848900"]} style={styles.commonChar}>
-            <Text key={char} style={{...styles.characterText, zIndex: 0, color: '#032b45'}}>
-              {theLetter}
-            </Text>
+            <LinearGradient colors={['#ffe400', '#848900']} style={styles.commonChar}>
+              <Text key={char} style={{ ...styles.characterText, zIndex: 0, color: '#032b45' }}>
+                {theLetter}
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
         );
-      })}
+      })
+}
       {/* {(state.attempt == "") ? <View style={{borderRadius: 25,
           height: 40,
           width: 40,alignSelf: 'center'}}></View> :
@@ -272,8 +269,8 @@ function TheCircle() {
           height: 40,
           width: 40,
           alignSelf: 'center',
-          top: new_height,
-          elevation: 5, 
+          top: newHeight,
+          elevation: 5,
           ...animatedScaleStyle
         }}
         onPress={() => {

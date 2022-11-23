@@ -1,34 +1,32 @@
+/* eslint-disable */ 
 import {
   StyleSheet,
   View,
   Share,
-  ScrollView,
   Text,
   PanResponder
-} from 'react-native'
+} from 'react-native';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import GameMessage from './GameMessage';
 import React, {
   Component
-} from 'react'
+} from 'react';
+import GameMessage from './GameMessage';
 // Modules
-import StorageManager from '../utils/localStorageManager'
-import Grid from '../utils/grid'
-import Tile from '../utils/tile'
+import StorageManager from '../utils/localStorageManager';
+import Grid from '../utils/grid';
+import Tile from '../utils/tile';
 // Views
-import Heading from './Heading'
-import GameContainer from './GameContainer'
-import YouWonModal from '../resultModal';
+import Heading from './Heading';
+import GameContainer from './GameContainer';
 
-// Dimensions
-import Dimensions from '../../../util/dimensions'
-import { BelowGame } from './BelowGame'
+import { BelowGame } from './BelowGame';
 import dimensions from '../../../util/dimensions';
-const { height, width } = Dimensions.get('window')
+
+const { width } = dimensions.get('window');
 
 // StorageManager
-const storageManager = new StorageManager()
+const storageManager = new StorageManager();
 
 const styles = StyleSheet.create({
   container: {
@@ -36,40 +34,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    backgroundColor: "#274C7C",
-    paddingHorizontal: Dimensions.size["5"],
+    backgroundColor: '#274C7C',
+    paddingHorizontal: dimensions.size['5'],
   }
-})
+});
 
 class Container extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tiles: [],
+      score: 0,
+      over: false,
+      size: props.size
+    };
 
-  state = {
-    tiles: [],
-    score: 0,
-    over: false,
-    win: false,
-    keepPlaying: false,
-    grid: new Grid(this.props.size),
-    size: this.props.size
-  };
+  }
 
   componentWillMount() {
-    this.setup()
+    this.setup();
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (e, gestureState) => true,
       onMoveShouldSetPanResponder: (e, gestureState) => true,
       onPanResponderGrant: (e, gestureState) => {
-        if (this.moving == false) {
-          this.moving = true
+        if (this.moving === false) {
+          this.moving = true;
         }
       },
       onPanResponderMove: (e, gestureState) => { },
       onPanResponderRelease: (e, gestureState) => {
         if (this.moving) {
-          this.moving = false
+          this.moving = false;
 
-          const dx = gestureState.dx;
-          const dy = gestureState.dy;
+          const { dx } = gestureState;
+          const { dy } = gestureState;
           const absDx = dx > 0 ? dx : -dx;
           const absDy = dy > 0 ? dy : -dy;
           const canMove = absDx > absDy ? absDx - absDy > 10 : absDx - absDy < -10;
@@ -78,72 +76,82 @@ class Container extends Component {
           }
         }
       }
-    })
+    });
     this.moving = false;
   }
-
-  
 
   render() {
     return (
       <View style={styles.container}>
         <GameMessage
-					  won={this.state.won}
-            over={this.state.over}
-            onKeepGoing={() => this.keepGoing()}
-            onTryAgain={() => this.restart()}
-          />
-          <View style={styles.container} >
+          won={this.state.won}
+          over={this.state.over}
+          onKeepGoing={() => this.keepGoing()}
+          onTryAgain={() => this.restart()}
+        />
+        <View style={styles.container}>
           <MaskedView
-              style={{ width: width, height: dimensions.size['30'] }}
-              maskElement={(
-                <View
+            style={{ width, height: dimensions.size['30'] }}
+            maskElement={(
+              <View
                 style={{
                   backgroundColor: 'transparent',
                   justifyContent: 'center',
                   alignItems: 'center',
-                }}>
-                  <Text style={{fontFamily: 'GurbaniHeavy', fontSize: dimensions.size['27']}}>
-                    2048
-                  </Text> 
-                </View>
+                }}
+              >
+                <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: dimensions.size['27'] }}>
+                  2048
+                </Text>
+              </View>
             )}
-            >
-              <LinearGradient
-                colors={['#ff8008', '#ffc837'] }
-                style={{ flex: 1 }}
-              />
-            </MaskedView>
-          {/* <AboveGame onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
+          >
+            <LinearGradient
+              colors={['#ff8008', '#ffc837']}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
+          {/* <AboveGame
+              onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
           <Heading score={this.state.score} best={this.state.best} />
           <View {...this._panResponder.panHandlers}>
-            <GameContainer size={this.state.size} tiles={this.state.tiles} won={this.state.won} over={this.state.over}
-              onKeepGoing={() => this.keepGoing()} onTryAagin={() => this.restart()} move={this.move}>
-            </GameContainer>
+            <GameContainer
+              size={this.state.size}
+              tiles={this.state.tiles}
+              won={this.state.won}
+              over={this.state.over}
+              onKeepGoing={() => this.keepGoing()}
+              onTryAagin={() => this.restart()}
+              move={this.move}
+            />
           </View>
           <BelowGame onRestart={() => this.restart()} />
-      </View></View>
-    )
+        </View>
+      </View>
+    );
   }
+
   getRandomTiles = () => {
     const ret = [];
     for (let i = 0; i < this.props.startTiles; i++) {
-      ret.push(this.getRandomTile())
+      ret.push(this.getRandomTile());
     }
     return ret;
   }
+
   getRandomTile = () => {
     const value = Math.random() < 0.9 ? 2 : 4;
     const pos = this.grid.randomAvailableCell();
     const tile = new Tile(pos, value);
     this.grid.insertTile(tile);
     return {
-      value: value,
+      value,
       x: pos.x,
       y: pos.y,
       prog: tile.prog
     };
   }
+
   continueGame = () => {
     this.won = false;
     this.over = false;
@@ -151,36 +159,40 @@ class Container extends Component {
   }
 
   restart = () => {
-    storageManager.clearGameState()
-    this.continueGame()  // Clear the game won/lost message
-    this.setup()
+    storageManager.clearGameState();
+    this.continueGame(); // Clear the game won/lost message
+    this.setup();
   }
+
   share = () => {
-    //console.log("Share clicked")
+    // console.log("Share clicked")
     Share.share({
       message: 'https://play.google.com/store/apps/details?id=com.coins2048',
       title: '2048 Coins is a challenging cryptocurrency puzzle'
     }, {
-        dialogTitle: 'Share'
-      });
+      dialogTitle: 'Share'
+    });
   }
+
   // Keep playing after winning (allows going over 2048)
   keepGoing = () => {
-    this.keepPlaying = true
-    this.continueGame()  // Clear the game won/lost message
+    this.keepPlaying = true;
+    this.continueGame(); // Clear the game won/lost message
   }
+
   // Return true if the game is lost, or has won and the user hasn't kept playing
   isGameTerminated = () => {
-    return this.over || (this.won && !this.keepPlaying)
+    return this.over || (this.won && !this.keepPlaying);
   }
+
   setGameState = (previousState) => {
     // Reload the game from a previous game if present
     if (previousState) {
       this.grid = new Grid(previousState.grid.size, previousState.grid.cells); // Reload grid
-      this.score = parseInt(previousState.score);
-      this.over = (previousState.over == true || previousState.over == 'true');
-      this.won = (previousState.won == true || previousState.won == 'true');
-      this.keepPlaying = (previousState.keepPlaying == true || previousState.keepPlaying == 'true');
+      this.score = parseInt(previousState.score, 10);
+      this.over = (previousState.over === true || previousState.over === 'true');
+      this.won = (previousState.won === true || previousState.won === 'true');
+      this.keepPlaying = (previousState.keepPlaying === true || previousState.keepPlaying === 'true');
 
       this.actuate();
     } else {
@@ -190,47 +202,57 @@ class Container extends Component {
       this.won = false;
       this.keepPlaying = false;
 
-      storageManager.getBestScore(bestScore => {
-        this.setState({ score: this.score, best: bestScore, tiles: this.getRandomTiles(), over: this.over, won: this.won });
-      })
+      storageManager.getBestScore((bestScore) => {
+        this.setState({
+          score: this.score,
+          best: bestScore,
+          tiles: this.getRandomTiles(),
+          over: this.over,
+          won: this.won
+        });
+      });
     }
   }
+
   // Set up the game
   setup = () => {
-    storageManager.getGameState((result) => this.setGameState(result))
+    storageManager.getGameState((result) => this.setGameState(result));
   }
+
   // Set up the initial tiles to start the game with
   addStartTiles = () => {
     for (let i = 0; i < this.startTiles; i++) {
-      this.addRandomTile()
+      this.addRandomTile();
     }
   }
+
   // Adds a tile in a random position
   addRandomTile = () => {
-    const cellsAvailable = this.grid.cellsAvailable()
+    const cellsAvailable = this.grid.cellsAvailable();
 
     if (cellsAvailable) {
       const value = Math.random() < 0.9 ? 2 : 4;
-      const tile = new Tile(this.grid.randomAvailableCell(), value)
+      const tile = new Tile(this.grid.randomAvailableCell(), value);
 
-      this.grid.insertTile(tile)
+      this.grid.insertTile(tile);
     }
   }
+
   // Sends the updated grid to the actuator
   actuate = () => {
     // Clear the state when the game is over (game over only, not win)
     if (this.over) {
-      storageManager.clearGameState()
+      storageManager.clearGameState();
     } else {
-      storageManager.setGameState(this.serialize())
+      storageManager.setGameState(this.serialize());
     }
 
-    const tiles = []
+    const tiles = [];
     this.grid.cells.forEach((column) => {
       column.forEach((cell) => {
         if (cell) {
-          //console.log("cell");
-          //console.log(cell);
+          // console.log("cell");
+          // console.log(cell);
           tiles.push({
             x: cell.x,
             y: cell.y,
@@ -246,16 +268,20 @@ class Container extends Component {
       tiles = this.getRandomTiles();
     }
 
-    storageManager.getBestScore(bestScore => {
+    storageManager.getBestScore((bestScore) => {
       if (bestScore < this.score) {
         storageManager.setBestScore(this.score);
-        this.setState({ score: this.score, best: this.score, tiles: tiles, won: this.won, over: this.over });
-      }
-      else {
-        this.setState({ score: this.score, best: bestScore, tiles: tiles, won: this.won, over: this.over });
+        this.setState({
+          score: this.score, best: this.score, tiles, won: this.won, over: this.over
+        });
+      } else {
+        this.setState({
+          score: this.score, best: bestScore, tiles, won: this.won, over: this.over
+        });
       }
     });
   }
+
   // Represent the current game as an object
   serialize = () => {
     return {
@@ -264,8 +290,9 @@ class Container extends Component {
       over: this.over,
       won: this.won,
       keepPlaying: this.keepPlaying,
-    }
+    };
   }
+
   // Save all tile positions and remove merger info
   prepareTiles = () => {
     this.grid.eachCell((x, y, tile) => {
@@ -273,28 +300,31 @@ class Container extends Component {
         tile.mergedFrom = null;
         tile.savePosition();
       }
-    })
+    });
   }
+
   // Move a tile and its representation
   moveTile = (tile, cell) => {
-    this.grid.cells[tile.x][tile.y] = null
-    this.grid.cells[cell.x][cell.y] = tile
-    tile.updatePosition(cell)
+    this.grid.cells[tile.x][tile.y] = null;
+    this.grid.cells[cell.x][cell.y] = tile;
+    tile.updatePosition(cell);
   }
+
   // Move tiles on the grid in the specified direction
   move = (direction) => {
     // 0: up, 1: right, 2: down, 3: left
     if (this.isGameTerminated()) return; // Don't do anything if the game's over
-    let cell, tile;
+    let cell; let
+      tile;
     const vector = this.getVector(direction);
     const traversals = this.buildTraversals(vector);
     let moved = false;
     // Save the current tile positions and remove merger information
     this.prepareTiles();
     // Traverse the grid in the right direction and move tiles
-    traversals.x.forEach(x => {
-      traversals.y.forEach(y => {
-        cell = { x: x, y: y };
+    traversals.x.forEach((x) => {
+      traversals.y.forEach((y) => {
+        cell = { x, y };
         tile = this.grid.cellContent(cell);
 
         if (tile) {
@@ -336,17 +366,19 @@ class Container extends Component {
       this.actuate();
     }
   }
+
   // Get the vector representing the chosen direction
   getVector = (direction) => {
     // Vectors representing tile movement
     const map = {
       0: { x: 0, y: -1 }, // Up
-      1: { x: 1, y: 0 },  // Right
-      2: { x: 0, y: 1 },  // Down
-      3: { x: -1, y: 0 },   // Left
-    }
-    return map[direction]
+      1: { x: 1, y: 0 }, // Right
+      2: { x: 0, y: 1 }, // Down
+      3: { x: -1, y: 0 }, // Left
+    };
+    return map[direction];
   }
+
   // Build a list of positions to traverse in the right order
   buildTraversals = (vector) => {
     const traversals = { x: [], y: [] };
@@ -362,6 +394,7 @@ class Container extends Component {
 
     return traversals;
   }
+
   findFarthestPosition = (cell, vector) => {
     let previous;
 
@@ -369,14 +402,15 @@ class Container extends Component {
     do {
       previous = cell;
       cell = { x: previous.x + vector.x, y: previous.y + vector.y };
-    } while (this.grid.withinBounds(cell) &&
-      this.grid.cellAvailable(cell));
+    } while (this.grid.withinBounds(cell)
+      && this.grid.cellAvailable(cell));
 
     return {
       farthest: previous,
       next: cell // Used to check if a merge is required
     };
   }
+
   movesAvailable = () => this.grid.cellsAvailable() || this.tileMatchesAvailable();
 
   // Check for available matches between tiles (more expensive check)
@@ -385,7 +419,7 @@ class Container extends Component {
 
     for (let x = 0; x < this.state.size; x++) {
       for (let y = 0; y < this.state.size; y++) {
-        tile = this.grid.cellContent({ x: x, y: y });
+        tile = this.grid.cellContent({ x, y });
 
         if (tile) {
           for (let direction = 0; direction < 4; direction++) {
@@ -402,9 +436,10 @@ class Container extends Component {
       }
     }
 
-    return false
+    return false;
   }
+
   positionsEqual = (first, second) => first.x === second.x && first.y === second.y;
 }
 
-export default Container
+export default Container;

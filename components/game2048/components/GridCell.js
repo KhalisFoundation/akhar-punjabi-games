@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import React from 'react';
 
 import Dimensions from '../../../util/dimensions';
+
 const { width } = Dimensions.get('window');
 
 const MARGIN_WIDTH = Dimensions.size['2'];
@@ -12,10 +13,10 @@ const styles = {
     width: ITEM_WIDTH,
     height: ITEM_WIDTH,
     marginHorizontal: MARGIN_WIDTH,
-    backgroundColor: '#0005',// 'rgba(238, 228, 218, 0.35)',
+    backgroundColor: '#0005', // 'rgba(238, 228, 218, 0.35)',
     borderRadius: Dimensions.size['4'],
   }
-}
+};
 
 const GridCell = () => <View style={styles.container} />;
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
@@ -6,29 +7,26 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-  TextInput,
   Dimensions,
-  Animated,
   Platform,
   ScrollView
 } from 'react-native';
 import { useState } from 'react';
-import { Header } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
-import { getKeyboardKeyValue, getMatraAkhar } from '../GurmukhiKeyboard/utils';
-import { defaultMatraValue, matras, withMatra, withoutMatra } from '../GurmukhiKeyboard/constants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { setGiveUpLives, setLivesWord } from '../../redux/actions';
-import { useEffect } from 'react';
+
 import * as Analytics from 'expo-firebase-analytics';
-import dimensions, { height } from '../../util/dimensions';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { setGiveUpLives } from '../../redux/actions';
+import {
+  defaultMatraValue, matras, withMatra, withoutMatra
+} from '../GurmukhiKeyboard/constants';
+import { getKeyboardKeyValue, getMatraAkhar } from '../GurmukhiKeyboard/utils';
+import dimensions from '../../util/dimensions';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -43,8 +41,7 @@ function MoreGiveUps({ route, navigation }) {
   });
 
   const screenWidth = Dimensions.get('window').width;
-  //console.log('screenWidth: ', screenWidth);
-  const screenHeight = Dimensions.get('window').height;
+  // console.log('screenWidth: ', screenWidth);
 
   const [textEntry, setTextEntry] = useState('');
 
@@ -83,33 +80,24 @@ function MoreGiveUps({ route, navigation }) {
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor: "#D1FBFF",
-      paddingTop: Platform.OS == 'android' ? StatusBar.height : 0,
+      backgroundColor: '#D1FBFF',
+      paddingTop: Platform.OS === 'android' ? StatusBar.height : 0,
       height: '100%',
       width: '100%',
     },
-    header: {
-        width: '100%',
-        height: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    headerText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#333',
-        letterSpacing: 1,
-    },
     icon: {
-        position: 'absolute',
-        left: 16,
+      position: 'absolute',
+      left: 16,
     },
     scrollview: {
       flex: 1,
       flexDirection: 'column',
       padding: 8,
-      height: '100%', width: '100%'
+      height: '100%',
+      width: '100%'
+    },
+    scrollContent: {
+      flexGrow: 1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'
     },
     keyboardRow: {
       width: '100%',
@@ -133,9 +121,6 @@ function MoreGiveUps({ route, navigation }) {
       backgroundColor: '#274C7C',
       elevation: 5,
     },
-    keyText: {
-      color: 'white',
-    },
     instructionsText: {
       fontFamily: 'Muli',
       backgroundColor: 'white',
@@ -147,14 +132,6 @@ function MoreGiveUps({ route, navigation }) {
       padding: 5,
       textAlign: 'center',
       elevation: 5,
-    },
-    infoText: {
-      fontFamily: 'Muli',
-      fontSize: 16,
-      color: '#000',
-      padding: 5,
-      textAlign: 'center',
-      margin:5
     },
     DHANcover: {
       margin: 5,
@@ -179,7 +156,7 @@ function MoreGiveUps({ route, navigation }) {
       borderRadius: 15,
       marginBottom: 15,
       elevation: 5,
-      backgroundColor: "#FF7E00",
+      backgroundColor: '#FF7E00',
     },
     submit: {
       fontFamily: 'Nasa',
@@ -203,12 +180,47 @@ function MoreGiveUps({ route, navigation }) {
       paddingHorizontal: 10
     },
     upText: {
-      color: 'white',
       fontSize: 15,
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+      color: '#D1FBFF'
+    },
+    header: {
+      width: '100%', height: dimensions.size['24'], backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+    },
+    headerText: {
+      color: '#D1FBFF',
+      fontSize: (screenWidth < 370 ? 16 : 20),
+      fontFamily: 'Muli',
+      margin: 0,
+    },
+    info: { width: '100%', alignItems: 'center' },
+    fullWidth: { width: '100%' },
+    textLayout: {
+      margin: 5,
+      width: '99%',
+      elevation: 5,
+      borderRadius: 20,
+      backgroundColor: '#274C7C',
+      shadowColor: '#000',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 10
+    },
+    text: {
+      textAlign: 'center',
+      padding: 5,
+      textShadowRadius: 10,
+      fontSize: 26,
+      width: '90%',
+      height: 50,
+      fontFamily: 'Prabhki',
+      color: '#FF7E00',
+      alignItems: 'flex-start'
+    },
+    backspace: { color: 'white', fontSize: (screenWidth < 370 ? 14 : 20) },
+    keyText: { color: 'white', fontFamily: 'Bookish', fontSize: (screenWidth < 370 ? 15 : 22) }
   });
-  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
   const wordsToType = [
     'vwihgurU',
@@ -230,8 +242,8 @@ function MoreGiveUps({ route, navigation }) {
   };
   const [word, setWord] = useState(getRandomWord());
 
-  async function used_get_lives(current_lives) {
-    await Analytics.logEvent('used_get_lives', {lives_count: current_lives});
+  async function usedGetLives(currentLives) {
+    await Analytics.logEvent('used_get_lives', { lives_count: currentLives });
   }
 
   if (!fontsLoaded) {
@@ -240,122 +252,128 @@ function MoreGiveUps({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
-        translucent={true}
-        backgroundColor={'#274C7C'}
-        barStyle={'light-content'}
+        translucent
+        backgroundColor="#274C7C"
+        barStyle="light-content"
       />
-      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"#274C7C", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+      <View style={styles.header}>
         <IonIcons
-            name="chevron-back"
-            color="#D1FBFF"
-            size={35}
-            style={styles.icon}
-            onPress={() => { navigation.navigate(prevScreen); }}
-          />
-          <Text style={{
-            color: '#D1FBFF',
-            fontSize: (screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli',
-            margin:0,
-          }}>Get More Credits</Text>
+          name="chevron-back"
+          color="#D1FBFF"
+          size={35}
+          style={styles.icon}
+          onPress={() => { navigation.navigate(prevScreen); }}
+        />
+        <Text style={styles.headerText}>
+          Get More Credits
+        </Text>
       </View>
       <ScrollView
         scrollEventThrottle={16}
         style={styles.scrollview}
-        contentContainerStyle={{ flexGrow: 1 ,flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}
+        contentContainerStyle={styles.scrollContent}
       >
-      <View style={{width: '100%', alignItems: 'center'}}>
-      <View
-        style={styles.upBox}
-      >
-        <IconM
-          name="lightbulb-on"
-          size={25}
-          color="orange"
-        />
-        <Text style={[styles.upText, { color: '#D1FBFF' }]}>{state.giveUpsLeft}</Text>
-      </View>
-      <Text style={styles.instructionsText}>
-        Try to type the following to get more Lives.
-      </Text>
-      </View>
-      <View style={styles.DHANcover}>
-        <Text style={{...styles.DHAN}}>{word}</Text>
-      </View>
-      <View style={{width: '100%'}}>
-      <View style={{ ...styles.DHANcover, backgroundColor: '#274C7C', shadowColor: '#000',flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
-        <Text
-          style={{ ...styles.DHAN, fontSize: 26, width:'90%', height:50, fontFamily: 'Prabhki', color: '#FF7E00', alignItems: 'flex-start' }}>
-          {textEntry}
-        </Text>
-        { textEntry == "" ? null :
-          <Icon  
-          name="backspace"
-          color={'#D1FBFF'}
-          size={dimensions.size['8']}
-          onPress={() => { handleClick('meta') }}/>
-        }
-      </View>
-      {keyboardGrid.map((rows, index) => {
-        return (
-          <View key={index} >
-            {rows.map((chars, rowIndex) => (
-              <View style={styles.keyboardRow} key={`${index}-${rowIndex}`}>
-                  {chars.map((keyboardKey, i) => {
-                    // if (keyboardKey === 'meta') {
-                    //   return (
-                    //     <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('meta')}>
-                    //       <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2190"}</Text>
-                    //     </TouchableOpacity>
-                    //   );
-                    // }
+        <View style={styles.info}>
+          <View
+            style={styles.upBox}
+          >
+            <IconM
+              name="lightbulb-on"
+              size={25}
+              color="orange"
+            />
+            <Text style={styles.upText}>{state.giveUpsLeft}</Text>
+          </View>
+          <Text style={styles.instructionsText}>
+            Try to type the following to get more Lives.
+          </Text>
+        </View>
+        <View style={styles.DHANcover}>
+          <Text style={{ ...styles.DHAN }}>{word}</Text>
+        </View>
+        <View style={styles.fullWidth}>
+          <View style={styles.textLayout}>
+            <Text
+              style={styles.text}
+            >
+              {textEntry}
+            </Text>
+            { textEntry === '' ? null
+              : (
+                <Icon
+                  name="backspace"
+                  color="#D1FBFF"
+                  size={dimensions.size['8']}
+                  onPress={() => { handleClick('meta'); }}
+                />
+              )}
+          </View>
+          {keyboardGrid.map((rows, index) => {
+            return (
+              <View key={index}>
+                {rows.map((chars, rowIndex) => (
+                  <View style={styles.keyboardRow} key={rowIndex}>
+                    {chars.map((keyboardKey, i) => {
+                      /*
+                      if (keyboardKey === 'meta') {
+                        return (
+                          <TouchableOpacity
+                            style={styles.key}
+                            key={keyboardKey}
+                            onPress={() => handleClick('meta')}>
+                            <Text style={{color: 'white',, fontSize:(screenWidth<370 ? 14 : 20)}}>
+                              {"\u2190"}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      } */
 
-                    if (keyboardKey === 'space') {
+                      if (keyboardKey === 'space') {
+                        return (
+                          <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
+                            <Text style={styles.backspace}>{'\u2423'}</Text>
+                          </TouchableOpacity>
+                        );
+                      }
+
+                      const isCurrentKeyDefaultMatraKey = defaultMatraKeys.includes(keyboardKey);
+
                       return (
-                        <TouchableOpacity style={styles.key} key={keyboardKey} onPress={() => handleClick('space')}>
-                          <Text style={{...styles.keyText, fontSize:(screenWidth<370 ? 14 : 20)}}>{"\u2423"}</Text>
+                        <TouchableOpacity
+                          style={styles.key}
+                          key={i}
+                          onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
+                        >
+                          <Text style={styles.keyText}>
+                            {isCurrentKeyDefaultMatraKey
+                              ? getMatraAkhar(keyboardKey, textEntry)
+                              : keyboardKey}
+                          </Text>
                         </TouchableOpacity>
                       );
-                    }
-
-                    const isCurrentKeyDefaultMatraKey = defaultMatraKeys.includes(keyboardKey);
-
-                    return (
-                      <TouchableOpacity
-                      style={styles.key} 
-                        key={i}
-                        onPress={() => handleClick(getKeyboardKeyValue(keyboardKey, textEntry))}
-                      >
-                        <Text style={{...styles.keyText, fontFamily: 'Bookish', fontSize: (screenWidth<370 ? 15 : 22)}}>
-                          {isCurrentKeyDefaultMatraKey
-                            ? getMatraAkhar(keyboardKey, textEntry)
-                            : keyboardKey}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
+                    })}
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
-        );
-      })}
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={() => {
-          console.log(textEntry);
-          console.log(word);
-          if (textEntry === word) {
-            console.log('Good job');
-            dispatch(setGiveUpLives('+'));
-            used_get_lives(state.giveUpsLeft);
-            setWord(getRandomWord());
-            setTextEntry('');
-          }
-        }}
-      >
-        <Text style={{ ...styles.submit, fontFamily: 'Nasa' }}>Submit</Text>
-      </TouchableOpacity>
-      </View>
+            );
+          })}
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => {
+              // console.log(textEntry);
+              // console.log(word);
+              if (textEntry === word) {
+                // console.log('Good job');
+                dispatch(setGiveUpLives('+'));
+                usedGetLives(state.giveUpsLeft);
+                setWord(getRandomWord());
+                setTextEntry('');
+              }
+            }}
+          >
+            <Text style={styles.submit}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

@@ -3,6 +3,7 @@ import React from 'react';
 import GridRow from './GridRow';
 
 import Dimensions from '../../../util/dimensions';
+
 const { width } = Dimensions.get('window');
 
 const styles = {
@@ -17,9 +18,9 @@ const styles = {
     paddingVertical: Dimensions.size['2'],
     borderRadius: Dimensions.size['2'],
     flexDirection: 'column',
-    backgroundColor: '#FFB846',// 'rgba(238, 228, 218, 0.35)',
+    backgroundColor: '#FFB846', // 'rgba(238, 228, 218, 0.35)',
   }
-}
+};
 
 const GridContainer = () => (
   <View style={styles.container}>
@@ -28,6 +29,6 @@ const GridContainer = () => (
     <GridRow />
     <GridRow />
   </View>
-)
+);
 
 export default GridContainer;

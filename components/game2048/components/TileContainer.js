@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import React from 'react';
 import Tile from './Tile';
 import Dimensions from '../../../util/dimensions';
+
 const { width } = Dimensions.get('window');
 
 const styles = {
@@ -13,19 +14,22 @@ const styles = {
     top: 0,
     overflow: 'hidden',
   }
-}
+};
 
 const TileContainer = ({ tiles }) => {
 
   return (
     <View style={styles.container}>
-      {tiles.map(item => <Tile
-        x={item.x}
-        y={item.y}
-        value={item.value}
-        key={item.prog}
-        previousPosition={item.previousPosition || null} />)}
+      {tiles.map((item) => (
+        <Tile
+          x={item.x}
+          y={item.y}
+          value={item.value}
+          key={item.prog}
+          previousPosition={item.previousPosition || null}
+        />
+      ))}
     </View>
   );
-}
+};
 export default TileContainer;

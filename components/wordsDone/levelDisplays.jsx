@@ -9,19 +9,16 @@ import {
   FlatList,
   Dimensions
 } from 'react-native';
-import * as Speech from 'expo-speech';
+// import * as Speech from 'expo-speech';
 
-import { useSelector, useDispatch } from 'react-redux';
-import MaskedView from '@react-native-community/masked-view';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import theColors from '../../util/colors';
-import { showMeaningPopUp } from '../../redux/actions';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import theColors from '../../util/colors';
+import { showMeaningPopUp } from '../../redux/actions';
 
 function Level({ title, theWords, setAnswer }) {
-  const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
   const [up, setUp] = useState(false);
   const [fontsLoaded] = useFonts({
@@ -52,7 +49,7 @@ function Level({ title, theWords, setAnswer }) {
       fontFamily: 'Muli',
       fontWeight: '400',
       height: 50,
-      fontSize: (screenWidth<370 ? 20 : 24),
+      fontSize: (screenWidth < 370 ? 20 : 24),
       textAlign: 'center',
     },
     flatList: {},
@@ -64,18 +61,18 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: (screenWidth<370 ? 33 : 40),
+      fontSize: (screenWidth < 370 ? 33 : 40),
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'
     },
-    levels: { 
-      backgroundColor: '#def', 
-      elevation: 5, 
+    levels: {
+      backgroundColor: '#def',
+      elevation: 5,
       borderRadius: 15,
       borderColor: '#446',
-      borderWidth: .3,
-     }
+      borderWidth: 0.3,
+    }
   });
 
   let words = theWords;
@@ -119,7 +116,12 @@ function Level({ title, theWords, setAnswer }) {
               ...styles.title, width: '100%'
             }}
           >
-            <Text style={{...styles.title, color: '#274C7C', textShadowColor: '#274C7C', textShadowRadius:1}}>{title}</Text>
+            <Text style={{
+              ...styles.title, color: '#274C7C', textShadowColor: '#274C7C', textShadowRadius: 1
+            }}
+            >
+              {title}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>

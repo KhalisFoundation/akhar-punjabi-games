@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-underscore-dangle */
 let _prog = 0;
 
 class Tile {
@@ -13,13 +15,13 @@ class Tile {
 
   savePosition() {
     this.previousPosition = { x: this.x, y: this.y };
-  };
+  }
 
   updatePosition(position) {
     this.x = position.x;
     this.y = position.y;
-  };
-  
+  }
+
   serialize() {
     return {
       position: {
@@ -28,7 +30,7 @@ class Tile {
       },
       value: this.value
     };
-  };
+  }
 }
 
-export default Tile
+export default Tile;

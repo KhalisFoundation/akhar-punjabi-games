@@ -8,23 +8,19 @@ import {
   StatusBar,
   FlatList,
   ScrollView,
-  Platform,
   Dimensions
 } from 'react-native';
-import { Header } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
 import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
+import * as Anvaad from 'anvaad-js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Level from './levelDisplays';
 import { showMeaningPopUp } from '../../redux/actions';
-import theColors from '../../util/colors';
-import { useEffect } from 'react';
-import * as Anvaad from 'anvaad-js';
 import dimensions from '../../util/dimensions';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 function RightWords({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -40,11 +36,10 @@ function RightWords({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
-  const colors = theColors.false;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
-      backgroundColor:"#D1FBFF",
+      backgroundColor: '#D1FBFF',
       justifyContent: 'space-between',
       width: '100%',
       height: '100%',
@@ -56,7 +51,7 @@ function RightWords({ navigation }) {
       position: 'absolute',
       bottom: 0,
       right: 0,
-      height: 40  ,
+      height: 40,
       width: 40,
       marginBottom: 20,
       backgroundColor: '#fff',
@@ -81,7 +76,7 @@ function RightWords({ navigation }) {
       width: '95%',
     },
     answerBox: {
-      backgroundColor:'#fff',
+      backgroundColor: '#fff',
       width: '95%',
       height: '20%',
       borderRadius: 20,
@@ -95,11 +90,12 @@ function RightWords({ navigation }) {
       display: 'none'
     },
     answerText: {
-      fontSize: (screenWidth<370 ? 13 : 18),
-      color: '#464646',fontFamily: 'Muli'
+      fontSize: (screenWidth < 370 ? 13 : 18),
+      color: '#464646',
+      fontFamily: 'Muli'
     },
     answerForAnswerText: {
-      fontSize: (screenWidth<370 ? 13 : 18),
+      fontSize: (screenWidth < 370 ? 13 : 18),
       color: 'green',
     },
     shadow: {
@@ -128,14 +124,14 @@ function RightWords({ navigation }) {
     return {
       ...word,
       status: 'Answered correctly',
-      color:'green',
+      color: 'green',
     };
   });
   theGivenUpWords.map((word) => {
     theWords.push({
       ...word,
       status: 'Given Up',
-      color:'red',
+      color: 'red',
     });
     return 'nothing';
   });
@@ -173,25 +169,31 @@ function RightWords({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
-        translucent={true}
-        backgroundColor={'#00E9FE'}
-        barStyle='dark-content'
+        translucent
+        backgroundColor="#00E9FE"
+        barStyle="dark-content"
       />
-      <View 
-        style={[(!state.meaningPopup) ? styles.downStyle : null,{width: '100%', height: dimensions.size['24'], backgroundColor:"#00E9FE", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}]}>
-          <IonIcons
-            name="chevron-back"
-            color={'#000'}
-            style={{position: 'absolute', left: 10}}
-            size={35}
-            onPress={() => { navigation.navigate('AkharJor'); }}
-          />
-          <Text style={{
-            color:'#000',
-            fontSize: (screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli',
-            margin:0,
-          }}>Completed Levels</Text>
+      <View
+        style={[(!state.meaningPopup) ? styles.downStyle : null, {
+          width: '100%', height: dimensions.size['24'], backgroundColor: '#00E9FE', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+        }]}
+      >
+        <IonIcons
+          name="chevron-back"
+          color="#000"
+          style={{ position: 'absolute', left: 10 }}
+          size={35}
+          onPress={() => { navigation.navigate('AkharJor'); }}
+        />
+        <Text style={{
+          color: '#000',
+          fontSize: (screenWidth < 370 ? 16 : 20),
+          fontFamily: 'Muli',
+          margin: 0,
+        }}
+        >
+          Completed Levels
+        </Text>
       </View>
       <View style={state.meaningPopup ? styles.listContainerFull : styles.listContainer}>
         <FlatList
@@ -210,19 +212,25 @@ function RightWords({ navigation }) {
           <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color="#274C7C" style={styles.shadow} />
         </TouchableOpacity>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:(screenWidth<370 ? 25 : 35), fontFamily: 'Prabhki' }]}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: (screenWidth < 370 ? 25 : 35), fontFamily: 'Prabhki' }]}>
             {showAnswer.engText}
           </Text>
           {/* to be asked */}
           { (showAnswer.engText) ? (
-            <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
-            {" {"}{Anvaad.translit(showAnswer.engText)}{"}"}
-          </Text>) 
-          :
-          <Text style={[styles.answerText, { fontSize:18, fontFamily: 'Muli', marginTop: 5}]}>
-            {"Select any word to know more!"}
-          </Text>
-          }
+            <Text style={[styles.answerForAnswerText, {
+              color: showAnswer.color, fontSize: 18, fontFamily: 'Muli', marginTop: 5
+            }]}
+            >
+              {' {'}
+              {Anvaad.translit(showAnswer.engText)}
+              {'}'}
+            </Text>
+          )
+            : (
+              <Text style={[styles.answerText, { fontSize: 18, fontFamily: 'Muli', marginTop: 5 }]}>
+                Select any word to know more!
+              </Text>
+            )}
         </View>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
           <ScrollView
@@ -235,14 +243,16 @@ function RightWords({ navigation }) {
             </Text>
           </ScrollView>
         </View>
-        {showAnswer.status?<View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={styles.answerText}>Status</Text>
-          <Text style={styles.answerText}> : </Text>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontFamily: 'Muli' }]}>
-            {showAnswer.status}
-          </Text>
-        </View>
-        :null}
+        {showAnswer.status ? (
+          <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
+            <Text style={styles.answerText}>Status</Text>
+            <Text style={styles.answerText}> : </Text>
+            <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontFamily: 'Muli' }]}>
+              {showAnswer.status}
+            </Text>
+          </View>
+        )
+          : null}
       </View>
     </SafeAreaView>
   );

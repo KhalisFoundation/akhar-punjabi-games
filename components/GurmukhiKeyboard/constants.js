@@ -26,7 +26,7 @@ export const defaultMatraValue = {
   M: ' M',
   '`': ' `',
   N: ' N',
-  R: ' R', 
+  R: ' R',
   ' ': ' ',
 };
 

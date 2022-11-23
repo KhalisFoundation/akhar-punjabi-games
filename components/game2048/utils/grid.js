@@ -1,7 +1,8 @@
+/* eslint-disable */
 import Tile from './tile';
 
 class Grid {
-  
+
   constructor(size, previousState) {
     this.size = size;
     this.cells = previousState ? this.fromState(previousState) : this.empty();
@@ -12,7 +13,7 @@ class Grid {
     const cells = [];
 
     for (let x = 0; x < this.size; x++) {
-      let row = cells[x] = [];
+      const row = cells[x] = [];
 
       for (let y = 0; y < this.size; y++) {
         row.push(null);
@@ -20,13 +21,13 @@ class Grid {
     }
 
     return cells;
-  };
+  }
 
   fromState(state) {
     const cells = [];
 
     for (let x = 0; x < this.size; x++) {
-      let row = cells[x] = [];
+      const row = cells[x] = [];
 
       for (let y = 0; y < this.size; y++) {
         const tile = state[x][y];
@@ -35,7 +36,8 @@ class Grid {
     }
 
     return cells;
-  };
+  }
+
   // Find the first available random position
   randomAvailableCell() {
     const cells = this.availableCells();
@@ -43,18 +45,20 @@ class Grid {
     if (cells.length) {
       return cells[Math.floor(Math.random() * cells.length)];
     }
-  };
+  }
+
   availableCells() {
     const cells = [];
 
     this.eachCell((x, y, tile) => {
       if (!tile) {
-        cells.push({ x: x, y: y });
+        cells.push({ x, y });
       }
     });
 
     return cells;
-  };
+  }
+
   // Call callback for every cell
   eachCell(callback) {
     for (let x = 0; x < this.size; x++) {
@@ -62,36 +66,44 @@ class Grid {
         callback(x, y, this.cells[x][y]);
       }
     }
-  };
+  }
+
   // Check if there are any cells available
   cellsAvailable() {
     return !!this.availableCells().length;
-  };
+  }
+
   // Check if the specified cell is taken
   cellAvailable(cell) {
     return !this.cellOccupied(cell);
-  };
+  }
+
   cellOccupied(cell) {
     return !!this.cellContent(cell);
-  };
+  }
+
   cellContent(cell) {
     if (this.withinBounds(cell)) {
       return this.cells[cell.x][cell.y];
-    } else {
-      return null;
     }
-  };
+    return null;
+
+  }
+
   // Inserts a tile at its position
   insertTile(tile) {
     this.cells[tile.x][tile.y] = tile;
-  };
+  }
+
   removeTile(tile) {
     this.cells[tile.x][tile.y] = null;
-  };
+  }
+
   withinBounds(position) {
-    return position.x >= 0 && position.x < this.size &&
-      position.y >= 0 && position.y < this.size;
-  };
+    return position.x >= 0 && position.x < this.size
+      && position.y >= 0 && position.y < this.size;
+  }
+
   toString() {
     const ret = [];
     for (let y = 0; y < this.size; y++) {
@@ -101,7 +113,8 @@ class Grid {
       ret.push('\n');
     }
     return ret.join('');
-  };
+  }
+
   serialize() {
     const cellState = [];
 
@@ -117,7 +130,7 @@ class Grid {
       size: this.size,
       cells: cellState
     };
-  };
+  }
 }
 
-export default Grid
+export default Grid;

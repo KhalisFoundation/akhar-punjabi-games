@@ -7,12 +7,10 @@ import {
   StatusBar,
   Linking,
   ScrollView,
-  Platform,
   Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { ListItem, Header } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ListItem } from 'react-native-elements';
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
 import IonIcons from 'react-native-vector-icons/Ionicons';
@@ -20,16 +18,16 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import * as Analytics from 'expo-firebase-analytics';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import dimensions from '../../util/dimensions';
 import {
-  setDarkMode, setBGM, setShowPopUp, setShowRomanised, setShowNumOfLetters, setIncludeMatra, reset
+  setShowPopUp, setShowRomanised, reset
 } from '../../redux/actions';
 
 // TODO - Move all colors to separate file and import as variables.
 import SwitchBar from './settingBarSwitch';
-import theColors from '../../util/colors';
-import * as Analytics from 'expo-firebase-analytics';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// import theColors from '../../util/colors';
 
 function Settings({ navigation }) {
   const dispatch = useDispatch();
@@ -42,8 +40,8 @@ function Settings({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
   const screenWidth = Dimensions.get('window').width;
-  const colors = theColors.false;
-  const platform = Platform.OS;
+  // const colors = theColors.false;
+  // const platform = Platform.OS;
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
@@ -73,8 +71,8 @@ function Settings({ navigation }) {
     },
   });
 
-  async function reset_game() {
-    await Analytics.logEvent('setting_used', {setting: 'reset'});
+  async function resetGame() {
+    await Analytics.logEvent('setting_used', { setting: 'reset' });
   }
 
   if (!fontsLoaded) {
@@ -83,24 +81,30 @@ function Settings({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
-        translucent={true}
-        backgroundColor={"orange"}
-        barStyle={'dark-content'}
+        translucent
+        backgroundColor="orange"
+        barStyle="dark-content"
       />
-      <View style={{width: '100%', height: dimensions.size['24'], backgroundColor:"orange", flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation:5}}>
+      <View style={{
+        width: '100%', height: dimensions.size['24'], backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+      }}
+      >
         <IonIcons
-            name="chevron-back"
-            color={"black"}
-            size={35}
-            style={{position: 'absolute', left: 10}}
-            onPress={() => { navigation.goBack(); }}
-          />
-          <Text style={{
-            color: ('black'),
-            fontSize: (screenWidth<370 ? 16 : 20),
-            fontFamily: 'Muli',
-            margin:0,
-          }}>Settings</Text>
+          name="chevron-back"
+          color="black"
+          size={35}
+          style={{ position: 'absolute', left: 10 }}
+          onPress={() => { navigation.goBack(); }}
+        />
+        <Text style={{
+          color: ('black'),
+          fontSize: (screenWidth < 370 ? 16 : 20),
+          fontFamily: 'Muli',
+          margin: 0,
+        }}
+        >
+          Settings
+        </Text>
       </View>
 
       {/* <SettingsBar theImage={} title={} data={}/> */}
@@ -111,9 +115,7 @@ function Settings({ navigation }) {
           }}
         >
           <Text
-            style={[
-              styles.headerStyle
-            ]}
+            style={styles.headerStyle}
           >
             App Options
           </Text>
@@ -131,7 +133,8 @@ function Settings({ navigation }) {
           theSetting="Show Pop Up after each word"
           theList={[true, false]}
           imageSource="ikOngkar"
-          theAction={setShowPopUp} // setShowPopUp toggles the showing of pop up on level completion.
+          theAction={setShowPopUp}
+          // setShowPopUp toggles the showing of pop up on level completion.
           theCurrentOptionIndex={[true, false].indexOf(state.showPopUp)}
         />
         <SwitchBar
@@ -164,9 +167,9 @@ function Settings({ navigation }) {
             styles.titleText,
             { alignItems: 'flex-start' }
           ]}
-          onPress={() => { 
-            reset_game();
-            dispatch(reset()); 
+          onPress={() => {
+            resetGame();
+            dispatch(reset());
           }}
           bottomDivider
         >
@@ -180,14 +183,14 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <IonIcons name="reload" size={35} color={'#464646'} style={styles.shadow} />
+                <IonIcons name="reload" size={35} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
-          <LinearGradient
-            colors={['#274CCC', '#274C77']}
-            style={{ flex: 1 }}
-          />
+            <LinearGradient
+              colors={['#274CCC', '#274C77']}
+              style={{ flex: 1 }}
+            />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title><Text>Reset</Text></ListItem.Title>
@@ -199,9 +202,7 @@ function Settings({ navigation }) {
           }}
         >
           <Text
-            style={[
-              styles.headerStyle
-            ]}
+            style={styles.headerStyle}
           >
             Other Options
           </Text>
@@ -224,19 +225,19 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesome5Icons name="donate" size={35} color={'#464646'} style={styles.shadow} />
+                <FontAwesome5Icons name="donate" size={35} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
-          <LinearGradient
-            colors={['#274CCC', '#274C77']}
-            style={{ flex: 1 }}
-          />
+            <LinearGradient
+              colors={['#274CCC', '#274C77']}
+              style={{ flex: 1 }}
+            />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title><Text>Donate</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color={'black'} />
+          <ListItem.Chevron color="black" />
         </ListItem>
         <ListItem
           containerStyle={[
@@ -256,7 +257,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcons name="question-circle" size={35} color={'#464646'} style={styles.shadow} />
+                <FontAwesomeIcons name="question-circle" size={35} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -268,7 +269,7 @@ function Settings({ navigation }) {
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title><Text>About</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color={'black'} />
+          <ListItem.Chevron color="black" />
         </ListItem>
       </ScrollView>
     </SafeAreaView>

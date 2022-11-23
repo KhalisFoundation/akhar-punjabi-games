@@ -6,7 +6,7 @@ import {
 import {
   ListItem, BottomSheet
 } from 'react-native-elements';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,7 +19,7 @@ function SettingsBar({
 }) {
   const dispatch = useDispatch();
 
-  const state = useSelector((theState) => theState.theGameReducer);
+  // const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({
     titleText: {
       color: 'black'
@@ -86,7 +86,7 @@ function SettingsBar({
                 alignItems: 'center',
               }}
             >
-              <Icon name={allImages[imageSource]} size={35} color={'#464646'} style={styles.shadow} />
+              <Icon name={allImages[imageSource]} size={35} color="#464646" style={styles.shadow} />
             </View>
           )}
         >
@@ -99,7 +99,7 @@ function SettingsBar({
           <ListItem.Title>{theSetting}</ListItem.Title>
           <ListItem.Subtitle style={{ color: '#a3a3a3' }}>{currentSetting}</ListItem.Subtitle>
         </ListItem.Content>
-        <ListItem.Chevron color={'black'} />
+        <ListItem.Chevron color="black" />
       </ListItem>
 
       <BottomSheet

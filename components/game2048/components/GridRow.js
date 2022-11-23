@@ -4,6 +4,7 @@ import React from 'react';
 import GridCell from './GridCell';
 
 import Dimensions from '../../../util/dimensions';
+
 const { width } = Dimensions.get('window');
 const MARGIN_WIDTH = Dimensions.size['2'];
 const ITEM_WIDTH = (width - Dimensions.size['27'] - MARGIN_WIDTH * 10) / 4;
@@ -14,7 +15,7 @@ const styles = {
     marginVertical: Dimensions.size['2'],
     flexDirection: 'row',
   }
-}
+};
 
 const GridRow = () => (
   <View style={styles.container}>
@@ -23,6 +24,6 @@ const GridRow = () => (
     <GridCell />
     <GridCell />
   </View>
-)
+);
 
 export default GridRow;

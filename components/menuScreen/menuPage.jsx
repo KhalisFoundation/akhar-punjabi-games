@@ -1,43 +1,28 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
-import { useRef, useState, useEffect } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   Linking,
-  StatusBar,
-  Image,
-  ImageBackground,
-  BackHandler, 
-  Alert, AppState
+  StatusBar
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { setTheState, showIntroModal } from '../../redux/actions';
-import * as Anvaad from 'anvaad-js';
+// import { Audio } from 'expo-av';
+import * as Analytics from 'expo-firebase-analytics';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Khalis from '../../assets/khalis_logo.svg';
 import Logo from '../../assets/sikh_games_logo_with_text.svg';
-import { initialState } from '../../redux/reducers';
-import { Audio } from 'expo-av';
-import * as Analytics from 'expo-firebase-analytics';
-import AppIntro from './../about/appIntro';
-import { closeIntroModal } from './../../redux/actions';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 import dimensions from '../../util/dimensions';
 
-const audioPlayer = new Audio.Sound();
+// const audioPlayer = new Audio.Sound();
 
 function MenuScreen({ navigation }) {
 
-  // code for menu page
-  const dispatch = useDispatch();
-  const state = useSelector((theState) => theState.theGameReducer);
-  const width = dimensions.width;
+  const { width } = dimensions;
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -45,7 +30,7 @@ function MenuScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  
+
   // async function playSound() {
   //   try {
   //     console.log('Playing sound');
@@ -71,11 +56,11 @@ function MenuScreen({ navigation }) {
   // // useEffect(() => {
   // //     playSound();
   // // }, []);
-  
-  //handling app state change
+
+  // handling app state change
   // const appState = useRef(AppState.currentState);
   // const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  
+
   // const _handleAppStateChange = nextAppState => {
   //   if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
   //     console.log('App has come to the foreground!');
@@ -96,7 +81,7 @@ function MenuScreen({ navigation }) {
   //     }
   //   };
   // }, []);
-  
+
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
@@ -106,15 +91,15 @@ function MenuScreen({ navigation }) {
       alignItems: 'center',
       textAlign: 'center',
       padding: 10,
-      backgroundColor: "#274C7C",
+      backgroundColor: '#274C7C',
     },
     header: {
-      width:'100%',
+      width: '100%',
       textAlign: 'center',
     },
     mainmenu: {
       color: '#fff',
-      fontSize: width*.06,
+      fontSize: width * 0.06,
       fontFamily: 'Muli',
       textAlign: 'center',
       justifyContent: 'center',
@@ -124,45 +109,33 @@ function MenuScreen({ navigation }) {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      borderBottomColor: '#00E9FE', 
+      borderBottomColor: '#00E9FE',
       borderBottomWidth: 1
     },
-    text: {color:'#fff', fontSize: width*.045, fontFamily: 'Muli', alignSelf:'center', margin: 10},
-    item: {backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'},
+    text: {
+      color: '#fff', fontSize: width * 0.045, fontFamily: 'Muli', alignSelf: 'center', margin: 10
+    },
+    item: {
+      backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'
+    },
     menulogo: {
       width: '80%',
       resizeMode: 'contain',
-      alignSelf: 'center', 
+      alignSelf: 'center',
       height: '50%',
     },
     columns: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-    },
-    rows: {
-      flexDirection: 'row',
-      // backgroundColor: "yellow",
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'space-evenly',
-    },
-    otherScreenTouchableOpacity: {
-      flex: 1,
-      margin: 10,
     },
     khalisTouchableOpacity: {
       height: '8%',
       width: '45%',
     },
-    khalis: {
-      height: '100%',
-      width: '100%',
-      borderRadius: 5,
-      alignItems: 'center',
-    }
   });
-  async function whichGame(game_name) {
-    await Analytics.logEvent('game_chosen', { game_name: game_name });
+  async function whichGame(gameName) {
+    await Analytics.logEvent('game_chosen', { gameName });
   }
 
   if (!fontsLoaded) {
@@ -170,20 +143,20 @@ function MenuScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
-      {state.showIntroModal ? <AppIntro /> : null}
       <StatusBar
-        hidden />
+        hidden
+      />
       <View style={styles.header}>
-        <Logo style={styles.menulogo}/>
+        <Logo style={styles.menulogo} />
         <View style={styles.mainMenuContainer}>
-        <Text style={styles.mainmenu}>MAIN MENU</Text>
-        {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
+          <Text style={styles.mainmenu}>MAIN MENU</Text>
+          {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
           <Icon name='info-circle' color={"#7FC8DE"} size={22} />
         </TouchableOpacity> */}
         </View>
         <Text style={styles.text}>Select a game to Play</Text>
         <View style={styles.columns}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.item}
             onPress={() => {
               // if (audioPlayer._loaded) {stopSound()};
@@ -191,19 +164,19 @@ function MenuScreen({ navigation }) {
               navigation.navigate('AkharJor');
             }}
           >
-            <Text style={[styles.text]}>Gurmukhi Wordlink</Text>
+            <Text style={styles.text}>Gurmukhi Wordlink</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.columns}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.item}
             onPress={() => {
-              //if (audioPlayer._loaded) {stopSound()};
+              // if (audioPlayer._loaded) {stopSound()};
               whichGame('2048');
-              navigation.navigate('2048');              
+              navigation.navigate('2048');
             }}
           >
-            <Text style={[styles.text, {fontFamily: 'Muli'}]}>2048</Text>
+            <Text style={styles.text}>2048</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -211,7 +184,7 @@ function MenuScreen({ navigation }) {
         style={styles.khalisTouchableOpacity}
         onPress={() => Linking.openURL('https://khalisfoundation.org')}
       >
-        <Khalis/>
+        <Khalis />
       </TouchableOpacity>
     </SafeAreaView>
   );

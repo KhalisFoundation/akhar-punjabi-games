@@ -4,7 +4,7 @@ import {
   View, StyleSheet
 } from 'react-native';
 import { ListItem, Switch } from 'react-native-elements';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,7 +20,7 @@ function SwitchBar({
   displayParam = true
 }) {
   const dispatch = useDispatch();
-  const state = useSelector((theState) => theState.theGameReducer);
+  // const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({
     shadow: {
       shadowColor: 'black',
@@ -49,7 +49,7 @@ function SwitchBar({
     allImages.khanda = 'brightness-2';
   }
 
-  async function setting_used(setup) {
+  async function settingUsed(setup) {
     await Analytics.logEvent('setting_used', { setting_used: setup });
   }
 
@@ -72,7 +72,7 @@ function SwitchBar({
                 backgroundColor: 'transparent',
               }}
             >
-              <Icon name={allImages[imageSource]} size={35} color={'#000'} style={styles.shadow} />
+              <Icon name={allImages[imageSource]} size={35} color="#000" style={styles.shadow} />
             </View>
         )}
         >
@@ -88,7 +88,7 @@ function SwitchBar({
             onValueChange={(newSetting) => {
               dispatch(theAction(newSetting));
               setCurrentSetting(newSetting);
-              setting_used(`${title} set to ${newSetting ? 'on' : 'off'}`);
+              settingUsed(`${title} set to ${newSetting ? 'on' : 'off'}`);
             }}
           />
         </ListItem.Content>

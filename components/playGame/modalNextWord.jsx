@@ -33,7 +33,7 @@ import Icon12 from '../../assets/Group-12.svg';
 import Icon13 from '../../assets/Group-13.svg';
 import Icon14 from '../../assets/Group-14.svg';
 
-import Win from '../../assets/Win.svg'
+import Win from '../../assets/Win.svg';
 
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -110,28 +110,28 @@ function WordsDoneModal() {
   const nowWow = getRandomNum(1, 14);
   console.log(nowWow);
   const wows = {
-    1: <Icon1 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    2: <Icon2 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    3: <Icon3 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    4: <Icon4 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    5: <Icon5 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    6: <Icon6 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    7: <Icon7 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    8: <Icon8 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    9: <Icon9 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    10:<Icon10 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    11:<Icon11 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    12:<Icon12 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    13:<Icon13 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
-    14:<Icon14 style={{transform:[{ scale: 2 }], marginBottom: 20}}/>,
+    1: <Icon1 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    2: <Icon2 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    3: <Icon3 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    4: <Icon4 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    5: <Icon5 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    6: <Icon6 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    7: <Icon7 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    8: <Icon8 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    9: <Icon9 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    10: <Icon10 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    11: <Icon11 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    12: <Icon12 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    13: <Icon13 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
+    14: <Icon14 style={{ transform: [{ scale: 2 }], marginBottom: 20 }} />,
   };
   const doneYet = Math.floor((10 - state.levelProgress[0].wordsNeeded) / 2);
   const stage = {
-    0: <Stage1/>,
-    1: <Stage2/>,
-    2: <Stage3/>,
-    3: <Stage4/>,
-    4: <Stage5/>
+    0: <Stage1 />,
+    1: <Stage2 />,
+    2: <Stage3 />,
+    3: <Stage4 />,
+    4: <Stage5 />
   };
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
@@ -154,18 +154,24 @@ function WordsDoneModal() {
       >
         {(state.levelProgress[0].level === 8 && state.levelProgress[0].wordsNeeded === 0)
           ? (
-            <View style={{ width: '100%', flexDirection: 'column',alignItems: 'center', borderRadius: 30, backgroundColor:'#274C7C', marginVertical: 50 }}>
+            <View style={{
+              width: '100%', flexDirection: 'column', alignItems: 'center', borderRadius: 30, backgroundColor: '#274C7C', marginVertical: 50
+            }}
+            >
               <Animatable.View
                 animation="tada"
                 iterationCount={2}
-                style={{margin: 0, padding: 0}}
+                style={{ margin: 0, padding: 0 }}
               >
-                <Win style={{transform:[{ scale: 2 }], marginBottom:50}}/>
+                <Win style={{ transform: [{ scale: 2 }], marginBottom: 50 }} />
               </Animatable.View>
               <Animatable.Text animation="fadeIn" iterationCount={1} style={styles.text}>
                 vDweIAwN jI
               </Animatable.Text>
-              <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20, padding:0 }]}>
+              <Text style={[styles.text, {
+                fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20, padding: 0
+              }]}
+              >
                 More levels coming soon!
               </Text>
               <Animatable.View
@@ -189,7 +195,10 @@ function WordsDoneModal() {
             </View>
           )
           : (
-            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor:'#21218b' }}>
+            <View style={{
+              width: '100%', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 30, backgroundColor: '#21218b'
+            }}
+            >
               <Animatable.View
                 animation="tada"
                 iterationCount={2}
@@ -210,7 +219,7 @@ function WordsDoneModal() {
                 iterationCount={1}
               >
                 <AnimatedLinearGradient
-                  colors={ ['#21218b', '#21218b']}
+                  colors={['#21218b', '#21218b']}
                   start={{ x: 1, y: 1 }}
                   style={[styles.container, { bottom: 10 }]}
                 >
