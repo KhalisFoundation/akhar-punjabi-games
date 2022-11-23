@@ -1,21 +1,19 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  StyleSheet, Modal, Text, TouchableOpacity, Animated, ImageBackground, View
+  StyleSheet, Modal, Text, TouchableOpacity, Animated, View
 } from 'react-native';
 import { useFonts } from 'expo-font';
 
 import AppLoading from 'expo-app-loading';
-import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
-import { closeResultModal } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
 import Icon from '../../assets/Group-14.svg';
 import Win from '../../assets/Win.svg';
 
 function YouWonModal(props) {
-  const dispatch = useDispatch();
-  const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
@@ -116,7 +114,7 @@ function YouWonModal(props) {
               marginBottom: props.won ? 0 : 25, alignItems: 'center'
             }}
           >
-            {props.won ? <Win height={2 * Dimensions.size['60']} style={{ marginTop: -75 }} /> : <Icon style={{ transform: [{ scale: 2 }] }} />}
+            {props.won ? <Win height={2 * dimensions.size['60']} style={{ marginTop: -75 }} /> : <Icon style={{ transform: [{ scale: 2 }] }} />}
           </Animatable.View>
           <Text style={styles.text}>
             {props.won ? 'vDweIAwN jI!' : 'koeI g~l nhIN!'}
