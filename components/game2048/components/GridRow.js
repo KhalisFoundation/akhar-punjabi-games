@@ -7,7 +7,7 @@ import Dimensions from '../../../util/dimensions';
 
 const { width } = Dimensions.get('window');
 const MARGIN_WIDTH = Dimensions.size['2'];
-const ITEM_WIDTH = (width - Dimensions.size['27'] - MARGIN_WIDTH * 10) / 4;
+const ITEM_WIDTH = (width*0.8 - MARGIN_WIDTH * 10) / 4;
 
 const styles = {
   container: {

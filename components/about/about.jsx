@@ -26,11 +26,15 @@ function About({ navigation }) {
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
+  
+  const {width} = dimensions;
+  const linkColor = '#009bff';
+  const black = '#000';
   const styles = StyleSheet.create({
     container: { flex: 1 },
     header: {
       color: GLOBAL.COLOR.TOOLBAR_TINT,
-      fontSize: (dimensions.screenWidth < 370 ? 16 : 20),
+      fontSize: width * 0.05,
       fontFamily: 'Muli',
       margin: 0,
     },
@@ -46,13 +50,13 @@ function About({ navigation }) {
       justifyContent: 'space-between'
     },
     small: {
-      fontSize: 11,
+      fontSize: width * 0.03,
       fontFamily: 'Muli',
       color: black
     },
     innerView: {
       width: '100%',
-      height: dimensions.size['24'],
+      height: width*0.175,
       backgroundColor: GLOBAL.COLOR.TOOLBAR_COLOR_ALT2,
       flexDirection: 'row',
       alignItems: 'center',
@@ -64,17 +68,15 @@ function About({ navigation }) {
       left: 10
     },
     info: {
-      fontSize: 16, fontFamily: 'Muli', color: black, margin: 10, marginTop: 0, marginStart: 0
+      fontSize: width * 0.04, fontFamily: 'Muli', color: black, margin: 10, marginTop: 0, marginStart: 0
     },
-    logo: { height: 175, marginTop: 20 },
-    title1: { fontFamily: 'Nasa', fontSize: 25, color: black },
-    title2: { fontFamily: 'GurbaniHeavy', fontSize: 30, color: black },
-    aboutus: { fontSize: 16, fontFamily: 'Muli', color: black },
+    logo: { height: width*0.4, marginTop: 20 },
+    title1: { fontFamily: 'Nasa', fontSize: width * 0.06, color: black },
+    title2: { fontFamily: 'GurbaniHeavy', fontSize: width* 0.07, color: black },
+    aboutus: { fontSize: width * 0.04, fontFamily: 'Muli', color: black },
     link: { color: linkColor, fontWeight: 'bold' },
-    ending: { fontFamily: 'Muli', alignSelf: 'flex-end', color: black }
+    ending: { fontSize: width*0.03, fontFamily: 'Muli', alignSelf: 'flex-end', color: black }
   });
-  const linkColor = '#009bff';
-  const black = '#000';
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -91,7 +93,7 @@ function About({ navigation }) {
         <IonIcons
           name="chevron-back"
           color={GLOBAL.COLOR.TOOLBAR_TINT}
-          size={30}
+          size={width * 0.07}
           style={styles.back}
           onPress={() => { navigation.goBack(); }}
         />
@@ -177,7 +179,7 @@ function About({ navigation }) {
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalisfoundation.org')}
           >
-            <KhalisDark height={50} />
+            <KhalisDark height={width*0.12} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>

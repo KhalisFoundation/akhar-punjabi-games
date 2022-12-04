@@ -20,7 +20,7 @@ function Heading(props) {
     },
     upText: {
       color: 'white',
-      fontSize: 15,
+      fontSize: width*0.04,
       fontFamily: 'Muli'
     }
   });

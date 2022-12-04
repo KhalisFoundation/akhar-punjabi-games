@@ -17,9 +17,11 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import theColors from '../../util/colors';
 import { showMeaningPopUp } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
 
 function Level({ title, theWords, setAnswer }) {
   const dispatch = useDispatch();
+  const {width} = dimensions;
   const [up, setUp] = useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -48,8 +50,8 @@ function Level({ title, theWords, setAnswer }) {
       paddingBottom: 10,
       fontFamily: 'Muli',
       fontWeight: '400',
-      height: 50,
-      fontSize: (screenWidth < 370 ? 20 : 24),
+      height: width * 0.1,
+      fontSize: width * 0.06,
       textAlign: 'center',
     },
     flatList: {},
@@ -61,7 +63,7 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: (screenWidth < 370 ? 33 : 40),
+      fontSize: width*0.08,
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'

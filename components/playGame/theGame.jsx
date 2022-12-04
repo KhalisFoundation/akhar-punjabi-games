@@ -54,10 +54,6 @@ function GameScreen({ navigation }) {
       paddingVertical: width * 0.05,
       justifyContent: 'space-evenly',
     },
-    scrollContent: {
-      alignItems: 'center',
-      justifyContent: 'space-evenly'
-    },
     hintLayout: {
       width: '100%', backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'
     },
@@ -309,7 +305,7 @@ function GameScreen({ navigation }) {
           barStyle="dark-content"
         />
         <View style={{
-          width: '100%', backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20
+          width: '100%', height: width*0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20
         }}
         >
           <TouchableOpacity
@@ -329,7 +325,6 @@ function GameScreen({ navigation }) {
         </View>
         <View
           style={styles.scroller}
-          contentContainerStyle={styles.scrollContent}
         >
           {/* <View
           style={styles.header}
@@ -337,7 +332,7 @@ function GameScreen({ navigation }) {
           <StatsBox stat="levels" navigation={navigation} />
           <StatsBox stat="hints" navigation={navigation} />
           {/* <StatsBox stat="points" navigation={navigation} />
-        </View> */}
+          </View> */}
 
           <LinearGradient
             colors={['#ff6f00', '#b34e00']}

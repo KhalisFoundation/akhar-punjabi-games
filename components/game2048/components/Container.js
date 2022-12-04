@@ -91,7 +91,7 @@ class Container extends Component {
         />
         <View style={styles.container}>
           <MaskedView
-            style={{ width, height: dimensions.size['30'] }}
+            style={{ width, height: width * 0.2 }}
             maskElement={(
               <View
                 style={{
@@ -100,7 +100,7 @@ class Container extends Component {
                   alignItems: 'center',
                 }}
               >
-                <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: dimensions.size['27'] }}>
+                <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: width * 0.2 }}>
                   2048
                 </Text>
               </View>

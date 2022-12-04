@@ -7,8 +7,8 @@ const { width } = Dimensions.get('window');
 
 const styles = {
   container: {
-    width: width - Dimensions.size['27'],
-    height: width - Dimensions.size['27'],
+    width: width*0.8,
+    height: width*0.8,
     position: 'absolute',
     left: 0,
     top: 0,

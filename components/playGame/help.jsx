@@ -17,6 +17,7 @@ import Tools from '../../assets/toolTips.svg';
 
 import Dimensions from '../../util/dimensions';
 import { closeHelpModal } from '../../redux/actions';
+import { View } from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
 
@@ -29,13 +30,18 @@ function Help() {
 
   const styles = StyleSheet.create({
     modal: { flex: 1 },
+    externalBg: {
+      flex: 1,
+      backgroundColor: 'rgba(0,0,0,0.5)',
+    },
     container: {
+      flex: 1,
       alignSelf: 'center',
-      alignContent: 'center',
-      justifyContent: 'space-around',
-      backgroundColor: '#0003',
-      width: '100%',
-      flex: 1
+      borderRadius: 15,
+      padding: 15,
+      marginVertical: 40,
+      width: '90%',
+      backgroundColor: '#274C7C',
     },
     img: {
       alignSelf: 'center',
@@ -43,7 +49,7 @@ function Help() {
     header: {
       justifyContent: 'center',
       fontFamily: 'Muli',
-      fontSize: 20,
+      fontSize: width * 0.04,
       color: '#fff',
       textAlign: 'justify'
     },
@@ -52,16 +58,17 @@ function Help() {
       textAlign: 'center',
       alignSelf: 'center',
       margin: 20,
+      marginBottom: 40,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: 50,
-      width: width * 0.45,
+      height: width*0.075,
+      width: width * 0.4,
       elevation: 5,
     },
     continueTxt: {
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: 20,
+      fontSize: width * 0.045,
       color: '#FFFFFF',
     },
     scrollview: {
@@ -70,8 +77,8 @@ function Help() {
       alignSelf: 'center',
       borderRadius: 15,
       padding: 15,
-      marginVertical: 40,
-      width: '90%',
+      marginTop: 10,
+      width: '100%',
       overflow: 'hidden',
       backgroundColor: '#274C7C',
     },
@@ -88,30 +95,25 @@ function Help() {
       transparent
       style={styles.modal}
     >
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.externalBg}>
+        <View style={styles.container}>
+        <IonIcons name="close" size={width * 0.07} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
         <ScrollView
           style={styles.scrollview}
           contentContainerStyle={styles.scrollContent}
         >
-          <IonIcons name="close" size={30} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
           <Text style={styles.header}>
             Welcome to Akhar Jor game.
-            {'\n'}
-          </Text>
-          <Text style={styles.header}>
+            {'\n\n'}
             The game where you link up letters in Gurmukhi to spell a word associated with a
             Sikh-related,Gurbani, or Punjabi context. Here are some of the things you need to know.
-          </Text>
-          {/* <HelpImg1 height={400}  style={styles.img}/> */}
-
-          <Text style={styles.header}>
-            {'\n'}
+            {'\n\n'}
             ◎ The game is split into many levels - in each level you will need to spell
             at least ten words using the Gurmukhi wheel of letters. The words get harder
             at each level but you are provided with a clue to help you solve the word.
-            {'\n'}
+            {'\n\n'}
           </Text>
-          <WordWheel height={350} style={styles.img} />
+          <WordWheel height={width*0.75} style={styles.img} />
           <Text style={styles.header}>
             {'\n'}
             Simply click the letters in the wheel to spell the word. If you get it wrong,
@@ -124,7 +126,7 @@ function Help() {
             you have accumulated that you can see by looking at the counter in the top-right corner.
             {'\n'}
           </Text>
-          <Tools height={300} style={styles.img} />
+          <Tools height={width*0.7} style={styles.img} />
           <Text style={styles.header}>
             {'\n'}
             The counter tells you how many credits you have left but clicking on the + icon
@@ -141,6 +143,7 @@ function Help() {
             </Text>
           </TouchableOpacity>
         </ScrollView>
+        </View>
       </SafeAreaView>
     </Modal>
   );

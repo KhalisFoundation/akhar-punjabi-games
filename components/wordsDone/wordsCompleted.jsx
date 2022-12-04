@@ -28,6 +28,7 @@ function RightWords({ navigation }) {
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
   const screenWidth = Dimensions.get('window').width;
+  const {width} = dimensions;
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -43,7 +44,6 @@ function RightWords({ navigation }) {
       justifyContent: 'space-between',
       width: '100%',
       height: '100%',
-      paddingBottom: 25,
     },
     downStyle: {
     },
@@ -51,11 +51,11 @@ function RightWords({ navigation }) {
       position: 'absolute',
       bottom: 0,
       right: 0,
-      height: 40,
-      width: 40,
+      height: width * 0.09,
+      width: width * 0.09,
       marginBottom: 20,
       backgroundColor: '#fff',
-      borderRadius: 20,
+      borderRadius: width * 0.05,
       elevation: 5,
     },
     listContainer: {
@@ -90,12 +90,12 @@ function RightWords({ navigation }) {
       display: 'none'
     },
     answerText: {
-      fontSize: (screenWidth < 370 ? 13 : 18),
+      fontSize: width * 0.04,
       color: '#464646',
       fontFamily: 'Muli'
     },
     answerForAnswerText: {
-      fontSize: (screenWidth < 370 ? 13 : 18),
+      fontSize: width * 0.04,
       color: 'green',
     },
     shadow: {
@@ -175,19 +175,19 @@ function RightWords({ navigation }) {
       />
       <View
         style={[(!state.meaningPopup) ? styles.downStyle : null, {
-          width: '100%', height: dimensions.size['24'], backgroundColor: '#00E9FE', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+          width: '100%', height: width * 0.175, backgroundColor: '#00E9FE', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
         }]}
       >
         <IonIcons
           name="chevron-back"
           color="#000"
           style={{ position: 'absolute', left: 10 }}
-          size={35}
+          size={width * 0.07}
           onPress={() => { navigation.navigate('AkharJor'); }}
         />
         <Text style={{
           color: '#000',
-          fontSize: (screenWidth < 370 ? 16 : 20),
+          fontSize: width * 0.05,
           fontFamily: 'Muli',
           margin: 0,
         }}
@@ -209,16 +209,16 @@ function RightWords({ navigation }) {
           style={styles.arrow}
           onPress={() => { dispatch(showMeaningPopUp(!state.meaningPopup)); }}
         >
-          <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={40} color="#274C7C" style={styles.shadow} />
+          <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={width * 0.09} color="#274C7C" style={styles.shadow} />
         </TouchableOpacity>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: (screenWidth < 370 ? 25 : 35), fontFamily: 'Prabhki' }]}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:width * 0.08, fontFamily: 'Prabhki' }]}>
             {showAnswer.engText}
           </Text>
           {/* to be asked */}
           { (showAnswer.engText) ? (
             <Text style={[styles.answerForAnswerText, {
-              color: showAnswer.color, fontSize: 18, fontFamily: 'Muli', marginTop: 5
+              color: showAnswer.color, fontSize: width * 0.04, fontFamily: 'Muli', marginTop: 5
             }]}
             >
               {' {'}
@@ -227,7 +227,7 @@ function RightWords({ navigation }) {
             </Text>
           )
             : (
-              <Text style={[styles.answerText, { fontSize: 18, fontFamily: 'Muli', marginTop: 5 }]}>
+              <Text style={[styles.answerText, { fontSize: width * 0.04, fontFamily: 'Muli', marginTop: 5 }]}>
                 Select any word to know more!
               </Text>
             )}

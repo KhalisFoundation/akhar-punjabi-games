@@ -40,8 +40,8 @@ function MoreGiveUps({ route, navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
 
-  const screenWidth = Dimensions.get('window').width;
-  // console.log('screenWidth: ', screenWidth);
+  const width = Dimensions.get('window').width;
+  // console.log('width: ', width);
 
   const [textEntry, setTextEntry] = useState('');
 
@@ -97,7 +97,7 @@ function MoreGiveUps({ route, navigation }) {
       width: '100%'
     },
     scrollContent: {
-      flexGrow: 1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'
+      flexGrow: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly'
     },
     keyboardRow: {
       width: '100%',
@@ -107,8 +107,8 @@ function MoreGiveUps({ route, navigation }) {
       padding: 7
     },
     key: {
-      width: 36,
-      height: 36,
+      width: width * 0.09,
+      height: width * 0.09,
       alignItems: 'center',
       textAlign: 'center',
       justifyContent: 'center',
@@ -128,7 +128,7 @@ function MoreGiveUps({ route, navigation }) {
       borderRadius: 5,
       // borderColor: 'black',
       // borderWidth: 1,
-      fontSize: 16,
+      fontSize: width * 0.04,
       padding: 5,
       textAlign: 'center',
       elevation: 5,
@@ -136,6 +136,7 @@ function MoreGiveUps({ route, navigation }) {
     DHANcover: {
       margin: 5,
       width: '99%',
+      height: width * 0.15,
       elevation: 5,
       justifyContent: 'center',
       backgroundColor: '#fff',
@@ -144,7 +145,7 @@ function MoreGiveUps({ route, navigation }) {
     DHAN: {
       textAlign: 'center',
       padding: 5,
-      fontSize: 30,
+      fontSize: width * 0.075,
       textShadowRadius: 10,
       fontFamily: 'Prabhki',
       color: 'darkblue'
@@ -152,15 +153,14 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignSelf: 'center',
       alignItems: 'center',
-      width: dimensions.size['50'],
+      width: width * 0.3,
       borderRadius: 15,
-      marginBottom: 15,
       elevation: 5,
       backgroundColor: '#FF7E00',
     },
     submit: {
       fontFamily: 'Nasa',
-      fontSize: 16,
+      fontSize: width * 0.04,
       alignSelf: 'center',
       padding: 5,
       margin: 5,
@@ -170,8 +170,8 @@ function MoreGiveUps({ route, navigation }) {
     upBox: {
       backgroundColor: '#072227',
       flexDirection: 'row',
-      height: 40,
-      width: 100,
+      height: width * 0.1,
+      width: width * 0.2,
       alignItems: 'center',
       borderRadius: 30,
       margin: 10,
@@ -180,16 +180,16 @@ function MoreGiveUps({ route, navigation }) {
       paddingHorizontal: 10
     },
     upText: {
-      fontSize: 15,
+      fontSize: width * 0.035,
       fontWeight: 'bold',
       color: '#D1FBFF'
     },
     header: {
-      width: '100%', height: dimensions.size['24'], backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+      width: '100%', height: width * 0.175, backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
     },
     headerText: {
       color: '#D1FBFF',
-      fontSize: (screenWidth < 370 ? 16 : 20),
+      fontSize: width * 0.05,
       fontFamily: 'Muli',
       margin: 0,
     },
@@ -198,28 +198,27 @@ function MoreGiveUps({ route, navigation }) {
     textLayout: {
       margin: 5,
       width: '99%',
+      height: width*0.1,
       elevation: 5,
       borderRadius: 20,
       backgroundColor: '#274C7C',
       shadowColor: '#000',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: 10
+      justifyContent: 'space-evenly'
     },
     text: {
       textAlign: 'center',
-      padding: 5,
       textShadowRadius: 10,
-      fontSize: 26,
-      width: '90%',
-      height: 50,
+      fontSize: width * 0.06,
+      width: width*0.85,
+      height: width * 0.1,
       fontFamily: 'Prabhki',
       color: '#FF7E00',
-      alignItems: 'flex-start'
+      alignItems: 'center',
     },
-    backspace: { color: 'white', fontSize: (screenWidth < 370 ? 14 : 20) },
-    keyText: { color: 'white', fontFamily: 'Bookish', fontSize: (screenWidth < 370 ? 15 : 22) }
+    backspace: { color: 'white', fontSize:width * 0.05 },
+    keyText: { color: 'white', fontFamily: 'Bookish', fontSize: width * 0.05 }
   });
 
   const wordsToType = [
@@ -260,7 +259,7 @@ function MoreGiveUps({ route, navigation }) {
         <IonIcons
           name="chevron-back"
           color="#D1FBFF"
-          size={35}
+          size={width * 0.07}
           style={styles.icon}
           onPress={() => { navigation.navigate(prevScreen); }}
         />
@@ -279,13 +278,13 @@ function MoreGiveUps({ route, navigation }) {
           >
             <IconM
               name="lightbulb-on"
-              size={25}
+              size={width * 0.06}
               color="orange"
             />
             <Text style={styles.upText}>{state.giveUpsLeft}</Text>
           </View>
           <Text style={styles.instructionsText}>
-            Try to type the following to get more Lives.
+            Try to type the following to get more Credits.
           </Text>
         </View>
         <View style={styles.DHANcover}>
@@ -303,7 +302,7 @@ function MoreGiveUps({ route, navigation }) {
                 <Icon
                   name="backspace"
                   color="#D1FBFF"
-                  size={dimensions.size['8']}
+                  size={width*0.05}
                   onPress={() => { handleClick('meta'); }}
                 />
               )}
@@ -321,7 +320,7 @@ function MoreGiveUps({ route, navigation }) {
                             style={styles.key}
                             key={keyboardKey}
                             onPress={() => handleClick('meta')}>
-                            <Text style={{color: 'white',, fontSize:(screenWidth<370 ? 14 : 20)}}>
+                            <Text style={{color: 'white',, fontSize:(width<370 ? 14 : 20)}}>
                               {"\u2190"}
                             </Text>
                           </TouchableOpacity>

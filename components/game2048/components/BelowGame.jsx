@@ -30,7 +30,7 @@ export const BelowGame = (props) => {
       color: '#002f63',
       fontFamily: 'Muli',
       alignSelf: 'center',
-      fontSize: Dimensions.size['7'],
+      fontSize: width * 0.05,
       paddingStart: Dimensions.size['2'],
       // textShadowColor: (state.darkMode) ? 'white' : 'black',
       // textShadowOffset: {
@@ -52,7 +52,7 @@ export const BelowGame = (props) => {
       <TouchableOpacity onPress={props.onRestart} style={styles.box}>
         <View style={styles.otherScreens}>
           <View style={styles.icon}>
-            <IonIcons name="reload" size={Dimensions.size['8']} color="#274C77" style={styles.shadow} />
+            <IonIcons name="reload" size={width*0.055} color="#274C77" style={styles.shadow} />
           </View>
           <Text style={styles.optText}>Reset</Text>
         </View>
@@ -68,7 +68,7 @@ export const BelowGame = (props) => {
           <View
             style={styles.icon}
           >
-            <IonIcons name="globe-outline" size={Dimensions.size['8']} color="#274C77" style={styles.shadow} />
+            <IonIcons name="globe-outline" size={width*0.055} color="#274C77" style={styles.shadow} />
           </View>
           <Text style={styles.optText}>Language</Text>
         </View>

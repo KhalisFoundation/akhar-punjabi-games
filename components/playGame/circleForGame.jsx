@@ -5,7 +5,7 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated, Dimensions
+  Text, StyleSheet, TouchableOpacity, Animated
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,12 +20,13 @@ import {
   setNewWords,
   setConfetti
 } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const { width } = Dimensions.get('window');
+  const { width } = dimensions;
 
   const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
   function gurmukhi(text) {
@@ -161,8 +162,8 @@ function TheCircle() {
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      height: width,
-      width: '100%',
+      flex: 1,
+      width: width,
     },
     // clearBox: {
     //   width: 0.12*width,
@@ -171,16 +172,15 @@ function TheCircle() {
     //   alignItems: 'center'
     // },
     characterText: {
-      paddingBottom: 5,
-      fontSize: width * 0.06,
+      fontSize: width>500 ? width*0.04 :width * 0.06,
       color: '#FF7E00',
       textAlign: 'center',
       fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
-      width: width * 0.09,
-      height: width * 0.09,
+      width: width>500 ? width*0.06 : width * 0.09,
+      height: width>500 ? width*0.06 : width * 0.09,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,
@@ -191,9 +191,15 @@ function TheCircle() {
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   let angle = 0;
 
-  const radius = width * 0.25;
+  const getRadius = () => {
+    if (width > 500) {
+      return 0.18 * width;
+    }
+    return 0.25 * width;
+  }
+  const radius = getRadius();//width * 0.25;
   const step = (2 * Math.PI) / charArray.length;
-  const newHeight = width * 0.4;
+  const newHeight = width>500 ? width*0.2 :width * 0.25;
   const newWidth = width * 0.45;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],

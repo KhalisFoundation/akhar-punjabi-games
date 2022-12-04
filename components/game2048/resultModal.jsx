@@ -14,6 +14,7 @@ import Icon from '../../assets/Group-14.svg';
 import Win from '../../assets/Win.svg';
 
 function YouWonModal(props) {
+  const {width} = dimensions;
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
@@ -22,7 +23,7 @@ function YouWonModal(props) {
 
   const styles = StyleSheet.create({
     container: {
-      width: 300,
+      width: width,
       borderRadius: 10,
       shadowColor: '#000',
       shadowOffset: {
@@ -49,14 +50,14 @@ function YouWonModal(props) {
       elevation: 5,
     },
     wordDoneText: {
-      fontSize: 30,
+      fontSize: width*0.075,
       textAlign: 'center',
       fontFamily: 'Bookish',
       color: 'white',
     },
     meaningText: {
       fontFamily: 'Muli',
-      fontSize: 16,
+      fontSize: width*0.04,
       textAlign: 'center',
       color: 'white',
       marginBottom: 10,
@@ -67,14 +68,14 @@ function YouWonModal(props) {
     },
     continueText: {
       textAlign: 'center',
-      fontSize: 20,
+      fontSize: width*0.04,
       margin: 'auto',
       fontFamily: 'Muli',
       color: 'black',
     },
     text: {
       textAlign: 'center',
-      fontSize: 35,
+      fontSize: width*0.07,
       color: 'white',
       shadowColor: '#000',
       shadowOffset: {
@@ -119,7 +120,7 @@ function YouWonModal(props) {
           <Text style={styles.text}>
             {props.won ? 'vDweIAwN jI!' : 'koeI g~l nhIN!'}
           </Text>
-          <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: 20 }]}>
+          <Text style={[styles.text, { fontFamily: 'Muli', fontWeight: 'normal', fontSize: width*0.05 }]}>
             {props.won ? 'You Won!' : 'No Problem!\nBetter Luck Next Time!'}
           </Text>
           <Animatable.View

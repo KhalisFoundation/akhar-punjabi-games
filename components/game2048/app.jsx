@@ -40,7 +40,7 @@ export default function New2048({ navigation }) {
               <View
                 style={styles.icon}
               >
-                <IonIcons name="chevron-back" size={35} color="#464646" style={styles.shadow} />
+                <IonIcons name="chevron-back" size={width * 0.075} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -59,7 +59,7 @@ export default function New2048({ navigation }) {
               <View
                 style={styles.icon}
               >
-                <IonIcons name="help" size={35} color="#464646" style={styles.shadow} />
+                <IonIcons name="help" size={width * 0.075} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     alignItems: 'center',
   },
-  iconSize: { width: 35, height: 35 },
+  iconSize: { width: width * 0.075, height: width * 0.075 },
   flex: { flex: 1 },
-  header: { justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9 }
+  header: { justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, }
 });

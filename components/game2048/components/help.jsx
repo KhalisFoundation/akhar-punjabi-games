@@ -18,6 +18,7 @@ import HelpImg3 from '../../../assets/helpGrid3.svg';
 
 import Dimensions from '../../../util/dimensions';
 import { closeHelpModal } from '../../../redux/actions';
+import { View } from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
 
@@ -30,13 +31,18 @@ function Help() {
 
   const styles = StyleSheet.create({
     modal: { flex: 1 },
+    externalBg: {
+      flex: 1,
+      backgroundColor: 'rgba(0,0,0,0.5)',
+    },
     container: {
+      flex: 1,
       alignSelf: 'center',
-      alignContent: 'center',
-      justifyContent: 'space-around',
-      backgroundColor: '#0003',
-      width: '100%',
-      flex: 1
+      borderRadius: 15,
+      padding: 15,
+      marginVertical: 40,
+      width: '90%',
+      backgroundColor: '#7FC8DE',
     },
     img: {
       alignSelf: 'center',
@@ -47,17 +53,17 @@ function Help() {
       alignSelf: 'center',
       borderRadius: 15,
       padding: 15,
-      marginVertical: 40,
-      width: '90%',
-      backgroundColor: '#7FC8DE',
+      marginTop: 10,
+      width: '100%',
       overflow: 'hidden',
+      backgroundColor: '#7FC8DE'
     },
     scrollContent: { flexDirection: 'column', justifyContent: 'space-between' },
     header: {
       justifyContent: 'center',
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: 20,
+      fontSize: width * 0.04,
       color: '#000',
     },
     continue: {
@@ -67,14 +73,14 @@ function Help() {
       margin: 20,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: 50,
-      width: width * 0.45,
+      height: width*0.075,
+      width: width * 0.4,
       elevation: 5,
     },
     continueTxt: {
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: 20,
+      fontSize: width * 0.045,
       color: '#000',
     },
     icon: { marginLeft: 10 }
@@ -89,30 +95,34 @@ function Help() {
       transparent
       style={styles.modal}
     >
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.externalBg}>
+        <View style={styles.container}>
+        <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(closeHelpModal()); }} />
         <ScrollView
           style={styles.scrollview}
           contentContainerStyle={styles.scrollContent}
         >
-          <IonIcons name="close" size={30} color="#000" style={styles.icon} onPress={() => { dispatch(closeHelpModal()); }} />
           <Text style={styles.header}>
             Welcome to 2048 game.
             {'\n\n'}
             Swipe to move all tiles.
+            {'\n'}
           </Text>
-          <HelpImg1 height={300} style={styles.img} />
+          <HelpImg1 height={width*0.7} style={styles.img} />
 
           <Text style={styles.header}>
             {'\n\n'}
             Two tiles with the same number merge when they touch!
+            {'\n'}
           </Text>
-          <HelpImg2 height={300} style={styles.img} />
+          <HelpImg2 height={width*0.7} style={styles.img} />
 
           <Text style={styles.header}>
             {'\n\n'}
             Reach the 2048 tile to win the game!
+            {'\n'}
           </Text>
-          <HelpImg3 height={300} style={styles.img} />
+          <HelpImg3 height={width*0.7} style={styles.img} />
           <TouchableOpacity
             style={styles.continue}
             onPress={() => { dispatch(closeHelpModal()); }}
@@ -122,6 +132,7 @@ function Help() {
             </Text>
           </TouchableOpacity>
         </ScrollView>
+        </View>
       </SafeAreaView>
     </Modal>
   );

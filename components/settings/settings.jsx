@@ -39,7 +39,7 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const screenWidth = Dimensions.get('window').width;
+  const {width} = dimensions;
   // const colors = theColors.false;
   // const platform = Platform.OS;
   const styles = StyleSheet.create({
@@ -54,7 +54,7 @@ function Settings({ navigation }) {
       color: '#274CCC',
       fontFamily: 'Muli',
       fontWeight: '600',
-      fontSize: 18,
+      fontSize: width * 0.0425,
     },
     shadow: {
       shadowColor: 'black',
@@ -69,6 +69,9 @@ function Settings({ navigation }) {
       width: '100%',
       height: '100%',
     },
+    listText: {
+      fontSize: width * 0.04
+    }
   });
 
   async function resetGame() {
@@ -86,19 +89,19 @@ function Settings({ navigation }) {
         barStyle="dark-content"
       />
       <View style={{
-        width: '100%', height: dimensions.size['24'], backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+        width: '100%', height: width*0.175, backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
       }}
       >
         <IonIcons
           name="chevron-back"
           color="black"
-          size={35}
+          size={width * 0.08}
           style={{ position: 'absolute', left: 10 }}
           onPress={() => { navigation.goBack(); }}
         />
         <Text style={{
           color: ('black'),
-          fontSize: (screenWidth < 370 ? 16 : 20),
+          fontSize: width * 0.05,
           fontFamily: 'Muli',
           margin: 0,
         }}
@@ -111,7 +114,7 @@ function Settings({ navigation }) {
       <ScrollView style={styles.scroll}>
         <View
           style={{
-            width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
+            width: '100%', height: width*0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text
@@ -174,7 +177,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: 35, height: 35 }}
+            style={{ width: width * 0.08, height: width * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -183,7 +186,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <IonIcons name="reload" size={35} color="#464646" style={styles.shadow} />
+                <IonIcons name="reload" size={width * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -193,12 +196,12 @@ function Settings({ navigation }) {
             />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title><Text>Reset</Text></ListItem.Title>
+            <ListItem.Title><Text style={styles.listText}>Reset</Text></ListItem.Title>
           </ListItem.Content>
         </ListItem>
         <View
           style={{
-            width: '100%', height: 40, marginLeft: 10, marginTop: 10, marginBottom: -10
+            width: '100%', height: width*0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text
@@ -216,7 +219,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: 35, height: 35 }}
+            style={{ width: width * 0.08, height: width * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -225,7 +228,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesome5Icons name="donate" size={35} color="#464646" style={styles.shadow} />
+                <FontAwesome5Icons name="donate" size={width * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -235,9 +238,9 @@ function Settings({ navigation }) {
             />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title><Text>Donate</Text></ListItem.Title>
+            <ListItem.Title><Text style={styles.listText}>Donate</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color="black" />
+          <ListItem.Chevron color="black" size={width * 0.04} />
         </ListItem>
         <ListItem
           containerStyle={[
@@ -248,7 +251,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: 35, height: 35 }}
+            style={{ width: width * 0.08, height: width * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -257,7 +260,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcons name="question-circle" size={35} color="#464646" style={styles.shadow} />
+                <FontAwesomeIcons name="question-circle" size={width * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -267,9 +270,9 @@ function Settings({ navigation }) {
             />
           </MaskedView>
           <ListItem.Content style={{ alignSelf: 'center' }}>
-            <ListItem.Title><Text>About</Text></ListItem.Title>
+            <ListItem.Title><Text style={styles.listText}>About</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color="black" />
+          <ListItem.Chevron color="black" size={width * 0.04} />
         </ListItem>
       </ScrollView>
     </SafeAreaView>

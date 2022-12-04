@@ -107,10 +107,13 @@ function HomeScreen({ navigation }) {
       height: '8%',
       width: '45%',
     },
-    bold: {
-      fontWeight: 'bold',
+    center: {
       alignSelf: 'center',
     },
+    menuText: {
+      fontSize: width * 0.045,
+      alignSelf: 'center',
+    }
   });
 
   if (!fontsLoaded) {
@@ -143,7 +146,7 @@ function HomeScreen({ navigation }) {
           }}
           style={{ padding: 5 }}
         >
-          <Icon name="cog" size={width * 0.07} color="#ccc" style={styles.bold} />
+          <Icon name="cog" size={width * 0.07} color="#ccc" style={styles.center} />
         </TouchableOpacity>
       </View>
       <View
@@ -161,8 +164,8 @@ function HomeScreen({ navigation }) {
         >
           AKr joV
         </Text>
-        <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.09, color: '#cdff' }}>
-          Akhar Jor
+        <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
+          Gurmukhi Wordlink
         </Text>
       </View>
       <View style={{ width: '100%' }}>
@@ -196,9 +199,9 @@ function HomeScreen({ navigation }) {
             navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
           }}
         >
-          <EnIcon name="shield" size={width * 0.15} color="yellow" style={styles.bold} />
+          <EnIcon name="shield" size={width * 0.15} color="yellow" style={styles.center} />
           <Text style={{
-            ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign: 'center'
+            ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign: 'center'
           }}
           >
             Levels
@@ -211,9 +214,9 @@ function HomeScreen({ navigation }) {
           }}
         >
 
-          <Icon name="heart" size={width * 0.15} color="#f55aff" style={styles.bold} />
+          <Icon name="heart" size={width * 0.15} color="#f55aff" style={styles.center} />
           <Text style={{
-            ...styles.bold, fontFamily: 'Muli', fontWeight: 'normal', color: 'white'
+            ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white'
           }}
           >
             Credits
