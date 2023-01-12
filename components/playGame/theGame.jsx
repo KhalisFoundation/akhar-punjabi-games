@@ -55,7 +55,7 @@ function GameScreen({ navigation }) {
       justifyContent: 'space-evenly',
     },
     hintLayout: {
-      width: '100%', backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'
+      width: '95%', backgroundColor: 'transparent', flexDirection: 'row', alignSelf: 'flex-end'
     },
     // status: {
     //   color: 'black',
@@ -305,11 +305,10 @@ function GameScreen({ navigation }) {
           barStyle="dark-content"
         />
         <View style={{
-          width: '100%', height: width*0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20
+          width: '100%', height: width*0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
         }}
         >
           <TouchableOpacity
-            style={{ justifyContent: 'flex-start' }}
             onPress={() => navigation.goBack()}
           >
             <IonIcons name="chevron-back" size={width * 0.08} color="black" />
@@ -321,7 +320,7 @@ function GameScreen({ navigation }) {
             <StatsBox stat="hints" navigation={navigation} />
             {/* <StatsBox stat="points" navigation={navigation} /> */}
           </View>
-          <IonIcons name="help" size={width * 0.08} color="black" style={{ justifyContent: 'flex-end' }} onPress={() => { dispatch(openHelpModal()); console.log(state.helpPage); }} />
+          <IonIcons name="help" size={width * 0.08} color="black" onPress={() => { dispatch(openHelpModal()); console.log(state.helpPage); }} />
         </View>
         <View
           style={styles.scroller}
