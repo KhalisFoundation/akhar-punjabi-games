@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Sikh Games",
+    "name": "Akhar: Punjabi Games",
     "slug": "game",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/akhar.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
@@ -13,12 +13,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "19",
+      "buildNumber": "21",
       "infoPlist": {
         "location": "This app uses location to personalise your experience."
       }
@@ -26,15 +28,30 @@
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 19,
+      "versionCode": 21,
       "permissions": [
         "ACCESS_BACKGROUND_LOCATION",
         "ACCESS_COARSE_LOCATION"
       ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-akhar.png",
         "backgroundColor": "#274C7C"
       }
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d2512b2e-7df8-42a1-b0de-5e11fe888618"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }
