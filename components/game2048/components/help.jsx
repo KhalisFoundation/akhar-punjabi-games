@@ -17,7 +17,7 @@ import HelpImg2 from '../../../assets/helpGrid2.svg';
 import HelpImg3 from '../../../assets/helpGrid3.svg';
 
 import Dimensions from '../../../util/dimensions';
-import { closeHelpModal } from '../../../redux/actions';
+import { close2048HelpModal } from '../../../redux/actions';
 import { View } from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
@@ -97,7 +97,7 @@ function Help() {
     >
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
-        <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(closeHelpModal()); }} />
+        <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(close2048HelpModal()); }} />
         <ScrollView
           style={styles.scrollview}
           contentContainerStyle={styles.scrollContent}
@@ -125,7 +125,7 @@ function Help() {
           <HelpImg3 height={width*0.7} style={styles.img} />
           <TouchableOpacity
             style={styles.continue}
-            onPress={() => { dispatch(closeHelpModal()); }}
+            onPress={() => { dispatch(close2048HelpModal()); }}
           >
             <Text style={styles.continueTxt}>
               PLAY

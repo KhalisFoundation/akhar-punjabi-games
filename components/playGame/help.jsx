@@ -26,6 +26,7 @@ function Help() {
 
   const [fontsLoaded] = useFonts({
     Muli: require('../../assets/fonts/Muli.ttf'),
+    Arial: require('../../assets/fonts/Arial.ttf')
   });
 
   const styles = StyleSheet.create({
@@ -69,7 +70,10 @@ function Help() {
       textAlign: 'center',
       fontFamily: 'Muli',
       fontSize: width * 0.045,
-      color: '#FFFFFF',
+      color: '#000',
+    },
+    emoji: {
+      fontFamily: "Arial"
     },
     scrollview: {
       flex: 1,
@@ -103,8 +107,44 @@ function Help() {
           contentContainerStyle={styles.scrollContent}
         >
           <Text style={styles.header}>
-            Welcome to Akhar Jor game.
+            Are you ready to test your Punjabi vocabulary skills?
+              <Text style={styles.emoji}> 🧐</Text>
             {'\n\n'}
+            Welcome to Akhar Jor, where you'll link up letters in Gurmukhi to spell words related to Sikhism and Gurbani!
+            {'\n'}
+          </Text>
+          <WordWheel height={width*0.75} style={styles.img} />
+          <Text style={styles.header}>
+            {'\n'}
+            Level up your game
+              <Text style={styles.emoji}>💪</Text>
+            : With each level, the words get harder, but don't worry!
+            {'\n\n'}
+            You'll be given a clue
+              <Text style={styles.emoji}>💡</Text>
+            to help you solve the word. Keep trying until you get it right - there's no penalty for trying as many times as you need.
+            {'\n'}
+          </Text>
+          <Tools height={width*0.7} style={styles.img} />
+          <Text style={styles.header}>
+            {'\n'}
+            Need a hand?
+            {'\n'}
+            If you're feeling stuck
+              <Text style={styles.emoji}>🤔</Text>
+            , click on the bulb icon for a hint. One letter will be filled in for you, but it'll cost you credits.
+            {'\n\n'}
+            Keep an eye 
+              <Text style={styles.emoji}>👀 </Text>
+            on your credit counter in the top-right corner, and click on the (+) icon to earn some extra credits by spelling out sentences.
+            {'\n\n'}
+
+            Ready to challenge yourself? 
+              <Text style={styles.emoji}>🧠</Text>
+            {'\n'}
+            Lets get started and see how many Gurbani words you can spell!
+          </Text>
+            {/* {'\n\n'}
             The game where you link up letters in Gurmukhi to spell a word associated with a
             Sikh-related,Gurbani, or Punjabi context. Here are some of the things you need to know.
             {'\n\n'}
@@ -112,9 +152,6 @@ function Help() {
             at least ten words using the Gurmukhi wheel of letters. The words get harder
             at each level but you are provided with a clue to help you solve the word.
             {'\n\n'}
-          </Text>
-          <WordWheel height={width*0.75} style={styles.img} />
-          <Text style={styles.header}>
             {'\n'}
             Simply click the letters in the wheel to spell the word. If you get it wrong,
             you must try again. You can try as many times as you want without getting penalized.
@@ -125,14 +162,11 @@ function Help() {
             The helper will fill in one letter for you - but beware, this will cost you credits
             you have accumulated that you can see by looking at the counter in the top-right corner.
             {'\n'}
-          </Text>
-          <Tools height={width*0.7} style={styles.img} />
-          <Text style={styles.header}>
             {'\n'}
             The counter tells you how many credits you have left but clicking on the + icon
             next to it will give you the opportunity to earn some extra ones.
             You will just need to spell out a sentence to be gifted credits.
-          </Text>
+          </Text> */}
 
           <TouchableOpacity
             style={styles.continue}
