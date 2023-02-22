@@ -173,9 +173,9 @@ function About({ navigation }) {
           </Text>
           <Text
             style={styles.link}
-            onPress={() => Linking.openURL('https://khalis.dev')}
+            onPress={() => Linking.openURL('https://khalisfoundation.org/')}
           >
-            Khalis.dev
+            KhalisFoundation.org
           </Text>
           {'\n'}
         </Text>
@@ -187,10 +187,14 @@ function About({ navigation }) {
           </Text>
 
           <TouchableOpacity
+            style={{
+              width:"100%",
+              alignItems: 'center',
+            }}
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalis.dev')}
           >
-            <KhalisLogo width={"100%"} height={100} />
+            <KhalisLogo width={width*0.5} height={width*0.2} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>

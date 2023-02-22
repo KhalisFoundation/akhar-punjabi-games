@@ -180,12 +180,24 @@ function MenuScreen({ navigation }) {
             <Text style={styles.text}>2048</Text>
           </TouchableOpacity>
         </View>
+        {/* <View style={styles.columns}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => {
+              // if (audioPlayer._loaded) {stopSound()};
+              whichGame('wordle');
+              navigation.navigate('Wordle');
+            }}
+          >
+            <Text style={styles.text}>Wordle</Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
       <TouchableOpacity
         style={styles.khalisTouchableOpacity}
         onPress={() => Linking.openURL('https://khalis.dev')}
       >
-        <Khalis height={80} />
+        <Khalis width={width*0.5} height={width*0.2}/>
       </TouchableOpacity>
     </SafeAreaView>
   );
