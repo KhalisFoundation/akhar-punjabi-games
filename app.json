@@ -20,19 +20,12 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "21",
-      "infoPlist": {
-        "location": "This app uses location to personalise your experience."
-      }
+      "buildNumber": "23"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 21,
-      "permissions": [
-        "ACCESS_BACKGROUND_LOCATION",
-        "ACCESS_COARSE_LOCATION"
-      ],
+      "versionCode": 23,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-akhar.png",
         "backgroundColor": "#274C7C"

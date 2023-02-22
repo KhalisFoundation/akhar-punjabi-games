@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Analytics from 'expo-firebase-analytics';
 import { useEffect } from 'react';
-import * as Location from 'expo-location';
+//import * as Location from 'expo-location';
 import MenuScreen from './components/menuScreen/menuPage';
 import HomeScreen from './components/homeScreen/landingPage';
 import GameScreen from './components/playGame/theGame';
@@ -22,19 +22,23 @@ const Stack = createStackNavigator();
 
 function App() {
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        await Analytics.setAnalyticsCollectionEnabled(false);
-        console.log('Permission to access location was denied');
-        return;
-      }
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await Location.requestForegroundPermissionsAsync();
+  //     console.log ('Location permission status: ', status);
+  //     if (status !== 'granted') {
+  //       await Analytics.setAnalyticsCollectionEnabled(false);
+  //       console.log('Permission to access location was denied');
+  //       return;
+  //     } else {
+  //       console.log('Permission to access location was granted');
+  //       // allow analytics to be used
+  //       await Analytics.setAnalyticsCollectionEnabled(true);
+  //       logOS();
+  //     }
 
-      // allow analytics to be used
-      await Analytics.setAnalyticsCollectionEnabled(true);
-    })();
-  }, []);
+  //   })();
+  // }, []);
 
   auth.signInAnonymously()
     .then(() => {
@@ -65,10 +69,10 @@ function App() {
     console.log('Device OS: ', Platform.OS);
     await Analytics.logEvent('device_os', { name: Platform.OS });
   }
-  React.useEffect(() => {
-    logOS();
-  }, []);
 
+  useEffect(() => {
+    logOS();
+  })
   // Get the current screen from the navigation state
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = React.useRef();
@@ -84,7 +88,6 @@ function App() {
           onStateChange={async () => {
             const previousRouteName = routeNameRef.current;
             const currentRouteName = navigationRef.getCurrentRoute().name;
-
             if (previousRouteName !== currentRouteName) {
             // The line below uses the expo-firebase-analytics tracker
             // https://docs.expo.io/versions/latest/sdk/firebase-analytics/
