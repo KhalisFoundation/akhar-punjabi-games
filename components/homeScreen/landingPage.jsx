@@ -20,7 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import { setTheState, openHelpModal } from '../../redux/actions';
 import Help from '../playGame/help';
-import Khalis from '../../assets/khalis_logo.svg';
+import Khalis from '../../assets/khalis_incubator_dark.svg';
 import { initialState } from '../../redux/reducers';
 
 import dimensions from '../../util/dimensions';
@@ -104,8 +104,8 @@ function HomeScreen({ navigation }) {
       margin: 10,
     },
     khalisTouchableOpacity: {
-      height: '8%',
-      width: '45%',
+      width: '100%',
+      alignItems: 'center',
     },
     center: {
       alignSelf: 'center',
@@ -149,86 +149,82 @@ function HomeScreen({ navigation }) {
           <Icon name="cog" size={width * 0.07} color="#ccc" style={styles.center} />
         </TouchableOpacity>
       </View>
-      <View
-        style={{
-          backgroundColor: 'transparent',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text style={{
-          fontFamily: 'Bookish',
-          fontSize: width * 0.14,
-          color: '#cdff',
-        }}
-        >
-          AKr joV
-        </Text>
-        <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
-          Gurmukhi Wordlink
-        </Text>
-      </View>
-      <View style={{ width: '100%' }}>
-        {/* PLay transition */}
-        <TouchableOpacity
-          style={styles.playTouchableOpacity}
-          onPress={() => {
-            navigation.navigate('play');
-          }}
-        >
-          <Text style={styles.play}>Play</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(openHelpModal()); // console.log(state.helpPage);
+      <View style={{justifyContent:'space-evenly', height: "100%", width: "100%"}}>
+        <View
+          style={{
+            backgroundColor: 'transparent',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Text style={{
-            ...styles.play, fontFamily: 'Muli', fontSize: width * 0.05, textDecorationStyle: 'solid', textDecorationColor: '#fff', textDecorationLine: 'underline'
+            fontFamily: 'Bookish',
+            fontSize: width * 0.14,
+            color: '#cdff',
           }}
           >
-            How do I play?
+            AKr joV
           </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.otherScreens}>
+          <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
+            Gurmukhi Wordlink
+          </Text>
+        </View>
+        <View style={{ width: '100%' }}>
+          {/* PLay transition */}
+          <TouchableOpacity
+            style={styles.playTouchableOpacity}
+            onPress={() => {
+              navigation.navigate('play');
+            }}
+          >
+            <Text style={styles.play}>Play</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(openHelpModal()); // console.log(state.helpPage);
+            }}
+          >
+            <Text style={{
+              ...styles.play, fontFamily: 'Muli', fontSize: width * 0.05, textDecorationStyle: 'solid', textDecorationColor: '#fff', textDecorationLine: 'underline'
+            }}
+            >
+              How do I play?
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.otherScreens}>
 
-        <TouchableOpacity
-          style={styles.otherScreenTouchableOpacity}
-          onPress={() => {
-            navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
-          }}
-        >
-          <EnIcon name="shield" size={width * 0.15} color="yellow" style={styles.center} />
-          <Text style={{
-            ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign: 'center'
-          }}
+          <TouchableOpacity
+            style={styles.otherScreenTouchableOpacity}
+            onPress={() => {
+              navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
+            }}
           >
-            Levels
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.otherScreenTouchableOpacity}
-          onPress={() => {
-            navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
-          }}
-        >
+            <EnIcon name="shield" size={width * 0.15} color="yellow" style={styles.center} />
+            <Text style={{
+              ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign: 'center'
+            }}
+            >
+              Levels
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.otherScreenTouchableOpacity}
+            onPress={() => {
+              navigation.navigate('giveUps'); // how to pass params to other screen. We probaly won't need but there just for refrence
+            }}
+          >
 
-          <Icon name="heart" size={width * 0.15} color="#f55aff" style={styles.center} />
-          <Text style={{
-            ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white'
-          }}
-          >
-            Credits
-          </Text>
-        </TouchableOpacity>
+            <Icon name="heart" size={width * 0.15} color="#f55aff" style={styles.center} />
+            <Text style={{
+              ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white'
+            }}
+            >
+              Credits
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <TouchableOpacity
-        style={styles.khalisTouchableOpacity}
-        onPress={() => Linking.openURL('https://khalisfoundation.org')}
-      >
-        <Khalis />
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

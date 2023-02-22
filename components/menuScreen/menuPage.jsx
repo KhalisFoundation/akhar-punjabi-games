@@ -6,17 +6,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
-  StatusBar
+  StatusBar,
+  Image
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 // import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Khalis from '../../assets/khalis_logo.svg';
-import Logo from '../../assets/sikh_games_logo_with_text.svg';
+import Khalis from '../../assets/khalis_incubator_dark.svg';
+import Logo from '../../assets/akhar_logo.svg';
 
-import dimensions from '../../util/dimensions';
+import dimensions, { height, scale } from '../../util/dimensions';
 
 // const audioPlayer = new Audio.Sound();
 
@@ -119,10 +120,9 @@ function MenuScreen({ navigation }) {
       backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'
     },
     menulogo: {
-      width: '80%',
       resizeMode: 'contain',
       alignSelf: 'center',
-      height: '50%',
+      margin: 15
     },
     columns: {
       flexDirection: 'column',
@@ -130,8 +130,9 @@ function MenuScreen({ navigation }) {
       justifyContent: 'space-evenly',
     },
     khalisTouchableOpacity: {
-      height: '8%',
-      width: '45%',
+      width: '100%',
+      alignItems: 'center',
+      marginVertical: 10
     },
   });
   async function whichGame(gameName) {
@@ -147,7 +148,7 @@ function MenuScreen({ navigation }) {
         hidden
       />
       <View style={styles.header}>
-        <Logo style={styles.menulogo} />
+        <Logo height={width*0.6} width={width*0.6} style={styles.menulogo} />
         <View style={styles.mainMenuContainer}>
           <Text style={styles.mainmenu}>MAIN MENU</Text>
           {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
@@ -179,12 +180,24 @@ function MenuScreen({ navigation }) {
             <Text style={styles.text}>2048</Text>
           </TouchableOpacity>
         </View>
+        {/* <View style={styles.columns}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => {
+              // if (audioPlayer._loaded) {stopSound()};
+              whichGame('wordle');
+              navigation.navigate('Wordle');
+            }}
+          >
+            <Text style={styles.text}>Wordle</Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
       <TouchableOpacity
         style={styles.khalisTouchableOpacity}
-        onPress={() => Linking.openURL('https://khalisfoundation.org')}
+        onPress={() => Linking.openURL('https://khalis.dev')}
       >
-        <Khalis />
+        <Khalis width={width*0.5} height={width*0.2}/>
       </TouchableOpacity>
     </SafeAreaView>
   );

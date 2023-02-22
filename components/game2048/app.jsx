@@ -13,7 +13,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from './components/Container';
 import Dimensions from '../../util/dimensions';
-import { openHelpModal } from '../../redux/actions';
+import { open2048HelpModal } from '../../redux/actions';
 import Help from './components/help';
 
 export default function New2048({ navigation }) {
@@ -22,7 +22,7 @@ export default function New2048({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      { state.helpPage ? <Help /> : null }
+      { state.helpPage2048 ? <Help /> : null }
       <StatusBar
         translucent
         backgroundColor="transparent"
@@ -33,6 +33,7 @@ export default function New2048({ navigation }) {
       >
         <TouchableOpacity
           onPressOut={() => navigation.goBack()}
+          style={{ padding: 5 }}
         >
           <MaskedView
             style={styles.iconSize}
@@ -51,7 +52,8 @@ export default function New2048({ navigation }) {
           </MaskedView>
         </TouchableOpacity>
         <TouchableOpacity
-          onPressOut={() => { dispatch(openHelpModal()); }}
+          onPressOut={() => { dispatch(open2048HelpModal()); }}
+          style={{ padding: 5 }}
         >
           <MaskedView
             style={styles.iconSize}
@@ -93,5 +95,5 @@ const styles = StyleSheet.create({
   },
   iconSize: { width: width * 0.075, height: width * 0.075 },
   flex: { flex: 1 },
-  header: { justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, }
+  header: { justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, marginTop: 5 }
 });

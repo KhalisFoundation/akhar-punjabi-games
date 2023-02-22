@@ -172,15 +172,15 @@ function TheCircle() {
     //   alignItems: 'center'
     // },
     characterText: {
-      fontSize: width>500 ? width*0.04 :width * 0.06,
+      fontSize: width>500 ? width*0.055 :width * 0.08,
       color: '#FF7E00',
       textAlign: 'center',
       fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
-      width: width>500 ? width*0.06 : width * 0.09,
-      height: width>500 ? width*0.06 : width * 0.09,
+      width: width>500 ? width*0.079 : width * 0.115,
+      height: width>500 ? width*0.079 : width * 0.115,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,

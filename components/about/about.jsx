@@ -6,15 +6,16 @@ import {
   Linking,
   ScrollView,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Image
 } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
-import KhalisDark from '../../assets/khalis_logo_dark.svg';
-import Logo from '../../assets/sikh_games.svg';
+import KhalisLogo from '../../assets/khalis_incubator.svg';
+import Logo from "../../assets/akhar_logo_with_text.svg";
 import dimensions from '../../util/dimensions';
 
 function About({ navigation }) {
@@ -70,7 +71,10 @@ function About({ navigation }) {
     info: {
       fontSize: width * 0.04, fontFamily: 'Muli', color: black, margin: 10, marginTop: 0, marginStart: 0
     },
-    logo: { height: width*0.4, marginTop: 20 },
+    logo: {
+      resizeMode: 'contain',
+      alignSelf: 'center',
+    },
     title1: { fontFamily: 'Nasa', fontSize: width * 0.06, color: black },
     title2: { fontFamily: 'GurbaniHeavy', fontSize: width* 0.07, color: black },
     aboutus: { fontSize: width * 0.04, fontFamily: 'Muli', color: black },
@@ -124,7 +128,13 @@ function About({ navigation }) {
           </MaskedView>
           <Text style={{ fontFamily: 'Nasa', fontSize:25, color: "#61CAE5"}}>(SIKH GAMES)</Text>
         </View> */}
-        <Logo style={styles.logo} />
+        <Logo style={styles.logo} width={width*0.7} height={width*0.7} />
+
+        <Text style={styles.aboutus}>
+          {'\n'}
+          Akhar: Punjabi Games is a treasure of fun games created by young developers at 
+          Khalis Incubator, to help everyone learn punjabi the fun way.
+        </Text>
 
         {/* Explaining Akhar Jor */}
         <Text style={styles.title1}>
@@ -151,9 +161,10 @@ function About({ navigation }) {
         <Text style={styles.aboutus}>
           <Text>{'\n'}</Text>
           <Text>
-            Khalis Foundation is a non-profit, 501(c)3 organization registered in,
-            and operated from, California, USA. Our focus is spreading Gurbani
-            and influencing a Sikh way of life through the education and technology.
+            Khalis Incubator is an initiative by Khalis Foundation (a 501(c)3 non-profit organization registered and based in California, USA) to create more opportunities for youth from 
+            traditionally under-represented groups with a focus on South Asian minority communities. We aim to 
+            foster opportunities for growth whether that be in professional training, technical experience, or 
+            Sikh cultural knowledge.
             {'\n\n'}
             We welcome your comments and corrections!
             {' '}
@@ -162,7 +173,7 @@ function About({ navigation }) {
           </Text>
           <Text
             style={styles.link}
-            onPress={() => Linking.openURL('https://khalisfoundation.org')}
+            onPress={() => Linking.openURL('https://khalisfoundation.org/')}
           >
             KhalisFoundation.org
           </Text>
@@ -176,10 +187,14 @@ function About({ navigation }) {
           </Text>
 
           <TouchableOpacity
+            style={{
+              width:"100%",
+              alignItems: 'center',
+            }}
             underlayColor={linkColor}
-            onPress={() => Linking.openURL('https://khalisfoundation.org')}
+            onPress={() => Linking.openURL('https://khalis.dev')}
           >
-            <KhalisDark height={width*0.12} />
+            <KhalisLogo width={width*0.5} height={width*0.2} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>
@@ -190,7 +205,7 @@ function About({ navigation }) {
               {' '}
               {new Date().getFullYear()}
               {' '}
-              Khalis Foundation
+              Khalis Incubator
             </Text>
             <Text
               style={styles.small}

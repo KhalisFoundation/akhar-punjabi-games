@@ -103,8 +103,10 @@ export const initialState = {
   // 2048 stuff
   resultShow: false,
   moves: 0,
-  helpPage: false,
+  helpPage: true,
+  helpPage2048: true,
   confetti: false,
+  punjabiNums: true,
 };
 
 //to reset all state
@@ -500,11 +502,29 @@ function theGameReducer(state = initialState, action) {
     setData("state", newState);
     return newState;
   }
+
+  if (action.type === "OPEN_2048_HELP_MODAL") {
+    const newState = {
+      ...state,
+      helpPage2048: true,
+    };
+    setData("state", newState);
+    return newState;
+  }
   
   if (action.type === "CLOSE_HELP_MODAL") {
     const newState = {
       ...state,
       helpPage: false,
+    };
+    setData("state", newState);
+    return newState;
+  }
+
+  if (action.type === "CLOSE_2048_HELP_MODAL") {
+    const newState = {
+      ...state,
+      helpPage2048: false,
     };
     setData("state", newState);
     return newState;
