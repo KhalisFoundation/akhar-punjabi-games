@@ -7,8 +7,16 @@ import {
 } from 'react-native';
 import React from 'react';
 import Dimensions, { width } from '../../../util/dimensions';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import { useSelector } from 'react-redux';
 
 function Heading(props) {
+  const state = useSelector((theState) => theState.theGameReducer);
+  const [fontsLoaded] = useFonts({
+    Muli: require('../../../assets/fonts/Muli.ttf'),
+    GurbaniAkhar: require('../../../assets/fonts/GurbaniAkharSG.ttf')
+  });
   const styles = StyleSheet.create({
     container: { justifyContent: 'space-around', flexDirection: 'row', width },
     upBox: {
@@ -22,8 +30,15 @@ function Heading(props) {
       color: 'white',
       fontSize: width*0.04,
       fontFamily: 'Muli'
+    },
+    numText: {
+      fontFamily: state.punjabiNums ? 'GurbaniAkhar': 'Muli',
     }
   });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <View
@@ -31,16 +46,12 @@ function Heading(props) {
     >
       <View style={styles.upBox}>
         <Text style={styles.upText}>
-          Best
-          {': '}
-          {props.best}
+          Best: <Text style={styles.numText}>{props.best}</Text>
         </Text>
       </View>
       <View style={styles.upBox}>
         <Text style={styles.upText}>
-          Score
-          {': '}
-          {props.score}
+          Score: <Text style={styles.numText}>{props.score}</Text>
         </Text>
       </View>
     </View>

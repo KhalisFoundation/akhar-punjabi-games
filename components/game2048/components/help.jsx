@@ -27,6 +27,7 @@ function Help() {
 
   const [fontsLoaded] = useFonts({
     Muli: require('../../../assets/fonts/Muli.ttf'),
+    Bookish: require('../../../assets/fonts/Prabhki.ttf')
   });
 
   const styles = StyleSheet.create({
@@ -83,7 +84,8 @@ function Help() {
       fontSize: width * 0.045,
       color: '#000',
     },
-    icon: { marginLeft: 10 }
+    icon: { marginLeft: 10 },
+    gtext: {fontFamily: "Bookish"}
   });
 
   if (!fontsLoaded) {
@@ -103,7 +105,7 @@ function Help() {
           contentContainerStyle={styles.scrollContent}
         >
           <Text style={styles.header}>
-            Welcome to 2048 game.
+            Welcome to <Text style={styles.gtext}>2048</Text> game.
             {'\n\n'}
             Swipe to move all tiles.
             {'\n'}
@@ -119,7 +121,7 @@ function Help() {
 
           <Text style={styles.header}>
             {'\n\n'}
-            Reach the 2048 tile to win the game!
+            Reach the <Text style={styles.gtext}>2048</Text> tile to win the game!
             {'\n'}
           </Text>
           <HelpImg3 height={width*0.7} style={styles.img} />

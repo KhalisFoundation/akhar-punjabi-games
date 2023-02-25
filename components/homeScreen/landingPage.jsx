@@ -166,7 +166,7 @@ function HomeScreen({ navigation }) {
             AKr joV
           </Text>
           <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
-            Gurmukhi Wordlink
+            {Platform.OS === "ios" ? "Akhar Jor" : "Gurmukhi Wordlink"}
           </Text>
         </View>
         <View style={{ width: '100%' }}>

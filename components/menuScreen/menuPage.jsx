@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Linking,
   StatusBar,
-  Image
+  Image,
+  Platform
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -116,6 +117,9 @@ function MenuScreen({ navigation }) {
     text: {
       color: '#fff', fontSize: width * 0.045, fontFamily: 'Muli', alignSelf: 'center', margin: 10
     },
+    text2048: {
+      color: '#fff', fontSize: width * 0.045, fontFamily: 'Bookish', alignSelf: 'center', margin: 10
+    },
     item: {
       backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'
     },
@@ -165,7 +169,7 @@ function MenuScreen({ navigation }) {
               navigation.navigate('AkharJor');
             }}
           >
-            <Text style={styles.text}>Gurmukhi Wordlink</Text>
+            <Text style={styles.text}>{Platform.OS === "ios" ? "Akhar Jor" : "Gurmukhi Wordlink"}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.columns}>
@@ -177,7 +181,7 @@ function MenuScreen({ navigation }) {
               navigation.navigate('2048');
             }}
           >
-            <Text style={styles.text}>2048</Text>
+            <Text style={styles.text2048}>2048</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.columns}>
