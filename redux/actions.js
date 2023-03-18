@@ -246,18 +246,6 @@ export const close2048HelpModal = () => {
   };
 }
 
-export const open2048HelpModal = () => {
-  return {
-    type: "OPEN_2048_HELP_MODAL",
-  };
-}
-
-export const close2048HelpModal = () => {
-  return {
-    type: "CLOSE_2048_HELP_MODAL",
-  };
-}
-
 export const closeIntroModal = () => {
   return {
     type: 'CLOSE_INTRO_MODAL',
