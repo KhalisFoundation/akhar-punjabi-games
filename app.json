@@ -2,7 +2,7 @@
   "expo": {
     "name": "Akhar: Punjabi Games",
     "slug": "game",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/akhar.png",
     "splash": {
