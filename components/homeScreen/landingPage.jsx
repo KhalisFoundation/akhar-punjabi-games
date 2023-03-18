@@ -18,12 +18,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
-import { setTheState, openHelpModal } from '../../redux/actions';
+import { setTheState, openHelpModal, setTheWords } from '../../redux/actions';
 import Help from '../playGame/help';
 import Khalis from '../../assets/khalis_incubator_dark.svg';
 import { initialState } from '../../redux/reducers';
 
 import dimensions from '../../util/dimensions';
+import { useData } from '../../data';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -38,6 +39,18 @@ function HomeScreen({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const state = useSelector((theState) => theState.theGameReducer);
+  // let resDB;
+  // const data = async () => {
+  //   const q = await AsyncStorage.getItem('data');
+  //   const res = Promise.all([q]).then(() => {
+  //     console.log('Data from Firebase DB inner: ', JSON.parse(q)); // this one is working
+  //     resDB = JSON.parse(q);
+  //   });
+  //   return res;
+  // };
+  // const theData = data();
+  // console.log('Data from Firebase DB: ', theData);
+  // console.log('ResDB outer:', resDB);
   const { width } = dimensions;
   // const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   let theState;
@@ -61,6 +74,31 @@ function HomeScreen({ navigation }) {
       }
     }
     getData();
+  }, [dispatch]);
+  React.useEffect(() => {
+    async function setWordsData() {
+      try {
+        const theWordsData = await AsyncStorage.getItem('data');
+        let theWords;
+        if (theWordsData !== null) {
+          theWords = JSON.parse(theWordsData);
+          console.log('got words data that was previously saved');
+          // console.log(theState);
+        } else {
+          console.log('there is nothing is state');
+          theWords = await useData();
+        }
+        Promise.all([theWords]).then(() => {
+          dispatch(setTheWords(theWords));
+          console.log('Set Words!');
+        });
+        // setLoadingScreen(false);
+      } catch (error) {
+        // Error retrieving data
+        console.log(error);
+      }
+    }
+    setWordsData();
   }, [dispatch]);
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);

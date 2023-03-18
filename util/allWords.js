@@ -1,172 +1,939 @@
-export const allWords=[{engText : 'jl',punjabiText: 'ਜਲ',meaning:'Water',level:1},
-{engText : 'kl',punjabiText: 'ਕਲ',meaning:'Tomorrow',level:1},
-{engText : 'Ql',punjabiText: 'ਥਲ',meaning:'Land',level:1},
-{engText : 'mn',punjabiText: 'ਮਨ',meaning:'Mind',level:1},
-{engText : 'sc',punjabiText: 'ਸਚ',meaning:'Truth',level:1},
-{engText : 'nr',punjabiText: 'ਨਰ',meaning:'Human',level:1},
-{engText : 'fr',punjabiText: 'ਡਰ',meaning:'Fear',level:1},
-{engText : 'ds',punjabiText: 'ਦਸ',meaning:'10 or Ten',level:1},
-{engText : 'qn',punjabiText: 'ਤਨ',meaning:'Body',level:1},
-{engText : 'krm',punjabiText: 'ਕਰਮ',meaning:'Deed',level:1},
-{engText : 'Drm',punjabiText: 'ਧਰਮ',meaning:'Religion or Righteousness',level:1},
-{engText : 'klm',punjabiText: 'ਕਲਮ',meaning:'Pen',level:1},
-{engText : 'grm',punjabiText: 'ਗਰਮ',meaning:'Hot',level:1},
-{engText : 'kml',punjabiText: 'ਕਮਲ',meaning:'Lotus',level:1},
-{engText : 'sVk',punjabiText: 'ਸੜਕ',meaning:'Road',level:1},
-{engText : 'sbr',punjabiText: 'ਸਬਰ',meaning:'Patience',level:1},
-{engText : 'kr',punjabiText: 'ਕਰ',meaning:'Do',level:2},
-{engText : 'cl',punjabiText: 'ਚਲ',meaning:'Walk',level:2},
-{engText : 'gl',punjabiText: 'ਗਲ',meaning:'Talk',level:2},
-{engText : 'ds',punjabiText: 'ਦਸ',meaning:'Tell',level:2},
-{engText : 'Pl',punjabiText: 'ਫਲ',meaning:'Fruit',level:2},
-{engText : 'Cq',punjabiText: 'ਛਤ',meaning:'Roof',level:2},
-{engText : 'hl',punjabiText: 'ਹਲ',meaning:'Plough',level:2},
-{engText : 'Akl',punjabiText: 'ਅਕਲ',meaning:'Wisdom',level:2},
-{engText : 'Brm',punjabiText: 'ਭਰਮ',meaning:'Illusion',level:2},
-{engText : 'Skl',punjabiText: 'ਸ਼ਕਲ',meaning:'Face',level:2},
-{engText : 'jgq',punjabiText: 'ਜਗਤ',meaning:'World',level:2},
-{engText : 'sPr',punjabiText: 'ਸਫਰ',meaning:'Journey',level:2},
-{engText : 'drKq',punjabiText: 'ਦਰਖਤ',meaning:'Tree',level:2},
-{engText : 'ksrq',punjabiText: 'ਕਸਰਤ',meaning:'Exercise',level:2},
-{engText : 'grdn',punjabiText: 'ਗਰਦਨ',meaning:'Neck',level:2},
-{engText : 'Srbq',punjabiText: 'ਸ਼ਰਬਤ',meaning:'Syrup, Juice',level:2},
-{engText : 'drSn',punjabiText: 'ਦਰਸ਼ਨ',meaning:'Glimpse, Sight',level:2},
-{engText : 'mwqw',punjabiText: 'ਮਾਤਾ',meaning:'Mother',level:3},
-{engText : 'rwg',punjabiText: 'ਰਾਗ',meaning:'Melody (Raag)',level:3},
-{engText : 'kwl',punjabiText: 'ਕਾਲ',meaning:'Time',level:3},
-{engText : 'jwl',punjabiText: 'ਜਾਲ',meaning:'Trap',level:3},
-{engText : 'nwm',punjabiText: 'ਨਾਮ',meaning:'Name',level:3},
-{engText : 'rwj',punjabiText: 'ਰਾਜ',meaning:'Kingdom',level:3},
-{engText : 'dws',punjabiText: 'ਦਾਸ',meaning:'Disciple',level:3},
-{engText : 'swD',punjabiText: 'ਸਾਧ',meaning:'Saint',level:3},
-{engText : 'bwz',punjabiText: 'ਬਾਜ਼',meaning:'Eagle',level:3},
-{engText : 'hrw',punjabiText: 'ਹਰਾ',meaning:'Green',level:3},
-{engText : 'kVw',punjabiText: 'ਕੜਾ',meaning:'Iron bangle worn by Sikhs',level:3},
-{engText : 'kmwl',punjabiText: 'ਕਮਾਲ',meaning:'Wonderful',level:3},
-{engText : 'Akwl',punjabiText: 'ਅਕਾਲ',meaning:'Timeless',level:3},
-{engText : 'kwrj',punjabiText: 'ਕਾਰਜ',meaning:'Work',level:3},
-{engText : 'mwrg',punjabiText: 'ਮਾਰਗ',meaning:'Path',level:3},
-{engText : 'kpVw',punjabiText: 'ਕਪੜਾ',meaning:'Cloth',level:3},
-{engText : 'bwjwr',punjabiText: 'ਬਾਜਾਰ',meaning:'Market',level:3},
-{engText : 'kwgz',punjabiText: 'ਕਾਗਜ਼',meaning:'Paper',level:3},
-{engText : 'Awsrw',punjabiText: 'ਆਸਰਾ',meaning:'Support',level:3},
-{engText : 'dsqwr',punjabiText: 'ਦਸਤਾਰ',meaning:'Turban',level:3},
-{engText : 'ilK',punjabiText: 'ਲਿਖ',meaning:'Write',level:4},
-{engText : 'iPr',punjabiText: 'ਫਿਰ',meaning:'Again',level:4},
-{engText : 'iQr',punjabiText: 'ਥਿਰ',meaning:'Stable',level:4},
-{engText : 'ipqw',punjabiText: 'ਪਿਤਾ',meaning:'Father',level:4},
-{engText : 'ikrpwn',punjabiText: 'ਕਿਰਪਾਨ',meaning:'Sword of the Sikhs',level:4},
-{engText : 'ikqwb',punjabiText: 'ਕਿਤਾਬ',meaning:'Book',level:4},
-{engText : 'ikrq',punjabiText: 'ਕਿਰਤ',meaning:'Work',level:4},
-{engText : 'mihr',punjabiText: 'ਮਹਿਰ',meaning:'Grace',level:4},
-{engText : 'dieAw',punjabiText: 'ਦਇਆ',meaning:'Mercy, Compassion',level:4},
-{engText : 'inrml',punjabiText: 'ਨਿਰਮਲ',meaning:'Pure',level:4},
-{engText : 'kCihrw',punjabiText: 'ਕਛਹਿਰਾ',meaning:'Cotton shorts worn by Sikhs',level:4},
-{engText : 'srIr',punjabiText: 'ਸਰੀਰ',meaning:'Body',level:4},
-{engText : 'pwxI',punjabiText: 'ਪਾਣੀ',meaning:'Water',level:4},
-{engText : 'kmweI',punjabiText: 'ਕਮਾਈ',meaning:'Earning',level:4},
-{engText : 'SkqI',punjabiText: 'ਸ਼ਕਤੀ',meaning:'Power',level:4},
-{engText : 'ibjlI',punjabiText: 'ਬਿਜਲੀ',meaning:'Electricity',level:4},
-{engText : 'BgqI',punjabiText: 'ਭਗਤੀ',meaning:'Worship',level:4},
-{engText : 'kIrqn',punjabiText: 'ਕੀਰਤਨ',meaning:'Singing of Gurbani',level:4},
-{engText : 'mskIn',punjabiText: 'ਮਸਕੀਨ',meaning:'Humble, meek',level:4},
-{engText : 'pgVI',punjabiText: 'ਪਗੜੀ',meaning:'Turban',level:4},
-{engText : 'KuS',punjabiText: 'ਖੁਸ਼',meaning:'Happy',level:5},
-{engText : 'duD',punjabiText: 'ਦੁਧ',meaning:'Milk',level:5},
-{engText : 'cup',punjabiText: 'ਚੁਪ',meaning:'Silence',level:5},
-{engText : 'rumwl',punjabiText: 'ਰੁਮਾਲ',meaning:'Handkerchief',level:5},
-{engText : 'cqur',punjabiText: 'ਚਤੁਰ',meaning:'Clever, Smart',level:5},
-{engText : 'hukm',punjabiText: 'ਹੁਕਮ',meaning:'The eternal order',level:5},
-{engText : 'gulwb',punjabiText: 'ਗੁਲਾਬ',meaning:'Rose',level:5},
-{engText : 'pusqk',punjabiText: 'ਪੁਸਤਕ',meaning:'Book',level:5},
-{engText : 'nukswn',punjabiText: 'ਨੁਕਸਾਨ',meaning:'Loss',level:5},
-{engText : 'gurUduAwrw',punjabiText: 'ਗੁਰੂਦੁਆਰਾ',meaning:'Sikh Holy place of Worship',level:5},
-{engText : 'dUr',punjabiText: 'ਦੂਰ',meaning:'Far, Away',level:5},
-{engText : 'nUr',punjabiText: 'ਨੂਰ',meaning:'Glow/Light on one"s face',level:5},
-{engText : 'bwpU',punjabiText: 'ਬਾਪੂ',meaning:'Father',level:5},
-{engText : 'AwlU',punjabiText: 'ਆਲੂ',meaning:'Potato',level:5},
-{engText : 'BwlU',punjabiText: 'ਭਾਲੂ',meaning:'Bear',level:5},
-{engText : 'sUrq',punjabiText: 'ਸੂਰਤ',meaning:'Facial appearance',level:5},
-{engText : 'mUrK',punjabiText: 'ਮੂਰਖ',meaning:'Fool',level:5},
-{engText : 'qrbUj',punjabiText: 'ਤਰਬੂਜ',meaning:'Watermelon',level:5},
-{engText : 'kbUqr',punjabiText: 'ਕਬੂਤਰ',meaning:'Pigeon',level:5},
-{engText : 'zrUrq',punjabiText: 'ਜ਼ਰੂਰਤ',meaning:'Need, Neccessity',level:5},
-{engText : 'kys',punjabiText: 'ਕੇਸ',meaning:'Uncut hair',level:6},
-{engText : 'mylw',punjabiText: 'ਮੇਲਾ',meaning:'Fair',level:6},
-{engText : 'ryl',punjabiText: 'ਰੇਲ',meaning:'Train',level:6},
-{engText : 'qyl',punjabiText: 'ਤੇਲ',meaning:'Oil',level:6},
-{engText : 'syb',punjabiText: 'ਸੇਬ',meaning:'Apple',level:6},
-{engText : 'kylw',punjabiText: 'ਕੇਲਾ',meaning:'Banana',level:6},
-{engText : 'svyr',punjabiText: 'ਸਵੇਰ',meaning:'Morning',level:6},
-{engText : 'hnyrw',punjabiText: 'ਹਨੇਰਾ',meaning:'Darkness',level:6},
-{engText : 'prySwn',punjabiText: 'ਪਰੇਸ਼ਾਨ',meaning:'Worried',level:6},
-{engText : 'prdyS',punjabiText: 'ਪਰਦੇਸ਼',meaning:'Foreign',level:6},
-{engText : 'pYr',punjabiText: 'ਪੈਰ',meaning:'Foot',level:6},
-{engText : 'mYl',punjabiText: 'ਮੈਲ',meaning:'Dirt, Dust',level:6},
-{engText : 'BYx',punjabiText: 'ਭੈਣ',meaning:'Sister',level:6},
-{engText : 'vYr',punjabiText: 'ਵੈਰ',meaning:'Enmity',level:6},
-{engText : 'pYsy',punjabiText: 'ਪੈਸੇ',meaning:'Money',level:6},
-{engText : 'AYnk',punjabiText: 'ਐਨਕ',meaning:'Spectacles',level:6},
-{engText : 'hYrwn',punjabiText: 'ਹੈਰਾਨ',meaning:'Shocked',level:6},
-{engText : 'mYdwn',punjabiText: 'ਮੈਦਾਨ',meaning:'Ground',level:6},
-{engText : 'pYdl',punjabiText: 'ਪੈਦਲ',meaning:'Pedestrial, (walking) on foot',level:6},
-{engText : 'inrvYr',punjabiText: 'ਨਿਰਵੈਰ',meaning:'Without Enmity',level:6},
-{engText : 'mor',punjabiText: 'ਮੋਰ',meaning:'Peacock',level:7},
-{engText : 'cor',punjabiText: 'ਚੋਰ',meaning:'Thief',level:7},
-{engText : 'rotI',punjabiText: 'ਰੋਟੀ',meaning:'Chapati, Flat Round Bread',level:7},
-{engText : 'qoqw',punjabiText: 'ਤੋਤਾ',meaning:'Parrot',level:7},
-{engText : 'GoVw',punjabiText: 'ਘੋੜਾ',meaning:'Horse',level:7},
-{engText : 'Sor',punjabiText: 'ਸ਼ੋਰ',meaning:'Noise',level:7},
-{engText : 'Koqw',punjabiText: 'ਖੋਤਾ',meaning:'Donkey',level:7},
-{engText : 'poqrw',punjabiText: 'ਪੋਤਰਾ',meaning:'Grandson',level:7},
-{engText : 'poqrI',punjabiText: 'ਪੋਤਰੀ',meaning:'Granddaughter',level:7},
-{engText : 'AKrot',punjabiText: 'ਅਖਰੋਟ',meaning:'Walnut',level:7},
-{engText : 'sOKw',punjabiText: 'ਸੌਖਾ',meaning:'Easy',level:7},
-{engText : 'AOKw',punjabiText: 'ਔਖਾ',meaning:'Tough, Difficult',level:7},
-{engText : 'dOV',punjabiText: 'ਦੌੜ',meaning:'Race, Run',level:7},
-{engText : 'kOx',punjabiText: 'ਕੌਣ',meaning:'Who',level:7},
-{engText : '&OjI',punjabiText: 'ਫ਼ੌਜੀ',meaning:'Soldier',level:7},
-{engText : 'AOrq',punjabiText: 'ਔਰਤ',meaning:'Women',level:7},
-{engText : 'hQOVw',punjabiText: 'ਹਥੌੜਾ',meaning:'Hammer',level:7},
-{engText : 'iKfOxw',punjabiText: 'ਖਿਡੌਣਾ',meaning:'Toy',level:7},
-{engText : 'cOkIdwr',punjabiText: 'ਚੌਕੀਦਾਰ',meaning:'Watchman',level:7},
-{engText : 'sOdwgr',punjabiText: 'ਸੌਦਾਗਰ',meaning:'Trader',level:7},
-{engText : 'kwN',punjabiText: 'ਕਾਂ',meaning:'Crow',level:8},
-{engText : 'gwN',punjabiText: 'ਗਾਂ',meaning:'Cow',level:8},
-{engText : 'CwN',punjabiText: 'ਛਾਂ',meaning:'Shadow',level:8},
-{engText : 'gyNd',punjabiText: 'ਗੇਂਦ',meaning:'Ball',level:8},
-{engText : 'bwNdr',punjabiText: 'ਬਾਂਦਰ',meaning:'Monkey',level:8},
-{engText : 'kMGw',punjabiText: 'ਕੰਘਾ',meaning:'Wooden Comb',level:8},
-{engText : 'rMg',punjabiText: 'ਰੰਗ',meaning:'Color',level:8},
-{engText : 'cMn',punjabiText: 'ਚੰਨ',meaning:'Moon',level:8},
-{engText : 'bsMq',punjabiText: 'ਬਸੰਤ',meaning:'Spring',level:8},
-{engText : 'jMgl',punjabiText: 'ਜੰਗਲ',meaning:'Jungle',level:8},
-{engText : 's`p',punjabiText: 'ਸੱਪ',meaning:'Snake',level:8},
-{engText : 'A`K',punjabiText: 'ਅੱਖ',meaning:'Eye',level:8},
-{engText : 'ic`TI',punjabiText: 'ਚਿੱਠੀ',meaning:'Letter',level:8},
-{engText : 'ib`lI',punjabiText: 'ਬਿੱਲੀ',meaning:'Cat',level:8},
-{engText : 'im`qr',punjabiText: 'ਮਿੱਤਰ',meaning:'Friend',level:8},
-{engText : 'AimRq',punjabiText: 'ਅਮ੍ਰਿਤ',meaning:'Beyond Death, Holy Nectar',level:8},
-{engText : 'pVH',punjabiText: 'ਪੜ੍ਹ',meaning:'Read',level:8},
-{engText : 'sÍYjIvnI',punjabiText: 'ਸ੍ਵੈਜੀਵਨੀ',meaning:'Auto-biography',level:8},
-{engText : 'jVH',punjabiText: 'ਜੜ੍ਹ',meaning:'Root',level:8},
-{engText : 'sÍr',punjabiText: 'ਸ੍ਵਰ',meaning:'Vowel',level:8},
-// {engText : 'Gr jw',punjabiText: 'ਘਰ ਜਾ',meaning:'Go Home',level:9},
-// {engText : 'jg PV',punjabiText: 'ਜਗ ਫੜ',meaning:'Hold the Jug',level:9},
-// {engText : 'nwm jp',punjabiText: 'ਨਾਮ ਜਪ',meaning:'Chant the name',level:9},
-// {engText : 'kMGw kr',punjabiText: 'ਕੰਘਾ ਕਰ',meaning:'Do Comb',level:9},
-// {engText : 'pgVI bMn',punjabiText: 'ਪਗੜੀ ਬੰਨ',meaning:'Tie Turban',level:9},
-// {engText : 'rotI Kw',punjabiText: 'ਰੋਟੀ ਖਾ',meaning:'Eat Chapati/Roti',level:9},
-// {engText : 'kIrqn kr',punjabiText: 'ਕੀਰਤਨ ਕਰ',meaning:'Do Keertan',level:9},
-// {engText : 'ic`TI pV',punjabiText: 'ਚਿੱਠੀ ਪੜ',meaning:'Read the letter',level:9},
-// {engText : 'klm nwl ilK',punjabiText: 'ਕਲਮ ਨਾਲ ਲਿਖ',meaning:'Write with Pen',level:9},
-// {engText : 'gurUduAwry jw',punjabiText: 'ਗੁਰੂਦੁਆਰੇ ਜਾ',meaning:'Go to Gurudwara',level:9},
-// {engText : 'hrw rumwl PV',punjabiText: 'ਹਰਾ ਰੁਮਾਲ ਫੜ',meaning:'Hold the Green Handkerchief',level:9},
-// {engText : 'bwNdr kylw Kw',punjabiText: 'ਬਾਂਦਰ ਕੇਲਾ ਖਾ',meaning:'Monkey eat Banana',level:9},
-// {engText : 'im`qr syb Kw',punjabiText: 'ਮਿੱਤਰ ਸੇਬ ਖਾ',meaning:'Friend eat Apple',level:9},
-// {engText : 'kwN rotI Kw',punjabiText: 'ਕਾਂ ਰੋਟੀ ਖਾ',meaning:'Crow eat Chapati/Roti',level:9},
-// {engText : 'gwN duD dy',punjabiText: 'ਗਾਂ ਦੁਧ ਦੇ',meaning:'Cow give Milk',level:9},
-// {engText : 'cor dOV igAw',punjabiText: 'ਚੋਰ ਦੌੜ ਗਿਆ',meaning:'Thief ran away',level:9},
-// {engText : 'AjIq pusqk pVH',punjabiText: 'ਅਜੀਤ ਪੁਸਤਕ ਪੜ੍ਹ',meaning:'Ajeet read the book',level:9},
-// {engText : 'BwlU pYdl cl',punjabiText: 'ਭਾਲੂ ਪੈਦਲ ਚਲ',meaning:'Bear walk on foot',level:9},
-]
+export const allWords = {
+  levels: [
+    null,
+    [
+      {
+        engText: 'jl',
+        level: 1,
+        meaning: 'Water',
+        punjabiText: 'ਜਲ'
+      },
+      {
+        engText: 'kl',
+        level: 1,
+        meaning: 'Tomorrow',
+        punjabiText: 'ਕਲ'
+      },
+      {
+        engText: 'Ql',
+        level: 1,
+        meaning: 'Land',
+        punjabiText: 'ਥਲ'
+      },
+      {
+        engText: 'mn',
+        level: 1,
+        meaning: 'Mind',
+        punjabiText: 'ਮਨ'
+      },
+      {
+        engText: 'sc',
+        level: 1,
+        meaning: 'Truth',
+        punjabiText: 'ਸਚ'
+      },
+      {
+        engText: 'nr',
+        level: 1,
+        meaning: 'Human',
+        punjabiText: 'ਨਰ'
+      },
+      {
+        engText: 'fr',
+        level: 1,
+        meaning: 'Fear',
+        punjabiText: 'ਡਰ'
+      },
+      {
+        engText: 'ds',
+        level: 1,
+        meaning: '10 or Ten',
+        punjabiText: 'ਦਸ'
+      },
+      {
+        engText: 'qn',
+        level: 1,
+        meaning: 'Body',
+        punjabiText: 'ਤਨ'
+      },
+      {
+        engText: 'krm',
+        level: 1,
+        meaning: 'Deed',
+        punjabiText: 'ਕਰਮ'
+      },
+      {
+        engText: 'Drm',
+        level: 1,
+        meaning: 'Religion or Righteousness',
+        punjabiText: 'ਧਰਮ'
+      },
+      {
+        engText: 'klm',
+        level: 1,
+        meaning: 'Pen',
+        punjabiText: 'ਕਲਮ'
+      },
+      {
+        engText: 'grm',
+        level: 1,
+        meaning: 'Hot',
+        punjabiText: 'ਗਰਮ'
+      },
+      {
+        engText: 'kml',
+        level: 1,
+        meaning: 'Lotus',
+        punjabiText: 'ਕਮਲ'
+      },
+      {
+        engText: 'sVk',
+        level: 1,
+        meaning: 'Road',
+        punjabiText: 'ਸੜਕ'
+      },
+      {
+        engText: 'sbr',
+        level: 1,
+        meaning: 'Patience',
+        punjabiText: 'ਸਬਰ'
+      }
+    ],
+    [
+      {
+        engText: 'kr',
+        level: 2,
+        meaning: 'Do',
+        punjabiText: 'ਕਰ'
+      },
+      {
+        engText: 'cl',
+        level: 2,
+        meaning: 'Walk',
+        punjabiText: 'ਚਲ'
+      },
+      {
+        engText: 'gl',
+        level: 2,
+        meaning: 'Talk',
+        punjabiText: 'ਗਲ'
+      },
+      {
+        engText: 'ds',
+        level: 2,
+        meaning: 'Tell',
+        punjabiText: 'ਦਸ'
+      },
+      {
+        engText: 'Pl',
+        level: 2,
+        meaning: 'Fruit',
+        punjabiText: 'ਫਲ'
+      },
+      {
+        engText: 'Cq',
+        level: 2,
+        meaning: 'Roof',
+        punjabiText: 'ਛਤ'
+      },
+      {
+        engText: 'hl',
+        level: 2,
+        meaning: 'Plough',
+        punjabiText: 'ਹਲ'
+      },
+      {
+        engText: 'Akl',
+        level: 2,
+        meaning: 'Wisdom',
+        punjabiText: 'ਅਕਲ'
+      },
+      {
+        engText: 'Brm',
+        level: 2,
+        meaning: 'Illusion',
+        punjabiText: 'ਭਰਮ'
+      },
+      {
+        engText: 'Skl',
+        level: 2,
+        meaning: 'Face',
+        punjabiText: 'ਸ਼ਕਲ'
+      },
+      {
+        engText: 'jgq',
+        level: 2,
+        meaning: 'World',
+        punjabiText: 'ਜਗਤ'
+      },
+      {
+        engText: 'sPr',
+        level: 2,
+        meaning: 'Journey',
+        punjabiText: 'ਸਫਰ'
+      },
+      {
+        engText: 'drKq',
+        level: 2,
+        meaning: 'Tree',
+        punjabiText: 'ਦਰਖਤ'
+      },
+      {
+        engText: 'ksrq',
+        level: 2,
+        meaning: 'Exercise',
+        punjabiText: 'ਕਸਰਤ'
+      },
+      {
+        engText: 'grdn',
+        level: 2,
+        meaning: 'Neck',
+        punjabiText: 'ਗਰਦਨ'
+      },
+      {
+        engText: 'Srbq',
+        level: 2,
+        meaning: 'Syrup, Juice',
+        punjabiText: 'ਸ਼ਰਬਤ'
+      },
+      {
+        engText: 'drSn',
+        level: 2,
+        meaning: 'Glimpse, Sight',
+        punjabiText: 'ਦਰਸ਼ਨ'
+      }
+    ],
+    [
+      {
+        engText: 'mwqw',
+        level: 3,
+        meaning: 'Mother',
+        punjabiText: 'ਮਾਤਾ'
+      },
+      {
+        engText: 'rwg',
+        level: 3,
+        meaning: 'Melody (Raag)',
+        punjabiText: 'ਰਾਗ'
+      },
+      {
+        engText: 'kwl',
+        level: 3,
+        meaning: 'Time',
+        punjabiText: 'ਕਾਲ'
+      },
+      {
+        engText: 'jwl',
+        level: 3,
+        meaning: 'Trap',
+        punjabiText: 'ਜਾਲ'
+      },
+      {
+        engText: 'nwm',
+        level: 3,
+        meaning: 'Name',
+        punjabiText: 'ਨਾਮ'
+      },
+      {
+        engText: 'rwj',
+        level: 3,
+        meaning: 'Kingdom',
+        punjabiText: 'ਰਾਜ'
+      },
+      {
+        engText: 'dws',
+        level: 3,
+        meaning: 'Disciple',
+        punjabiText: 'ਦਾਸ'
+      },
+      {
+        engText: 'swD',
+        level: 3,
+        meaning: 'Saint',
+        punjabiText: 'ਸਾਧ'
+      },
+      {
+        engText: 'bwz',
+        level: 3,
+        meaning: 'Eagle',
+        punjabiText: 'ਬਾਜ਼'
+      },
+      {
+        engText: 'hrw',
+        level: 3,
+        meaning: 'Green',
+        punjabiText: 'ਹਰਾ'
+      },
+      {
+        engText: 'kVw',
+        level: 3,
+        meaning: 'Iron bangle worn by Sikhs',
+        punjabiText: 'ਕੜਾ'
+      },
+      {
+        engText: 'kmwl',
+        level: 3,
+        meaning: 'Wonderful',
+        punjabiText: 'ਕਮਾਲ'
+      },
+      {
+        engText: 'Akwl',
+        level: 3,
+        meaning: 'Timeless',
+        punjabiText: 'ਅਕਾਲ'
+      },
+      {
+        engText: 'kwrj',
+        level: 3,
+        meaning: 'Work',
+        punjabiText: 'ਕਾਰਜ'
+      },
+      {
+        engText: 'mwrg',
+        level: 3,
+        meaning: 'Path',
+        punjabiText: 'ਮਾਰਗ'
+      },
+      {
+        engText: 'kpVw',
+        level: 3,
+        meaning: 'Cloth',
+        punjabiText: 'ਕਪੜਾ'
+      },
+      {
+        engText: 'bwjwr',
+        level: 3,
+        meaning: 'Market',
+        punjabiText: 'ਬਾਜਾਰ'
+      },
+      {
+        engText: 'kwgz',
+        level: 3,
+        meaning: 'Paper',
+        punjabiText: 'ਕਾਗਜ਼'
+      },
+      {
+        engText: 'Awsrw',
+        level: 3,
+        meaning: 'Support',
+        punjabiText: 'ਆਸਰਾ'
+      },
+      {
+        engText: 'dsqwr',
+        level: 3,
+        meaning: 'Turban',
+        punjabiText: 'ਦਸਤਾਰ'
+      }
+    ],
+    [
+      {
+        engText: 'ilK',
+        level: 4,
+        meaning: 'Write',
+        punjabiText: 'ਲਿਖ'
+      },
+      {
+        engText: 'iPr',
+        level: 4,
+        meaning: 'Again',
+        punjabiText: 'ਫਿਰ'
+      },
+      {
+        engText: 'iQr',
+        level: 4,
+        meaning: 'Stable',
+        punjabiText: 'ਥਿਰ'
+      },
+      {
+        engText: 'ipqw',
+        level: 4,
+        meaning: 'Father',
+        punjabiText: 'ਪਿਤਾ'
+      },
+      {
+        engText: 'ikrpwn',
+        level: 4,
+        meaning: 'Sword of the Sikhs',
+        punjabiText: 'ਕਿਰਪਾਨ'
+      },
+      {
+        engText: 'ikqwb',
+        level: 4,
+        meaning: 'Book',
+        punjabiText: 'ਕਿਤਾਬ'
+      },
+      {
+        engText: 'ikrq',
+        level: 4,
+        meaning: 'Work',
+        punjabiText: 'ਕਿਰਤ'
+      },
+      {
+        engText: 'mihr',
+        level: 4,
+        meaning: 'Grace',
+        punjabiText: 'ਮਹਿਰ'
+      },
+      {
+        engText: 'dieAw',
+        level: 4,
+        meaning: 'Mercy, Compassion',
+        punjabiText: 'ਦਇਆ'
+      },
+      {
+        engText: 'inrml',
+        level: 4,
+        meaning: 'Pure',
+        punjabiText: 'ਨਿਰਮਲ'
+      },
+      {
+        engText: 'kCihrw',
+        level: 4,
+        meaning: 'Cotton shorts worn by Sikhs',
+        punjabiText: 'ਕਛਹਿਰਾ'
+      },
+      {
+        engText: 'srIr',
+        level: 4,
+        meaning: 'Body',
+        punjabiText: 'ਸਰੀਰ'
+      },
+      {
+        engText: 'pwxI',
+        level: 4,
+        meaning: 'Water',
+        punjabiText: 'ਪਾਣੀ'
+      },
+      {
+        engText: 'kmweI',
+        level: 4,
+        meaning: 'Earning',
+        punjabiText: 'ਕਮਾਈ'
+      },
+      {
+        engText: 'SkqI',
+        level: 4,
+        meaning: 'Power',
+        punjabiText: 'ਸ਼ਕਤੀ'
+      },
+      {
+        engText: 'ibjlI',
+        level: 4,
+        meaning: 'Electricity',
+        punjabiText: 'ਬਿਜਲੀ'
+      },
+      {
+        engText: 'BgqI',
+        level: 4,
+        meaning: 'Worship',
+        punjabiText: 'ਭਗਤੀ'
+      },
+      {
+        engText: 'kIrqn',
+        level: 4,
+        meaning: 'Singing of Gurbani',
+        punjabiText: 'ਕੀਰਤਨ'
+      },
+      {
+        engText: 'mskIn',
+        level: 4,
+        meaning: 'Humble, meek',
+        punjabiText: 'ਮਸਕੀਨ'
+      },
+      {
+        engText: 'pgVI',
+        level: 4,
+        meaning: 'Turban',
+        punjabiText: 'ਪਗੜੀ'
+      }
+    ],
+    [
+      {
+        engText: 'KuS',
+        level: 5,
+        meaning: 'Happy',
+        punjabiText: 'ਖੁਸ਼'
+      },
+      {
+        engText: 'duD',
+        level: 5,
+        meaning: 'Milk',
+        punjabiText: 'ਦੁਧ'
+      },
+      {
+        engText: 'cup',
+        level: 5,
+        meaning: 'Silence',
+        punjabiText: 'ਚੁਪ'
+      },
+      {
+        engText: 'rumwl',
+        level: 5,
+        meaning: 'Handkerchief',
+        punjabiText: 'ਰੁਮਾਲ'
+      },
+      {
+        engText: 'cqur',
+        level: 5,
+        meaning: 'Clever, Smart',
+        punjabiText: 'ਚਤੁਰ'
+      },
+      {
+        engText: 'hukm',
+        level: 5,
+        meaning: 'The eternal order',
+        punjabiText: 'ਹੁਕਮ'
+      },
+      {
+        engText: 'gulwb',
+        level: 5,
+        meaning: 'Rose',
+        punjabiText: 'ਗੁਲਾਬ'
+      },
+      {
+        engText: 'pusqk',
+        level: 5,
+        meaning: 'Book',
+        punjabiText: 'ਪੁਸਤਕ'
+      },
+      {
+        engText: 'nukswn',
+        level: 5,
+        meaning: 'Loss',
+        punjabiText: 'ਨੁਕਸਾਨ'
+      },
+      {
+        engText: 'gurUduAwrw',
+        level: 5,
+        meaning: 'Sikh Holy place of Worship',
+        punjabiText: 'ਗੁਰੂਦੁਆਰਾ'
+      },
+      {
+        engText: 'dUr',
+        level: 5,
+        meaning: 'Far, Away',
+        punjabiText: 'ਦੂਰ'
+      },
+      {
+        engText: 'nUr',
+        level: 5,
+        meaning: 'Glow/Light on one"s face',
+        punjabiText: 'ਨੂਰ'
+      },
+      {
+        engText: 'bwpU',
+        level: 5,
+        meaning: 'Father',
+        punjabiText: 'ਬਾਪੂ'
+      },
+      {
+        engText: 'AwlU',
+        level: 5,
+        meaning: 'Potato',
+        punjabiText: 'ਆਲੂ'
+      },
+      {
+        engText: 'BwlU',
+        level: 5,
+        meaning: 'Bear',
+        punjabiText: 'ਭਾਲੂ'
+      },
+      {
+        engText: 'sUrq',
+        level: 5,
+        meaning: 'Facial appearance',
+        punjabiText: 'ਸੂਰਤ'
+      },
+      {
+        engText: 'mUrK',
+        level: 5,
+        meaning: 'Fool',
+        punjabiText: 'ਮੂਰਖ'
+      },
+      {
+        engText: 'qrbUj',
+        level: 5,
+        meaning: 'Watermelon',
+        punjabiText: 'ਤਰਬੂਜ'
+      },
+      {
+        engText: 'kbUqr',
+        level: 5,
+        meaning: 'Pigeon',
+        punjabiText: 'ਕਬੂਤਰ'
+      },
+      {
+        engText: 'zrUrq',
+        level: 5,
+        meaning: 'Need, Neccessity',
+        punjabiText: 'ਜ਼ਰੂਰਤ'
+      }
+    ],
+    [
+      {
+        engText: 'kys',
+        level: 6,
+        meaning: 'Uncut hair',
+        punjabiText: 'ਕੇਸ'
+      },
+      {
+        engText: 'mylw',
+        level: 6,
+        meaning: 'Fair',
+        punjabiText: 'ਮੇਲਾ'
+      },
+      {
+        engText: 'ryl',
+        level: 6,
+        meaning: 'Train',
+        punjabiText: 'ਰੇਲ'
+      },
+      {
+        engText: 'qyl',
+        level: 6,
+        meaning: 'Oil',
+        punjabiText: 'ਤੇਲ'
+      },
+      {
+        engText: 'syb',
+        level: 6,
+        meaning: 'Apple',
+        punjabiText: 'ਸੇਬ'
+      },
+      {
+        engText: 'kylw',
+        level: 6,
+        meaning: 'Banana',
+        punjabiText: 'ਕੇਲਾ'
+      },
+      {
+        engText: 'svyr',
+        level: 6,
+        meaning: 'Morning',
+        punjabiText: 'ਸਵੇਰ'
+      },
+      {
+        engText: 'hnyrw',
+        level: 6,
+        meaning: 'Darkness',
+        punjabiText: 'ਹਨੇਰਾ'
+      },
+      {
+        engText: 'prySwn',
+        level: 6,
+        meaning: 'Worried',
+        punjabiText: 'ਪਰੇਸ਼ਾਨ'
+      },
+      {
+        engText: 'prdyS',
+        level: 6,
+        meaning: 'Foreign',
+        punjabiText: 'ਪਰਦੇਸ਼'
+      },
+      {
+        engText: 'pYr',
+        level: 6,
+        meaning: 'Foot',
+        punjabiText: 'ਪੈਰ'
+      },
+      {
+        engText: 'mYl',
+        level: 6,
+        meaning: 'Dirt, Dust',
+        punjabiText: 'ਮੈਲ'
+      },
+      {
+        engText: 'BYx',
+        level: 6,
+        meaning: 'Sister',
+        punjabiText: 'ਭੈਣ'
+      },
+      {
+        engText: 'vYr',
+        level: 6,
+        meaning: 'Enmity',
+        punjabiText: 'ਵੈਰ'
+      },
+      {
+        engText: 'pYsy',
+        level: 6,
+        meaning: 'Money',
+        punjabiText: 'ਪੈਸੇ'
+      },
+      {
+        engText: 'AYnk',
+        level: 6,
+        meaning: 'Spectacles',
+        punjabiText: 'ਐਨਕ'
+      },
+      {
+        engText: 'hYrwn',
+        level: 6,
+        meaning: 'Shocked',
+        punjabiText: 'ਹੈਰਾਨ'
+      },
+      {
+        engText: 'mYdwn',
+        level: 6,
+        meaning: 'Ground',
+        punjabiText: 'ਮੈਦਾਨ'
+      },
+      {
+        engText: 'pYdl',
+        level: 6,
+        meaning: 'Pedestrial, (walking) on foot',
+        punjabiText: 'ਪੈਦਲ'
+      },
+      {
+        engText: 'inrvYr',
+        level: 6,
+        meaning: 'Without Enmity',
+        punjabiText: 'ਨਿਰਵੈਰ'
+      }
+    ],
+    [
+      {
+        engText: 'mor',
+        level: 7,
+        meaning: 'Peacock',
+        punjabiText: 'ਮੋਰ'
+      },
+      {
+        engText: 'cor',
+        level: 7,
+        meaning: 'Thief',
+        punjabiText: 'ਚੋਰ'
+      },
+      {
+        engText: 'rotI',
+        level: 7,
+        meaning: 'Chapati, Flat Round Bread',
+        punjabiText: 'ਰੋਟੀ'
+      },
+      {
+        engText: 'qoqw',
+        level: 7,
+        meaning: 'Parrot',
+        punjabiText: 'ਤੋਤਾ'
+      },
+      {
+        engText: 'GoVw',
+        level: 7,
+        meaning: 'Horse',
+        punjabiText: 'ਘੋੜਾ'
+      },
+      {
+        engText: 'Sor',
+        level: 7,
+        meaning: 'Noise',
+        punjabiText: 'ਸ਼ੋਰ'
+      },
+      {
+        engText: 'Koqw',
+        level: 7,
+        meaning: 'Donkey',
+        punjabiText: 'ਖੋਤਾ'
+      },
+      {
+        engText: 'poqrw',
+        level: 7,
+        meaning: 'Grandson',
+        punjabiText: 'ਪੋਤਰਾ'
+      },
+      {
+        engText: 'poqrI',
+        level: 7,
+        meaning: 'Granddaughter',
+        punjabiText: 'ਪੋਤਰੀ'
+      },
+      {
+        engText: 'AKrot',
+        level: 7,
+        meaning: 'Walnut',
+        punjabiText: 'ਅਖਰੋਟ'
+      },
+      {
+        engText: 'sOKw',
+        level: 7,
+        meaning: 'Easy',
+        punjabiText: 'ਸੌਖਾ'
+      },
+      {
+        engText: 'AOKw',
+        level: 7,
+        meaning: 'Tough, Difficult',
+        punjabiText: 'ਔਖਾ'
+      },
+      {
+        engText: 'dOV',
+        level: 7,
+        meaning: 'Race, Run',
+        punjabiText: 'ਦੌੜ'
+      },
+      {
+        engText: 'kOx',
+        level: 7,
+        meaning: 'Who',
+        punjabiText: 'ਕੌਣ'
+      },
+      {
+        engText: '&OjI',
+        level: 7,
+        meaning: 'Soldier',
+        punjabiText: 'ਫ਼ੌਜੀ'
+      },
+      {
+        engText: 'AOrq',
+        level: 7,
+        meaning: 'Women',
+        punjabiText: 'ਔਰਤ'
+      },
+      {
+        engText: 'hQOVw',
+        level: 7,
+        meaning: 'Hammer',
+        punjabiText: 'ਹਥੌੜਾ'
+      },
+      {
+        engText: 'iKfOxw',
+        level: 7,
+        meaning: 'Toy',
+        punjabiText: 'ਖਿਡੌਣਾ'
+      },
+      {
+        engText: 'cOkIdwr',
+        level: 7,
+        meaning: 'Watchman',
+        punjabiText: 'ਚੌਕੀਦਾਰ'
+      },
+      {
+        engText: 'sOdwgr',
+        level: 7,
+        meaning: 'Trader',
+        punjabiText: 'ਸੌਦਾਗਰ'
+      }
+    ],
+    [
+      {
+        engText: 'kwN',
+        level: 8,
+        meaning: 'Crow',
+        punjabiText: 'ਕਾਂ'
+      },
+      {
+        engText: 'gwN',
+        level: 8,
+        meaning: 'Cow',
+        punjabiText: 'ਗਾਂ'
+      },
+      {
+        engText: 'CwN',
+        level: 8,
+        meaning: 'Shadow',
+        punjabiText: 'ਛਾਂ'
+      },
+      {
+        engText: 'gyNd',
+        level: 8,
+        meaning: 'Ball',
+        punjabiText: 'ਗੇਂਦ'
+      },
+      {
+        engText: 'bwNdr',
+        level: 8,
+        meaning: 'Monkey',
+        punjabiText: 'ਬਾਂਦਰ'
+      },
+      {
+        engText: 'kMGw',
+        level: 8,
+        meaning: 'Wooden Comb',
+        punjabiText: 'ਕੰਘਾ'
+      },
+      {
+        engText: 'rMg',
+        level: 8,
+        meaning: 'Color',
+        punjabiText: 'ਰੰਗ'
+      },
+      {
+        engText: 'cMn',
+        level: 8,
+        meaning: 'Moon',
+        punjabiText: 'ਚੰਨ'
+      },
+      {
+        engText: 'bsMq',
+        level: 8,
+        meaning: 'Spring',
+        punjabiText: 'ਬਸੰਤ'
+      },
+      {
+        engText: 'jMgl',
+        level: 8,
+        meaning: 'Jungle',
+        punjabiText: 'ਜੰਗਲ'
+      },
+      {
+        engText: 's`p',
+        level: 8,
+        meaning: 'Snake',
+        punjabiText: 'ਸੱਪ'
+      },
+      {
+        engText: 'A`K',
+        level: 8,
+        meaning: 'Eye',
+        punjabiText: 'ਅੱਖ'
+      },
+      {
+        engText: 'ic`TI',
+        level: 8,
+        meaning: 'Letter',
+        punjabiText: 'ਚਿੱਠੀ'
+      },
+      {
+        engText: 'ib`lI',
+        level: 8,
+        meaning: 'Cat',
+        punjabiText: 'ਬਿੱਲੀ'
+      },
+      {
+        engText: 'im`qr',
+        level: 8,
+        meaning: 'Friend',
+        punjabiText: 'ਮਿੱਤਰ'
+      },
+      {
+        engText: 'AimRq',
+        level: 8,
+        meaning: 'Beyond Death, Holy Nectar',
+        punjabiText: 'ਅਮ੍ਰਿਤ'
+      },
+      {
+        engText: 'pVH',
+        level: 8,
+        meaning: 'Read',
+        punjabiText: 'ਪੜ੍ਹ'
+      },
+      {
+        engText: 'sÍYjIvnI',
+        level: 8,
+        meaning: 'Auto-biography',
+        punjabiText: 'ਸ੍ਵੈਜੀਵਨੀ'
+      },
+      {
+        engText: 'jVH',
+        level: 8,
+        meaning: 'Root',
+        punjabiText: 'ਜੜ੍ਹ'
+      },
+      {
+        engText: 'sÍr',
+        level: 8,
+        meaning: 'Vowel',
+        punjabiText: 'ਸ੍ਵਰ'
+      }
+    ]
+  ]
+};

@@ -157,7 +157,8 @@ function WordsDoneModal() {
           flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)'
         }}
       >
-        {(state.levelProgress[0].level === 8 && state.levelProgress[0].wordsNeeded === 0)
+        {(state.levelProgress[0].level === (state.ALL_WORDS.levels.length - 1)
+          && state.levelProgress[0].wordsNeeded === 0)
           ? (
             <View style={{
               width: '100%', flexDirection: 'column', alignItems: 'center', borderRadius: 30, backgroundColor: '#274C7C', marginVertical: 50

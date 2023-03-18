@@ -1,6 +1,7 @@
 // // Import the functions you need from the SDKs you need
 // import firebase from "firebase";
-// import { API_KEY, AUTH_DOMAIN, APP_ID, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, MEASUREMENT_ID } from "@env";
+// import { API_KEY, AUTH_DOMAIN, APP_ID, PROJECT_ID, STORAGE_BUCKET,
+// MESSAGING_SENDER_ID, MEASUREMENT_ID } from "@env";
 // // TODO: Add SDKs for Firebase products that you want to use
 // // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,6 +36,7 @@ import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: 'AIzaSyAxeQSmufN-0kiAqfQnNzw4jFrz93IrfKo',
   authDomain: 'sikh-games.firebaseapp.com',
+  databaseURL: 'https://sikh-games-default-rtdb.firebaseio.com/',
   projectId: 'sikh-games',
   storageBucket: 'sikh-games.appspot.com',
   messagingSenderId: '370328077829',
@@ -52,4 +54,4 @@ if (firebase.apps.length === 0) {
 
 const auth = firebase.auth();
 
-export { auth };
+export { auth, firebase };

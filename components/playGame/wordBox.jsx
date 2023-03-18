@@ -91,8 +91,10 @@ export const WordBox = ({ wordType }) => {
       if (matras.includes(word[0])) {
         newWord += word[0];
         if (word.length > 1 && matras.includes(word[1])) {
-          newWord += word[1];
-          word = word.slice(1);
+          if (word[1] !== 'i') {
+            newWord += word[1];
+            word = word.slice(1);
+          }
         }
         if (word[0] !== 'i') {
           newWord += ',';

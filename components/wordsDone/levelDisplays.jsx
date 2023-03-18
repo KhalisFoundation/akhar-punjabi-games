@@ -54,7 +54,9 @@ function Level({ title, theWords, setAnswer }) {
       fontSize: width * 0.06,
       textAlign: 'center',
     },
-    flatList: {},
+    flatList: {
+      // set bottom border radius of last child of flatlist
+    },
     flatListAlt: { display: 'none' },
     wordEven: {
       backgroundColor: colors.levelDisplay.wordEven,

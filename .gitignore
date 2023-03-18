@@ -315,6 +315,8 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/reactnative
 *.db
+*.ipa
+newData/
 firebase.js
 google-services.json
 GoogleService-Info.plist

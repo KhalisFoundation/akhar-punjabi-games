@@ -1,14 +1,30 @@
 import * as React from 'react';
-import { allWords } from "../util/allWords";
-import getWords from "../util/generateWords";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRef } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRef, useState } from 'react';
 import {Animated, Dimensions} from 'react-native';
+import { useEffect } from 'react';
+import { allWords } from '../util/allWords';
+import getWords from '../util/generateWords';
+import { fetchData } from './actions';
+import { useDispatch } from 'react-redux';
 
+// const [allWords, setAllWords] = useState([]);
+// let resDB;
+// useEffect()
+// const data = async () => {
+//   const q = await AsyncStorage.getItem('data');
+//   const res = Promise.all([q]).then(() => {
+//     console.log('Data from Firebase DB inner: ', JSON.parse(q)); // this one is working
+//     setAllWords(JSON.parse(q));
+//     return JSON.parse(q);
+//   });
+//   return res;
+// };
 
 const setData = async (title, state) => {
   try {
     await AsyncStorage.setItem(title, JSON.stringify(state));
+    fetchData();
     // console.log(state.firstWord);
   } catch (e) {
     console.log(e);
@@ -44,24 +60,24 @@ const wordsToType = [
   'DMn SRI gurU gRMQ swihb jI',
   'DMn gurU DMn gurU ipAwry',
 ];
+
 const getRandomWord = () => {
   return wordsToType[Math.floor(Math.random() * wordsToType.length)];
 };
-
-//puts words for level 1
-const generateWords = getWords(allWords.filter((word) => word.level === 1));
+// puts words for level 1
+const generateWords = getWords(allWords.levels[1]);
 
 export const initialState = {
-  ALL_WORDS: allWords, //this list will not be changed
-  usableWords: allWords.filter((word) => word.level === 1),
+  ALL_WORDS: allWords, // this list will not be changed
+  usableWords: allWords.levels[1], // .filter((word) => word.level === 1),
   showIntroModal: false,
-  //logic states for akharjor
-  topWord: "",
-  topHint: "",
-  bottomWord: "",
-  bottomHint: "",
+  // logic states for akharjor
+  topWord: '',
+  topHint: '',
+  bottomWord: '',
+  bottomHint: '',
   visited: [],
-  attempt: "",
+  attempt: '',
   animatedStyle: {
     transform: [
       {
@@ -81,8 +97,8 @@ export const initialState = {
   giveUpsLeft: 100,
   nextLevelModal: [false],
   levelProgress: [
-    { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
-    { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
+    // { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
+    // { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
     { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
     { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
     { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
@@ -93,7 +109,7 @@ export const initialState = {
   ],
   totalPoints: 0,
   //settings stuff
-  typesOfWords: "Both",
+  typesOfWords: 'Both',
   showPopUp: true,
   romanised: false,
   showNumOfLetters: true,
@@ -107,6 +123,8 @@ export const initialState = {
   helpPage2048: true,
   confetti: false,
   punjabiNums: true,
+  // finalLevel 
+  finalLevel: 8,
 };
 
 //to reset all state
@@ -114,46 +132,70 @@ export const initialState = {
 
 
 function theGameReducer(state = initialState, action) {
-  const finalLevel = 8 // was 9
-  if (action.type === "SET_TOP_WORD") {
+  if (action.type === 'FETCH_DATA') {
+    return {
+      ...state,
+      ALL_WORDS: action.payload,
+      finalLevel: action.payload.levels.length
+    };
+  }
+  if (action.type === 'FETCH_LEVEL_PROGRESS') {
+    let newProgress = [...action.payload];
+    const lastLevel = state.levelProgress[0].level;
+    const lastLevelProgress = state.levelProgress[0].wordsNeeded;
+    newProgress = newProgress.slice(lastLevel - 1);
+    newProgress[0].wordsNeeded = lastLevelProgress;
+    console.log('Last level: ', lastLevel);
+    console.log('Last level progress: ', lastLevelProgress);
+    console.log('New progress: ', newProgress);
+    return {
+      ...state,
+      levelProgress: newProgress
+    };
+  }
+  if (action.type === 'SET_TOP_WORD') {
     return {
       ...state,
       topWord: state.firstWord.engText,
-      attempt: "",
+      attempt: '',
       visited: [],
     };
   }
-  if (action.type === "SET_TOP_HINT") {
-    return {
+  if (action.type === 'SET_TOP_HINT') {
+    const newState = {
       ...state,
       topHint: action.theTopHint,
-      attempt: "",
+      attempt: '',
       visited: [],
     };
+    setData('state', newState);
+    return newState;
   }
-  if (action.type === "SET_BOTTOM_WORD") {
+  if (action.type === 'SET_BOTTOM_WORD') {
     return {
       ...state,
       bottomWord: state.secondWord.engText,
-      attempt: "",
+      attempt: '',
       visited: [],
     };
   }
-  if (action.type === "SET_BOTTOM_HINT") {
-    return {
+  if (action.type === 'SET_BOTTOM_HINT') {
+    const newState = {
       ...state,
       bottomHint: action.theBottomHint,
-      attempt: "",
+      attempt: '',
       visited: [],
     };
+    setData('state', newState);
+    return newState;
   }
-  if (action.type === "SET_ATTEMPT") {
+  if (action.type === 'SET_ATTEMPT') {
     return {
       ...state,
       attempt: action.theWord,
     };
   }
-  if (action.type === "SET_CORRECT_WORDS") {
+  if (action.type === 'SET_CORRECT_WORDS') {
     let wordsLst = [...state.correctWords];
 
     //takes out duplicates from lst
@@ -172,7 +214,7 @@ function theGameReducer(state = initialState, action) {
       totalPoints: state.totalPoints + state.levelProgress[0].pointsPerWord,
     };
   }
-  if (action.type === "SET_GIVENUP_WORDS") {
+  if (action.type === 'SET_GIVENUP_WORDS') {
     let wordsLst = [...state.givenUpWords];
 
     //takes out duplicates from lst
@@ -189,24 +231,25 @@ function theGameReducer(state = initialState, action) {
       ...state,
       givenUpWords: wordsLst,
     };
-    // setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "SET_NEW_WORDS") {
+  if (action.type === 'SET_NEW_WORDS') {
     function getAllWords(theWordType) {
-      return state.ALL_WORDS.filter(
-        (word) =>
-          word.level === state.levelProgress[0].level &&
-          (theWordType === word.type || theWordType === "Both")
-      );
+      return state.ALL_WORDS.levels[state.levelProgress[0].level];
+      // .filter(
+      //   (word) =>
+      //     word.level === state.levelProgress[0].level &&
+      //     (theWordType === word.type || theWordType === "Both")
+      // );
     }
     let newWordType = state.typesOfWords;
 
     let allWordsForCurrentLevel = getAllWords(newWordType);
 
     //if there are not enough words of 1 type in a level, the word type will go back to 'Both'
-    if (allWordsForCurrentLevel.length < 3 && newWordType !== "Both") {
-      newWordType = "Both";
+    if (allWordsForCurrentLevel.length < 3 && newWordType !== 'Both') {
+      newWordType = 'Both';
       allWordsForCurrentLevel = getAllWords(newWordType);
     }
 
@@ -236,17 +279,17 @@ function theGameReducer(state = initialState, action) {
     const newState = {
       ...state,
       nextLevelModal: [state.showPopUp, state.firstWord, state.secondWord],
-      topWord: "",
-      topHint: "",
-      bottomWord: "",
-      bottomHint: "",
-      attempt: "",
+      topWord: '',
+      topHint: '',
+      bottomWord: '',
+      bottomHint: '',
+      attempt: '',
       visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
       secondWord: generateWords[2],
-      firstLength: parseInt(generateWords[1].engText.length),
-      secondLength: generateWords[2].engText.length,
+      firstLength: parseInt(generateWords[1].engText.length, 10),
+      secondLength: parseInt(generateWords[2].engText.length, 10),
       givenUpWords: newGiveUpWords,
       usableWords: newUsableWords,
       typesOfWords: newWordType,
@@ -254,18 +297,18 @@ function theGameReducer(state = initialState, action) {
       confetti: false,
     };
 
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "CLOSE_NEXT_LEVEL_MODAL") {
+  if (action.type === 'CLOSE_NEXT_LEVEL_MODAL') {
     const newState = {
       ...state,
       nextLevelModal: [false],
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "SET_LEVEL_PROGRESS") {
+  if (action.type === 'SET_LEVEL_PROGRESS') {
     let theLevelProgress = [...state.levelProgress];
     let newWordssNeeded = theLevelProgress[0].wordsNeeded;
 
@@ -277,8 +320,8 @@ function theGameReducer(state = initialState, action) {
       wordsNeeded: newWordssNeeded,
     };
     if (newWordssNeeded === 0) {
-      if(theLevelProgress[0].level!=finalLevel){
-      theLevelProgress = theLevelProgress.slice(1);
+      if (theLevelProgress[0].level !== state.finalLevel) {
+        theLevelProgress = theLevelProgress.slice(1);
       }
     }
 
@@ -287,58 +330,58 @@ function theGameReducer(state = initialState, action) {
       levelProgress: theLevelProgress,
     };
   }
-  if (action.type === "SET_THE_STATE") {
+  if (action.type === 'SET_THE_STATE') {
     // for async storage
     return {
       ...action.state,
     };
   }
-  if (action.type === "SET_TYPE_OF_WORDS") {
+  if (action.type === 'SET_TYPE_OF_WORDS') {
     console.log(action.theTypeOfWords);
     const newState = {
       ...state,
       typesOfWords: action.theTypeOfWords,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "SET_GIVE_UP_LIVES") {
+  if (action.type === 'SET_GIVE_UP_LIVES') {
     let newlives = 1;
-    if (action.addOrSub === "+") {
+    if (action.addOrSub === '+') {
       newlives = 3;
     }
     const newState = {
       ...state,
       giveUpsLeft: eval(`${state.giveUpsLeft} ${action.addOrSub} ${newlives}`),
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "SET_SHOW_POP_UP") {
+  if (action.type === 'SET_SHOW_POP_UP') {
     const newState = {
       ...state,
       showPopUp: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "SET_SHOW_ROMANISED") {
+  if (action.type === 'SET_SHOW_ROMANISED') {
     const newState = {
       ...state,
       romanised: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
-  if (action.type === "RESET_LEVELS") {
+  if (action.type === 'RESET_LEVELS') {
     const newState = {
       ...state,
-      usableWords: allWords.filter((word) => word.level === 1),
-      topWord: "",
-      topHint: "",
-      bottomWord: "",
-      bottomHint: "",
-      attempt: "",
+      usableWords: allWords.levels[1],
+      topWord: '',
+      topHint: '',
+      bottomWord: '',
+      bottomHint: '',
+      attempt: '',
       visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
@@ -362,7 +405,7 @@ function theGameReducer(state = initialState, action) {
       ],
       totalPoints: 0,
       //settings stuff
-      typesOfWords: "Both",
+      typesOfWords: 'Both',
       showPopUp: true,
       romanised: false,
       showNumOfLetters: true,
@@ -370,190 +413,206 @@ function theGameReducer(state = initialState, action) {
       // levels completed
       meaningPopup: false,
     }
-    setData("state", newState);
+    setData('state', newState);
     return newState
   }
 
   // actions for 2048
 
-  if (action.type === "2048_PUNJABI_NUMS") {
+  if (action.type === '2048_PUNJABI_NUMS') {
     const newState = {
       ...state,
       punjabiNums: action.theNums,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_RESULT_SHOW") {
+  if (action.type === 'SET_RESULT_SHOW') {
     const newState = {
       ...state,
       resultShow: true,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "CLOSE_RESULT_MODAL") {
+  if (action.type === 'CLOSE_RESULT_MODAL') {
     const newState = {
       ...state,
       resultShow: false,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SHOW_MEANING_POPUP") {
+  if (action.type === 'SHOW_MEANING_POPUP') {
     const newState = {
       ...state,
       meaningPopup: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_MOVING") {
+  if (action.type === 'SET_MOVING') {
     const newState = {
       ...state,
       moving: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "UPDATE_GRID") {
+  if (action.type === 'UPDATE_GRID') {
     const newState = {
       ...state,
       grid: action.theGrid,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;  
   }
 
-  if (action.type === "SET_WON") {
+  if (action.type === 'SET_WON') {
     const newState = {
       ...state,
       won: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_OVER") {
+  if (action.type === 'SET_OVER') {
     const newState = {
       ...state,
       over: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "KEEP_PLAYING") {
+  if (action.type === 'KEEP_PLAYING') {
     const newState = {
       ...state,
       keepPlaying: action.onOrOff,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_SCORE") {
+  if (action.type === 'SET_SCORE') {
     const newState = {
       ...state,
       score: action.theScore,
     };
 
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_BEST") {
+  if (action.type === 'SET_BEST') {
     const newState = {
       ...state,
       best: action.theBest,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_TILES") {
+  if (action.type === 'SET_TILES') {
     const newState = {
       ...state,
       tiles: action.theTiles,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_VISITED") {
+  if (action.type === 'SET_VISITED') {
     const newState = {
       ...state,
       visited: action.theVisited,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "OPEN_HELP_MODAL") {
+  if (action.type === 'OPEN_HELP_MODAL') {
     const newState = {
       ...state,
       helpPage: true,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "OPEN_2048_HELP_MODAL") {
+  if (action.type === 'OPEN_2048_HELP_MODAL') {
     const newState = {
       ...state,
       helpPage2048: true,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
   
-  if (action.type === "CLOSE_HELP_MODAL") {
+  if (action.type === 'CLOSE_HELP_MODAL') {
     const newState = {
       ...state,
       helpPage: false,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "CLOSE_2048_HELP_MODAL") {
+  if (action.type === 'CLOSE_2048_HELP_MODAL') {
     const newState = {
       ...state,
       helpPage2048: false,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "CLOSE_INTRO_MODAL") {
+  if (action.type === 'CLOSE_INTRO_MODAL') {
     const newState = {
       ...state,
       showIntroModal: false,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SHOW_INTRO_MODAL") {
+  if (action.type === 'SHOW_INTRO_MODAL') {
     const newState = {
       ...state,
       showIntroModal: true,
     };
-    setData("state", newState);
+    setData('state', newState);
     return newState;
   }
 
-  if (action.type === "SET_CONFETTI") {
-    const newState = {
+  if (action.type === 'SET_CONFETTI') {
+    return {
       ...state,
       confetti: action.onOrOff,
     };
-    setData("state", newState);
+    // setData("state", newState);
+    // return newState;
+  }
+
+  if (action.type === 'SET_WORDS' ) {
+    const genWords = getWords(allWords.levels[state.levelProgress[0].level])
+    const newState = {
+      ...state,
+      allWords: action.theWords,
+      usableWords: allWords.levels[state.levelProgress[0].level],
+      charArray: genWords[0],
+      firstWord: genWords[1],
+      firstLength: parseInt(genWords[1].engText.length),
+      secondWord: genWords[2],
+      secondLength: parseInt(genWords[2].engText.length),
+    };
+    setData('state', newState);
     return newState;
   }
 

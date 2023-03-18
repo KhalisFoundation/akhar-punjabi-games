@@ -35,7 +35,9 @@ function GameScreen({ navigation }) {
   });
 
   const { width } = dimensions;
-
+  React.useEffect(() => {
+    console.log('All words: ', state.allWords);
+  }, [dispatch]);
   // const points = [];
 
   // const colors = theColors.false;

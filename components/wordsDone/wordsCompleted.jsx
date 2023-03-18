@@ -146,13 +146,20 @@ function RightWords({ navigation }) {
     return 'nothing';
   });
   const levels = [];
-  for (let i = 0; i < 8; i += 1) { // reference to level number
-    levels.push({
-      key: String(i + 1),
-      text: `Level ${String(i + 1)}`,
-      words: levelsWithWords[i + 1],
-    });
+  for (let i = 0; i < state.ALL_WORDS.levels.length - 1; i += 1) {
+    if (levelsWithWords[i + 1]) {
+      levels.push({
+        key: String(i + 1),
+        text: `Level ${String(i + 1)}`,
+        words: levelsWithWords[i + 1],
+      });
+    }
   }
+  levels.push({
+    key: 'end',
+    text: 'Play more\n',
+    words: [],
+  });
 
   useEffect(() => {
     dispatch(showMeaningPopUp(true));
@@ -196,6 +203,9 @@ function RightWords({ navigation }) {
         </Text>
       </View>
       <View style={state.meaningPopup ? styles.listContainerFull : styles.listContainer}>
+        {
+          state.x
+        }
         <FlatList
           // style={styles.listContainer}
           data={levels}

@@ -26,6 +26,7 @@
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
     "anvaad-js": "^1.4.3",
+    "csv-parse": "^5.3.6",
     "expo": "^46.0.0",
     "expo-app-loading": "~2.1.0",
     "expo-asset": "~8.6.3",
@@ -78,7 +79,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.11.0",
-    "husky": "^6.0.0",
+    "husky": "^8.0.0",
     "jest-expo": "^46.0.0",
     "react-native-dotenv": "^3.4.7",
     "redux-mock-store": "^1.5.4"
