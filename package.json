@@ -26,7 +26,6 @@
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
     "anvaad-js": "^1.4.3",
-    "csv-parse": "^5.3.6",
     "expo": "^46.0.0",
     "expo-app-loading": "~2.1.0",
     "expo-asset": "~8.6.3",
