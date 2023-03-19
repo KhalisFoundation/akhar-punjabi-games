@@ -1,12 +1,8 @@
-import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRef, useState } from 'react';
-import {Animated, Dimensions} from 'react-native';
-import { useEffect } from 'react';
+import { Animated, Dimensions } from 'react-native';
 import { allWords } from '../util/allWords';
 import getWords from '../util/generateWords';
 import { fetchData } from './actions';
-import { useDispatch } from 'react-redux';
 
 // const [allWords, setAllWords] = useState([]);
 // let resDB;
@@ -31,14 +27,14 @@ const setData = async (title, state) => {
   }
 };
 
-//gets new words
-const setWords = (level, allWords) => {
-  const [charArray, firstWord, secondWord] = getWords(level, allWords);
+// gets new words
+const setWords = (level, AllWords) => {
+  const [charArray, firstWord, secondWord] = getWords(level, AllWords);
   return [charArray, firstWord, secondWord];
 };
 
 // generate words for getMoreLives Page
-const rotateAnimation = new Animated.Value(0);  
+const rotateAnimation = new Animated.Value(0);
 const interpolateRotating = rotateAnimation.interpolate({
   inputRange: [0, 1],
   outputRange: ['0deg', '720deg'],
@@ -89,16 +85,16 @@ export const initialState = {
   },
   charArray: generateWords[0],
   firstWord: generateWords[1],
-  firstLength: parseInt(generateWords[1].engText.length),
+  firstLength: parseInt(generateWords[1].engText.length, 10),
   secondWord: generateWords[2],
-  secondLength: parseInt(generateWords[2].engText.length),
+  secondLength: parseInt(generateWords[2].engText.length, 10),
   correctWords: [],
   givenUpWords: [],
   giveUpsLeft: 100,
   nextLevelModal: [false],
   levelProgress: [
-    // { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
-    // { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
+    { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
+    { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
     { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
     { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
     { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
@@ -108,7 +104,7 @@ export const initialState = {
     // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
   ],
   totalPoints: 0,
-  //settings stuff
+  // settings stuff
   typesOfWords: 'Both',
   showPopUp: true,
   romanised: false,
@@ -123,13 +119,12 @@ export const initialState = {
   helpPage2048: true,
   confetti: false,
   punjabiNums: true,
-  // finalLevel 
+  // finalLevel
   finalLevel: 8,
 };
 
-//to reset all state
-//setData("state", initialState);
-
+// to reset all state
+// setData("state", initialState);
 
 function theGameReducer(state = initialState, action) {
   if (action.type === 'FETCH_DATA') {
@@ -154,12 +149,14 @@ function theGameReducer(state = initialState, action) {
     };
   }
   if (action.type === 'SET_TOP_WORD') {
-    return {
+    const newState = {
       ...state,
       topWord: state.firstWord.engText,
       attempt: '',
       visited: [],
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_TOP_HINT') {
     const newState = {
@@ -172,12 +169,14 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'SET_BOTTOM_WORD') {
-    return {
+    const newState = {
       ...state,
       bottomWord: state.secondWord.engText,
       attempt: '',
       visited: [],
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_BOTTOM_HINT') {
     const newState = {
@@ -190,15 +189,17 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'SET_ATTEMPT') {
-    return {
+    const newState = {
       ...state,
       attempt: action.theWord,
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_CORRECT_WORDS') {
     let wordsLst = [...state.correctWords];
 
-    //takes out duplicates from lst
+    // takes out duplicates from lst
     if (wordsLst.length !== 0) {
       wordsLst = wordsLst.filter(
         (word) => word.engText !== action.theWord.engText
@@ -208,16 +209,18 @@ function theGameReducer(state = initialState, action) {
 
     console.log(state.totalPoints, state.levelProgress[0].pointsPerWord);
     console.log(state.totalPoints + state.levelProgress[0].pointsPerWord);
-    return {
+    const newState = {
       ...state,
       correctWords: wordsLst,
       totalPoints: state.totalPoints + state.levelProgress[0].pointsPerWord,
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_GIVENUP_WORDS') {
     let wordsLst = [...state.givenUpWords];
 
-    //takes out duplicates from lst
+    // takes out duplicates from lst
     if (wordsLst.length !== 0) {
       wordsLst = wordsLst.filter((word) => {
         if (word !== undefined) {
@@ -234,29 +237,28 @@ function theGameReducer(state = initialState, action) {
     setData('state', newState);
     return newState;
   }
+  function getAllWords(theWordType) {
+    return state.ALL_WORDS.levels[state.levelProgress[0].level];
+    // .filter(
+    //   (word) =>
+    //     word.level === state.levelProgress[0].level &&
+    //     (theWordType === word.type || theWordType === "Both")
+    // );
+  }
   if (action.type === 'SET_NEW_WORDS') {
-    function getAllWords(theWordType) {
-      return state.ALL_WORDS.levels[state.levelProgress[0].level];
-      // .filter(
-      //   (word) =>
-      //     word.level === state.levelProgress[0].level &&
-      //     (theWordType === word.type || theWordType === "Both")
-      // );
-    }
     let newWordType = state.typesOfWords;
 
     let allWordsForCurrentLevel = getAllWords(newWordType);
 
-    //if there are not enough words of 1 type in a level, the word type will go back to 'Both'
+    // if there are not enough words of 1 type in a level, the word type will go back to 'Both'
     if (allWordsForCurrentLevel.length < 3 && newWordType !== 'Both') {
       newWordType = 'Both';
       allWordsForCurrentLevel = getAllWords(newWordType);
     }
 
-    //does this work??
+    // does this work??
     const newUsableWords = allWordsForCurrentLevel.filter(
-      (word) =>
-        !state.correctWords.includes(word) && !state.givenUpWords.includes(word)
+      (word) => !state.correctWords.includes(word) && !state.givenUpWords.includes(word)
     );
 
     // console.log(newUsableWords.length, allWordsForCurrentLevel.length);
@@ -264,10 +266,10 @@ function theGameReducer(state = initialState, action) {
     if (newUsableWords.length > 3) {
       newGiveUpWords = [...state.givenUpWords];
     } else {
-      let giveUp = state.givenUpWords
+      const giveUp = state.givenUpWords;
       newGiveUpWords = state.givenUpWords.map((word) => {
         if (word.level === state.levelProgress[0].level) {
-          newGiveUpWords = allWordsForCurrentLevel.filter((word)=> !word)
+          newGiveUpWords = allWordsForCurrentLevel.filter((word) => !word);
           newUsableWords.push(word);
         } else {
           return word;
@@ -325,16 +327,20 @@ function theGameReducer(state = initialState, action) {
       }
     }
 
-    return {
+    const newState = {
       ...state,
       levelProgress: theLevelProgress,
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_THE_STATE') {
     // for async storage
-    return {
+    const newState = {
       ...action.state,
     };
+    setData('state', newState);
+    return newState;
   }
   if (action.type === 'SET_TYPE_OF_WORDS') {
     console.log(action.theTypeOfWords);
@@ -374,9 +380,17 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'RESET_LEVELS') {
+    let newLevelProgress = state.ALL_WORDS.levels.map((level, idx) => {
+      return {
+        level: idx,
+        wordsNeeded: 10,
+        pointsPerWord: idx + 5,
+      };
+    });
+    newLevelProgress = newLevelProgress.slice(1);
     const newState = {
       ...state,
-      usableWords: allWords.levels[1],
+      usableWords: state.ALL_WORDS.levels[0],
       topWord: '',
       topHint: '',
       bottomWord: '',
@@ -385,26 +399,16 @@ function theGameReducer(state = initialState, action) {
       visited: [],
       charArray: generateWords[0],
       firstWord: generateWords[1],
-      firstLength: parseInt(generateWords[1].engText.length),
+      firstLength: parseInt(generateWords[1].engText.length, 10),
       secondWord: generateWords[2],
-      secondLength: parseInt(generateWords[2].engText.length),
+      secondLength: parseInt(generateWords[2].engText.length, 10),
       correctWords: [],
       givenUpWords: [],
       giveUpsLeft: 100,
       nextLevelModal: [false],
-      levelProgress: [
-        { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
-        { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
-        { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
-        { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
-        { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
-        { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
-        { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
-        { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
-        // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
-      ],
+      levelProgress: newLevelProgress,
       totalPoints: 0,
-      //settings stuff
+      // settings stuff
       typesOfWords: 'Both',
       showPopUp: true,
       romanised: false,
@@ -412,9 +416,9 @@ function theGameReducer(state = initialState, action) {
       includeMatra: true,
       // levels completed
       meaningPopup: false,
-    }
+    };
     setData('state', newState);
-    return newState
+    return newState;
   }
 
   // actions for 2048
@@ -470,7 +474,7 @@ function theGameReducer(state = initialState, action) {
       grid: action.theGrid,
     };
     setData('state', newState);
-    return newState;  
+    return newState;
   }
 
   if (action.type === 'SET_WON') {
@@ -554,7 +558,7 @@ function theGameReducer(state = initialState, action) {
     setData('state', newState);
     return newState;
   }
-  
+
   if (action.type === 'CLOSE_HELP_MODAL') {
     const newState = {
       ...state,
@@ -600,17 +604,17 @@ function theGameReducer(state = initialState, action) {
     // return newState;
   }
 
-  if (action.type === 'SET_WORDS' ) {
-    const genWords = getWords(allWords.levels[state.levelProgress[0].level])
+  if (action.type === 'SET_WORDS') {
+    const genWords = getWords(allWords.levels[state.levelProgress[0].level]);
     const newState = {
       ...state,
       allWords: action.theWords,
       usableWords: allWords.levels[state.levelProgress[0].level],
       charArray: genWords[0],
       firstWord: genWords[1],
-      firstLength: parseInt(genWords[1].engText.length),
+      firstLength: parseInt(genWords[1].engText.length, 10),
       secondWord: genWords[2],
-      secondLength: parseInt(genWords[2].engText.length),
+      secondLength: parseInt(genWords[2].engText.length, 10),
     };
     setData('state', newState);
     return newState;
@@ -623,11 +627,9 @@ function theGameReducer(state = initialState, action) {
   //   setData("state", newState);
   //   return newState;
   // }
-  
-  
-  //default
+
+  // default
   return { ...state };
 }
-
 
 export default theGameReducer;

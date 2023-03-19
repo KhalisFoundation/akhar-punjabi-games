@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Linking,
   StatusBar,
-  Image,
   Platform
 } from 'react-native';
 import { useFonts } from 'expo-font';
@@ -15,26 +14,21 @@ import AppLoading from 'expo-app-loading';
 // import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {firebase} from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import Khalis from '../../assets/khalis_incubator_dark.svg';
 import Logo from '../../assets/akhar_logo.svg';
 
-import dimensions, { height, scale } from '../../util/dimensions';
-import { loadData } from '../../data';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData, setNewWords, setWords } from '../../redux/actions';
+import dimensions from '../../util/dimensions';
+import { fetchData } from '../../redux/actions';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const audioPlayer = new Audio.Sound();
 
 function MenuScreen({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
-  const [localWords, setLocalWords] = useState(null);
   const { width } = dimensions;
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -217,14 +211,9 @@ function MenuScreen({ navigation }) {
         hidden
       />
       <View style={styles.header}>
-        <Logo height={width*0.6} width={width*0.6} style={styles.menulogo} />
+        <Logo height={width * 0.6} width={width * 0.6} style={styles.menulogo} />
         <View style={styles.mainMenuContainer}>
           <Text style={styles.mainmenu}>MAIN MENU</Text>
-          {
-            localWords && (
-              <Text style={styles.mainmenu}>{localWords.levels}</Text>
-            )
-          }
           {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
           <Icon name='info-circle' color={"#7FC8DE"} size={22} />
         </TouchableOpacity> */}
@@ -239,7 +228,7 @@ function MenuScreen({ navigation }) {
               navigation.navigate('AkharJor');
             }}
           >
-            <Text style={styles.text}>{Platform.OS === "ios" ? "Akhar Jor" : "Gurmukhi Wordlink"}</Text>
+            <Text style={styles.text}>{Platform.OS === 'ios' ? 'Akhar Jor' : 'Gurmukhi Wordlink'}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.columns}>
@@ -271,7 +260,7 @@ function MenuScreen({ navigation }) {
         style={styles.khalisTouchableOpacity}
         onPress={() => Linking.openURL('https://khalis.dev')}
       >
-        <Khalis width={width*0.5} height={width*0.2}/>
+        <Khalis width={width * 0.5} height={width * 0.2} />
       </TouchableOpacity>
     </SafeAreaView>
   );

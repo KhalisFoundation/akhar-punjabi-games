@@ -6,8 +6,7 @@ import {
   Linking,
   ScrollView,
   TouchableOpacity,
-  StatusBar,
-  Image
+  StatusBar
 } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
@@ -15,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
 import KhalisLogo from '../../assets/khalis_incubator.svg';
-import Logo from "../../assets/akhar_logo_with_text.svg";
+import Logo from '../../assets/akhar_logo_with_text.svg';
 import dimensions from '../../util/dimensions';
 
 function About({ navigation }) {
@@ -27,8 +26,8 @@ function About({ navigation }) {
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
-  
-  const {width} = dimensions;
+
+  const { width } = dimensions;
   const linkColor = '#009bff';
   const black = '#000';
   const styles = StyleSheet.create({
@@ -57,7 +56,7 @@ function About({ navigation }) {
     },
     innerView: {
       width: '100%',
-      height: width*0.175,
+      height: width * 0.175,
       backgroundColor: GLOBAL.COLOR.TOOLBAR_COLOR_ALT2,
       flexDirection: 'row',
       alignItems: 'center',
@@ -76,10 +75,16 @@ function About({ navigation }) {
       alignSelf: 'center',
     },
     title1: { fontFamily: 'Nasa', fontSize: width * 0.06, color: black },
-    title2: { fontFamily: 'GurbaniHeavy', fontSize: width* 0.07, color: black },
+    title2: { fontFamily: 'GurbaniHeavy', fontSize: width * 0.07, color: black },
     aboutus: { fontSize: width * 0.04, fontFamily: 'Muli', color: black },
     link: { color: linkColor, fontWeight: 'bold' },
-    ending: { fontSize: width*0.03, fontFamily: 'Muli', alignSelf: 'flex-end', color: black }
+    ending: {
+      fontSize: width * 0.03, fontFamily: 'Muli', alignSelf: 'flex-end', color: black
+    },
+    logoTouchable: {
+      width: '100%',
+      alignItems: 'center',
+    }
   });
 
   if (!fontsLoaded) {
@@ -128,11 +133,11 @@ function About({ navigation }) {
           </MaskedView>
           <Text style={{ fontFamily: 'Nasa', fontSize:25, color: "#61CAE5"}}>(SIKH GAMES)</Text>
         </View> */}
-        <Logo style={styles.logo} width={width*0.7} height={width*0.7} />
+        <Logo style={styles.logo} width={width * 0.7} height={width * 0.7} />
 
         <Text style={styles.aboutus}>
           {'\n'}
-          Akhar: Punjabi Games is a treasure of fun games created by young developers at 
+          Akhar: Punjabi Games is a treasure of fun games created by young developers at
           Khalis Incubator, to help everyone learn punjabi the fun way.
         </Text>
 
@@ -161,10 +166,11 @@ function About({ navigation }) {
         <Text style={styles.aboutus}>
           <Text>{'\n'}</Text>
           <Text>
-            Khalis Incubator is an initiative by Khalis Foundation (a 501(c)3 non-profit organization registered and based in California, USA) to create more opportunities for youth from 
-            traditionally under-represented groups with a focus on South Asian minority communities. We aim to 
-            foster opportunities for growth whether that be in professional training, technical experience, or 
-            Sikh cultural knowledge.
+            Khalis Incubator is an initiative by Khalis Foundation (a 501(c)3 non-profit
+            organization registered and based in California, USA) to create more opportunities
+            for youth from traditionally under-represented groups with a focus on South Asian
+            minority communities. We aim to foster opportunities for growth whether that be in
+            professional training, technical experience, or Sikh cultural knowledge.
             {'\n\n'}
             We welcome your comments and corrections!
             {' '}
@@ -187,14 +193,11 @@ function About({ navigation }) {
           </Text>
 
           <TouchableOpacity
-            style={{
-              width:"100%",
-              alignItems: 'center',
-            }}
+            style={styles.logoTouchable}
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalis.dev')}
           >
-            <KhalisLogo width={width*0.5} height={width*0.2} />
+            <KhalisLogo width={width * 0.5} height={width * 0.2} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>

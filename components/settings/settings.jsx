@@ -6,8 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   Linking,
-  ScrollView,
-  Dimensions
+  ScrollView
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListItem } from 'react-native-elements';
@@ -39,7 +38,7 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const {width} = dimensions;
+  const { width } = dimensions;
   // const colors = theColors.false;
   // const platform = Platform.OS;
   const styles = StyleSheet.create({
@@ -89,7 +88,7 @@ function Settings({ navigation }) {
         barStyle="dark-content"
       />
       <View style={{
-        width: '100%', height: width*0.175, backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+        width: '100%', height: width * 0.175, backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
       }}
       >
         <IonIcons
@@ -114,7 +113,7 @@ function Settings({ navigation }) {
       <ScrollView style={styles.scroll}>
         <View
           style={{
-            width: '100%', height: width*0.07, marginLeft: 10, marginTop: 10
+            width: '100%', height: width * 0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text
@@ -201,7 +200,7 @@ function Settings({ navigation }) {
         </ListItem>
         <View
           style={{
-            width: '100%', height: width*0.07, marginLeft: 10, marginTop: 10
+            width: '100%', height: width * 0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text

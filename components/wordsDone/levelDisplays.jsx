@@ -6,8 +6,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  FlatList,
-  Dimensions
+  FlatList
 } from 'react-native';
 // import * as Speech from 'expo-speech';
 
@@ -21,7 +20,7 @@ import dimensions from '../../util/dimensions';
 
 function Level({ title, theWords, setAnswer }) {
   const dispatch = useDispatch();
-  const {width} = dimensions;
+  const { width } = dimensions;
   const [up, setUp] = useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -33,7 +32,6 @@ function Level({ title, theWords, setAnswer }) {
   });
 
   const colors = theColors.false;
-  const screenWidth = Dimensions.get('window').width;
 
   const styles = StyleSheet.create({
     container: {
@@ -65,7 +63,7 @@ function Level({ title, theWords, setAnswer }) {
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: width*0.08,
+      fontSize: width * 0.08,
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'

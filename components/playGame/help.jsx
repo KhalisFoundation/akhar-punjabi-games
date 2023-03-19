@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
@@ -12,12 +14,12 @@ import { useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import { View } from 'react-native-animatable';
 import WordWheel from '../../assets/wordWheel.svg';
 import Tools from '../../assets/toolTips.svg';
 
 import Dimensions from '../../util/dimensions';
 import { closeHelpModal } from '../../redux/actions';
-import { View } from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
 
@@ -62,7 +64,7 @@ function Help() {
       marginBottom: 40,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: width*0.075,
+      height: width * 0.075,
       width: width * 0.4,
       elevation: 5,
     },
@@ -73,7 +75,7 @@ function Help() {
       color: '#000',
     },
     emoji: {
-      fontFamily: "Arial"
+      fontFamily: 'Arial'
     },
     scrollview: {
       flex: 1,
@@ -101,49 +103,53 @@ function Help() {
     >
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
-        <IonIcons name="close" size={width * 0.07} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
-        <ScrollView
-          style={styles.scrollview}
-          contentContainerStyle={styles.scrollContent}
-        >
-          <Text style={styles.header}>
-            Are you ready to test your Punjabi vocabulary skills?
+          <IonIcons name="close" size={width * 0.07} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
+          <ScrollView
+            style={styles.scrollview}
+            contentContainerStyle={styles.scrollContent}
+          >
+            <Text style={styles.header}>
+              Are you ready to test your Punjabi vocabulary skills?
               <Text style={styles.emoji}> 🧐</Text>
-            {'\n\n'}
-            Welcome to Akhar Jor, where you'll link up letters in Gurmukhi to spell words related to Sikhism and Gurbani!
-            {'\n'}
-          </Text>
-          <WordWheel height={width*0.75} style={styles.img} />
-          <Text style={styles.header}>
-            {'\n'}
-            Level up your game
+              {'\n\n'}
+              Welcome to Akhar Jor, where you'll link up letters in Gurmukhi to
+              spell words related to Sikhism and Gurbani!
+              {'\n'}
+            </Text>
+            <WordWheel height={width * 0.75} style={styles.img} />
+            <Text style={styles.header}>
+              {'\n'}
+              Level up your game
               <Text style={styles.emoji}>💪</Text>
-            : With each level, the words get harder, but don't worry!
-            {'\n\n'}
-            You'll be given a clue
+              : With each level, the words get harder, but don't worry!
+              {'\n\n'}
+              You'll be given a clue
               <Text style={styles.emoji}>💡</Text>
-            to help you solve the word. Keep trying until you get it right - there's no penalty for trying as many times as you need.
-            {'\n'}
-          </Text>
-          <Tools height={width*0.7} style={styles.img} />
-          <Text style={styles.header}>
-            {'\n'}
-            Need a hand?
-            {'\n'}
-            If you're feeling stuck
+              to help you solve the word. Keep trying until you get it right
+              - there's no penalty for trying as many times as you need.
+              {'\n'}
+            </Text>
+            <Tools height={width * 0.7} style={styles.img} />
+            <Text style={styles.header}>
+              {'\n'}
+              Need a hand?
+              {'\n'}
+              If you're feeling stuck
               <Text style={styles.emoji}>🤔</Text>
-            , click on the bulb icon for a hint. One letter will be filled in for you, but it'll cost you credits.
-            {'\n\n'}
-            Keep an eye 
+              , click on the bulb icon for a hint. One letter will be filled
+              in for you, but it'll cost you credits.
+              {'\n\n'}
+              Keep an eye
               <Text style={styles.emoji}>👀 </Text>
-            on your credit counter in the top-right corner, and click on the (+) icon to earn some extra credits by spelling out sentences.
-            {'\n\n'}
+              on your credit counter in the top-right corner, and click on the
+              (+) icon to earn some extra credits by spelling out sentences.
+              {'\n\n'}
 
-            Ready to challenge yourself? 
+              Ready to challenge yourself?
               <Text style={styles.emoji}>🧠</Text>
-            {'\n'}
-            Lets get started and see how many Gurbani words you can spell!
-          </Text>
+              {'\n'}
+              Lets get started and see how many Gurbani words you can spell!
+            </Text>
             {/* {'\n\n'}
             The game where you link up letters in Gurmukhi to spell a word associated with a
             Sikh-related,Gurbani, or Punjabi context. Here are some of the things you need to know.
@@ -168,15 +174,15 @@ function Help() {
             You will just need to spell out a sentence to be gifted credits.
           </Text> */}
 
-          <TouchableOpacity
-            style={styles.continue}
-            onPress={() => { dispatch(closeHelpModal()); }}
-          >
-            <Text style={styles.continueTxt}>
-              PLAY
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
+            <TouchableOpacity
+              style={styles.continue}
+              onPress={() => { dispatch(closeHelpModal()); }}
+            >
+              <Text style={styles.continueTxt}>
+                PLAY
+              </Text>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </Modal>

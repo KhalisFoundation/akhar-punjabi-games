@@ -40,7 +40,7 @@ import dimensions from '../../util/dimensions';
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const {height, width} = dimensions;
+  const { width } = dimensions;
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
@@ -50,7 +50,7 @@ function WordsDoneModal() {
 
   const styles = StyleSheet.create({
     container: {
-      width: width,
+      width,
       borderRadius: 10,
       shadowColor: '#000',
       shadowOffset: {
@@ -76,14 +76,14 @@ function WordsDoneModal() {
       elevation: 5,
     },
     wordDoneText: {
-      fontSize: width*0.075,
+      fontSize: width * 0.075,
       textAlign: 'center',
       fontFamily: 'Prabhki',
       color: 'white',
     },
     meaningText: {
       fontFamily: 'Muli',
-      fontSize: width*0.04,
+      fontSize: width * 0.04,
       textAlign: 'center',
       color: 'white',
       marginBottom: 10,
@@ -94,14 +94,14 @@ function WordsDoneModal() {
     },
     continueText: {
       textAlign: 'center',
-      fontSize: width*0.04,
+      fontSize: width * 0.04,
       margin: 'auto',
       fontFamily: 'Muli',
       color: '#000',
     },
     text: {
       textAlign: 'center',
-      fontSize: width*0.075,
+      fontSize: width * 0.075,
       color: 'white',
       paddingTop: 25,
       fontFamily: 'Prabhki',
@@ -115,20 +115,76 @@ function WordsDoneModal() {
   const getScale = (Math.round(width / 200));
   console.log(nowWow);
   const wows = {
-    1: <Icon1 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    2: <Icon2 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    3: <Icon3 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    4: <Icon4 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    5: <Icon5 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    6: <Icon6 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    7: <Icon7 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    8: <Icon8 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    9: <Icon9 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    10: <Icon10 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    11: <Icon11 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    12: <Icon12 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    13: <Icon13 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
-    14: <Icon14 style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.03 }} />,
+    1: <Icon1 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    2: <Icon2 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    3: <Icon3 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    4: <Icon4 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    5: <Icon5 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    6: <Icon6 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    7: <Icon7 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    8: <Icon8 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    9: <Icon9 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    10: <Icon10 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    11: <Icon11 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    12: <Icon12 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    13: <Icon13 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
+    14: <Icon14 style={{
+      transform: [{ scale: getScale }],
+      marginBottom: getScale * width * 0.03
+    }}
+    />,
   };
   const doneYet = Math.floor((10 - state.levelProgress[0].wordsNeeded) / 2);
   const stage = {
@@ -169,13 +225,17 @@ function WordsDoneModal() {
                 iterationCount={2}
                 style={{ margin: 0, padding: 0 }}
               >
-                <Win style={{ transform: [{ scale: getScale }], marginBottom: getScale*width*0.05 }} />
+                <Win style={{
+                  transform: [{ scale: getScale }],
+                  marginBottom: getScale * width * 0.05
+                }}
+                />
               </Animatable.View>
               <Animatable.Text animation="fadeIn" iterationCount={1} style={styles.text}>
                 vDweIAwN jI
               </Animatable.Text>
               <Text style={[styles.text, {
-                fontFamily: 'Muli', fontWeight: 'normal', fontSize: width*0.06, padding: 0
+                fontFamily: 'Muli', fontWeight: 'normal', fontSize: width * 0.06, padding: 0
               }]}
               >
                 More levels coming soon!

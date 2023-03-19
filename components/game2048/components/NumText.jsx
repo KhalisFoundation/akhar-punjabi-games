@@ -16,7 +16,7 @@ export const NumText = ({ num }) => {
     textAlign: 'center',
     color: '#002f63',
     fontFamily: (state.punjabiNums) ? 'GurbaniHeavy' : 'Muli',
-    fontSize: (num >= 128) ? width*0.05 : width*0.07
+    fontSize: (num >= 128) ? width * 0.05 : width * 0.07
   };
 
   if (!fontsLoaded) {

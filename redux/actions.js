@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {firebase} from '../firebase';
+import { firebase } from '../firebase';
 
 export const setTopWord = () => (dispatch) => {
   dispatch({
@@ -63,7 +63,7 @@ export const setWords = (state) => (dispatch) => {
     type: 'SET_WORDS',
     theWords: state,
   });
-}
+};
 export const setGiveUpLives = (operator) => (dispatch) => {
   dispatch({
     type: 'SET_GIVE_UP_LIVES',
@@ -75,7 +75,7 @@ export const closeNextLevelModal = () => (dispatch) => {
     type: 'CLOSE_NEXT_LEVEL_MODAL',
   });
 };
-//settings page
+// settings page
 export const setTypeOfWords = (theType) => (dispatch) => {
   dispatch({
     type: 'SET_TYPE_OF_WORDS',
@@ -119,151 +119,151 @@ export const setBoard = (board) => (dispatch) => {
     type: 'SET_BOARD',
     theBoard: board,
   });
-}
+};
 
 export const resetBoard = () => (dispatch) => {
   dispatch({
     type: 'RESET_BOARD',
   });
-}
+};
 
 export const setNewBoardOnComplete = () => (dispatch) => {
   dispatch({
     type: 'SET_NEW_BOARD',
   });
-}
+};
 
 export const setPunjabiNums = (bool) => (dispatch) => {
   dispatch({
     type: '2048_PUNJABI_NUMS',
     theNums: bool,
   });
-}
+};
 
 export const setResultModal = () => (dispatch) => {
   dispatch({
     type: 'SET_RESULT_MODAL',
   });
-}
+};
 
 export const closeResultModal = () => (dispatch) => {
   dispatch({
     type: 'CLOSE_RESULT_MODAL',
   });
-}
+};
 
 export const showMeaningPopUp = (set) => (dispatch) => {
   dispatch({
     type: 'SHOW_MEANING_POPUP',
     onOrOff: set
   });
-}
+};
 
 export const setMoving = (set) => (dispatch) => {
   dispatch({
     type: 'SET_MOVING',
     onOrOff: set
   });
-}
+};
 
 export const updateGrid = (set) => (dispatch) => {
   dispatch({
     type: 'UPDATE_GRID',
     onOrOff: set
   });
-}
+};
 
 export const setWon = (set) => {
   return {
     type: 'SET_WON',
     onOrOff: set
   };
-}
+};
 
 export const setOver = (set) => {
   return {
     type: 'SET_OVER',
     onOrOff: set
   };
-}
+};
 
 export const setScore = (score) => {
   return {
     type: 'SET_SCORE',
     theScore: score
   };
-}
+};
 
 export const setKeepPlaying = (set) => {
   return {
     type: 'SET_KEEP_PLAYING',
     onOrOff: set
   };
-}
+};
 
 export const setTiles = (tiles) => {
   return {
     type: 'SET_TILES',
     theTiles: tiles
   };
-}
+};
 
 export const setBest = (best) => {
   return {
     type: 'SET_BEST',
     theBest: best
   };
-}
+};
 
 export const setVisited = (visit) => {
   return {
     type: 'SET_VISITED',
     theVisited: visit
   };
-}
+};
 
 export const openHelpModal = () => {
   return {
     type: 'OPEN_HELP_MODAL',
   };
-}
+};
 
 export const closeHelpModal = () => {
   return {
     type: 'CLOSE_HELP_MODAL',
   };
-}
+};
 
 export const open2048HelpModal = () => {
   return {
     type: 'OPEN_2048_HELP_MODAL',
   };
-}
+};
 
 export const close2048HelpModal = () => {
   return {
     type: 'CLOSE_2048_HELP_MODAL',
   };
-}
+};
 
 export const closeIntroModal = () => {
   return {
     type: 'CLOSE_INTRO_MODAL',
-  }
-}
+  };
+};
 
 export const showIntroModal = () => {
   return {
     type: 'SHOW_INTRO_MODAL',
-  }
-}
+  };
+};
 
 export const setConfetti = (set) => {
   return {
     type: 'SET_CONFETTI',
     onOrOff: set
-  }
-}
+  };
+};
 
 export const fetchData = () => (dispatch) => {
   firebase
@@ -273,7 +273,8 @@ export const fetchData = () => (dispatch) => {
       const data = snapshot.val();
       AsyncStorage.setItem('data', JSON.stringify({ levels: data }));
       dispatch({ type: 'FETCH_DATA', payload: { levels: data } });
-      // make an array with each element as { level: idx + 1, wordsNeeded: 10, pointsPerWord: idx + 6 } where idx in each index till length of data
+      // make an array with each element as { level: idx + 1, wordsNeeded: 10,
+      // pointsPerWord: idx + 6 }where idx in each index till length of data
       // skip first index
       let payload = data.map((level, idx) => {
         return {
@@ -282,9 +283,8 @@ export const fetchData = () => (dispatch) => {
           pointsPerWord: idx + 5,
         };
       });
-      // remove the first 8 element of payload
       payload = payload.slice(1);
-      console.log("Levels: ", payload);
+      console.log('Levels: ', payload);
       dispatch({ type: 'FETCH_LEVEL_PROGRESS', payload });
     });
 };

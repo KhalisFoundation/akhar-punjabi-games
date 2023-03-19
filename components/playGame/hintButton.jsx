@@ -96,7 +96,7 @@ export const HintButton = ({ wordType }) => {
           const hT = (state.topHint + state.firstWord.engText[newTopLength]).toString();
           dispatch(setTopHint(hT));
           dispatch(setGiveUpLives('-'));
-          if (state.topHint === state.firstWord.engText.substring(0, state.firstLength-1)) {
+          if (state.topHint === state.firstWord.engText.substring(0, state.firstLength - 1)) {
             givenUpWord(state.firstWord.punjabiText, state.firstWord.engText);
             dispatch(setTopWord());
             dispatch(setGivenUpWords(state.firstWord));
@@ -130,7 +130,7 @@ export const HintButton = ({ wordType }) => {
           const hB = (state.bottomHint + state.secondWord.engText[newBottomLength]).toString();
           dispatch(setBottomHint(hB));
           dispatch(setGiveUpLives('-'));
-          if (state.bottomHint === state.secondWord.engText.substring(0, state.secondLength-1)) {
+          if (state.bottomHint === state.secondWord.engText.substring(0, state.secondLength - 1)) {
             givenUpWord(state.secondWord.punjabiText, state.secondWord.engText);
             dispatch(setBottomWord());
             dispatch(setGivenUpWords(state.secondWord));

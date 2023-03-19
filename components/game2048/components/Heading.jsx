@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react-native/no-color-literals */
 import {
@@ -6,10 +7,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import React from 'react';
-import Dimensions, { width } from '../../../util/dimensions';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { useSelector } from 'react-redux';
+import Dimensions, { width } from '../../../util/dimensions';
 
 function Heading(props) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -28,11 +29,11 @@ function Heading(props) {
     },
     upText: {
       color: 'white',
-      fontSize: width*0.04,
+      fontSize: width * 0.04,
       fontFamily: 'Muli'
     },
     numText: {
-      fontFamily: state.punjabiNums ? 'GurbaniAkhar': 'Muli',
+      fontFamily: state.punjabiNums ? 'GurbaniAkhar' : 'Muli',
     }
   });
 
@@ -46,12 +47,16 @@ function Heading(props) {
     >
       <View style={styles.upBox}>
         <Text style={styles.upText}>
-          Best: <Text style={styles.numText}>{props.best}</Text>
+          Best:
+          {' '}
+          <Text style={styles.numText}>{props.best}</Text>
         </Text>
       </View>
       <View style={styles.upBox}>
         <Text style={styles.upText}>
-          Score: <Text style={styles.numText}>{props.score}</Text>
+          Score:
+          {' '}
+          <Text style={styles.numText}>{props.score}</Text>
         </Text>
       </View>
     </View>

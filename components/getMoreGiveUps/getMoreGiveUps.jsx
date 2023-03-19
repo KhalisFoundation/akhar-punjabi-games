@@ -26,7 +26,6 @@ import {
   defaultMatraValue, matras, withMatra, withoutMatra
 } from '../GurmukhiKeyboard/constants';
 import { getKeyboardKeyValue, getMatraAkhar } from '../GurmukhiKeyboard/utils';
-import dimensions from '../../util/dimensions';
 
 function MoreGiveUps({ route, navigation }) {
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ function MoreGiveUps({ route, navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
 
-  const width = Dimensions.get('window').width;
+  const { width } = Dimensions.get('window');
   // console.log('width: ', width);
 
   const [textEntry, setTextEntry] = useState('');
@@ -198,7 +197,7 @@ function MoreGiveUps({ route, navigation }) {
     textLayout: {
       margin: 5,
       width: '99%',
-      height: width*0.1,
+      height: width * 0.1,
       elevation: 5,
       borderRadius: 20,
       backgroundColor: '#274C7C',
@@ -211,13 +210,13 @@ function MoreGiveUps({ route, navigation }) {
       textAlign: 'center',
       textShadowRadius: 10,
       fontSize: width * 0.06,
-      width: width*0.85,
+      width: width * 0.85,
       height: width * 0.1,
       fontFamily: 'Prabhki',
       color: '#FF7E00',
       alignItems: 'center',
     },
-    backspace: { color: 'white', fontSize:width * 0.05 },
+    backspace: { color: 'white', fontSize: width * 0.05 },
     keyText: { color: 'white', fontFamily: 'Bookish', fontSize: width * 0.05 }
   });
 
@@ -302,7 +301,7 @@ function MoreGiveUps({ route, navigation }) {
                 <Icon
                   name="backspace"
                   color="#D1FBFF"
-                  size={width*0.05}
+                  size={width * 0.05}
                   onPress={() => { handleClick('meta'); }}
                 />
               )}

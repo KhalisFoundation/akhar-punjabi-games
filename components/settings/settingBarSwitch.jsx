@@ -84,20 +84,23 @@ function SwitchBar({
           />
         </MaskedView>
         <ListItem.Content style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <ListItem.Content style={{ alignSelf: 'center', alignContent: 'center', justifyContent:'space-between', flexDirection: 'row', marginEnd: 10 }} >
-          <ListItem.Title >
-            <Text style={{ fontSize: width*0.04 }}>{theSetting}</Text>
-          </ListItem.Title>
-          <Switch
-            value={currentSetting}
-            onValueChange={(newSetting) => {
-              dispatch(theAction(newSetting));
-              setCurrentSetting(newSetting);
-              settingUsed(`${title} set to ${newSetting ? 'on' : 'off'}`);
-            }}
-            style={{ transform: [{ scaleX: width*0.002 }, { scaleY: width*0.002 }] }}
-          />
-        </ListItem.Content>
+          <ListItem.Content style={{
+            alignSelf: 'center', alignContent: 'center', justifyContent: 'space-between', flexDirection: 'row', marginEnd: 10
+          }}
+          >
+            <ListItem.Title>
+              <Text style={{ fontSize: width * 0.04 }}>{theSetting}</Text>
+            </ListItem.Title>
+            <Switch
+              value={currentSetting}
+              onValueChange={(newSetting) => {
+                dispatch(theAction(newSetting));
+                setCurrentSetting(newSetting);
+                settingUsed(`${title} set to ${newSetting ? 'on' : 'off'}`);
+              }}
+              style={{ transform: [{ scaleX: width * 0.002 }, { scaleY: width * 0.002 }] }}
+            />
+          </ListItem.Content>
         </ListItem.Content>
       </ListItem>
     </View>

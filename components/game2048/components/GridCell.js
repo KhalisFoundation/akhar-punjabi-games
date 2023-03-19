@@ -5,8 +5,8 @@ import Dimensions from '../../../util/dimensions';
 
 const { width } = Dimensions.get('window');
 
-const MARGIN_WIDTH = width*0.01;
-const ITEM_WIDTH = (width - width*0.2 - MARGIN_WIDTH * 10) / 4;
+const MARGIN_WIDTH = width * 0.01;
+const ITEM_WIDTH = (width - width * 0.2 - MARGIN_WIDTH * 10) / 4;
 
 const styles = {
   container: {
@@ -15,7 +15,7 @@ const styles = {
     marginHorizontal: MARGIN_WIDTH,
     marginVertical: MARGIN_WIDTH,
     backgroundColor: '#0005', // 'rgba(238, 228, 218, 0.35)',
-    borderRadius: width*0.02,
+    borderRadius: width * 0.02,
   }
 };
 

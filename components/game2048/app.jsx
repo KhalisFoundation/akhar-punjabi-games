@@ -95,5 +95,7 @@ const styles = StyleSheet.create({
   },
   iconSize: { width: width * 0.075, height: width * 0.075 },
   flex: { flex: 1 },
-  header: { justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, marginTop: 5 }
+  header: {
+    justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, marginTop: 5
+  }
 });

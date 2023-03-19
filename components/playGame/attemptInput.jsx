@@ -60,14 +60,14 @@ export const AttemptInput = () => {
       borderRadius: 100,
       justifyContent: 'center',
       textAlign: 'center',
-      fontSize: width>500 ? width*0.06 :width * 0.08,
+      fontSize: width > 500 ? width * 0.06 : width * 0.08,
       fontFamily: 'GurbaniAkharSG'
     },
     backspace: {
       textAlign: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      fontSize: width>500 ? width*0.035 :width * 0.05,
+      fontSize: width > 500 ? width * 0.035 : width * 0.05,
       padding: 8,
     }
   });

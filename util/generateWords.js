@@ -6,7 +6,7 @@ export default function getWords(words) {
   }
   const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
   // First word
-  let firstWord = getRandomWord();
+  const firstWord = getRandomWord();
   // Second Word
   let secondWord = getRandomWord();
   while (firstWord.punjabiText === secondWord.punjabiText) {

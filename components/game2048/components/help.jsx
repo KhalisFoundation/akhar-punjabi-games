@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
@@ -12,13 +13,13 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native-animatable';
 import HelpImg1 from '../../../assets/helpGrid1.svg';
 import HelpImg2 from '../../../assets/helpGrid2.svg';
 import HelpImg3 from '../../../assets/helpGrid3.svg';
 
 import Dimensions from '../../../util/dimensions';
 import { close2048HelpModal } from '../../../redux/actions';
-import { View } from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
 
@@ -74,7 +75,7 @@ function Help() {
       margin: 20,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: width*0.075,
+      height: width * 0.075,
       width: width * 0.4,
       elevation: 5,
     },
@@ -85,7 +86,7 @@ function Help() {
       color: '#000',
     },
     icon: { marginLeft: 10 },
-    gtext: {fontFamily: "Bookish"}
+    gtext: { fontFamily: 'Bookish' }
   });
 
   if (!fontsLoaded) {
@@ -99,41 +100,49 @@ function Help() {
     >
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
-        <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(close2048HelpModal()); }} />
-        <ScrollView
-          style={styles.scrollview}
-          contentContainerStyle={styles.scrollContent}
-        >
-          <Text style={styles.header}>
-            Welcome to <Text style={styles.gtext}>2048</Text> game.
-            {'\n\n'}
-            Swipe to move all tiles.
-            {'\n'}
-          </Text>
-          <HelpImg1 height={width*0.7} style={styles.img} />
-
-          <Text style={styles.header}>
-            {'\n\n'}
-            Two tiles with the same number merge when they touch!
-            {'\n'}
-          </Text>
-          <HelpImg2 height={width*0.7} style={styles.img} />
-
-          <Text style={styles.header}>
-            {'\n\n'}
-            Reach the <Text style={styles.gtext}>2048</Text> tile to win the game!
-            {'\n'}
-          </Text>
-          <HelpImg3 height={width*0.7} style={styles.img} />
-          <TouchableOpacity
-            style={styles.continue}
-            onPress={() => { dispatch(close2048HelpModal()); }}
+          <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(close2048HelpModal()); }} />
+          <ScrollView
+            style={styles.scrollview}
+            contentContainerStyle={styles.scrollContent}
           >
-            <Text style={styles.continueTxt}>
-              PLAY
+            <Text style={styles.header}>
+              Welcome to
+              {' '}
+              <Text style={styles.gtext}>2048</Text>
+              {' '}
+              game.
+              {'\n\n'}
+              Swipe to move all tiles.
+              {'\n'}
             </Text>
-          </TouchableOpacity>
-        </ScrollView>
+            <HelpImg1 height={width * 0.7} style={styles.img} />
+
+            <Text style={styles.header}>
+              {'\n\n'}
+              Two tiles with the same number merge when they touch!
+              {'\n'}
+            </Text>
+            <HelpImg2 height={width * 0.7} style={styles.img} />
+
+            <Text style={styles.header}>
+              {'\n\n'}
+              Reach the
+              {' '}
+              <Text style={styles.gtext}>2048</Text>
+              {' '}
+              tile to win the game!
+              {'\n'}
+            </Text>
+            <HelpImg3 height={width * 0.7} style={styles.img} />
+            <TouchableOpacity
+              style={styles.continue}
+              onPress={() => { dispatch(close2048HelpModal()); }}
+            >
+              <Text style={styles.continueTxt}>
+                PLAY
+              </Text>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </Modal>

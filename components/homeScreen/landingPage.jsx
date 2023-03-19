@@ -7,8 +7,8 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Linking,
   StatusBar,
+  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,13 +18,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
-import { setTheState, openHelpModal, setTheWords } from '../../redux/actions';
+import { setTheState, openHelpModal } from '../../redux/actions';
 import Help from '../playGame/help';
-import Khalis from '../../assets/khalis_incubator_dark.svg';
 import { initialState } from '../../redux/reducers';
 
 import dimensions from '../../util/dimensions';
-import { useData } from '../../data';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -75,31 +73,31 @@ function HomeScreen({ navigation }) {
     }
     getData();
   }, [dispatch]);
-  React.useEffect(() => {
-    async function setWordsData() {
-      try {
-        const theWordsData = await AsyncStorage.getItem('data');
-        let theWords;
-        if (theWordsData !== null) {
-          theWords = JSON.parse(theWordsData);
-          console.log('got words data that was previously saved');
-          // console.log(theState);
-        } else {
-          console.log('there is nothing is state');
-          theWords = await useData();
-        }
-        Promise.all([theWords]).then(() => {
-          dispatch(setTheWords(theWords));
-          console.log('Set Words!');
-        });
-        // setLoadingScreen(false);
-      } catch (error) {
-        // Error retrieving data
-        console.log(error);
-      }
-    }
-    setWordsData();
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   async function setWordsData() {
+  //     try {
+  //       const theWordsData = await AsyncStorage.getItem('data');
+  //       let theWords;
+  //       if (theWordsData !== null) {
+  //         theWords = JSON.parse(theWordsData);
+  //         console.log('got words data that was previously saved');
+  //         // console.log(theState);
+  //       } else {
+  //         console.log('there is nothing is state');
+  //         theWords = await useData();
+  //       }
+  //       Promise.all([theWords]).then(() => {
+  //         dispatch(setTheWords(theWords));
+  //         console.log('Set Words!');
+  //       });
+  //       // setLoadingScreen(false);
+  //     } catch (error) {
+  //       // Error retrieving data
+  //       console.log(error);
+  //     }
+  //   }
+  //   setWordsData();
+  // }, [dispatch]);
   // console.log(theColors[state.darkMode]);
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
@@ -187,7 +185,7 @@ function HomeScreen({ navigation }) {
           <Icon name="cog" size={width * 0.07} color="#ccc" style={styles.center} />
         </TouchableOpacity>
       </View>
-      <View style={{justifyContent:'space-evenly', height: "100%", width: "100%"}}>
+      <View style={{ justifyContent: 'space-evenly', height: '100%', width: '100%' }}>
         <View
           style={{
             backgroundColor: 'transparent',
@@ -204,7 +202,7 @@ function HomeScreen({ navigation }) {
             AKr joV
           </Text>
           <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
-            {Platform.OS === "ios" ? "Akhar Jor" : "Gurmukhi Wordlink"}
+            {Platform.OS === 'ios' ? 'Akhar Jor' : 'Gurmukhi Wordlink'}
           </Text>
         </View>
         <View style={{ width: '100%' }}>

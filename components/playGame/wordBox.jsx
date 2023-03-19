@@ -14,7 +14,7 @@ import { setAttempt } from '../../redux/actions';
 export const WordBox = ({ wordType }) => {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const {width} = dimensions;
+  const { width } = dimensions;
 
   // const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   const [fontsLoaded] = useFonts({
@@ -32,7 +32,7 @@ export const WordBox = ({ wordType }) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: '100%',
-      height: width*0.2,
+      height: width * 0.2,
       alignSelf: 'center',
       padding: 5
     },
@@ -40,7 +40,7 @@ export const WordBox = ({ wordType }) => {
       textAlign: 'center',
       color: '#7a3e00',
       borderRadius: 20,
-      height: width*0.01,
+      height: width * 0.01,
       fontFamily: 'GurbaniAkharSG',
     },
     answerTouchOpacity: {
@@ -49,7 +49,7 @@ export const WordBox = ({ wordType }) => {
     },
     definitionText: {
       fontFamily: 'Muli',
-      fontSize: width*0.04,
+      fontSize: width * 0.04,
       marginBottom: 5,
       textShadowColor: 'black',
       textShadowOffset: {
@@ -150,8 +150,8 @@ export const WordBox = ({ wordType }) => {
     printed = divByMatra(printed);
     const newArray = divByMatra((which === 'top') ? state.firstWord.engText : state.secondWord.engText);
     const numOfLetters = newArray.length;
-    const fontsize = (numOfLetters > 5) ? width*0.05 : width*0.07;
-    const newsize = (numOfLetters > 5) ? width*0.075 : width*0.095;
+    const fontsize = (numOfLetters > 5) ? width * 0.05 : width * 0.07;
+    const newsize = (numOfLetters > 5) ? width * 0.075 : width * 0.095;
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         {Array.from(newArray, (e, i) => {
@@ -184,7 +184,7 @@ export const WordBox = ({ wordType }) => {
       <View
         style={styles.wordBox}
       >
-        <View style={{ flexDirection: 'column', width: '100%', justifyContent:'space-evenly' }}>
+        <View style={{ flexDirection: 'column', width: '100%', justifyContent: 'space-evenly' }}>
           <TouchableOpacity onPress={() => { dispatch(setAttempt((state.topWord === '') ? state.topHint : state.topWord)); }} style={styles.answerTouchOpacity}>
             {awayOrTogether('top')}
           </TouchableOpacity>
@@ -199,7 +199,7 @@ export const WordBox = ({ wordType }) => {
   } if (wordType === 'bottom') {
     return (
       <View style={styles.wordBox}>
-        <View style={{ flexDirection: 'column', width: '100%', justifyContent:'space-evenly' }}>
+        <View style={{ flexDirection: 'column', width: '100%', justifyContent: 'space-evenly' }}>
           {/* {Array.from(Array(state.secondWord.engText.length), (e,i) => {
                   return {<Text style={styles.answerText}>
                   {Anvaad.unicode(state.bottomWord[i])}

@@ -317,6 +317,6 @@ Temporary Items
 *.db
 *.ipa
 newData/
-firebase.js
-google-services.json
-GoogleService-Info.plist
+# firebase.js
+# google-services.json
+# GoogleService-Info.plist

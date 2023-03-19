@@ -7,8 +7,7 @@ import {
   StyleSheet,
   StatusBar,
   FlatList,
-  ScrollView,
-  Dimensions
+  ScrollView
 } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,8 +26,7 @@ function RightWords({ navigation }) {
   const dispatch = useDispatch();
   const theCorrectWords = state.correctWords;
   const theGivenUpWords = state.givenUpWords;
-  const screenWidth = Dimensions.get('window').width;
-  const {width} = dimensions;
+  const { width } = dimensions;
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -106,8 +104,7 @@ function RightWords({ navigation }) {
         width: 0,
         height: 1,
       },
-    },
-    arrowGradient: { flex: 1 }
+    }
   });
 
   const longestMeaning = {
@@ -157,7 +154,11 @@ function RightWords({ navigation }) {
   }
   levels.push({
     key: 'end',
-    text: 'Play more\n',
+    text: `${(state.finalLevel - state.levelProgress[0].level - 1 !== 0)
+      ? ((state.levelProgress[0].wordsNeeded !== 10) 
+          ? state.finalLevel - state.levelProgress[0].level - 1 
+          : state.finalLevel - state.levelProgress[0].level) 
+      : 'Building'} more levels to play`,
     words: [],
   });
 
@@ -222,7 +223,7 @@ function RightWords({ navigation }) {
           <Icon name={state.meaningPopup ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={width * 0.09} color="#274C7C" style={styles.shadow} />
         </TouchableOpacity>
         <View style={state.meaningPopup ? styles.answerRowAlt : styles.answerRow}>
-          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize:width * 0.08, fontFamily: 'Prabhki' }]}>
+          <Text style={[styles.answerForAnswerText, { color: showAnswer.color, fontSize: width * 0.08, fontFamily: 'Prabhki' }]}>
             {showAnswer.engText}
           </Text>
           {/* to be asked */}

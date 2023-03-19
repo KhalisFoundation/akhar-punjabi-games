@@ -13,13 +13,13 @@ import Dimensions from '../../../util/dimensions';
 
 const { width } = Dimensions.get('window');
 
-const MARGIN_WIDTH = width*0.01;
-const ITEM_WIDTH = (width - width*0.2 - MARGIN_WIDTH * 10) / 4;
+const MARGIN_WIDTH = width * 0.01;
+const ITEM_WIDTH = (width - width * 0.2 - MARGIN_WIDTH * 10) / 4;
 
 const styles = StyleSheet.create({
   tile: {
     position: 'absolute',
-    borderRadius: width*0.02,
+    borderRadius: width * 0.02,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderWidth: Dimensions.size['1'] / 2,
   },
   tileText: {
-    fontSize: width*0.5,
+    fontSize: width * 0.5,
     textAlign: 'center',
     textAlignVertical: 'center',
     flex: 1

@@ -163,7 +163,7 @@ function TheCircle() {
   const styles = StyleSheet.create({
     lettersCircle: {
       flex: 1,
-      width: width,
+      width,
     },
     // clearBox: {
     //   width: 0.12*width,
@@ -172,15 +172,15 @@ function TheCircle() {
     //   alignItems: 'center'
     // },
     characterText: {
-      fontSize: width>500 ? width*0.055 :width * 0.08,
+      fontSize: width > 500 ? width * 0.055 : width * 0.08,
       color: '#FF7E00',
       textAlign: 'center',
       fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
-      width: width>500 ? width*0.079 : width * 0.115,
-      height: width>500 ? width*0.079 : width * 0.115,
+      width: width > 500 ? width * 0.079 : width * 0.115,
+      height: width > 500 ? width * 0.079 : width * 0.115,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,
@@ -196,10 +196,10 @@ function TheCircle() {
       return 0.18 * width;
     }
     return 0.25 * width;
-  }
-  const radius = getRadius();//width * 0.25;
+  };
+  const radius = getRadius();// width * 0.25;
   const step = (2 * Math.PI) / charArray.length;
-  const newHeight = width>500 ? width*0.2 :width * 0.25;
+  const newHeight = width > 500 ? width * 0.2 : width * 0.25;
   const newWidth = width * 0.45;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],

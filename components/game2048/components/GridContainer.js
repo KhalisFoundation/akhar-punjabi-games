@@ -8,15 +8,15 @@ const { width } = Dimensions.get('window');
 
 const styles = {
   container: {
-    width: width*0.8,
-    height: width*0.8,
+    width: width * 0.8,
+    height: width * 0.8,
     position: 'absolute',
     left: 0,
     top: 0,
     overflow: 'hidden',
-    paddingHorizontal: width*0.01,
-    paddingVertical: width*0.01,
-    borderRadius: width*0.02,
+    paddingHorizontal: width * 0.01,
+    paddingVertical: width * 0.01,
+    borderRadius: width * 0.02,
     flexDirection: 'column',
     backgroundColor: '#FFB846', // 'rgba(238, 228, 218, 0.35)',
   }

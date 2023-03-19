@@ -14,11 +14,11 @@ const { width } = Dimensions.get('window');
 
 const styles = {
   container: {
-    width: width*0.8,
-    height: width*0.8,
+    width: width * 0.8,
+    height: width * 0.8,
     backgroundColor: '#bbada0',
-    borderRadius: width*0.02,
-    marginTop: width*0.03,
+    borderRadius: width * 0.02,
+    marginTop: width * 0.03,
   }
 };
 

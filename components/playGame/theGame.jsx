@@ -307,7 +307,7 @@ function GameScreen({ navigation }) {
           barStyle="dark-content"
         />
         <View style={{
-          width: '100%', height: width*0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
+          width: '100%', height: width * 0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
         }}
         >
           <TouchableOpacity
