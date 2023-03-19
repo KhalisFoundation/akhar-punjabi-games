@@ -154,8 +154,8 @@ function RightWords({ navigation }) {
   }
   levels.push({
     key: 'end',
-    text: `${(state.finalLevel - state.levelProgress[0].level - 1 !== 0)
-      ? ((state.levelProgress[0].wordsNeeded !== 10) 
+    text: `${(state.finalLevel - state.levelProgress[0].level - 1 > 0)
+      ? ((state.levelProgress[0].wordsNeeded !== 10 && state.finalLevel !== 8) 
           ? state.finalLevel - state.levelProgress[0].level - 1 
           : state.finalLevel - state.levelProgress[0].level) 
       : 'Building'} more levels to play`,
