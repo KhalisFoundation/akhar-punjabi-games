@@ -11,25 +11,31 @@ import {
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 // import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Khalis from '../../assets/khalis_incubator_dark.svg';
 import Logo from '../../assets/akhar_logo.svg';
 
 import dimensions from '../../util/dimensions';
-import { fetchData } from '../../redux/actions';
+import { fetchData, setData } from '../../redux/actions';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const audioPlayer = new Audio.Sound();
 
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
 function MenuScreen({ navigation }) {
   const dispatch = useDispatch();
-  const state = useSelector((theState) => theState.theGameReducer);
+  // const state = useSelector((theState) => theState.theGameReducer);
   const { width } = dimensions;
+  // const [isLoaded, setIsLoaded] = React.useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
     GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
@@ -38,113 +44,25 @@ function MenuScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
-  // async function playSound() {
-  //   try {
-  //     console.log('Playing sound');
-  //     await audioPlayer.loadAsync(require("../../assets/simran.mp3"));
-  //     await audioPlayer.playAsync();
-  //     await audioPlayer.setIsLoopingAsync(true);
-  //   } catch (err) {
-  //     console.warn("Couldn't Play audio", err)
-  //   }
-  // }
-  // async function stopSound() {
-  //   try {
-  //     if (audioPlayer) {
-  //       console.log('Stopping Sound');
-  //       await audioPlayer.stopAsync();
-  //       await audioPlayer.unloadAsync();
-  //     }
-  //   } catch (err) {
-  //     console.warn("Couldn't Stop audio", err)
-  //   }
-  // }
-
-  // // useEffect(() => {
-  // //     playSound();
-  // // }, []);
-
-  // handling app state change
-  // const appState = useRef(AppState.currentState);
-  // const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
-  // const _handleAppStateChange = nextAppState => {
-  //   if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-  //     console.log('App has come to the foreground!');
-  //   } else {
-  //     console.log('App is in the background!');
-  //     if (audioPlayer._loaded) {stopSound()};
-  //   }
-
-  //   appState.current = nextAppState;
-  //   setAppStateVisible(appState.current);
-  // };
-
-  // useEffect(() => {
-  //   const subscription = AppState.addEventListener("change", _handleAppStateChange);
-  //   return () => {
-  //     if (subscription) {
-  //       subscription.remove();
-  //     }
-  //   };
-  // }, []);
-
   useEffect(() => {
     dispatch(fetchData());
-    // read data from firebase database
-    // const dbRef = firebase.database().ref('/levels');
-    // dbRef.on('value', (snapshot) => {
-    //   const data = snapshot.val();
-    //   if (data != null) {
-    //     setLocalWords(data);
-    //     Promise.all([data]).then(() => {
-    //       // console.log('Data loaded from firebase: ', data);
-    //       AsyncStorage.setItem('data', JSON.stringify(data));
-    //       setLocalWords(data);
-    //       // resolve promise of data before dispatching
-    //       dispatch(setWords({levels: data}));
-    //     });
-    //   }
-    // });
+  }, [dispatch]);
+
+  const [data, setLocalData] = React.useState(null);
+
+  const getDataFromAsyncStorage = React.useCallback(async () => {
+    try {
+      const value = await AsyncStorage.getItem('data');
+      setLocalData(value);
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
-  // useEffect(() => {
-  //   const data = AsyncStorage.getItem('data');
-  //   dispatch(setWords({levels: data}));
-  // }, [dispatch])
 
-  // useEffect(() => {
-  //   console.log('All words: ', state.allWords);
-  // }, [dispatch]);
+  useEffect(() => {
+    getDataFromAsyncStorage();
+  }, [getDataFromAsyncStorage]);
 
-  // const runLoader = () => {
-  //   // read data from firebase database
-  //   const dbRef = ref();
-  //   dbRef.on('value', (snapshot) => {
-  //     const data = snapshot.val();
-  //     if (data != null) {
-  //       console.log('Data loaded from firebase: ', data);
-  //       setLocalWords(data);
-  //       AsyncStorage.setItem('data', JSON.stringify(data));
-  //       dispatch(setWords(data));
-  //     }
-  //   });
-  // };
-  // const addData = async () => {
-  //   try {
-  //     if (AsyncStorage.getItem('data') != null) {
-  //       console.log('Data already exists', AsyncStorage.getItem('data'));
-  //       return;
-  //     }
-  //     await loadData();
-  //   } catch (e) {
-  //     console.log(e);
-  //   } finally {
-  //     console.log('Data loaded');
-  //   }
-  // };
-
-  // console.log(theColors[state.darkMode]);
-  // console.log(state.darkMode);
   const styles = StyleSheet.create({
     container: {
       height: '100%',
@@ -202,11 +120,20 @@ function MenuScreen({ navigation }) {
     await Analytics.logEvent('game_chosen', { gameName });
   }
 
-  if (!fontsLoaded) { // || localWords === null || localWords === undefined) {
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={styles.container}
+      onLayout={() => {
+        if (data) {
+          console.log('Levels updated!');
+          dispatch(setData(data));
+        }
+      }}
+    >
       <StatusBar
         hidden
       />
@@ -240,7 +167,9 @@ function MenuScreen({ navigation }) {
               navigation.navigate('2048');
             }}
           >
-            <Text style={styles.text2048}>2048</Text>
+            <Text style={styles.text2048}>
+              2048
+            </Text>
           </TouchableOpacity>
         </View>
         {/* <View style={styles.columns}>
@@ -266,4 +195,4 @@ function MenuScreen({ navigation }) {
   );
 }
 
-export default MenuScreen;
+export default connect(null, setData)(MenuScreen);

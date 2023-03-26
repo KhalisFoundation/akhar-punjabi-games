@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Analytics from 'expo-firebase-analytics';
 import { useEffect } from 'react';
-//import * as Location from 'expo-location';
 import MenuScreen from './components/menuScreen/menuPage';
 import HomeScreen from './components/homeScreen/landingPage';
 import GameScreen from './components/playGame/theGame';
@@ -21,24 +20,6 @@ import { auth } from './firebase';
 const Stack = createStackNavigator();
 
 function App() {
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await Location.requestForegroundPermissionsAsync();
-  //     console.log ('Location permission status: ', status);
-  //     if (status !== 'granted') {
-  //       await Analytics.setAnalyticsCollectionEnabled(false);
-  //       console.log('Permission to access location was denied');
-  //       return;
-  //     } else {
-  //       console.log('Permission to access location was granted');
-  //       // allow analytics to be used
-  //       await Analytics.setAnalyticsCollectionEnabled(true);
-  //       logOS();
-  //     }
-
-  //   })();
-  // }, []);
 
   auth.signInAnonymously()
     .then(() => {
@@ -72,7 +53,7 @@ function App() {
 
   useEffect(() => {
     logOS();
-  })
+  });
   // Get the current screen from the navigation state
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = React.useRef();
@@ -99,19 +80,21 @@ function App() {
             routeNameRef.current = currentRouteName;
           }}
         >
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+              ...TransitionPresets.FadeFromBottomAndroid
+            }}
+          >
             <Stack.Screen
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               name="Menu"
               component={MenuScreen}
             />
             <Stack.Screen
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               name="AkharJor"
               component={HomeScreen}
             />
             <Stack.Screen
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               name="2048"
               component={New2048}
             />
@@ -122,23 +105,19 @@ function App() {
             />
             <Stack.Screen
               name="correctWords"
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               component={RightWords}
             />
             <Stack.Screen
               name="settings"
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               component={Settings}
             />
             <Stack.Screen
               name="giveUps"
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               component={MoreGiveUps}
               initialParams={{ prevScreen: 0 }}
             />
             <Stack.Screen
               name="about"
-              options={{ headerShown: false, ...TransitionPresets.FadeFromBottomAndroid }}
               component={About}
             />
           </Stack.Navigator>

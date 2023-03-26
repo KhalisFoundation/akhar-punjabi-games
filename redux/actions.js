@@ -265,26 +265,36 @@ export const setConfetti = (set) => {
   };
 };
 
-export const fetchData = () => (dispatch) => {
-  firebase
-    .database()
-    .ref('/levels')
-    .on('value', (snapshot) => {
-      const data = snapshot.val();
-      AsyncStorage.setItem('data', JSON.stringify({ levels: data }));
-      dispatch({ type: 'FETCH_DATA', payload: { levels: data } });
-      // make an array with each element as { level: idx + 1, wordsNeeded: 10,
-      // pointsPerWord: idx + 6 }where idx in each index till length of data
-      // skip first index
-      let payload = data.map((level, idx) => {
-        return {
-          level: idx,
-          wordsNeeded: 10,
-          pointsPerWord: idx + 5,
-        };
+export const setData = (set) => {
+  return {
+    type: 'SET_DATA',
+    data: set
+  };
+};
+
+export const fetchData = () => {
+  return (dispatch) => {
+    firebase
+      .database()
+      .ref('/levels')
+      .on('value', (snapshot) => {
+        const data = snapshot.val();
+        AsyncStorage.setItem('data', JSON.stringify({ levels: data }));
+        dispatch({ type: 'FETCH_DATA', payload: { levels: data } });
+        console.log('Data length: ', data.length);
+        // make an array with each element as { level: idx + 1, wordsNeeded: 10,
+        // pointsPerWord: idx + 6 }where idx in each index till length of data
+        // skip first index
+        let payload = data.map((level, idx) => {
+          return {
+            level: idx,
+            wordsNeeded: 10,
+            pointsPerWord: idx + 5,
+          };
+        });
+        payload = payload.slice(1);
+        console.log('Levels: ', payload.length);
+        dispatch({ type: 'FETCH_LEVEL_PROGRESS', payload });
       });
-      payload = payload.slice(1);
-      console.log('Levels: ', payload);
-      dispatch({ type: 'FETCH_LEVEL_PROGRESS', payload });
-    });
+  };
 };

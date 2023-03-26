@@ -17,7 +17,7 @@ import EnIcon from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFonts } from 'expo-font';
+import { loadAsync } from 'expo-font';
 import { setTheState, openHelpModal } from '../../redux/actions';
 import Help from '../playGame/help';
 import { initialState } from '../../redux/reducers';
@@ -26,16 +26,19 @@ import dimensions from '../../util/dimensions';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
+  const [fontsLoaded, setFontsLoaded] = React.useState(false);
   // const state = useSelector((theState) => theState.theGameReducer);
-  const [fontsLoaded] = useFonts({
-    Arial: require('../../assets/fonts/Arial.ttf'),
-    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    Bookish: require('../../assets/fonts/Bookish.ttf'),
-    Prabhki: require('../../assets/fonts/Prabhki.ttf'),
-    Mochy: require('../../assets/fonts/Mochy.ttf'),
-    Muli: require('../../assets/fonts/Muli.ttf'),
-    Nasa: require('../../assets/fonts/Nasalization.otf'),
-  });
+  const fetchFonts = () => {
+    return loadAsync({
+      Arial: require('../../assets/fonts/Arial.ttf'),
+      GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
+      Bookish: require('../../assets/fonts/Bookish.ttf'),
+      Prabhki: require('../../assets/fonts/Prabhki.ttf'),
+      Mochy: require('../../assets/fonts/Mochy.ttf'),
+      Muli: require('../../assets/fonts/Muli.ttf'),
+      Nasa: require('../../assets/fonts/Nasalization.otf'),
+    });
+  };
   const state = useSelector((theState) => theState.theGameReducer);
   // let resDB;
   // const data = async () => {
@@ -56,6 +59,7 @@ function HomeScreen({ navigation }) {
     async function getData() {
       try {
         const theStringState = await AsyncStorage.getItem('state');
+        const newestWords = await AsyncStorage.getItem('data');
         if (theStringState !== null) {
           theState = JSON.parse(theStringState);
           console.log('got state that was previously saved');
@@ -63,6 +67,9 @@ function HomeScreen({ navigation }) {
         } else {
           console.log('there is nothing is state');
           theState = initialState;
+          if (newestWords !== null) {
+            theState.ALL_WORDS = newestWords;
+          }
         }
         dispatch(setTheState(theState));
         // setLoadingScreen(false);
@@ -153,7 +160,13 @@ function HomeScreen({ navigation }) {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
   }
   return (
     <SafeAreaView style={styles.container}>

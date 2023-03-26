@@ -4,19 +4,6 @@ import { allWords } from '../util/allWords';
 import getWords from '../util/generateWords';
 import { fetchData } from './actions';
 
-// const [allWords, setAllWords] = useState([]);
-// let resDB;
-// useEffect()
-// const data = async () => {
-//   const q = await AsyncStorage.getItem('data');
-//   const res = Promise.all([q]).then(() => {
-//     console.log('Data from Firebase DB inner: ', JSON.parse(q)); // this one is working
-//     setAllWords(JSON.parse(q));
-//     return JSON.parse(q);
-//   });
-//   return res;
-// };
-
 const setData = async (title, state) => {
   try {
     await AsyncStorage.setItem(title, JSON.stringify(state));
@@ -124,7 +111,7 @@ export const initialState = {
 };
 
 // to reset all state
-// setData("state", initialState);
+// setData('state', initialState);
 
 function theGameReducer(state = initialState, action) {
   if (action.type === 'FETCH_DATA') {
@@ -134,6 +121,15 @@ function theGameReducer(state = initialState, action) {
       finalLevel: action.payload.levels.length
     };
   }
+  if (action.type === 'SET_DATA') {
+    if (action.data.levels) {
+      return {
+        ...state,
+        ALL_WORDS: action.data,
+        finalLevel: action.data.levels.length
+      };
+    }
+  }
   if (action.type === 'FETCH_LEVEL_PROGRESS') {
     let newProgress = [...action.payload];
     const lastLevel = state.levelProgress[0].level;
@@ -142,7 +138,7 @@ function theGameReducer(state = initialState, action) {
     newProgress[0].wordsNeeded = lastLevelProgress;
     console.log('Last level: ', lastLevel);
     console.log('Last level progress: ', lastLevelProgress);
-    console.log('New progress: ', newProgress);
+    // console.log('New progress: ', newProgress);
     return {
       ...state,
       levelProgress: newProgress
@@ -266,7 +262,6 @@ function theGameReducer(state = initialState, action) {
     if (newUsableWords.length > 3) {
       newGiveUpWords = [...state.givenUpWords];
     } else {
-      const giveUp = state.givenUpWords;
       newGiveUpWords = state.givenUpWords.map((word) => {
         if (word.level === state.levelProgress[0].level) {
           newGiveUpWords = allWordsForCurrentLevel.filter((word) => !word);
