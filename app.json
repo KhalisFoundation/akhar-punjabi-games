@@ -20,12 +20,12 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "28"
+      "buildNumber": "29"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 28,
+      "versionCode": 29,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-akhar.png",
         "backgroundColor": "#274C7C"
