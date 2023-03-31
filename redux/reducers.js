@@ -2,12 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Animated, Dimensions } from 'react-native';
 import { allWords } from '../util/allWords';
 import getWords from '../util/generateWords';
-import { fetchData } from './actions';
+// import { fetchData } from './actions';
 
 const setData = async (title, state) => {
   try {
     await AsyncStorage.setItem(title, JSON.stringify(state));
-    fetchData();
     // console.log(state.firstWord);
   } catch (e) {
     console.log(e);
@@ -107,7 +106,7 @@ export const initialState = {
   confetti: false,
   punjabiNums: true,
   // finalLevel
-  finalLevel: 8,
+  finalLevel: allWords.levels.length,
 };
 
 // to reset all state
@@ -138,7 +137,7 @@ function theGameReducer(state = initialState, action) {
     newProgress[0].wordsNeeded = lastLevelProgress;
     console.log('Last level: ', lastLevel);
     console.log('Last level progress: ', lastLevelProgress);
-    // console.log('New progress: ', newProgress);
+    console.log('New progress: ', newProgress);
     return {
       ...state,
       levelProgress: newProgress

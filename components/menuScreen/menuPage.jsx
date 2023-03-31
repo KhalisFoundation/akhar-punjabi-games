@@ -16,14 +16,14 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { useEffect } from 'react';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Khalis from '../../assets/khalis_incubator_dark.svg';
 import Logo from '../../assets/akhar_logo.svg';
 
 import dimensions from '../../util/dimensions';
-import { fetchData, setData } from '../../redux/actions';
+// import { fetchData, setData } from '../../redux/actions';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const audioPlayer = new Audio.Sound();
@@ -44,24 +44,24 @@ function MenuScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchData());
+  // }, [dispatch]);
 
-  const [data, setLocalData] = React.useState(null);
+  // const [data, setLocalData] = React.useState(null);
 
-  const getDataFromAsyncStorage = React.useCallback(async () => {
-    try {
-      const value = await AsyncStorage.getItem('data');
-      setLocalData(value);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+  // const getDataFromAsyncStorage = React.useCallback(async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem('data');
+  //     setLocalData(value);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    getDataFromAsyncStorage();
-  }, [getDataFromAsyncStorage]);
+  // useEffect(() => {
+  //   getDataFromAsyncStorage();
+  // }, [getDataFromAsyncStorage]);
 
   const styles = StyleSheet.create({
     container: {
@@ -127,12 +127,12 @@ function MenuScreen({ navigation }) {
   return (
     <SafeAreaView
       style={styles.container}
-      onLayout={() => {
-        if (data) {
-          console.log('Levels updated!');
-          dispatch(setData(data));
-        }
-      }}
+      // onLayout={() => {
+      //   if (data) {
+      //     console.log('Levels updated!');
+      //     dispatch(setData(data));
+      //   }
+      // }}
     >
       <StatusBar
         hidden
@@ -195,4 +195,4 @@ function MenuScreen({ navigation }) {
   );
 }
 
-export default connect(null, setData)(MenuScreen);
+export default MenuScreen;

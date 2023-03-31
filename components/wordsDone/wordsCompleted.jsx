@@ -169,9 +169,10 @@ function RightWords({ navigation }) {
 
   const renderItem = React.useCallback(({ item }) => {
     return (
-      <Level title={item.text} theWords={item.words} setAnswer={setAnswer} />
+      <Level levelId={item.key} title={item.text} theWords={item.words} setAnswer={setAnswer} />
     );
   }, []);
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -209,7 +210,6 @@ function RightWords({ navigation }) {
           state.x
         }
         <FlatList
-          // style={styles.listContainer}
           data={levels}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}

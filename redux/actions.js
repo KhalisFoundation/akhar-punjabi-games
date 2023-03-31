@@ -293,7 +293,7 @@ export const fetchData = () => {
           };
         });
         payload = payload.slice(1);
-        console.log('Levels: ', payload.length);
+        // console.log('Levels: ', payload.length);
         dispatch({ type: 'FETCH_LEVEL_PROGRESS', payload });
       });
   };

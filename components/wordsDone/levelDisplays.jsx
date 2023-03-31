@@ -6,7 +6,8 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  FlatList
+  FlatList,
+  Platform
 } from 'react-native';
 // import * as Speech from 'expo-speech';
 
@@ -18,7 +19,9 @@ import theColors from '../../util/colors';
 import { showMeaningPopUp } from '../../redux/actions';
 import dimensions from '../../util/dimensions';
 
-function Level({ title, theWords, setAnswer }) {
+function Level({
+  levelId, title, theWords, setAnswer
+}) {
   const dispatch = useDispatch();
   const { width } = dimensions;
   const [up, setUp] = useState(false);
@@ -45,10 +48,9 @@ function Level({ title, theWords, setAnswer }) {
     },
     title: {
       padding: 5,
-      paddingBottom: 10,
       fontFamily: 'Muli',
       fontWeight: '400',
-      height: width * 0.1,
+      height: width * 0.125,
       fontSize: width * 0.06,
       textAlign: 'center',
     },
@@ -74,8 +76,11 @@ function Level({ title, theWords, setAnswer }) {
       borderRadius: 15,
       borderColor: '#446',
       borderWidth: 0.3,
+      marginHorizontal: Platform.OS === 'android' ? 8 : 0,
+      marginBottom: (levelId === 'end') ? 15 : 0
     }
   });
+  console.log('key: ', levelId);
 
   let words = theWords;
   if (words === undefined) {
