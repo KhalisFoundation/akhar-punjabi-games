@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import renderer, { act } from 'react-test-renderer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../firebase';
 import HomeScreen from './homeScreen/landingPage';
 
