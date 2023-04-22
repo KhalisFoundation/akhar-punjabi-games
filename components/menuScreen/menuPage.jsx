@@ -15,8 +15,6 @@ import * as SplashScreen from 'expo-splash-screen';
 // import { Audio } from 'expo-av';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { connect, useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Khalis from '../../assets/khalis_incubator_dark.svg';
@@ -24,7 +22,6 @@ import Logo from '../../assets/akhar_logo.svg';
 
 import dimensions from '../../util/dimensions';
 // import { fetchData, setData } from '../../redux/actions';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const audioPlayer = new Audio.Sound();
 
@@ -32,7 +29,7 @@ import dimensions from '../../util/dimensions';
 SplashScreen.preventAutoHideAsync();
 
 function MenuScreen({ navigation }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const state = useSelector((theState) => theState.theGameReducer);
   const { width } = dimensions;
   // const [isLoaded, setIsLoaded] = React.useState(false);

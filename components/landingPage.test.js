@@ -1,14 +1,59 @@
-import * as React from 'react';
-import renderer from 'react-test-renderer';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import renderer, { act } from 'react-test-renderer';
+import { auth } from '../firebase';
 import HomeScreen from './homeScreen/landingPage';
 
-describe('<HomeScreen />', () => {
-  it('has 1 child', () => {
-    const tree = renderer.create(<HomeScreen />).toJSON();
-    expect(tree.children.length).toBe(1);
+const Stack = createStackNavigator();
+const Store = {
+  getState: jest.fn(() => ({})),
+  dispatch: jest.fn(),
+  subscribe: jest.fn()
+};
+
+jest.mock('../firebase', () => ({
+  auth: {
+    signInAnonymously: jest.fn(() => Promise.resolve()),
+    onAuthStateChanged: jest.fn(),
+  },
+  addEventListener: jest.fn(),
+  attachEvent: jest.fn()
+}));
+
+jest.mock('expo-firebase-analytics', () => ({
+  Analytics: {
+    logEvent: jest.fn(() => Promise.resolve()),
+    setCurrentScreen: jest.fn(() => Promise.resolve())
+  }
+}));
+
+describe('HomeScreen', () => {
+  let component;
+
+  beforeEach(() => {
+    component = (
+      <Provider store={Store}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Menu"
+                component={HomeScreen}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </Provider>
+    );
   });
-  it('renders correctly', () => {
-    const tree = renderer.create(<HomeScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
+
+  test('renders without crashing', async () => {
+    await act(async () => {
+      const rendered = renderer.create(component).toJSON();
+      expect(rendered).toMatchSnapshot();
+    });
   });
 });

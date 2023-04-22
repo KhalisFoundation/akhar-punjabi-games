@@ -197,7 +197,8 @@ function WordsDoneModal() {
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   // React.useEffect(() => {
   //   console.log("data from modal nect word")
-  //   console.log(state.levelProgress[0].level, state.levelProgress[0].level === state.finalLevel, state.finalLevel);
+  //   console.log(state.levelProgress[0].level,
+  //      state.levelProgress[0].level === state.finalLevel, state.finalLevel);
   //   console.log(state.levelProgress[0].wordsNeeded, state.levelProgress[0].wordsNeeded === 0);
   // }, [dispatch])
 
