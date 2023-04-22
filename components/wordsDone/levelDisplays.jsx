@@ -80,7 +80,6 @@ function Level({
       marginBottom: (levelId === 'end') ? 15 : 0
     }
   });
-  console.log('key: ', levelId);
 
   let words = theWords;
   if (words === undefined) {

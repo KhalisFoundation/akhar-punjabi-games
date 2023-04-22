@@ -101,9 +101,12 @@ export const HintButton = ({ wordType }) => {
             dispatch(setTopWord());
             dispatch(setGivenUpWords(state.firstWord));
             if (state.bottomWord !== '') {
-              // time delay for 1500 seconds
-              dispatch(setConfetti(true));
-              await delay(3000);
+              if (state.showPopUp || (state.levelProgress[0].level === state.finalLevel - 1
+                && state.levelProgress[0].wordsNeeded === 0)) {
+                // time delay for 1500 seconds
+                dispatch(setConfetti(true));
+                await delay(3000);
+              }
               dispatch(setNewWords());
             }
           } else {
@@ -135,9 +138,12 @@ export const HintButton = ({ wordType }) => {
             dispatch(setBottomWord());
             dispatch(setGivenUpWords(state.secondWord));
             if (state.topWord !== '') {
-              // time delay for 1500 seconds
-              dispatch(setConfetti(true));
-              await delay(3000);
+              if (state.showPopUp || (state.levelProgress[0].level === state.finalLevel - 1
+                && state.levelProgress[0].wordsNeeded === 0)) {
+                // time delay for 1500 seconds
+                dispatch(setConfetti(true));
+                await delay(3000);
+              }
               dispatch(setNewWords());
             }
           } else {

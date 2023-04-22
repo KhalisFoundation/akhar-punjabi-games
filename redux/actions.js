@@ -70,6 +70,11 @@ export const setGiveUpLives = (operator) => (dispatch) => {
     addOrSub: operator,
   });
 };
+export const openNextLevelModal = () => (dispatch) => {
+  dispatch({
+    type: 'OPEN_NEXT_LEVEL_MODAL',
+  });
+};
 export const closeNextLevelModal = () => (dispatch) => {
   dispatch({
     type: 'CLOSE_NEXT_LEVEL_MODAL',

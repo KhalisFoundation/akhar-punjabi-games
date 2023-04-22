@@ -49,6 +49,19 @@ const getRandomWord = () => {
 // puts words for level 1
 const generateWords = getWords(allWords.levels[1]);
 
+const generateLevelProgress = () => {
+  const levelProgress = [];
+  const slicedWords = allWords.levels.slice(1);
+  for (let i = 1; i <= slicedWords.length; i += 1) {
+    levelProgress.push({
+      level: i,
+      wordsNeeded: 10,
+      pointsPerWord: i + 5,
+    });
+  }
+  return levelProgress;
+};
+
 export const initialState = {
   ALL_WORDS: allWords, // this list will not be changed
   usableWords: allWords.levels[1], // .filter((word) => word.level === 1),
@@ -78,17 +91,7 @@ export const initialState = {
   givenUpWords: [],
   giveUpsLeft: 100,
   nextLevelModal: [false],
-  levelProgress: [
-    { level: 1, wordsNeeded: 10, pointsPerWord: 5 },
-    { level: 2, wordsNeeded: 10, pointsPerWord: 6 },
-    { level: 3, wordsNeeded: 10, pointsPerWord: 7 },
-    { level: 4, wordsNeeded: 10, pointsPerWord: 8 },
-    { level: 5, wordsNeeded: 10, pointsPerWord: 9 },
-    { level: 6, wordsNeeded: 10, pointsPerWord: 10 },
-    { level: 7, wordsNeeded: 10, pointsPerWord: 11 },
-    { level: 8, wordsNeeded: 10, pointsPerWord: 12 },
-    // { level: 9, wordsNeeded: 10, pointsPerWord: 13 },
-  ],
+  levelProgress: generateLevelProgress(),
   totalPoints: 0,
   // settings stuff
   typesOfWords: 'Both',
@@ -135,9 +138,6 @@ function theGameReducer(state = initialState, action) {
     const lastLevelProgress = state.levelProgress[0].wordsNeeded;
     newProgress = newProgress.slice(lastLevel - 1);
     newProgress[0].wordsNeeded = lastLevelProgress;
-    console.log('Last level: ', lastLevel);
-    console.log('Last level progress: ', lastLevelProgress);
-    console.log('New progress: ', newProgress);
     return {
       ...state,
       levelProgress: newProgress
@@ -233,7 +233,14 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   function getAllWords(theWordType) {
-    return state.ALL_WORDS.levels[state.levelProgress[0].level];
+    let result;
+    if (state.levelProgress[0].wordsNeeded === 0
+      && state.levelProgress[0].level === state.finalLevel - 1) {
+      result = [...state.ALL_WORDS.levels[1]];
+    } else {
+      result = state.ALL_WORDS.levels[state.levelProgress[0].level];
+    }
+    return result;
     // .filter(
     //   (word) =>
     //     word.level === state.levelProgress[0].level &&
@@ -271,10 +278,12 @@ function theGameReducer(state = initialState, action) {
       });
     }
     const generateWords = getWords(newUsableWords);
+    const condition = (state.levelProgress[0].wordsNeeded === 0
+      && state.levelProgress[0].level === state.finalLevel - 1);
 
     const newState = {
       ...state,
-      nextLevelModal: [state.showPopUp, state.firstWord, state.secondWord],
+      nextLevelModal: [condition ? true : state.showPopUp, state.firstWord, state.secondWord],
       topWord: '',
       topHint: '',
       bottomWord: '',
@@ -296,6 +305,14 @@ function theGameReducer(state = initialState, action) {
     setData('state', newState);
     return newState;
   }
+  if (action.type === 'OPEN_NEXT_LEVEL_MODAL') {
+    const newState = {
+      ...state,
+      nextLevelModal: [true, state.firstWord, state.secondWord],
+    };
+    setData('state', newState);
+    return newState;
+  }
   if (action.type === 'CLOSE_NEXT_LEVEL_MODAL') {
     const newState = {
       ...state,
@@ -305,25 +322,27 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'SET_LEVEL_PROGRESS') {
-    let theLevelProgress = [...state.levelProgress];
+    let theLevelProgress = state.levelProgress;
     let newWordssNeeded = theLevelProgress[0].wordsNeeded;
 
     if (action.theWord.level === theLevelProgress[0].level) {
-      newWordssNeeded -= 1;
+      if (newWordssNeeded > 0) {
+        newWordssNeeded -= 1;
+      }
     }
     theLevelProgress[0] = {
       ...theLevelProgress[0],
       wordsNeeded: newWordssNeeded,
     };
     if (newWordssNeeded === 0) {
-      if (theLevelProgress[0].level !== state.finalLevel) {
+      if (theLevelProgress.length !== 1) {
         theLevelProgress = theLevelProgress.slice(1);
       }
     }
 
     const newState = {
       ...state,
-      levelProgress: theLevelProgress,
+      levelProgress: theLevelProgress
     };
     setData('state', newState);
     return newState;
@@ -337,7 +356,6 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'SET_TYPE_OF_WORDS') {
-    console.log(action.theTypeOfWords);
     const newState = {
       ...state,
       typesOfWords: action.theTypeOfWords,
@@ -374,14 +392,6 @@ function theGameReducer(state = initialState, action) {
     return newState;
   }
   if (action.type === 'RESET_LEVELS') {
-    let newLevelProgress = state.ALL_WORDS.levels.map((level, idx) => {
-      return {
-        level: idx,
-        wordsNeeded: 10,
-        pointsPerWord: idx + 5,
-      };
-    });
-    newLevelProgress = newLevelProgress.slice(1);
     const newState = {
       ...state,
       usableWords: state.ALL_WORDS.levels[0],
@@ -400,7 +410,7 @@ function theGameReducer(state = initialState, action) {
       givenUpWords: [],
       giveUpsLeft: 100,
       nextLevelModal: [false],
-      levelProgress: newLevelProgress,
+      levelProgress: generateLevelProgress(),
       totalPoints: 0,
       // settings stuff
       typesOfWords: 'Both',

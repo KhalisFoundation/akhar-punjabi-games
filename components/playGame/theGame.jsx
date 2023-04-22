@@ -14,7 +14,7 @@ import * as Analytics from 'expo-firebase-analytics';
 import { StatsBox, WordBox, AttemptInput } from '.';
 import WordsDoneModal from './modalNextWord';
 import { HintButton } from './hintButton';
-import { openHelpModal } from '../../redux/actions';
+import { openHelpModal, openNextLevelModal } from '../../redux/actions';
 import Help from './help';
 import dimensions from '../../util/dimensions';
 import TheCircle from './circleForGame';
@@ -289,6 +289,12 @@ function GameScreen({ navigation }) {
       return state.secondWord.engText.length;
     }
   } */
+
+  React.useEffect(() => {
+    if (state.levelProgress === []) {
+      dispatch(openNextLevelModal());
+    }
+  }, [state.levelProgress, dispatch]);
 
   if (!fontsLoaded) {
     return <AppLoading />;

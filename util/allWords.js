@@ -956,7 +956,7 @@ export const allWords = {
       },
       {
         dateAdded: '08/03/2023',
-        engText: 'gW',
+        engText: 'gwN',
         level: 8,
         meaning: 'Cow',
         punjabiText: 'ਗਾਂ'
@@ -1412,10 +1412,10 @@ export const allWords = {
     [
       {
         dateAdded: '18/03/2023',
-        engText: 'qumwrw',
+        engText: 'quhwfw',
         level: 12,
         meaning: 'your(s)',
-        punjabiText: 'ਤੁਮਾਰਾ'
+        punjabiText: 'ਤੁਹਾਡਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1475,10 +1475,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'hmwrw',
+        engText: 'swfw',
         level: 12,
         meaning: 'our(s)',
-        punjabiText: 'ਹਮਾਰਾ'
+        punjabiText: 'ਸਾਡਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1510,20 +1510,20 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'kuC',
+        engText: 'kuJ',
         level: 12,
         meaning: 'something, anything',
-        punjabiText: 'ਕੁਛ'
+        punjabiText: 'ਕੁਝ'
       }
     ],
     [
-      {
-        dateAdded: '18/03/2023',
-        engText: 'sB kuC',
-        level: 13,
-        meaning: 'everything',
-        punjabiText: 'ਸਭ ਕੁਛ'
-      },
+      // {
+      //   dateAdded: '18/03/2023',
+      //   engText: 'sB kuJ',
+      //   level: 13,
+      //   meaning: 'everything',
+      //   punjabiText: 'ਸਭ ਕੁਝ'
+      // },
       {
         dateAdded: '18/03/2023',
         engText: 'do',
@@ -1533,10 +1533,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'dovy',
+        engText: 'dovyN',
         level: 13,
         meaning: 'both',
-        punjabiText: 'ਦੋਵੇ'
+        punjabiText: 'ਦੋਵੇਂ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1654,10 +1654,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'gq',
+        engText: 'giq',
         level: 14,
         meaning: 'Progress, salvation',
-        punjabiText: 'ਗਤ'
+        punjabiText: 'ਗਤਿ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1675,10 +1675,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'kUVw',
+        engText: 'kUV',
         level: 14,
         meaning: 'false, garbage',
-        punjabiText: 'ਕੂੜਾ'
+        punjabiText: 'ਕੂੜ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1761,10 +1761,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'vIcwr',
+        engText: 'ivcwr',
         level: 15,
         meaning: 'thought, idea',
-        punjabiText: 'ਵੀਚਾਰ'
+        punjabiText: 'ਵਿਚਾਰ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1796,10 +1796,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'imq',
+        engText: 'imx',
         level: 15,
         meaning: 'measure',
-        punjabiText: 'ਮਿਤ'
+        punjabiText: 'ਮਿਣ'
       },
       {
         dateAdded: '18/03/2023',
@@ -1831,7 +1831,7 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'khW',
+        engText: 'khwN',
         level: 15,
         meaning: 'where?',
         punjabiText: 'ਕਹਾਂ'
@@ -1910,10 +1910,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'vIsr',
+        engText: 'ivsr',
         level: 16,
         meaning: 'be forgotten',
-        punjabiText: 'ਵੀਸਰ'
+        punjabiText: 'ਵਿਸਰ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2168,10 +2168,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'mq',
+        engText: 'isiKAw',
         level: 19,
         meaning: 'counsel, teaching',
-        punjabiText: 'ਮਤ'
+        punjabiText: 'ਸਿਖਿਆ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2196,10 +2196,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'EqY',
+        engText: 'EQY',
         level: 19,
         meaning: 'there',
-        punjabiText: 'ਓਤੈ'
+        punjabiText: 'ਓਥੈ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2284,7 +2284,7 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'Bwau',
         level: 20,
-        meaning: 'love',
+        meaning: 'love, emotion',
         punjabiText: 'ਭਾਉ'
       },
       {
@@ -2298,7 +2298,7 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'jo',
         level: 20,
-        meaning: 'who, what, which',
+        meaning: 'that, which',
         punjabiText: 'ਜੋ'
       },
       {
@@ -2352,14 +2352,14 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'jW',
+        engText: 'jwN',
         level: 20,
         meaning: 'when',
         punjabiText: 'ਜਾਂ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'qW',
+        engText: 'qwN',
         level: 20,
         meaning: 'then',
         punjabiText: 'ਤਾਂ'
@@ -2589,10 +2589,10 @@ export const allWords = {
     [
       {
         dateAdded: '18/03/2023',
-        engText: 'sjw',
+        engText: 'szw',
         level: 23,
         meaning: 'punishment',
-        punjabiText: 'ਸਜਾ'
+        punjabiText: 'ਸਜ਼ਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2629,13 +2629,13 @@ export const allWords = {
         meaning: 'fearless',
         punjabiText: 'ਨਿਰਭਉ'
       },
-      {
-        dateAdded: '18/03/2023',
-        engText: 'kdy n',
-        level: 23,
-        meaning: 'never',
-        punjabiText: 'ਕਦੇ ਨ'
-      },
+      // {
+      //   dateAdded: '18/03/2023',
+      //   engText: 'kdy n',
+      //   level: 23,
+      //   meaning: 'never',
+      //   punjabiText: 'ਕਦੇ ਨ'
+      // },
       {
         dateAdded: '18/03/2023',
         engText: 'ivc',
@@ -2724,10 +2724,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'ss',
+        engText: 's`s',
         level: 24,
         meaning: 'mother-in-law',
-        punjabiText: 'ਸਸ'
+        punjabiText: 'ਸੱਸ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2768,7 +2768,7 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'moh',
         level: 24,
-        meaning: 'illusion',
+        meaning: 'attachment',
         punjabiText: 'ਮੋਹ'
       },
       {
@@ -2796,24 +2796,24 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'loB',
         level: 24,
-        meaning: 'lust [greed]',
+        meaning: 'greed',
         punjabiText: 'ਲੋਭ'
       }
     ],
     [
       {
         dateAdded: '18/03/2023',
-        engText: 'AiBmwn',
+        engText: 'mwx',
         level: 25,
         meaning: 'pride',
-        punjabiText: 'ਅਭਿਮਾਨ'
+        punjabiText: 'ਮਾਣ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'BweI',
+        engText: 'Brw',
         level: 25,
         meaning: 'brother',
-        punjabiText: 'ਭਾਈ'
+        punjabiText: 'ਭਰਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2852,10 +2852,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'isKu',
+        engText: 'is`K',
         level: 25,
         meaning: 'Sikh',
-        punjabiText: 'ਸਿਖੁ'
+        punjabiText: 'ਸਿੱਖ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2910,10 +2910,10 @@ export const allWords = {
     [
       {
         dateAdded: '18/03/2023',
-        engText: 'vIcwr',
+        engText: 'ivcwr',
         level: 26,
         meaning: 'ponder on, contemplate',
-        punjabiText: 'ਵੀਚਾਰ'
+        punjabiText: 'ਵਿਚਾਰ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2938,10 +2938,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'jm',
+        engText: 'jMm',
         level: 26,
         meaning: 'death, Yama',
-        punjabiText: 'ਜਮ'
+        punjabiText: 'ਜੰਮ'
       },
       {
         dateAdded: '18/03/2023',
@@ -2968,7 +2968,7 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'BwNfy',
         level: 26,
-        meaning: 'vessel, pot',
+        meaning: 'vessels, pots',
         punjabiText: 'ਭਾਂਡੇ'
       },
       {
@@ -2989,7 +2989,7 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'qoAw',
         level: 26,
-        meaning: 'water',
+        meaning: 'pond, water source',
         punjabiText: 'ਤੋਆ'
       },
       {
@@ -3038,10 +3038,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'ptI',
+        engText: 'p`tI',
         level: 27,
         meaning: 'writing-tablet',
-        punjabiText: 'ਪਟੀ'
+        punjabiText: 'ਪੱਟੀ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3066,10 +3066,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'auqy',
+        engText: 'au`qy',
         level: 27,
         meaning: 'above, on top',
-        punjabiText: 'ਉਤੇ'
+        punjabiText: 'ਉੱਤੇ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3396,15 +3396,15 @@ export const allWords = {
         dateAdded: '18/03/2023',
         engText: 'gurmuK',
         level: 30,
-        meaning: 'through the Guru',
+        meaning: "one who acts by the Guru's sayings",
         punjabiText: 'ਗੁਰਮੁਖ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'gur pRswid',
+        engText: 'gurpRswid',
         level: 30,
         meaning: "through the Guru's grace",
-        punjabiText: 'ਗੁਰ ਪ੍ਰਸਾਦਿ'
+        punjabiText: 'ਗੁਰਪ੍ਰਸਾਦਿ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3566,10 +3566,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'iPkw',
+        engText: 'iP`kw',
         level: 32,
         meaning: 'tasteless, dull',
-        punjabiText: 'ਫਿਕਾ'
+        punjabiText: 'ਫਿੱਕਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3580,10 +3580,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'pws',
+        engText: 'kol',
         level: 32,
         meaning: 'with, in possession of',
-        punjabiText: 'ਪਾਸ'
+        punjabiText: 'ਕੋਲ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3594,10 +3594,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'ik`QY',
+        engText: 'ik`Qy',
         level: 32,
         meaning: 'where?',
-        punjabiText: 'ਕਿੱਥੈ'
+        punjabiText: 'ਕਿੱਥੇ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3622,10 +3622,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'Akr',
+        engText: 'A`Kr',
         level: 32,
         meaning: 'letter',
-        punjabiText: 'ਅਕਰ'
+        punjabiText: 'ਅੱਖਰ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3673,10 +3673,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'jMjIr',
+        engText: 'zMjIr',
         level: 33,
         meaning: 'chain',
-        punjabiText: 'ਜੰਜੀਰ'
+        punjabiText: 'ਜ਼ੰਜੀਰ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3708,10 +3708,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'pkw',
+        engText: 'p`kw',
         level: 33,
         meaning: 'proper, real',
-        punjabiText: 'ਪਕਾ'
+        punjabiText: 'ਪੱਕਾ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3729,10 +3729,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'cV',
+        engText: 'cVH',
         level: 33,
         meaning: 'mount, climb',
-        punjabiText: 'ਚੜ'
+        punjabiText: 'ਚੜ੍ਹ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3794,24 +3794,24 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'kuqw',
+        engText: 'ku`qw',
         level: 34,
         meaning: 'dog',
-        punjabiText: 'ਕੁਤਾ'
+        punjabiText: 'ਕੁੱਤਾ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'bKsIs',
+        engText: 'bKSIS',
         level: 34,
         meaning: 'bounty, reward',
-        punjabiText: 'ਬਖਸੀਸ'
+        punjabiText: 'ਬਖਸ਼ੀਸ਼'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'cot',
+        engText: 's`t',
         level: 34,
         meaning: 'blow, wound',
-        punjabiText: 'ਚੋਟ'
+        punjabiText: 'ਸੱਟ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3822,17 +3822,17 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'Quk',
+        engText: 'Qu`k',
         level: 34,
         meaning: 'spit',
-        punjabiText: 'ਥੁਕ'
+        punjabiText: 'ਥੁੱਕ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'nIvw',
+        engText: 'nIvwN',
         level: 34,
         meaning: 'low, lowly',
-        punjabiText: 'ਨੀਵਾ'
+        punjabiText: 'ਨੀਵਾਂ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3864,10 +3864,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'sut',
+        engText: 'su`t',
         level: 34,
         meaning: 'throw, cast',
-        punjabiText: 'ਸੁਟ'
+        punjabiText: 'ਸੁੱਟ'
       }
     ],
     [
@@ -3894,24 +3894,24 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'aucr',
+        engText: 'aucwr',
         level: 35,
         meaning: 'pronouce',
-        punjabiText: 'ਉਚਰ'
+        punjabiText: 'ਉਚਾਰ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'mq',
+        engText: 'nw',
         level: 35,
         meaning: "don't, lest",
-        punjabiText: 'ਮਤ'
+        punjabiText: 'ਨਾ'
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'mwxs',
+        engText: 'mnu`K',
         level: 35,
         meaning: 'man',
-        punjabiText: 'ਮਾਣਸ'
+        punjabiText: 'ਮਨੁੱਖ'
       },
       {
         dateAdded: '18/03/2023',
@@ -3971,10 +3971,10 @@ export const allWords = {
       },
       {
         dateAdded: '18/03/2023',
-        engText: 'aupdys',
+        engText: 'aupdyS',
         level: 35,
         meaning: 'teaching',
-        punjabiText: 'ਉਪਦੇਸ'
+        punjabiText: 'ਉਪਦੇਸ਼'
       }
     ],
     [
@@ -4140,6 +4140,55 @@ export const allWords = {
         level: 37,
         meaning: 'reason',
         punjabiText: 'ਕਾਰਨ'
+      }, //
+      {
+        dateAdded: '02/04/2023',
+        engText: 'kMq',
+        level: 37,
+        meaning: 'husband, bridegroom',
+        punjabiText: 'ਕੰਤ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'drbwr',
+        level: 37,
+        meaning: 'hall, court',
+        punjabiText: 'ਦਰਬਾਰ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'ivrsw',
+        level: 37,
+        meaning: 'heritage',
+        punjabiText: 'ਵਿਰਸਾ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'kRoD',
+        level: 37,
+        meaning: 'anger',
+        punjabiText: 'ਕ੍ਰੋਧ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'kwm',
+        level: 37,
+        meaning: 'lust',
+        punjabiText: 'ਕਾਮ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'hMkwr',
+        level: 37,
+        meaning: 'ego',
+        punjabiText: 'ਹੰਕਾਰ'
+      },
+      {
+        dateAdded: '02/04/2023',
+        engText: 'ihMmq',
+        level: 37,
+        meaning: 'courage',
+        punjabiText: 'ਹਿੰਮਤ'
       }
     ]
   ]

@@ -61,9 +61,11 @@ function TheCircle() {
       }
       // if bottomWord is filled that means both are now answered so will get new words
       if (state.bottomWord !== '') {
-        // time delay for 1500 seconds
-        dispatch(setConfetti(true));
-        await delay(3000);
+        if (state.showPopUp) {
+          // time delay for 1500 seconds
+          dispatch(setConfetti(true));
+          await delay(3000);
+        }
         dispatch(setNewWords());
         somethingHappened = true;
       }
@@ -77,9 +79,11 @@ function TheCircle() {
       }
       // if topWord is filled that means both are now answered so will get new words
       if (state.topWord !== '') {
-        // time delay for 1500 seconds
-        dispatch(setConfetti(true));
-        await delay(3000);
+        if (state.showPopUp) {
+          // time delay for 1500 seconds
+          dispatch(setConfetti(true));
+          await delay(3000);
+        }
         dispatch(setNewWords());
         somethingHappened = true;
       }

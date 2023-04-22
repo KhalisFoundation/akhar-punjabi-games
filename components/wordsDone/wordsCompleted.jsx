@@ -153,13 +153,17 @@ function RightWords({ navigation }) {
       });
     }
   }
+  let levelsLeft;
+  if (state.finalLevel - state.levelProgress[0].level - 1 > 0) {
+    levelsLeft = `${(state.levelProgress[0].wordsNeeded !== 10 && state.finalLevel !== 8)
+      ? state.finalLevel - state.levelProgress[0].level - 1
+      : state.finalLevel - state.levelProgress[0].level} levels to go`;
+  } else {
+    levelsLeft = 'More levels coming soon';
+  }
   levels.push({
     key: 'end',
-    text: `${(state.finalLevel - state.levelProgress[0].level - 1 > 0)
-      ? ((state.levelProgress[0].wordsNeeded !== 10 && state.finalLevel !== 8)
-        ? state.finalLevel - state.levelProgress[0].level - 1
-        : state.finalLevel - state.levelProgress[0].level)
-      : 'Building'} more levels to play`,
+    text: levelsLeft,
     words: [],
   });
 

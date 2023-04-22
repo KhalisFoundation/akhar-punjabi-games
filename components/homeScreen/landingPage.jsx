@@ -59,7 +59,10 @@ function HomeScreen({ navigation }) {
         // const newestWords = await AsyncStorage.getItem('data');
         if (theStringState !== null) {
           theState = JSON.parse(theStringState);
-          theState.finalLevel = theState.ALL_WORDS.levels.length;
+          if (theState.ALL_WORDS.levels === undefined) {
+            theState = initialState;
+            console.log('updated state!');
+          }
           console.log('got state that was previously saved');
           // console.log(theState);
         } else {
@@ -144,10 +147,6 @@ function HomeScreen({ navigation }) {
       flex: 1,
       margin: 10,
     },
-    khalisTouchableOpacity: {
-      width: '100%',
-      alignItems: 'center',
-    },
     center: {
       alignSelf: 'center',
     },
@@ -225,6 +224,7 @@ function HomeScreen({ navigation }) {
             onPress={() => {
               dispatch(openHelpModal()); // console.log(state.helpPage);
             }}
+            testID="help-button"
           >
             <Text style={{
               ...styles.play, fontFamily: 'Muli', fontSize: width * 0.05, textDecorationStyle: 'solid', textDecorationColor: '#fff', textDecorationLine: 'underline'
