@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-console */
 /* eslint-disable react-native/no-color-literals */
@@ -5,7 +6,7 @@ import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
 import {
-  Text, StyleSheet, TouchableOpacity, Animated
+  Text, StyleSheet, TouchableOpacity, Animated, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,13 +21,36 @@ import {
   setNewWords,
   setConfetti
 } from '../../redux/actions';
-import dimensions from '../../util/dimensions';
+import * as Platform from '../../util/orientation';
 
 function TheCircle() {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const { width } = dimensions;
+  // const { width } = dimensions;
+
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
 
   const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
   function gurmukhi(text) {
@@ -166,8 +190,8 @@ function TheCircle() {
 
   const styles = StyleSheet.create({
     lettersCircle: {
-      flex: 1,
-      width,
+      width: dime,
+      height: dime * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.5 : 0.8) : 1)
     },
     // clearBox: {
     //   width: 0.12*width,
@@ -176,15 +200,15 @@ function TheCircle() {
     //   alignItems: 'center'
     // },
     characterText: {
-      fontSize: width > 500 ? width * 0.055 : width * 0.08,
+      fontSize: dime > 500 ? dime * 0.055 : dime * 0.08,
       color: '#FF7E00',
       textAlign: 'center',
       fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
     },
     commonChar: {
       position: 'relative',
-      width: width > 500 ? width * 0.079 : width * 0.115,
-      height: width > 500 ? width * 0.079 : width * 0.115,
+      width: dime > 500 ? dime * 0.079 : dime * 0.115,
+      height: dime > 500 ? dime * 0.079 : dime * 0.115,
       backgroundColor: 'transparent',
       elevation: 5,
       borderRadius: 10,
@@ -196,15 +220,15 @@ function TheCircle() {
   let angle = 0;
 
   const getRadius = () => {
-    if (width > 500) {
-      return 0.18 * width;
+    if (dime > 500) {
+      return 0.18 * dime;
     }
-    return 0.25 * width;
+    return 0.25 * dime;
   };
-  const radius = getRadius();// width * 0.25;
+  const radius = getRadius();// dime * 0.25;
   const step = (2 * Math.PI) / charArray.length;
-  const newHeight = width > 500 ? width * 0.2 : width * 0.25;
-  const newWidth = width * 0.45;
+  const newHeight = dime > 500 ? dime * 0.2 : dime * 0.25;
+  const newWidth = dime * 0.45;
   //  const colorCombos = [['#E233FF', '#FF6B00'],
   // ['#FF0076', '#590FB7'], ['#ffc500', '#c21500'], ['#182848', '#4b6cb7'],
   // ['#e43a15', '#e65245'], ['#480048', '#c04848'], ['#dc2424', '#4a569d'], ['#4776e6', '#8e54e9'],

@@ -1,7 +1,8 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, StatusBar
+  View, TouchableOpacity, StyleSheet, StatusBar, Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -16,8 +17,8 @@ import WordsDoneModal from './modalNextWord';
 import { HintButton } from './hintButton';
 import { openHelpModal, openNextLevelModal } from '../../redux/actions';
 import Help from './help';
-import dimensions from '../../util/dimensions';
 import TheCircle from './circleForGame';
+import * as Platform from '../../util/orientation';
 
 function GameScreen({ navigation }) {
   const state = useSelector((theState) => theState.theGameReducer);
@@ -34,7 +35,28 @@ function GameScreen({ navigation }) {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
-  const { width } = dimensions;
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dimeMin = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dimeMin = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
   React.useEffect(() => {
     console.log('All words: ', state.allWords);
   }, [dispatch]);
@@ -52,12 +74,15 @@ function GameScreen({ navigation }) {
     scroller: {
       height: '100%',
       width: '100%',
-      flexDirection: 'column',
-      paddingVertical: width * 0.05,
-      justifyContent: 'space-evenly',
+      flexDirection: localState.orientation === 'portrait' ? 'column' : 'row',
+      padding: localState.orientation === 'portrait' ? null : dimeMin * 0.05,
+      justifyContent: (Platform.isTablet() ? (localState.orientation === 'portrait' ? 'flex-start' : 'space-around') : 'space-between'),
     },
     hintLayout: {
-      width: '95%', backgroundColor: 'transparent', flexDirection: 'row', alignSelf: 'flex-end'
+      width: Platform.isTablet() ? '75%' : '95%',
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      alignSelf: 'flex-end'
     },
     // status: {
     //   color: 'black',
@@ -72,15 +97,28 @@ function GameScreen({ navigation }) {
     //   backgroundColor: 'blue',
     //   alignSelf: 'center',
     // },
+    wordBox: {
+      // flexDirection: "column",
+      width: dimeMin * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.6 : 0.55) : 0.8),
+      height: dimeMin * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.5 : 0.8) : 0.6),
+      justifyContent: 'center',
+      alignSelf: 'center',
+      padding: 0,
+      paddingLeft: Platform.isTablet() && localState.orientation === 'landscape' ? 50 : null,
+      margin: 0,
+      backgroundColor: 'transparent',
+      borderRadius: 30,
+    },
     wordBoxAnswers: {
       // flexDirection: "column",
-      width: '90%',
+      width: dimeMin * (Platform.isTablet() ? 0.6 : 0.8),
+      height: (Platform.isTablet() ? (localState.orientation === 'portrait' ? '65%' : '50%') : '70%'),
       paddingHorizontal: 10,
+      marginHorizontal: 10,
       justifyContent: 'space-evenly',
-      borderRadius: 30,
       alignSelf: 'center',
       backgroundColor: 'transparent',
-      marginHorizontal: 10,
+      borderRadius: 30,
     },
     header: {
       height: 65,
@@ -304,7 +342,7 @@ function GameScreen({ navigation }) {
       colors={['#2289d8', '#032b45']}
       style={styles.container}
     >
-      <SafeAreaView style={styles.scroller}>
+      <SafeAreaView style={styles.container}>
         { state.helpPage ? <Help /> : null }
         { state.nextLevelModal[0] ? <WordsDoneModal /> : null }
         <StatusBar
@@ -313,13 +351,13 @@ function GameScreen({ navigation }) {
           barStyle="dark-content"
         />
         <View style={{
-          width: '100%', height: width * 0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
+          width: '100%', height: dimeMin * 0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
         }}
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
           >
-            <IonIcons name="chevron-back" size={width * 0.08} color="black" />
+            <IonIcons name="chevron-back" size={dimeMin * 0.08} color="black" />
           </TouchableOpacity>
           <View
             style={styles.header}
@@ -328,7 +366,7 @@ function GameScreen({ navigation }) {
             <StatsBox stat="hints" navigation={navigation} />
             {/* <StatsBox stat="points" navigation={navigation} /> */}
           </View>
-          <IonIcons name="help" size={width * 0.08} color="black" onPress={() => { dispatch(openHelpModal()); console.log(state.helpPage); }} />
+          <IonIcons name="help" size={dimeMin * 0.08} color="black" onPress={() => { dispatch(openHelpModal()); console.log(state.helpPage); }} />
         </View>
         <View
           style={styles.scroller}
@@ -341,29 +379,40 @@ function GameScreen({ navigation }) {
           {/* <StatsBox stat="points" navigation={navigation} />
           </View> */}
 
-          <LinearGradient
-            colors={['#ff6f00', '#b34e00']}
-            style={styles.wordBoxAnswers}
+          <View
+            style={styles.wordBox}
           >
-            <View>
-              <WordBox wordType="top" />
-              <WordBox wordType="bottom" />
+            <LinearGradient
+              colors={['#ff6f00', '#b34e00']}
+              style={styles.wordBoxAnswers}
+            >
+              <View>
+                <WordBox wordType="top" />
+                <WordBox wordType="bottom" />
 
-              {/* <TouchableOpacity
-            style={styles.newWord}
-            title="New Words"
-            onPress={() => {
-              dispatch(setNewWords());
-            }}
+                {/* <TouchableOpacity
+              style={styles.newWord}
+              title="New Words"
+              onPress={() => {
+                dispatch(setNewWords());
+              }}
+            >
+              <Text>New Word</Text>
+            </TouchableOpacity> */}
+              </View>
+            </LinearGradient>
+
+            <AttemptInput />
+          </View>
+
+          <View style={{
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            maxWidth: Platform.isTablet() ? dimeMin * 0.8 : null,
+            maxHeight: Platform.isTablet() ? dimeMin * 0.6 : null,
+            paddingTop: Platform.isTablet() && localState.orientation === 'landscape' ? dimeMin / 10 : null,
+          }}
           >
-            <Text>New Word</Text>
-          </TouchableOpacity> */}
-            </View>
-          </LinearGradient>
-
-          <AttemptInput />
-
-          <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', height: '50%' }}>
             {/* {keyboardGrid.map((letters, index) => {
                 return (
                   <View style={styles.keyboardRow} >

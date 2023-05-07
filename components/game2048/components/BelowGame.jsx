@@ -4,24 +4,42 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity, Dimensions
 } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { setPunjabiNums } from '../../../redux/actions';
-import Dimensions, { width } from '../../../util/dimensions';
+import dimensions from '../../../util/dimensions';
 
 export const BelowGame = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dimeMin = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dimeMin = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
+
   const styles = StyleSheet.create({
-    container: { flexDirection: 'row', justifyContent: 'space-around', width },
+    container: {
+      flexDirection: 'row', justifyContent: 'space-around', width: dimeMin, paddingTop: dimensions.size['2']
+    },
     otherScreens: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       backgroundColor: '#fff',
-      padding: Dimensions.size['2'],
+      padding: dimensions.size['2'],
       paddingRight: 10,
       borderRadius: 15,
     },
@@ -30,8 +48,8 @@ export const BelowGame = (props) => {
       color: '#002f63',
       fontFamily: 'Muli',
       alignSelf: 'center',
-      fontSize: width * 0.05,
-      paddingStart: Dimensions.size['2'],
+      fontSize: dimeMin * 0.05,
+      paddingStart: dimensions.size['2'],
       // textShadowColor: (state.darkMode) ? 'white' : 'black',
       // textShadowOffset: {
       //   width: 0.5,
@@ -52,7 +70,7 @@ export const BelowGame = (props) => {
       <TouchableOpacity onPress={props.onRestart} style={styles.box}>
         <View style={styles.otherScreens}>
           <View style={styles.icon}>
-            <IonIcons name="reload" size={width * 0.055} color="#274C77" style={styles.shadow} />
+            <IonIcons name="reload" size={dimeMin * 0.055} color="#274C77" style={styles.shadow} />
           </View>
           <Text style={styles.optText}>Reset</Text>
         </View>
@@ -68,7 +86,7 @@ export const BelowGame = (props) => {
           <View
             style={styles.icon}
           >
-            <IonIcons name="globe-outline" size={width * 0.055} color="#274C77" style={styles.shadow} />
+            <IonIcons name="globe-outline" size={dimeMin * 0.055} color="#274C77" style={styles.shadow} />
           </View>
           <Text style={styles.optText}>Language</Text>
         </View>

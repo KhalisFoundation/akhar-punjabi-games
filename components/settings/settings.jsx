@@ -6,7 +6,8 @@ import {
   StyleSheet,
   StatusBar,
   Linking,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListItem } from 'react-native-elements';
@@ -19,7 +20,7 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import dimensions from '../../util/dimensions';
+import * as Platform from '../../util/orientation';
 import {
   setShowPopUp, setShowRomanised, reset
 } from '../../redux/actions';
@@ -38,7 +39,30 @@ function Settings({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
-  const { width } = dimensions;
+
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
+
   // const colors = theColors.false;
   // const platform = Platform.OS;
   const styles = StyleSheet.create({
@@ -53,7 +77,25 @@ function Settings({ navigation }) {
       color: '#274CCC',
       fontFamily: 'Muli',
       fontWeight: '600',
-      fontSize: width * 0.0425,
+      fontSize: dime * 0.0425,
+    },
+    header: {
+      width: screen.width,
+      height: dime * 0.175,
+      backgroundColor: 'orange',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      elevation: 5
+    },
+    headerContent: {
+      width: '90%',
+      height: dime * 0.175,
+      backgroundColor: 'orange',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      elevation: 5
     },
     shadow: {
       shadowColor: 'black',
@@ -65,11 +107,15 @@ function Settings({ navigation }) {
       },
     },
     scroll: {
-      width: '100%',
+      width: screen.width,
       height: '100%',
     },
     listText: {
-      fontSize: width * 0.04
+      fontSize: dime * 0.04
+    },
+    titleText: {
+      backgroundColor: '#fff',
+      paddingHorizontal: localState.orientation === 'portrait' ? null : '5%'
     }
   });
 
@@ -87,33 +133,32 @@ function Settings({ navigation }) {
         backgroundColor="orange"
         barStyle="dark-content"
       />
-      <View style={{
-        width: '100%', height: width * 0.175, backgroundColor: 'orange', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
-      }}
-      >
-        <IonIcons
-          name="chevron-back"
-          color="black"
-          size={width * 0.08}
-          style={{ position: 'absolute', left: 10 }}
-          onPress={() => { navigation.goBack(); }}
-        />
-        <Text style={{
-          color: ('black'),
-          fontSize: width * 0.05,
-          fontFamily: 'Muli',
-          margin: 0,
-        }}
-        >
-          Settings
-        </Text>
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
+          <IonIcons
+            name="chevron-back"
+            color="black"
+            size={dime * 0.08}
+            style={{ position: 'absolute', left: 10 }}
+            onPress={() => { navigation.goBack(); }}
+          />
+          <Text style={{
+            color: ('black'),
+            fontSize: dime * 0.05,
+            fontFamily: 'Muli',
+            margin: 0,
+          }}
+          >
+            Settings
+          </Text>
+        </View>
       </View>
 
       {/* <SettingsBar theImage={} title={} data={}/> */}
       <ScrollView style={styles.scroll}>
         <View
           style={{
-            width: '100%', height: width * 0.07, marginLeft: 10, marginTop: 10
+            width: '100%', height: dime * 0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text
@@ -176,7 +221,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: width * 0.08, height: width * 0.08 }}
+            style={{ width: dime * 0.08, height: dime * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -185,7 +230,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <IonIcons name="reload" size={width * 0.08} color="#464646" style={styles.shadow} />
+                <IonIcons name="reload" size={dime * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -200,7 +245,7 @@ function Settings({ navigation }) {
         </ListItem>
         <View
           style={{
-            width: '100%', height: width * 0.07, marginLeft: 10, marginTop: 10
+            width: '100%', height: dime * 0.07, marginLeft: 10, marginTop: 10
           }}
         >
           <Text
@@ -218,7 +263,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: width * 0.08, height: width * 0.08 }}
+            style={{ width: dime * 0.08, height: dime * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -227,7 +272,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesome5Icons name="donate" size={width * 0.08} color="#464646" style={styles.shadow} />
+                <FontAwesome5Icons name="donate" size={dime * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -239,7 +284,7 @@ function Settings({ navigation }) {
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title><Text style={styles.listText}>Donate</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color="black" size={width * 0.04} />
+          <ListItem.Chevron color="black" size={dime * 0.04} />
         </ListItem>
         <ListItem
           containerStyle={[
@@ -250,7 +295,7 @@ function Settings({ navigation }) {
           bottomDivider
         >
           <MaskedView
-            style={{ width: width * 0.08, height: width * 0.08 }}
+            style={{ width: dime * 0.08, height: dime * 0.08 }}
             maskElement={(
               <View
                 style={{
@@ -259,7 +304,7 @@ function Settings({ navigation }) {
                   alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcons name="question-circle" size={width * 0.08} color="#464646" style={styles.shadow} />
+                <FontAwesomeIcons name="question-circle" size={dime * 0.08} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -271,7 +316,7 @@ function Settings({ navigation }) {
           <ListItem.Content style={{ alignSelf: 'center' }}>
             <ListItem.Title><Text style={styles.listText}>About</Text></ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron color="black" size={width * 0.04} />
+          <ListItem.Chevron color="black" size={dime * 0.04} />
         </ListItem>
       </ScrollView>
     </SafeAreaView>

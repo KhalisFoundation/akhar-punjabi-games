@@ -2,14 +2,13 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, StyleSheet, Text
+  View, StyleSheet, Text, Dimensions
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFonts } from 'expo-font';
 import * as Animatable from 'react-native-animatable';
 import AppLoading from 'expo-app-loading';
-import dimensions from '../../util/dimensions';
 import { setAttempt } from '../../redux/actions';
 
 export const AttemptInput = () => {
@@ -24,7 +23,21 @@ export const AttemptInput = () => {
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
 
-  const { width } = dimensions;
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
+
   const maxLength = () => {
     if (state.firstLength > state.secondLength) {
       return state.firstLength;
@@ -60,14 +73,14 @@ export const AttemptInput = () => {
       borderRadius: 100,
       justifyContent: 'center',
       textAlign: 'center',
-      fontSize: width > 500 ? width * 0.06 : width * 0.08,
+      fontSize: dime > 500 ? dime * 0.06 : dime * 0.08,
       fontFamily: 'GurbaniAkharSG'
     },
     backspace: {
       textAlign: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      fontSize: width > 500 ? width * 0.035 : width * 0.05,
+      fontSize: dime > 500 ? dime * 0.035 : dime * 0.05,
       padding: 8,
     }
   });

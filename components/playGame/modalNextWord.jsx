@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  StyleSheet, Modal, Text, TouchableOpacity, Animated, View
+  StyleSheet, Modal, Text, TouchableOpacity, Animated, View, Dimensions
 } from 'react-native';
 import { useFonts } from 'expo-font';
 
@@ -35,12 +35,10 @@ import Icon13 from '../../assets/Group-13.svg';
 import Icon14 from '../../assets/Group-14.svg';
 
 import Win from '../../assets/Win.svg';
-import dimensions from '../../util/dimensions';
 
 function WordsDoneModal() {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const { width } = dimensions;
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),
     Mochy: require('../../assets/fonts/Mochy.ttf'),
@@ -48,9 +46,24 @@ function WordsDoneModal() {
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
 
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
+
   const styles = StyleSheet.create({
     container: {
-      width,
+      width: dime,
       borderRadius: 10,
       shadowColor: '#000',
       shadowOffset: {
@@ -76,14 +89,14 @@ function WordsDoneModal() {
       elevation: 5,
     },
     wordDoneText: {
-      fontSize: width * 0.075,
+      fontSize: dime * 0.075,
       textAlign: 'center',
       fontFamily: 'Prabhki',
       color: 'white',
     },
     meaningText: {
       fontFamily: 'Muli',
-      fontSize: width * 0.04,
+      fontSize: dime * 0.04,
       textAlign: 'center',
       color: 'white',
       marginBottom: 10,
@@ -94,14 +107,14 @@ function WordsDoneModal() {
     },
     continueText: {
       textAlign: 'center',
-      fontSize: width * 0.04,
+      fontSize: dime * 0.04,
       margin: 'auto',
       fontFamily: 'Muli',
       color: '#000',
     },
     text: {
       textAlign: 'center',
-      fontSize: width * 0.075,
+      fontSize: dime * 0.075,
       color: 'white',
       paddingTop: 25,
       fontFamily: 'Prabhki',
@@ -112,77 +125,77 @@ function WordsDoneModal() {
   };
   const nowWow = getRandomNum(1, 14);
   // create a logic to get scale size for icon based on screen size
-  const getScale = (Math.round(width / 200));
+  const getScale = (Math.round(dime / 200));
   console.log(nowWow);
   const wows = {
     1: <Icon1 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     2: <Icon2 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     3: <Icon3 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     4: <Icon4 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     5: <Icon5 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     6: <Icon6 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     7: <Icon7 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     8: <Icon8 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     9: <Icon9 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     10: <Icon10 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     11: <Icon11 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     12: <Icon12 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     13: <Icon13 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
     14: <Icon14 style={{
       transform: [{ scale: getScale }],
-      marginBottom: getScale * width * 0.03
+      marginBottom: getScale * dime * 0.03
     }}
     />,
   };
@@ -233,7 +246,7 @@ function WordsDoneModal() {
               >
                 <Win style={{
                   transform: [{ scale: getScale }],
-                  marginBottom: getScale * width * 0.05
+                  marginBottom: getScale * dime * 0.05
                 }}
                 />
               </Animatable.View>
@@ -241,7 +254,7 @@ function WordsDoneModal() {
                 vDweIAwN jI
               </Animatable.Text>
               <Text style={[styles.text, {
-                fontFamily: 'Muli', fontWeight: 'normal', fontSize: width * 0.06, padding: 0
+                fontFamily: 'Muli', fontWeight: 'normal', fontSize: dime * 0.06, padding: 0
               }]}
               >
                 More levels coming soon!

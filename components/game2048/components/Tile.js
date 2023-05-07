@@ -5,30 +5,33 @@
 import {
   StyleSheet,
   Animated,
+  Dimensions
 } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NumText } from './NumText';
-import Dimensions from '../../../util/dimensions';
+import dimensions from '../../../util/dimensions';
+import * as Platform from '../../../util/orientation';
 
-const { width } = Dimensions.get('window');
+const screen = Dimensions.get('window');
+let dimeMin = Math.min(screen.width, screen.height);
 
-const MARGIN_WIDTH = width * 0.01;
-const ITEM_WIDTH = (width - width * 0.2 - MARGIN_WIDTH * 10) / 4;
+let MARGIN_WIDTH = dimeMin * 0.01;
+let ITEM_WIDTH = (dimeMin * (Platform.isTablet() ? 0.6 : 0.8) - MARGIN_WIDTH * 10) / 4;
 
 const styles = StyleSheet.create({
   tile: {
     position: 'absolute',
-    borderRadius: width * 0.02,
+    borderRadius: dimeMin * 0.02,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: MARGIN_WIDTH,
     borderColor: '#0005',
-    borderWidth: Dimensions.size['1'] / 2,
+    borderWidth: dimensions.size['1'] / 2,
   },
   tileText: {
-    fontSize: width * 0.5,
+    fontSize: dimeMin * 0.5,
     textAlign: 'center',
     textAlignVertical: 'center',
     flex: 1
@@ -50,6 +53,14 @@ const colorCodes = {
 };
 
 export default class Tile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    };
+  }
+
   mate = () => {
     return useSelector((theState) => theState.theGameReducer);
   }
@@ -59,6 +70,16 @@ export default class Tile extends React.Component {
   }
 
   componentDidMount() {
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height
+      });
+    });
+    dimeMin = Math.min(this.state.width, this.state.height);
+    MARGIN_WIDTH = dimeMin * 0.01;
+    ITEM_WIDTH = (dimeMin * (Platform.isTablet() ? 0.6 : 0.8) - MARGIN_WIDTH * 10) / 4;
+
     Animated.spring(this.aimatedScale, {
       // tension: 80,
       // friction: 15,
@@ -79,6 +100,26 @@ export default class Tile extends React.Component {
   }
 
   componentDidUpdate() {
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height
+      });
+    });
+    // change style whenever this happens
+    dimeMin = Math.min(this.state.width, this.state.height);
+    MARGIN_WIDTH = dimeMin * 0.01;
+    ITEM_WIDTH = (dimeMin * (Platform.isTablet() ? 0.6 : 0.8) - MARGIN_WIDTH * 10) / 4;
+    styles.tile = {
+      ...styles.tile,
+      borderRadius: dimeMin * 0.02,
+      marginVertical: MARGIN_WIDTH,
+    };
+    styles.tileText = {
+      ...styles.tileText,
+      fontSize: dimeMin * 0.5,
+    };
+
     Animated.timing(this.aimationValue, {
       // easing: Easing.back(),
       duration: 150,

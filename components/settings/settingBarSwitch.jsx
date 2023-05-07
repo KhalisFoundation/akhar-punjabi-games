@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, StyleSheet, Text
+  View, StyleSheet, Text, Dimensions
 } from 'react-native';
 import { ListItem, Switch } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Analytics from 'expo-firebase-analytics';
-import dimensions from '../../util/dimensions';
+import * as Platform from '../../util/orientation';
 
 function SwitchBar({
   title,
@@ -21,7 +21,30 @@ function SwitchBar({
   displayParam = true
 }) {
   const dispatch = useDispatch();
-  const { width } = dimensions;
+
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
+
   // const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({
     shadow: {
@@ -56,25 +79,25 @@ function SwitchBar({
   }
 
   return (
-    <View>
+    <View style={{ backgroundColor: '#fff', width: screen.width, alignItems: 'center' }}>
       <ListItem
         key={theSetting}
         containerStyle={[
           styles.titleText,
-          { alignItems: 'center' },
-          displayParam ? null : { display: 'none' }
+          { alignItems: 'center', width: localState.orientation === 'portrait' ? '100%' : '90%' },
+          displayParam ? null : { display: 'none' },
         ]}
         bottomDivider
       >
         <MaskedView
-          style={{ width: width * 0.08, height: width * 0.08, alignSelf: 'center' }}
+          style={{ width: dime * 0.08, height: dime * 0.08, alignSelf: 'center' }}
           maskElement={(
             <View
               style={{
                 backgroundColor: 'transparent',
               }}
             >
-              <Icon name={allImages[imageSource]} size={width * 0.08} color="#000" style={styles.shadow} />
+              <Icon name={allImages[imageSource]} size={dime * 0.08} color="#000" style={styles.shadow} />
             </View>
         )}
         >
@@ -89,7 +112,7 @@ function SwitchBar({
           }}
           >
             <ListItem.Title>
-              <Text style={{ fontSize: width * 0.04 }}>{theSetting}</Text>
+              <Text style={{ fontSize: dime * 0.04 }}>{theSetting}</Text>
             </ListItem.Title>
             <Switch
               value={currentSetting}
@@ -98,7 +121,7 @@ function SwitchBar({
                 setCurrentSetting(newSetting);
                 settingUsed(`${title} set to ${newSetting ? 'on' : 'off'}`);
               }}
-              style={{ transform: [{ scaleX: width * 0.002 }, { scaleY: width * 0.002 }] }}
+              style={{ transform: [{ scaleX: dime * 0.002 }, { scaleY: dime * 0.002 }] }}
             />
           </ListItem.Content>
         </ListItem.Content>

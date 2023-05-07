@@ -6,7 +6,8 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  Modal
+  Modal,
+  Dimensions
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useFonts } from 'expo-font';
@@ -18,10 +19,7 @@ import HelpImg1 from '../../../assets/helpGrid1.svg';
 import HelpImg2 from '../../../assets/helpGrid2.svg';
 import HelpImg3 from '../../../assets/helpGrid3.svg';
 
-import Dimensions from '../../../util/dimensions';
 import { close2048HelpModal } from '../../../redux/actions';
-
-const { width } = Dimensions.get('window');
 
 function Help() {
   const dispatch = useDispatch();
@@ -29,6 +27,21 @@ function Help() {
   const [fontsLoaded] = useFonts({
     Muli: require('../../../assets/fonts/Muli.ttf'),
     Bookish: require('../../../assets/fonts/Prabhki.ttf')
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dimeMin = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dimeMin = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
   });
 
   const styles = StyleSheet.create({
@@ -65,7 +78,7 @@ function Help() {
       justifyContent: 'center',
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: width * 0.04,
+      fontSize: dimeMin * 0.04,
       color: '#000',
     },
     continue: {
@@ -75,14 +88,14 @@ function Help() {
       margin: 20,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: width * 0.075,
-      width: width * 0.4,
+      height: dimeMin * 0.075,
+      width: dimeMin * 0.4,
       elevation: 5,
     },
     continueTxt: {
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: width * 0.045,
+      fontSize: dimeMin * 0.045,
       color: '#000',
     },
     icon: { marginLeft: 10 },
@@ -100,7 +113,7 @@ function Help() {
     >
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
-          <IonIcons name="close" size={width * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(close2048HelpModal()); }} />
+          <IonIcons name="close" size={dimeMin * 0.07} color="#000" style={styles.icon} onPress={() => { dispatch(close2048HelpModal()); }} />
           <ScrollView
             style={styles.scrollview}
             contentContainerStyle={styles.scrollContent}
@@ -115,14 +128,14 @@ function Help() {
               Swipe to move all tiles.
               {'\n'}
             </Text>
-            <HelpImg1 height={width * 0.7} style={styles.img} />
+            <HelpImg1 height={dimeMin * 0.7} style={styles.img} />
 
             <Text style={styles.header}>
               {'\n\n'}
               Two tiles with the same number merge when they touch!
               {'\n'}
             </Text>
-            <HelpImg2 height={width * 0.7} style={styles.img} />
+            <HelpImg2 height={dimeMin * 0.7} style={styles.img} />
 
             <Text style={styles.header}>
               {'\n\n'}
@@ -133,7 +146,7 @@ function Help() {
               tile to win the game!
               {'\n'}
             </Text>
-            <HelpImg3 height={width * 0.7} style={styles.img} />
+            <HelpImg3 height={dimeMin * 0.7} style={styles.img} />
             <TouchableOpacity
               style={styles.continue}
               onPress={() => { dispatch(close2048HelpModal()); }}

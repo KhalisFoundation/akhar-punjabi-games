@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Linking,
   StatusBar,
-  Platform
+  Dimensions
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -17,6 +17,7 @@ import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import * as Platform from '../../util/orientation';
 import Khalis from '../../assets/khalis_incubator_dark.svg';
 import Logo from '../../assets/akhar_logo.svg';
 
@@ -31,7 +32,7 @@ SplashScreen.preventAutoHideAsync();
 function MenuScreen({ navigation }) {
   // const dispatch = useDispatch();
   // const state = useSelector((theState) => theState.theGameReducer);
-  const { width } = dimensions;
+  const { width, height } = dimensions;
   // const [isLoaded, setIsLoaded] = React.useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -40,6 +41,21 @@ function MenuScreen({ navigation }) {
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
   });
+
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+
+  Dimensions.addEventListener('change', () => {
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
+
+  const dime = Math.min(width, height);
 
   // useEffect(() => {
   //   dispatch(fetchData());
@@ -70,12 +86,24 @@ function MenuScreen({ navigation }) {
       backgroundColor: '#274C7C',
     },
     header: {
-      width: '100%',
+      width: localState.orientation === 'portrait' ? '100%' : '50%',
       textAlign: 'center',
+      flexDirection: localState.orientation === 'portrait' ? 'column' : 'row',
+      justifyContent: localState.orientation === 'portrait' ? 'space-between' : 'center'
+    },
+    upper: {
+      width: '100%',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    lower: {
+      width: '100%',
+      flexDirection: 'column',
+      justifyContent: 'center'
     },
     mainmenu: {
       color: '#fff',
-      fontSize: width * 0.06,
+      fontSize: dime * 0.06,
       fontFamily: 'Muli',
       textAlign: 'center',
       justifyContent: 'center',
@@ -85,14 +113,14 @@ function MenuScreen({ navigation }) {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      borderBottomColor: '#00E9FE',
+      borderBottomColor: localState.orientation === 'portrait' ? '#00E9FE' : 'transparent',
       borderBottomWidth: 1
     },
     text: {
-      color: '#fff', fontSize: width * 0.045, fontFamily: 'Muli', alignSelf: 'center', margin: 10
+      color: '#fff', fontSize: dime * 0.045, fontFamily: 'Muli', alignSelf: 'center', margin: 10
     },
     text2048: {
-      color: '#fff', fontSize: width * 0.045, fontFamily: 'Bookish', alignSelf: 'center', margin: 10
+      color: '#fff', fontSize: dime * 0.045, fontFamily: 'Bookish', alignSelf: 'center', margin: 10
     },
     item: {
       backgroundColor: '#FF7E00', borderRadius: 10, margin: 10, width: '75%'
@@ -103,7 +131,7 @@ function MenuScreen({ navigation }) {
       margin: 15
     },
     columns: {
-      flexDirection: 'column',
+      flexDirection: localState.orientation === 'portrait' ? 'column' : 'row',
       alignItems: 'center',
       justifyContent: 'space-evenly',
     },
@@ -134,39 +162,55 @@ function MenuScreen({ navigation }) {
       <StatusBar
         hidden
       />
-      <View style={styles.header}>
-        <Logo height={width * 0.6} width={width * 0.6} style={styles.menulogo} />
-        <View style={styles.mainMenuContainer}>
-          <Text style={styles.mainmenu}>MAIN MENU</Text>
-          {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
-          <Icon name='info-circle' color={"#7FC8DE"} size={22} />
-        </TouchableOpacity> */}
+      <View
+        style={styles.header}
+      >
+        <View style={styles.upper}>
+          <Logo
+            height={dime * 0.6}
+            width={dime * 0.6}
+            style={styles.menulogo}
+          />
+          <View style={styles.mainMenuContainer}>
+            <Text style={styles.mainmenu}>MAIN MENU</Text>
+            {/* <TouchableOpacity onPress={()=> {dispatch(showIntroModal())}} style={{margin: 5}}>
+            <Icon name='info-circle' color={"#7FC8DE"} size={22} />
+          </TouchableOpacity> */}
+          </View>
         </View>
-        <Text style={styles.text}>Select a game to Play</Text>
-        <View style={styles.columns}>
+        <View style={styles.lower}>
+          <Text style={styles.text}>Select a game to Play</Text>
+          <View style={styles.columns}>
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => {
+                // if (audioPlayer._loaded) {stopSound()};
+                whichGame('akhar_jor');
+                navigation.navigate('AkharJor');
+              }}
+            >
+              <Text style={styles.text}>{Platform.OS === 'ios' ? 'Akhar Jor' : 'Gurmukhi Wordlink'}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.columns}>
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => {
+                // if (audioPlayer._loaded) {stopSound()};
+                whichGame('2048');
+                navigation.navigate('2048');
+              }}
+            >
+              <Text style={styles.text2048}>
+                2048
+              </Text>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
-            style={styles.item}
-            onPress={() => {
-              // if (audioPlayer._loaded) {stopSound()};
-              whichGame('akhar_jor');
-              navigation.navigate('AkharJor');
-            }}
+            style={styles.khalisTouchableOpacity}
+            onPress={() => Linking.openURL('https://khalis.dev')}
           >
-            <Text style={styles.text}>{Platform.OS === 'ios' ? 'Akhar Jor' : 'Gurmukhi Wordlink'}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.columns}>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => {
-              // if (audioPlayer._loaded) {stopSound()};
-              whichGame('2048');
-              navigation.navigate('2048');
-            }}
-          >
-            <Text style={styles.text2048}>
-              2048
-            </Text>
+            <Khalis width={dime * 0.5} height={dime * 0.2} />
           </TouchableOpacity>
         </View>
         {/* <View style={styles.columns}>
@@ -182,12 +226,6 @@ function MenuScreen({ navigation }) {
           </TouchableOpacity>
         </View> */}
       </View>
-      <TouchableOpacity
-        style={styles.khalisTouchableOpacity}
-        onPress={() => Linking.openURL('https://khalis.dev')}
-      >
-        <Khalis width={width * 0.5} height={width * 0.2} />
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

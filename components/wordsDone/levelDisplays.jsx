@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  Dimensions,
   Platform
 } from 'react-native';
 // import * as Speech from 'expo-speech';
@@ -17,13 +18,11 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import theColors from '../../util/colors';
 import { showMeaningPopUp } from '../../redux/actions';
-import dimensions from '../../util/dimensions';
 
 function Level({
   levelId, title, theWords, setAnswer
 }) {
   const dispatch = useDispatch();
-  const { width } = dimensions;
   const [up, setUp] = useState(false);
   const [fontsLoaded] = useFonts({
     Arial: require('../../assets/fonts/Arial.ttf'),
@@ -32,6 +31,21 @@ function Level({
     Mochy: require('../../assets/fonts/Mochy.ttf'),
     Muli: require('../../assets/fonts/Muli.ttf'),
     Nasa: require('../../assets/fonts/Nasalization.otf'),
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
   });
 
   const colors = theColors.false;
@@ -50,8 +64,8 @@ function Level({
       padding: 5,
       fontFamily: 'Muli',
       fontWeight: '400',
-      height: width * 0.125,
-      fontSize: width * 0.06,
+      height: dime * 0.125,
+      fontSize: dime * 0.06,
       textAlign: 'center',
     },
     flatList: {
@@ -65,7 +79,7 @@ function Level({
       backgroundColor: colors.levelDisplay.wordOdd,
     },
     wordText: {
-      fontSize: width * 0.08,
+      fontSize: dime * 0.08,
       textAlign: 'center',
       fontWeight: 'bold',
       backgroundColor: '#ffbb00'
