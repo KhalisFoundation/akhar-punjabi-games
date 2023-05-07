@@ -53,11 +53,20 @@ This will use `npm` that is included with `nodejs` to install project dependenci
 
 - Step 3: Start the project.
 
-If you are running this project for the first time or did some change, run the following command, which start 
+If you are running this project for the first time or did some change, run the following command,
 
 ```bash
 expo start
 ```
+
+If you come accross the following error:
+```bash
+ ERROR  Invariant Violation: AsyncStorage has been removed from react-native core. It can now be installed and imported from '@react-native-async-storage/async-storage' instead of 'react-native'. See https://github.com/react-native-async-storage/async-storage
+```
+
+It is a well-known issue in react-native which can be resolved by commenting the code shown below in the file at destination 'node_modules/react-native/index.js'. Save and redo step 3 (if the issue persists, feel free to post it)
+
+![rnasyncfix](https://user-images.githubusercontent.com/51584037/236684558-5d64b274-304d-402a-9eb1-b9c0f9ec4a0c.gif)
 
 - Step 4: Access your local dev environment of the Akhar Punjabi Games app
 
