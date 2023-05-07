@@ -4,7 +4,8 @@ import {
   View,
   Share,
   Text,
-  PanResponder
+  PanResponder,
+  Dimensions
 } from 'react-native';
 import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -22,6 +23,7 @@ import GameContainer from './GameContainer';
 
 import { BelowGame } from './BelowGame';
 import dimensions from '../../../util/dimensions';
+import * as Platform from '../../../util/orientation';
 
 const { width } = dimensions.get('window');
 
@@ -46,9 +48,12 @@ class Container extends Component {
       tiles: [],
       score: 0,
       over: false,
-      size: props.size
+      size: props.size,
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+      devicetype: Platform.isTablet() ? 'tablet' : 'phone',
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
     };
-
   }
 
   componentWillMount() {
@@ -78,11 +83,33 @@ class Container extends Component {
       }
     });
     this.moving = false;
+    this.dimeMin = Math.min(this.state.width, this.state.height);
+    this.dimeMax = Math.max(this.state.width, this.state.height);
+    this.aspectRatio = this.dimeMax / this.dimeMin;
+    this.setState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+      devicetype: Platform.isTablet() ? 'tablet' : 'phone',
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    })
+  }
+
+  componentDidUpdate() {
+    Dimensions.addEventListener('change', () => {
+      this.dimeMin = Math.min(this.state.width, this.state.height);
+      this.dimeMax = Math.max(this.state.width, this.state.height);
+      this.aspectRatio = this.dimeMax / this.dimeMin;
+      this.setState({
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+      });
+    });
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{...styles.container, flexDirection: this.state.orientation === 'potrait' ? 'column' : 'row'}}>
         <GameMessage
           won={this.state.won}
           over={this.state.over}
@@ -91,7 +118,7 @@ class Container extends Component {
         />
         <View style={styles.container}>
           <MaskedView
-            style={{ width, height: width * 0.2, marginBottom: 100 }}
+            style={{ width: this.dimeMin, height: this.dimeMin * 0.2, marginBottom: 100, display: Platform.isTablet() && this.state.orientation === 'landscape' ? "none" : null }}
             maskElement={(
               <View
                 style={{
@@ -100,7 +127,7 @@ class Container extends Component {
                   alignItems: 'center'
                 }}
               >
-                <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: width * 0.2 }}>
+                <Text style={{ fontFamily: 'GurbaniHeavy', fontSize: this.dimeMin * 0.2 }}>
                   2048
                 </Text>
               </View>
@@ -114,7 +141,7 @@ class Container extends Component {
           {/* <AboveGame
               onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
           <Heading score={this.state.score} best={this.state.best} />
-          <View {...this._panResponder.panHandlers}>
+          <View {...this._panResponder.panHandlers} >
             <GameContainer
               size={this.state.size}
               tiles={this.state.tiles}

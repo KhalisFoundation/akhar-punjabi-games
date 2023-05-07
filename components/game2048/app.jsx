@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IonIcons from 'react-native-vector-icons/Ionicons';
@@ -12,13 +13,58 @@ import MaskedView from '@react-native-community/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from './components/Container';
-import Dimensions from '../../util/dimensions';
+import dimensions from '../../util/dimensions';
 import { open2048HelpModal } from '../../redux/actions';
 import Help from './components/help';
+import * as Platform from '../../util/orientation';
 
 export default function New2048({ navigation }) {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dimeMin = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dimeMin = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: '#274C7C',
+      paddingHorizontal: localState.orientation === 'portrait' ? dimensions.size['5'] : 0,
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+    icon: {
+      backgroundColor: 'transparent',
+      alignItems: 'center',
+    },
+    iconSize: { width: dimeMin * 0.075, height: dimeMin * 0.075 },
+    flex: { flex: 1 },
+    header: {
+      justifyContent: 'space-between', flexDirection: 'row', width: dimeMin * 0.9, marginTop: 5
+    }
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +87,7 @@ export default function New2048({ navigation }) {
               <View
                 style={styles.icon}
               >
-                <IonIcons name="chevron-back" size={width * 0.075} color="#464646" style={styles.shadow} />
+                <IonIcons name="chevron-back" size={dimeMin * 0.075} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -61,7 +107,7 @@ export default function New2048({ navigation }) {
               <View
                 style={styles.icon}
               >
-                <IonIcons name="help" size={width * 0.075} color="#464646" style={styles.shadow} />
+                <IonIcons name="help" size={dimeMin * 0.075} color="#464646" style={styles.shadow} />
               </View>
           )}
           >
@@ -76,26 +122,3 @@ export default function New2048({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const { width } = Dimensions.get('window');
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#274C7C',
-    paddingHorizontal: Dimensions.size['5'],
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-  },
-  icon: {
-    backgroundColor: 'transparent',
-    alignItems: 'center',
-  },
-  iconSize: { width: width * 0.075, height: width * 0.075 },
-  flex: { flex: 1 },
-  header: {
-    justifyContent: 'space-between', flexDirection: 'row', width: width * 0.9, marginTop: 5
-  }
-});

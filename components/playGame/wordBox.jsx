@@ -3,18 +3,32 @@
 /* eslint-disable consistent-return */
 import * as React from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Text
+  View, TouchableOpacity, StyleSheet, Text, Dimensions
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import dimensions from '../../util/dimensions';
 import { setAttempt } from '../../redux/actions';
+import * as Platform from '../../util/orientation';
 
 export const WordBox = ({ wordType }) => {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const { width } = dimensions;
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
 
   // const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
   const [fontsLoaded] = useFonts({
@@ -32,7 +46,7 @@ export const WordBox = ({ wordType }) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: '100%',
-      height: width * 0.2,
+      height: dime * (Platform.isTablet() ? 0.15 : 0.2),
       alignSelf: 'center',
       padding: 5
     },
@@ -40,7 +54,7 @@ export const WordBox = ({ wordType }) => {
       textAlign: 'center',
       color: '#7a3e00',
       borderRadius: 20,
-      height: width * 0.01,
+      height: dime * (Platform.isTablet() ? 0.005 : 0.01),
       fontFamily: 'GurbaniAkharSG',
     },
     answerTouchOpacity: {
@@ -49,7 +63,7 @@ export const WordBox = ({ wordType }) => {
     },
     definitionText: {
       fontFamily: 'Muli',
-      fontSize: width * 0.04,
+      fontSize: dime * (Platform.isTablet() ? 0.03 : 0.04),
       marginBottom: 5,
       textShadowColor: 'black',
       textShadowOffset: {
@@ -150,8 +164,8 @@ export const WordBox = ({ wordType }) => {
     printed = divByMatra(printed);
     const newArray = divByMatra((which === 'top') ? state.firstWord.engText : state.secondWord.engText);
     const numOfLetters = newArray.length;
-    const fontsize = (numOfLetters > 5) ? width * 0.05 : width * 0.07;
-    const newsize = (numOfLetters > 5) ? width * 0.075 : width * 0.095;
+    const fontsize = (numOfLetters > 5) ? dime * 0.05 : dime * 0.07;
+    const newsize = (numOfLetters > 5) ? dime * 0.075 : dime * 0.095;
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         {Array.from(newArray, (e, i) => {

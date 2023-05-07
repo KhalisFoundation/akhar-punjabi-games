@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
+  Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -17,11 +18,7 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 import { View } from 'react-native-animatable';
 import WordWheel from '../../assets/wordWheel.svg';
 import Tools from '../../assets/toolTips.svg';
-
-import Dimensions from '../../util/dimensions';
 import { closeHelpModal } from '../../redux/actions';
-
-const { width } = Dimensions.get('window');
 
 function Help() {
   const dispatch = useDispatch();
@@ -29,6 +26,21 @@ function Help() {
   const [fontsLoaded] = useFonts({
     Muli: require('../../assets/fonts/Muli.ttf'),
     Arial: require('../../assets/fonts/Arial.ttf')
+  });
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
   });
 
   const styles = StyleSheet.create({
@@ -52,7 +64,7 @@ function Help() {
     header: {
       justifyContent: 'center',
       fontFamily: 'Muli',
-      fontSize: width * 0.04,
+      fontSize: dime * 0.04,
       color: '#fff',
       textAlign: 'justify'
     },
@@ -64,14 +76,14 @@ function Help() {
       marginBottom: 40,
       backgroundColor: '#ff8c00',
       borderRadius: 10,
-      height: width * 0.075,
-      width: width * 0.4,
+      height: dime * 0.075,
+      width: dime * 0.4,
       elevation: 5,
     },
     continueTxt: {
       textAlign: 'center',
       fontFamily: 'Muli',
-      fontSize: width * 0.045,
+      fontSize: dime * 0.045,
       color: '#000',
     },
     emoji: {
@@ -103,7 +115,7 @@ function Help() {
     >
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
-          <IonIcons name="close" size={width * 0.07} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
+          <IonIcons name="close" size={dime * 0.07} color="#fff" style={styles.left} onPress={() => { dispatch(closeHelpModal()); }} />
           <ScrollView
             style={styles.scrollview}
             contentContainerStyle={styles.scrollContent}
@@ -116,7 +128,7 @@ function Help() {
               spell words related to Sikhism and Gurbani!
               {'\n'}
             </Text>
-            <WordWheel height={width * 0.75} style={styles.img} />
+            <WordWheel height={dime * 0.75} style={styles.img} />
             <Text style={styles.header}>
               {'\n'}
               Level up your game
@@ -129,7 +141,7 @@ function Help() {
               - there's no penalty for trying as many times as you need.
               {'\n'}
             </Text>
-            <Tools height={width * 0.7} style={styles.img} />
+            <Tools height={dime * 0.7} style={styles.img} />
             <Text style={styles.header}>
               {'\n'}
               Need a hand?

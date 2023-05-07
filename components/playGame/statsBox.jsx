@@ -1,16 +1,29 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Text
+  View, TouchableOpacity, StyleSheet, Text, Dimensions
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import EnIcon from 'react-native-vector-icons/Entypo';
 import { useSelector } from 'react-redux';
-import dimensions from '../../util/dimensions';
 
-const { height, width } = dimensions;
 export const StatsBox = ({ stat, navigation }) => {
   const state = useSelector((theState) => theState.theGameReducer);
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
 
   const items = {
     levels: {
@@ -28,6 +41,25 @@ export const StatsBox = ({ stat, navigation }) => {
   };
 
   const item = items[stat];
+  const styles = StyleSheet.create({
+    upBox: {
+      backgroundColor: '#072227',
+      flexDirection: 'row',
+      height: dime * 0.06,
+      width: dime * 0.3,
+      alignItems: 'center',
+      borderRadius: 10,
+      elevation: 5,
+      paddingHorizontal: dime * 0.02,
+      justifyContent: 'space-evenly'
+    },
+    upText: {
+      color: 'white',
+      fontSize: dime * 0.035,
+      fontWeight: 'bold'
+    }
+  });
+
   return (
     <View
       style={styles.upBox}
@@ -36,13 +68,13 @@ export const StatsBox = ({ stat, navigation }) => {
         ? (
           <EnIcon
             name={item.icon}
-            size={width * 0.05}
+            size={dime * 0.05}
             color={item.color}
           />
         ) : (
           <IconM
             name={item.icon}
-            size={width * 0.05}
+            size={dime * 0.05}
             color={item.color}
           />
         )}
@@ -54,28 +86,9 @@ export const StatsBox = ({ stat, navigation }) => {
           <TouchableOpacity
             onPress={() => { navigation.navigate('giveUps', { prevScreen: 1 }); }}
           >
-            <IconM name="plus-circle" size={width * 0.05} color="#06FF00" />
+            <IconM name="plus-circle" size={dime * 0.05} color="#06FF00" />
           </TouchableOpacity>
         ) : null}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  upBox: {
-    backgroundColor: '#072227',
-    flexDirection: 'row',
-    height: height * 0.045,
-    width: width * 0.3,
-    alignItems: 'center',
-    borderRadius: 10,
-    elevation: 5,
-    paddingHorizontal: width * 0.02,
-    justifyContent: 'space-evenly'
-  },
-  upText: {
-    color: 'white',
-    fontSize: width * 0.035,
-    fontWeight: 'bold'
-  }
-});

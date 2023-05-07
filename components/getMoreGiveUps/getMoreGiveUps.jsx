@@ -8,7 +8,6 @@ import {
   StyleSheet,
   StatusBar,
   Dimensions,
-  Platform,
   ScrollView
 } from 'react-native';
 import { useState } from 'react';
@@ -22,6 +21,7 @@ import AppLoading from 'expo-app-loading';
 import * as Analytics from 'expo-firebase-analytics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { setGiveUpLives } from '../../redux/actions';
+import * as Platform from '../../util/orientation';
 import {
   defaultMatraValue, matras, withMatra, withoutMatra
 } from '../GurmukhiKeyboard/constants';
@@ -39,8 +39,20 @@ function MoreGiveUps({ route, navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
 
-  const { width } = Dimensions.get('window');
-  // console.log('width: ', width);
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
 
   const [textEntry, setTextEntry] = useState('');
 
@@ -80,9 +92,9 @@ function MoreGiveUps({ route, navigation }) {
     container: {
       alignItems: 'center',
       backgroundColor: '#D1FBFF',
-      paddingTop: Platform.OS === 'android' ? StatusBar.height : 0,
+      paddingTop: !Platform.isPhone() ? StatusBar.height : 0,
       height: '100%',
-      width: '100%',
+      width: screen.width,
     },
     icon: {
       position: 'absolute',
@@ -96,18 +108,22 @@ function MoreGiveUps({ route, navigation }) {
       width: '100%'
     },
     scrollContent: {
-      flexGrow: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly'
+      flexGrow: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      padding: 8,
     },
     keyboardRow: {
       width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignSelf: 'center',
-      padding: 7
+      padding: Platform.isTablet ? 2 : 7
     },
     key: {
-      width: width * 0.09,
-      height: width * 0.09,
+      width: dime * 0.09,
+      height: dime * 0.09,
       alignItems: 'center',
       textAlign: 'center',
       justifyContent: 'center',
@@ -127,7 +143,7 @@ function MoreGiveUps({ route, navigation }) {
       borderRadius: 5,
       // borderColor: 'black',
       // borderWidth: 1,
-      fontSize: width * 0.04,
+      fontSize: dime * 0.04,
       padding: 5,
       textAlign: 'center',
       elevation: 5,
@@ -135,7 +151,7 @@ function MoreGiveUps({ route, navigation }) {
     DHANcover: {
       margin: 5,
       width: '99%',
-      height: width * 0.15,
+      height: dime * 0.15,
       elevation: 5,
       justifyContent: 'center',
       backgroundColor: '#fff',
@@ -144,7 +160,7 @@ function MoreGiveUps({ route, navigation }) {
     DHAN: {
       textAlign: 'center',
       padding: 5,
-      fontSize: width * 0.075,
+      fontSize: dime * 0.075,
       textShadowRadius: 10,
       fontFamily: 'Prabhki',
       color: 'darkblue'
@@ -152,14 +168,15 @@ function MoreGiveUps({ route, navigation }) {
     submitButton: {
       alignSelf: 'center',
       alignItems: 'center',
-      width: width * 0.3,
+      width: dime * 0.3,
       borderRadius: 15,
       elevation: 5,
+      marginTop: 15,
       backgroundColor: '#FF7E00',
     },
     submit: {
       fontFamily: 'Nasa',
-      fontSize: width * 0.04,
+      fontSize: dime * 0.04,
       alignSelf: 'center',
       padding: 5,
       margin: 5,
@@ -169,8 +186,8 @@ function MoreGiveUps({ route, navigation }) {
     upBox: {
       backgroundColor: '#072227',
       flexDirection: 'row',
-      height: width * 0.1,
-      width: width * 0.2,
+      height: dime * 0.1,
+      width: dime * 0.2,
       alignItems: 'center',
       borderRadius: 30,
       margin: 10,
@@ -179,16 +196,21 @@ function MoreGiveUps({ route, navigation }) {
       paddingHorizontal: 10
     },
     upText: {
-      fontSize: width * 0.035,
+      fontSize: dime * 0.035,
       fontWeight: 'bold',
       color: '#D1FBFF'
     },
+    headerContainer: {
+      width: screen.width,
+      backgroundColor: '#274C7C',
+      alignItems: 'center'
+    },
     header: {
-      width: '100%', height: width * 0.175, backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+      width: '90%', height: dime * 0.175, backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
     },
     headerText: {
       color: '#D1FBFF',
-      fontSize: width * 0.05,
+      fontSize: dime * 0.05,
       fontFamily: 'Muli',
       margin: 0,
     },
@@ -197,7 +219,7 @@ function MoreGiveUps({ route, navigation }) {
     textLayout: {
       margin: 5,
       width: '99%',
-      height: width * 0.1,
+      height: dime * 0.1,
       elevation: 5,
       borderRadius: 20,
       backgroundColor: '#274C7C',
@@ -209,15 +231,15 @@ function MoreGiveUps({ route, navigation }) {
     text: {
       textAlign: 'center',
       textShadowRadius: 10,
-      fontSize: width * 0.06,
-      width: width * 0.85,
-      height: width * 0.1,
+      fontSize: dime * 0.06,
+      width: '90%',
+      height: dime * 0.1,
       fontFamily: 'Prabhki',
       color: '#FF7E00',
       alignItems: 'center',
     },
-    backspace: { color: 'white', fontSize: width * 0.05 },
-    keyText: { color: 'white', fontFamily: 'Bookish', fontSize: width * 0.05 }
+    backspace: { color: 'white', fontSize: dime * 0.05 },
+    keyText: { color: 'white', fontFamily: 'Bookish', fontSize: dime * 0.05 }
   });
 
   const wordsToType = [
@@ -254,17 +276,19 @@ function MoreGiveUps({ route, navigation }) {
         backgroundColor="#274C7C"
         barStyle="light-content"
       />
-      <View style={styles.header}>
-        <IonIcons
-          name="chevron-back"
-          color="#D1FBFF"
-          size={width * 0.07}
-          style={styles.icon}
-          onPress={() => { navigation.navigate(prevScreen); }}
-        />
-        <Text style={styles.headerText}>
-          Get More Credits
-        </Text>
+      <View style={styles.headerContainer}>
+        <View style={styles.header}>
+          <IonIcons
+            name="chevron-back"
+            color="#D1FBFF"
+            size={dime * 0.07}
+            style={styles.icon}
+            onPress={() => { navigation.navigate(prevScreen); }}
+          />
+          <Text style={styles.headerText}>
+            Get More Credits
+          </Text>
+        </View>
       </View>
       <ScrollView
         scrollEventThrottle={16}
@@ -277,7 +301,7 @@ function MoreGiveUps({ route, navigation }) {
           >
             <IconM
               name="lightbulb-on"
-              size={width * 0.06}
+              size={dime * 0.06}
               color="orange"
             />
             <Text style={styles.upText}>{state.giveUpsLeft}</Text>
@@ -301,7 +325,7 @@ function MoreGiveUps({ route, navigation }) {
                 <Icon
                   name="backspace"
                   color="#D1FBFF"
-                  size={width * 0.05}
+                  size={dime * 0.05}
                   onPress={() => { handleClick('meta'); }}
                 />
               )}

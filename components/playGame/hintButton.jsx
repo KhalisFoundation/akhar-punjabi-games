@@ -2,12 +2,11 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import {
-  TouchableOpacity, StyleSheet
+  TouchableOpacity, StyleSheet, Dimensions
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Analytics from 'expo-firebase-analytics';
-import dimensions from '../../util/dimensions';
 import {
   setBottomHint, setGivenUpWords, setNewWords, setTopHint,
   setTopWord, setBottomWord, setGiveUpLives, setConfetti
@@ -16,7 +15,21 @@ import {
 export const HintButton = ({ wordType }) => {
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
-  const { width } = dimensions;
+
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
 
   const styles = StyleSheet.create({
     giveUp: {
@@ -25,15 +38,15 @@ export const HintButton = ({ wordType }) => {
       alignSelf: 'center',
       backgroundColor: 'orange',
       opacity: 1,
-      width: width * 0.1,
-      height: width * 0.1,
+      width: dime * 0.1,
+      height: dime * 0.1,
       borderRadius: 10,
     },
     giveUpTxt: {
       textAlign: 'center',
       alignItems: 'center',
       alignSelf: 'center',
-      fontSize: width * 0.08,
+      fontSize: dime * 0.08,
       width: '100%',
       margin: 'auto'
     },

@@ -1,22 +1,34 @@
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import React from 'react';
 import Tile from './Tile';
-import Dimensions from '../../../util/dimensions';
-
-const { width } = Dimensions.get('window');
-
-const styles = {
-  container: {
-    width: width * 0.8,
-    height: width * 0.8,
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    overflow: 'hidden',
-  }
-};
+import * as Platform from '../../../util/orientation';
 
 const TileContainer = ({ tiles }) => {
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dimeMin = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dimeMin = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
+
+  const styles = {
+    container: {
+      width: dimeMin * (Platform.isTablet() ? 0.6 : 0.8),
+      height: dimeMin * (Platform.isTablet() ? 0.6 : 0.8),
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      overflow: 'hidden',
+    }
+  };
 
   return (
     <View style={styles.container}>

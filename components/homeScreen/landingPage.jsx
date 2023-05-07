@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-  Platform
+  Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
+import * as Platform from '../../util/orientation';
 import { setTheState, openHelpModal } from '../../redux/actions';
 import Help from '../playGame/help';
 import { initialState } from '../../redux/reducers';
@@ -37,6 +38,22 @@ function HomeScreen({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
   const state = useSelector((theState) => theState.theGameReducer);
+
+  const { width, height } = dimensions;
+  const [localState, setLocalState] = React.useState({
+    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
+    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+  });
+
+  // Event Listener for orientation changes
+
+  Dimensions.addEventListener('change', () => {
+    setLocalState({
+      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+    });
+  });
+
+  const dime = Math.min(width, height);
   // let resDB;
   // const data = async () => {
   //   const q = await AsyncStorage.getItem('data');
@@ -49,7 +66,6 @@ function HomeScreen({ navigation }) {
   // const theData = data();
   // console.log('Data from Firebase DB: ', theData);
   // console.log('ResDB outer:', resDB);
-  const { width } = dimensions;
   // const [loadingScreenStatus, setLoadingScreen] = React.useState(true);
   let theState;
   React.useEffect(() => {
@@ -110,7 +126,8 @@ function HomeScreen({ navigation }) {
   // console.log(state.darkMode);
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      width: '100%',
+      height: '100%',
       alignItems: 'center',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -118,8 +135,13 @@ function HomeScreen({ navigation }) {
       padding: 10,
       paddingHorizontal: 20,
     },
+    content: {
+      justifyContent: localState.orientation === 'portrait' ? 'space-evenly' : 'space-between',
+      height: localState.orientation === 'portrait' && Platform.isTablet() ? '100%' : '80%',
+      width: '100%'
+    },
     playTouchableOpacity: {
-      width: '50%',
+      width: localState.orientation === 'portrait' ? '50%' : dime,
       alignSelf: 'center',
       alignItems: 'center',
       borderRadius: 15,
@@ -128,7 +150,7 @@ function HomeScreen({ navigation }) {
       backgroundColor: '#FF7E00',
     },
     play: {
-      fontSize: width * 0.07,
+      fontSize: dime * 0.07,
       fontFamily: 'Nasa',
       color: '#fff',
       textAlign: 'center',
@@ -141,7 +163,7 @@ function HomeScreen({ navigation }) {
       flexDirection: 'row',
       // backgroundColor: "yellow",
       alignItems: 'center',
-      justifyContent: 'space-evenly',
+      justifyContent: 'space-between'
     },
     otherScreenTouchableOpacity: {
       flex: 1,
@@ -151,7 +173,7 @@ function HomeScreen({ navigation }) {
       alignSelf: 'center',
     },
     menuText: {
-      fontSize: width * 0.045,
+      fontSize: dime * 0.045,
       alignSelf: 'center',
     }
   });
@@ -179,7 +201,7 @@ function HomeScreen({ navigation }) {
           style={{ padding: 5 }}
         >
 
-          <IonIcons name="chevron-back" size={width * 0.07} color="#fff" />
+          <IonIcons name="chevron-back" size={dime * 0.07} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -187,10 +209,10 @@ function HomeScreen({ navigation }) {
           }}
           style={{ padding: 5 }}
         >
-          <Icon name="cog" size={width * 0.07} color="#ccc" style={styles.center} />
+          <Icon name="cog" size={dime * 0.07} color="#ccc" style={styles.center} />
         </TouchableOpacity>
       </View>
-      <View style={{ justifyContent: 'space-evenly', height: '100%', width: '100%' }}>
+      <View style={styles.content}>
         <View
           style={{
             backgroundColor: 'transparent',
@@ -200,13 +222,13 @@ function HomeScreen({ navigation }) {
         >
           <Text style={{
             fontFamily: 'Bookish',
-            fontSize: width * 0.14,
+            fontSize: dime * 0.14,
             color: '#cdff',
           }}
           >
             AKr joV
           </Text>
-          <Text style={{ fontFamily: 'Nasa', fontSize: width * 0.07, color: '#cdff' }}>
+          <Text style={{ fontFamily: 'Nasa', fontSize: dime * 0.07, color: '#cdff' }}>
             {Platform.OS === 'ios' ? 'Akhar Jor' : 'Gurmukhi Wordlink'}
           </Text>
         </View>
@@ -227,7 +249,7 @@ function HomeScreen({ navigation }) {
             testID="help-button"
           >
             <Text style={{
-              ...styles.play, fontFamily: 'Muli', fontSize: width * 0.05, textDecorationStyle: 'solid', textDecorationColor: '#fff', textDecorationLine: 'underline'
+              ...styles.play, fontFamily: 'Muli', fontSize: dime * 0.05, textDecorationStyle: 'solid', textDecorationColor: '#fff', textDecorationLine: 'underline'
             }}
             >
               How do I play?
@@ -242,7 +264,7 @@ function HomeScreen({ navigation }) {
               navigation.navigate('correctWords'); // how to pass params to other screen. We probaly won't need but there just for refrence
             }}
           >
-            <EnIcon name="shield" size={width * 0.15} color="yellow" style={styles.center} />
+            <EnIcon name="shield" size={dime * 0.15} color="yellow" style={styles.center} />
             <Text style={{
               ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white', textAlign: 'center'
             }}
@@ -257,7 +279,7 @@ function HomeScreen({ navigation }) {
             }}
           >
 
-            <Icon name="heart" size={width * 0.15} color="#f55aff" style={styles.center} />
+            <Icon name="heart" size={dime * 0.15} color="#f55aff" style={styles.center} />
             <Text style={{
               ...styles.menuText, fontFamily: 'Muli', fontWeight: 'normal', color: 'white'
             }}

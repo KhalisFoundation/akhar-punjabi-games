@@ -6,7 +6,8 @@ import {
   Linking,
   ScrollView,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
@@ -15,7 +16,6 @@ import AppLoading from 'expo-app-loading';
 import GLOBAL from '../../util/globals';
 import KhalisLogo from '../../assets/khalis_incubator.svg';
 import Logo from '../../assets/akhar_logo_with_text.svg';
-import dimensions from '../../util/dimensions';
 
 function About({ navigation }) {
   const [fontsLoaded] = useFonts({
@@ -27,14 +27,28 @@ function About({ navigation }) {
     Nasa: require('../../assets/fonts/Nasalization.otf'),
   });
 
-  const { width } = dimensions;
+  // Event Listener for orientation changes
+  const [screen, setScreen] = React.useState({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+  });
+
+  let dime = Math.min(screen.width, screen.height);
+  Dimensions.addEventListener('change', () => {
+    dime = Math.min(screen.width, screen.height);
+    setScreen({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
+    });
+  });
+
   const linkColor = '#009bff';
   const black = '#000';
   const styles = StyleSheet.create({
-    container: { flex: 1 },
+    container: { flex: 1, alignItems: 'center' },
     header: {
       color: GLOBAL.COLOR.TOOLBAR_TINT,
-      fontSize: width * 0.05,
+      fontSize: dime * 0.05,
       fontFamily: 'Muli',
       margin: 0,
     },
@@ -50,13 +64,18 @@ function About({ navigation }) {
       justifyContent: 'space-between'
     },
     small: {
-      fontSize: width * 0.03,
+      fontSize: dime * 0.03,
       fontFamily: 'Muli',
       color: black
     },
-    innerView: {
-      width: '100%',
-      height: width * 0.175,
+    outerHeader: {
+      width: screen.width,
+      alignItems: 'center',
+      backgroundColor: GLOBAL.COLOR.TOOLBAR_COLOR_ALT2,
+    },
+    innerHeader: {
+      width: '90%',
+      height: dime * 0.175,
       backgroundColor: GLOBAL.COLOR.TOOLBAR_COLOR_ALT2,
       flexDirection: 'row',
       alignItems: 'center',
@@ -68,18 +87,18 @@ function About({ navigation }) {
       left: 10
     },
     info: {
-      fontSize: width * 0.04, fontFamily: 'Muli', color: black, margin: 10, marginTop: 0, marginStart: 0
+      fontSize: dime * 0.04, fontFamily: 'Muli', color: black, margin: 10, marginTop: 0, marginStart: 0
     },
     logo: {
       resizeMode: 'contain',
       alignSelf: 'center',
     },
-    title1: { fontFamily: 'Nasa', fontSize: width * 0.06, color: black },
-    title2: { fontFamily: 'GurbaniHeavy', fontSize: width * 0.07, color: black },
-    aboutus: { fontSize: width * 0.04, fontFamily: 'Muli', color: black },
+    title1: { fontFamily: 'Nasa', fontSize: dime * 0.06, color: black },
+    title2: { fontFamily: 'GurbaniHeavy', fontSize: dime * 0.07, color: black },
+    aboutus: { fontSize: dime * 0.04, fontFamily: 'Muli', color: black },
     link: { color: linkColor, fontWeight: 'bold' },
     ending: {
-      fontSize: width * 0.03, fontFamily: 'Muli', alignSelf: 'flex-end', color: black
+      fontSize: dime * 0.03, fontFamily: 'Muli', alignSelf: 'flex-end', color: black
     },
     logoTouchable: {
       width: '100%',
@@ -98,15 +117,17 @@ function About({ navigation }) {
         backgroundColor="#003436"
         barStyle="light-content"
       />
-      <View style={styles.innerView}>
-        <IonIcons
-          name="chevron-back"
-          color={GLOBAL.COLOR.TOOLBAR_TINT}
-          size={width * 0.07}
-          style={styles.back}
-          onPress={() => { navigation.goBack(); }}
-        />
-        <Text style={styles.header}>About</Text>
+      <View style={styles.outerHeader}>
+        <View style={styles.innerHeader}>
+          <IonIcons
+            name="chevron-back"
+            color={GLOBAL.COLOR.TOOLBAR_TINT}
+            size={dime * 0.07}
+            style={styles.back}
+            onPress={() => { navigation.goBack(); }}
+          />
+          <Text style={styles.header}>About</Text>
+        </View>
       </View>
       <ScrollView
         scrollEventThrottle={16}
@@ -133,7 +154,7 @@ function About({ navigation }) {
           </MaskedView>
           <Text style={{ fontFamily: 'Nasa', fontSize:25, color: "#61CAE5"}}>(SIKH GAMES)</Text>
         </View> */}
-        <Logo style={styles.logo} width={width * 0.7} height={width * 0.7} />
+        <Logo style={styles.logo} width={dime * 0.7} height={dime * 0.7} />
 
         <Text style={styles.aboutus}>
           {'\n'}
@@ -197,7 +218,7 @@ function About({ navigation }) {
             underlayColor={linkColor}
             onPress={() => Linking.openURL('https://khalis.dev')}
           >
-            <KhalisLogo width={width * 0.5} height={width * 0.2} />
+            <KhalisLogo width={dime * 0.5} height={dime * 0.2} />
           </TouchableOpacity>
 
           <View style={styles.singleLine}>
