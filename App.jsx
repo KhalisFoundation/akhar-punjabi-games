@@ -14,6 +14,7 @@ import Settings from './components/settings/settings';
 import MoreGiveUps from './components/getMoreGiveUps/getMoreGiveUps';
 import About from './components/about/about';
 import New2048 from './components/game2048/app';
+import Wordle from './components/wordle/wordle';
 import { Store } from './redux/store';
 import { auth } from './firebase';
 
@@ -102,6 +103,11 @@ function App() {
               name="play"
               options={{ headerShown: false, }}
               component={GameScreen}
+            />
+            <Stack.Screen
+              name="wordle"
+              options={{ headerShown: false, }}
+              component={Wordle}
             />
             <Stack.Screen
               name="correctWords"

@@ -215,7 +215,7 @@ function RightWords({ navigation }) {
       <View style={{ width: screen.width, backgroundColor: '#00E9FE', alignItems: 'center' }}>
         <View
           style={[(!state.meaningPopup) ? styles.downStyle : null, {
-            width: '90%', height: dime * 0.175, backgroundColor: '#00E9FE', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+            width: '90%', height: dime * 0.175, backgroundColor: '#00E9FE', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
           }]}
         >
           <IonIcons

@@ -111,7 +111,7 @@ function MoreGiveUps({ route, navigation }) {
       flexGrow: 1,
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'space-evenly',
+      justifyContent: 'space-between',
       padding: 8,
     },
     keyboardRow: {
@@ -206,7 +206,7 @@ function MoreGiveUps({ route, navigation }) {
       alignItems: 'center'
     },
     header: {
-      width: '90%', height: dime * 0.175, backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', elevation: 5
+      width: '90%', height: dime * 0.175, backgroundColor: '#274C7C', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
     },
     headerText: {
       color: '#D1FBFF',

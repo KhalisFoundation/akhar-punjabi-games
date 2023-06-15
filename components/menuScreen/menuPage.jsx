@@ -206,6 +206,20 @@ function MenuScreen({ navigation }) {
               </Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.columns}>
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => {
+                // if (audioPlayer._loaded) {stopSound()};
+                whichGame('wordle');
+                navigation.navigate('wordle');
+              }}
+            >
+              <Text style={styles.text}>
+                {Platform.OS === 'ios' ? 'Shabadle' : 'Punjabi Wordle'}
+              </Text>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
             style={styles.khalisTouchableOpacity}
             onPress={() => Linking.openURL('https://khalis.dev')}
