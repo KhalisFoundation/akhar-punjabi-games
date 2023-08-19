@@ -286,7 +286,6 @@ export const fetchData = () => {
         const data = snapshot.val();
         AsyncStorage.setItem('data', JSON.stringify({ levels: data }));
         dispatch({ type: 'FETCH_DATA', payload: { levels: data } });
-        console.log('Data length: ', data.length);
         // make an array with each element as { level: idx + 1, wordsNeeded: 10,
         // pointsPerWord: idx + 6 }where idx in each index till length of data
         // skip first index
@@ -298,7 +297,6 @@ export const fetchData = () => {
           };
         });
         payload = payload.slice(1);
-        // console.log('Levels: ', payload.length);
         dispatch({ type: 'FETCH_LEVEL_PROGRESS', payload });
       });
   };

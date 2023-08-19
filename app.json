@@ -2,7 +2,7 @@
   "expo": {
     "name": "Akhar: Punjabi Games",
     "slug": "game",
-    "version": "1.0.2",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/akhar.png",
     "splash": {
@@ -20,12 +20,12 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.khalisfoundation.gurmukhi-games",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "33"
+      "buildNumber": "34"
     },
     "android": {
       "package": "com.khalisfoundation.gurmukhi_games",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 33,
+      "versionCode": 34,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-akhar.png",
         "backgroundColor": "#274C7C"

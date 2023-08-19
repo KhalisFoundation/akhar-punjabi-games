@@ -26,7 +26,7 @@ import {
   setBoard, resetBoard, setPunjabiNums, setNewBoardOnComplete
 } from '../../../redux/actions';
 
-function Game2048({ navigation }) {
+const Game2048 = ({ navigation }) => {
   const dispatch = useDispatch();
   const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
@@ -39,8 +39,6 @@ function Game2048({ navigation }) {
     Prabhki: require('../../assets/fonts/Prabhki.ttf'),
   });
   const screenWidth = Dimensions.get('window').width;
-  // console.log(theColors[state.darkMode]);
-  // console.log(state.darkMode);
 
   const data = state.board;
   const colorCodes = {
@@ -63,35 +61,35 @@ function Game2048({ navigation }) {
     gestureName: 'none',
     backgroundColor: '#fff'
   });
-  function onSwipeUp(gestureState) {
+  const onSwipeUp = (gestureState) => {
     setSwipeWay({ myText: 'You swiped up!' });
     const newData = moveUp(state.board);
     if (changed(newData, state.board)) {
       dispatch(setBoard(generateRandom(newData)));
     }
   }
-  function onSwipeDown(gestureState) {
+  const onSwipeDown = (gestureState) => {
     setSwipeWay({ myText: 'You swiped down!' });
     const newData = moveDown(state.board);
     if (changed(newData, state.board)) {
       dispatch(setBoard(generateRandom(newData)));
     }
   }
-  function onSwipeLeft(gestureState) {
+  const onSwipeLeft = (gestureState) => {
     setSwipeWay({ myText: 'You swiped left!' });
     const newData = moveLeft(state.board);
     if (changed(newData, state.board)) {
       dispatch(setBoard(generateRandom(newData)));
     }
   }
-  function onSwipeRight(gestureState) {
+  const onSwipeRight = (gestureState) => {
     setSwipeWay({ myText: 'You swiped right!' });
     const newData = moveRight(state.board);
     if (changed(newData, state.board)) {
       dispatch(setBoard(generateRandom(newData)));
     }
   }
-  function onSwipe(gestureName, gestureState) {
+  const onSwipe = (gestureName, gestureState) => {
     setSwipeWay({ gestureName });
   }
 
@@ -363,7 +361,7 @@ function Game2048({ navigation }) {
         </View>
       </GestureRecognizer>
       <View style={styles.otherScreens}>
-        <TouchableOpacity style={{ width: '50%', flexDirection: 'row' }} onPress={() => { console.log('Board refreshed!'); dispatch(resetBoard()); }}>
+        <TouchableOpacity style={{ width: '50%', flexDirection: 'row' }} onPress={() => { dispatch(resetBoard()); }}>
           <MaskedView
             style={{ width: 35, height: 35 }}
             maskElement={(
@@ -385,7 +383,7 @@ function Game2048({ navigation }) {
           </MaskedView>
           <Text style={styles.optText}>Reset</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ width: '50%', flexDirection: 'row' }} onPress={() => { console.log('Language changed to %s!', (!state.punjabiNums) ? 'Punjabi' : 'English'); dispatch(setPunjabiNums(!state.punjabiNums)); }}>
+        <TouchableOpacity style={{ width: '50%', flexDirection: 'row' }} onPress={() => { dispatch(setPunjabiNums(!state.punjabiNums)); }}>
           <MaskedView
             style={{ width: 35, height: 35 }}
             maskElement={(

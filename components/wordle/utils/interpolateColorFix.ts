@@ -3,7 +3,7 @@
 // @ts-nocheck
 import { interpolate } from 'react-native-reanimated';
 
-function hexToRGBA(hw: string) {
+const hexToRGBA = (hw: string) => {
   'worklet';
   if (hw.length === 4) {
     return {
@@ -26,12 +26,12 @@ function hexToRGBA(hw: string) {
   };
 }
 
-function colorToRGBA(
+const colorToRGBA = (
   color:
     | string
     | { r: number; g: number; b: number }
     | { r: number; g: number; b: number; a: number }
-) {
+) => {
   'worklet';
   if (typeof color === 'string') {
     if (color.startsWith('rgba(')) {
@@ -63,11 +63,11 @@ function colorToRGBA(
   }
 }
 
-export default function interpolateColorBugFix(
+const interpolateColorBugFix = (
   value: number,
   inputRange: readonly number[],
   outputRange: readonly (string | number)[]
-) {
+) => {
   'worklet';
   const outputRangeProcessed = outputRange.map((i) => colorToRGBA(i as string));
   const values = {
@@ -94,3 +94,5 @@ export default function interpolateColorBugFix(
   };
   return `rgba(${values.r},${values.g},${values.b}, ${values.a})`;
 }
+
+export default interpolateColorBugFix;

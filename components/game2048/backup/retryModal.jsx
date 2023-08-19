@@ -11,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { closeNextLevelModal, reset } from '../../../redux/actions';
 
-function RetryModal() {
+const RetryModal = () => {
   const state = useSelector((theState) => theState.theGameReducer);
   const [fontsLoaded] = useFonts({
     Bookish: require('../../assets/fonts/Bookish.ttf'),

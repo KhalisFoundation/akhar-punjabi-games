@@ -1,58 +1,37 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react-native/no-raw-text */
-/* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
-import {
-  StyleSheet,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Modal,
-  Dimensions
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-// import { useDispatch } from 'react-redux';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import IonIcons from 'react-native-vector-icons/Ionicons';
-import { View } from 'react-native-animatable';
-import { useAppSelector, useAppDispatch } from '../hooks/storeHooks.ts';
-import WordleTest1 from '../../../assets/wordle-help1.svg';
-import WordleTest2 from '../../../assets/wordle-help2.svg';
-import WordleTest3 from '../../../assets/wordle-help3.svg';
-import * as Platform from '../../../util/orientation';
-import { setHelpModal } from '../store/slices/gameStateSlice';
+import * as React from "react";
+import { StyleSheet, Text, ScrollView, TouchableOpacity, Modal, Dimensions } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import IonIcons from "react-native-vector-icons/Ionicons";
+import { View } from "react-native-animatable";
+import { useAppDispatch } from "../hooks/storeHooks.ts";
+import WordleTest1 from "../../../assets/wordle-help1.svg";
+import WordleTest2 from "../../../assets/wordle-help2.svg";
+import WordleTest3 from "../../../assets/wordle-help3.svg";
+import * as Platform from "../../../util/orientation";
+import { setHelpModal } from "../store/slices/gameStateSlice";
 
-function Help() {
-  const {
-    guesses,
-    usedKeys,
-    currentGuessIndex,
-    gameStarted,
-    gameEnded,
-    gameWon,
-    solution,
-    helpModalOpen,
-  } = useAppSelector((state) => state.gameState);
+const Help = () => {
   const dispatch = useAppDispatch();
   const [fontsLoaded] = useFonts({
-    Muli: require('../../../assets/fonts/Muli.ttf'),
-    Mochy: require('../../../assets/fonts/Mochy.ttf'),
-    Arial: require('../../../assets/fonts/Arial.ttf')
+    Muli: require("../../../assets/fonts/Muli.ttf"),
+    Mochy: require("../../../assets/fonts/Mochy.ttf"),
+    Arial: require("../../../assets/fonts/Arial.ttf"),
   });
 
   // Event Listener for orientation changes
   const [screen, setScreen] = React.useState({
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   });
 
   let dime = Math.min(screen.width, screen.height);
-  Dimensions.addEventListener('change', () => {
+  Dimensions.addEventListener("change", () => {
     dime = Math.min(screen.width, screen.height);
     setScreen({
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height,
     });
   });
 
@@ -60,73 +39,73 @@ function Help() {
     modal: { flex: 1 },
     externalBg: {
       flex: 1,
-      backgroundColor: 'rgba(0,0,0,0.5)',
+      backgroundColor: "rgba(0,0,0,0.5)",
     },
     container: {
       flex: 1,
-      alignSelf: 'center',
+      alignSelf: "center",
       borderRadius: 15,
       padding: 15,
       marginVertical: 40,
-      width: '90%',
-      backgroundColor: '#274C7C',
+      width: "90%",
+      backgroundColor: "#274C7C",
     },
     img: {
-      alignSelf: 'center',
+      alignSelf: "center",
     },
     header: {
-      justifyContent: 'center',
-      fontFamily: 'Muli',
+      justifyContent: "center",
+      fontFamily: "Muli",
       fontSize: dime * 0.04,
-      color: '#fff',
-      textAlign: 'justify'
+      color: "#fff",
+      textAlign: "justify",
     },
     title: {
-      justifyContent: 'center',
-      fontFamily: 'Mochy',
+      justifyContent: "center",
+      fontFamily: "Mochy",
       fontSize: dime * 0.06,
-      color: '#fff',
-      textAlign: 'center',
+      color: "#fff",
+      textAlign: "center",
     },
     bold: {
-      fontFamily: 'Mochy',
+      fontFamily: "Mochy",
       fontSize: dime * 0.05,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     continue: {
-      justifyContent: 'center',
-      textAlign: 'center',
-      alignSelf: 'center',
+      justifyContent: "center",
+      textAlign: "center",
+      alignSelf: "center",
       margin: 20,
       marginBottom: 40,
-      backgroundColor: '#ff8c00',
+      backgroundColor: "#ff8c00",
       borderRadius: 10,
       height: dime * 0.075,
       width: dime * 0.4,
       elevation: 5,
     },
     continueTxt: {
-      textAlign: 'center',
-      fontFamily: 'Muli',
+      textAlign: "center",
+      fontFamily: "Muli",
       fontSize: dime * 0.045,
-      color: '#000',
+      color: "#000",
     },
     emoji: {
-      fontFamily: 'Arial'
+      fontFamily: "Arial",
     },
     scrollview: {
       flex: 1,
-      flexDirection: 'column',
-      alignSelf: 'center',
+      flexDirection: "column",
+      alignSelf: "center",
       borderRadius: 15,
       padding: 15,
       marginTop: 10,
-      width: '100%',
-      overflow: 'hidden',
-      backgroundColor: '#274C7C',
+      width: "100%",
+      overflow: "hidden",
+      backgroundColor: "#274C7C",
     },
-    scrollContent: { flexDirection: 'column', justifyContent: 'space-between' },
-    left: { marginLeft: 10 }
+    scrollContent: { flexDirection: "column", justifyContent: "space-between" },
+    left: { marginLeft: 10 },
   });
 
   if (!fontsLoaded) {
@@ -134,10 +113,7 @@ function Help() {
   }
 
   return (
-    <Modal
-      transparent
-      style={styles.modal}
-    >
+    <Modal transparent style={styles.modal}>
       <SafeAreaView style={styles.externalBg}>
         <View style={styles.container}>
           <IonIcons
@@ -149,50 +125,44 @@ function Help() {
               dispatch(setHelpModal(false));
             }}
           />
-          <ScrollView
-            style={styles.scrollview}
-            contentContainerStyle={styles.scrollContent}
-          >
+          <ScrollView style={styles.scrollview} contentContainerStyle={styles.scrollContent}>
             <Text style={styles.header}>
               <Text style={styles.title}>
                 How to Play?
                 <Text style={styles.emoji}> 🎮</Text>
               </Text>
-              {'\n\n'}
-              Welcome to Shabadle, where you'll need to guess the word to know the meaning!
-              {Platform.OS === 'ios' ? '' : "It's just like the famous game Wordle but in Punjabi Style."}
-              {'\n\n'}
+              {"\n\n"}
+              Welcome to Shabadle, where you&apos;ll need to guess the word to know the meaning!
+              {Platform.OS === "ios"
+                ? ""
+                : "It's just like the famous game Wordle but in Punjabi Style."}
+              {"\n\n"}
               The color of the tiles will change to show how close your guess was to the word.
-              {'\n'}
+              {"\n"}
             </Text>
             <WordleTest1 width={screen.width * 0.8} height={100} style={styles.img} />
             <Text style={styles.header}>
-              {'\n'}
+              {"\n"}
               For instance, the first letter of this word has
               <Text style={styles.bold}> ਾ</Text>
-              maatra and the last letter has a
-              <Text style={styles.bold}> ੀ</Text>
-              .
-              {'\n'}
+              maatra and the last letter has a<Text style={styles.bold}> ੀ</Text>.{"\n"}
             </Text>
             <WordleTest2 width={screen.width * 0.8} height={100} style={styles.img} />
             <Text style={styles.header}>
-              {'\n'}
+              {"\n"}
               <Text style={styles.bold}>ਰ </Text>
-              is in the word but it's in the wrong.
-              {'\n\n'}
+              is in the word but it&apos;s in the wrong.
+              {"\n\n"}
               <WordleTest3 width={screen.width * 0.8} height={100} style={styles.img} />
-              {'\n'}
+              {"\n"}
               <Text style={styles.bold}>ਰ </Text>
-              is in the word and in the correct spot.
-              Letter
+              is in the word and in the correct spot. Letter
               <Text style={styles.bold}> ਹ </Text>
               is not in the word at all.
-              {'\n\n'}
-
+              {"\n\n"}
               Ready to challenge yourself?
               <Text style={styles.emoji}>🧠</Text>
-              {'\n'}
+              {"\n"}
               Lets get started and see how many Punjabi words you can guess!
             </Text>
             {/* {'\n\n'}
@@ -225,15 +195,13 @@ function Help() {
                 dispatch(setHelpModal(false));
               }}
             >
-              <Text style={styles.continueTxt}>
-                PLAY
-              </Text>
+              <Text style={styles.continueTxt}>PLAY</Text>
             </TouchableOpacity>
           </ScrollView>
         </View>
       </SafeAreaView>
     </Modal>
   );
-}
+};
 
 export default Help;

@@ -61,7 +61,7 @@ const LetterSquare = ({ guess, letter, idx }: LetterSquareProps) => {
     Nasa: require('../../../../../assets/fonts/Nasalization.otf'),
   });
 
-  function matchColor() {
+  const matchColor = () => {
     'worklet';
 
     switch (matchStatus) {

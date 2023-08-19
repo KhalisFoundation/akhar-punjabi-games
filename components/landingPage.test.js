@@ -58,4 +58,12 @@ describe('HomeScreen', () => {
       expect(rendered).toMatchSnapshot();
     });
   });
+
+  test('renders without crashing - with user', async () => {
+    await act(async () => {
+      await AsyncStorage.setItem('user', 'user');
+      const rendered = renderer.create(component).toJSON();
+      expect(rendered).toMatchSnapshot();
+    });
+  });
 });

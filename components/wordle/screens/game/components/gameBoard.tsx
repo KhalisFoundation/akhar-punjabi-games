@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions
 } from 'react-native';
-// eslint-disable-next-line
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useFonts } from 'expo-font';
 import * as Anvaad from 'anvaad-js';
@@ -10,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useAppSelector } from '../../../hooks/storeHooks';
 import { adjustTextDisplay } from '../../../utils/adjustLetterDisplay';
-import { colors, HEIGHT, SIZE } from '../../../utils/constants';
+import { colors, SIZE } from '../../../utils/constants';
 import Keyboard from './keyboard';
 import LetterSquare from './letterSquare';
 import * as Platform from '../../../../../util/orientation';
@@ -27,11 +26,10 @@ const GameBoard = ({ solution, handleGuess, resetGame }: GameBoardProps) => {
   } = useAppSelector(
     (state) => state.gameState
   );
-  const scrollView = React.useRef();
+  const scrollView = React.useRef<ScrollView>();
   const [fontsLoaded] = useFonts({
     Muli: require('../../../../../assets/fonts/Muli.ttf'),
   });
-  // console.log('Guesses', guesses);
   const [localState, setLocalState] = React.useState({
     orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
     devicetype: Platform.isTablet() ? 'tablet' : 'phone'

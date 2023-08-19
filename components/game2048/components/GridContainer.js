@@ -3,7 +3,7 @@ import React from 'react';
 import GridRow from './GridRow';
 import * as Platform from '../../../util/orientation';
 
-function GridContainer() {
+const GridContainer = () => {
   // Event Listener for orientation changes
   const [screen, setScreen] = React.useState({
     width: Dimensions.get('window').width,

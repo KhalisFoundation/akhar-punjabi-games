@@ -9,7 +9,6 @@ export const getGuess = (solution: string, id: number) => {
     isCorrect: false,
   };
   const numMaatras = solution.split('').filter((akhar) => { return maatras.includes(akhar); }).length;
-  // console.log("num of maatras", numMaatras)
   let i = 0;
   solution.split('').map((akhar, idx) => {
     if (maatras.includes(akhar)) {
@@ -23,6 +22,5 @@ export const getGuess = (solution: string, id: number) => {
     }
     return undefined;
   }).filter((ele) => { return ele != undefined; });
-  // console.log("guess", guess)
   return [guess];
 };

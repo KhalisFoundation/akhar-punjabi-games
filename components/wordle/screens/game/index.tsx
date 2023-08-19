@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import * as Anvaad from 'anvaad-js';
 import AnimatedLottieView from 'lottie-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View, Dimensions, Platform } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View, Dimensions, Platform, Share } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 
@@ -27,7 +27,7 @@ import { demo } from '../../words';
 import * as PlatformCheck from '../../../../util/orientation';
 import Help from '../help';
 
-export default function Game({ navigation }) {
+const Game = ({ navigation }) => {
   const {
     guesses,
     usedKeys,
@@ -110,63 +110,7 @@ export default function Game({ navigation }) {
     dispatch(setUsedKeys(tempUsedKeys));
   };
 
-  // const checkGameEnd = () => {
-  //   const attemptsCount = guesses.filter((guess: guess) => {
-  //     return guess.isComplete;
-  //   }).length;
-  //   if (attemptsCount === 6) {
-  //     dispatch(setGameEnded(true));
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   checkGameEnd();
-  // }, [currentGuessIndex]);
-  // useEffect(() => {
-  //   let numMaatras = "ਸਿਪਾਹੀ".split("").filter((akhar)=>{return maatras.includes(akhar)}).length;
-  //   console.log("num of maatras", numMaatras)
-  //   let i = 0;
-  //   const maatraWithPos = "ਸਿਪਾਹੀ".split("").map((akhar, idx) => {
-  //     if (maatras.includes(akhar)) {
-  //       i++
-  //       return [akhar, idx-i];
-  //     }
-  //     return undefined;
-  //   }).filter((ele) => {return ele != undefined}) 
-  //   const numOfMaatras = maatraWithPos.length;
-  //   console.log(numOfMaatras," Maatras found:", maatraWithPos);
-  // }, [solution]);
-
-  // const modifyGuesses = (guesse: guess[]) => {
-  //   console.log("preguesses", guesse)
-  //   let modifiedGuesses = [...guesse];
-  //   let numMaatras = solution.split("").filter((akhar)=>{return maatras.includes(akhar)}).length;
-  //   console.log("num of maatras", numMaatras)
-  //   let i = 0;
-  //   const maatraWithPos = solution.split("").map((akhar, idx) => {
-  //     if (maatras.includes(akhar)) {
-  //       i++
-  //       let guess = [...modifiedGuesses][0];
-  //       if (guess) {
-  //         guess.letters.pop();
-  //         guess.matches.pop();
-  //         guess.letters[idx-i] = akhar;
-  //         modifiedGuesses[0] = guess;
-  //       }
-  //       return [akhar, idx-i];
-  //     }
-  //     return undefined;
-  //   }).filter((ele) => {return ele != undefined}) 
-  //   const numOfMaatras = maatraWithPos.length;
-  //   console.log(numOfMaatras," Maatras found:", maatraWithPos);
-  //   console.log("Modified Guesses", modifiedGuesses);
-  //   return modifiedGuesses;
-  // }
-
   const resetGameState = () => {
-    // check if any element from maatras is in solution
-    // if yes, then split the solution at the maatra and add a space after the maatra
-    // if no, then add a space after the solution
     dispatch(setGuesses([...initialGuesses]));
   };
 
@@ -182,6 +126,17 @@ export default function Game({ navigation }) {
       setSolution(answers()[Math.floor(Math.random() * answers().length)])
     );
   };
+
+
+  const share = () => {
+    Share.share({
+      message: `Hi! I'm playing Punjabi Wordle on Akhar Games to learn Gurmukhi. Join me!
+      \nhttps://play.google.com/store/apps/details?id=com.khalisfoundation.gurmukhi_games`,
+      title: "Akhar Games is a collection of games to help you learn Gurmukhi. Play now!"
+    }, {
+      dialogTitle: "Share Akhar Games"
+    });
+  }
 
   const updateGuess = (keyPressed: string, currentGuess: guess) => {
     const currentGuessLetters = [...currentGuess.letters];
@@ -316,17 +271,12 @@ export default function Game({ navigation }) {
         solutionDict[ele] = 1;
       }
     }
-    // console.log("Solution Dict ",solutionDict);
 
     for (let i = 0; i < guessedArr.length; i++) {
       if (guessedArr[i] === solutionArr[i]) {
         result.push("correct");
         solutionDict[removeMaatra(guessedArr[i])] -= 1;
       } else if (solution.includes(removeMaatra(guessedArr[i]))) {
-        // console.log("Left Solution: ",solution.slice(0, i));
-        // console.log("Guessed: ",guessedArr[i]);
-        // console.log("Right Solution: ",solution.slice(i+1));
-        // console.log("Solution around: ", (solution.slice(0, i).includes(removeMaatra(guessedArr[i])) || solution.slice(i+1).includes(removeMaatra(guessedArr[i]))));
         if (solutionDict[removeMaatra(guessedArr[i])] > 0) {
           result.push("present");
           solutionDict[removeMaatra(guessedArr[i])] -= 1;
@@ -337,10 +287,6 @@ export default function Game({ navigation }) {
         result.push("absent");
       }
     }
-
-
-    // console.log("Result ",result);
-
     return result
   }
 
@@ -371,74 +317,7 @@ export default function Game({ navigation }) {
           dispatch(setGameEnded(true));
           handleFoundKeysOnKeyboard(updatedGuess);
         }, 250 * 6);
-      } else {//if (wordList().includes(currentGuessedWord)) {
-        // put used akhars with maatra in Used words
-        // let matches: matchStatus[] = [];
-        let betterSolution = divByMatra(solution.punjabiText);
-        currentGuessedWord.forEach((letter, index) => {
-          const leftSlice = currentGuessedWord.slice(0, index + 1);
-          const rightSlice = currentGuessedWord.slice(index + 1);
-          const purifiedSlice = leftSlice.map((word) => {
-            return removeMaatra(word);
-          });
-          const countInLeft = leftSlice
-            .filter((item) => item === letter || removeMaatra(item) === removeMaatra(letter)).length;
-          const countInRight = rightSlice
-            .filter((item) => item === letter || removeMaatra(item) === removeMaatra(letter)).length;
-          const totalCount = betterSolution
-            .filter((item) => item === letter || removeMaatra(item) === removeMaatra(letter)).length;
-          const nonMatchingPairs = betterSolution
-            .filter((item, idx) => currentGuessedWord[idx] !== item|| removeMaatra(currentGuessedWord[idx]) !== removeMaatra(item)); //
-
-          // console.log("countInLeft:", countInLeft, "countInRight:", countInRight)
-          // console.log("totalCount:", totalCount, "currentGuessWord:", currentGuessedWord)
-          
-          // const akharInBetterSolution = removeMaatra(betterSolution[index] ? betterSolution[index] : "");
-          // console.log("betterSolution:",betterSolution[index],"akharInBetterSolution:", akharInBetterSolution, "letter:", letter, "removeMaatra(letter):", removeMaatra(letter));
-          // if (akharInBetterSolution == removeMaatra(letter)) {
-          //   matches.push('present');
-          // }
-          
-          // old
-          // if (totalCount > 0) {
-          //   if (betterSolution[index] === letter) {
-          //     matches.push('correct');
-          //   } else {
-          //     console.log(`found ${purifiedSlice.includes(removeMaatra(letter))} ${typeof(purifiedSlice)} where letter: ${removeMaatra(letter)} in slice: ${purifiedSlice}`);
-          //     if (purifiedSlice.includes(removeMaatra(letter))) {
-          //       let localLetters = [...currentGuess.letters];
-          //       console.log("Matcho", localLetters.splice(0,matches.length+1), matches);
-          //       // check if the letter is in the left slice or right slice and if matches the letter in the solution
-          //       if (countInLeft <= totalCount && countInRight <= totalCount) {
-          //         matches.push('present');
-          //       } else {
-          //         matches.push('absent');
-          //       }
-          //     } else {
-          //       matches.push('absent');
-          //     }
-          //   } 
-          // } else {
-          //   matches.push('absent');
-          // }
-          // if (letter === betterSolution[index]) {
-          //   matches.push('correct');
-          // } else if (akharInBetterSolution == removeMaatra(letter)){
-          //   matches.push('present');
-          // } else if (betterSolution.includes(letter)) {
-          //   if (
-          //     countInLeft <= totalCount &&
-          //     nonMatchingPairs.includes(letter)
-          //   ) {
-          //     matches.push('present');
-          //   } else {
-          //     matches.push('absent');
-          //   }
-          // } else {
-          //   matches.push('absent');
-          // }
-        });
-
+      } else {
         const updatedGuess = {
           ...currentGuess,
           matches,
@@ -577,23 +456,30 @@ export default function Game({ navigation }) {
         >
           <IonIcons name="chevron-back" size={dimeMin * 0.07} color="#f5f5f7" style={{elevation: 5, alignSelf: 'center'}} />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => { dispatch(setHelpModal(true)); }}
+        <View
+          style={{
+            flexDirection: 'row',
+          }}
         >
-          <IonIcons name="help" size={dimeMin * 0.07} color="#f5f5f7" style={{elevation: 5, alignSelf: 'center'}}/>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => { dispatch(setHelpModal(true)); }}
+          >
+            <IonIcons name="help" size={dimeMin * 0.07} color="#f5f5f7" style={{elevation: 5, alignSelf: 'center'}}/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => { share(); }}
+          >
+            <IonIcons name="share-social-outline" size={dimeMin * 0.07} color="#f5f5f7" style={{elevation: 5, alignSelf: 'center'}}/>
+          </TouchableOpacity>
+        </View>
       </View>
       <GameBoard
         solution={solution}
         handleGuess={handleGuess}
         resetGame={resetGame}
       />
-      {/* <AnimatedLottieView
-        ref={lottieRef}
-        style={styles.lottieContainer}
-        source={require('../../lottie/confetti.json')}
-      /> */}
     </SafeAreaView>
   );
 }
 
+export default Game;

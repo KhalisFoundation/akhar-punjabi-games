@@ -1,17 +1,14 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-console */
-/* eslint-disable react-native/no-color-literals */
-import * as Anvaad from 'anvaad-js';
-import * as React from 'react';
+/* eslint-disable no-promise-executor-return */
+import * as Anvaad from "anvaad-js";
+import * as React from "react";
 
-import {
-  Text, StyleSheet, TouchableOpacity, Animated, Dimensions
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import { Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 import {
   setAttempt,
   setCorrectWords,
@@ -19,64 +16,59 @@ import {
   setTopWord,
   setLevelProgress,
   setNewWords,
-  setConfetti
-} from '../../redux/actions';
-import * as Platform from '../../util/orientation';
+  setConfetti,
+} from "../../redux/actions";
+import * as Platform from "../../util/orientation";
+import { gurmukhi } from "../utils/gurmukhi";
 
-function TheCircle() {
+const TheCircle = () => {
   // there can only be from 2-18 characters as input
   const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
   // const { width } = dimensions;
 
   const [localState, setLocalState] = React.useState({
-    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
-    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+    orientation: Platform.isPortrait() ? "portrait" : "landscape",
+    devicetype: Platform.isTablet() ? "tablet" : "phone",
   });
 
   // Event Listener for orientation changes
   const [screen, setScreen] = React.useState({
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   });
 
   let dime = Math.min(screen.width, screen.height);
-  Dimensions.addEventListener('change', () => {
+  Dimensions.addEventListener("change", () => {
     dime = Math.min(screen.width, screen.height);
     setScreen({
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height,
     });
     setLocalState({
-      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+      orientation: Platform.isPortrait() ? "portrait" : "landscape",
     });
   });
 
-  const matras = ['I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~', 'Í', 'R', 'H'];
-  function gurmukhi(text) {
+  const getGurmukhi = (text) => {
     if (state.romanised) {
       return Anvaad.translit(text);
     }
-    if (matras.includes(text)) {
-      return ` ${text}`;
-    }
-    return text;
-  }
+    return gurmukhi(text);
+  };
 
   const [fontsLoaded] = useFonts({
-    Arial: require('../../assets/fonts/Arial.ttf'),
-    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    GurbaniAkharSG: require('../../assets/fonts/GurbaniAkharSG.ttf'),
-    Muli: require('../../assets/fonts/Muli.ttf'),
+    Arial: require("../../assets/fonts/Arial.ttf"),
+    GurbaniHeavy: require("../../assets/fonts/GurbaniAkharHeavySG.ttf"),
+    GurbaniAkharSG: require("../../assets/fonts/GurbaniAkharSG.ttf"),
+    Muli: require("../../assets/fonts/Muli.ttf"),
   });
 
-  const delay = (ms) => new Promise(
-    (resolve) => setTimeout(resolve, ms)
-  );
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const ifCorrectWord = async (word) => {
     let somethingHappened = false;
-    if (word === state.firstWord.engText && state.topWord === '') {
+    if (word === state.firstWord.engText && state.topWord === "") {
       if (!state.correctWords.includes(state.firstWord)) {
         dispatch(setTopWord());
         dispatch(setCorrectWords(state.firstWord));
@@ -84,7 +76,7 @@ function TheCircle() {
         somethingHappened = true;
       }
       // if bottomWord is filled that means both are now answered so will get new words
-      if (state.bottomWord !== '') {
+      if (state.bottomWord !== "") {
         if (state.showPopUp) {
           // time delay for 1500 seconds
           dispatch(setConfetti(true));
@@ -94,7 +86,7 @@ function TheCircle() {
         somethingHappened = true;
       }
     }
-    if (word === state.secondWord.engText && state.bottomWord === '') {
+    if (word === state.secondWord.engText && state.bottomWord === "") {
       if (!state.correctWords.includes(state.secondWord)) {
         dispatch(setBottomWord());
         dispatch(setCorrectWords(state.secondWord));
@@ -102,7 +94,7 @@ function TheCircle() {
         somethingHappened = true;
       }
       // if topWord is filled that means both are now answered so will get new words
-      if (state.topWord !== '') {
+      if (state.topWord !== "") {
         if (state.showPopUp) {
           // time delay for 1500 seconds
           dispatch(setConfetti(true));
@@ -114,15 +106,14 @@ function TheCircle() {
     }
     // this condition resets all the logic if a word is completed
     if (somethingHappened) {
-      dispatch(setAttempt(''));
+      dispatch(setAttempt(""));
     }
   };
 
-  function touchedMe(object, final) {
-    console.log(`${object} was touched!`);
+  const touchedMe = (object, final) => {
     dispatch(setAttempt(final));
     ifCorrectWord(final);
-  }
+  };
   const { charArray } = state;
   const prevAttempt = state.attempt;
 
@@ -191,7 +182,8 @@ function TheCircle() {
   const styles = StyleSheet.create({
     lettersCircle: {
       width: dime,
-      height: dime * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.5 : 0.8) : 1)
+      height:
+        dime * (Platform.isTablet() ? (localState.orientation === "portrait" ? 0.5 : 0.8) : 1),
     },
     // clearBox: {
     //   width: 0.12*width,
@@ -201,19 +193,19 @@ function TheCircle() {
     // },
     characterText: {
       fontSize: dime > 500 ? dime * 0.055 : dime * 0.08,
-      color: '#FF7E00',
-      textAlign: 'center',
-      fontFamily: state.romanised ? 'Muli' : 'GurbaniAkharSG'
+      color: "#FF7E00",
+      textAlign: "center",
+      fontFamily: state.romanised ? "Muli" : "GurbaniAkharSG",
     },
     commonChar: {
-      position: 'relative',
+      position: "relative",
       width: dime > 500 ? dime * 0.079 : dime * 0.115,
       height: dime > 500 ? dime * 0.079 : dime * 0.115,
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       elevation: 5,
       borderRadius: 10,
-      justifyContent: 'center',
-    }
+      justifyContent: "center",
+    },
   });
 
   const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -225,7 +217,7 @@ function TheCircle() {
     }
     return 0.25 * dime;
   };
-  const radius = getRadius();// dime * 0.25;
+  const radius = getRadius(); // dime * 0.25;
   const step = (2 * Math.PI) / charArray.length;
   const newHeight = dime > 500 ? dime * 0.2 : dime * 0.25;
   const newWidth = dime * 0.45;
@@ -242,17 +234,12 @@ function TheCircle() {
   }
 
   return (
-    <AnimatedLinearGradient
-      colors={['transparent', 'transparent']}
-      style={styles.lettersCircle}
-    >
-      {
-      charArray.map((char) => {
+    <AnimatedLinearGradient colors={["transparent", "transparent"]} style={styles.lettersCircle}>
+      {charArray.map((char) => {
         const x = Math.round(newWidth + radius * Math.cos(angle));
         const y = Math.round(newHeight + radius * Math.sin(angle));
-        // console.log("height: %d, width: %d, x %d, y %d", newHeight, newWidth, x, y)
         // let theLetter = String.fromCharCode(char);
-        const theLetter = gurmukhi(char);
+        const theLetter = getGurmukhi(char);
         angle += step;
         return (
           <TouchableOpacity
@@ -261,14 +248,11 @@ function TheCircle() {
 
               if (prevAttempt === undefined) {
                 final = char;
-              } else if (char === 'i' && prevAttempt !== '') {
+              } else if (char === "i" && prevAttempt !== "") {
                 /* reason for doing this is so you can type ਰਹਿਣ correctly.
                 If this if wasn't there you would need to type ਰਹਿਣ as ਰਿਹਣ to get correct answer
                 because ਰਹਿਣ changes to ਰਹਣਿ */
-                const prevString = prevAttempt.substring(
-                  0,
-                  prevAttempt.length - 1
-                );
+                const prevString = prevAttempt.substring(0, prevAttempt.length - 1);
                 final = prevString + char + prevAttempt[prevAttempt.length - 1];
               } else {
                 final = prevAttempt + char;
@@ -278,21 +262,20 @@ function TheCircle() {
             key={char}
             style={{
               ...styles.commonChar,
-              position: 'absolute',
+              position: "absolute",
               left: x,
               top: y,
               zIndex: 0,
             }}
           >
-            <LinearGradient colors={['#ffe400', '#848900']} style={styles.commonChar}>
-              <Text key={char} style={{ ...styles.characterText, zIndex: 0, color: '#032b45' }}>
+            <LinearGradient colors={["#ffe400", "#848900"]} style={styles.commonChar}>
+              <Text key={char} style={{ ...styles.characterText, zIndex: 0, color: "#032b45" }}>
                 {theLetter}
               </Text>
             </LinearGradient>
           </TouchableOpacity>
         );
-      })
-}
+      })}
       {/* {(state.attempt == "") ? <View style={{borderRadius: 25,
           height: 40,
           width: 40,alignSelf: 'center'}}></View> :
@@ -335,6 +318,6 @@ function TheCircle() {
       </TouchableOpacity>} */}
     </AnimatedLinearGradient>
   );
-}
+};
 
 export default TheCircle;

@@ -38,7 +38,7 @@ interface KeyboardProps {
   handleGuess: (keyPressed: string) => void;
 }
 
-export default function Keyboard({ handleGuess }: KeyboardProps) {
+const Keyboard = ({ handleGuess }: KeyboardProps) => {
   const { usedKeys, gameLanguage } = useAppSelector((state) => state.gameState);
   const keyboard = gameLanguage === 'en' ? keysEN : keysPN;
 
@@ -70,7 +70,7 @@ export default function Keyboard({ handleGuess }: KeyboardProps) {
     keyboardContainer: {
       display: 'flex',
       alignItems: 'center',
-      marginBottom: PlatformCheck.isTablet() && PlatformCheck.isLandscape() ? dime * 0.15 : 0,
+      marginBottom: PlatformCheck.isTablet() ? (PlatformCheck.isLandscape() ? dime * 0.15 : dime * 0.1) : 0,
     },
     keyboardRow: {
       width: SIZE,
@@ -166,3 +166,5 @@ export default function Keyboard({ handleGuess }: KeyboardProps) {
     </View>
   );
 }
+
+export default Keyboard;
