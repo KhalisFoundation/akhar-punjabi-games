@@ -46,3 +46,5 @@ export const isTablet = () => {
  * Returns true if the device is a phone
  */
 export const isPhone = () => { return !isTablet(); };
+
+export const OS = () => { return Platform.OS; };

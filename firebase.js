@@ -1,9 +1,13 @@
 // Import the functions you need from the SDKs you need
 import firebase from 'firebase';
-import {
-  API_KEY, AUTH_DOMAIN, APP_ID, PROJECT_ID, STORAGE_BUCKET,
-  MESSAGING_SENDER_ID, MEASUREMENT_ID
-} from '@env';
+
+const API_KEY = 'AIzaSyAxeQSmufN-0kiAqfQnNzw4jFrz93IrfKo';
+const AUTH_DOMAIN = 'sikh-games.firebaseapp.com';
+const PROJECT_ID = 'sikh-games';
+const STORAGE_BUCKET = 'sikh-games.appspot.com';
+const MESSAGING_SENDER_ID = '370328077829';
+const APP_ID = '1:370328077829:web:2f0c04971b989c52bf3e6c';
+const MEASUREMENT_ID = 'G-G5D0PLV9PG';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

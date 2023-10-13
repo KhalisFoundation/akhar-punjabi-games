@@ -1,10 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-/* eslint-disable array-callback-return */
-/* eslint-disable react-native/no-unused-styles */
-/* eslint-disable no-console */
-/* eslint-disable react-native/no-color-literals */
+/* eslint-disable */
 import * as Anvaad from 'anvaad-js';
 import * as React from 'react';
 
@@ -33,7 +27,7 @@ export const TheCircle = ({ visited, setVisited, points }) => {
   const [startXY, setStartXY] = useState({ x: 0, y: 0 });
   const [endXY, setEndXY] = useState({ x: '', y: '' });
 
-  function gurmukhi(text) {
+  const getText = (text) => {
     if (state.romanised) {
       return Anvaad.translit(text);
     }
@@ -78,8 +72,7 @@ export const TheCircle = ({ visited, setVisited, points }) => {
     }
   };
 
-  function touchedMe(object, final) {
-    console.log(`${object} was touched!`);
+  const touchedMe = (object, final) => {
     dispatch(setAttempt(final));
     ifCorrectWord(final);
   }
@@ -202,17 +195,15 @@ export const TheCircle = ({ visited, setVisited, points }) => {
     } else {
       path = `${start.x},${start.y} ${end.x},${end.y}`;
     }
-    console.log('path : ', path);
     return path;
   };
 
-  function checkIfFound(xTouch, yTouch) {
+  const checkIfFound = (xTouch, yTouch) => {
     let foundCoordinates = '';
     let foundWord = '';
     points.map(({ x, y, letter }) => {
       if ((x <= xTouch && xTouch <= x + dimensions.size['18']) && (y + height / 1.55 <= yTouch && yTouch <= y + height / 1.55 + dimensions.size['18'])) {
         foundCoordinates = `${x},${y}`;
-        console.log('foundCoordinates : ', foundCoordinates);
         foundWord = letter;
       }
     });
@@ -228,12 +219,10 @@ export const TheCircle = ({ visited, setVisited, points }) => {
     onPanResponderGrant: (event, gestureState) => {
       setStartXY({ x: 0, y: 0 });
       setEndXY({ x: 0, y: 0 });
-      console.log('grant');
       // setPassed([]);
     },
 
     onPanResponderMove: (event, gestureState) => {
-      // console.log('here you are => ', gestureState.moveX, gestureState.moveY);
       pan.setValue({ x: 0, y: 0 });
       // setting start point if location is right
       const [res, firstLetter] = checkIfFound(gestureState.x0, gestureState.y0);
@@ -268,7 +257,6 @@ export const TheCircle = ({ visited, setVisited, points }) => {
       setEndXY({ x: '', y: '' });
       setVisited([]);
       dispatch(setAttempt(''));
-      console.log('release');
     }
   }));
 
@@ -282,12 +270,10 @@ export const TheCircle = ({ visited, setVisited, points }) => {
       onPanResponderGrant: (event, gestureState) => {
         setStartXY({ x: 0, y: 0 });
         setEndXY({ x: 0, y: 0 });
-        console.log('grant');
         // setPassed([]);
       },
 
       onPanResponderMove: (event, gestureState) => {
-        // console.log('here you are => ', gestureState.moveX, gestureState.moveY);
         pan.setValue({ x: 0, y: 0 });
         // setting start point if location is right
         const [res, firstLetter] = checkIfFound(gestureState.x0, gestureState.y0);
@@ -322,11 +308,11 @@ export const TheCircle = ({ visited, setVisited, points }) => {
         setEndXY({ x: '', y: '' });
         setVisited([]);
         dispatch(setAttempt(''));
-        console.log('release');
       }
     }));
   }, [state.charArray]);
 
+  // code for gradient background circle
   // useEffect(() => {
   //   console.log(`word is ${state.attempt}`);
   //   dispatch(setAttempt(word));
@@ -362,7 +348,7 @@ export const TheCircle = ({ visited, setVisited, points }) => {
 
       {points.map(({ x, y, letter }) => {
         const char = letter;
-        const theLetter = gurmukhi(char);
+        const theLetter = getText(char);
         return (
           <TouchableOpacity
             onPress={() => {

@@ -2,7 +2,6 @@
 import {
   StyleSheet,
   View,
-  Share,
   Text,
   PanResponder,
   Dimensions
@@ -21,7 +20,7 @@ import Tile from '../utils/tile';
 import Heading from './Heading';
 import GameContainer from './GameContainer';
 
-import { BelowGame } from './BelowGame';
+import BelowGame from './BelowGame';
 import dimensions from '../../../util/dimensions';
 import * as Platform from '../../../util/orientation';
 
@@ -138,8 +137,6 @@ class Container extends Component {
               style={{ flex: 1 }}
             />
           </MaskedView>
-          {/* <AboveGame
-              onRestart={() => this.restart()} onShare={() => this.share()}></AboveGame> */}
           <Heading score={this.state.score} best={this.state.best} />
           <View {...this._panResponder.panHandlers} >
             <GameContainer
@@ -182,23 +179,16 @@ class Container extends Component {
   continueGame = () => {
     this.won = false;
     this.over = false;
-    this.setState({ won: this.won, over: this.over });
+    this.setState({
+      won: this.won,
+      over: this.over
+    });
   }
 
   restart = () => {
     storageManager.clearGameState();
     this.continueGame(); // Clear the game won/lost message
     this.setup();
-  }
-
-  share = () => {
-    // console.log("Share clicked")
-    Share.share({
-      message: 'https://play.google.com/store/apps/details?id=com.coins2048',
-      title: '2048 Coins is a challenging cryptocurrency puzzle'
-    }, {
-      dialogTitle: 'Share'
-    });
   }
 
   // Keep playing after winning (allows going over 2048)
@@ -278,8 +268,6 @@ class Container extends Component {
     this.grid.cells.forEach((column) => {
       column.forEach((cell) => {
         if (cell) {
-          // console.log("cell");
-          // console.log(cell);
           tiles.push({
             x: cell.x,
             y: cell.y,
@@ -299,11 +287,19 @@ class Container extends Component {
       if (bestScore < this.score) {
         storageManager.setBestScore(this.score);
         this.setState({
-          score: this.score, best: this.score, tiles, won: this.won, over: this.over
+          score: this.score,
+          best: this.score,
+          tiles,
+          won: this.won,
+          over: this.over
         });
       } else {
         this.setState({
-          score: this.score, best: bestScore, tiles, won: this.won, over: this.over
+          score: this.score,
+          best: bestScore,
+          tiles,
+          won: this.won,
+          over: this.over
         });
       }
     });

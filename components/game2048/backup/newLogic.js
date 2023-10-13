@@ -26,7 +26,6 @@ export const getEmptyBoard = () => {
       board.push(tile(id, 2, [parseInt(i), parseInt(j)]));
     }
   }
-  console.log(board);
   return board;
 };
 

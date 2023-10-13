@@ -7,7 +7,6 @@ import getWords from '../util/generateWords';
 const setData = async (title, state) => {
   try {
     await AsyncStorage.setItem(title, JSON.stringify(state));
-    // console.log(state.firstWord);
   } catch (e) {
     console.log(e);
   }
@@ -201,9 +200,6 @@ function theGameReducer(state = initialState, action) {
       );
     }
     wordsLst.push(action.theWord);
-
-    console.log(state.totalPoints, state.levelProgress[0].pointsPerWord);
-    console.log(state.totalPoints + state.levelProgress[0].pointsPerWord);
     const newState = {
       ...state,
       correctWords: wordsLst,
@@ -232,7 +228,7 @@ function theGameReducer(state = initialState, action) {
     setData('state', newState);
     return newState;
   }
-  function getAllWords(theWordType) {
+  const getAllWords = (theWordType) => {
     let result;
     if (state.levelProgress[0].wordsNeeded === 0
       && state.levelProgress[0].level === state.finalLevel - 1) {
@@ -241,11 +237,6 @@ function theGameReducer(state = initialState, action) {
       result = state.ALL_WORDS.levels[state.levelProgress[0].level];
     }
     return result;
-    // .filter(
-    //   (word) =>
-    //     word.level === state.levelProgress[0].level &&
-    //     (theWordType === word.type || theWordType === "Both")
-    // );
   }
   if (action.type === 'SET_NEW_WORDS') {
     let newWordType = state.typesOfWords;
@@ -258,12 +249,10 @@ function theGameReducer(state = initialState, action) {
       allWordsForCurrentLevel = getAllWords(newWordType);
     }
 
-    // does this work??
     const newUsableWords = allWordsForCurrentLevel.filter(
       (word) => !state.correctWords.includes(word) && !state.givenUpWords.includes(word)
     );
 
-    // console.log(newUsableWords.length, allWordsForCurrentLevel.length);
     let newGiveUpWords;
     if (newUsableWords.length > 3) {
       newGiveUpWords = [...state.givenUpWords];

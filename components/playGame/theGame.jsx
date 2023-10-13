@@ -1,26 +1,26 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react-native/no-color-literals */
-import * as React from 'react';
-import {
-  View, TouchableOpacity, StyleSheet, StatusBar, Dimensions
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import IonIcons from 'react-native-vector-icons/Ionicons';
-import ConfettiCannon from 'react-native-confetti-cannon';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import * as Analytics from 'expo-firebase-analytics';
-import { StatsBox, WordBox, AttemptInput } from '.';
-import WordsDoneModal from './modalNextWord';
-import { HintButton } from './hintButton';
-import { openHelpModal, openNextLevelModal } from '../../redux/actions';
-import Help from './help';
-import TheCircle from './circleForGame';
-import * as Platform from '../../util/orientation';
+import * as React from "react";
+import { View, TouchableOpacity, StyleSheet, StatusBar, Dimensions } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import IonIcons from "react-native-vector-icons/Ionicons";
+import ConfettiCannon from "react-native-confetti-cannon";
+import { SafeAreaView } from "react-native-safe-area-context";
+import * as Analytics from "expo-firebase-analytics";
+import PropTypes from "prop-types";
+import WordsDoneModal from "./modalNextWord";
+import { openHelpModal, openNextLevelModal } from "../../redux/actions";
+import Help from "./help";
+import TheCircle from "./circleForGame";
+import * as Platform from "../../util/orientation";
+import AttemptInput from "./attemptInput";
+import HintButton from "./hintButton";
+import WordBox from "./wordBox";
+import StatsBox from "./statsBox";
 
-function GameScreen({ navigation }) {
+const GameScreen = ({ navigation }) => {
   const state = useSelector((theState) => theState.theGameReducer);
   // const [visited, setVisited] = useState([]);
   // const [word, setWord] = useState('');
@@ -28,61 +28,59 @@ function GameScreen({ navigation }) {
 
   const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
-    Arial: require('../../assets/fonts/Arial.ttf'),
-    GurbaniHeavy: require('../../assets/fonts/GurbaniAkharHeavySG.ttf'),
-    Bookish: require('../../assets/fonts/Bookish.ttf'),
-    Mochy: require('../../assets/fonts/Mochy.ttf'),
-    Muli: require('../../assets/fonts/Muli.ttf'),
+    Arial: require("../../assets/fonts/Arial.ttf"),
+    GurbaniHeavy: require("../../assets/fonts/GurbaniAkharHeavySG.ttf"),
+    Bookish: require("../../assets/fonts/Bookish.ttf"),
+    Mochy: require("../../assets/fonts/Mochy.ttf"),
+    Muli: require("../../assets/fonts/Muli.ttf"),
   });
 
   const [localState, setLocalState] = React.useState({
-    orientation: Platform.isPortrait() ? 'portrait' : 'landscape',
-    devicetype: Platform.isTablet() ? 'tablet' : 'phone'
+    orientation: Platform.isPortrait() ? "portrait" : "landscape",
+    devicetype: Platform.isTablet() ? "tablet" : "phone",
   });
 
   // Event Listener for orientation changes
   const [screen, setScreen] = React.useState({
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   });
 
   let dimeMin = Math.min(screen.width, screen.height);
-  Dimensions.addEventListener('change', () => {
+  Dimensions.addEventListener("change", () => {
     dimeMin = Math.min(screen.width, screen.height);
     setScreen({
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height,
     });
     setLocalState({
-      orientation: Platform.isPortrait() ? 'portrait' : 'landscape'
+      orientation: Platform.isPortrait() ? "portrait" : "landscape",
     });
   });
-  React.useEffect(() => {
-    console.log('All words: ', state.allWords);
-  }, [dispatch]);
-  // const points = [];
 
-  // const colors = theColors.false;
   const styles = StyleSheet.create({
     container: {
-      width: '100%',
-      height: '100%',
-      flexDirection: 'column',
-      alignItems: 'center',
-      paddingBottom: 50
+      width: "100%",
+      height: "100%",
+      flexDirection: "column",
+      alignItems: "center",
+      paddingBottom: 50,
     },
     scroller: {
-      height: '100%',
-      width: '100%',
-      flexDirection: localState.orientation === 'portrait' ? 'column' : 'row',
-      padding: localState.orientation === 'portrait' ? null : dimeMin * 0.05,
-      justifyContent: (Platform.isTablet() ? (localState.orientation === 'portrait' ? 'flex-start' : 'space-around') : 'space-between'),
+      height: "100%",
+      width: "100%",
+      flexDirection: localState.orientation === "portrait" ? "column" : "row",
+      padding: localState.orientation === "portrait" ? null : dimeMin * 0.05,
+      justifyContent: Platform.isTablet()
+        ? localState.orientation === "portrait"
+          ? "flex-start"
+          : "space-around"
+        : "space-between",
     },
     hintLayout: {
-      width: Platform.isTablet() ? '75%' : '95%',
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-      alignSelf: 'flex-end'
+      backgroundColor: "transparent",
+      flexDirection: "row",
+      alignSelf: "center",
     },
     // status: {
     //   color: 'black',
@@ -99,39 +97,42 @@ function GameScreen({ navigation }) {
     // },
     wordBox: {
       // flexDirection: "column",
-      width: dimeMin * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.6 : 0.55) : 0.8),
-      height: dimeMin * (Platform.isTablet() ? (localState.orientation === 'portrait' ? 0.5 : 0.8) : 0.6),
-      justifyContent: 'center',
-      alignSelf: 'center',
+      width:
+        dimeMin *
+        (Platform.isTablet() ? (localState.orientation === "portrait" ? 0.6 : 0.55) : 0.8),
+      height:
+        dimeMin * (Platform.isTablet() ? (localState.orientation === "portrait" ? 0.5 : 0.8) : 0.6),
+      justifyContent: "center",
+      alignSelf: "center",
       padding: 0,
-      paddingLeft: Platform.isTablet() && localState.orientation === 'landscape' ? 50 : null,
+      paddingLeft: Platform.isTablet() && localState.orientation === "landscape" ? 50 : null,
       margin: 0,
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       borderRadius: 30,
     },
     wordBoxAnswers: {
       // flexDirection: "column",
       width: dimeMin * (Platform.isTablet() ? 0.6 : 0.8),
-      height: (Platform.isTablet() ? (localState.orientation === 'portrait' ? '65%' : '50%') : '70%'),
+      height: Platform.isTablet() ? (localState.orientation === "portrait" ? "65%" : "50%") : "70%",
       paddingHorizontal: 10,
       marginHorizontal: 10,
-      justifyContent: 'space-evenly',
-      alignSelf: 'center',
-      backgroundColor: 'transparent',
+      justifyContent: "space-evenly",
+      alignSelf: "center",
+      backgroundColor: "transparent",
       borderRadius: 30,
     },
     header: {
       height: 65,
-      width: '90%',
+      width: "90%",
       margin: 5,
       marginBottom: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
-      shadowColor: '#000',
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: 2
+        height: 2,
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
@@ -280,53 +281,13 @@ function GameScreen({ navigation }) {
     // },
   });
 
-  async function ranOutOfLives(level) {
-    await Analytics.logEvent('ran_out_of_lives', { level_at: level });
-  }
+  const ranOutOfLives = async (level) => {
+    await Analytics.logEvent("ran_out_of_lives", { level_at: level });
+  };
 
   if (state.giveUpsLeft === 0) {
     ranOutOfLives(state.levelProgress[0].level);
   }
-
-  // function splitArray(arr, chunk) {
-  //   const groups = arr.map((e, i) => {
-  //     return i % chunk === 0 ? arr.slice(i, i + chunk) : null;
-  //   }).filter((e) => { return e; });
-  //   return groups;
-  // }
-
-  // const keysArray = points.map((a) => a.letter);
-  // const chunk = keysArray.length % 2 === 0 ? keysArray.length / 2 : (keysArray.length + 1) / 2;
-  // const keyboardGrid = splitArray(keysArray, chunk);
-  // console.log(keyboardGrid);
-
-  // // get length after removing laga matra
-  // function woMatra(word) {
-  //   var wordWOMatras = Array();
-  //   const matras = ['w', 'i', 'I', 'u', 'U', 'y', 'Y', 'o', 'O', 'M', 'N', '`', '~'];
-  //   let listedWord = word.split();
-  //   console.log(`splitted: ${listedWord}`);
-  //   for (ele in matras) {
-  //     for (letter in listedWord) {
-  //       if (ele === letter) {
-  //         wordWOMatras.push(letter);
-  //       }
-  //     }
-  //   }
-  //   console.log(`word: ${word} \nlist:
-  //  ${wordWOMatras} \nlength: ${wordWOMatras.length}\n final: ${wordWOMatras.join('')}`);
-  //   return wordWOMatras.join('');
-  // }
-
-  /*
-  To know which word is longer
-  function longer() {
-    if (state.firstWord.engText.length >= state.secondWord.engText.length) {
-      return state.firstWord.engText.length;
-    } else {
-      return state.secondWord.engText.length;
-    }
-  } */
 
   React.useEffect(() => {
     if (state.levelProgress === []) {
@@ -338,39 +299,40 @@ function GameScreen({ navigation }) {
     return <AppLoading />;
   }
   return (
-    <LinearGradient
-      colors={['#2289d8', '#032b45']}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#2289d8", "#032b45"]} style={styles.container}>
       <SafeAreaView style={styles.container}>
-        { state.helpPage ? <Help /> : null }
-        { state.nextLevelModal[0] ? <WordsDoneModal /> : null }
-        <StatusBar
-          translucent
-          backgroundColor="transparent"
-          barStyle="dark-content"
-        />
-        <View style={{
-          width: '100%', height: dimeMin * 0.2, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', padding: 20
-        }}
+        {state.helpPage ? <Help /> : null}
+        {state.nextLevelModal[0] ? <WordsDoneModal /> : null}
+        <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+        <View
+          style={{
+            width: "100%",
+            height: dimeMin * 0.2,
+            backgroundColor: "transparent",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around",
+            padding: 20,
+          }}
         >
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-          >
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <IonIcons name="chevron-back" size={dimeMin * 0.08} color="black" />
           </TouchableOpacity>
-          <View
-            style={styles.header}
-          >
+          <View style={styles.header}>
             <StatsBox stat="levels" navigation={navigation} />
             <StatsBox stat="hints" navigation={navigation} />
             {/* <StatsBox stat="points" navigation={navigation} /> */}
           </View>
-          <IonIcons name="help" size={dimeMin * 0.08} color="black" onPress={() => { dispatch(openHelpModal()); console.log(state.helpPage); }} />
+          <IonIcons
+            name="help"
+            size={dimeMin * 0.08}
+            color="black"
+            onPress={() => {
+              dispatch(openHelpModal());
+            }}
+          />
         </View>
-        <View
-          style={styles.scroller}
-        >
+        <View style={styles.scroller}>
           {/* <View
           style={styles.header}
           >
@@ -379,13 +341,8 @@ function GameScreen({ navigation }) {
           {/* <StatsBox stat="points" navigation={navigation} />
           </View> */}
 
-          <View
-            style={styles.wordBox}
-          >
-            <LinearGradient
-              colors={['#ff6f00', '#b34e00']}
-              style={styles.wordBoxAnswers}
-            >
+          <View style={styles.wordBox}>
+            <LinearGradient colors={["#ff6f00", "#b34e00"]} style={styles.wordBoxAnswers}>
               <View>
                 <WordBox wordType="top" />
                 <WordBox wordType="bottom" />
@@ -405,13 +362,15 @@ function GameScreen({ navigation }) {
             <AttemptInput />
           </View>
 
-          <View style={{
-            flexDirection: 'column',
-            justifyContent: 'space-around',
-            maxWidth: Platform.isTablet() ? dimeMin * 0.8 : null,
-            maxHeight: Platform.isTablet() ? dimeMin * 0.6 : null,
-            paddingTop: Platform.isTablet() && localState.orientation === 'landscape' ? dimeMin / 10 : null,
-          }}
+          <View
+            style={{
+              flexDirection: "column",
+              justifyContent: "space-around",
+              maxWidth: Platform.isTablet() ? dimeMin * 0.8 : null,
+              maxHeight: Platform.isTablet() ? dimeMin * 0.6 : null,
+              paddingTop:
+                Platform.isTablet() && localState.orientation === "landscape" ? dimeMin / 10 : null,
+            }}
           >
             {/* {keyboardGrid.map((letters, index) => {
                 return (
@@ -457,16 +416,24 @@ function GameScreen({ navigation }) {
             <TheCircle />
             {/* condition to show hint button only when both words are not guessed */}
             <View style={styles.hintLayout}>
-              {((state.topHint.length !== state.firstLength) && (state.topWord.length !== state.firstLength)) ? <HintButton wordType="top" /> : <HintButton wordType="bottom" />}
+              {state.topWord.length !== state.firstLength ? (
+                <HintButton wordType="top" />
+              ) : (
+                <HintButton wordType="bottom" />
+              )}
             </View>
           </View>
         </View>
       </SafeAreaView>
-      { state.confetti
-        ? <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} fallSpeed={2000} autoStart />
-        : null }
+      {state.confetti ? (
+        <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} fallSpeed={2000} autoStart />
+      ) : null}
     </LinearGradient>
   );
-}
+};
+
+GameScreen.propTypes = {
+  navigation: PropTypes.shape().isRequired,
+};
 
 export default GameScreen;

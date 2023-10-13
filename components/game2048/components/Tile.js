@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NumText } from './NumText';
+import NumText from './NumText';
 import dimensions from '../../../util/dimensions';
 import * as Platform from '../../../util/orientation';
 
@@ -91,7 +91,6 @@ export default class Tile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('componentWillReceiveProps');
     this.isHorizontalMove = nextProps.x !== this.props.x;
     const fromVal = (this.isHorizontalMove
       ? this.props.x
