@@ -1,4 +1,4 @@
-import getKeyboardKey from "./get-keyboard-key";
+import getKeyboardKeyValue from "./get-keyboard-key-value";
 import getMatraAkhar from "./get-matra-akhar";
 
-export { getKeyboardKey as getKeyboardKeyValue, getMatraAkhar };
+export { getKeyboardKeyValue, getMatraAkhar };

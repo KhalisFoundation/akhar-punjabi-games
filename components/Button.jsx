@@ -57,21 +57,8 @@ Button.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   text: PropTypes.string.isRequired,
-  btnStyle: PropTypes.shape({
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    borderRadius: PropTypes.number.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    justifyContent: PropTypes.string.isRequired,
-    alignItems: PropTypes.string.isRequired,
-    margin: PropTypes.number.isRequired,
-  }).isRequired,
-  textStyle: PropTypes.shape({
-    fontSize: PropTypes.number.isRequired,
-    fontFamily: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    textAlign: PropTypes.string.isRequired,
-  }).isRequired,
+  btnStyle: PropTypes.object.isRequired,
+  textStyle: PropTypes.object.isRequired,
 };
 
 export default Button;
