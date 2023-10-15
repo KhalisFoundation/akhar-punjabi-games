@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import renderer, { act } from "react-test-renderer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { auth } from "../firebase";
 import HomeScreen from "./homeScreen/landingPage";
 
 const Stack = createStackNavigator();
