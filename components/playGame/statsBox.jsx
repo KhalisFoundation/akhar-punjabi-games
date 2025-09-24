@@ -1,13 +1,12 @@
 import * as React from "react";
 import { View, TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native";
+import IconM from "react-native-vector-icons/MaterialCommunityIcons";
+import EnIcon from "react-native-vector-icons/Entypo";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import Plus from "../icons/Plus";
-import Hint from "../icons/Hint";
-import Medal from "../icons/Medal";
 
 const StatsBox = ({ stat, navigation }) => {
-  const state = useSelector((theState) => theState);
+  const state = useSelector((theState) => theState.theGameReducer);
 
   // Event Listener for orientation changes
   const [screen, setScreen] = React.useState({
@@ -28,13 +27,13 @@ const StatsBox = ({ stat, navigation }) => {
     levels: {
       name: "Level",
       icon: "shield",
-      color: "yellow",
+      color: "#93FFD8",
       value: state.levelProgress[0].level,
     },
     hints: {
       name: "Hints",
       icon: "lightbulb-on",
-      color: "orange",
+      color: "#FF7E00",
       value: state.giveUpsLeft,
     },
   };
@@ -42,12 +41,13 @@ const StatsBox = ({ stat, navigation }) => {
   const item = items[stat];
   const styles = StyleSheet.create({
     upBox: {
-      backgroundColor: "rgba(255, 255, 255, 0.29)",
+      backgroundColor: "#072227",
       flexDirection: "row",
-      height: dime * 0.08,
-      width: dime * 0.25,
+      height: dime * 0.06,
+      width: dime * 0.3,
       alignItems: "center",
       borderRadius: 10,
+      elevation: 5,
       paddingHorizontal: dime * 0.02,
       justifyContent: "space-evenly",
     },
@@ -61,11 +61,9 @@ const StatsBox = ({ stat, navigation }) => {
   return (
     <View style={styles.upBox}>
       {stat === "levels" ? (
-        <Medal size={dime * 0.05} />
+        <EnIcon name={item.icon} size={dime * 0.05} color={item.color} />
       ) : (
-        // <EnIcon name={item.icon} size={dime * 0.05} color={item.color} />
-        <Hint size={dime * 0.05} />
-        // <IconM name={item.icon} size={dime * 0.05} color={item.color} />
+        <IconM name={item.icon} size={dime * 0.05} color={item.color} />
       )}
       <Text style={styles.upText}>
         {item.name === "Level" ? `${item.name} ${item.value}` : `${item.value}`}
@@ -76,8 +74,7 @@ const StatsBox = ({ stat, navigation }) => {
             navigation.navigate("giveUps", { prevScreen: 1 });
           }}
         >
-          <Plus size={dime * 0.05} />
-          {/* <IconM name="plus-circle" size={dime * 0.05} color="#06FF00" /> */}
+          <IconM name="plus-circle" size={dime * 0.05} color="#06FF00" />
         </TouchableOpacity>
       ) : null}
     </View>

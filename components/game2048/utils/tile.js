@@ -3,6 +3,7 @@
 let _prog = 0;
 
 class Tile {
+
   constructor(position, value) {
     this.x = position.x;
     this.y = position.y;
@@ -25,9 +26,9 @@ class Tile {
     return {
       position: {
         x: this.x,
-        y: this.y,
+        y: this.y
       },
-      value: this.value,
+      value: this.value
     };
   }
 }

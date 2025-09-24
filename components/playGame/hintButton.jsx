@@ -1,6 +1,7 @@
 /* eslint-disable no-promise-executor-return */
 import * as React from "react";
 import { TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import IconM from "react-native-vector-icons/MaterialCommunityIcons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Analytics from "expo-firebase-analytics";
 import PropTypes from "prop-types";
@@ -14,10 +15,9 @@ import {
   setGiveUpLives,
   setConfetti,
 } from "../../redux/actions";
-import Hint from "../icons/Hint";
 
 const HintButton = ({ wordType }) => {
-  const state = useSelector((theState) => theState);
+  const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
 
   // Event Listener for orientation changes
@@ -133,9 +133,8 @@ const HintButton = ({ wordType }) => {
           }
         }}
       >
-        <Hint
+        <IconM
           name={hintBtn(state.topWord).name}
-          size={dime * 0.085}
           color={hintBtn(state.topWord).color}
           style={styles.giveUpTxt}
         />
@@ -176,9 +175,8 @@ const HintButton = ({ wordType }) => {
           }
         }}
       >
-        <Hint
+        <IconM
           name={hintBtn(state.bottomWord).name}
-          size={dime * 0.085}
           color={hintBtn(state.bottomWord).color}
           style={styles.giveUpTxt}
         />

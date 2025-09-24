@@ -11,18 +11,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Analytics from "expo-firebase-analytics";
 import PropTypes from "prop-types";
 import WordsDoneModal from "./modalNextWord";
-import { openNextLevelModal } from "../../redux/actions";
+import { openHelpModal, openNextLevelModal } from "../../redux/actions";
 import Help from "./help";
 import TheCircle from "./circleForGame";
 import * as Platform from "../../util/orientation";
 import AttemptInput from "./attemptInput";
+import HintButton from "./hintButton";
 import WordBox from "./wordBox";
 import StatsBox from "./statsBox";
-import ProgressBar from "./progressBar";
-import Footer from "./footer";
 
 const GameScreen = ({ navigation }) => {
-  const state = useSelector((theState) => theState);
+  const state = useSelector((theState) => theState.theGameReducer);
   // const [visited, setVisited] = useState([]);
   // const [word, setWord] = useState('');
   // dummy state const [reset, setReset] = useState(false);
@@ -78,6 +77,11 @@ const GameScreen = ({ navigation }) => {
           : "space-around"
         : "space-between",
     },
+    hintLayout: {
+      backgroundColor: "transparent",
+      flexDirection: "row",
+      alignSelf: "center",
+    },
     // status: {
     //   color: 'black',
     //   fontSize: dimensions.size['10'],
@@ -119,7 +123,7 @@ const GameScreen = ({ navigation }) => {
     },
     header: {
       height: 65,
-      width: "80%",
+      width: "90%",
       margin: 5,
       marginBottom: 10,
       flexDirection: "row",
@@ -134,6 +138,147 @@ const GameScreen = ({ navigation }) => {
       shadowRadius: 4,
       elevation: 5,
     },
+    // answerRow: {
+    //   flex: 1,
+    //   flexDirection: 'row',
+    //   marginTop: 20,
+    // },
+    // wordBoxText: {
+    //   flex: 2,
+    //   margin: 5,
+    //   flexDirection: 'column',
+    //   justifyContent: 'space-evenly',
+    //   width: '100%',
+    //   height: '100%',
+    // },
+    // answerText: {
+    //   textAlign: 'center',
+    //   color: 'black',
+    //   fontSize: 35,
+    //   borderRadius: 25,
+    //   height: 50,
+    // },
+    // answerTouchOpacity: {
+    //   justifyContent: 'center',
+    //   paddingTop: 10,
+    //   height: 50,
+    //   width: '100%',
+    //   marginBottom: 10,
+    // },
+    // giveUp: {
+    //   marginRight: 5,
+    //   marginTop: 5,
+    //   alignSelf: 'center',
+    //   backgroundColor: colors.theGame.giveUp,
+    //   opacity: 1,
+    //   width: 40,
+    //   height: 40,
+    //   borderColor: 'black',
+    //   borderWidth: 2,
+    //   borderRadius: 20,
+    // },
+    // giveUpTxt: {
+    //   textAlign: 'center',
+    //   alignItems: 'center',
+    //   fontSize: (state.giveUpsLeft === 0 || state.topWord !== '') ? 30 : 35,
+    //   width: '100%',
+    //   height: '100%',
+    // },
+    // wordAttemptView: {
+    //   flexDirection: 'row',
+    //   marginTop: 10,
+    //   padding: 5,
+    //   backgroundColor: colors.theGame.clearBox,
+    //   borderRadius: 20,
+    //   shadowColor: '#000',
+    //   shadowOffset: {
+    //     width: 0,
+    //     height: 2
+    //   },
+    //   shadowOpacity: 0.25,
+    //   shadowRadius: 4,
+    //   elevation: 5,
+    // },
+    // help: {
+    //   padding: dimensions.size['4'],
+    //   borderRadius: 50,
+    //   marginTop: 15,
+    // },
+    // wordAttempt: {
+    //   width: '75%',
+    //   height: '100%',
+    //   opacity: 0.8,
+    //   color: 'white',
+    //   borderRadius: 100,
+    //   justifyContent: 'center',
+    //   textAlign: 'center',
+    //   fontSize: 30,
+    // },
+    // clearBox: {
+    //   alignSelf: 'center',
+    //   width: 50,
+    //   height: 50,
+    // },
+    // clearBoxText: {
+    //   textAlign: 'center',
+    //   justifyContent: 'center',
+    //   alignContent: 'center'
+    // },
+    // theCircle: {
+    //   position: 'relative'
+    // },
+    // definitionText: {
+    //   fontFamily: 'Muli',
+    //   fontSize: 16,
+    //   marginBottom: 5,
+    //   textShadowColor: 'black',
+    //   textShadowOffset: {
+    //     width: 0.5,
+    //     height: 0.5
+    //   },
+    //   textShadowRadius: 1,
+    //   color: 'black',
+    // },
+    // upBox: {
+    //   backgroundColor: '#072227',
+    //   flexDirection: 'row',
+    //   height: '70%',
+    //   width: '25%',
+    //   alignItems: 'center',
+    //   borderRadius: 30,
+    //   elevation: 5,
+    //   justifyContent: 'space-evenly'
+    // },
+    // upText: {
+    //   color: 'white',
+    //   fontSize: 15,
+    //   fontWeight: 'bold'
+    // },
+    // keyboardRow: {
+    //   width: '100%',
+    //   flexDirection: 'row',
+    //   justifyContent: 'space-evenly',
+    //   alignSelf: 'center',
+    //   padding: 7
+    // },
+    // key: {
+    //   width: dimensions.size['20'],
+    //   height: dimensions.size['20'],
+    //   alignItems: 'center',
+    //   textAlign: 'center',
+    //   justifyContent: 'center',
+    //   marginHorizontal: 5,
+    //   marginVertical: 0,
+    //   padding: 2,
+    //   borderColor: '#000',
+    //   borderWidth: 0.5,
+    //   borderRadius: 10,
+    //   backgroundColor: '#274C7C',
+    //   elevation: 5
+    // },
+    // keyText: {
+    //   color: 'white',
+    // },
   });
 
   const ranOutOfLives = async (level) => {
@@ -145,7 +290,7 @@ const GameScreen = ({ navigation }) => {
   }
 
   React.useEffect(() => {
-    if (state.levelProgress.length === 0) {
+    if (state.levelProgress === []) {
       dispatch(openNextLevelModal());
     }
   }, [state.levelProgress, dispatch]);
@@ -154,11 +299,7 @@ const GameScreen = ({ navigation }) => {
     return <AppLoading />;
   }
   return (
-    <LinearGradient
-      colors={["#000", "#330867", "#304877"]}
-      start={{ x: 0, y: -1 }}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#2289d8", "#032b45"]} style={styles.container}>
       <SafeAreaView style={styles.container}>
         {state.helpPage ? <Help /> : null}
         {state.nextLevelModal[0] ? <WordsDoneModal /> : null}
@@ -166,43 +307,30 @@ const GameScreen = ({ navigation }) => {
         <View
           style={{
             width: "100%",
-            flexDirection: "column",
+            height: dimeMin * 0.2,
+            backgroundColor: "transparent",
+            flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-evenly",
-            marginBottom: 10,
+            justifyContent: "space-around",
+            padding: 20,
           }}
         >
-          <View
-            style={{
-              width: "100%",
-              height: dimeMin * 0.2,
-              backgroundColor: "transparent",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: 20,
-            }}
-          >
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <IonIcons name="close" size={dimeMin * 0.08} color="#fff" />
-            </TouchableOpacity>
-            <View style={styles.header}>
-              <StatsBox stat="levels" navigation={navigation} />
-              <StatsBox stat="hints" navigation={navigation} />
-              {/* <StatsBox stat="points" navigation={navigation} /> */}
-            </View>
-            {/* <IonIcons
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <IonIcons name="chevron-back" size={dimeMin * 0.08} color="black" />
+          </TouchableOpacity>
+          <View style={styles.header}>
+            <StatsBox stat="levels" navigation={navigation} />
+            <StatsBox stat="hints" navigation={navigation} />
+            {/* <StatsBox stat="points" navigation={navigation} /> */}
+          </View>
+          <IonIcons
             name="help"
             size={dimeMin * 0.08}
             color="black"
             onPress={() => {
               dispatch(openHelpModal());
             }}
-          /> */}
-          </View>
-          <View style={{ width: "80%" }}>
-            <ProgressBar steps={10} currentStep={state.levelProgress[0]} />
-          </View>
+          />
         </View>
         <View style={styles.scroller}>
           {/* <View
@@ -287,7 +415,13 @@ const GameScreen = ({ navigation }) => {
             })} */}
             <TheCircle />
             {/* condition to show hint button only when both words are not guessed */}
-            <Footer dispatch={dispatch} />
+            <View style={styles.hintLayout}>
+              {state.topWord.length !== state.firstLength ? (
+                <HintButton wordType="top" />
+              ) : (
+                <HintButton wordType="bottom" />
+              )}
+            </View>
           </View>
         </View>
       </SafeAreaView>

@@ -1,7 +1,7 @@
-import { defaultMatraValue } from "../constants";
-import getMatraAkhar from "./get-matra-akhar";
+import { defaultMatraValue } from '../constants';
+import { getMatraAkhar } from './get-matra-akhar';
 
-const getKeyboardKeyValue = (keyboardKey, query) => {
+export const getKeyboardKeyValue = (keyboardKey, query) => {
   const labelVal = Object.keys(defaultMatraValue).includes(keyboardKey)
     ? getMatraAkhar(keyboardKey, query)
     : keyboardKey;
@@ -13,5 +13,3 @@ const getKeyboardKeyValue = (keyboardKey, query) => {
   }
   return labelVal;
 };
-
-export default getKeyboardKeyValue;
