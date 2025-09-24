@@ -1,9 +1,11 @@
 /* eslint-disable no-shadow */
 /* eslint-disable prefer-const */
-const { Dimensions, StatusBar, Platform } = require("react-native");
+const { Dimensions, StatusBar, Platform } = require('react-native');
 
-let { width, scale, height, fontScale } = Dimensions.get("window");
-const isIOS = Platform.OS === "ios";
+let {
+  width, scale, height, fontScale
+} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios';
 const statusBarHeight = isIOS ? 20 : StatusBar.currentHeight;
 fontScale = scale;
 // if(scale>3) fontScale = 3;
@@ -22,7 +24,7 @@ module.exports = {
   tabBarHeight: 25 * fontScale,
   contentHeight: height - statusBarHeight,
   getFontSize(size) {
-    return size * fontScale; // 4 6 8 12 16 24 32 48 64
+    return size * fontScale;// 4 6 8 12 16 24 32 48 64
   },
   getWidth(width) {
     return width * fontScale;
@@ -60,6 +62,6 @@ module.exports = {
     54: 54 * fontScale,
     60: 60 * fontScale,
     64: 64 * fontScale,
-    66: 66 * fontScale,
-  },
+    66: 66 * fontScale
+  }
 };

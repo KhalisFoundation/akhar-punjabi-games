@@ -12,7 +12,7 @@ const SettingsBar = ({ theSetting, imageSource, theList, theAction }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [currentSetting, setCurrentSetting] = React.useState("Wanna reset the game?");
 
-  // const state = useSelector((theState) => theState);
+  // const state = useSelector((theState) => theState.theGameReducer);
   const styles = StyleSheet.create({
     titleText: {
       color: "black",

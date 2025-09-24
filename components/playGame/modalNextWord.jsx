@@ -41,7 +41,7 @@ import Icon14 from "../../assets/Group-14.svg";
 import Win from "../../assets/Win.svg";
 
 const WordsDoneModal = () => {
-  const state = useSelector((theState) => theState);
+  const state = useSelector((theState) => theState.theGameReducer);
   const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Bookish: require("../../assets/fonts/Bookish.ttf"),
