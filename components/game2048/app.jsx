@@ -65,14 +65,17 @@ const New2048 = ({ navigation }) => {
   });
 
   const share = () => {
-    Share.share({
-      message: `Hi! I'm playing 2048 on Akhar Games to learn Gurmukhi numerals. Join me!
+    Share.share(
+      {
+        message: `Hi! I'm playing 2048 on Akhar Games to learn Gurmukhi numerals. Join me!
       \nhttps://play.google.com/store/apps/details?id=com.khalisfoundation.gurmukhi_games`,
-      title: "Akhar Games is a collection of games to help you learn Gurmukhi. Play now!"
-    }, {
-      dialogTitle: "Share Akhar Games"
-    });
-  }
+        title: "Akhar Games is a collection of games to help you learn Gurmukhi. Play now!",
+      },
+      {
+        dialogTitle: "Share Akhar Games",
+      }
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
