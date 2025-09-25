@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js (LTS)
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'npm 
+          node-version: 'lts/*'
           cache: 'npm'
 
       - name: Install dependencies
